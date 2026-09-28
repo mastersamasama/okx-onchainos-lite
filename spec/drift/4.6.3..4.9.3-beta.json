@@ -1,0 +1,376 @@
+{
+  "from": {
+    "version": "4.6.3",
+    "commit": "9de8161d870fea8fad05c324f6c00a50cd88962d"
+  },
+  "to": {
+    "version": "4.9.3-beta",
+    "commit": "1dabf93340d016c031fcd8b88192ca9802e0db35",
+    "ref": "v4.9.3-beta"
+  },
+  "surface": null,
+  "apiAdded": [
+    "/api/v6/test"
+  ],
+  "apiRemoved": [],
+  "partitions": {
+    "g01-core-runtime": [
+      {
+        "status": "M",
+        "path": "cli/src/audit.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/chains.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/client.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/mod.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/config.rs"
+      },
+      {
+        "status": "D",
+        "path": "cli/src/endpoints.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/main.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/token_alias.rs"
+      }
+    ],
+    "g11a-agent-dispatch": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/a2mcp_probe/flow.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/a2mcp_probe/method.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/a2mcp_probe/tests.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/chat/mod.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/mod.rs"
+      }
+    ],
+    "g11b-agent-identity": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/identity/args.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/identity/mutations.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/identity/queries.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/identity/service_match.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/identity/socket.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/identity/tests/utils_tests.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/identity/utils.rs"
+      }
+    ],
+    "g15-agent-asp-evaluator": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/asp/provider_decision.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/asp/task_query.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/evaluator/decimal_str.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/evaluator/stake.rs"
+      }
+    ],
+    "g13-agent-autotrade": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/common/autotrade/executor.rs"
+      }
+    ],
+    "g12-agent-task-common": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/common/funding_notice.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/common/lifecycle.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/common/mod.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/common/network/task_api_client.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/common/query.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/common/util.rs"
+      }
+    ],
+    "g14a-agent-user-create": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/user/content.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/user/create_subscribe.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/user/device_routing.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/user/task_create_prepare.rs"
+      }
+    ],
+    "g14b-agent-user-lifecycle": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/user/flow_lifecycle/core.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/user/refund.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/commands/agent_commerce/task/user/subscription_ops.rs"
+      }
+    ],
+    "g02-auth-keyring-crypto": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agentic_wallet/auth/mod.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/wallet_api.rs"
+      }
+    ],
+    "g06-wallet-core": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/agentic_wallet/receive.rs"
+      }
+    ],
+    "g09a-payment-core": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/payment/http_carrier.rs"
+      }
+    ],
+    "g09b-payment-schemes": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/payment/quote.rs"
+      }
+    ],
+    "g04-token-security-portfolio-gateway": [
+      {
+        "status": "M",
+        "path": "cli/src/commands/security.rs"
+      }
+    ],
+    "g10-ws-watch-mcp-workflow": [
+      {
+        "status": "M",
+        "path": "cli/src/mcp/mod.rs"
+      },
+      {
+        "status": "M",
+        "path": "cli/src/watch/daemon.rs"
+      }
+    ]
+  },
+  "docs": [
+    {
+      "status": "M",
+      "path": "skills/okx-agent-payments-protocol/SKILL.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-agent-payments-protocol/references/a2mcp-execute.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-agent-payments-protocol/references/charge.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-agentic-wallet/SKILL.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-agentic-wallet/references/funding.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-agentic-wallet/references/wallet-troubleshooting.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-agentic-wallet/references/wallet.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/SKILL.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/evals/fixtures/task-contracts.json"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/evals/fixtures/task-traces.json"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/notify.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/task-query.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/create-guide.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/create.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/duplicate-subscription.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/execution-policy.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/refund-confirm.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/refund-execute.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/refund-prepare.md"
+    },
+    {
+      "status": "D",
+      "path": "skills/okx-ai/references/a2a/user/restore-copytrade.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/review-decision.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/review.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/router.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/subscription-create.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/subscription-manage.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/a2a/user/subscription.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/identity/profile.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/runtime/decision-relay.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-ai/references/shared/refund-contract.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-dapp-discovery/SKILL.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-defi/SKILL.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-defi/references/invest-troubleshooting.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-defi/references/invest.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-dex-market/SKILL.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-dex-market/references/social-troubleshooting.md"
+    },
+    {
+      "status": "M",
+      "path": "skills/okx-guide/SKILL.md"
+    }
+  ]
+}

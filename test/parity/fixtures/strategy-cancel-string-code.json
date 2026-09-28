@@ -1,0 +1,16 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/cancel",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "60002",
+        "msg": "string code is ignored",
+        "data": {
+          "updateNum": 2
+        }
+      }
+    }
+  }
+]

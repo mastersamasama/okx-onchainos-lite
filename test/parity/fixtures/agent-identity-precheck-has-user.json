@@ -1,0 +1,55 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "match": {
+      "query": {
+        "role": "1"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "list": [
+              {
+                "agentId": "1001",
+                "role": 1,
+                "name": "Buyer",
+                "ownerAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44"
+              },
+              {
+                "agentId": "2",
+                "role": 1,
+                "ownerAddress": "0xother"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "agentId": "1001",
+              "role": 1,
+              "name": "Buyer"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

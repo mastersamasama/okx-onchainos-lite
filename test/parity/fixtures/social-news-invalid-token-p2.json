@@ -1,0 +1,47 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/latest",
+  "match": {
+   "query": {
+    "cursor": "p2"
+   }
+  },
+  "times": 1,
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "10001",
+    "msg": "Invalid access token",
+    "data": []
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/latest",
+  "match": {
+   "query": {
+    "cursor": "p2"
+   }
+  },
+  "times": 1,
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "p3",
+     "articles": [
+      {
+       "id": "b1",
+       "title": "T-b1",
+       "content": ""
+      }
+     ]
+    }
+   }
+  }
+ }
+]

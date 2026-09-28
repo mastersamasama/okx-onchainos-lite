@@ -1,0 +1,35 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "match": {
+      "query": {
+        "tokenAddresses[0].tokenAddress": "btc-brc20-ordi"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "nested": {
+              "tokenAssets": [
+                {
+                  "chainIndex": "0",
+                  "symbol": "ordi",
+                  "tokenAddress": "BTC-BRC20-ORDI",
+                  "balance": 4,
+                  "tokenPrice": "1e-3",
+                  "usdValue": ""
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+]

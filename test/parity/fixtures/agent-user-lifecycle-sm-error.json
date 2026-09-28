@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "service search temporarily unavailable",
+        "data": null
+      }
+    }
+  }
+]

@@ -1,0 +1,99 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/batch/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "0x35de662efa4103c16bb3bcac0aa15d7030e5c8685177457b075648c83bd751da",
+            "hash": "0x01",
+            "authHashFor7702": null,
+            "executeErrorMsg": "",
+            "executeResult": true,
+            "extraData": {
+              "gasLimit": "251092",
+              "maxFeePerGas": "32000000000",
+              "maxPriorityFeePerGas": "1500000000",
+              "nonce": 17,
+              "chainId": 1,
+              "freeGas": false,
+              "extJson": {
+                "source": "dex"
+              }
+            },
+            "signType": "eip1559",
+            "encoding": "hex",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": false,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": null,
+            "serviceChargeSymbol": null,
+            "serviceChargeFeeTokenAddress": null,
+            "needUpdate7702": false,
+            "gasStationTokenList": null,
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "NOT_APPLICABLE",
+            "contractNonce": null,
+            "eoaNonce": null,
+            "user712Data": null,
+            "user7702Data": null,
+            "defaultGasTokenAddress": null
+          },
+          {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "0x35de662efa4103c16bb3bcac0aa15d7030e5c8685177457b075648c83bd751da",
+            "hash": "0x02",
+            "authHashFor7702": null,
+            "executeErrorMsg": "execution reverted: TRANSFER_FROM_FAILED",
+            "executeResult": false,
+            "extraData": {
+              "gasLimit": "251092",
+              "maxFeePerGas": "32000000000",
+              "maxPriorityFeePerGas": "1500000000",
+              "nonce": 17,
+              "chainId": 1,
+              "freeGas": false,
+              "extJson": {
+                "source": "dex"
+              }
+            },
+            "signType": "eip1559",
+            "encoding": "hex",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": false,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": null,
+            "serviceChargeSymbol": null,
+            "serviceChargeFeeTokenAddress": null,
+            "needUpdate7702": false,
+            "gasStationTokenList": null,
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "NOT_APPLICABLE",
+            "contractNonce": null,
+            "eoaNonce": null,
+            "user712Data": null,
+            "user7702Data": null,
+            "defaultGasTokenAddress": null
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81001",
+        "msg": "pageSize must be between 1 and 100",
+        "data": null
+      }
+    }
+  }
+]

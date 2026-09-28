@@ -1,0 +1,37 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/by-symbol",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "p2",
+     "articles": [
+      {
+       "id": "b1",
+       "title": "T-b1",
+       "summary": "s-b1",
+       "content": "",
+       "sourceUrl": "https://example.com/b1",
+       "source": "blockbeats",
+       "timestamp": 1716892020000,
+       "tokenSymbols": [
+        "BTC"
+       ],
+       "importance": "high",
+       "tokenSymbolSentiments": [
+        {
+         "tokenSymbol": "BTC",
+         "sentiment": "bullish"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ }
+]

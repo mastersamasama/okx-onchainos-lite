@@ -1,0 +1,35 @@
+[
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "timestamp": "1716892020000",
+      "chainIndex": "501",
+      "walletType": "1",
+      "triggerWalletCount": "3",
+      "triggerWalletAddress": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU,9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+      "amountUsd": "15230.5",
+      "soldRatioPercent": "12.5",
+      "cursor": "1716892020000_17",
+      "price": "147.3",
+      "token": {
+       "tokenAddress": "So11111111111111111111111111111111111111112",
+       "symbol": "SOL",
+       "name": "Wrapped SOL",
+       "logo": "",
+       "marketCapUsd": "70000000000",
+       "holders": "1200000",
+       "top10HolderPercent": "20.1"
+      }
+     }
+    ]
+   }
+  }
+ }
+]

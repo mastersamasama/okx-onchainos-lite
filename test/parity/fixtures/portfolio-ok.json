@@ -1,0 +1,127 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/balance/supported/chain",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "name": "Ethereum",
+            "shortName": "eth",
+            "chainIndex": "1",
+            "logoUrl": "https://static.okx.com/cdn/wallet/logo/ETH-20220328.png"
+          },
+          {
+            "name": "X Layer",
+            "shortName": "xlayer",
+            "chainIndex": "196",
+            "logoUrl": "https://static.okx.com/cdn/wallet/logo/okb.png"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/balance/total-value-by-address",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "totalValue": "1234567.891234"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/balance/all-token-balances-by-address",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "tokenAssets": [
+              {
+                "chainIndex": "1",
+                "tokenContractAddress": "",
+                "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                "symbol": "ETH",
+                "balance": "1.2345",
+                "rawBalance": "1234500000000000000",
+                "tokenPrice": "3012.5",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                "symbol": "USDC",
+                "balance": "100.5",
+                "rawBalance": "100500000",
+                "tokenPrice": "0.9998",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "tokenContractAddress": "0xdeadbeef00000000000000000000000000000001",
+                "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                "symbol": "SCAM",
+                "balance": "1000",
+                "rawBalance": "0",
+                "tokenPrice": "0",
+                "isRiskToken": true
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/balance/token-balances-by-address",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "tokenAssets": [
+              {
+                "chainIndex": "1",
+                "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                "symbol": "USDC",
+                "balance": "100.5",
+                "rawBalance": "100500000",
+                "tokenPrice": "0.9998",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "tokenContractAddress": "",
+                "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+                "symbol": "ETH",
+                "balance": "1.2345",
+                "rawBalance": "0",
+                "tokenPrice": "3012.5",
+                "isRiskToken": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

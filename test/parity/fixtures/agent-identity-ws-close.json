@@ -1,0 +1,33 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": 0
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            {
+              "event": "subscribe",
+              "arg": {
+                "channel": "wallet-agentic-identity"
+              }
+            },
+            {
+              "txHash": "0xdead",
+              "agentId": "9"
+            }
+          ],
+          "then": "close"
+        }
+      ]
+    }
+  ]
+}

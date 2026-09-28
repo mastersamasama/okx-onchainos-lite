@@ -1,0 +1,26 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "0"
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            {
+              "event": "error",
+              "msg": "channel not allowed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

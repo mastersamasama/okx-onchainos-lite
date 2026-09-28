@@ -1,0 +1,30 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/security/token-scan",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainId": "1",
+            "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "isChainSupported": true,
+            "riskLevel": "CRITICAL",
+            "buyTaxes": null,
+            "sellTaxes": null,
+            "isHoneypot": false,
+            "isRubbishAirdrop": false,
+            "isAirdropScam": false,
+            "isLowLiquidity": false,
+            "isMintable": false,
+            "isHasFrozenAuth": false,
+            "isNotRenounced": false
+          }
+        ]
+      }
+    }
+  }
+]

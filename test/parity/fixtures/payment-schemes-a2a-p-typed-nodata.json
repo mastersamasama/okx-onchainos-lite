@@ -1,0 +1,16 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/p1",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "type": "charge"
+        }
+      }
+    }
+  }
+]

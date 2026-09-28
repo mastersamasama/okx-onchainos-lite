@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/x402/buyers/0xd825f780e3cb88b383907ff427495d1dca352d44/allowance-status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {}
+      }
+    }
+  }
+]

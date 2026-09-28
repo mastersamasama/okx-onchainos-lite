@@ -1,0 +1,1712 @@
+{
+  "skill": "workflows",
+  "files": [
+    {
+      "path": "CLAUDE.md",
+      "chars": 1419
+    },
+    {
+      "path": "workflows/INDEX.md",
+      "chars": 1108
+    },
+    {
+      "path": "workflows/TEMPLATE.md",
+      "chars": 1289
+    },
+    {
+      "path": "workflows/references/keyword-glossary.md",
+      "chars": 1502
+    },
+    {
+      "path": "workflows/daily-brief.md",
+      "chars": 2962
+    },
+    {
+      "path": "workflows/new-token-screening.md",
+      "chars": 2537
+    },
+    {
+      "path": "workflows/portfolio-check.md",
+      "chars": 2103
+    },
+    {
+      "path": "workflows/smart-money-signals.md",
+      "chars": 2070
+    },
+    {
+      "path": "workflows/token-research.md",
+      "chars": 4820
+    },
+    {
+      "path": "workflows/wallet-analysis.md",
+      "chars": 2414
+    },
+    {
+      "path": "workflows/wallet-monitor.md",
+      "chars": 2027
+    },
+    {
+      "path": "workflows/wallet-monitor-ws.md",
+      "chars": 3175
+    }
+  ],
+  "units": [
+    {
+      "id": "workflows-001",
+      "kind": "command-usage",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [],
+      "source": "CLAUDE.md#Command discipline",
+      "obsolete": false,
+      "text": "Before running any CLI command, read the matched skill's SKILL.md; never guess command syntax or supported flags.",
+      "note": "Lite: exact syntax lives only in references/commands/<top>.md cards; read the card before running `ocl <command>`."
+    },
+    {
+      "id": "workflows-002",
+      "kind": "safety",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [],
+      "source": "CLAUDE.md#Command discipline",
+      "obsolete": false,
+      "text": "Report a CLI command (and its result) only after it actually ran; never claim a command ran or fabricate its output."
+    },
+    {
+      "id": "workflows-003",
+      "kind": "safety",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [],
+      "source": "CLAUDE.md#Command discipline",
+      "obsolete": false,
+      "text": "Use CLI output for live data (prices, balances, holdings, signals); never answer live data from skill text or model memory."
+    },
+    {
+      "id": "workflows-004",
+      "kind": "installation",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [
+        "preflight"
+      ],
+      "source": "CLAUDE.md#Command discipline",
+      "obsolete": true,
+      "text": "Do not use the retired `onchainos preflight` command.",
+      "note": "Lite has no preflight/installer; `ocl doctor` covers environment/egress/login diagnostics."
+    },
+    {
+      "id": "workflows-005",
+      "kind": "installation",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [],
+      "source": "CLAUDE.md#Command discipline",
+      "obsolete": true,
+      "text": "Installation, update, and reinstall use `npx -y @okxweb3/onchainos-installer install` (add `--beta` when needed).",
+      "note": "Lite skill folder is self-contained; no installer or upgrade path."
+    },
+    {
+      "id": "workflows-006",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "workflow",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "For token research, market overview, smart-money, new-token scanning, wallet analysis, portfolio, or wallet monitoring requests, read `workflows/INDEX.md` first (before individual skills)."
+    },
+    {
+      "id": "workflows-007",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "workflow",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "For Chinese-language requests also read `workflows/references/keyword-glossary.md` (Chinese slang → workflow mapping)."
+    },
+    {
+      "id": "workflows-008",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "wallet",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "Wallet actions and security checks → `okx-agentic-wallet` skill.",
+      "note": "Covers wallet, security, swap/bridge execution, portfolio etc. in upstream; lite merges skills."
+    },
+    {
+      "id": "workflows-009",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "dapp",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "Named third-party DApps → `okx-dapp-discovery` skill."
+    },
+    {
+      "id": "workflows-010",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "agents",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "Agent identity, task lifecycle, marketplace subscriptions, and task monitoring → `okx-ai` skill."
+    },
+    {
+      "id": "workflows-011",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "payments",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "HTTP 402, x402, MPP, and payment IDs → `okx-agent-payments-protocol` skill."
+    },
+    {
+      "id": "workflows-012",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "DeFi yield, protocol positions, deposits, withdrawals, and rewards → `okx-defi` skill."
+    },
+    {
+      "id": "workflows-013",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "OnchainOS installation, onboarding, OKX.AI introduction, and support → `okx-guide` skill.",
+      "note": "The \"installation\" part is obsolete in lite; onboarding/introduction/support routing still applies."
+    },
+    {
+      "id": "workflows-014",
+      "kind": "routing",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "If a request can plausibly match more than one skill, read every candidate SKILL.md and apply their routing rules; the skills own capability lists, aliases, command indexes, and tie-breakers."
+    },
+    {
+      "id": "workflows-015",
+      "kind": "other",
+      "scope": "global",
+      "domain": "guide",
+      "commands": [],
+      "source": "CLAUDE.md#Route before acting",
+      "obsolete": false,
+      "text": "Authoring rule: the top-level routing doc must not duplicate skills' capability lists, aliases, command indexes, or tie-breakers."
+    },
+    {
+      "id": "workflows-016",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#OnchainOS Workflow Index; workflows/daily-brief.md#Keyword Glossary; workflows/new-token-screening.md#Keyword Glossary; workflows/portfolio-check.md#Keyword Glossary; workflows/smart-money-signals.md#Keyword Glossary; workflows/token-research.md#Keyword Glossary; workflows/wallet-analysis.md#Keyword Glossary; workflows/wallet-monitor.md#Keyword Glossary; workflows/wallet-monitor-ws.md#Keyword Glossary",
+      "obsolete": false,
+      "text": "If the user's query contains Chinese text, read `references/keyword-glossary.md` for trigger mappings (stated in INDEX.md and repeated in every workflow doc's \"## Keyword Glossary\" section)."
+    },
+    {
+      "id": "workflows-017",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/token-research.md#Triggers",
+      "obsolete": false,
+      "text": "Token Research workflow (`token-research.md`) triggers: \"analyze token\", \"research [address]\", \"is this token safe\"; additional triggers in the workflow doc: \"what is this token\", \"token deep dive\"."
+    },
+    {
+      "id": "workflows-018",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/daily-brief.md#Triggers",
+      "obsolete": false,
+      "text": "Daily Brief workflow (`daily-brief.md`) triggers: \"daily brief\", \"morning brief\", \"market overview\"; additional triggers in the workflow doc: \"what's the market doing today\"."
+    },
+    {
+      "id": "workflows-019",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/smart-money-signals.md#Triggers",
+      "obsolete": false,
+      "text": "Smart Money Signals workflow (`smart-money-signals.md`) triggers: \"smart money\", \"what are whales buying\", \"copy trading signals\"; additional triggers in the workflow doc: \"what is smart money buying\", \"KOL buys\"."
+    },
+    {
+      "id": "workflows-020",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/new-token-screening.md#Triggers",
+      "obsolete": false,
+      "text": "New Token Screening workflow (`new-token-screening.md`) triggers: \"scan new tokens\", \"pump.fun tokens\", \"meme token scan\"; additional triggers in the workflow doc: \"new token screening\", \"what's new on pump.fun\"."
+    },
+    {
+      "id": "workflows-021",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/wallet-analysis.md#Triggers",
+      "obsolete": false,
+      "text": "Wallet Analysis workflow (`wallet-analysis.md`) triggers: \"analyze wallet\", \"check this address\", \"is this wallet worth following\"; additional triggers in the workflow doc: \"what's this wallet's trading style\"."
+    },
+    {
+      "id": "workflows-022",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/portfolio-check.md#Triggers",
+      "obsolete": false,
+      "text": "Portfolio Check workflow (`portfolio-check.md`) triggers: \"portfolio\", \"check my holdings\", \"my wallet\"; additional triggers in the workflow doc: \"what tokens do I have\", \"my assets\"."
+    },
+    {
+      "id": "workflows-023",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/wallet-monitor.md#Triggers",
+      "obsolete": false,
+      "text": "Wallet Monitor workflow (`wallet-monitor.md`) triggers: \"watch wallet\", \"monitor this wallet\", \"watch [address]\"; additional triggers in the workflow doc: \"alert me when this wallet trades\"."
+    },
+    {
+      "id": "workflows-024",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table; workflows/wallet-monitor-ws.md#Triggers",
+      "obsolete": false,
+      "text": "Wallet Monitor (WS) workflow (`wallet-monitor-ws.md`) triggers: \"background monitor\", \"offline monitor\", \"WebSocket monitor\"; additional triggers in the workflow doc: \"monitor in background\", \"long-running wallet watch\"."
+    },
+    {
+      "id": "workflows-025",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/INDEX.md#table",
+      "obsolete": false,
+      "text": "If no workflow matches, fall back to individual skills."
+    },
+    {
+      "id": "workflows-026",
+      "kind": "other",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Format",
+      "obsolete": false,
+      "text": "Workflow doc sections, in order: `# {Name}`, `> {one-liner}`, `## Triggers`, `## Required Skills`, `## Input`, `## Steps` (each `### Step N — {name} [required | recommended] (parallel | sequential | conditional: {condition})`), `## Output Template`, `## Actions`, optional `## Follow-up Workflows`.",
+      "note": "Actual workflow docs additionally carry `## Keyword Glossary` and `## CLI` (composite command or \"agent-orchestrated\") sections not listed in the template."
+    },
+    {
+      "id": "workflows-027",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Rules",
+      "obsolete": false,
+      "text": "Every step is labeled `[required]` or `[recommended]` and `(parallel)` / `(sequential)` / `(conditional: <condition>)`: required steps must run, recommended steps are optional enrichment, parallel steps' commands may run concurrently, conditional steps run only when the condition holds."
+    },
+    {
+      "id": "workflows-028",
+      "kind": "other",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Rules",
+      "obsolete": false,
+      "text": "Token budget: a single workflow doc must be ≤ 1.5K tokens."
+    },
+    {
+      "id": "workflows-029",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Rules",
+      "obsolete": false,
+      "text": "CLI-first: workflows use only `onchainos` CLI commands — never reference MCP tool names.",
+      "note": "Lite: `ocl <command>`."
+    },
+    {
+      "id": "workflows-030",
+      "kind": "other",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Rules",
+      "obsolete": false,
+      "text": "Workflow docs are English only — no inline Chinese; add a `## Keyword Glossary` section pointing to `references/keyword-glossary.md` instead."
+    },
+    {
+      "id": "workflows-031",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Rules",
+      "obsolete": false,
+      "text": "Workflows follow the token risk controls defined in `okx-agentic-wallet` SKILL.md — do not redefine them in workflow docs."
+    },
+    {
+      "id": "workflows-032",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Rules",
+      "obsolete": false,
+      "text": "Script mode: use `--format` only when the command documents it; otherwise consume the command's machine-readable (JSON) output directly."
+    },
+    {
+      "id": "workflows-033",
+      "kind": "other",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/TEMPLATE.md#Rules",
+      "obsolete": false,
+      "text": "`## Follow-up Workflows` is optional — add it only when multiple downstream workflows are explicitly chained; `## Actions` is sufficient for most workflows."
+    },
+    {
+      "id": "workflows-034",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#Keyword Glossary — Workflows",
+      "obsolete": false,
+      "text": "Users may use Chinese crypto slang or platform-specific terms; map them to the matching workflow via the glossary table."
+    },
+    {
+      "id": "workflows-035",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"帮我看看这个币 / 这个币怎么样 / 查一下这个代币 / 这个币安全吗\" = analyze token, research token, is this token safe → Token Research."
+    },
+    {
+      "id": "workflows-036",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"今天市场怎么样 / 每日简报 / 市场概况\" = daily brief, morning brief, market overview → Daily Brief."
+    },
+    {
+      "id": "workflows-037",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"聪明钱在买什么 / 跟单信号 / KOL在买什么 / 聪明钱信号\" = smart money, copy trading signals, what are whales buying → Smart Money Signals."
+    },
+    {
+      "id": "workflows-038",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"帮我扫新币 / 打狗 / 扫链 / pump.fun有什么 / 有什么新币 / memepump新币\" = scan new tokens, new token screening, pump.fun tokens → New Token Screening."
+    },
+    {
+      "id": "workflows-039",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"分析这个钱包 / 这个地址怎么样 / 这个钱包值得跟吗 / 这个地址什么风格\" = analyze wallet, check this address, is this wallet worth following → Wallet Analysis."
+    },
+    {
+      "id": "workflows-040",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"看看我的持仓 / 我的钱包 / 我有什么币 / 我的资产\" = portfolio, check my holdings, my wallet (also row: 看看我的持仓 → check my portfolio) → Portfolio Check.",
+      "note": "Glossary lists 看看我的持仓 twice (portfolio / check my portfolio), both → Portfolio Check."
+    },
+    {
+      "id": "workflows-041",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"帮我盯着这个钱包 / 监控地址 / 盯着 [address]\" = watch wallet, monitor this wallet → Wallet Monitor."
+    },
+    {
+      "id": "workflows-042",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"后台监控 / 挂ws盯着 / 离线监控 / 挂一个ws盯着 / 长期盯着这个钱包\" = background monitor, offline monitor, WebSocket monitor → Wallet Monitor (WS)."
+    },
+    {
+      "id": "workflows-043",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"看聚类列表 / 看同车钱包\" = show cluster list, show co-invested wallets → Token Research → Step 2 (cluster data)."
+    },
+    {
+      "id": "workflows-044",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"查 dev 其他项目 / dev 跑路记录\" = show dev projects, dev rug history → Token Research → Step 3 (launchpad/dev data)."
+    },
+    {
+      "id": "workflows-045",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"停止监控\" = stop monitoring → Wallet Monitor (exit the poll loop)."
+    },
+    {
+      "id": "workflows-046",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"盯着这个币\" = watch this token → Wallet Monitor."
+    },
+    {
+      "id": "workflows-047",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/references/keyword-glossary.md#table",
+      "obsolete": false,
+      "text": "Chinese \"看看 [symbol]\" = research [symbol] → Token Research."
+    },
+    {
+      "id": "workflows-048",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/daily-brief.md#Daily Brief; workflows/daily-brief.md#Required Skills",
+      "obsolete": false,
+      "text": "Daily Brief combines market pulse, smart money activity, new token launches, and portfolio alerts into one morning report. Required skills: okx-dex-market, okx-agentic-wallet."
+    },
+    {
+      "id": "workflows-049",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/daily-brief.md#Input",
+      "obsolete": false,
+      "text": "Daily Brief inputs: `chain` (optional, default Solana); `wallet_address` (optional — enables Step 4 portfolio alerts)."
+    },
+    {
+      "id": "workflows-050",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/daily-brief.md#CLI",
+      "obsolete": false,
+      "text": "Daily Brief has no single CLI composite — it is agent-orchestrated: the agent runs the atomic commands of four cross-skill steps directly and summarises their outputs in prose.",
+      "note": "No `workflow daily-brief` subcommand exists in 4.6.3."
+    },
+    {
+      "id": "workflows-051",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "market prices",
+        "token hot-tokens",
+        "market kline"
+      ],
+      "source": "workflows/daily-brief.md#Step 1 — Market pulse",
+      "obsolete": false,
+      "text": "Step 1 — Market pulse [required] (parallel): `market prices --tokens \"<chainIndex>:<SOL_addr>,<chainIndex>:<BTC_addr>,<chainIndex>:<ETH_addr>\"`; `token hot-tokens --chain <chain>`; `market kline --address <SOL_addr> --chain solana --bar 1D --limit 7` (7 daily candles = SOL 7-day trend)."
+    },
+    {
+      "id": "workflows-052",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "market",
+      "commands": [
+        "market prices"
+      ],
+      "source": "workflows/daily-brief.md#Step 1 — Market pulse",
+      "obsolete": false,
+      "text": "`market prices` requires `--tokens` in `chainIndex:address` format (comma-separated pairs)."
+    },
+    {
+      "id": "workflows-053",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "token",
+      "commands": [
+        "token hot-tokens"
+      ],
+      "source": "workflows/daily-brief.md#Step 1 — Market pulse",
+      "obsolete": false,
+      "text": "`token hot-tokens` returns up to 100 results — display only the top 10."
+    },
+    {
+      "id": "workflows-054",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "market prices",
+        "token hot-tokens",
+        "market kline"
+      ],
+      "source": "workflows/daily-brief.md#Step 1 — Market pulse",
+      "obsolete": false,
+      "text": "Daily Brief Step 1 presents: SOL / BTC / ETH prices, SOL 7-day trend, top 10 trending tokens."
+    },
+    {
+      "id": "workflows-055",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "signal list",
+        "tracker activities"
+      ],
+      "source": "workflows/daily-brief.md#Step 2 — Smart money activity",
+      "obsolete": false,
+      "text": "Step 2 — Smart money activity [recommended] (parallel): `signal list --chain <chain>`; `tracker activities --tracker-type smart_money --chain <chain>`."
+    },
+    {
+      "id": "workflows-056",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "signal-social",
+      "commands": [
+        "tracker activities"
+      ],
+      "source": "workflows/daily-brief.md#Step 2 — Smart money activity; workflows/wallet-monitor.md#Step 2 — Poll loop",
+      "obsolete": false,
+      "text": "`tracker activities` requires `--tracker-type` (workflows use `smart_money` for smart-money feed and `multi_address` with `--wallet-address` for specific wallets)."
+    },
+    {
+      "id": "workflows-057",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "signal list",
+        "tracker activities"
+      ],
+      "source": "workflows/daily-brief.md#Step 2 — Smart money activity",
+      "obsolete": false,
+      "text": "Daily Brief Step 2 presents: SM signal tokens grouped by wallet count; recent SM/KOL buys and sells."
+    },
+    {
+      "id": "workflows-058",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "memepump tokens"
+      ],
+      "source": "workflows/daily-brief.md#Step 3 — New token activity",
+      "obsolete": false,
+      "text": "Step 3 — New token activity [recommended] (sequential): `memepump tokens --chain <chain> --stage MIGRATED`."
+    },
+    {
+      "id": "workflows-059",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "trenches",
+      "commands": [
+        "memepump tokens"
+      ],
+      "source": "workflows/daily-brief.md#Step 3 — New token activity; workflows/new-token-screening.md#Step 1 — Fetch",
+      "obsolete": false,
+      "text": "`memepump tokens` has no `--limit` param. `--stage MIGRATED` returns tokens within 72h of migration; `MIGRATING` returns tokens within 24h of creation; tokens outside these windows are not returned."
+    },
+    {
+      "id": "workflows-060",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "memepump tokens"
+      ],
+      "source": "workflows/daily-brief.md#Step 3 — New token activity",
+      "obsolete": false,
+      "text": "Daily Brief Step 3: display top 10 recently migrated tokens with holder count, volume, SM count."
+    },
+    {
+      "id": "workflows-061",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "portfolio all-balances",
+        "market portfolio-overview"
+      ],
+      "source": "workflows/daily-brief.md#Step 4 — Portfolio alerts",
+      "obsolete": false,
+      "text": "Step 4 — Portfolio alerts [recommended] (conditional: wallet_address provided): `portfolio all-balances --address <wallet> --chains <chain>`; `market portfolio-overview --address <wallet> --chain <chain>`."
+    },
+    {
+      "id": "workflows-062",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "portfolio all-balances",
+        "market portfolio-overview"
+      ],
+      "source": "workflows/daily-brief.md#Step 4 — Portfolio alerts",
+      "obsolete": false,
+      "text": "Daily Brief Step 4 presents: holdings summary, overall PnL, notable 24h changes in held tokens."
+    },
+    {
+      "id": "workflows-063",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/daily-brief.md#Output Template",
+      "obsolete": false,
+      "text": "Daily Brief output template: \"DAILY BRIEF — {chain} — {date}\"; MARKET: \"BTC ${x} | ETH ${x} | SOL ${x}\", \"SOL 7D: {trend summary}\"; HOT TOKENS table (#, Symbol, Price, 24h%, Vol); SMART MONEY: \"Buying: {sym} ({n} wallets)...\", \"Selling: {sym} ({n} wallets)...\", \"Notable: {addr} bought ${x} of {sym}\"; NEW TOKENS table (Token, MCap, Holders, SM); [if wallet provided] PORTFOLIO: \"Total: ${x} | PnL(24h): ${x}\", \"Moves: {sym} {+/-x}%, ...\"."
+    },
+    {
+      "id": "workflows-064",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/daily-brief.md#Actions",
+      "obsolete": false,
+      "text": "Daily Brief follow-ups: \"research [symbol]\" → Token Research; \"what is smart money buying\" → Smart Money Signals."
+    },
+    {
+      "id": "workflows-065",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/new-token-screening.md#New Token Screening; workflows/new-token-screening.md#Required Skills",
+      "obsolete": false,
+      "text": "New Token Screening scans Launchpad new tokens, enriches top results with safety and dev data, and surfaces actionable candidates. Required skills: okx-dex-market, okx-agentic-wallet."
+    },
+    {
+      "id": "workflows-066",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "memepump tokens"
+      ],
+      "source": "workflows/new-token-screening.md#Input",
+      "obsolete": false,
+      "text": "New Token Screening inputs (all optional): chain (default Solana), protocol (default All), min_holders, min_bonding_percent, top10_hold_percent_max (default: CLI default). Filter params pass through to `memepump tokens`; users may override via natural language (e.g. \"only show tokens with 100+ holders\").",
+      "note": "Flag mapping in 4.6.3: min_holders→--min-holders, min_bonding_percent→--min-bonding-percent, top10_hold_percent_max→--max-top10-holdings-percent, protocol→--protocol-id-list. The `workflow new-tokens` composite accepts only --chain/--stage, so filters require the atomic `memepump tokens` path."
+    },
+    {
+      "id": "workflows-067",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "workflow new-tokens"
+      ],
+      "source": "workflows/new-token-screening.md#CLI",
+      "obsolete": false,
+      "text": "Complete New Token Screening in one command: `workflow new-tokens [--chain <chain>] [--stage MIGRATED|MIGRATING]` (defaults: solana, MIGRATED)."
+    },
+    {
+      "id": "workflows-068",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "memepump tokens"
+      ],
+      "source": "workflows/new-token-screening.md#Step 1 — Fetch",
+      "obsolete": false,
+      "text": "Step 1 — Fetch [required] (sequential): `memepump tokens --chain <chain> --stage MIGRATED`."
+    },
+    {
+      "id": "workflows-069",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "trenches",
+      "commands": [
+        "memepump tokens"
+      ],
+      "source": "workflows/new-token-screening.md#Step 1 — Fetch",
+      "obsolete": false,
+      "text": "Users may filter `memepump tokens` with `--min-holders`, `--min-market-cap`, `--max-top10-holdings-percent`."
+    },
+    {
+      "id": "workflows-070",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "memepump tokens"
+      ],
+      "source": "workflows/new-token-screening.md#Step 1 — Fetch",
+      "obsolete": false,
+      "text": "New Token Screening Step 1 presents a token list: name, symbol, mcap, holders, volume, SM count, creation time."
+    },
+    {
+      "id": "workflows-071",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "security token-scan",
+        "token advanced-info",
+        "memepump token-dev-info",
+        "memepump token-bundle-info"
+      ],
+      "source": "workflows/new-token-screening.md#Step 2 — Safety + dev enrichment",
+      "obsolete": false,
+      "text": "Step 2 — Safety + dev enrichment [recommended] (parallel per token, top 10): `security token-scan --tokens \"<chainIndex>:<addr>\"`; `token advanced-info --address <addr> --chain <chain>`; `memepump token-dev-info --address <addr> --chain <chain>`; `memepump token-bundle-info --address <addr> --chain <chain>`."
+    },
+    {
+      "id": "workflows-072",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/new-token-screening.md#Step 2 — Safety + dev enrichment",
+      "obsolete": false,
+      "text": "New Token Screening Step 2 presents per token: honeypot, tax flags, mint/freeze, dev rug count, dev holding %, bundle rate."
+    },
+    {
+      "id": "workflows-073",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/new-token-screening.md#Output Template",
+      "obsolete": false,
+      "text": "New Token Screening output template: \"NEW TOKENS — {chain} — {timestamp}\"; per token \"#N {name} ({symbol})\" then \"MCap: ${x} | Holders: {n} | SM: {n} | Age: {n}h\", \"Honeypot: {Y/N} | Tax: {x}/{x}% | Mint: {A/R} | Freeze: {A/R}\", \"Dev Rugs: {n} | Dev Holding: {x}% | Bundle: {x}%\"."
+    },
+    {
+      "id": "workflows-074",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/new-token-screening.md#Actions",
+      "obsolete": false,
+      "text": "New Token Screening follow-ups: \"research [symbol]\" → Token Research; \"show dev projects for [symbol]\" → show dev project history."
+    },
+    {
+      "id": "workflows-075",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/portfolio-check.md#Portfolio Check; workflows/portfolio-check.md#Required Skills",
+      "obsolete": false,
+      "text": "Portfolio Check shows wallet token balances, total value, and per-token PnL. Required skills: okx-agentic-wallet, okx-dex-market."
+    },
+    {
+      "id": "workflows-076",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/portfolio-check.md#Input",
+      "obsolete": false,
+      "text": "Portfolio Check inputs: `wallet_address` (required); `chain` (optional, default all supported chains).",
+      "note": "Upstream does not say how to obtain the address for \"my wallet\"; lite can resolve it from the logged-in wallet (social-login flow → wallet addresses) or ask the user. Composite default chains when omitted: \"1,501\"."
+    },
+    {
+      "id": "workflows-077",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "workflow portfolio"
+      ],
+      "source": "workflows/portfolio-check.md#CLI",
+      "obsolete": false,
+      "text": "`workflow portfolio --address <addr> [--chains <chains>]` covers Step 1 (overview) only; Step 2 (per-token detail) is optional and agent-orchestrated — loop the atomic commands over each holding from Step 1."
+    },
+    {
+      "id": "workflows-078",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "portfolio all-balances",
+        "portfolio total-value",
+        "market portfolio-overview"
+      ],
+      "source": "workflows/portfolio-check.md#Step 1 — Overview",
+      "obsolete": false,
+      "text": "Step 1 — Overview [required] (parallel): `portfolio all-balances --address <wallet> --chains <chain>`; `portfolio total-value --address <wallet> --chains <chain>`; `market portfolio-overview --address <wallet> --chain <chain>`."
+    },
+    {
+      "id": "workflows-079",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "portfolio",
+      "commands": [
+        "portfolio all-balances",
+        "portfolio total-value"
+      ],
+      "source": "workflows/portfolio-check.md#Step 1 — Overview; workflows/wallet-analysis.md#Step 1 — Performance",
+      "obsolete": false,
+      "text": "`portfolio all-balances` and `portfolio total-value` use `--chains` (plural), unlike `market portfolio-overview --chain`."
+    },
+    {
+      "id": "workflows-080",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/portfolio-check.md#Step 1 — Overview",
+      "obsolete": false,
+      "text": "Portfolio Check Step 1 presents: total value, token balances, PnL, win rate."
+    },
+    {
+      "id": "workflows-081",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "market portfolio-token-pnl",
+        "token price-info"
+      ],
+      "source": "workflows/portfolio-check.md#Step 2 — Per-token detail",
+      "obsolete": false,
+      "text": "Step 2 — Per-token detail [recommended] (parallel per holding, agent-orchestrated): `market portfolio-token-pnl --address <wallet> --chain <chain> --token <addr>`; `token price-info --address <addr> --chain <chain>`. Not covered by `workflow portfolio` — run per holding only when a deeper per-token view is requested."
+    },
+    {
+      "id": "workflows-082",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "market",
+      "commands": [
+        "market portfolio-token-pnl"
+      ],
+      "source": "workflows/portfolio-check.md#Step 2 — Per-token detail",
+      "obsolete": false,
+      "text": "`market portfolio-token-pnl` uses `--token` (not `--token-address`)."
+    },
+    {
+      "id": "workflows-083",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/portfolio-check.md#Step 2 — Per-token detail",
+      "obsolete": false,
+      "text": "Portfolio Check Step 2 presents per token: price, 24h change, realized / unrealized PnL, avg cost."
+    },
+    {
+      "id": "workflows-084",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/portfolio-check.md#Output Template",
+      "obsolete": false,
+      "text": "Portfolio Check output template: \"PORTFOLIO — {short_addr}\", \"Total: ${x} | PnL(30d): ${x} | Win Rate: {x}%\", \"--- HOLDINGS ---\", per holding \"#N {sym} Balance: {n} | Value: ${x} | 24h: {x}% | PnL: ${x} | AvgCost: ${x}\"."
+    },
+    {
+      "id": "workflows-085",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/portfolio-check.md#Actions",
+      "obsolete": false,
+      "text": "Portfolio Check follow-up: \"research [symbol]\" → Token Research."
+    },
+    {
+      "id": "workflows-086",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/smart-money-signals.md#Smart Money Signals; workflows/smart-money-signals.md#Required Skills",
+      "obsolete": false,
+      "text": "Smart Money Signals collects smart money buy signals, aggregates by token, then runs due diligence on each signal token. Required skills: okx-dex-market, okx-agentic-wallet."
+    },
+    {
+      "id": "workflows-087",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/smart-money-signals.md#Input",
+      "obsolete": false,
+      "text": "Smart Money Signals input: `chain` (optional, default Solana)."
+    },
+    {
+      "id": "workflows-088",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "workflow smart-money"
+      ],
+      "source": "workflows/smart-money-signals.md#CLI",
+      "obsolete": false,
+      "text": "Complete Smart Money Signals in one command: `workflow smart-money [--chain <chain>]`."
+    },
+    {
+      "id": "workflows-089",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "signal list"
+      ],
+      "source": "workflows/smart-money-signals.md#Step 1 — Collect signals",
+      "obsolete": false,
+      "text": "Step 1 — Collect signals [required] (sequential): `signal list --chain <chain>`; aggregate by token — count distinct SM wallet addresses per token, sort descending by wallet count, take top 5."
+    },
+    {
+      "id": "workflows-090",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "signal list"
+      ],
+      "source": "workflows/smart-money-signals.md#Step 1 — Collect signals",
+      "obsolete": false,
+      "text": "Smart Money Signals Step 1 presents: token list with SM wallet count per token."
+    },
+    {
+      "id": "workflows-091",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "token price-info",
+        "token advanced-info",
+        "security token-scan"
+      ],
+      "source": "workflows/smart-money-signals.md#Step 2 — Per-token due diligence",
+      "obsolete": false,
+      "text": "Step 2 — Per-token due diligence [required] (parallel per token, max 5): `token price-info --address <token> --chain <chain>`; `token advanced-info --address <token> --chain <chain>`; `security token-scan --tokens \"<chainIndex>:<token>\"`."
+    },
+    {
+      "id": "workflows-092",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "memepump token-dev-info",
+        "memepump token-bundle-info",
+        "token advanced-info"
+      ],
+      "source": "workflows/smart-money-signals.md#Step 2 — Per-token due diligence",
+      "obsolete": false,
+      "text": "If `advanced-info.protocolId` is non-empty (launchpad token), also run in parallel: `memepump token-dev-info --address <token> --chain <chain>`; `memepump token-bundle-info --address <token> --chain <chain>`.",
+      "note": "CLI rule (is_launchpad_token): protocolId must be a non-empty JSON string."
+    },
+    {
+      "id": "workflows-093",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/smart-money-signals.md#Step 2 — Per-token due diligence",
+      "obsolete": false,
+      "text": "Smart Money Signals Step 2 presents per token: price, mcap, mint/freeze, honeypot, tax flags, dev rug history, bundle rate."
+    },
+    {
+      "id": "workflows-094",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/smart-money-signals.md#Output Template",
+      "obsolete": false,
+      "text": "Smart Money Signals output template: \"SMART MONEY SIGNALS — {chain} — {timestamp}\", \"Scanned: {n} signal tokens → Top {m} by SM wallet count\"; per token \"#N {name} ({symbol})\", \"SM Wallets: {n} | Price: ${x} | MCap: ${x}\", \"Honeypot: {Y/N} | Tax: {x}/{x}% | Mint: {A/R} | Freeze: {A/R}\", [if protocolId non-empty] \"Dev Rugs: {n} | Dev Holding: {x}% | Bundle: {x}%\"."
+    },
+    {
+      "id": "workflows-095",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/smart-money-signals.md#Actions",
+      "obsolete": false,
+      "text": "Smart Money Signals follow-up: \"research [symbol]\" → Token Research."
+    },
+    {
+      "id": "workflows-096",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/token-research.md#Token Research; workflows/token-research.md#Required Skills",
+      "obsolete": false,
+      "text": "Token Research pulls price, contract, security, holders, top traders, and smart money signals for any token in one flow. Required skills: okx-dex-market, okx-agentic-wallet."
+    },
+    {
+      "id": "workflows-097",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/token-research.md#Input",
+      "obsolete": false,
+      "text": "Token Research inputs: `token_address` or `query` (symbol/name) — one of them is required; `chain` optional (auto-detect)."
+    },
+    {
+      "id": "workflows-098",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "workflow token-research"
+      ],
+      "source": "workflows/token-research.md#CLI",
+      "obsolete": false,
+      "text": "Run Token Research with a contract address: `workflow token-research --address <addr> [--chain <chain>]`."
+    },
+    {
+      "id": "workflows-099",
+      "kind": "confirmation",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "workflow token-research"
+      ],
+      "source": "workflows/token-research.md#CLI; workflows/token-research.md#Step 0 — Token resolution",
+      "obsolete": false,
+      "text": "Step 0 — Token resolution (conditional: user gave a symbol/name, not an address): `workflow token-research --query <symbol> [--chain <chain>]` returns up to 5 search results (index, symbol, name, address, chain, price, market cap). Present them as a numbered list, let the user pick one, then re-invoke with `--address` of the selected token and continue from Step 1. Do not auto-pick.",
+      "note": "CLI output step=\"select-token\" with fixed message \"Multiple tokens found. Please select one by number (1-5) to continue the full research workflow.\" even for a single result."
+    },
+    {
+      "id": "workflows-100",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "token",
+      "commands": [
+        "token report"
+      ],
+      "source": "workflows/token-research.md#Step 1 — Core data",
+      "obsolete": false,
+      "text": "Step 1 — Core data [required] (parallel): prefer the composite `token report --address <addr> --chain <chain>` when available."
+    },
+    {
+      "id": "workflows-101",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "token info",
+        "token price-info",
+        "token advanced-info",
+        "security token-scan"
+      ],
+      "source": "workflows/token-research.md#Step 1 — Core data",
+      "obsolete": false,
+      "text": "Step 1 fallback — run all 4 in parallel: `token info`, `token price-info`, `token advanced-info` (each `--address <addr> --chain <chain>`), and `security token-scan --tokens \"<chainIndex>:<addr>\"`."
+    },
+    {
+      "id": "workflows-102",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "token",
+      "commands": [
+        "token price-info"
+      ],
+      "source": "workflows/token-research.md#Step 1 — Core data",
+      "obsolete": false,
+      "text": "Token liquidity comes from `price-info.liquidity`."
+    },
+    {
+      "id": "workflows-103",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "security",
+      "commands": [
+        "security token-scan",
+        "token advanced-info"
+      ],
+      "source": "workflows/token-research.md#Step 1 — Core data",
+      "obsolete": false,
+      "text": "`security token-scan` returns boolean risk flags only; combine with `advanced-info.tokenTags` for tax info."
+    },
+    {
+      "id": "workflows-104",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/token-research.md#Step 1 — Core data",
+      "obsolete": false,
+      "text": "Token Research Step 1 presents: name, symbol, age (from `advanced-info.createTime`), price, mcap, 24h vol, 24h change, honeypot, buy/sell tax flags, mint/freeze authority, liquidity, LP burned %."
+    },
+    {
+      "id": "workflows-105",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "token holders",
+        "token cluster-overview",
+        "token top-trader",
+        "signal list"
+      ],
+      "source": "workflows/token-research.md#Step 2 — On-chain structure",
+      "obsolete": false,
+      "text": "Step 2 — On-chain structure [recommended] (parallel): `token holders --address <addr> --chain <chain>`; `token cluster-overview --address <addr> --chain <chain>`; `token top-trader --address <addr> --chain <chain>`; `signal list --chain <chain> --token-address <addr>`."
+    },
+    {
+      "id": "workflows-106",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "token",
+      "commands": [
+        "token holders"
+      ],
+      "source": "workflows/token-research.md#Step 2 — On-chain structure",
+      "obsolete": false,
+      "text": "`token holders` defaults to 20 results; pass `--limit 100` for the top 100."
+    },
+    {
+      "id": "workflows-107",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "token",
+      "commands": [
+        "token cluster-overview"
+      ],
+      "source": "workflows/token-research.md#Step 2 — On-chain structure",
+      "obsolete": false,
+      "text": "`token cluster-overview` may return HTTP 500 for brand-new tokens — skip it gracefully (omit cluster data) if unavailable."
+    },
+    {
+      "id": "workflows-108",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/token-research.md#Step 2 — On-chain structure",
+      "obsolete": false,
+      "text": "Token Research Step 2 presents: holder count, Top 10 holding %, tag distribution (SM / Whale / Insider), linked cluster groups + supply %, top trader PnL breakdown (profitable / losing / holding / exited), SM signal wallet count."
+    },
+    {
+      "id": "workflows-109",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "memepump token-details",
+        "memepump token-dev-info",
+        "memepump token-bundle-info",
+        "memepump similar-tokens"
+      ],
+      "source": "workflows/token-research.md#Step 3 — Launchpad supplement",
+      "obsolete": false,
+      "text": "Step 3 — Launchpad supplement [recommended] (conditional: `contract.protocolId` from Step 1 is non-empty): `memepump token-details`, `memepump token-dev-info`, `memepump token-bundle-info`, `memepump similar-tokens` (each `--address <addr> --chain <chain>`). Skip entirely when `protocolId` is empty (token is not from a launchpad).",
+      "note": "`contract` = advanced-info block (composite output core.contract); same field as advanced-info.protocolId in Smart Money Signals."
+    },
+    {
+      "id": "workflows-110",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/token-research.md#Step 3 — Launchpad supplement",
+      "obsolete": false,
+      "text": "Token Research Step 3 presents: bonding curve progress, dev tokens created, dev rug count, dev holding %, bundle rate, dev's other projects."
+    },
+    {
+      "id": "workflows-111",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/token-research.md#Output Template",
+      "obsolete": false,
+      "text": "Token Research output template: \"TOKEN: {symbol} ({chain})\", \"Address: {addr} | Age: {n}d\"; --- PRICE & MARKET --- \"Price | MCap | 24h Vol\", \"1h: {x}% | 4h: {x}% | 24h: {x}%\"; --- SECURITY --- \"Honeypot: {Y/N} | Buy Tax: {x}% | Sell Tax: {x}%\", \"Mint: {Active/Revoked} | Freeze: {Active/Revoked}\", \"Risk Level: {1-5} | Tags: {list}\"; --- LIQUIDITY --- \"Total Pool Value: ${x} | LP Burned: {x}%\"; --- HOLDERS --- \"Total: {n} | Top10: {x}%\", \"SM: {n} Whales: {n} Insiders: {n}\", \"Linked Groups: {n} ({x}% of supply)\"; --- TOP TRADERS (by PnL) --- \"Total | Profitable | Losing\", \"Still Holding | Fully Exited\", \"Avg PnL | Best: +{x}% | Worst: {x}%\"; --- SMART MONEY --- \"SM Buy Signals (24h): {n} wallets\"; [if protocolId non-empty] --- DEV / LAUNCHPAD --- \"Dev Rug History: {n} | Dev Holding: {x}%\", \"Bundle: {x}% | Dev Other Projects: {n} (Survival: {x}%)\"."
+    },
+    {
+      "id": "workflows-112",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/token-research.md#Actions",
+      "obsolete": false,
+      "text": "Token Research follow-ups: \"show cluster list\" / \"show co-invested wallets\" → show cluster details; \"show dev projects\" → show dev project history; \"watch this token\" → Wallet Monitor."
+    },
+    {
+      "id": "workflows-113",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-analysis.md#Wallet Analysis; workflows/wallet-analysis.md#Required Skills",
+      "obsolete": false,
+      "text": "Wallet Analysis pulls a wallet's performance metrics, trading behavior, current holdings, and recent activity. Required skills: okx-dex-market, okx-agentic-wallet."
+    },
+    {
+      "id": "workflows-114",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-analysis.md#Input",
+      "obsolete": false,
+      "text": "Wallet Analysis inputs: `wallet_address` (required); `chain` (optional, auto-detect).",
+      "note": "Composite `workflow wallet-analysis` defaults chain to solana."
+    },
+    {
+      "id": "workflows-115",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "workflow wallet-analysis"
+      ],
+      "source": "workflows/wallet-analysis.md#CLI",
+      "obsolete": false,
+      "text": "Complete Wallet Analysis in one command: `workflow wallet-analysis --address <addr> [--chain <chain>]`."
+    },
+    {
+      "id": "workflows-116",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "market portfolio-overview",
+        "portfolio all-balances"
+      ],
+      "source": "workflows/wallet-analysis.md#Step 1 — Performance",
+      "obsolete": false,
+      "text": "Step 1 — Performance [required] (parallel): `market portfolio-overview --address <wallet> --chain <chain> --time-frame 3` (7d); same with `--time-frame 4` (30d/1M); `portfolio all-balances --address <wallet> --chains <chain>`."
+    },
+    {
+      "id": "workflows-117",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "market",
+      "commands": [
+        "market portfolio-overview"
+      ],
+      "source": "workflows/wallet-analysis.md#Step 1 — Performance",
+      "obsolete": false,
+      "text": "`market portfolio-overview --time-frame` values: 1=1D, 2=3D, 3=7D, 4=1M, 5=3M."
+    },
+    {
+      "id": "workflows-118",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-analysis.md#Step 1 — Performance",
+      "obsolete": false,
+      "text": "Wallet Analysis Step 1 presents: 7d vs 30d PnL, win rate, realized profit, trade count, current holdings."
+    },
+    {
+      "id": "workflows-119",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "market portfolio-recent-pnl"
+      ],
+      "source": "workflows/wallet-analysis.md#Step 2 — Trading behavior",
+      "obsolete": false,
+      "text": "Step 2 — Trading behavior [recommended] (sequential): `market portfolio-recent-pnl --address <wallet> --chain <chain>`; present per-token PnL and trading frequency."
+    },
+    {
+      "id": "workflows-120",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "tracker activities"
+      ],
+      "source": "workflows/wallet-analysis.md#Step 3 — Recent activity",
+      "obsolete": false,
+      "text": "Step 3 — Recent activity [recommended] (sequential): `tracker activities --tracker-type multi_address --wallet-address <wallet> --chain <chain>`; present most recent trades — time, token, direction, amount."
+    },
+    {
+      "id": "workflows-121",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-analysis.md#Output Template",
+      "obsolete": false,
+      "text": "Wallet Analysis output template: \"WALLET: {short_addr} ({chain})\"; PERFORMANCE table with 7d / 30d columns for PnL, Win Rate, Realized, Trades; HOLDINGS table (Token, Balance, Value, Unrealized); BEHAVIOR \"Avg Hold: {duration} | Avg Size: ${x} | Freq: {n}/day\", \"Most Traded: {sym1}, {sym2}, {sym3}\"; TOKEN PnL table (Token, Realized, Unrealized); RECENT table (Time, Token, Action, Amount)."
+    },
+    {
+      "id": "workflows-122",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-analysis.md#Actions",
+      "obsolete": false,
+      "text": "Wallet Analysis follow-ups: \"watch [address]\" → Wallet Monitor; \"research [token_they_hold]\" → Token Research."
+    },
+    {
+      "id": "workflows-123",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#Wallet Monitor",
+      "obsolete": false,
+      "text": "Wallet Monitor continuously polls wallet activity in-session and alerts on new trades — it does NOT execute trades."
+    },
+    {
+      "id": "workflows-124",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#Input",
+      "obsolete": false,
+      "text": "Wallet Monitor inputs: `wallet_addresses` (required, max 10); `chain` (optional, auto); `polling_interval` (optional, default 60s). Required skills: okx-dex-market, okx-agentic-wallet.",
+      "note": "Workflow caps at 10 addresses although `tracker activities --wallet-address` accepts max 20."
+    },
+    {
+      "id": "workflows-125",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#CLI",
+      "obsolete": false,
+      "text": "Wallet Monitor has no CLI composite — it is an agent-orchestrated polling loop with conditional per-event enrichment and stateful diffing across ticks. For a background session use the WebSocket variant (`wallet-monitor-ws.md`)."
+    },
+    {
+      "id": "workflows-126",
+      "kind": "confirmation",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#Step 1 — Setup",
+      "obsolete": false,
+      "text": "Step 1 — Setup [required] (sequential): confirm the monitoring address list and polling interval with the user before starting."
+    },
+    {
+      "id": "workflows-127",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "tracker activities"
+      ],
+      "source": "workflows/wallet-monitor.md#Step 2 — Poll loop",
+      "obsolete": false,
+      "text": "Step 2 — Poll loop [required] (sequential, repeating every `interval` seconds): `tracker activities --tracker-type multi_address --wallet-address <wallet> --chain <chain>`."
+    },
+    {
+      "id": "workflows-128",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "signal-social",
+      "commands": [
+        "tracker activities"
+      ],
+      "source": "workflows/wallet-monitor.md#Step 2 — Poll loop",
+      "obsolete": false,
+      "text": "`tracker activities --wallet-address` takes multiple addresses comma-separated, max 20; `--tracker-type` is required."
+    },
+    {
+      "id": "workflows-129",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "token price-info",
+        "security token-scan"
+      ],
+      "source": "workflows/wallet-monitor.md#Step 2 — Poll loop",
+      "obsolete": false,
+      "text": "Diff each poll against the previous one to detect new transactions. On a new buy, enrich the bought token: `token price-info --address <new_token> --chain <chain>`; `security token-scan --tokens \"<chainIndex>:<new_token>\"`."
+    },
+    {
+      "id": "workflows-130",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#Step 2 — Poll loop",
+      "obsolete": false,
+      "text": "Wallet Monitor alert format: \"[{time}] ALERT — {label/addr}\", \"{Buy/Sell} {symbol} — ${amount}\", \"Price: ${x} | MCap: ${x}\", \"Honeypot: {Y/N} | Tax: {x}/{x}%\", \"→ \\\"research [symbol]\\\" | → \\\"buy [amount] [native_token] of [symbol]\\\"\"."
+    },
+    {
+      "id": "workflows-131",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#Step 2 — Poll loop",
+      "obsolete": false,
+      "text": "Multi-wallet convergence alert: \"[MULTI-WALLET] {n} wallets bought {symbol}\"."
+    },
+    {
+      "id": "workflows-132",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#Step 2 — Poll loop; workflows/wallet-monitor.md#Actions",
+      "obsolete": false,
+      "text": "Exit the poll loop when the user says \"stop monitoring\"."
+    },
+    {
+      "id": "workflows-133",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor.md#Actions; workflows/wallet-monitor.md#Step 2 — Poll loop",
+      "obsolete": false,
+      "text": "Wallet Monitor follow-ups: \"research [symbol]\" → Token Research; \"stop monitoring\" exits the loop; alerts suggest \"buy [amount] [native_token] of [symbol]\" as a user-initiated follow-up (routes to swap; the monitor never trades itself)."
+    },
+    {
+      "id": "workflows-134",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor-ws.md#Wallet Monitor (WebSocket); workflows/wallet-monitor-ws.md#Required Skills",
+      "obsolete": false,
+      "text": "Wallet Monitor (WS) configures and starts a background WebSocket monitoring session that runs independently of the conversation. Required skills: okx-dex-market, okx-agentic-wallet."
+    },
+    {
+      "id": "workflows-135",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/wallet-monitor-ws.md#Input",
+      "obsolete": false,
+      "text": "Wallet Monitor (WS) inputs: `wallet_addresses` (required, max 10); `chain` (optional, auto).",
+      "note": "Workflow caps at 10 while `ws start --wallet-addresses` accepts max 200."
+    },
+    {
+      "id": "workflows-136",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [],
+      "source": "workflows/wallet-monitor-ws.md#Input",
+      "obsolete": false,
+      "text": "Polling vs WebSocket: runs in — AI in-session loop vs background WS session; AI presence — required vs not needed after setup; latency — polling_interval (default 60s) vs real-time push; token cost — each poll round vs setup + on-demand poll only; best for — online real-time discussion vs background / offline / scripting.",
+      "note": "CLI fact: `ws start --idle-timeout` defaults to 30m — the session auto-stops if not polled within that window (0 disables), which limits \"offline\" use unless set."
+    },
+    {
+      "id": "workflows-137",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws channels",
+        "ws channel-info"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Step 1 — Check available channels",
+      "obsolete": false,
+      "text": "Step 1 — Check available channels [required] (sequential): `ws channels`; `ws channel-info --channel address-tracker-activity`. Present available channels and the subscription parameters for address-tracker-activity."
+    },
+    {
+      "id": "workflows-138",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws channel-info",
+        "ws start"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Step 1 — Check available channels",
+      "obsolete": false,
+      "text": "The channel name passed to `ws start` must match what `ws channel-info` returns (wallet monitoring uses `address-tracker-activity`)."
+    },
+    {
+      "id": "workflows-139",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws start"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Step 2 — Start session",
+      "obsolete": false,
+      "text": "Step 2 — Start session [required] (sequential): `ws start --channel address-tracker-activity --wallet-addresses \"<addr1>,<addr2>\" --chain-index <chainIndex>`. Present the session ID and subscription confirmation."
+    },
+    {
+      "id": "workflows-140",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws start"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Step 2 — Start session",
+      "obsolete": false,
+      "text": "`ws start --wallet-addresses` takes comma-separated values (max 200); `--chain-index` accepts comma-separated chain indexes (e.g. `501` Solana, `1` Ethereum). Do not use `--params` JSON."
+    },
+    {
+      "id": "workflows-141",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws list"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Step 3 — Verify session",
+      "obsolete": false,
+      "text": "Step 3 — Verify session [required] (sequential): `ws list`; confirm the new session is in the active sessions list."
+    },
+    {
+      "id": "workflows-142",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws poll"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Step 4 — Show consumption options",
+      "obsolete": false,
+      "text": "Step 4 — Show consumption options [required]: manual poll `ws poll --id <session_id>`; scripted poll example `while true; do onchainos ws poll --id <session_id> --limit 50; sleep 30; done`."
+    },
+    {
+      "id": "workflows-143",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "ws poll",
+        "token price-info",
+        "security token-scan"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Step 4 — Show consumption options",
+      "obsolete": false,
+      "text": "When the user runs `ws poll` and new events are returned, optionally enrich each event token: `token price-info --address <event_token> --chain <chain>`; `security token-scan --tokens \"<chainIndex>:<event_token>\"`."
+    },
+    {
+      "id": "workflows-144",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws poll",
+        "ws stop",
+        "ws list"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Output Template",
+      "obsolete": false,
+      "text": "Wallet Monitor (WS) output template: \"WS MONITOR STARTED\", \"Session: {session_id}\", \"Channel: address-tracker-activity\", \"Addresses: {addr1}, {addr2}...\", \"Status: Active\", then how-to lines: check events `onchainos ws poll --id {session_id}`; stop `onchainos ws stop --id {session_id}`; list all sessions `onchainos ws list`.",
+      "note": "Lite: render these hints as `ocl ws ...`."
+    },
+    {
+      "id": "workflows-145",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "ws",
+      "commands": [
+        "ws stop"
+      ],
+      "source": "workflows/wallet-monitor-ws.md#Actions",
+      "obsolete": false,
+      "text": "Wallet Monitor (WS) follow-ups: \"research [symbol]\" for tokens seen in poll events → Token Research; \"stop monitoring\" → `ws stop --id <session_id>`."
+    },
+    {
+      "id": "workflows-146",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "security",
+      "commands": [
+        "security token-scan"
+      ],
+      "source": "workflows/new-token-screening.md#Steps; workflows/smart-money-signals.md#Steps; workflows/token-research.md#Steps; workflows/wallet-monitor.md#Steps; workflows/wallet-monitor-ws.md#Steps",
+      "obsolete": false,
+      "text": "Every workflow calls `security token-scan` with `--tokens \"<chainIndex>:<addr>\"` (chainIndex:address pair), not `--address`."
+    },
+    {
+      "id": "workflows-147",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [],
+      "source": "workflows/new-token-screening.md#Output Template; workflows/smart-money-signals.md#Output Template; workflows/token-research.md#Output Template; workflows/wallet-monitor.md#Output Template",
+      "obsolete": false,
+      "text": "Workflow output conventions: Honeypot shown as {Y/N}; Tax as {buy}/{sell}%; Mint/Freeze authority as {A/R} (Active/Revoked); addresses shortened ({short_addr}) in headers; amounts prefixed with $."
+    },
+    {
+      "id": "workflows-148",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "workflow",
+      "commands": [
+        "workflow token-research",
+        "workflow smart-money",
+        "workflow new-tokens",
+        "workflow wallet-analysis",
+        "workflow portfolio"
+      ],
+      "source": "workflows/daily-brief.md#CLI; workflows/new-token-screening.md#CLI; workflows/portfolio-check.md#CLI; workflows/smart-money-signals.md#CLI; workflows/token-research.md#CLI; workflows/wallet-analysis.md#CLI; workflows/wallet-monitor.md#CLI; workflows/wallet-monitor-ws.md#CLI",
+      "obsolete": false,
+      "text": "Composite commands exist for Token Research, Smart Money Signals, New Token Screening, Wallet Analysis, and Portfolio Check (Step 1 only); Daily Brief, Wallet Monitor, and Wallet Monitor (WS) are agent-orchestrated from atomic commands.",
+      "note": "CLI: all `workflow *` commands are JWT-optional (work without login; use JWT when logged in) and read-only; sub-call failures become null."
+    }
+  ]
+}

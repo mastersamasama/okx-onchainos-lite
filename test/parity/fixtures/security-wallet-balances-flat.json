@@ -1,0 +1,35 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "196",
+            "tokenContractAddress": "",
+            "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "symbol": "OKB",
+            "balance": "1.5",
+            "rawBalance": "1500000",
+            "tokenPrice": "1",
+            "isRiskToken": false
+          },
+          {
+            "chainIndex": "196",
+            "tokenContractAddress": "0x74b7f16337b8972027f6196a17a631ac6de26d22",
+            "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "symbol": "USDC",
+            "balance": "1.5",
+            "rawBalance": "1500000",
+            "tokenPrice": "1",
+            "isRiskToken": false
+          }
+        ]
+      }
+    }
+  }
+]

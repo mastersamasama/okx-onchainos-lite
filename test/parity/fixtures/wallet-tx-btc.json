@@ -1,0 +1,80 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "signType": "transfer",
+            "encoding": "eip2519",
+            "unsignedTx": "70736274ff0100520200000001",
+            "unsignedTxHash": "",
+            "uopHash": "uop-btc-9ab8bd36e51e1f1b",
+            "txParam": {
+              "inputs": [
+                {
+                  "txId": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+                  "vout": 1,
+                  "amount": "20000",
+                  "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan"
+                }
+              ],
+              "outputs": [
+                {
+                  "address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+                  "amount": "1000"
+                },
+                {
+                  "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                  "amount": "17800"
+                }
+              ],
+              "changeAddress": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+              "feeRate": 8,
+              "fee": "1200"
+            },
+            "unsignedHashList": [
+              {
+                "index": 0,
+                "unsignedHash": "0xc6cbdd8c7fe436c91d4daff2c0df7aa5a52799ae4e7bbc50bdfc81372944b4e8",
+                "unsignedHashSig": "TjG39uaHY+oCJrM8W8tzqXTI307jSWak/13/5F1fHtA=",
+                "sighashType": 0
+              }
+            ],
+            "extraData": {
+              "serviceField": "preserved",
+              "signTx": "legacy-field",
+              "feeRateGwei": 8.5
+            },
+            "warnings": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "",
+            "orderId": "1971032288712115001",
+            "orderType": "1",
+            "txHash": "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9"
+          }
+        ]
+      }
+    }
+  }
+]

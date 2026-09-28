@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/gas-station/update-default-token",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "chainIndex": "42161",
+          "defaultGasTokenAddress": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+          "updated": true
+        }
+      }
+    }
+  }
+]

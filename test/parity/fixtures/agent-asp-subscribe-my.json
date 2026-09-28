@@ -1,0 +1,55 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "list": [
+            {
+              "jobId": "a-live",
+              "status": 1,
+              "providerAgentId": "9001",
+              "subEndTime": 4102444700,
+              "subBufferEndTime": 4102444800
+            },
+            {
+              "jobId": "b-derived",
+              "status": "1",
+              "subEndTime": "4102272000"
+            },
+            {
+              "jobId": "c-ended",
+              "status": 7,
+              "providerAgentId": "9001"
+            },
+            {
+              "jobId": "d-other",
+              "status": 1,
+              "providerAgentId": 1234
+            },
+            {
+              "jobId": "e-past",
+              "subStatus": 1,
+              "subBufferEndTime": 1700000000
+            },
+            {
+              "status": 1
+            },
+            {
+              "jobId": 42,
+              "status": 1,
+              "providerAgentId": 9001
+            },
+            {
+              "jobId": "f-nostatus"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

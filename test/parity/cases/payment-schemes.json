@@ -1,0 +1,4646 @@
+[
+  {
+    "id": "payment-schemes-a2a-create-bad-type",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "escrow",
+      "--amount",
+      "1",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x1d4eAbb31AfEd5Aa70E1cCEEf73DEbF4dB164aB7"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-no-recipient",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1",
+      "--symbol",
+      "USDT"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-zero",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "0.00",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x1d4eAbb31AfEd5Aa70E1cCEEf73DEbF4dB164aB7"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-empty",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      ".",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x1d4eAbb31AfEd5Aa70E1cCEEf73DEbF4dB164aB7"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-sci",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1e2",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x1d4eAbb31AfEd5Aa70E1cCEEf73DEbF4dB164aB7"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-bad-recipient",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x123"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-nonhex-recipient",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0xZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-logged-out",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "0.01",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-create-expires-invalid",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1",
+      "--symbol",
+      "USDT",
+      "--expires-in",
+      "soon"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-missing-symbol",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-ok",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "0.01",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222",
+      "--description",
+      "Research report",
+      "--realm",
+      "seller.example.com",
+      "--external-id",
+      "task-42",
+      "--expires-in",
+      "600"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-create"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-min",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "5",
+      "--symbol",
+      "usdt",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222",
+      "--chain",
+      "base"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-create-min"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-bad-checksum-accepted",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1.",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x1d4eAbb31AfEd5Aa70E1cCEEf73DEbF4dB164AB7"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-create-min"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-null-deliveries",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "5",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-create-null-deliveries"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-api-error",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "5",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-create-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-no-id",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "5",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-create-noid"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-refresh",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "5",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "wallet-expired",
+    "fixtures": [
+      "payment-schemes-a2a-create-min",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-logged-out",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-pay-missing-arg",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "1"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-api-error",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-api-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-unavailable",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-unavailable"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-unavailable-nostatus",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-unavailable-nostatus"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-empty-error-message",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-empty-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-challenge",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-nochallenge"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-typed-no-data",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-typed-nodata"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-escrow",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-escrow"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-intent",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-nointent"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-bad-expires",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-bad-expires"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-expired",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-expired"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-request",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-norequest"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-currency",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-nocurrency"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-method-details",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-nomethod"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-auth-type",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-noauthtype"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-string-chain",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-strchain"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-amount-mismatch",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-currency-mismatch",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x0000000000000000000000000000000000000001",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-recipient-mismatch",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779DED0C9E1022225F8E0630B35A9B54BE713736",
+      "--recipient-address",
+      "0x0000000000000000000000000000000000000002"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-unknown-chain",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-unknown-chain"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-not-logged-in-wallets",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-ok",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779DED0C9E1022225F8E0630B35A9B54BE713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-ok"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-typed-ok",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "25000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-typed",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-nostatus"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-gen-error",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee-gen-error"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-domain-hash",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee-nodomain"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-sign-error",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee-sign-error"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-no-signature",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee-nosig"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-credential-error",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-error"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rejected",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-reject"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rejected-no-reason",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-reject-noreason"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-insufficient",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-insufficient",
+      "payment-schemes-a2a-balance-usdt",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before",
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs",
+      "home.wallets.json.accountsMap"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "payment-schemes-a2a-pay-insufficient-metadata",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-insufficient",
+      "payment-schemes-a2a-token-info",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before",
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs",
+      "home.wallets.json.accountsMap"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "payment-schemes-a2a-pay-insufficient-no-scene",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "p1",
+      "--amount",
+      "10000",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-ok",
+      "payment-schemes-tee",
+      "payment-schemes-a2a-cred-insufficient"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore",
+      "req.body.payload.authorization.nonce",
+      "req.body.payload.authorization.validBefore",
+      "stdout.data.valid_before"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-logged-out",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-a2a-status-settling",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-settling"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-completed-wait",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1",
+      "--wait"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-completed"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-wait-poll",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1",
+      "--wait"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-poll"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-empty",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-empty"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-api-error",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-server-error",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-500"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-wait-flag-value",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1",
+      "--wait",
+      "true"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-missing-recipient",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-open-missing-currency",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJyZWNpcGllbnQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5NiwiZXNjcm93Q29udHJhY3QiOiIweDMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMifX0\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-open-missing-chainid",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6IjE5NiIsImVzY3Jvd0NvbnRyYWN0IjoiMHgzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzIn19\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-open-missing-escrow",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2fX0\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-open-bad-method",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"1\", method=\"tempo\", intent=\"session\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-open-missing-deposit",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\""
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-xko-off-xlayer",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IlhLTzIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjEsImVzY3Jvd0NvbnRyYWN0IjoiMHgzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzIn19\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-open-not-logged-in",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-session-open-hash-no-salt",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-open-hash-bad-salt",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x1234",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-open-tx-with-salt",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-open-tx-with-txhash",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\"",
+      "--deposit",
+      "1000000",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-open-hash-mode",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "--initial-cum",
+      "250"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-hash-prepay",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "--prepay-first"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-hash-prepay-zero",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIwIiwiY3VycmVuY3kiOiIweDc3OWRlZDBjOWUxMDIyMjI1ZjhlMDYzMGIzNWE5YjU0YmU3MTM3MzYiLCJyZWNpcGllbnQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5NiwiZXNjcm93Q29udHJhY3QiOiIweDMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMiLCJmZWVQYXllciI6ZmFsc2V9fQ\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "--prepay-first"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-hash-over-deposit",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "--initial-cum",
+      "2000000"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-hash-no-txhash",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-hash-bad-txhash",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "--tx-hash",
+      "0xzz"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-voucher-error",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-gen-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-tx-mode",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\"",
+      "--deposit",
+      "1000000",
+      "--from",
+      "0xD825F780E3CB88B383907FF427495D1DCA352D44"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-nosessions",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.channel_id",
+      "stdout.data.authorization_header",
+      "stdout.data.sessionSnapshot.channelId",
+      "req.body.payload.*.message.message.channelId",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-tx-splits",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsInNwbGl0cyI6W3sicmVjaXBpZW50IjoiMHg2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2IiwiYnBzIjoyNTB9XX19\"",
+      "--deposit",
+      "1000000",
+      "--prepay-first"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-nosessions",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.channel_id",
+      "stdout.data.authorization_header",
+      "stdout.data.sessionSnapshot.channelId",
+      "req.body.payload.*.message.message.channelId",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-tx-bad-split",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsInNwbGl0cyI6W3sicmVjaXBpZW50IjoiMHg2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2IiwiYnBzIjowfV19fQ\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-nosessions",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.channel_id",
+      "stdout.data.authorization_header",
+      "stdout.data.sessionSnapshot.channelId",
+      "req.body.payload.*.message.message.channelId",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-tx-expired-challenge",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", expires=\"2020-01-01T00:00:00Z\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-nosessions",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.channel_id",
+      "stdout.data.authorization_header",
+      "stdout.data.sessionSnapshot.channelId",
+      "req.body.payload.*.message.message.channelId",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-tx-eip3009-error",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-nosessions",
+    "fixtures": [
+      "payment-schemes-tee-nodomain-sign"
+    ],
+    "masks": [
+      "stdout.data.channel_id",
+      "stdout.data.authorization_header",
+      "stdout.data.sessionSnapshot.channelId",
+      "req.body.payload.*.message.message.channelId",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-tx-voucher-sign-missing",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyJ9fQ\"",
+      "--deposit",
+      "1000000"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-nosessions",
+    "fixtures": [
+      "payment-schemes-tee-nodomain"
+    ],
+    "masks": [
+      "stdout.data.channel_id",
+      "stdout.data.authorization_header",
+      "stdout.data.sessionSnapshot.channelId",
+      "req.body.payload.*.message.message.channelId",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-open-hash-nonnumeric-cum",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "Payment id=\"s1\", realm=\"api.example.com\", method=\"evm\", intent=\"session\", request=\"eyJhbW91bnQiOiIxMDAiLCJjdXJyZW5jeSI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInJlY2lwaWVudCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2LCJlc2Nyb3dDb250cmFjdCI6IjB4MzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMyIsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--deposit",
+      "1000000",
+      "--salt",
+      "0x4444444444444444444444444444444444444444444444444444444444444444",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333",
+      "--initial-cum",
+      "abc",
+      "--prepay-first"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-voucher-reuse",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-voucher-reuse-noprefix",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100",
+      "--reuse-signature",
+      "  2222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222 ",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-voucher-reuse-bad",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100",
+      "--reuse-signature",
+      "0x12"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-voucher-reuse-nonhex",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100",
+      "--reuse-signature",
+      "0xgggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-voucher-no-escrow",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-voucher-no-chain-id",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-voucher-bad-chain-id",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100",
+      "--chain-id",
+      "x196"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-voucher-bad-challenge",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment realm=\"x\"",
+      "--channel-id",
+      "0xabc",
+      "--cumulative-amount",
+      "100",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-voucher-reuse-prior",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "150",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-voucher-reuse-over-deposit",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "5000",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-voucher-reuse-same",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "100",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-voucher-sign",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "400",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-voucher-sign-not-logged-in",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "400",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-session-voucher-sign-unknown-chain",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "400",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "999999"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-voucher-sign-bad-from",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "400",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--from",
+      "0x0000000000000000000000000000000000000001"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-voucher-sign-error",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "400",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-sign-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-topup-missing-channel",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--additional-deposit",
+      "5",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-topup-bad-chain-id",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--additional-deposit",
+      "5",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "-1"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-topup-not-logged-in",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-session-topup-hash",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-topup-hash-prior",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-topup-hash-bad",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--tx-hash",
+      "0x3333333333333333333333333333333333333333333333333333333333333333ff"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-topup-no-currency",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-session-topup-tx",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "home.*.created_at",
+      "home.*.updated_at",
+      "req.body.nonce",
+      "req.body.validBefore",
+      "stdout.data.authorization_header"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-topup-tx-bad-channel",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabc",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-topup-tx-error",
+    "argv": [
+      "payment",
+      "session",
+      "topup",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--additional-deposit",
+      "500",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-gen-error"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-close-missing-escrow",
+    "argv": [
+      "payment",
+      "session",
+      "close",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "1",
+      "--chain-id",
+      "196",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\""
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-close-bad-method",
+    "argv": [
+      "payment",
+      "session",
+      "close",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "1",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--challenge",
+      "Payment id=\"1\", method=\"tempo\", intent=\"session\""
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-session-close-logged-out",
+    "argv": [
+      "payment",
+      "session",
+      "close",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "600",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\""
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-session-close-prior",
+    "argv": [
+      "payment",
+      "session",
+      "close",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "600",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\""
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-close-no-prior",
+    "argv": [
+      "payment",
+      "session",
+      "close",
+      "--channel-id",
+      "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+      "--cumulative-amount",
+      "600",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-close-sign-error",
+    "argv": [
+      "payment",
+      "session",
+      "close",
+      "--channel-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--cumulative-amount",
+      "600",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "196",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\""
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-nosig"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-no-period",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "[{\"scheme\":\"exact\"}]"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-bad-json",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "[{\"scheme\":"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-not-caip2",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"base\"}"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-no-network",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\"}"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-not-logged-in",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "[{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}]"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-unknown-chain",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:999999\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-no-contracts",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"extra\":{\"plan\":{\"tier\":1}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-no-extra",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\"}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-bad-period-mode",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":1,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-bad-tier",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"x\",\"tier\":\"2\"},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-mismatch",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "[{\"scheme\":\"exact\"},{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}]"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-mismatch"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-permit2-mismatch",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-permit2-mismatch"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-layer1-low",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-low"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-allowance-error",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-ok",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "[{\"scheme\":\"exact\",\"network\":\"eip155:196\"},{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}]",
+      "--url",
+      "https://API.example.com/data?x=1"
+    ],
+    "network": "fixture",
+    "home": "wallet-chains",
+    "fixtures": [
+      "payment-schemes-allowance-ok",
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.paymentHeaderValue",
+      "stdout.data.subId",
+      "stdout.data.payload.permit.sigDeadline",
+      "stdout.data.payload.terms.termsDeadline",
+      "stdout.data.payload.terms.permitHash",
+      "stdout.data.payload.terms.salt",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.termsDeadline",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.salt",
+      "home.subscriptions.json.by_host.api.example.com.subId"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-no-url",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":0,\"initialCharge\":null,\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-reserved",
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.paymentHeaderValue",
+      "stdout.data.subId",
+      "stdout.data.payload.permit.sigDeadline",
+      "stdout.data.payload.terms.termsDeadline",
+      "stdout.data.payload.terms.permitHash",
+      "stdout.data.payload.terms.salt",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.termsDeadline",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.salt",
+      "stdout.data.payload.permit.details.expiration",
+      "req.body.payload.*.message.message.details.expiration"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-calendar",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":0,\"periodMode\":1,\"maxPeriods\":12,\"startAt\":1769904000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}",
+      "--url",
+      "https://other.example.com/"
+    ],
+    "network": "fixture",
+    "home": "wallet-chains",
+    "fixtures": [
+      "payment-schemes-allowance-array",
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.paymentHeaderValue",
+      "stdout.data.subId",
+      "stdout.data.payload.permit.sigDeadline",
+      "stdout.data.payload.terms.termsDeadline",
+      "stdout.data.payload.terms.permitHash",
+      "stdout.data.payload.terms.salt",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.termsDeadline",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.salt",
+      "home.subscriptions.json.by_host.other.example.com.subId"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-subscribe-sign-error",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-ok",
+      "payment-schemes-tee-gen-error"
+    ],
+    "masks": [
+      "stdout.data.paymentHeaderValue",
+      "stdout.data.subId",
+      "stdout.data.payload.permit.sigDeadline",
+      "stdout.data.payload.terms.termsDeadline",
+      "stdout.data.payload.terms.permitHash",
+      "stdout.data.payload.terms.salt",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.termsDeadline",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.salt"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-change-no-changefrom",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"}}}",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-change-no-subid",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"changeFrom\":{\"direction\":\"upgrade\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-change-sideways",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"changeFrom\":{\"fromSubId\":\"0x1111111111111111111111111111111111111111111111111111111111111111\",\"direction\":\"sideways\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-change-bad-effective",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"changeFrom\":{\"fromSubId\":\"0x1111111111111111111111111111111111111111111111111111111111111111\",\"effectiveAt\":\"later\",\"direction\":\"upgrade\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-change-neither",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"changeFrom\":{\"fromSubId\":\"0x1111111111111111111111111111111111111111111111111111111111111111\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-change-upgrade",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"max_monthly\",\"tier\":3},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"changeFrom\":{\"fromSubId\":\"0x1111111111111111111111111111111111111111111111111111111111111111\",\"direction\":\"upgrade\"}}}",
+      "--url",
+      "https://api.example.com/data"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-ok",
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.paymentHeaderValue",
+      "stdout.data.subId",
+      "stdout.data.payload.permit.sigDeadline",
+      "stdout.data.payload.terms.termsDeadline",
+      "stdout.data.payload.terms.permitHash",
+      "stdout.data.payload.terms.salt",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.termsDeadline",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.salt",
+      "home.subscriptions.json.by_host.api.example.com.subId"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-change-downgrade",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":2592000,\"periodMode\":0,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"basic\",\"tier\":1},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"changeFrom\":{\"fromSubId\":\"0x2222222222222222222222222222222222222222222222222222222222222222\",\"effectiveAt\":\"period_end\"}}}",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--url",
+      "https://api.example.com/data"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-ok",
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.paymentHeaderValue",
+      "stdout.data.subId",
+      "stdout.data.payload.permit.sigDeadline",
+      "stdout.data.payload.terms.termsDeadline",
+      "stdout.data.payload.terms.permitHash",
+      "stdout.data.payload.terms.salt",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.termsDeadline",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.salt"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-change-calendar-downgrade",
+    "argv": [
+      "payment",
+      "subscription",
+      "change",
+      "--accepts",
+      "{\"scheme\":\"period\",\"network\":\"eip155:196\",\"asset\":\"0x779ded0c9e1022225f8e0630b35a9b54be713736\",\"payTo\":\"0x2222222222222222222222222222222222222222\",\"maxTimeoutSeconds\":3600,\"extra\":{\"facilitator\":\"0x5555555555555555555555555555555555555555\",\"amountPerPeriod\":\"5000000\",\"periodSec\":0,\"periodMode\":1,\"maxPeriods\":12,\"startAt\":1750000000,\"initialCharge\":{\"periodCount\":1,\"totalAmount\":\"5000000\"},\"plan\":{\"id\":\"pro_monthly\",\"tier\":2},\"contracts\":{\"subscription\":\"0x4020000000000000000000000000000000000003\",\"permit2\":\"0x000000000022D473030F116dDEE9F6B43aC78BA3\"},\"changeFrom\":{\"fromSubId\":\"0x1111111111111111111111111111111111111111111111111111111111111111\",\"direction\":\"downgrade\"}}}"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-ok",
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.paymentHeaderValue",
+      "stdout.data.subId",
+      "stdout.data.payload.permit.sigDeadline",
+      "stdout.data.payload.terms.termsDeadline",
+      "stdout.data.payload.terms.permitHash",
+      "stdout.data.payload.terms.salt",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.termsDeadline",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.salt"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-access-no-cache",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-sub-access-inactive",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-inactive"
+  },
+  {
+    "id": "payment-schemes-sub-access-cache",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.accessHeaderValue",
+      "req.body.payload.*.message.value",
+      "req.body.payload.*.sessionSignature"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-access-override",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "http://user:pw@Other.Example.com:8443/x",
+      "--sub-id",
+      "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "--chain",
+      "base"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.accessHeaderValue",
+      "req.body.payload.*.message.value",
+      "req.body.payload.*.sessionSignature"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-access-bad-subid",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data",
+      "--sub-id",
+      "not-hex"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-access-bad-from",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data",
+      "--from",
+      "0x0000000000000000000000000000000000000001"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-access-global-chain",
+    "argv": [
+      "--chain",
+      "foo",
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-access-not-logged-in",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-sub-access-sign-error",
+    "argv": [
+      "payment",
+      "subscription",
+      "access",
+      "--url",
+      "https://api.example.com/data"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-sign-error"
+    ],
+    "masks": [
+      "stdout.data.accessHeaderValue",
+      "req.body.payload.*.message.value",
+      "req.body.payload.*.sessionSignature"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-cancel-no-contract",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-cancel-contract",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--contract",
+      "0x4020000000000000000000000000000000000003"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.cancelAuth.nonce",
+      "stdout.data.cancelAuth.deadline",
+      "stdout.data.pendingChangeCancelAuth.nonce",
+      "stdout.data.pendingChangeCancelAuth.deadline",
+      "req.body.payload.*.message.message.nonce",
+      "req.body.payload.*.message.message.deadline"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-cancel-token",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--chain",
+      "196"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-ok",
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.cancelAuth.nonce",
+      "stdout.data.cancelAuth.deadline",
+      "stdout.data.pendingChangeCancelAuth.nonce",
+      "stdout.data.pendingChangeCancelAuth.deadline",
+      "req.body.payload.*.message.message.nonce",
+      "req.body.payload.*.message.message.deadline"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-cancel-token-no-contract",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-empty"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-cancel-not-logged-in",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--contract",
+      "0x4020000000000000000000000000000000000003"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-sub-cancel-unknown-chain",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--contract",
+      "0x4020000000000000000000000000000000000003",
+      "--chain",
+      "nochain"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-cancel-pending-missing",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel-pending",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-cancel-pending-no-contract",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel-pending",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--new-sub-id",
+      "0x2222222222222222222222222222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-sub-cancel-pending-contract",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel-pending",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--new-sub-id",
+      "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "--contract",
+      "0x4020000000000000000000000000000000000003",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "stdout.data.cancelAuth.nonce",
+      "stdout.data.cancelAuth.deadline",
+      "stdout.data.pendingChangeCancelAuth.nonce",
+      "stdout.data.pendingChangeCancelAuth.deadline",
+      "req.body.payload.*.message.message.nonce",
+      "req.body.payload.*.message.message.deadline"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-cancel-pending-sign-error",
+    "argv": [
+      "payment",
+      "subscription",
+      "cancel-pending",
+      "--sub-id",
+      "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "--new-sub-id",
+      "0x2222222222222222222222222222222222222222222222222222222222222222",
+      "--contract",
+      "0x4020000000000000000000000000000000000003"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-gen-error"
+    ],
+    "masks": [
+      "stdout.data.cancelAuth.nonce",
+      "stdout.data.cancelAuth.deadline",
+      "stdout.data.pendingChangeCancelAuth.nonce",
+      "stdout.data.pendingChangeCancelAuth.deadline",
+      "req.body.payload.*.message.message.nonce",
+      "req.body.payload.*.message.message.deadline"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-reconcile",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-subs-changed"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-limit-clamp",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions",
+      "--limit",
+      "500",
+      "--offset",
+      "3"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-subs-bare"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-limit-zero",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions",
+      "--limit",
+      "0"
+    ],
+    "network": "fixture",
+    "home": "wallet-chains",
+    "fixtures": [
+      "payment-schemes-subs-wrapped"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-empty",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-subs-empty"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-bad-item",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-subs-bad"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-bad-bare",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-subs-bad-bare"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-api-error",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-subs-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-bad-limit",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions",
+      "--limit",
+      "-1"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-limit-overflow",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions",
+      "--limit",
+      "4294967296"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-my-not-logged-in",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-sub-allowance-ok",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-ok"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-array",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-array"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-empty",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-empty"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-bad",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-bad"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-base",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--chain",
+      "8453"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-base"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-global-chain",
+    "argv": [
+      "--chain",
+      "base",
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-base"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-error",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-allowance-error"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-not-logged-in",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "home": "payment-core-chains"
+  },
+  {
+    "id": "payment-schemes-sub-allowance-anon",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status",
+      "--token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "payment-schemes-sub-allowance-missing-token",
+    "argv": [
+      "payment",
+      "subscription",
+      "allowance-status"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-already-executed",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_0c2ccdd1208c9b6c2ec94f0d",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-a2mcp-expired",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_d45f15fa600dc9112d8ef63f",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-a2mcp-cross-user",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_2f4e0221aee467be4d99c637",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-a2mcp-bad-method",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_895b9fbabd5b34c1eed49d9c",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-a2mcp-malformed",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_337cf50c7d351ceea63a7421",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-a2mcp-bad-symbol",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_2a7b5401ef6ff938dc86c2a5",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-a2mcp-param-override",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_bb5ab7e04b003d2fdcafb5e5",
+      "--param",
+      "q=x",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet"
+  },
+  {
+    "id": "payment-schemes-a2mcp-execute-replay-failed",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_bb5ab7e04b003d2fdcafb5e5",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-execute-sign-fatal",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_bb5ab7e04b003d2fdcafb5e5",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-nodomain"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-execute-sign-retry",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_bb5ab7e04b003d2fdcafb5e5",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-tee-gen-error"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c1",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c1",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c2",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c2",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c3",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c3",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c4",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c4",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c5",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c5",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c6",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c6",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c7",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c7",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c8",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c8",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c9",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c9",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-pay-rfc3339-c10",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "pay",
+      "--payment-id",
+      "c10",
+      "--amount",
+      "9999",
+      "--currency",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--recipient-address",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-p-chrono"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-state-bom",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xb0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0",
+      "--cumulative-amount",
+      "150",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "masks": [
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-state-dup-field",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0xd0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+      "--cumulative-amount",
+      "150",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "masks": [
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-state-seq-form",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0x5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e",
+      "--cumulative-amount",
+      "150",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "masks": [
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-session-state-seq-short",
+    "argv": [
+      "payment",
+      "session",
+      "voucher",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\"",
+      "--channel-id",
+      "0x5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f5f",
+      "--cumulative-amount",
+      "150",
+      "--reuse-signature",
+      "0x1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "masks": [
+      "home.*.updated_at"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-dup-field",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_dupfield",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-seq-short",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_seqshort",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-seq-full",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_seqfull",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-enum-map-form",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_enummap",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "fixtures": [
+      "payment-schemes-tee"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url01",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url01",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url02",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url02",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url03",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url03",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url04",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url04",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url05",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url05",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url06",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url06",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url07",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url07",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url08",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url08",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url09",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url09",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url10",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url10",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url11",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url11",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url12",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url12",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url13",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url13",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url14",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url14",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url15",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url15",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url17",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url17",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url18",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url18",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url19",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url19",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url20",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url20",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url21",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url21",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url22",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url22",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url23",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url23",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url24",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url24",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url25",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url25",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-endpoint-url26",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_url26",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-intent-write-fails",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_tmpdir",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge",
+    "masks": [
+      "stdout.error"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2mcp-invalid-utf8a",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_utf8a",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-invalid-utf8b",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_utf8b",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-invalid-utf8c",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_utf8c",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2mcp-invalid-utf8d",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_utf8d",
+      "--yes"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-edge"
+  },
+  {
+    "id": "payment-schemes-a2a-status-id-reserved-chars",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p 1?x=1&y=é#frag"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-any"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-id-dot-segments",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "../../x/%2e%2e/y"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-any"
+    ]
+  },
+  {
+    "id": "payment-schemes-clap-prepay-first-value",
+    "argv": [
+      "payment",
+      "session",
+      "open",
+      "--challenge",
+      "x",
+      "--deposit",
+      "1",
+      "--prepay-first=true"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-clap-wait-inline-value",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      "p1",
+      "--wait=false"
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-clap-expires-in-inline-negative",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "1",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222",
+      "--expires-in=-1"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-clap-amount-negative",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "-12",
+      "--symbol",
+      "USDT",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-clap-chain-id-plus",
+    "argv": [
+      "payment",
+      "session",
+      "close",
+      "--channel-id",
+      "0xab",
+      "--cumulative-amount",
+      "1",
+      "--escrow",
+      "0x3333333333333333333333333333333333333333",
+      "--chain-id",
+      "+196",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"session\", request=\"e30\""
+    ],
+    "network": "fixture"
+  },
+  {
+    "id": "payment-schemes-clap-subscribe-dup-accepts",
+    "argv": [
+      "payment",
+      "subscription",
+      "subscribe",
+      "--accepts",
+      "[]",
+      "--accepts",
+      "[]"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-clap-limit-negative-inline",
+    "argv": [
+      "payment",
+      "subscription",
+      "my-subscriptions",
+      "--limit=-1"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-clap-status-no-id",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--wait"
+    ],
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-status-id-empty",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "status",
+      "--payment-id",
+      ""
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-status-any"
+    ]
+  },
+  {
+    "id": "payment-schemes-a2a-create-expires-in-max",
+    "argv": [
+      "payment",
+      "a2a-pay",
+      "create",
+      "--type",
+      "charge",
+      "--amount",
+      "0001.500",
+      "--symbol",
+      "",
+      "--recipient",
+      "0x2222222222222222222222222222222222222222",
+      "--expires-in",
+      "18446744073709551615",
+      "--realm",
+      "",
+      "--external-id",
+      "t1"
+    ],
+    "network": "fixture",
+    "home": "payment-schemes-wallet",
+    "fixtures": [
+      "payment-schemes-a2a-create"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  }
+]

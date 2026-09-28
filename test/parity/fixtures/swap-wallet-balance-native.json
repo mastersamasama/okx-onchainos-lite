@@ -1,0 +1,33 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": 1,
+                "symbol": "ETH",
+                "tokenName": "ETH",
+                "tokenAddress": "",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": 0.0421,
+                "rawBalance": "42100000000000000",
+                "decimal": 18,
+                "tokenPrice": "1",
+                "usdValue": 0.0421,
+                "isRiskToken": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

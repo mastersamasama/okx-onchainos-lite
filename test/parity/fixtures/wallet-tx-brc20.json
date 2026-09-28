@@ -1,0 +1,145 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "brc20TransferableUtxoList": {
+              "sumValueRaw": "3000000000000000000",
+              "count": 2,
+              "utxos": [
+                {
+                  "txHash": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+                  "voutIndex": 2,
+                  "utxoId": "utxo-1",
+                  "utxoAmountRaw": "546",
+                  "valueRaw": "1000000000000000000",
+                  "offset": "0",
+                  "inscriptionId": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262i0"
+                },
+                {
+                  "txHash": "9251a118c0f384d3cfbc49b89fcf993e638da17c1f06bbdc67952d422f9d12c3",
+                  "voutIndex": "3",
+                  "utxoId": "utxo-2",
+                  "utxoAmountRaw": 600,
+                  "valueRaw": "2000000000000000000",
+                  "offset": 1,
+                  "inscriptionId": "9251a118c0f384d3cfbc49b89fcf993e638da17c1f06bbdc67952d422f9d12c3i0"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/token/get-token-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "tokenAddress": "btc-brc20-pizza",
+            "symbol": "pizza",
+            "decimal": "18"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "executeResult": true,
+            "executeErrorMsg": null,
+            "signType": "transfer",
+            "encoding": "hex",
+            "unsignedTx": "70736274ff01007d02000000029ab8",
+            "unsignedTxHash": "brc20-unsigned-tx-hash",
+            "uopHash": null,
+            "txParam": {
+              "amount": "3000000000000000000",
+              "inputs": [
+                {
+                  "txId": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+                  "vout": 2,
+                  "amount": "546",
+                  "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan"
+                },
+                {
+                  "txId": "9251a118c0f384d3cfbc49b89fcf993e638da17c1f06bbdc67952d422f9d12c3",
+                  "vout": 3,
+                  "amount": "600",
+                  "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan"
+                }
+              ],
+              "outputs": [
+                {
+                  "address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+                  "amount": "546"
+                },
+                {
+                  "address": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+                  "amount": "600"
+                }
+              ],
+              "feeRate": 12.5,
+              "fee": 2300
+            },
+            "unsignedHashList": [
+              {
+                "index": 0,
+                "unsignedHash": "c6cbdd8c7fe436c91d4daff2c0df7aa5a52799ae4e7bbc50bdfc81372944b4e8",
+                "unsignedHashSig": "proof-0"
+              },
+              {
+                "index": "1",
+                "unsignedHash": "TzPIeqraDVrEU/nrY+4wSlTA4qXR49R1vtZMMDAszzo=",
+                "unsignedHashSig": "proof-1",
+                "encoding": "base64"
+              }
+            ],
+            "extraData": {
+              "brc20": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "",
+            "orderId": "1971032288712115002",
+            "orderType": "51",
+            "txHash": "5a2f"
+          }
+        ]
+      }
+    }
+  }
+]

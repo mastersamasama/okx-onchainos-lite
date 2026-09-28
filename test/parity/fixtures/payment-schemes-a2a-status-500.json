@@ -1,0 +1,10 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/p1/status",
+    "response": {
+      "status": 502,
+      "body": "bad gateway"
+    }
+  }
+]

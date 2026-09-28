@@ -1,0 +1,22 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/broadcast",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "pkg-2",
+            "orderId": "order-2",
+            "orderType": "AA",
+            "bizUniqKey": "refund2-0xabababababababababababababababababababababababababababababababab",
+            "txHash": ""
+          }
+        ]
+      }
+    }
+  }
+]

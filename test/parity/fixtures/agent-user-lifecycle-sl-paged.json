@@ -1,0 +1,150 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 3,
+          "page": 1,
+          "pageSize": 2,
+          "list": [
+            {
+              "jobId": "0x4141414141414141414141414141414141414141414141414141414141414141",
+              "jobType": 1,
+              "status": 1,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            },
+            {
+              "jobId": "0x4242424242424242424242424242424242424242424242424242424242424242",
+              "jobType": 1,
+              "status": 1,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            }
+          ]
+        }
+      }
+    },
+    "match": {
+      "query": {
+        "statusType": "1",
+        "page": "1"
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 1,
+          "page": 1,
+          "pageSize": 2,
+          "list": [
+            {
+              "jobId": "0x5151515151515151515151515151515151515151515151515151515151515151",
+              "jobType": 1,
+              "status": 8,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            }
+          ]
+        }
+      }
+    },
+    "match": {
+      "query": {
+        "statusType": "2",
+        "page": "1"
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 3,
+          "page": 2,
+          "pageSize": 2,
+          "list": [
+            {
+              "jobId": "0x4343434343434343434343434343434343434343434343434343434343434343",
+              "jobType": 1,
+              "status": 1,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            }
+          ]
+        }
+      }
+    },
+    "match": {
+      "query": {
+        "statusType": "1",
+        "page": "2"
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50000",
+        "msg": "device list unavailable",
+        "data": null
+      }
+    }
+  }
+]

@@ -1,0 +1,76 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "501",
+                "symbol": "SOL",
+                "tokenAddress": "",
+                "balance": "0.004",
+                "tokenPrice": "152.5",
+                "usdValue": "0.61"
+              },
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenAddress": "",
+                "balance": "0.008",
+                "tokenPrice": "50",
+                "usdValue": "0.40"
+              },
+              {
+                "chainIndex": 1,
+                "symbol": "ETH",
+                "tokenAddress": "",
+                "balance": "0.0001",
+                "tokenPrice": "3600",
+                "usdValue": 0.36
+              },
+              {
+                "chainIndex": "56",
+                "symbol": "BNB",
+                "tokenAddress": "",
+                "balance": "0.0006",
+                "tokenPrice": "566.66",
+                "usdValue": "0.34"
+              },
+              {
+                "chainIndex": "8453",
+                "symbol": "ETH",
+                "tokenAddress": "",
+                "balance": "0.0000638",
+                "tokenPrice": "3600",
+                "usdValue": "0.23"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "CORGI",
+                "tokenAddress": "CorgiMint111",
+                "balance": "1100",
+                "tokenPrice": "0.0001",
+                "usdValue": "0.11"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "USDC",
+                "tokenAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                "balance": "0.02",
+                "tokenPrice": "1",
+                "usdValue": null
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,84 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/token/get-token-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "tokenAddress": "0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC",
+            "symbol": "USDC",
+            "decimal": 6
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "executeResult": true,
+            "executeErrorMsg": null,
+            "signType": "transfer",
+            "encoding": "base64",
+            "unsignedTx": "qITAPLFevRdKoYyEGwbiWTeNUn6nJ+jKXBVif/htTopVznYNsLAwJfMNADn77jl7oi8LJfuKP3If5hr7qhEleg==",
+            "uopHash": "0xab0c0db32d7a6bdfd8e5197da92b83629b72416f26b0fc5bbdee2a5791ac020e",
+            "txParam": {
+              "sender": "0x62302347ebc82b410cbc07446d2f7565f25f86c6c714b59d25c281c89e6b640a",
+              "gasBudget": "3000000",
+              "gasPrice": "750",
+              "gasFee": "1997880",
+              "txBytes": "qITAPLFevRdKoYyEGwbiWTeNUn6nJ+jKXBVif/htTopVznYNsLAwJfMNADn77jl7oi8LJfuKP3If5hr7qhEleg=="
+            },
+            "unsignedHashList": [
+              {
+                "index": 0,
+                "unsignedHash": "01SaI9/p0IW86IBSzjPR3Wr1WsvsjF1sy03sSqXpQ8Q=",
+                "encoding": "ignored-for-sui"
+              }
+            ],
+            "extraData": {
+              "network": "mainnet",
+              "gasCoin": {
+                "objectId": "0x5f",
+                "version": 12
+              }
+            },
+            "warnings": [
+              "recipient has never received SUI"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "",
+            "orderId": "1971032288712115003",
+            "orderType": "1",
+            "txHash": "CcGZqYx7Ak5jJb8yK9Hn2c1fW4XmPzRtLqDvEs3uNaB"
+          }
+        ]
+      }
+    }
+  }
+]

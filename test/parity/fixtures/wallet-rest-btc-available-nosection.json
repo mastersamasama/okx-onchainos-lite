@@ -1,0 +1,31 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "AVAILABLE_UTXO_LIST"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "utxos": [
+              {
+                "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0",
+                "voutIndex": 0,
+                "valueRaw": "546",
+                "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan"
+              }
+            ],
+            "sumSats": "546"
+          }
+        ]
+      }
+    }
+  }
+]

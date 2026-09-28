@@ -1,0 +1,18 @@
+[package]
+name = "oracle-qr-unix-paths"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "std::path vectors with the unix path module (wasm32-unknown-unknown selects sys/path/unix.rs) for lib/core/qr.mjs."
+
+[lib]
+crate-type = ["cdylib"]
+path = "lib.rs"
+
+[dependencies]
+serde_json = "=1.0.149"
+
+[workspace]
+
+[profile.release]
+opt-level = "s"

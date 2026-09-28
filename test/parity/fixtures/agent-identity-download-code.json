@@ -1,0 +1,16 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/im/attachments/xmtp/encrypted/download",
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/json;charset=UTF-8"
+      },
+      "body": {
+        "code": "60001",
+        "msg": "file expired"
+      }
+    }
+  }
+]

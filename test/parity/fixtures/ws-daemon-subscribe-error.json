@@ -1,0 +1,38 @@
+{
+  "sessions": [
+    {
+      "connId": "4e5b6c7d",
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "0",
+              "msg": "",
+              "connId": "4e5b6c7d"
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            {
+              "event": "subscribe",
+              "arg": {
+                "channel": "price"
+              },
+              "connId": "4e5b6c7d"
+            },
+            {
+              "event": "error",
+              "code": "60018",
+              "msg": "Invalid request: {\"op\":\"subscribe\"}",
+              "connId": "4e5b6c7d"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

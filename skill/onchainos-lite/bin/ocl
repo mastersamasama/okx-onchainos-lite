@@ -1,0 +1,3 @@
+#!/bin/sh
+# PATH shim: `ocl <args>` == `node <skill>/bin/ocl.mjs <args>`
+exec node "$(dirname "$0")/ocl.mjs" "$@"

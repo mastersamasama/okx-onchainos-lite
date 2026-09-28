@@ -1,0 +1,15 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/quote",
+    "times": 1,
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82000",
+        "msg": "Insufficient liquidity",
+        "data": []
+      }
+    }
+  }
+]

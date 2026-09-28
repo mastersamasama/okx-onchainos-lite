@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/broadcast",
+    "response": {
+      "status": 502,
+      "headers": {
+        "content-type": "text/html"
+      },
+      "body": "<html>502 Bad Gateway</html>"
+    }
+  }
+]

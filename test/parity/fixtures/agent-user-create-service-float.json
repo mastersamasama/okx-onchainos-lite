@@ -1,0 +1,30 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": { "body": { "sid": "33820" } },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": 33820,
+              "serviceId": "svc-33820",
+              "serviceName": "Service 33820",
+              "serviceType": "A2A",
+              "feeAmount": 1.5e300,
+              "minFee": 1e-7,
+              "maxFee": 100000000000000000000,
+              "ratio": 0.1,
+              "negZero": -0.0,
+              "feeTokenSymbol": "USDT"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

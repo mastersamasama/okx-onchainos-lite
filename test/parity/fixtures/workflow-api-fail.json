@@ -1,0 +1,82 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/overview",
+  "match": {
+   "query": {
+    "timeFrame": "3"
+   }
+  },
+  "response": {
+   "status": 429,
+   "body": {
+    "code": "50011",
+    "msg": "Too Many Requests"
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/overview",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "50014",
+    "msg": "Parameter walletAddress error",
+    "data": []
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/balance/all-token-balances-by-address",
+  "response": {
+   "status": 500,
+   "body": "upstream connect error"
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/balance/total-value-by-address",
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": ""
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/recent-pnl",
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "text/html"
+   },
+   "body": "<html>oops</html>"
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/address-tracker/trades",
+  "response": {
+   "status": 404,
+   "body": {
+    "code": "404",
+    "msg": "Not Found"
+   }
+  }
+ },
+ {
+  "pathRegex": "^/api/v6/",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "50000",
+    "msg": "System error",
+    "data": []
+   }
+  }
+ }
+]

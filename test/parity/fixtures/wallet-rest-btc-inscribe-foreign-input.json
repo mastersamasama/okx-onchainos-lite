@@ -1,0 +1,68 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "signType": "brc20Inscribe",
+            "encoding": "eip2519",
+            "uopHash": "uop-brc20-inscribe-4d3f6a7a",
+            "txParam": {
+              "inputs": [
+                {
+                  "txId": "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9",
+                  "vout": 0,
+                  "amount": "30000",
+                  "address": "bc1pewxy5fe3jtj6fch5vl7wzkl0s6wyhh39z24st4q6djy8clk8ktus9dvja9"
+                }
+              ],
+              "outputs": [
+                {
+                  "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                  "amount": "546"
+                }
+              ],
+              "changeAddress": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+              "feeRate": 8,
+              "fee": "2400",
+              "commitFee": "1600",
+              "revealFees": [
+                "800"
+              ],
+              "commitAddress": "bc1pwzkyq4t0l3myyhlmhlzzc6ul5qs8e9z0ssnmxexdecdtdxt3d7cqp6un8c"
+            },
+            "unsignedHashList": [
+              {
+                "index": 0,
+                "unsignedHash": "0xc6cbdd8c7fe436c91d4daff2c0df7aa5a52799ae4e7bbc50bdfc81372944b4e8",
+                "unsignedHashSig": "TjG39uaHY+oCJrM8W8tzqXTI307jSWak/13/5F1fHtA=",
+                "sighashType": 0
+              },
+              {
+                "index": "1",
+                "unsignedHash": "b1a2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90",
+                "unsignedHashSig": "service-proof-1",
+                "encoding": "hex"
+              }
+            ],
+            "extraData": {
+              "serviceField": "preserved",
+              "extJson": "{\"source\":\"cli\"}",
+              "feeRateGwei": 8.5
+            },
+            "warnings": [
+              "high fee rate"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

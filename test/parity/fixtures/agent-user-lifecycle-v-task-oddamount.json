@@ -1,0 +1,30 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "status": 0,
+          "title": "Market report",
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "providerAgentName": "",
+          "serviceId": "svc-1",
+          "serviceName": " ",
+          "paymentTokenAmount": "005.500",
+          "tokenSymbol": "usdt",
+          "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "paymentMode": 1,
+          "chainIndex": 196,
+          "revision": 7
+        }
+      }
+    }
+  }
+]

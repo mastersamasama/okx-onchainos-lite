@@ -1,0 +1,21 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/token/basic-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "1",
+            "decimal": "-6",
+            "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "tokenSymbol": "USDC"
+          }
+        ]
+      }
+    }
+  }
+]

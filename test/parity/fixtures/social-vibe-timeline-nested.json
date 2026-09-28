@@ -1,0 +1,37 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/vibe/timeline",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     [
+      {
+       "text": 1,
+       "Text": 2,
+       "a": [
+        [
+         {
+          "content": 3,
+          "translatedContent": 4,
+          "TEXT": 5,
+          "b": {
+           "text": 6,
+           "tweetUrl": "https://x.com/a/1"
+          }
+         }
+        ]
+       ]
+      }
+     ],
+     "text",
+     null,
+     7
+    ]
+   }
+  }
+ }
+]

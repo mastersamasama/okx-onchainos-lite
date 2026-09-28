@@ -1,0 +1,36 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/sign-tx",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0",
+          "signedTx": "02000000000101c0d7aa5b"
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/batch-broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "",
+            "orderId": null,
+            "orderType": "",
+            "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0"
+          }
+        ]
+      }
+    }
+  }
+]

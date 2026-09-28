@@ -1,0 +1,10 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/user/asset/platform/detail",
+    "response": {
+      "status": 503,
+      "body": "upstream unavailable"
+    }
+  }
+]

@@ -1,0 +1,395 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "UNAVAILABLE_BREAKDOWN"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unavailableBreakdown": {
+              "totalUnavailableCount": 51,
+              "assetLocked": {
+                "count": 51,
+                "utxos": [
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 0,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 1,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 2,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 3,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 4,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 5,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 6,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 7,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 8,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 9,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 10,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 11,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 12,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 13,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 14,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 15,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 16,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 17,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 18,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 19,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 20,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 21,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 22,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 23,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 24,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 25,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 26,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 27,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 28,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 29,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 30,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 31,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 32,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 33,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 34,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 35,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 36,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 37,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 38,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 39,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 40,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 41,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 42,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 43,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 44,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 45,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 46,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 47,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 48,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 49,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "5c0e1a2b3c4d5e6f708192a3b4c5d6e7f8091a2b3c4d5e6f708192a3b4c5d6e7",
+                    "voutIndex": 50,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  }
+                ]
+              },
+              "assetUncertain": {
+                "count": 0,
+                "utxos": []
+              },
+              "mempoolRemovedSpending": {
+                "count": 0,
+                "utxos": []
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]

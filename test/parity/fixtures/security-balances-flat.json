@@ -1,0 +1,64 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/balance/all-token-balances-by-address",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "1",
+            "tokenContractAddress": "",
+            "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "symbol": "ETH",
+            "balance": "1.5",
+            "rawBalance": "1500000",
+            "tokenPrice": "1",
+            "isRiskToken": false
+          },
+          {
+            "chainIndex": "1",
+            "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "symbol": "USDC",
+            "balance": "1.5",
+            "rawBalance": "1500000",
+            "tokenPrice": "1",
+            "isRiskToken": false
+          },
+          {
+            "chainIndex": "56",
+            "tokenContractAddress": "0x55d398326f99059ff775485246999027b3197955",
+            "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "symbol": "USDT",
+            "balance": "1.5",
+            "rawBalance": "1500000",
+            "tokenPrice": "1",
+            "isRiskToken": false
+          },
+          {
+            "chainIndex": 1,
+            "tokenContractAddress": "0xnumericchain",
+            "symbol": "SKIP"
+          },
+          {
+            "chainIndex": "1",
+            "symbol": "NOADDR"
+          },
+          {
+            "chainIndex": "501",
+            "tokenContractAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+            "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+            "symbol": "USDC",
+            "balance": "1.5",
+            "rawBalance": "1500000",
+            "tokenPrice": "1",
+            "isRiskToken": false
+          }
+        ]
+      }
+    }
+  }
+]

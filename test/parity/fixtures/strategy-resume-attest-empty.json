@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/reactivate",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 60018,
+        "msg": "upgrade",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/strategy/getAttestDocHex",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": []
+      }
+    }
+  }
+]

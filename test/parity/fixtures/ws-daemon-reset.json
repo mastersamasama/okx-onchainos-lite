@@ -1,0 +1,26 @@
+{
+  "sessions": [
+    {
+      "connId": "4e5b6c7d",
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "0",
+              "msg": "",
+              "connId": "4e5b6c7d"
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            "$reset"
+          ]
+        }
+      ]
+    }
+  ]
+}

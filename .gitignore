@@ -1,0 +1,10 @@
+# build/test caches (regenerable)
+.cache/
+dist/
+test/oracle/target/
+test/oracle-*/target/
+# parity cassettes are re-recorded automatically when missing or stale
+test/parity/cassettes/
+# upstream checkout is its own git repo (okx/onchainos-skills), pinned by spec/upstream.lock.json
+upstream/
+node_modules/

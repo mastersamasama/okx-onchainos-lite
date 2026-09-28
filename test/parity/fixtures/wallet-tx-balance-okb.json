@@ -1,0 +1,39 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenName": "OKB",
+                "tokenAddress": "",
+                "balance": "0.08504764",
+                "rawBalance": "85047640000000000",
+                "decimal": "18",
+                "tokenPrice": "48.12",
+                "usdValue": "4.09"
+              },
+              {
+                "chainIndex": 1,
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eB48",
+                "balance": 0.5,
+                "decimal": 6
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

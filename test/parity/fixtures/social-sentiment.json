@@ -1,0 +1,90 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/sentiment/ranking",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "period": "4h",
+     "ts": "1716892020000",
+     "details": [
+      {
+       "tokenSymbol": "BTC",
+       "mentionCount": "120",
+       "xMentionCount": "100",
+       "newsMentionCount": "20",
+       "sentiment": {
+        "bullishCnt": "70",
+        "bearishCnt": "20",
+        "neutralCnt": "30",
+        "bullishRatio": "0.58",
+        "bearishRatio": "0.17",
+        "label": "bullish"
+       }
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/sentiment/symbol",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "period": "1h",
+     "ts": "1716892020000",
+     "details": [
+      {
+       "tokenSymbol": "BTC",
+       "mentionCount": "12",
+       "xMentionCount": "10",
+       "newsMentionCount": "2",
+       "sentiment": {
+        "bullishCnt": "7",
+        "bearishCnt": "2",
+        "neutralCnt": "3",
+        "bullishRatio": "0.58",
+        "bearishRatio": "0.17",
+        "label": "bullish"
+       },
+       "trend": [
+        {
+         "ts": "1716888420000",
+         "mentionCount": "5",
+         "bullishRatio": "0.6",
+         "bearishRatio": "0.2"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/platforms",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "platforms": [
+      "blockbeats",
+      "odaily",
+      "theblock"
+     ]
+    }
+   }
+  }
+ }
+]

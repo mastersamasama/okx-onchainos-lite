@@ -1,0 +1,17 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/subscribe/providerConfirmStatus",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "subId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "typedData": {}
+        }
+      }
+    }
+  }
+]

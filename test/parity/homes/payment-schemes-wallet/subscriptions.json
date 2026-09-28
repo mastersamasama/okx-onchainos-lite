@@ -1,0 +1,13 @@
+{
+  "by_host": {
+    "api.example.com": {
+      "subId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+      "resourceHost": "api.example.com",
+      "merchant": "0x2222222222222222222222222222222222222222",
+      "planId": "pro_monthly",
+      "planTier": 2,
+      "maxPeriods": 12,
+      "state": "active"
+    }
+  }
+}

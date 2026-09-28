@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent-heartbeat",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "data": true,
+        "msg": ""
+      }
+    }
+  }
+]

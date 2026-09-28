@@ -1,0 +1,7 @@
+{
+  "updated_at": 1773370520,
+  "chains": [
+    { "chainIndex": 8453, "chainName": "Base Mainnet", "isEvmChain": true },
+    { "chainIndex": "501", "chainName": "Solana Mainnet", "isEvmChain": false }
+  ]
+}

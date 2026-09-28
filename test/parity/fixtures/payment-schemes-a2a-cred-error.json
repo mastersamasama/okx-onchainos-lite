@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/pay/a2a/p/p1/credential",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50002",
+        "msg": "credential rejected",
+        "data": null
+      }
+    }
+  }
+]

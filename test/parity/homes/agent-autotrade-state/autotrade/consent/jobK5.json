@@ -1,0 +1,11 @@
+{
+  "version": 7,
+  "jobId": "jobK5",
+  "mode": "auto",
+  "capU": "50",
+  "tradeAmountU": "20",
+  "quoteToken": "usdt",
+  "lifecycle": "active",
+  "createdAt": 1700000000,
+  "expiresAt": 4102444800
+}

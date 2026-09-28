@@ -1,0 +1,17 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/latest",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "p9",
+     "articles": []
+    }
+   }
+  }
+ }
+]

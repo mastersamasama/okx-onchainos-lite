@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/session/result",
+    "times": 1,
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 10018,
+        "msg": "Login not completed"
+      }
+    }
+  }
+]

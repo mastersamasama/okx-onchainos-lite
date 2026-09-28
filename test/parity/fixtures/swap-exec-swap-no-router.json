@@ -1,0 +1,21 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/swap",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "tx": {
+              "to": "0x8feab81d36e7576107d5de0758c1b839be31b4f6",
+              "data": "0xabcdef"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

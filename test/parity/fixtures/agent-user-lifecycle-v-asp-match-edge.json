@@ -1,0 +1,10 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/match",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"success\",\"data\":{\n  \"recommendations\": [\n    { \"providerAgentId\": 2002, \"providerAgentName\": null, \"securityRate\": \"4.5\", \"feedbackRate\": 2.675, \"soldCount\": -1, \"supportA2MCP\": \"true\", \"services\": [\n      { \"serviceId\": 7, \"serviceName\": null, \"serviceType\": null, \"serviceDescription\": \"d\", \"feeAmount\": 5.0, \"feeTokenSymbol\": null, \"serviceGuide\": \"  \" },\n      { \"serviceId\": \"s2\", \"feeAmount\": 1e21, \"feeTokenSymbol\": \"USDT\", \"subscription\": [{ \"interval\": 5, \"fee\": { \"x\": 1 } }, { \"fee\": null }], \"supportTrial\": \"yes\", \"freeTrial\": null },\n      { \"serviceId\": \"s3\", \"feeAmount\": \"  7 \", \"subscription\": [], \"supportTrial\": true, \"supportSubscription\": false },\n      { \"serviceId\": \"s4\", \"feeAmount\": -0.0, \"feeTokenSymbol\": \"USDC\", \"subscription\": [{ \"interval\": \"Month\", \"fee\": \"2\" }, { \"interval\": \"month\", \"fee\": 0 }], \"supportTrial\": true, \"subscriptionInfo\": null },\n      { \"serviceId\": \"s5\", \"serviceName\": \"Info\", \"subscriptionInfo\": { \"interval\": \"year\", \"feeAmount\": \"99\" }, \"feeAmount\": \"1\", \"serviceGuide\": \"guide text \\u2713\" },\n      { \"serviceId\": \"s6\", \"feeAmount\": 12345678901234567890, \"subscription\": [{ \"interval\": \"month\", \"fee\": \"  \" }], \"supportSubscription\": true }\n    ] },\n    { \"providerAgentId\": \"2003\", \"providerAgentName\": \"\", \"securityRate\": 1e-7, \"feedbackRate\": -0.005, \"soldCount\": 3.0, \"supportA2MCP\": true, \"services\": \"nope\" },\n    { \"providerAgentId\": \"2004\", \"providerAgentName\": \"Z\", \"securityRate\": -0.001, \"feedbackRate\": 99.995, \"soldCount\": 18446744073709551615, \"services\": [] }\n  ],\n  \"nextPage\": 0\n}}"
+    }
+  }
+]

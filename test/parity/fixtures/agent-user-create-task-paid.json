@@ -1,0 +1,30 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "title": "Market report",
+          "description": "Summarize the market for the week",
+          "status": 0,
+          "paymentMode": 1,
+          "jobType": 0,
+          "tokenSymbol": "USDT",
+          "tokenAmount": "1.5",
+          "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "buyerAgentId": "1001",
+          "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "providerAgentId": "2002",
+          "providerAgentAddress": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "serviceId": "svc-1",
+          "visibility": 1
+        }
+      }
+    }
+  }
+]

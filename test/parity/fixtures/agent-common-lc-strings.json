@@ -1,0 +1,25 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "status": " 4 ",
+          "jobType": "One_Time",
+          "aspAgentId": "2002",
+          "refundAmount": "2",
+          "refundTokenSymbol": "USDG",
+          "createdAt": "1700000000",
+          "disputeTime": 1700090000,
+          "rejectedAt": 1700080000,
+          "reviewDeadlineAt": 1700500000
+        }
+      }
+    }
+  }
+]

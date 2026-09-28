@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/cancel",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 50114,
+        "msg": "Invalid Authority",
+        "data": null
+      }
+    }
+  }
+]

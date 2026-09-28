@@ -1,0 +1,36 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 3,
+          "list": [
+            {
+              "jobId": "0xabababababababababababababababababababababababababababababababab",
+              "title": "Market report",
+              "status": 1,
+              "tokenAmount": "5",
+              "tokenSymbol": "USDT"
+            },
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "title": "Logo design",
+              "status": 6,
+              "tokenAmount": "12.5",
+              "tokenSymbol": "USDG"
+            },
+            {
+              "jobId": "0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+              "status": 42
+            }
+          ]
+        }
+      }
+    }
+  }
+]

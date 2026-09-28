@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/pre-transaction/check-approvals",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+            "chainIndex": "1",
+            "spender": "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
+            "tokens": [
+              {
+                "spendable": "115792089237316195423570985008687907853269984665640564039457584007913129639935",
+                "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

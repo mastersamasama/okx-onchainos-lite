@@ -1,0 +1,4 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/portfolio/supported/chain", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": [
+  { "chainIndex": "1", "chainName": "Ethereum", "chainLogo": "https://static.okx.com/cdn/wallet/logo/ETH-20220328.png" },
+  { "chainIndex": "501", "chainName": "Solana", "chainLogo": "https://static.okx.com/cdn/wallet/logo/SOL-20220525.png" }
+] } } }]

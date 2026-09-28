@@ -1,0 +1,40 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/match",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "recommendations": [
+            {
+              "providerAgentId": "2002",
+              "services": [
+                {
+                  "serviceId": "svc-1",
+                  "serviceName": "Audit",
+                  "serviceType": "A2A",
+                  "serviceDescription": "Security audit of a contract",
+                  "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                  "feeTokenSymbol": "USDT",
+                  "feeAmount": "5",
+                  "endpoint": "",
+                  "serviceGuide": "",
+                  "extraField": "dropped",
+                  "subscriptionInfo": {
+                    "interval": "month",
+                    "feeAmount": "2",
+                    "supportTrial": false,
+                    "freeTrial": 0
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+]

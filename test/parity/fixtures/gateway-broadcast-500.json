@@ -1,0 +1,10 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 503,
+      "body": "Service Unavailable"
+    }
+  }
+]

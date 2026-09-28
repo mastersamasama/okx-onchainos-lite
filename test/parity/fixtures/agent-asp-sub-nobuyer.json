@@ -1,0 +1,33 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 1,
+          "title": "Daily Brief",
+          "description": "Daily alpha brief",
+          "buyerAgentId": "  ",
+          "providerAgentId": "9001",
+          "serviceId": "svc-1",
+          "serviceTokenAmount": "10",
+          "paymentTokenSymbol": "USDT",
+          "tokenSymbol": "USDT",
+          "periodIndex": 2,
+          "subStartTime": 1788192600,
+          "subEndTime": 4099852800,
+          "subBufferEndTime": 4102444800,
+          "autoRenew": 1,
+          "createTime": 1788192600,
+          "trialType": 0,
+          "status": 1
+        }
+      }
+    }
+  }
+]

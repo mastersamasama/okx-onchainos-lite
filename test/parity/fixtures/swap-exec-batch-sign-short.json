@@ -1,0 +1,76 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/batch/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "0x35de662efa4103c16bb3bcac0aa15d7030e5c8685177457b075648c83bd751da",
+            "hash": "0x9b68b8f61ae46dc84e24cf87612734f958cf8b2ef3ec57397564d96fae4b3330",
+            "authHashFor7702": null,
+            "executeErrorMsg": "",
+            "executeResult": true,
+            "extraData": {
+              "gasLimit": "251092",
+              "maxFeePerGas": "32000000000",
+              "maxPriorityFeePerGas": "1500000000",
+              "nonce": 17,
+              "chainId": 1,
+              "freeGas": false,
+              "extJson": {
+                "source": "dex"
+              }
+            },
+            "signType": "eip1559",
+            "encoding": "hex",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": false,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": null,
+            "serviceChargeSymbol": null,
+            "serviceChargeFeeTokenAddress": null,
+            "needUpdate7702": false,
+            "gasStationTokenList": null,
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "NOT_APPLICABLE",
+            "contractNonce": null,
+            "eoaNonce": null,
+            "user712Data": null,
+            "user7702Data": null,
+            "defaultGasTokenAddress": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "",
+            "orderId": "",
+            "orderType": "1",
+            "txHash": "0x3b6d8fa1c3e5f7092b4d6f8a1c3e5f7092b4d6f8a1c3e5f7092b4d6f8a1c3e5f"
+          }
+        ]
+      }
+    }
+  }
+]

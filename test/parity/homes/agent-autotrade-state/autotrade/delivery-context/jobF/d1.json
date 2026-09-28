@@ -1,0 +1,11 @@
+{
+  "version": 3,
+  "jobId": "jobF",
+  "agentId": "a-user",
+  "providerAgentId": "p-asp",
+  "deliveryId": "d1",
+  "savedPath": "test/parity/homes/agent-autotrade-state/signals/sig-json.json",
+  "deliverableType": "trade_signal",
+  "receivedAtMs": 1700000000000,
+  "executionPath": "agent_direct"
+}

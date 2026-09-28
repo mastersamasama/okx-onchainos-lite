@@ -1,0 +1,36 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "status": 6,
+          "title": "Market report",
+          "description": "Summarize the confirmed market inputs for Q3",
+          "buyerAgentId": "1001",
+          "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "providerAgentId": "2002",
+          "providerAgentName": "Parity ASP",
+          "providerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "serviceId": "svc-1",
+          "serviceName": "Audit",
+          "paymentTokenAmount": "5",
+          "tokenAmount": "5",
+          "tokenSymbol": "USDT",
+          "paymentTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "paymentMode": 1,
+          "chainId": 196,
+          "updatedAt": 1700000100,
+          "createTime": 1700000000,
+          "serviceParams": "symbol: BTC"
+        }
+      }
+    }
+  }
+]

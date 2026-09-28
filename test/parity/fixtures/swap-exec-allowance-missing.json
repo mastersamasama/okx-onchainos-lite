@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/pre-transaction/check-approvals",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": []
+      }
+    }
+  }
+]

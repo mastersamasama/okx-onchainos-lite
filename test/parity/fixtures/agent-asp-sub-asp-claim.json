@@ -1,0 +1,25 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/subscribe/0xabababababababababababababababababababababababababababababababab/aspClaim",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "type": 107,
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  }
+]

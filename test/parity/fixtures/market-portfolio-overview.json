@@ -1,0 +1,7 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/portfolio/overview", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": {
+  "realizedPnlUsd": "1234.56", "top3PnlTokenSumUsd": "900.1", "top3PnlTokenPercent": "72.9",
+  "topPnlTokenList": [{ "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "tokenSymbol": "USDC", "tokenPnLUsd": "500.0", "tokenPnLPercent": "12.5" }],
+  "winRate": "0.61", "tokenCountByPnlPercent": { "over500Percent": "0", "zeroTo500Percent": "7", "zeroToMinus50Percent": "3", "overMinus50Percent": "1" },
+  "buyTxCount": "20", "buyTxVolume": "10000", "sellTxCount": "18", "sellTxVolume": "11234.56", "avgBuyValueUsd": "500",
+  "preferredMarketCap": "3", "buysByMarketCap": [{ "marketCapRange": "1", "buyCount": "4" }]
+} } } }]

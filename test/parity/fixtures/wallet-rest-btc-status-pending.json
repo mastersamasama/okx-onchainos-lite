@@ -1,0 +1,25 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/order/detail",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "chainIndex": "0",
+            "accountId": "parity-account-0001",
+            "orderId": "1971032288712115201",
+            "txStatus": "2",
+            "nextQueryAt": 1790600000,
+            "detail": {
+              "pollAfterSeconds": "30"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,106 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenDevInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "devLaunchedInfo": {
+      "totalTokens": "12",
+      "rugPullCount": "3",
+      "migratedCount": "1",
+      "goldenGemCount": "0"
+     },
+     "devHoldingInfo": {
+      "devHoldingPercent": "0",
+      "devAddress": "Dev1111111111111111111111111111111111111111"
+     }
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/similarToken",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "tokenAddress": "Sim1pump",
+      "symbol": "SIM",
+      "createdTimestamp": "1",
+      "tags": {
+       "snipersPercent": "0"
+      }
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenBundleInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "totalBundlers": "4",
+     "bundlerAthPercent": "12.5",
+     "bundledValueNative": "3.2",
+     "bundledTokenAmount": "1000000"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/apedWallet",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "walletAddress": "Ape11111111111111111111111111111111111111111",
+      "walletType": "3",
+      "holdingPercent": "1.2",
+      "totalPnl": "12.0",
+      "pnlPercent": "20"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/supported/chainsProtocol",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "chainName": "Solana",
+      "protocolList": [
+       {
+        "protocolId": "120596",
+        "protocolName": "pumpfun"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ }
+]

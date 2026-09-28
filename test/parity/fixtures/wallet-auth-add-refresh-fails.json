@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/create",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "10001",
+        "msg": "token revoked",
+        "data": []
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/refresh",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "10009",
+        "msg": "Refresh token invalid",
+        "data": []
+      }
+    }
+  }
+]

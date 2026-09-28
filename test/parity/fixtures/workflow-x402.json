@@ -1,0 +1,199 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/signal/list",
+    "response": {
+      "status": 402,
+      "headers": {
+        "content-type": "application/json;charset=UTF-8",
+        "ok-web3-openapi-pay": "Basic=1;Premium=1;UserType=0",
+        "payment-required": "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93ZWIzLm9reC5jb20vYXBpL3Y2L2RleC9tYXJrZXQvc2lnbmFsL2xpc3QiLCJtaW1lVHlwZSI6ImFwcGxpY2F0aW9uL2pzb24ifSwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMCIsInBheVRvIjoiMHgwZGVkYzNjNWUxNWJlZTQ1MTY2OTI0ZWE1YjAyZjU0YTM1YjFmOWM2IiwibWF4VGltZW91dFNlY29uZHMiOjg2NDAwLCJhc3NldCI6IjB4NGFlNDZhNTA5ZjZiMWQ5MDU2OTM3YmE0NTAwY2IxNDM5MzNkMmRjOCIsImV4dHJhIjp7Im5hbWUiOiJHbG9iYWwgRG9sbGFyIiwidHJhbnNmZXJNZXRob2QiOiJlaXAzMDA5IiwidmVyc2lvbiI6IjEiLCJzeW1ib2wiOiJVU0RHIn19LHsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMCIsInBheVRvIjoiMHgwZGVkYzNjNWUxNWJlZTQ1MTY2OTI0ZWE1YjAyZjU0YTM1YjFmOWM2IiwibWF4VGltZW91dFNlY29uZHMiOjg2NDAwLCJhc3NldCI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsImV4dHJhIjp7Im5hbWUiOiJVU0Tigq4wIiwidHJhbnNmZXJNZXRob2QiOiJlaXAzMDA5IiwidmVyc2lvbiI6IjEiLCJzeW1ib2wiOiJVU0Tigq4wIn19XSwiYmlsbGluZyI6eyJzdGF0dXMiOiJQQVlNRU5UX1JFUVVJUkVEIiwicGF5UGVyVXNlIjp7ImF2YWlsYWJsZSI6dHJ1ZSwiZGVzY3JpcHRpb24iOiJZb3UgY2FuIGNvbnRpbnVlIHBheWluZyBwZXIgcmVxdWVzdCB2aWEgeDQwMi4ifSwic3Vic2NyaXB0aW9uIjp7ImF2YWlsYWJsZSI6dHJ1ZSwicG9ydGFsVXJsIjoiaHR0cHM6Ly93ZWIzLm9reC5jb20vZW4vb25jaGFpbm9zL2Rldi1wb3J0YWwvcHJvamVjdCIsImN0YVRleHQiOiJWaWV3IHN1YnNjcmlwdGlvbiBwbGFucyIsIm1lc3NhZ2UiOiJJZiB5b3UgcmVxdWlyZSBzdGFibGUsIHVuaW50ZXJydXB0ZWQgYWNjZXNzLCB5b3UgY2FuIHN1YnNjcmliZSB0byBhIHBsYW4gdGhyb3VnaCB0aGUgRGV2ZWxvcGVyIFBvcnRhbCB0byBvYnRhaW4gYSBoaWdoZXIgbW9udGhseSBxdW90YS4ifX19"
+      },
+      "body": {
+        "x402Version": 2,
+        "resource": {
+          "url": "https://web3.okx.com/api/v6/dex/market/signal/list",
+          "mimeType": "application/json"
+        },
+        "accepts": [
+          {
+            "scheme": "exact",
+            "network": "eip155:196",
+            "amount": "100",
+            "payTo": "0x0dedc3c5e15bee45166924ea5b02f54a35b1f9c6",
+            "maxTimeoutSeconds": 86400,
+            "asset": "0x4ae46a509f6b1d9056937ba4500cb143933d2dc8",
+            "extra": {
+              "name": "Global Dollar",
+              "transferMethod": "eip3009",
+              "version": "1",
+              "symbol": "USDG"
+            }
+          },
+          {
+            "scheme": "exact",
+            "network": "eip155:196",
+            "amount": "100",
+            "payTo": "0x0dedc3c5e15bee45166924ea5b02f54a35b1f9c6",
+            "maxTimeoutSeconds": 86400,
+            "asset": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+            "extra": {
+              "name": "USD₮0",
+              "transferMethod": "eip3009",
+              "version": "1",
+              "symbol": "USD₮0"
+            }
+          }
+        ],
+        "billing": {
+          "status": "PAYMENT_REQUIRED",
+          "payPerUse": {
+            "available": true,
+            "description": "You can continue paying per request via x402."
+          },
+          "subscription": {
+            "available": true,
+            "portalUrl": "https://web3.okx.com/en/onchainos/dev-portal/project",
+            "ctaText": "View subscription plans",
+            "message": "If you require stable, uninterrupted access, you can subscribe to a plan through the Developer Portal to obtain a higher monthly quota."
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/portfolio/recent-pnl",
+    "response": {
+      "status": 402,
+      "headers": {
+        "content-type": "application/json;charset=UTF-8",
+        "ok-web3-openapi-pay": "Basic=1;Premium=1;UserType=0",
+        "payment-required": "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93ZWIzLm9reC5jb20vYXBpL3Y2L2RleC9tYXJrZXQvcG9ydGZvbGlvL3JlY2VudC1wbmwiLCJtaW1lVHlwZSI6ImFwcGxpY2F0aW9uL2pzb24ifSwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMCIsInBheVRvIjoiMHgwZGVkYzNjNWUxNWJlZTQ1MTY2OTI0ZWE1YjAyZjU0YTM1YjFmOWM2IiwibWF4VGltZW91dFNlY29uZHMiOjg2NDAwLCJhc3NldCI6IjB4NGFlNDZhNTA5ZjZiMWQ5MDU2OTM3YmE0NTAwY2IxNDM5MzNkMmRjOCIsImV4dHJhIjp7Im5hbWUiOiJHbG9iYWwgRG9sbGFyIiwidHJhbnNmZXJNZXRob2QiOiJlaXAzMDA5IiwidmVyc2lvbiI6IjEiLCJzeW1ib2wiOiJVU0RHIn19LHsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMCIsInBheVRvIjoiMHgwZGVkYzNjNWUxNWJlZTQ1MTY2OTI0ZWE1YjAyZjU0YTM1YjFmOWM2IiwibWF4VGltZW91dFNlY29uZHMiOjg2NDAwLCJhc3NldCI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsImV4dHJhIjp7Im5hbWUiOiJVU0Tigq4wIiwidHJhbnNmZXJNZXRob2QiOiJlaXAzMDA5IiwidmVyc2lvbiI6IjEiLCJzeW1ib2wiOiJVU0Tigq4wIn19XSwiYmlsbGluZyI6eyJzdGF0dXMiOiJQQVlNRU5UX1JFUVVJUkVEIiwicGF5UGVyVXNlIjp7ImF2YWlsYWJsZSI6dHJ1ZSwiZGVzY3JpcHRpb24iOiJZb3UgY2FuIGNvbnRpbnVlIHBheWluZyBwZXIgcmVxdWVzdCB2aWEgeDQwMi4ifSwic3Vic2NyaXB0aW9uIjp7ImF2YWlsYWJsZSI6dHJ1ZSwicG9ydGFsVXJsIjoiaHR0cHM6Ly93ZWIzLm9reC5jb20vZW4vb25jaGFpbm9zL2Rldi1wb3J0YWwvcHJvamVjdCIsImN0YVRleHQiOiJWaWV3IHN1YnNjcmlwdGlvbiBwbGFucyIsIm1lc3NhZ2UiOiJJZiB5b3UgcmVxdWlyZSBzdGFibGUsIHVuaW50ZXJydXB0ZWQgYWNjZXNzLCB5b3UgY2FuIHN1YnNjcmliZSB0byBhIHBsYW4gdGhyb3VnaCB0aGUgRGV2ZWxvcGVyIFBvcnRhbCB0byBvYnRhaW4gYSBoaWdoZXIgbW9udGhseSBxdW90YS4ifX19"
+      },
+      "body": {
+        "x402Version": 2,
+        "resource": {
+          "url": "https://web3.okx.com/api/v6/dex/market/portfolio/recent-pnl",
+          "mimeType": "application/json"
+        },
+        "accepts": [
+          {
+            "scheme": "exact",
+            "network": "eip155:196",
+            "amount": "100",
+            "payTo": "0x0dedc3c5e15bee45166924ea5b02f54a35b1f9c6",
+            "maxTimeoutSeconds": 86400,
+            "asset": "0x4ae46a509f6b1d9056937ba4500cb143933d2dc8",
+            "extra": {
+              "name": "Global Dollar",
+              "transferMethod": "eip3009",
+              "version": "1",
+              "symbol": "USDG"
+            }
+          },
+          {
+            "scheme": "exact",
+            "network": "eip155:196",
+            "amount": "100",
+            "payTo": "0x0dedc3c5e15bee45166924ea5b02f54a35b1f9c6",
+            "maxTimeoutSeconds": 86400,
+            "asset": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+            "extra": {
+              "name": "USD₮0",
+              "transferMethod": "eip3009",
+              "version": "1",
+              "symbol": "USD₮0"
+            }
+          }
+        ],
+        "billing": {
+          "status": "PAYMENT_REQUIRED",
+          "payPerUse": {
+            "available": true,
+            "description": "You can continue paying per request via x402."
+          },
+          "subscription": {
+            "available": true,
+            "portalUrl": "https://web3.okx.com/en/onchainos/dev-portal/project",
+            "ctaText": "View subscription plans",
+            "message": "If you require stable, uninterrupted access, you can subscribe to a plan through the Developer Portal to obtain a higher monthly quota."
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/search",
+    "response": {
+      "status": 402,
+      "headers": {
+        "content-type": "application/json;charset=UTF-8",
+        "ok-web3-openapi-pay": "Basic=1;Premium=1;UserType=0",
+        "payment-required": "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly93ZWIzLm9reC5jb20vYXBpL3Y2L2RleC9tYXJrZXQvdG9rZW4vc2VhcmNoIiwibWltZVR5cGUiOiJhcHBsaWNhdGlvbi9qc29uIn0sImFjY2VwdHMiOlt7InNjaGVtZSI6ImV4YWN0IiwibmV0d29yayI6ImVpcDE1NToxOTYiLCJhbW91bnQiOiIxMDAiLCJwYXlUbyI6IjB4MGRlZGMzYzVlMTViZWU0NTE2NjkyNGVhNWIwMmY1NGEzNWIxZjljNiIsIm1heFRpbWVvdXRTZWNvbmRzIjo4NjQwMCwiYXNzZXQiOiIweDRhZTQ2YTUwOWY2YjFkOTA1NjkzN2JhNDUwMGNiMTQzOTMzZDJkYzgiLCJleHRyYSI6eyJuYW1lIjoiR2xvYmFsIERvbGxhciIsInRyYW5zZmVyTWV0aG9kIjoiZWlwMzAwOSIsInZlcnNpb24iOiIxIiwic3ltYm9sIjoiVVNERyJ9fSx7InNjaGVtZSI6ImV4YWN0IiwibmV0d29yayI6ImVpcDE1NToxOTYiLCJhbW91bnQiOiIxMDAiLCJwYXlUbyI6IjB4MGRlZGMzYzVlMTViZWU0NTE2NjkyNGVhNWIwMmY1NGEzNWIxZjljNiIsIm1heFRpbWVvdXRTZWNvbmRzIjo4NjQwMCwiYXNzZXQiOiIweDc3OWRlZDBjOWUxMDIyMjI1ZjhlMDYzMGIzNWE5YjU0YmU3MTM3MzYiLCJleHRyYSI6eyJuYW1lIjoiVVNE4oKuMCIsInRyYW5zZmVyTWV0aG9kIjoiZWlwMzAwOSIsInZlcnNpb24iOiIxIiwic3ltYm9sIjoiVVNE4oKuMCJ9fV0sImJpbGxpbmciOnsic3RhdHVzIjoiUEFZTUVOVF9SRVFVSVJFRCIsInBheVBlclVzZSI6eyJhdmFpbGFibGUiOnRydWUsImRlc2NyaXB0aW9uIjoiWW91IGNhbiBjb250aW51ZSBwYXlpbmcgcGVyIHJlcXVlc3QgdmlhIHg0MDIuIn0sInN1YnNjcmlwdGlvbiI6eyJhdmFpbGFibGUiOnRydWUsInBvcnRhbFVybCI6Imh0dHBzOi8vd2ViMy5va3guY29tL2VuL29uY2hhaW5vcy9kZXYtcG9ydGFsL3Byb2plY3QiLCJjdGFUZXh0IjoiVmlldyBzdWJzY3JpcHRpb24gcGxhbnMiLCJtZXNzYWdlIjoiSWYgeW91IHJlcXVpcmUgc3RhYmxlLCB1bmludGVycnVwdGVkIGFjY2VzcywgeW91IGNhbiBzdWJzY3JpYmUgdG8gYSBwbGFuIHRocm91Z2ggdGhlIERldmVsb3BlciBQb3J0YWwgdG8gb2J0YWluIGEgaGlnaGVyIG1vbnRobHkgcXVvdGEuIn19fQ=="
+      },
+      "body": {
+        "x402Version": 2,
+        "resource": {
+          "url": "https://web3.okx.com/api/v6/dex/market/token/search",
+          "mimeType": "application/json"
+        },
+        "accepts": [
+          {
+            "scheme": "exact",
+            "network": "eip155:196",
+            "amount": "100",
+            "payTo": "0x0dedc3c5e15bee45166924ea5b02f54a35b1f9c6",
+            "maxTimeoutSeconds": 86400,
+            "asset": "0x4ae46a509f6b1d9056937ba4500cb143933d2dc8",
+            "extra": {
+              "name": "Global Dollar",
+              "transferMethod": "eip3009",
+              "version": "1",
+              "symbol": "USDG"
+            }
+          },
+          {
+            "scheme": "exact",
+            "network": "eip155:196",
+            "amount": "100",
+            "payTo": "0x0dedc3c5e15bee45166924ea5b02f54a35b1f9c6",
+            "maxTimeoutSeconds": 86400,
+            "asset": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+            "extra": {
+              "name": "USD₮0",
+              "transferMethod": "eip3009",
+              "version": "1",
+              "symbol": "USD₮0"
+            }
+          }
+        ],
+        "billing": {
+          "status": "PAYMENT_REQUIRED",
+          "payPerUse": {
+            "available": true,
+            "description": "You can continue paying per request via x402."
+          },
+          "subscription": {
+            "available": true,
+            "portalUrl": "https://web3.okx.com/en/onchainos/dev-portal/project",
+            "ctaText": "View subscription plans",
+            "message": "If you require stable, uninterrupted access, you can subscribe to a plan through the Developer Portal to obtain a higher monthly quota."
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/config",
+    "response": {
+      "status": 401,
+      "body": {
+        "msg": "Invalid Authority",
+        "code": "50114"
+      }
+    }
+  }
+]

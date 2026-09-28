@@ -1,0 +1,7 @@
+{
+  "saTeeId": "parity-sa-tee-0001",
+  "sessionCert": "parity-session-cert-3b11bafab157fcb047d4bc0a10a4f546",
+  "encryptedSessionSk": "+NOFj8RBwBuUo5gOPwHXXP3cD8DoGstGa6oBCKC+z3gA8+YlzWqTbZzsTSiCzb8Y903GbJHbLbcoqs8lO93kwac5dA5hZi2kUXQUuEgWf9w=",
+  "sessionKeyExpireAt": "1700000000",
+  "deviceId": "939e4859f44d7ce47c03a507c18ccc234c27e82c24b06d831608e7a48052a1f0"
+}

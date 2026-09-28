@@ -1,0 +1,21 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/services",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "list": [],
+            "page": 1,
+            "pageSize": 100,
+            "total": 0
+          }
+        ]
+      }
+    }
+  }
+]

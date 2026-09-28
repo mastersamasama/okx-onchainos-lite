@@ -1,0 +1,5301 @@
+[
+  {
+    "id": "wallet-tx-send-clap-conflict",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-conflict-reversed",
+    "argv": [
+      "wallet",
+      "send",
+      "--readable-amount",
+      "1",
+      "--chain",
+      "1",
+      "--amt",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-brc20-requires-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-global-chain",
+    "argv": [
+      "--chain",
+      "eth",
+      "wallet",
+      "send",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-clap-negative-value",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "-5",
+      "--amt",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-clap-sui-input",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--input-data",
+      "0x"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-clap-unsigned-sui",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--unsigned-tx",
+      "0x",
+      "--sui-tx-bytes",
+      "AAECAwQ="
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-clap-negative-amt",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--to",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "-5",
+      "--input-data",
+      "0x"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-message-clap-global-chain",
+    "argv": [
+      "--chain",
+      "eth",
+      "wallet",
+      "sign-message",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-clap-conflict-usage-argv-order",
+    "argv": [
+      "wallet",
+      "send",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--readable-amount",
+      "2",
+      "--chain",
+      "1",
+      "--amt",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-conflict-usage-optional-first",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--amt",
+      "1",
+      "--contract-token",
+      "usdc",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-conflict-with-flag",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--force",
+      "--amt",
+      "1",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-conflict-requires-in-usage",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--amt",
+      "1",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-brc20-requires-usage-order",
+    "argv": [
+      "wallet",
+      "send",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--from",
+      "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--chain",
+      "bitcoin",
+      "--fee-rate",
+      "2",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-clap-sui-conflicts-two",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--unsigned-tx",
+      "x",
+      "--input-data",
+      "0x"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-clap-sui-conflicts-two-reordered",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--input-data",
+      "0x",
+      "--unsigned-tx",
+      "x"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-clap-conflict-usage-argv-order",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--gas-limit",
+      "1",
+      "--chain",
+      "sui",
+      "--unsigned-tx",
+      "x",
+      "--to",
+      "0x2",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--input-data",
+      "0x"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-clap-conflict-flags",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--force",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--enable-gas-station",
+      "--input-data",
+      "0x"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-message-clap-long-flag-value",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "1",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "--x"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-clap-double-dash-value",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "--"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-amt-leading-zeros",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "ethereum",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "007"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-amt-decimal",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-amt-nondigit",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "abc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-amt-zero",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-amt-empty",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      " "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-readable-empty",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      " "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-readable-too-precise",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "0.0000000000000000001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-readable-bad",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "1e5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-readable-too-small",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sol",
+      "--recipient",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--readable-amount",
+      "0.0000000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-no-amount",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-bitcoin-amt",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-bitcoin-gs",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "btc",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001",
+      "--relayer-id",
+      "r1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-brc20",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--contract-token",
+      "0x2::sui::SUI",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-amt",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-gs",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "784",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1",
+      "--enable-gas-station"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-fee-rate",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1",
+      "--fee-rate",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-no-readable",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-evm-brc20-outpoint",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "usdc",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-evm-fee-rate",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1",
+      "--fee-rate",
+      "3"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-unsupported-chain",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "nochain",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-unsupported-driver-apt",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "apt",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.wallets.json.accountsMap"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-contract-token-invalid",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "xyz",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-contract-token-sol-evm",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sol",
+      "--recipient",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-contract-token-evm-base58",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-recipient-empty",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-anon",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-session-expired",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-session-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-refresh-expired",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-refresh-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-no-keyring",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-no-keyring",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-anon",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-message-anon",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-expired-token-refresh",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-evm-send",
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-native",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-native-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "1",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-amt-trim",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      " 1000 "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-from-account2",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1",
+      "--from",
+      "0x3DEA778778daf33d3c0e0ae5b0b80529c9e041d1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-from-unknown",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1",
+      "--from",
+      "0x0000000000000000000000000000000000000001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-evm-token-alias",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "usdc",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-usdc",
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-token-info-string",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-string",
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-token-info-invalid",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-invalid"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-token-info-float",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-float"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-token-info-missing",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-missing"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-token-info-error",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-error"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-free-gas",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-evm-free-gas"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-81362",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-81362",
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-81362-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-81362",
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-81363",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-81363",
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-broadcast-empty",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-empty",
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-broadcast-bad-shape",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-bad-shape",
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-unsigned-50000",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-50000"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-unsigned-object",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-object"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-unsigned-empty",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-empty"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-unsigned-bad-shape",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-bad-shape"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-invalid-recipient",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x1234",
+      "--amt",
+      "1000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-evm-send"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-simfail-sufficient",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "usdc",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-usdc",
+      "wallet-tx-simfail",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-evm-simfail-shortfall",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "usdc",
+      "--readable-amount",
+      "20"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-token-info-usdc",
+      "wallet-tx-simfail",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs",
+      "home.wallets.json.accountsMap"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-tx-send-evm-simfail-native-nomsg",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-simfail-nomsg",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-10004-native-xlayer",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "10"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-10004",
+      "wallet-tx-balance-okb",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs",
+      "home.wallets.json.accountsMap"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-tx-send-10004-token-minimal",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "usdc",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-10004",
+      "wallet-tx-balance-okb",
+      "wallet-tx-token-info-usdc",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs",
+      "home.wallets.json.accountsMap"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-tx-send-10004-balance-fails",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-10004"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-not-support-intention",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sol",
+      "--recipient",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-not-support-intention"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-no-material",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-no-material"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-pending",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-pending"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-insufficient",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-insufficient"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-first-time",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-first-time"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-first-time-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-first-time"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-reenable",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-reenable"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-reenable-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--force",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-reenable"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-user-pick",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-user-pick"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-autopick",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-autopick"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-phase2-in-phase1",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-phase2"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-direct",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--gas-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--relayer-id",
+      "relayer-usdt-196",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-phase2"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-direct-legacy-hash",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--gas-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-legacy-hash"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-direct-sol",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sol",
+      "--recipient",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--amt",
+      "1000",
+      "--gas-token-address",
+      "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "--relayer-id",
+      "relayer-sol"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-phase2-sol"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-direct-not-activated",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--enable-gas-station"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-not-activated"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-direct-pinned-no-material",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--gas-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--relayer-id",
+      "r"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-no-material"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-enable-first-time-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--enable-gas-station",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-first-time"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-enable-user-pick",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--enable-gas-station"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-user-pick"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-direct-simfail",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--gas-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-simfail"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-direct-pending",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--gas-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-pending"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-gs-not-support-direct",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "xlayer",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--contract-token",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--amt",
+      "1000000",
+      "--gas-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-not-support-intention"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-evm-full",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--amt",
+      "0",
+      "--gas-limit",
+      "60000",
+      "--aa-dex-token-addr",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--aa-dex-token-amount",
+      "1000000",
+      "--mev-protection",
+      "--force",
+      "--biz-type",
+      "dex",
+      "--strategy",
+      "grid-v2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-contract-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-evm-81362",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-81362",
+      "wallet-tx-contract-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-trace-id",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-with-caches",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-contract-evm",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.ok-client-timestamp",
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-sol",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "solana",
+      "--to",
+      "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+      "--unsigned-tx",
+      "PFjLKxtMMHGcPotVHYRfzmsofdo6ADwKCQA8zEoKN7n9JU1F4Nby1zdFyRe3CYF5crnUy5GjbZrdhPp7dLLfJ6K759LhQz6aZThMHnxtxVNHajQ1phSgjghxVLRm7J9JLeM",
+      "--jito-unsigned-tx",
+      "JBXtkJjc9j13PLuhspqwhgvngRUxL2TWGvY6bkGrzn9uF4Xyp4MdLnEjD2pBb41aU7Uhbk8Ncbdzn2guTmH8zbk"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-contract-sol"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-sol-bad-encoding",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sol",
+      "--to",
+      "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+      "--unsigned-tx",
+      "PFjLKxtMMHGcPotVHYRfzmsofdo6ADwKCQA8zEoKN7n9JU1F4Nby1zdFyRe3CYF5crnUy5GjbZrdhPp7dLLfJ6K759LhQz6aZThMHnxtxVNHajQ1phSgjghxVLRm7J9JLeM"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-contract-sol-bad-encoding"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-simfail",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-simfail"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-simfail-nomsg",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-simfail-nomsg"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-unsigned-error",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-unsigned-10004"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-pending",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "xlayer",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-pending"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-insufficient",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "xlayer",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-insufficient"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-first-time",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "xlayer",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-first-time"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-first-time-force",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "xlayer",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-first-time"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-reenable-force",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "196",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--force",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-reenable"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-user-pick",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "xlayer",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-user-pick"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-autopick",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "xlayer",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--biz-type",
+      "dex"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-autopick"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-gs-phase2",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "xlayer",
+      "--to",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--gas-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--relayer-id",
+      "relayer-usdt-196",
+      "--enable-gas-station"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gs-phase2"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-no-material-pending-upgrade",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-no-material-pending-upgrade"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-no-material-first-time",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-no-material-first-time"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-no-material-insufficient",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-no-material-insufficient"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-no-material-pending-tx",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-no-material-pending-tx"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-no-material-ready",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-no-material"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-not-support-intention",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sol",
+      "--to",
+      "JUP6LkbZbjS1jKKwapdHNy74zcZ3tLUZoi5QNyVTaV4",
+      "--unsigned-tx",
+      "PFjLKxtMMHGcPotVHYRfzmsofdo6ADwKCQA8zEoKN7n9JU1F4Nby1zdFyRe3CYF5crnUy5GjbZrdhPp7dLLfJ6K759LhQz6aZThMHnxtxVNHajQ1phSgjghxVLRm7J9JLeM"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-not-support-intention"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-invalid-to",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0x1234",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-invalid-aa-addr",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--aa-dex-token-addr",
+      "usdc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-bad-gas-limit",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--gas-limit",
+      "01"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-bad-aa-amount",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--aa-dex-token-amount",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-no-trx-address",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "trx",
+      "--to",
+      "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t",
+      "--input-data",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.wallets.json.accountsMap"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-from-unknown",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3000000000000000000000000111111125421ca6dc452d289314280a0f8842a65ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "--from",
+      "0x0000000000000000000000000000000000000001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.wallets.json.accountsMap"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-missing-to",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--input-data",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-empty-to",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--to",
+      "",
+      "--input-data",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-bad-amt",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x",
+      "--amt",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-no-input",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-bitcoin",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "bitcoin",
+      "--to",
+      "x",
+      "--input-data",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-apt",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "apt",
+      "--to",
+      "x",
+      "--input-data",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-unsupported-chain",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "nochain",
+      "--to",
+      "x",
+      "--input-data",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-evm-sui-bytes",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--sui-tx-bytes",
+      "AA=="
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-input-data",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--input-data",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-no-bytes",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-evm-opts",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--mev-protection"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-bad-base64",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "not-base64"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-blank-bytes",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "   "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-bad-padding",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-bad-amt",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--amt",
+      "01"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-bad-to",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--to",
+      "zz"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-ok",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      " AAECAwQ= ",
+      "--to",
+      "0xAB",
+      "--amt",
+      "5",
+      "--biz-type",
+      "dapp",
+      "--strategy",
+      "s1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-81362",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ="
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-81362",
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-81362-force",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ=",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-81362",
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-simfail",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ="
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui-simfail"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-contract-call-sui-unsigned-err",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "sui",
+      "--sui-tx-bytes",
+      "AAECAwQ="
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui-unsigned-err"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-preview",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.00001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.00001",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-fee-rate",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "btc",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.00001",
+      "--fee-rate",
+      " 8.50 ",
+      "--from",
+      "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-from-mismatch",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.00001",
+      "--from",
+      "bc1pewxy5fe3jtj6fch5vl7wzkl0s6wyhh39z24st4q6djy8clk8ktus9dvja9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.wallets.json.accountsMap"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-from-invalid",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.00001",
+      "--from",
+      "nope"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.wallets.json.accountsMap"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-recipient-invalid",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qinvalid",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-recipient-long",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "111111111111111111111111111111111111111111111111111",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-recipient-testnet",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "tb1qw508d6qejxtdg4y5r3zarvary0c5xw7kxpjzsx",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-recipient-unknown-hrp",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "ltc1qw508d6qejxtdg4y5r3zarvary0c5xw7kgmn4n9",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-recipient-p2pkh",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2",
+      "--readable-amount",
+      "0.00001",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-fee-rate-low",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001",
+      "--fee-rate",
+      "0.01"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-fee-rate-bad",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001",
+      "--fee-rate",
+      "1e2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-no-readable",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-44001",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc-44001"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-preexec-fail",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc-preexec-fail"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-missing-sig",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc-sign-missing-sig"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-btc-force-82005",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.00001",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-btc-broadcast-82005",
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-brc20-bad-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "pizza",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-brc20-bad-ticker",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pi/zza",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-brc20-preview",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "BTC-BRC20-PIZZA",
+      "--brc20-outpoint",
+      "9AB8BD36E51E1F1BE1A8B97791D33F29477914A7E48008D93FDC922416D22262:2",
+      "--readable-amount",
+      "1",
+      "--fee-rate",
+      "12.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-brc20"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-brc20-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pizza",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-brc20"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-brc20-no-outpoint",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pizza",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-brc20"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-brc20-amount-mismatch",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pizza",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-brc20"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-brc20-not-transferable",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pizza",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-brc20"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-brc20-bad-outpoint",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pizza",
+      "--brc20-outpoint",
+      "zz:1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-brc20"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-brc20-outpoint-leading-zero",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pizza",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:02"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-brc20"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-preview",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-force",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0X00ab",
+      "--readable-amount",
+      "0.25",
+      "--force",
+      "--from",
+      "0x62302347EBC82B410CBC07446D2F7565F25F86C6C714B59D25C281C89E6B640A"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-coin-type",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "3",
+      "--contract-token",
+      "0xdba34672e30cb065b1f93e3ab55318768fd6fef66c15942c9f7cb846e2f900e7::usdc::USDC"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-bad-recipient",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "xyz",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-bad-coin-type",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "SUI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-bad-coin-package",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0xzz::coin::COIN"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-readable-bad",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1.0000000001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-simfail",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui-simfail"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-bad-digest",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui-bad-digest"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-no-decimal",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0x2::coin::COIN"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui-no-decimal"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-unsigned-err",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sui-unsigned-err"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-force-81362",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-broadcast-81362",
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-tx-send-sui-from-mismatch",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1",
+      "--from",
+      "0x4ac697be760ed466d14f51cb1e3cbfd7e6486bea782503343c1ca5cd1557d76e"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.wallets.json.accountsMap"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-evm",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "Hello, OKX Agentic Wallet!"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-evm-hex-odd",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "56",
+      "--from",
+      "0xD825F780E3CB88B383907FF427495D1DCA352D44",
+      "--message",
+      "0x123"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-evm-hex-even",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "base",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "0xdeadbeef",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-evm-hex-bare",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "xlayer",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "0x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-evm-unicode",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "arbitrum",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "签名 ✓ café"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-account2",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0x3DEA778778daf33d3c0e0ae5b0b80529c9e041d1",
+      "--message",
+      "hi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-81362",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "approve me"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-81362"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-81362-force",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "approve me",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-81362"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-sol",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "solana",
+      "--from",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--message",
+      "Sign in to OKX"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-sol"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-sol-bad-hex",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "sol",
+      "--from",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--message",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-sol-bad-hex"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-empty-data",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-empty"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-no-signature",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-sign-no-signature"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-personal-from-unknown",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0x0000000000000000000000000000000000000001",
+      "--message",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Permit\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"Permit\",\"domain\":{\"name\":\"USD Coin\",\"chainId\":1,\"verifyingContract\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"},\"message\":{\"owner\":\"0xd825f780e3cb88b383907ff427495d1dca352d44\",\"spender\":\"0x000000000022d473030f116ddee9f6b43ac78ba3\",\"value\":\"1000000\",\"nonce\":0,\"deadline\":1893456000}}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash",
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-force",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "1",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Permit\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"Permit\",\"domain\":{\"name\":\"USD Coin\",\"chainId\":1,\"verifyingContract\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"},\"message\":{\"owner\":\"0xd825f780e3cb88b383907ff427495d1dca352d44\",\"spender\":\"0x000000000022d473030f116ddee9f6b43ac78ba3\",\"value\":\"1000000\",\"nonce\":0,\"deadline\":1893456000}}",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash",
+      "wallet-tx-sign-evm"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-81362",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Permit\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"Permit\",\"domain\":{\"name\":\"USD Coin\",\"chainId\":1,\"verifyingContract\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"},\"message\":{\"owner\":\"0xd825f780e3cb88b383907ff427495d1dca352d44\",\"spender\":\"0x000000000022d473030f116ddee9f6b43ac78ba3\",\"value\":\"1000000\",\"nonce\":0,\"deadline\":1893456000}}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash",
+      "wallet-tx-sign-81362"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-81362-force",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Permit\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"Permit\",\"domain\":{\"name\":\"USD Coin\",\"chainId\":1,\"verifyingContract\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"},\"message\":{\"owner\":\"0xd825f780e3cb88b383907ff427495d1dca352d44\",\"spender\":\"0x000000000022d473030f116ddee9f6b43ac78ba3\",\"value\":\"1000000\",\"nonce\":0,\"deadline\":1893456000}}",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash",
+      "wallet-tx-sign-81362"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-gen-hash-error",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Permit\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"Permit\",\"domain\":{\"name\":\"USD Coin\",\"chainId\":1,\"verifyingContract\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"},\"message\":{\"owner\":\"0xd825f780e3cb88b383907ff427495d1dca352d44\",\"spender\":\"0x000000000022d473030f116ddee9f6b43ac78ba3\",\"value\":\"1000000\",\"nonce\":0,\"deadline\":1893456000}}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash-error"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-gen-hash-missing",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"},{\"name\":\"chainId\",\"type\":\"uint256\"},{\"name\":\"verifyingContract\",\"type\":\"address\"}],\"Permit\":[{\"name\":\"owner\",\"type\":\"address\"},{\"name\":\"spender\",\"type\":\"address\"},{\"name\":\"value\",\"type\":\"uint256\"},{\"name\":\"nonce\",\"type\":\"uint256\"},{\"name\":\"deadline\",\"type\":\"uint256\"}]},\"primaryType\":\"Permit\",\"domain\":{\"name\":\"USD Coin\",\"chainId\":1,\"verifyingContract\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\"},\"message\":{\"owner\":\"0xd825f780e3cb88b383907ff427495d1dca352d44\",\"spender\":\"0x000000000022d473030f116ddee9f6b43ac78ba3\",\"value\":\"1000000\",\"nonce\":0,\"deadline\":1893456000}}",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash-missing"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-no-signature",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"a\":[1,2.50,{\"b\":null}]}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash",
+      "wallet-tx-sign-no-signature"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-solana",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "sol",
+      "--from",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--message",
+      "{}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-ident",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "nox"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-trailing",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"a\":1} x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-trailing-comma",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "[1,2,]"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-key",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{1:2}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-eof",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"a\":"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-colon",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"a\" 1}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-number",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "[01]"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-decimal",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "[1.]"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-escape",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "\"\\q\""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-list",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "[1 2]"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-object",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"a\":1 \"b\":2}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-string-eof",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "\"abc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-control",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "\"a\tb\""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-exponent",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "1e"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-bad-json-multiline",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\n  \"a\": tru\n}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-empty-message",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      ""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-empty-from",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "",
+      "--message",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-empty-chain",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-bad-type",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "foo",
+      "--chain",
+      "1",
+      "--from",
+      "0x1",
+      "--message",
+      "m"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-bitcoin",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "bitcoin",
+      "--from",
+      "x",
+      "--message",
+      "y"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-sui",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "sui",
+      "--from",
+      "x",
+      "--message",
+      "y"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-apt",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "apt",
+      "--from",
+      "x",
+      "--message",
+      "y"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-message-unknown-chain",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "nochain",
+      "--from",
+      "x",
+      "--message",
+      "y"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sol-native-readable",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "solana",
+      "--recipient",
+      "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+      "--readable-amount",
+      "0.001",
+      "--force"
+    ],
+    "fixtures": [
+      "wallet-tx-contract-sol"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-relayer-only",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5",
+      "--relayer-id",
+      "relayer-x"
+    ],
+    "fixtures": [
+      "wallet-tx-evm-send"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-contract-call-evm-input-and-unsigned",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "1",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3",
+      "--unsigned-tx",
+      "abc",
+      "--force"
+    ],
+    "fixtures": [
+      "wallet-tx-contract-evm"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-personal-evm-bare-0x",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "0x"
+    ],
+    "fixtures": [
+      "wallet-tx-sign-evm"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-sign-eip712-number-forms",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[{\"name\":\"name\",\"type\":\"string\"}],\"Mail\":[{\"name\":\"a\",\"type\":\"uint256\"}]},\"primaryType\":\"Mail\",\"domain\":{\"name\":\"X\"},\"message\":{\"a\":1.0,\"b\":1e2,\"c\":12345678901234567890123,\"d\":-0,\"e\":18446744073709551616,\"f\":0.1,\"g\":1E-7,\"h\":123456789.123456789e5,\"i\":\"\\u00e9\\/\\ud83d\\ude00\\n\\t\"}}"
+    ],
+    "fixtures": [
+      "wallet-tx-gen-hash",
+      "wallet-tx-sign-evm"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-from-uppercase",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "BC1QXY2KGDYGJRSQTZQ2N0YRF2493P83KKFJHX0WLH",
+      "--readable-amount",
+      "0.00001",
+      "--from",
+      "BC1P35LR6647UTU5DFM4SE3WLAZD706A0NL6Z5QXJUACM3FHJXWJN2YQYFNVAN"
+    ],
+    "fixtures": [
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-readable-zero",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0"
+    ],
+    "fixtures": [
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-btc-readable-too-precise",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.000000001"
+    ],
+    "fixtures": [
+      "wallet-tx-btc"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-native-coin-type",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1.5",
+      "--contract-token",
+      "0x0002::sui::SUI"
+    ],
+    "fixtures": [
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-sui-from-upper-prefix",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0X1",
+      "--readable-amount",
+      "1.5",
+      "--from",
+      "0X62302347EBC82B410CBC07446D2F7565F25F86C6C714B59D25C281C89E6B640A"
+    ],
+    "fixtures": [
+      "wallet-tx-sui"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-send-brc20-two-outpoints",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--contract-token",
+      "btc-brc20-pizza",
+      "--brc20-outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--brc20-outpoint",
+      "9251a118c0f384d3cfbc49b89fcf993e638da17c1f06bbdc67952d422f9d12c3:3",
+      "--readable-amount",
+      "3"
+    ],
+    "fixtures": [
+      "wallet-tx-brc20"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-tx-state-bad-session-send",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-session-send-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-session-cc",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-session-sign",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-session-btc",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-session-sui",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-dup-send",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5"
+    ],
+    "home": "wallet-bad-wallets-dup",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-dup-send-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-bad-wallets-dup",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-dup-cc",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3"
+    ],
+    "home": "wallet-bad-wallets-dup",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-dup-sign",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "wallet-bad-wallets-dup",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-dup-btc",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-bad-wallets-dup",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-dup-sui",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-bad-wallets-dup",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-type-send",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5"
+    ],
+    "home": "wallet-bad-wallets-type",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-type-send-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-bad-wallets-type",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-type-cc",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3"
+    ],
+    "home": "wallet-bad-wallets-type",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-type-sign",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "wallet-bad-wallets-type",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-type-btc",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-bad-wallets-type",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-type-sui",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-bad-wallets-type",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-null-send",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5"
+    ],
+    "home": "wallet-bad-wallets-null",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-null-send-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-bad-wallets-null",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-null-cc",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3"
+    ],
+    "home": "wallet-bad-wallets-null",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-null-sign",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "wallet-bad-wallets-null",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-null-btc",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-bad-wallets-null",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-null-sui",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-bad-wallets-null",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-missing-send",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5"
+    ],
+    "home": "wallet-bad-wallets-missing",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-missing-send-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-bad-wallets-missing",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-missing-cc",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3"
+    ],
+    "home": "wallet-bad-wallets-missing",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-missing-sign",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "wallet-bad-wallets-missing",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-missing-btc",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-bad-wallets-missing",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-wallets-missing-sui",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-bad-wallets-missing",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-chain-cache-send",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--amt",
+      "5"
+    ],
+    "home": "wallet-bad-chain-cache",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-chain-cache-send-token",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "eth",
+      "--recipient",
+      "0x000000000000000000000000000000000000dEaD",
+      "--readable-amount",
+      "1",
+      "--contract-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-bad-chain-cache",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-chain-cache-cc",
+    "argv": [
+      "wallet",
+      "contract-call",
+      "--chain",
+      "eth",
+      "--to",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-data",
+      "0x095ea7b3"
+    ],
+    "home": "wallet-bad-chain-cache",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-chain-cache-sign",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "hi"
+    ],
+    "home": "wallet-bad-chain-cache",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-chain-cache-btc",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "bitcoin",
+      "--recipient",
+      "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+      "--readable-amount",
+      "0.001"
+    ],
+    "home": "wallet-bad-chain-cache",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-state-bad-chain-cache-sui",
+    "argv": [
+      "wallet",
+      "send",
+      "--chain",
+      "sui",
+      "--recipient",
+      "0x1",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-bad-chain-cache",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-tx-sign-eip712-float-rounding",
+    "argv": [
+      "wallet",
+      "sign-message",
+      "--type",
+      "eip712",
+      "--chain",
+      "eth",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "--message",
+      "{\"types\":{\"EIP712Domain\":[]},\"primaryType\":\"EIP712Domain\",\"domain\":{},\"message\":{\"x\":1.2345678901234567e-300,\"y\":2.2250738585072011e-308,\"z\":98765432109876543210e-30,\"w\":123456789012345678901.5}}"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-tx-gen-hash",
+      "wallet-tx-sign-evm"
+    ]
+  }
+]

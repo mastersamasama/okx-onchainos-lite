@@ -1,0 +1,39 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/vote/canReveal",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "canReveal": true
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/vote/reveal",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "type": 502,
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  }
+]

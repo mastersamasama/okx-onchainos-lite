@@ -1,0 +1,14 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/balance/all-token-balances-by-address",
+  "times": 1,
+  "response": { "status": 200, "body": { "code": "10008", "msg": "Invalid access token", "data": [] } }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/overview",
+  "times": 1,
+  "response": { "status": 200, "body": { "code": "10008", "msg": "Invalid access token", "data": [] } }
+ }
+]

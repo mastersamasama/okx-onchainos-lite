@@ -1,0 +1,47 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/quote",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "fromChainIndex": "8453",
+            "fromToken": {
+              "decimals": 6,
+              "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+              "tokenSymbol": "USDC"
+            },
+            "fromTokenAmount": "10000000",
+            "routerList": [
+              {
+                "bridgeId": 1000,
+                "bridgeName": "Relay",
+                "crossChainFee": "0",
+                "crossChainFeeTokenAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "estimateGasFee": "",
+                "estimateTime": "71",
+                "minimumReceived": "9998999",
+                "needApprove": false,
+                "needCancelApprove": false,
+                "otherNativeFee": "110718175174586",
+                "priceImpactPercentage": "",
+                "toTokenAmount": "9998999",
+                "warningMessage": ""
+              }
+            ],
+            "toChainIndex": "42161",
+            "toToken": {
+              "decimals": 6,
+              "tokenContractAddress": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+              "tokenSymbol": "USDC"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

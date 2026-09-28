@@ -1,0 +1,19 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "60009",
+              "msg": "Login failed.",
+              "connId": "4e5b6c7d"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

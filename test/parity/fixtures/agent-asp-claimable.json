@@ -1,0 +1,34 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/claimable",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "account": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "rewards": [
+            {
+              "symbol": "USDT",
+              "amount": "1.25",
+              "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "rawAmount": "1250000"
+            },
+            {
+              "symbol": "OKB",
+              "amount": "0",
+              "tokenAddress": "0x0000000000000000000000000000000000000000",
+              "rawAmount": "0"
+            },
+            {
+              "symbol": "VERYLONGSYMBOL",
+              "amount": "0.000001"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

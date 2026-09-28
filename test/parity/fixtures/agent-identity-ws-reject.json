@@ -1,0 +1,21 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "ping"
+            },
+            {
+              "event": "login",
+              "code": 60009,
+              "msg": "login failed"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

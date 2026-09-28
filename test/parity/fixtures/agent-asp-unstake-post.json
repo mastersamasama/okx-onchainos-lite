@@ -1,0 +1,71 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/staking/requestUnstake",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "type": 603,
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/staking/claimUnstake",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "type": 604,
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/staking/cancelUnstake",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "type": 605,
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  }
+]

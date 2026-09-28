@@ -1,0 +1,33 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "USER_IGNORED_LIST"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "userIgnoredList": {
+              "count": 1,
+              "utxos": [
+                {
+                  "txHash": "E3F1C1CFB0C6A4B0D9E8FD3C7A7C7B6F1E2D3C4B5A69788796A5B4C3D2E1F0A9",
+                  "voutIndex": 7,
+                  "valueRaw": "546",
+                  "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+]

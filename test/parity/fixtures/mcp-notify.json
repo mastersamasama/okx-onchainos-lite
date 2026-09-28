@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/token/basic-info",
+    "response": {
+      "status": 200,
+      "headers": { "content-type": "application/json", "ok-web3-openapi-pay": "Basic=0;Premium=0;UserType=0" },
+      "body": { "code": "50011", "msg": "Invalid token contract address", "data": [] }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/price",
+    "response": {
+      "status": 200,
+      "headers": { "content-type": "application/json", "ok-web3-openapi-pay": "Basic=0;Premium=0;UserType=0" },
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          { "chainIndex": "1", "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "time": "1790500000000", "price": "0.99985" }
+        ]
+      }
+    }
+  }
+]

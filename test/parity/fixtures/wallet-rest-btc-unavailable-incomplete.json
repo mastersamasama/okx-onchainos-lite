@@ -1,0 +1,28 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "UNAVAILABLE_BREAKDOWN"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unavailableBreakdown": {
+              "totalUnavailableCount": 2,
+              "assetLocked": {
+                "count": 2
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]

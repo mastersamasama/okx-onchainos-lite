@@ -1,0 +1,60 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "UNAVAILABLE_BREAKDOWN"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unavailableBreakdown": {
+              "totalUnavailableCount": 3,
+              "assetLocked": {
+                "count": 2,
+                "utxos": [
+                  {
+                    "txHash": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+                    "voutIndex": 2,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  },
+                  {
+                    "txHash": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+                    "voutIndex": 10,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "reason": "BRC20"
+                  }
+                ]
+              },
+              "assetUncertain": {
+                "count": "1",
+                "utxos": []
+              },
+              "mempoolRemovedSpending": {
+                "count": 1,
+                "utxos": [
+                  {
+                    "txHash": "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+                    "voutIndex": 1,
+                    "valueRaw": "1000",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "spendingTxHash": "0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]

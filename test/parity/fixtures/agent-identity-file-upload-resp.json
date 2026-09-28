@@ -1,0 +1,17 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/im/attachments/xmtp/encrypted/upload",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "fileKey": "fk_0123",
+          "fileSize": 93
+        }
+      }
+    }
+  }
+]

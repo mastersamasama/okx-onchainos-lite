@@ -1,0 +1,189 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/supported/tokens",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "8453",
+            "decimals": 6,
+            "tokenContractAddress": "0x833589FCD6EDB6E08F4C7C32D4F71B54BDA02913",
+            "tokenName": "USD Coin",
+            "tokenSymbol": "USDC"
+          },
+          {
+            "chainIndex": "8453",
+            "decimals": 18,
+            "tokenContractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+            "tokenName": "Ether",
+            "tokenSymbol": "ETH"
+          },
+          {
+            "chainIndex": 8453,
+            "decimals": 18,
+            "tokenContractAddress": "0x4200000000000000000000000000000000000006",
+            "tokenName": "WETH",
+            "tokenSymbol": "WETH"
+          },
+          {
+            "chainIndex": "1",
+            "decimals": 6,
+            "tokenContractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+            "tokenName": "Tether",
+            "tokenSymbol": "USDT"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/quote",
+    "match": {
+      "query": {
+        "toTokenAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "8453",
+            "contextSlot": 26076234,
+            "dexRouterList": [
+              {
+                "dexProtocol": {
+                  "dexName": "Uniswap V3",
+                  "percent": "100"
+                },
+                "fromToken": {
+                  "decimal": "18",
+                  "isHoneyPot": false,
+                  "latestMultiplier": "",
+                  "taxRate": "0",
+                  "tokenContractAddress": "0x4200000000000000000000000000000000000006",
+                  "tokenSymbol": "WETH",
+                  "tokenUnitPrice": "2684.14"
+                },
+                "fromTokenIndex": "0",
+                "toToken": {
+                  "decimal": "6",
+                  "isHoneyPot": false,
+                  "latestMultiplier": "",
+                  "taxRate": "0",
+                  "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                  "tokenSymbol": "USDC",
+                  "tokenUnitPrice": "1"
+                },
+                "toTokenIndex": "1"
+              }
+            ],
+            "estimateGasFee": "162000",
+            "fromToken": {
+              "decimal": "18",
+              "isHoneyPot": false,
+              "latestMultiplier": "1",
+              "taxRate": "0",
+              "tokenContractAddress": "0x4200000000000000000000000000000000000006",
+              "tokenSymbol": "WETH",
+              "tokenUnitPrice": "2684.14"
+            },
+            "fromTokenAmount": "1000000000000000",
+            "mode": "dex",
+            "priceImpactPercent": "-0.01",
+            "quoteId": "3140306018660230006",
+            "router": "0x4200000000000000000000000000000000000006--0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+            "signData": null,
+            "swapMode": "exactIn",
+            "toToken": {
+              "decimal": "6",
+              "isHoneyPot": false,
+              "latestMultiplier": "1",
+              "taxRate": "0",
+              "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+              "tokenSymbol": "USDC",
+              "tokenUnitPrice": "1"
+            },
+            "toTokenAmount": "2684140",
+            "tradeFee": "0.5952398088040839"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/quote",
+    "match": {
+      "query": {
+        "toTokenAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82000",
+        "msg": "",
+        "data": []
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/quote",
+    "match": {
+      "query": {
+        "fromTokenAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+        "amount": "2684140"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "fromChainIndex": "8453",
+            "fromToken": {
+              "decimals": 6,
+              "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+              "tokenSymbol": "USDC"
+            },
+            "fromTokenAmount": "2684140",
+            "routerList": [
+              {
+                "bridgeId": 636,
+                "bridgeName": "ACROSS V3",
+                "crossChainFee": "540",
+                "crossChainFeeTokenAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+                "estimateGasFee": "",
+                "estimateTime": "43",
+                "minimumReceived": "2683600",
+                "needApprove": false,
+                "needCancelApprove": false,
+                "otherNativeFee": "110718175174586",
+                "priceImpactPercentage": "",
+                "toTokenAmount": "2683600",
+                "warningMessage": ""
+              }
+            ],
+            "toChainIndex": "42161",
+            "toToken": {
+              "decimals": 6,
+              "tokenContractAddress": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+              "tokenSymbol": "USDC"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

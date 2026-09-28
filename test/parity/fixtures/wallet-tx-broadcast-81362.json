@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81362",
+        "msg": "This transaction interacts with a flagged address. Please confirm to continue.",
+        "data": []
+      }
+    }
+  }
+]

@@ -1,0 +1,93 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "match": {
+      "query": {
+        "statusType": "1?sessionCert=parity-session-cert-3b11bafab157fcb047d4bc0a10a4f546"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 3,
+          "list": [
+            {
+              "subId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+              "subStatus": 1,
+              "serviceName": "Daily digest",
+              "serviceTokenAmount": "3",
+              "serviceTokenSymbol": "USDT",
+              "userAgentId": "1001",
+              "aspAgentId": "2002"
+            },
+            {
+              "jobId": "0x2222222222222222222222222222222222222222222222222222222222222222",
+              "subStatus": "3",
+              "status": 1,
+              "jobName": "Weekly",
+              "paymentTokenAmount": "7",
+              "paymentTokenSymbol": "USDG",
+              "buyerAgentId": "1001"
+            },
+            {
+              "jobId": "0xabababababababababababababababababababababababababababababababab",
+              "status": -1,
+              "title": "Dup one-time id"
+            },
+            {
+              "jobId": "",
+              "subStatus": 1
+            },
+            {
+              "jobId": "0x3333",
+              "subStatus": "x"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "match": {
+      "query": {
+        "statusType": "2?sessionCert=parity-session-cert-3b11bafab157fcb047d4bc0a10a4f546"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "jobId": "0x4444444444444444444444444444444444444444444444444444444444444444",
+            "subStatus": 8,
+            "trialType": 1,
+            "title": "Expired trial",
+            "tokenAmount": "0",
+            "tokenSymbol": "USDT"
+          },
+          {
+            "jobId": "0x5555555555555555555555555555555555555555555555555555555555555555",
+            "subStatus": 6,
+            "title": "Done sub"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/my",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"success\",\"data\":{\"total\":6,\"list\":[{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobType\":0,\"status\":1,\"title\":\"Market report\",\"tokenAmount\":\"5\",\"tokenSymbol\":\"USDT\",\"buyerAgentId\":\"1001\",\"providerAgentId\":\"2002\"},{\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"status\":\"6\",\"title\":\"Logo design\",\"tokenAmount\":\"12.5\",\"tokenSymbol\":\"USDG\"},{\"jobId\":\"0x1111111111111111111111111111111111111111111111111111111111111111\",\"jobType\":1,\"status\":1,\"title\":\"stale sub projection\"},{\"jobId\":\"0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef\",\"jobType\":\"0\",\"status\":0,\"title\":\"Fresh\",\"tokenAmount\":\"1\"},{\"jobId\":\"short\",\"jobType\":2,\"status\":1},{\"jobId\":\"0x7777777777777777777777777777777777777777777777777777777777777777\",\"status\":4.0},{\"jobId\":\"0x8888888888888888888888888888888888888888888888888888888888888888\",\"status\":9,\"title\":\"Refunded\"}]}}"
+    }
+  }
+]

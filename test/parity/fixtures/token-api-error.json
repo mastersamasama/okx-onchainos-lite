@@ -1,0 +1,13 @@
+[
+  {
+    "pathRegex": "^/api/v6/",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "51000",
+        "msg": "  Parameter chainIndex error  ",
+        "data": []
+      }
+    }
+  }
+]

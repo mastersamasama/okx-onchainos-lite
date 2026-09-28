@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81358",
+        "msg": "gas station not available on this chain",
+        "data": []
+      }
+    }
+  }
+]

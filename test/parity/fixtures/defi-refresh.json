@@ -1,0 +1,21 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/refresh",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktcmVmcmVzaC1yb3RhdGVkIiwiaXNzIjoib25jaGFpbm9zLWxpdGUtcGFyaXR5IiwiZXhwIjo0MTAyNDQ0ODAwfQ.-284yYoFyd-kHp_SYXSWAaRIPZIEq30yGcjTMkNdXgk",
+            "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktYWNjZXNzLXJvdGF0ZWQiLCJpc3MiOiJvbmNoYWlub3MtbGl0ZS1wYXJpdHkiLCJleHAiOjQxMDI0NDQ4MDB9.Js3wr5x1pcRMiPZszJpBX6Is7MytGO7g65-nVwx4Ix4",
+            "chainUpdated": false,
+            "allAccountAddressList": []
+          }
+        ]
+      }
+    }
+  }
+]

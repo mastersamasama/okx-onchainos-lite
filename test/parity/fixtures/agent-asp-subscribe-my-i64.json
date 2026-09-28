@@ -1,0 +1,10 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"success\",\"data\":{\"list\":[{\"jobId\":\"g-wrap\",\"status\":1,\"subEndTime\":9223372036854775807},{\"jobId\":\"h-wrap-edge\",\"status\":1,\"subEndTime\":9223372036854689408},{\"jobId\":\"i-no-wrap\",\"status\":1,\"subEndTime\":9223372036854689407},{\"jobId\":\"j-min\",\"status\":1,\"subEndTime\":-9223372036854775808},{\"jobId\":\"k-buffer-max\",\"status\":1,\"subBufferEndTime\":9223372036854775807}]}}"
+    }
+  }
+]

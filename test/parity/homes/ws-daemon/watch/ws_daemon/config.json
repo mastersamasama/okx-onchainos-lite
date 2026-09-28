@@ -1,0 +1,29 @@
+{
+  "channels": [
+    "address-tracker-activity",
+    "dex-market-new-signal-openapi",
+    "kol_smartmoney-tracker-activity",
+    "price"
+  ],
+  "wallet_addresses": [
+    "0x1111111111111111111111111111111111111111",
+    "0x2222222222222222222222222222222222222222"
+  ],
+  "token_pairs": [
+    {
+      "chain_index": "1",
+      "token_contract_address": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+    },
+    {
+      "chain_index": "501",
+      "token_contract_address": "So11111111111111111111111111111111111111112"
+    }
+  ],
+  "chain_indexes": [
+    "1",
+    "501"
+  ],
+  "env": "prod",
+  "created_at": 0,
+  "idle_timeout_ms": 1
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "executeResult": true,
+            "signType": "transfer",
+            "encoding": "hex",
+            "unsignedHashList": [
+              {
+                "index": 0,
+                "unsignedHash": "c6cbdd8c7fe436c91d4daff2c0df7aa5a52799ae4e7bbc50bdfc81372944b4e8"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "task not found",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/dispute/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "dispute not found",
+        "data": null
+      }
+    }
+  }
+]

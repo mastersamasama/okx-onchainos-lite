@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/user/asset/platform/detail",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "84001",
+        "msg": "platform detail unavailable",
+        "data": null
+      }
+    }
+  }
+]

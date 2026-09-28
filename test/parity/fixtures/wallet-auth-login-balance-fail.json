@@ -1,0 +1,105 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/session/result",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktcmVmcmVzaCIsImlzcyI6Im9uY2hhaW5vcy1saXRlLXBhcml0eSIsImV4cCI6NDEwMjQ0NDgwMH0.vGCXPCCAcZPtgLtaMTcgSw4BwZ9Us9PVZcMEQcKKs18",
+            "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktYWNjZXNzIiwiaXNzIjoib25jaGFpbm9zLWxpdGUtcGFyaXR5IiwiZXhwIjo0MTAyNDQ0ODAwfQ.Cd5ZY7fgFDVTENKcVMlq7IoAKhZeJqzihiX98oiXNgk",
+            "teeId": "parity-tee-0001",
+            "saTeeId": "parity-sa-tee-0001",
+            "sessionCert": "parity-session-cert-3b11bafab157fcb047d4bc0a10a4f546",
+            "encryptedSessionSk": "+NOFj8RBwBuUo5gOPwHXXP3cD8DoGstGa6oBCKC+z3gA8+YlzWqTbZzsTSiCzb8Y903GbJHbLbcoqs8lO93kwac5dA5hZi2kUXQUuEgWf9w=",
+            "sessionKeyExpireAt": 4102444800,
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0001",
+            "accountName": "Account 1",
+            "isNew": 1,
+            "addressList": [],
+            "loginInfo": {
+              "email": "parity@example.com",
+              "nickname": "Parity",
+              "username": "parity",
+              "loginType": "google"
+            },
+            "allAccountAddressList": [
+              {
+                "accountId": "parity-account-0001",
+                "accountName": "Account 1",
+                "isDefault": true,
+                "addresses": [
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  },
+                  {
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "chainIndex": 0,
+                    "chainName": "btc",
+                    "addressType": "taproot",
+                    "chainPath": "m/86'/0'/0'/0/0"
+                  },
+                  {
+                    "address": "0x62302347ebc82b410cbc07446d2f7565f25f86c6c714b59d25c281c89e6b640a",
+                    "chainIndex": 784,
+                    "chainName": "sui",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/784'/0'/0'/0'"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances-batch",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50011",
+        "msg": "Too many requests",
+        "data": []
+      }
+    }
+  }
+]

@@ -1,0 +1,35 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/balance/all-token-balances-by-address",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "tokenAssets": [
+              {
+                "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                "balance": "25",
+                "chainIndex": "501",
+                "rawBalance": "25000000",
+                "symbol": "USDC",
+                "tokenContractAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+              },
+              {
+                "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                "balance": "1",
+                "chainIndex": "501",
+                "rawBalance": "1000000000",
+                "symbol": "SOL",
+                "tokenContractAddress": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

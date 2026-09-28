@@ -1,0 +1,4 @@
+[
+  { "method": "POST", "path": "/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash", "times": 1, "response": { "status": 200, "body": { "code": "81002", "msg": "risk control rejected", "data": [] } } },
+  { "method": "POST", "path": "/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": [{ "domainHash": "0xcd" }] } } }
+]

@@ -1,0 +1,1031 @@
+[
+ {
+  "id": "market-price-eth",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+   "--chain",
+   "ethereum"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-price-global-chain-trim",
+  "argv": [
+   "--chain",
+   "solana",
+   "market",
+   "price",
+   "--address",
+   "  So11111111111111111111111111111111111111112 "
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-price-empty-address",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "   "
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-price-missing-address",
+  "argv": [
+   "market",
+   "price",
+   "--chain",
+   "ethereum"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-price-no-data",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xdead",
+   "--chain",
+   "8453"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "core-empty-price"
+  ]
+ },
+ {
+  "id": "market-price-passthrough-chain",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xabc",
+   "--chain",
+   "Foo"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-price-default-chain",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xabc"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-price-config-default-chain",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xabc"
+  ],
+  "home": "g03-config",
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-price-chain-cache-name",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xabc",
+   "--chain",
+   "BASE MAINNET"
+  ],
+  "home": "g03-config",
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-price-null-data",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xabc",
+   "--chain",
+   "xlayer"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-price-null"
+  ]
+ },
+ {
+  "id": "market-price-api-error",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xabc",
+   "--chain",
+   "Foo"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "core-api-error"
+  ]
+ },
+ {
+  "id": "market-price-chain-two-levels",
+  "argv": [
+   "--chain",
+   "solana",
+   "market",
+   "price",
+   "--address",
+   "0xabc",
+   "--chain",
+   "ethereum"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-prices-pairs",
+  "argv": [
+   "market",
+   "prices",
+   "--tokens",
+   "1:0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee,501:So11111111111111111111111111111111111111112"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-prices-mixed",
+  "argv": [
+   "market",
+   "prices",
+   "--tokens",
+   "ethereum:0xA0b8, 0xC02a",
+   "--chain",
+   "bsc"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-prices-ok"
+  ]
+ },
+ {
+  "id": "market-prices-trailing-comma",
+  "argv": [
+   "market",
+   "prices",
+   "--tokens",
+   "0xabc,"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-prices-ok"
+  ]
+ },
+ {
+  "id": "market-prices-colons",
+  "argv": [
+   "market",
+   "prices",
+   "--tokens",
+   " SOL :So1:x , :0xabc",
+   "--chain",
+   "polygon"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-prices-ok"
+  ]
+ },
+ {
+  "id": "market-prices-config-default",
+  "argv": [
+   "market",
+   "prices",
+   "--tokens",
+   "0xabc"
+  ],
+  "home": "g03-config",
+  "network": "fixture",
+  "fixtures": [
+   "market-prices-ok"
+  ]
+ },
+ {
+  "id": "market-prices-missing-tokens",
+  "argv": [
+   "market",
+   "prices"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-kline-basic",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "So11111111111111111111111111111111111111112",
+   "--chain",
+   "solana",
+   "--bar",
+   "1H",
+   "--limit",
+   "5"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-candles"
+  ]
+ },
+ {
+  "id": "market-kline-transform",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-candles"
+  ]
+ },
+ {
+  "id": "market-kline-object-data",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--bar",
+   "1D",
+   "--limit",
+   "+7",
+   "--chain",
+   "arb"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-object"
+  ]
+ },
+ {
+  "id": "market-kline-bad-limit",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--limit",
+   "abc"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-kline-negative-limit",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--limit",
+   "-1"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-kline-limit-overflow",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--limit",
+   "4294967296"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-kline-api-error",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--chain",
+   "base"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-api-error"
+  ]
+ },
+ {
+  "id": "market-kline-http-429",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-http-429"
+  ]
+ },
+ {
+  "id": "market-kline-non-json",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-non-json"
+  ]
+ },
+ {
+  "id": "market-index-eth",
+  "argv": [
+   "market",
+   "index",
+   "--address",
+   "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+   "--chain",
+   "ethereum"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-index-native-empty",
+  "argv": [
+   "market",
+   "index",
+   "--address",
+   "",
+   "--chain",
+   "solana"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-index-ok"
+  ]
+ },
+ {
+  "id": "market-index-default-chain",
+  "argv": [
+   "market",
+   "index",
+   "--address",
+   " 0xabc "
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-index-ok"
+  ]
+ },
+ {
+  "id": "market-portfolio-supported-chains",
+  "argv": [
+   "market",
+   "portfolio-supported-chains"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-portfolio-supported-chains-fixture",
+  "argv": [
+   "--chain",
+   "solana",
+   "market",
+   "portfolio-supported-chains"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-portfolio-chains"
+  ]
+ },
+ {
+  "id": "market-portfolio-overview",
+  "argv": [
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-portfolio-overview-tf",
+  "argv": [
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--time-frame",
+   "3"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-portfolio-overview"
+  ]
+ },
+ {
+  "id": "market-portfolio-overview-empty-tf",
+  "argv": [
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "Base Mainnet",
+   "--time-frame",
+   ""
+  ],
+  "home": "g03-config",
+  "network": "fixture",
+  "fixtures": [
+   "market-portfolio-overview"
+  ]
+ },
+ {
+  "id": "market-portfolio-overview-missing-chain",
+  "argv": [
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-portfolio-overview-global-chain",
+  "argv": [
+   "--chain",
+   "ethereum",
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-portfolio-overview"
+  ]
+ },
+ {
+  "id": "market-portfolio-overview-jwt",
+  "argv": [
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "market-portfolio-overview"
+  ]
+ },
+ {
+  "id": "market-portfolio-overview-expired-refreshes",
+  "argv": [
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum"
+  ],
+  "home": "wallet-expired",
+  "network": "fixture",
+  "fixtures": [
+   "market-portfolio-overview",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "market-portfolio-overview-refresh-fails",
+  "argv": [
+   "market",
+   "portfolio-overview",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum"
+  ],
+  "home": "wallet-expired",
+  "network": "fixture",
+  "fixtures": [
+   "market-portfolio-overview",
+   "wallet-auth-refresh-error"
+  ]
+ },
+ {
+  "id": "market-price-refresh-token-expired",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "0xabc",
+   "--chain",
+   "Foo"
+  ],
+  "home": "wallet-refresh-expired",
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-dex-history-window",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--begin",
+   "1700000000000",
+   "--end",
+   "1710000000000",
+   "--limit",
+   "5",
+   "--tx-type",
+   "1,2"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-dex-history-all-filters",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "eth",
+   "--begin",
+   "1700000000000",
+   "--end",
+   "1710000000000",
+   "--cursor",
+   "c1",
+   "--token",
+   "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+   "--limit",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-dex-history-object"
+  ]
+ },
+ {
+  "id": "market-dex-history-since",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--since",
+   "24h"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-dex-history-object"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end"
+  ]
+ },
+ {
+  "id": "market-dex-history-since-array",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--since",
+   " 7d "
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-dex-history-array"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end"
+  ]
+ },
+ {
+  "id": "market-dex-history-since-and-begin",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--since",
+   "24h",
+   "--begin",
+   "1"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-since-and-end",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--since",
+   "bogus",
+   "--end",
+   "2"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-begin-only",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--begin",
+   "1700000000000"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-no-window",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-since-zero",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--since",
+   "0"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-since-zero-unit",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0x1",
+   "--chain",
+   "ethereum",
+   "--since",
+   "0m"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-since-bad",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0x1",
+   "--chain",
+   "ethereum",
+   "--since",
+   "10"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-since-overflow",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0x1",
+   "--chain",
+   "ethereum",
+   "--since",
+   "18446744073709551615d"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-dex-history-since-empty",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0x1",
+   "--chain",
+   "ethereum",
+   "--since",
+   "",
+   "--begin",
+   "1700000000000",
+   "--end",
+   "1710000000000"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-dex-history-object"
+  ]
+ },
+ {
+  "id": "market-dex-history-empty-begin-end",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "0x1",
+   "--chain",
+   "ethereum",
+   "--since",
+   "1h",
+   "--begin",
+   "",
+   "--end",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-dex-history-object"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end"
+  ]
+ },
+ {
+  "id": "market-recent-pnl",
+  "argv": [
+   "market",
+   "portfolio-recent-pnl",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-recent-pnl-page",
+  "argv": [
+   "market",
+   "portfolio-recent-pnl",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "solana",
+   "--limit",
+   "5",
+   "--cursor",
+   "abc"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-recent-pnl"
+  ]
+ },
+ {
+  "id": "market-token-pnl",
+  "argv": [
+   "market",
+   "portfolio-token-pnl",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--token",
+   "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "market-token-pnl-fixture",
+  "argv": [
+   "market",
+   "portfolio-token-pnl",
+   "--address",
+   "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+   "--chain",
+   "ethereum",
+   "--token",
+   "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-token-pnl"
+  ]
+ },
+ {
+  "id": "market-token-pnl-missing-token",
+  "argv": [
+   "market",
+   "portfolio-token-pnl",
+   "--address",
+   "0x1",
+   "--chain",
+   "ethereum"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-kline-limit-neg-eq",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--limit=-1"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-kline-limit-i64-underflow",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--limit=-99999999999999999999"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "market-kline-limit-u32-max",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--limit",
+   "4294967295"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-candles"
+  ]
+ },
+ {
+  "id": "market-kline-many-fields",
+  "argv": [
+   "market",
+   "kline",
+   "--address",
+   "0x1",
+   "--limit",
+   "0"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-kline-many-fields"
+  ]
+ },
+ {
+  "id": "market-price-address-unicode-trim",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "  0xabc ",
+   "--chain",
+   "eth"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-price-address-bom-kept",
+  "argv": [
+   "market",
+   "price",
+   "--address",
+   "﻿",
+   "--chain",
+   "eth"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-price-ok"
+  ]
+ },
+ {
+  "id": "market-prices-unicode-ws",
+  "argv": [
+   "market",
+   "prices",
+   "--tokens",
+   "　eth:0x1 , ,x:"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-prices-ok"
+  ]
+ },
+ {
+  "id": "market-dex-history-since-replaces-server-window",
+  "argv": [
+   "market",
+   "portfolio-dex-history",
+   "--address",
+   "a",
+   "--chain",
+   "eth",
+   "--since",
+   "1s",
+   "--begin",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "market-dex-history-server-window"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end"
+  ]
+ }
+]

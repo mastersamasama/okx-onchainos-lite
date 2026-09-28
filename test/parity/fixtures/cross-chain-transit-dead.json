@@ -1,0 +1,74 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/supported/tokens",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "Service temporarily unavailable",
+        "data": []
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/quote",
+    "match": {
+      "query": {
+        "toTokenAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "8453",
+            "toTokenAmount": "2684140"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/quote",
+    "match": {
+      "query": {
+        "toTokenAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "8453"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/quote",
+    "match": {
+      "query": {
+        "fromTokenAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82104",
+        "msg": "Token not supported",
+        "data": []
+      }
+    }
+  }
+]

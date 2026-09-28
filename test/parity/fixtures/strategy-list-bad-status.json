@@ -1,0 +1,22 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/getOpenOrder",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": {
+          "cursor": null,
+          "dataList": [
+            {
+              "orderId": "1",
+              "status": "3"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

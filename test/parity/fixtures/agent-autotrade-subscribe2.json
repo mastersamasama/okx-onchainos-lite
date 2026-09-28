@@ -1,0 +1,74 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/jobW11",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "jobW11",
+          "buyerAgentId": "a-user",
+          "status": 1,
+          "providerAgentId": "p-asp",
+          "serviceId": "svc11"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/jobW12",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "jobW12",
+          "buyerAgentId": "a-user",
+          "status": 1,
+          "providerAgentId": "p-asp",
+          "serviceId": "svc12"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/jobW13",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "jobW13",
+          "buyerAgentId": "a-user",
+          "status": 1,
+          "providerAgentId": "p-asp",
+          "serviceId": "svc13"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/jobW14",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "jobW14",
+          "buyerAgentId": "a-user",
+          "status": 1,
+          "providerAgentId": "p-asp",
+          "serviceId": "svc14"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,42 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/leaderboard/list",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "walletAddress": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "realizedPnlUsd": "1234.5",
+      "winRatePercent": "61.2",
+      "txs": "40",
+      "txVolume": "50000",
+      "roi": "12.3",
+      "topPnlTokenList": []
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/leaderboard/supported/chain",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "1",
+      "chainName": "Ethereum",
+      "chainLogo": ""
+     }
+    ]
+   }
+  }
+ }
+]

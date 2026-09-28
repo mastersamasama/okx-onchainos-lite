@@ -1,0 +1,19 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "status": 3,
+          "jobType": 0,
+          "providerAgentId": "9001"
+        }
+      }
+    }
+  }
+]

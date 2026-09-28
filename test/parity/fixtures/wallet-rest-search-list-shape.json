@@ -1,0 +1,37 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "chainIndex": "1",
+              "tokenName": "Tether USD",
+              "tokenSymbol": "USDT",
+              "tokenContractAddress": "0x0000000000000000000000000000000000000001",
+              "decimal": "6",
+              "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+              "cursor": "1",
+              "change": "0.01"
+            },
+            {
+              "chainIndex": "10",
+              "tokenName": "Tether USD",
+              "tokenSymbol": "USDT",
+              "tokenContractAddress": "0x0000000000000000000000000000000000000002",
+              "decimal": "6",
+              "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+              "cursor": "2",
+              "change": "0.01"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

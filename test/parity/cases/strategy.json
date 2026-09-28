@@ -1,0 +1,1960 @@
+[
+  {
+    "id": "strategy-cancel-all-wait",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--all",
+      "--wait"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "strategy-cancel-anon",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-cancel-conflict",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1",
+      "--all"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-cancel-conflict-ids",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--all",
+      "--order-ids",
+      "1,2",
+      "--wait"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-cancel-conflict-three",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--wait",
+      "--order-ids",
+      "1",
+      "--all",
+      "--order-id",
+      "2"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-cancel-conflict-three-leaf-chain",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--all",
+      "--chain",
+      "eth",
+      "--order-id",
+      "1",
+      "--order-ids",
+      "2"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-cancel-conflict-three-global-dev",
+    "argv": [
+      "--dev",
+      "strategy",
+      "cancel",
+      "--order-ids",
+      "1",
+      "--order-id",
+      "2",
+      "--all"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-cancel-none",
+    "argv": [
+      "strategy",
+      "cancel"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-cancel-empty-ids",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-ids",
+      ",, ,"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-cancel-bad-id",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      " ord-1 "
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-cancel-bad-ids",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-ids",
+      "17296046425729984,not-a-number"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-cancel-empty-id",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "  "
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-cancel-too-big",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "99999999999999999999"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-cancel-one",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      " 17296046425729984"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-ok"
+    ]
+  },
+  {
+    "id": "strategy-cancel-ids",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-ids",
+      "11, 12 ,,13 "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-null"
+    ]
+  },
+  {
+    "id": "strategy-cancel-all",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--all"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-ok"
+    ]
+  },
+  {
+    "id": "strategy-cancel-wait",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-ids",
+      "11,12",
+      "--wait"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-ok",
+      "strategy-detail"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "strategy-cancel-wait-one",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "555",
+      "--wait"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-ok",
+      "strategy-detail"
+    ]
+  },
+  {
+    "id": "strategy-cancel-wait-detail-null",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "11",
+      "--wait"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-ok",
+      "strategy-detail-null"
+    ]
+  },
+  {
+    "id": "strategy-cancel-60002",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-60002"
+    ]
+  },
+  {
+    "id": "strategy-cancel-60015-nomsg",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-60015-nomsg"
+    ]
+  },
+  {
+    "id": "strategy-cancel-50114",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-50114"
+    ]
+  },
+  {
+    "id": "strategy-cancel-string-code",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-string-code"
+    ]
+  },
+  {
+    "id": "strategy-cancel-bad-shape",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-bad-shape"
+    ]
+  },
+  {
+    "id": "strategy-cancel-array-body",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-array-body"
+    ]
+  },
+  {
+    "id": "strategy-cancel-502",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-500"
+    ]
+  },
+  {
+    "id": "strategy-cancel-seq",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-seq"
+    ]
+  },
+  {
+    "id": "strategy-cancel-big",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-big"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "strategy-cancel-expired-jwt",
+    "argv": [
+      "strategy",
+      "cancel",
+      "--all"
+    ],
+    "home": "wallet-expired",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-cancel-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "strategy-list-anon",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-list-default",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "strategy-list-filters",
+    "argv": [
+      "strategy",
+      "list",
+      "--status",
+      "active, 4, suspended,+1,-2,garbage,speeding-up",
+      "--chain-id",
+      "1, solana,,base",
+      "--limit",
+      "10",
+      "--cursor",
+      "",
+      "--token",
+      " 0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-empty"
+    ]
+  },
+  {
+    "id": "strategy-list-status-labels",
+    "argv": [
+      "strategy",
+      "list",
+      "--status",
+      "Cancelled, PROCESSING,trading,Cancel-ling",
+      "--chain-id",
+      " , ",
+      "--token",
+      "  "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-empty"
+    ]
+  },
+  {
+    "id": "strategy-list-status-unknown",
+    "argv": [
+      "strategy",
+      "list",
+      "--status",
+      "trading,nope",
+      "--cursor",
+      "Y3Vyc29yLTI="
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-empty"
+    ]
+  },
+  {
+    "id": "strategy-list-bad-chain",
+    "argv": [
+      "strategy",
+      "list",
+      "--chain-id",
+      "1,polygon"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-list-token-csv",
+    "argv": [
+      "strategy",
+      "list",
+      "--token",
+      "0xa,0xb"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-list-order-id",
+    "argv": [
+      "strategy",
+      "list",
+      "--order-id",
+      "17296046425729984",
+      "--strategy-mode",
+      "5",
+      "--status",
+      "ignored",
+      "--chain-id",
+      "polygon"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-detail"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "strategy-list-order-id-unknown-status",
+    "argv": [
+      "strategy",
+      "list",
+      "--order-id",
+      "555"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-detail"
+    ]
+  },
+  {
+    "id": "strategy-list-order-id-null",
+    "argv": [
+      "strategy",
+      "list",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-detail-null"
+    ]
+  },
+  {
+    "id": "strategy-list-null-data",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-null"
+    ]
+  },
+  {
+    "id": "strategy-list-bad-status",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-bad-status"
+    ]
+  },
+  {
+    "id": "strategy-list-missing-id",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-missing-id"
+    ]
+  },
+  {
+    "id": "strategy-list-bad-cursor",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-bad-cursor"
+    ]
+  },
+  {
+    "id": "strategy-list-api-error",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-api-error"
+    ]
+  },
+  {
+    "id": "strategy-list-limit-bad",
+    "argv": [
+      "strategy",
+      "list",
+      "--limit",
+      "abc"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-list-limit-negative",
+    "argv": [
+      "strategy",
+      "list",
+      "--limit",
+      "-5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-list-limit-inline-negative",
+    "argv": [
+      "strategy",
+      "list",
+      "--limit=-5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-empty"
+    ]
+  },
+  {
+    "id": "strategy-list-mode-range",
+    "argv": [
+      "strategy",
+      "list",
+      "--strategy-mode",
+      "99999999999"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-list-account2",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet-account2",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-list-empty"
+    ]
+  },
+  {
+    "id": "strategy-list-no-keyring",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet-no-keyring",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-list-bad-session",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-list-seq-wallets",
+    "argv": [
+      "strategy",
+      "list"
+    ],
+    "home": "wallet-seq-wallets",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-resume-anon",
+    "argv": [
+      "strategy",
+      "resume"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-resume-empty",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      ","
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-resume-bad-id",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101,abc"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-resume-discover",
+    "argv": [
+      "strategy",
+      "resume"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-discover"
+    ]
+  },
+  {
+    "id": "strategy-resume-discover-none",
+    "argv": [
+      "strategy",
+      "resume",
+      "--wait"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-none"
+    ]
+  },
+  {
+    "id": "strategy-resume-updatenum",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      " 101 ,102"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-updatenum"
+    ]
+  },
+  {
+    "id": "strategy-resume-updatenum-zero",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-updatenum-zero"
+    ]
+  },
+  {
+    "id": "strategy-resume-null",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-null"
+    ]
+  },
+  {
+    "id": "strategy-resume-bad-ids",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-bad-ids"
+    ]
+  },
+  {
+    "id": "strategy-resume-60018",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101,102"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-60018"
+    ],
+    "masks": [
+      "req.body.timestamp",
+      "req.body.expireTimestamp"
+    ]
+  },
+  {
+    "id": "strategy-resume-60018-twice",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-60018-twice"
+    ],
+    "masks": [
+      "req.body.timestamp",
+      "req.body.expireTimestamp"
+    ]
+  },
+  {
+    "id": "strategy-resume-attest-empty",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-attest-empty"
+    ]
+  },
+  {
+    "id": "strategy-resume-attest-object",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-attest-object"
+    ]
+  },
+  {
+    "id": "strategy-resume-attest-bad-hex",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-attest-bad-hex"
+    ]
+  },
+  {
+    "id": "strategy-resume-wait",
+    "argv": [
+      "strategy",
+      "resume",
+      "--order-ids",
+      "101,102",
+      "--wait"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-resume-updatenum",
+      "strategy-detail"
+    ]
+  },
+  {
+    "id": "strategy-create-anon",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-direction-bad",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "HODL"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-create-mev-bad",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy",
+      "--mev-protection",
+      "ON"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "strategy-create-polygon",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "polygon",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "1",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-bad-from",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "eth",
+      "--from-token",
+      "0x123",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "1",
+      "--direction",
+      "Buy"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-base58-on-evm",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "1",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-evm-on-sol",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "sol",
+      "--from-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--to-token",
+      "sol",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "1",
+      "--direction",
+      "sell"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-trigger-nan",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "1,5",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-trigger-empty",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-trigger-zero",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1",
+      "--trigger-price=-0",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-trigger-inf",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "inf",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-current-bad",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "1",
+      "--direction",
+      "buy",
+      "--current-price",
+      "x"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-current-nan",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1",
+      "--trigger-price",
+      "1",
+      "--direction",
+      "buy",
+      "--current-price",
+      "NaN"
+    ],
+    "home": "wallet",
+    "network": "fixture"
+  },
+  {
+    "id": "strategy-create-below-min-buy",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "0.5",
+      "--trigger-price",
+      "1000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-below-min-sell",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "solana",
+      "--from-token",
+      "sol",
+      "--to-token",
+      "usdc",
+      "--amount",
+      "0.001",
+      "--trigger-price",
+      "500",
+      "--direction",
+      "sell",
+      "--current-price",
+      "150"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-below-min-eth",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "eth",
+      "--to-token",
+      "usdc",
+      "--amount",
+      "0.0003",
+      "--trigger-price",
+      "3000",
+      "--direction",
+      "sell"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-slippage-bad",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "BUY",
+      "--slippage",
+      "150"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-slippage-garbage",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy",
+      "--slippage",
+      " abc %"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-amount-precision",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1.1234567",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-amount-bad",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "1e3",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-amount-zero",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      " 0.000 ",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  },
+  {
+    "id": "strategy-create-price-empty",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-price-empty"
+    ]
+  },
+  {
+    "id": "strategy-create-price-missing",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-price-no-price"
+    ]
+  },
+  {
+    "id": "strategy-create-price-zero",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-price-zero"
+    ]
+  },
+  {
+    "id": "strategy-create-price-api-error",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-price-api-error"
+    ]
+  },
+  {
+    "id": "strategy-create-info-bad-decimal",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy",
+      "--current-price",
+      "2500"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-info-bad-decimal"
+    ]
+  },
+  {
+    "id": "strategy-create-info-no-decimal",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy",
+      "--current-price",
+      "2500"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-info-no-decimal"
+    ]
+  },
+  {
+    "id": "strategy-create-info-empty",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "100",
+      "--direction",
+      "buy",
+      "--current-price",
+      "2500"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-info-empty"
+    ]
+  },
+  {
+    "id": "strategy-create-ok-buy",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-ok"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-ok-chase",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5.25",
+      "--trigger-price",
+      "2500.12",
+      "--direction",
+      "buy",
+      "--mev-protection",
+      "off",
+      "--slippage",
+      " 20 % "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-ok"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-ok-sell-sol",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "solana",
+      "--from-token",
+      "sol",
+      "--to-token",
+      "usdc",
+      "--amount",
+      "0.5",
+      "--trigger-price",
+      "200",
+      "--direction",
+      "sell",
+      "--mev-protection",
+      "on",
+      "--slippage",
+      "0.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-ok-sol"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-ok-stop-loss",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "eth",
+      "--to-token",
+      "usdc",
+      "--amount",
+      "0.01",
+      "--trigger-price",
+      "1800",
+      "--direction",
+      "sell",
+      "--current-price",
+      "2400"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-ok"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-100010",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-100010"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-60003",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-60003"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-bad-shape",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-bad-shape"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-60018",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-60018"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature",
+      "req.body.timestamp",
+      "req.body.expireTimestamp"
+    ]
+  },
+  {
+    "id": "strategy-create-60018-100010",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-60018-100010"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature",
+      "req.body.timestamp",
+      "req.body.expireTimestamp"
+    ]
+  },
+  {
+    "id": "strategy-create-60018-register-fails",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-60018-register-fails"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature",
+      "req.body.timestamp",
+      "req.body.expireTimestamp"
+    ]
+  },
+  {
+    "id": "strategy-create-wait",
+    "argv": [
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "1",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "5",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy",
+      "--wait",
+      "--current-price",
+      "2500"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market",
+      "strategy-create-wait",
+      "strategy-detail"
+    ],
+    "masks": [
+      "req.body.expireTime",
+      "req.body.verifySignInfo.signMsg",
+      "req.body.verifySignInfo.signature"
+    ]
+  },
+  {
+    "id": "strategy-create-global-chain-ignored",
+    "argv": [
+      "--chain",
+      "polygon",
+      "strategy",
+      "create-limit",
+      "--chain-id",
+      "base",
+      "--from-token",
+      "usdc",
+      "--to-token",
+      "eth",
+      "--amount",
+      "0.2",
+      "--trigger-price",
+      "2000",
+      "--direction",
+      "buy"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "strategy-market"
+    ]
+  }
+]

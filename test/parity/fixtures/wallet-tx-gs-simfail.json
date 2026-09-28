@@ -1,0 +1,90 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "0x008fa36bb04c75c4bfa03b2c97f48beeabaaa731d37d397ec2cd1e1de4c6675c",
+            "hash": "",
+            "authHashFor7702": null,
+            "executeErrorMsg": "gas station simulation reverted",
+            "executeResult": false,
+            "extraData": {
+              "toAdr": "0x000000000000000000000000000000000000dEaD",
+              "coinAmount": "1",
+              "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeRate": 1.25
+            },
+            "signType": "eip712",
+            "encoding": "hex",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "0x3549e3e2663187dfdfa5d2219ecc854d3471f6868e87ea4cd1e165f5a03ad28d",
+            "gasStationUsed": true,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": "0.13",
+            "serviceChargeSymbol": "USDT",
+            "serviceChargeFeeTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+            "needUpdate7702": false,
+            "gasStationTokenList": [
+              {
+                "feeCoinId": 7,
+                "symbol": "USDT",
+                "feeTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "serviceCharge": "0.13",
+                "balance": "25.5",
+                "sufficient": true,
+                "relayerId": "relayer-usdt-196",
+                "context": "ctx-usdt-2f7a"
+              },
+              {
+                "feeCoinId": 9,
+                "symbol": "USDC",
+                "feeTokenAddress": "0x74b7f16337b8972027f6196a17a631ac6de26d22",
+                "serviceCharge": "0.14",
+                "balance": "0.02",
+                "sufficient": false,
+                "relayerId": "relayer-usdc-196",
+                "context": "ctx-usdc-8b1c"
+              },
+              {
+                "feeCoinId": 11,
+                "symbol": "USDG",
+                "feeTokenAddress": "0x4ae46a509f6b1d9056937ba4500cb143933d2dc8",
+                "serviceCharge": "0.12",
+                "balance": "4",
+                "sufficient": true,
+                "relayerId": "relayer-usdg-196",
+                "context": null
+              }
+            ],
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "READY_TO_USE",
+            "contractNonce": "42",
+            "eoaNonce": null,
+            "user712Data": {
+              "domain": {
+                "name": "OKX Relayer",
+                "chainId": 196
+              },
+              "primaryType": "Call",
+              "nonce": "42"
+            },
+            "user7702Data": null,
+            "defaultGasTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+          }
+        ]
+      }
+    }
+  }
+]

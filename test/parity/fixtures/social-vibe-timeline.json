@@ -1,0 +1,55 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/vibe/timeline",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "summary": {
+      "score": "78",
+      "scoreType": "dex_vibe_hotness",
+      "scoreRange": "0-100",
+      "scoreChangeRate": "12.5",
+      "mentionsCount": "40",
+      "text": "leak",
+      "supportFirstMentioned": true
+     },
+     "timeline": [
+      {
+       "ts": 1716892020000,
+       "score": "70",
+       "mentionCount": 2,
+       "content": "leak",
+       "kols": [
+        {
+         "handle": "a",
+         "nickname": "A",
+         "avatar": "https://x/a.png",
+         "text": "leak",
+         "translatedContent": "leak",
+         "tweetUrl": "https://x.com/a/1",
+         "nested": [
+          {
+           "content": "deep leak",
+           "keep": "yes"
+          }
+         ]
+        }
+       ]
+      }
+     ],
+     "kols": [
+      {
+       "handle": "b",
+       "content": "x",
+       "tweetUrl": "u"
+      }
+     ]
+    }
+   }
+  }
+ }
+]

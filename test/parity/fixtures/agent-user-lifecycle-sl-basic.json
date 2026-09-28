@@ -1,0 +1,123 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 2,
+          "page": 1,
+          "pageSize": 10,
+          "list": [
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "jobType": 1,
+              "status": 1,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            },
+            {
+              "jobId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+              "jobType": 1,
+              "status": 0,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0,
+              "deviceList": []
+            }
+          ]
+        }
+      }
+    },
+    "match": {
+      "query": {
+        "statusType": "1"
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 1,
+          "page": 1,
+          "pageSize": 10,
+          "list": [
+            {
+              "jobId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+              "jobType": 1,
+              "status": 7,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "",
+              "autoRenew": 0,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            }
+          ]
+        }
+      }
+    },
+    "match": {
+      "query": {
+        "statusType": "2"
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 2,
+          "list": [
+            {
+              "deviceId": "dev-a",
+              "deviceName": "Laptop",
+              "lastOnlineTime": 0
+            },
+            {
+              "deviceId": "dev-b",
+              "deviceName": "",
+              "lastOnlineTime": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+]

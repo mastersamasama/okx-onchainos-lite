@@ -1,0 +1,20 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/create",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0009",
+            "addressList": []
+          }
+        ]
+      }
+    }
+  }
+]

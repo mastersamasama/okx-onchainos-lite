@@ -1,0 +1,35 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "status": 1,
+          "trialType": 1,
+          "autoRenew": 1,
+          "periodIndex": 1,
+          "serviceId": "svc-sub-7",
+          "serviceTokenAmount": "3",
+          "serviceTokenSymbol": "USDT",
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "providerAgentName": "Parity ASP",
+          "trialStartTime": 1700000000,
+          "trialEndTime": 1700129600,
+          "freeTrial": " 36 ",
+          "subStartTime": 1700000000,
+          "subEndTime": 1702592000,
+          "title": "Daily alpha signals",
+          "description": "Daily BTC alpha",
+          "offlineReceiveFlag": 1,
+          "deviceList": null
+        }
+      }
+    }
+  }
+]

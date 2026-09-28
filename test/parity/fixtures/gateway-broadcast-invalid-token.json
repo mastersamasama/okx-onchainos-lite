@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "10001",
+        "msg": "invalid access token",
+        "data": []
+      }
+    }
+  }
+]

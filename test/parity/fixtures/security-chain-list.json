@@ -1,0 +1,80 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/chain/support/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": 1,
+            "realChainIndex": 1,
+            "chainName": "eth",
+            "isEvmChain": true,
+            "alias": [
+              "ethereum"
+            ],
+            "showName": "Ethereum"
+          },
+          {
+            "chainIndex": "56",
+            "realChainIndex": "56",
+            "chainName": "bnb",
+            "isEvmChain": true,
+            "alias": [
+              "bsc"
+            ],
+            "showName": "BNB Chain"
+          },
+          {
+            "chainIndex": 501,
+            "realChainIndex": 501,
+            "chainName": "sol",
+            "isEvmChain": false,
+            "alias": [
+              "solana"
+            ],
+            "showName": "Solana"
+          },
+          {
+            "chainIndex": "btc",
+            "realChainIndex": 0,
+            "chainName": "btc",
+            "isEvmChain": false,
+            "alias": [],
+            "showName": "Bitcoin"
+          },
+          {
+            "chainIndex": 8453,
+            "chainName": "base_eth",
+            "isEvmChain": true,
+            "alias": [
+              "base"
+            ],
+            "showName": "Base"
+          },
+          {
+            "chainIndex": "+196",
+            "realChainIndex": "x196",
+            "chainName": "okb",
+            "isEvmChain": true,
+            "alias": [
+              "xlayer"
+            ],
+            "showName": "X Layer"
+          },
+          {
+            "chainIndex": 784,
+            "realChainIndex": 101,
+            "chainName": "sui",
+            "isEvmChain": false,
+            "alias": [],
+            "showName": "Sui"
+          }
+        ]
+      }
+    }
+  }
+]

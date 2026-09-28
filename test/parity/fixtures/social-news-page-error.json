@@ -1,0 +1,54 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/search",
+  "match": {
+   "query": {
+    "cursor": "p2"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "50011",
+    "msg": "Too Many Requests",
+    "data": null
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/search",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "p2",
+     "articles": [
+      {
+       "id": "s1",
+       "title": "T-s1",
+       "summary": "s-s1",
+       "content": "",
+       "sourceUrl": "https://example.com/s1",
+       "source": "blockbeats",
+       "timestamp": 1716892020000,
+       "tokenSymbols": [
+        "BTC"
+       ],
+       "importance": "high",
+       "tokenSymbolSentiments": [
+        {
+         "tokenSymbol": "BTC",
+         "sentiment": "bullish"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ }
+]

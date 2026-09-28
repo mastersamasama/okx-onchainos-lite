@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "jobId": "jobK8",
+  "agentId": "a-user",
+  "providerAgentId": "p-asp",
+  "deliveryId": "d8",
+  "savedPath": "test/parity/homes/agent-autotrade-state/signals/plain-note.md",
+  "deliverableType": "trade_signal",
+  "receivedAtMs": 1700000000000,
+  "executionPath": "agent_direct"
+}

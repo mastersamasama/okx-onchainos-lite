@@ -1,0 +1,59 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "0",
+              "msg": ""
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            {
+              "event": "subscribe",
+              "arg": {
+                "channel": "wallet-agentic-identity"
+              },
+              "connId": "c1"
+            },
+            "not json",
+            {
+              "event": "subscribe",
+              "arg": {
+                "channel": "late"
+              }
+            },
+            {
+              "arg": {
+                "channel": "wallet-agentic-identity"
+              },
+              "data": [
+                {
+                  "txHash": "0x1111",
+                  "agentId": 1
+                }
+              ]
+            },
+            {
+              "arg": {
+                "channel": "wallet-agentic-identity"
+              },
+              "data": {
+                "txHash": "abcdef0000000000000000000000000000000000000000000000000000000001",
+                "agentId": 4242,
+                "status": "success",
+                "name": "Alice"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 1,
+          "list": [
+            {
+              "jobId": "j1",
+              "status": 1,
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "trialStartTime": 1,
+              "trailStartTime": 2
+            }
+          ]
+        }
+      }
+    }
+  }
+]

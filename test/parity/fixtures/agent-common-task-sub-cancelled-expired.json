@@ -1,0 +1,42 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "title": "Signal feed",
+          "description": "Daily signals",
+          "tokenSymbol": "USDT",
+          "tokenAmount": "10",
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "status": 8,
+          "jobType": 1
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "subStatus": 8,
+          "trialType": 0,
+          "paymentTokenAmount": "10",
+          "subStartTime": "1700000000"
+        }
+      }
+    }
+  }
+]

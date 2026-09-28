@@ -1,0 +1,24 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/staking/myStake",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "voterAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "agentId": "548",
+          "activeStake": "0.0012",
+          "pendingUnstake": "0",
+          "validStake": "0.0012",
+          "activeDisputes": "2",
+          "cooldownEndsAt": 0,
+          "unstakeAvailableAt": 0,
+          "registered": true
+        }
+      }
+    }
+  }
+]

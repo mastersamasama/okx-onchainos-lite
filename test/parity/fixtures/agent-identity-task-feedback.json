@@ -1,0 +1,22 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/task-feedback",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "7",
+            "taskId": "0xabc",
+            "chainIndex": "196",
+            "feedbackId": "fb-1",
+            "comment": "{\"value\":\"90\"}"
+          }
+        ]
+      }
+    }
+  }
+]

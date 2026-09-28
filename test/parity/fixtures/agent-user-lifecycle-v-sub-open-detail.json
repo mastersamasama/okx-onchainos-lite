@@ -1,0 +1,46 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "jobType": 1,
+          "status": 0,
+          "title": "Sub",
+          "description": "",
+          "buyerAgentId": "1001",
+          "providerAgentId": "",
+          "paymentTokenAmount": "",
+          "tokenSymbol": "?",
+          "paymentMode": 1
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "subStatus": 0,
+          "trialType": 0,
+          "buyerAgentId": "1001",
+          "providerAgentId": "",
+          "paymentTokenAmount": "",
+          "tokenSymbol": "?",
+          "status": 0
+        }
+      }
+    }
+  }
+]

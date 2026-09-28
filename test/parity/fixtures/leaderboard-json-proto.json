@@ -1,0 +1,13 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/leaderboard/supported/chain",
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"__proto__\":{\"x\":1},\"a\":1}}"
+  }
+ }
+]

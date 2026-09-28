@@ -1,0 +1,65 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/subscribe/providerConfirmStatus",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "subId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "autoRenew": 1,
+          "serviceTokenAmount": "3",
+          "typedData": {
+            "types": {
+              "EIP712Domain": [
+                {
+                  "name": "name",
+                  "type": "string"
+                }
+              ],
+              "Reject": [
+                {
+                  "name": "jobId",
+                  "type": "bytes32"
+                }
+              ]
+            },
+            "primaryType": "Reject",
+            "domain": {
+              "name": "Escrow"
+            },
+            "message": {
+              "jobId": "0xabababababababababababababababababababababababababababababababab"
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd/startAutoRenew",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "type": 207,
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f4f",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  }
+]

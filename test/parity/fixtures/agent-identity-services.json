@@ -1,0 +1,10 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/services",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":[{\"agentInfo\":{\"agentId\":\"1921\",\"name\":\"Svc Host\"},\"list\":[{\"serviceId\":\"s-1\",\"ServiceName\":\"TVL Query\",\"ServiceType\":\"A2MCP\",\"Fee\":\"0.5\",\"Endpoint\":\"https://api.example.com/mcp\",\"serviceGuide\":\"step 1; step 2\",\"ServiceDescription\":\"Returns the total value locked for a protocol across all supported chains and venues, updated every minute.\"},{\"serviceName\":\"Loop Helper\",\"serviceType\":\"A2A\",\"fee\":\"\",\"subscription\":[{\"interval\":\"month\",\"fee\":\"10\"}],\"freeTrial\":72,\"serviceGuide\":\"   \"},{\"serviceDescription\":\"nameless\"},{\"serviceName\":\"Hourly\",\"serviceType\":\"a2a\",\"subscription\":[{\"interval\":\"Month\",\"fee\":\"3\"}],\"freeTrial\":\"5\"},{\"name\":\"Priced\",\"feeAmount\":0.25,\"servicetype\":\"\"},{\"serviceName\":\"No Fee MCP\",\"serviceType\":\"a2mcp\"}],\"page\":\"1\",\"pageSize\":\"3\",\"total\":\"5\"},{\"agentInfo\":null,\"services\":[{\"serviceName\":\"Legacy\",\"serviceType\":\"A2A\",\"fee\":\"1\"}],\"page\":2,\"pageSize\":3,\"total\":6},7]}"
+    }
+  }
+]

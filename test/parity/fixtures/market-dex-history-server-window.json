@@ -1,0 +1,18 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/dex-history",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "resolvedWindow": "server",
+     "cursor": "",
+     "transactionList": []
+    }
+   }
+  }
+ }
+]

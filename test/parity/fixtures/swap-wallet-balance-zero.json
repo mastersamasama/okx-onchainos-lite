@@ -1,0 +1,33 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USDC",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "0",
+                "rawBalance": "0",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": "0",
+                "isRiskToken": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

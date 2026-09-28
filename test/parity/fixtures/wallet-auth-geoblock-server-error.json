@@ -1,0 +1,13 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/geoblock/check",
+    "response": {
+      "status": 502,
+      "headers": {
+        "content-type": "text/html"
+      },
+      "body": "<html><body>502 Bad Gateway</body></html>"
+    }
+  }
+]

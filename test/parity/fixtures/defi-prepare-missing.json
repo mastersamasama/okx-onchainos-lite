@@ -1,0 +1,16 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/detail/prepare",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "currentTick": 5
+        }
+      }
+    }
+  }
+]

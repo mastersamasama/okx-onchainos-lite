@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/openOrderDetail",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": null
+      }
+    }
+  }
+]

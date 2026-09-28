@@ -1,0 +1,49 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "status": 1,
+          "trialType": 1,
+          "autoRenew": "1",
+          "periodIndex": 0,
+          "serviceId": "svc-sub-7",
+          "serviceTokenAmount": "0.000",
+          "tokenSymbol": "USDT",
+          "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "buyerAgentId": "1001",
+          "providerAgentId": 2002,
+          "aspAgentName": "Alias ASP",
+          "periodStartTime": 1700000000000,
+          "periodEndTime": "1702592000",
+          "subStartTime": 1700000000,
+          "subEndTime": 1702592000,
+          "trialStartTime": 1700000000,
+          "trialEndTime": 1700172800,
+          "title": "",
+          "description": "Daily BTC alpha",
+          "offlineReceiveFlag": 2,
+          "deviceList": [
+            1,
+            "939e4859f44d7ce47c03a507c18ccc234c27e82c24b06d831608e7a48052a1f0",
+            "dev-b"
+          ],
+          "categoryCodes": "x",
+          "supportTrial": null,
+          "extra": {
+            "nested": [
+              1,
+              2
+            ]
+          }
+        }
+      }
+    }
+  }
+]

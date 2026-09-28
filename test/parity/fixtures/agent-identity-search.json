@@ -1,0 +1,10 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/search/agent-search",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":[{\"list\":[{\"agentId\":\"1128\",\"name\":\"DeFi Analyzer\",\"serviceMinPrice\":10.0,\"feedbackRate\":92.5,\"soldCount\":10,\"services\":[{\"serviceName\":\"TVL Query\",\"serviceType\":\"A2MCP\",\"feeAmount\":10.0,\"feeToken\":\"USDT\"}]},{\"agentId\":7,\"name\":\"Zero Rated Agent With A Long Name\",\"feedbackRate\":0,\"soldCount\":null,\"serviceMinPrice\":0,\"services\":[{\"serviceName\":\"Subscriber Service With A Long Name\",\"serviceType\":\"a2a\",\"subscription\":[{\"fee\":5,\"interval\":\"month\"},{\"fee\":\"50\",\"Interval\":\"Year\"}]}]},{\"name\":\"  \",\"feedbackRate\":100,\"services\":[{\"serviceType\":\"A2MCP\"}]},{\"feedbackRate\":\"x\",\"services\":[{\"serviceName\":\"Plain\",\"serviceType\":\"custom\"}]},\"junk\"],\"page\":1,\"pageSize\":5,\"total\":3}]}"
+    }
+  }
+]

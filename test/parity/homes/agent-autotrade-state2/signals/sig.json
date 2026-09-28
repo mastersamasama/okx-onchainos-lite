@@ -1,0 +1,9 @@
+{
+  "signalId": "sig-2",
+  "signalType": "perp",
+  "params": {
+    "side": "sell",
+    "amount": "0.5",
+    "chainIndex": 196
+  }
+}

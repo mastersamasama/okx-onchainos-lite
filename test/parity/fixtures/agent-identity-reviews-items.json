@@ -1,0 +1,27 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/reviews",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "average": 0,
+            "items": [
+              {
+                "score": 101,
+                "value": 100
+              }
+            ],
+            "page": 1,
+            "pageSize": 50,
+            "total": 50
+          }
+        ]
+      }
+    }
+  }
+]

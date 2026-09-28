@@ -1,0 +1,45 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/holder",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000007",
+            "holdAmount": "993.5",
+            "holdPercent": "9.30",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": "zz"
+          },
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000008",
+            "holdAmount": "992.5",
+            "holdPercent": "9.20",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": "start"
+          }
+        ]
+      }
+    }
+  }
+]

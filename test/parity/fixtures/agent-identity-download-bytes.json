@@ -1,0 +1,13 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/im/attachments/xmtp/encrypted/download",
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "body": "ENCRYPTED-BYTES"
+    }
+  }
+]

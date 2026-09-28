@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/close",
+    "response": {
+      "status": 503,
+      "headers": {
+        "content-type": "text/plain"
+      },
+      "body": "service unavailable"
+    }
+  }
+]

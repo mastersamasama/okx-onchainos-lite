@@ -1,0 +1,41 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/services",
+    "match": {
+      "query": {
+        "serviceId": "svc6"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "list": [
+              {
+                "id": "svc5",
+                "serviceId": "svc5",
+                "serviceName": "Other",
+                "serviceGuide": "x"
+              },
+              {
+                "id": "svc6",
+                "serviceId": "svc6",
+                "serviceName": "Spot copy",
+                "serviceType": "A2A",
+                "price": "1",
+                "currency": "USDT",
+                "serviceDescription": "Spot signals",
+                "serviceGuide": "# Service Guide svc6\n\nCopy every spot signal with the consented tradeAmount.\n",
+                "serviceGuideHash": "sha256:E0FE301422C7332B28EDB5C129F3DA81B9DD97855EF121B352665494698CBAE2"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,69 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/latest",
+  "match": {
+   "query": {
+    "cursor": "777"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "id": "arr1",
+      "title": "T-arr1",
+      "summary": "s-arr1",
+      "content": "",
+      "sourceUrl": "https://example.com/arr1",
+      "source": "blockbeats",
+      "timestamp": 1716892020000,
+      "tokenSymbols": [
+       "BTC"
+      ],
+      "importance": "high",
+      "tokenSymbolSentiments": [
+       {
+        "tokenSymbol": "BTC",
+        "sentiment": "bullish"
+       }
+      ]
+     },
+     {
+      "id": "arr2",
+      "title": "T-arr2",
+      "summary": "s-arr2",
+      "content": "",
+      "sourceUrl": "https://example.com/arr2",
+      "source": "blockbeats",
+      "timestamp": 1716892020000,
+      "tokenSymbols": [
+       "BTC"
+      ],
+      "importance": "high",
+      "tokenSymbolSentiments": [
+       {
+        "tokenSymbol": "BTC",
+        "sentiment": "bullish"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/latest",
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"articles\":[{\"id\":\"ignored\"}],\"list\":[{\"id\":\"l1\",\"score\":1.0}],\"cursor\":777}}"
+  }
+ }
+]

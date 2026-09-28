@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/set/asp",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50010",
+        "msg": "asp already set",
+        "data": null
+      }
+    }
+  }
+]

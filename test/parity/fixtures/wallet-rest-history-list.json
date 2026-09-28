@@ -1,0 +1,75 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/order/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "cursor": "next-page-token",
+            "orderList": [
+              {
+                "txHash": "0xhash1",
+                "txStatus": "4",
+                "repeatTxType": "",
+                "txTime": "1790000000000",
+                "txCreateTime": "1789999999000",
+                "from": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "to": "0x000000000000000000000000000000000000dead",
+                "direction": "2",
+                "chainSymbol": "ETH",
+                "coinSymbol": "ETH",
+                "coinAmount": "0.01",
+                "serviceCharge": "0.0001",
+                "confirmedCount": 12,
+                "hideTxType": false,
+                "failReason": "",
+                "contractName": "Uniswap",
+                "nftCollectionName": "",
+                "approveSymbol": "USDC",
+                "tipsType": "1",
+                "extraField": "dropped",
+                "assetChange": [
+                  {
+                    "coinSymbol": "USDC",
+                    "coinAmount": "25",
+                    "direction": "1",
+                    "nftId": "",
+                    "nftImageUrl": "https://img/1.png"
+                  },
+                  {
+                    "coinSymbol": "ETH",
+                    "coinAmount": "0.01",
+                    "direction": "2",
+                    "nftId": "42"
+                  }
+                ]
+              },
+              {
+                "txHash": "0xhash2",
+                "txStatus": 3,
+                "direction": 1,
+                "coinSymbol": "OKB",
+                "coinAmount": "1",
+                "failReason": "out of gas",
+                "assetChange": []
+              },
+              {
+                "txHash": "0xhash3",
+                "txStatus": "6",
+                "direction": "9",
+                "assetChange": "n/a"
+              }
+            ]
+          },
+          {
+            "orderList": null
+          }
+        ]
+      }
+    }
+  }
+]

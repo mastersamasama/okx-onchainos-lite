@@ -1,0 +1,39 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "subStatus": 1,
+          "trialType": 0,
+          "autoRenew": 1,
+          "periodIndex": 2,
+          "serviceName": "Daily alpha",
+          "serviceId": "svc-sub-7",
+          "serviceTokenAmount": "0",
+          "serviceTokenSymbol": "USDT",
+          "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "buyerAgentId": "3003",
+          "providerAgentId": "2002",
+          "paymentTokenAmount": "3",
+          "tokenSymbol": "USDT",
+          "paymentTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "subStartTime": 1700000000,
+          "subEndTime": 1702592000,
+          "title": "Daily alpha signals",
+          "description": "Daily BTC alpha",
+          "offlineReceiveFlag": 5,
+          "status": 1,
+          "supportTrial": false,
+          "periodStartTime": 1700000000,
+          "periodEndTime": "1702592000"
+        }
+      }
+    }
+  }
+]

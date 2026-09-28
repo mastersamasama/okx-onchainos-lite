@@ -1,0 +1,19 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/quote",
+    "match": {
+      "query": {
+        "fromTokenAddress": "0x4200000000000000000000000000000000000006"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82000",
+        "msg": "Insufficient liquidity",
+        "data": []
+      }
+    }
+  }
+]

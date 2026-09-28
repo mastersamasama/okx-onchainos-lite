@@ -1,0 +1,75 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/quote",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "1",
+            "contextSlot": 26076234,
+            "dexRouterList": [
+              {
+                "dexProtocol": {
+                  "dexName": "Uniswap V3",
+                  "percent": "100"
+                },
+                "fromToken": {
+                  "decimal": "6",
+                  "isHoneyPot": false,
+                  "latestMultiplier": "",
+                  "taxRate": "0",
+                  "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                  "tokenSymbol": "USDC",
+                  "tokenUnitPrice": "1"
+                },
+                "fromTokenIndex": "0",
+                "toToken": {
+                  "decimal": "18",
+                  "isHoneyPot": false,
+                  "latestMultiplier": "",
+                  "taxRate": "0",
+                  "tokenContractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                  "tokenSymbol": "ETH",
+                  "tokenUnitPrice": "2684.14"
+                },
+                "toTokenIndex": "1"
+              }
+            ],
+            "estimateGasFee": "162000",
+            "fromToken": {
+              "decimal": "6",
+              "isHoneyPot": false,
+              "latestMultiplier": "1",
+              "taxRate": "0",
+              "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenSymbol": "USDC",
+              "tokenUnitPrice": "1"
+            },
+            "fromTokenAmount": "2690000",
+            "mode": "dex",
+            "priceImpactPercent": "-0.01",
+            "quoteId": "3140306018660230006",
+            "router": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48--0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+            "signData": null,
+            "swapMode": "exactOut",
+            "toToken": {
+              "decimal": "18",
+              "isHoneyPot": false,
+              "latestMultiplier": "1",
+              "taxRate": "0",
+              "tokenContractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+              "tokenSymbol": "ETH",
+              "tokenUnitPrice": "2684.14"
+            },
+            "toTokenAmount": "1000000000000000",
+            "tradeFee": "0.5952398088040839"
+          }
+        ]
+      }
+    }
+  }
+]

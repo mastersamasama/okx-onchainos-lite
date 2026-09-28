@@ -1,0 +1,51 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/get-liquidity",
+    "response": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          { "id": "53", "name": "Uniswap V3", "logo": "https://static.okx.com/cdn/wallet/logo/uniswap.png" },
+          { "id": "116", "name": "Curve V2", "logo": "https://static.okx.com/cdn/wallet/logo/curve.png" }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/supported/bridges",
+    "response": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          { "bridgeId": 636, "bridgeName": "Across", "requiredOtherNativeFee": false, "supportedChains": ["1", "42161", "8453"], "logoUrl": "https://static.okx.com/cdn/web3/dex/bridge/across.png" }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/social/news/search",
+    "response": {
+      "status": 200,
+      "headers": { "content-type": "application/json" },
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "cursor": "s-next",
+          "articles": [
+            { "id": "s1", "title": "Bitcoin ETF flows", "summary": "Inflows rose.", "content": "Full body", "platformList": ["coindesk"], "ccyList": ["BTC"], "importance": "1", "sentiment": "1", "cTime": "1790500000000", "sourceUrl": "https://example.com/s1" }
+          ]
+        }
+      }
+    }
+  }
+]

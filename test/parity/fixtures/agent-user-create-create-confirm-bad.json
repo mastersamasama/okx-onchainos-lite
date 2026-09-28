@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/createAndFundConfirmStatus",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "taskSalt": "0x01",
+          "provider": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,537 @@
+[
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "match": {
+   "body": {
+    "chainIndex": "501"
+   }
+  },
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":[{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr\",\"walletCount\":3,\"symbol\":\"AAA\"},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"bonkX3yzfRk5GBvAmj6RkWDYRLZvRVHUHkWaQHznH1b\",\"walletCount\":7,\"symbol\":\"BBB\"},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr\",\"walletCount\":9,\"symbol\":\"AAA\",\"note\":\"higher count wins\"},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"Zeta9pumpXyk3DeXkX7iWkB4vsc1aMaeNuTwX4eHpump\",\"walletCount\":7,\"symbol\":\"CCC\"},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"\",\"address\":\"ZSkipped1111111111111111111111111111111111\",\"walletCount\":50},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"address\":\"HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC\",\"addressCount\":5,\"symbol\":\"DDD\"},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"EStr1ngCount11111111111111111111111111111111\",\"walletCount\":\"12\",\"symbol\":\"EEE\"},{\"tokenContractAddress\":\"FF1oatCount11111111111111111111111111111111\",\"walletCount\":1.5,\"addressCount\":4,\"symbol\":\"FFF\",\"ratio\":2.50},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"GLow11111111111111111111111111111111111111\",\"walletCount\":2,\"symbol\":\"GGG\"},\"junk\",{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"bonkX3yzfRk5GBvAmj6RkWDYRLZvRVHUHkWaQHznH1b\",\"walletCount\":7,\"symbol\":\"BBB\",\"note\":\"tie keeps first\"},{\"timestamp\":\"1790594700000\",\"chainIndex\":\"501\",\"walletType\":\"1\",\"amountUsd\":\"15230.5\",\"soldRatioPercent\":\"12.5\",\"price\":\"0.0021\",\"tokenContractAddress\":\"GLow11111111111111111111111111111111111111\",\"walletCount\":-1,\"addressCount\":1}]}"
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "match": {
+   "body": {
+    "chainIndex": "8453"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "data": [
+      {
+       "timestamp": "1790594700000",
+       "chainIndex": "501",
+       "walletType": "1",
+       "amountUsd": "15230.5",
+       "soldRatioPercent": "12.5",
+       "price": "0.0021",
+       "tokenContractAddress": "bonkX3yzfRk5GBvAmj6RkWDYRLZvRVHUHkWaQHznH1b",
+       "walletCount": 1
+      },
+      {
+       "timestamp": "1790594700000",
+       "chainIndex": "501",
+       "walletType": "1",
+       "amountUsd": "15230.5",
+       "soldRatioPercent": "12.5",
+       "price": "0.0021",
+       "tokenContractAddress": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
+       "walletCount": 2
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "match": {
+   "body": {
+    "chainIndex": "1"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "timestamp": "1790594700000",
+      "chainIndex": "501",
+      "walletType": "1",
+      "triggerWalletCount": "3",
+      "triggerWalletAddress": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU,9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+      "amountUsd": "15230.5",
+      "soldRatioPercent": "12.5",
+      "cursor": "1790594700000_17",
+      "price": "0.0000211",
+      "token": {
+       "tokenAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+       "symbol": "Bonk",
+       "name": "Bonk",
+       "logo": "",
+       "marketCapUsd": "1875209111.83",
+       "holders": "983412",
+       "top10HolderPercent": "31.62"
+      }
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "50011",
+    "msg": "Too Many Requests",
+    "data": []
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/price-info",
+  "match": {
+   "body": [
+    {
+     "tokenContractAddress": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr"
+    }
+   ]
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "circSupply": "88852734117045.36",
+      "holders": "983412",
+      "liquidity": "18234567.12",
+      "marketCap": "1875209111.83",
+      "maxPrice": "0.0000219",
+      "minPrice": "0.0000201",
+      "price": "0.51",
+      "priceChange1H": "-0.42",
+      "priceChange24H": "3.17",
+      "priceChange4H": "1.05",
+      "priceChange5M": "0",
+      "time": "1790594800123",
+      "tokenContractAddress": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
+      "tradeNum": "45012",
+      "txs1H": "2011",
+      "txs24H": "45012",
+      "txs4H": "8123",
+      "txs5M": "97",
+      "volume1H": "812345.6",
+      "volume24H": "19234567.8",
+      "volume4H": "3123456.7",
+      "volume5M": "41234.5"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/price-info",
+  "match": {
+   "body": [
+    {
+     "tokenContractAddress": "bonkX3yzfRk5GBvAmj6RkWDYRLZvRVHUHkWaQHznH1b"
+    }
+   ]
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "circSupply": "88852734117045.36",
+      "holders": "983412",
+      "liquidity": "18234567.12",
+      "marketCap": "1875209111.83",
+      "maxPrice": "0.0000219",
+      "minPrice": "0.0000201",
+      "price": "0.0021",
+      "priceChange1H": "-0.42",
+      "priceChange24H": "3.17",
+      "priceChange4H": "1.05",
+      "priceChange5M": "0",
+      "time": "1790594800123",
+      "tokenContractAddress": "bonkX3yzfRk5GBvAmj6RkWDYRLZvRVHUHkWaQHznH1b",
+      "tradeNum": "45012",
+      "txs1H": "2011",
+      "txs24H": "45012",
+      "txs4H": "8123",
+      "txs5M": "97",
+      "volume1H": "812345.6",
+      "volume24H": "19234567.8",
+      "volume4H": "3123456.7",
+      "volume5M": "41234.5"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/price-info",
+  "match": {
+   "body": [
+    {
+     "tokenContractAddress": "Zeta9pumpXyk3DeXkX7iWkB4vsc1aMaeNuTwX4eHpump"
+    }
+   ]
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "circSupply": "88852734117045.36",
+      "holders": "983412",
+      "liquidity": "18234567.12",
+      "marketCap": "1875209111.83",
+      "maxPrice": "0.0000219",
+      "minPrice": "0.0000201",
+      "price": "0.00081",
+      "priceChange1H": "-0.42",
+      "priceChange24H": "3.17",
+      "priceChange4H": "1.05",
+      "priceChange5M": "0",
+      "time": "1790594800123",
+      "tokenContractAddress": "Zeta9pumpXyk3DeXkX7iWkB4vsc1aMaeNuTwX4eHpump",
+      "tradeNum": "45012",
+      "txs1H": "2011",
+      "txs24H": "45012",
+      "txs4H": "8123",
+      "txs5M": "97",
+      "volume1H": "812345.6",
+      "volume24H": "19234567.8",
+      "volume4H": "3123456.7",
+      "volume5M": "41234.5"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/price-info",
+  "match": {
+   "body": [
+    {
+     "tokenContractAddress": "HeLp6NuQkmYB4pYWo2zYs22mESHXPQYzXbB8n4V98jwC"
+    }
+   ]
+  },
+  "response": {
+   "status": 500,
+   "body": "upstream connect error"
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/price-info",
+  "match": {
+   "body": [
+    {
+     "tokenContractAddress": "FF1oatCount11111111111111111111111111111111"
+    }
+   ]
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "circSupply": "88852734117045.36",
+      "holders": "983412",
+      "liquidity": "18234567.12",
+      "marketCap": "1875209111.83",
+      "maxPrice": "0.0000219",
+      "minPrice": "0.0000201",
+      "price": "3.3",
+      "priceChange1H": "-0.42",
+      "priceChange24H": "3.17",
+      "priceChange4H": "1.05",
+      "priceChange5M": "0",
+      "time": "1790594800123",
+      "tokenContractAddress": "FF1oatCount11111111111111111111111111111111",
+      "tradeNum": "45012",
+      "txs1H": "2011",
+      "txs24H": "45012",
+      "txs4H": "8123",
+      "txs5M": "97",
+      "volume1H": "812345.6",
+      "volume24H": "19234567.8",
+      "volume4H": "3123456.7",
+      "volume5M": "41234.5"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": {
+   "query": {
+    "tokenContractAddress": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "",
+     "protocolId": "",
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": {
+   "query": {
+    "tokenContractAddress": "bonkX3yzfRk5GBvAmj6RkWDYRLZvRVHUHkWaQHznH1b"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "",
+     "protocolId": "",
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": {
+   "query": {
+    "tokenContractAddress": "Zeta9pumpXyk3DeXkX7iWkB4vsc1aMaeNuTwX4eHpump"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "100",
+     "protocolId": "120596",
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": {
+   "query": {
+    "tokenContractAddress": "FF1oatCount11111111111111111111111111111111"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "",
+     "protocolId": "",
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "50125",
+    "msg": "Token not supported",
+    "data": []
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/security/token-scan",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainId": "501",
+      "tokenAddress": "7GCihgDB8fe6KNjn2MYtkzZcRjQy3t9GHdC8uHYmW2hr",
+      "isChainSupported": true,
+      "riskLevel": "LOW",
+      "buyTaxes": null,
+      "sellTaxes": null,
+      "isHoneypot": false,
+      "isMintable": false,
+      "isFreezable": false,
+      "isAirdropScam": false,
+      "isCounterfeit": false,
+      "isLiquidityRemoval": false
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenDevInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "devLaunchedInfo": {
+      "totalTokens": "12",
+      "rugPullCount": "3",
+      "migratedCount": "1",
+      "goldenGemCount": "0"
+     },
+     "devHoldingInfo": {
+      "devHoldingPercent": "0",
+      "devAddress": "Dev1111111111111111111111111111111111111111"
+     }
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenBundleInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": null
+   }
+  }
+ }
+]

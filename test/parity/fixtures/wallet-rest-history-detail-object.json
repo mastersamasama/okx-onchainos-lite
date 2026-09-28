@@ -1,0 +1,19 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/order/detail",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "txHash": "0xabc",
+          "txStatus": "3",
+          "txType": "1",
+          "chainIndex": "1"
+        }
+      }
+    }
+  }
+]

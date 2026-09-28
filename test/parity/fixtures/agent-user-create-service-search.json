@@ -1,0 +1,382 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33803"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": 33803,
+              "serviceId": "svc-33803",
+              "serviceName": "Service 33803",
+              "serviceType": "A2A",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "0",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              },
+              "serviceGuide": "Follow the signal exactly."
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33804"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33804",
+              "serviceId": "svc-33804",
+              "serviceName": "Service 33804",
+              "serviceType": "a2mcp",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "0",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              },
+              "endpoint": "https://example.invalid/mcp"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33805"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33805",
+              "serviceId": "svc-33805",
+              "serviceName": "Service 33805",
+              "serviceType": "CUSTOM",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "0",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33806"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33806",
+              "serviceId": "svc-33806",
+              "serviceName": "Service 33806",
+              "serviceType": "A2A",
+              "serviceDescription": "Weekly market report",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              },
+              "subscription": [
+                {
+                  "interval": "week",
+                  "fee": "1"
+                },
+                {
+                  "interval": "month",
+                  "fee": "9.9"
+                }
+              ],
+              "supportTrial": true,
+              "freeTrial": 7
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33807"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33807",
+              "serviceId": "svc-sub-7",
+              "serviceName": "Service 33807",
+              "serviceType": "A2A",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "0",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              },
+              "subscription": [
+                {
+                  "interval": "month",
+                  "fee": "9.9"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33808"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33808",
+              "serviceId": "svc-33808",
+              "serviceName": "Service 33808",
+              "serviceType": "A2A",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "0.5",
+              "feeToken": "",
+              "feeTokenSymbol": "OKB",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33809"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33809",
+              "serviceId": "svc-33809",
+              "serviceName": "Service 33809",
+              "serviceType": "A2A",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "500",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33810"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33899",
+              "serviceId": "svc-33899",
+              "serviceName": "Service 33899",
+              "serviceType": "A2A",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "0",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33811"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33811",
+              "serviceId": "svc-33811",
+              "serviceName": "Service 33811",
+              "serviceType": "A2A",
+              "serviceDescription": "Weekly market report",
+              "feeAmount": "abc",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "asp": {
+                "aspAgentId": "2002",
+                "aspName": "Parity ASP",
+                "onlineStatus": 1,
+                "securityRate": 98,
+                "feedbackRate": "4.9",
+                "soldCount": 12
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "match": {
+      "body": {
+        "sid": "33812"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 0
+        }
+      }
+    }
+  }
+]

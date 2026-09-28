@@ -1,0 +1,13 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/leaderboard/supported/chain",
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"big\":123456789012345678901234,\"e16\":1e16,\"small\":0.00001,\"smaller\":0.000001,\"u64max\":18446744073709551615,\"i64min\":-9223372036854775808,\"i64below\":-9223372036854775809,\"esc\":\"\\u001f\\u007f\\u2028\\u00e9\\ud83d\\ude00\\/\",\"dup\":1,\"dup\":2,\"nested\":[[],{},[{\"z\":1,\"a\":[1.5e300,-2.5E-8]}]]}}"
+  }
+ }
+]

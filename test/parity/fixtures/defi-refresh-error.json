@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/refresh",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "53001",
+        "msg": "refresh token revoked",
+        "data": null
+      }
+    }
+  }
+]

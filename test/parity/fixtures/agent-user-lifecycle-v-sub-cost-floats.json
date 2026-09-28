@@ -1,0 +1,10 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/cost/active",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"success\",\"data\":{\"totalCost\": 1.10, \"zeta\": [1e-7, 100.0, -0.0, 12345678901234567890123, 1e21, 0.1, 5e-324], \"alpha\": {\"b\": 2, \"a\": 1}}}"
+    }
+  }
+]

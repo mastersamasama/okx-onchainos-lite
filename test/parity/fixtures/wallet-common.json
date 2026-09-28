@@ -1,0 +1,1271 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/refresh",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktcmVmcmVzaC1yb3RhdGVkIiwiaXNzIjoib25jaGFpbm9zLWxpdGUtcGFyaXR5IiwiZXhwIjo0MTAyNDQ0ODAwfQ.-284yYoFyd-kHp_SYXSWAaRIPZIEq30yGcjTMkNdXgk",
+            "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktYWNjZXNzLXJvdGF0ZWQiLCJpc3MiOiJvbmNoYWlub3MtbGl0ZS1wYXJpdHkiLCJleHAiOjQxMDI0NDQ4MDB9.Js3wr5x1pcRMiPZszJpBX6Is7MytGO7g65-nVwx4Ix4",
+            "chainUpdated": false,
+            "allAccountAddressList": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0001",
+            "accountName": "Account 1",
+            "isDefault": true
+          },
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0002",
+            "accountName": "Account 2",
+            "isDefault": false
+          },
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0003",
+            "accountName": "Account 3",
+            "isDefault": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/address/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountCnt": 3,
+            "validAccountCnt": 3,
+            "addressCnt": 22,
+            "accounts": [
+              {
+                "accountId": "parity-account-0001",
+                "addresses": [
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 196,
+                    "chainName": "okb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  },
+                  {
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "chainIndex": 0,
+                    "chainName": "btc",
+                    "addressType": "taproot",
+                    "chainPath": "m/86'/0'/0'/0/0"
+                  },
+                  {
+                    "address": "0x62302347ebc82b410cbc07446d2f7565f25f86c6c714b59d25c281c89e6b640a",
+                    "chainIndex": 784,
+                    "chainName": "sui",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/784'/0'/0'/0'"
+                  }
+                ]
+              },
+              {
+                "accountId": "parity-account-0002",
+                "addresses": [
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 196,
+                    "chainName": "okb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "AuvBeXxWB6jB4hHwAYxViToDZRDsdMUCE1gb6vL4T9DH",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  },
+                  {
+                    "address": "bc1pewxy5fe3jtj6fch5vl7wzkl0s6wyhh39z24st4q6djy8clk8ktus9dvja9",
+                    "chainIndex": 0,
+                    "chainName": "btc",
+                    "addressType": "taproot",
+                    "chainPath": "m/86'/0'/0'/0/0"
+                  },
+                  {
+                    "address": "0x4ac697be760ed466d14f51cb1e3cbfd7e6486bea782503343c1ca5cd1557d76e",
+                    "chainIndex": 784,
+                    "chainName": "sui",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/784'/0'/0'/0'"
+                  }
+                ]
+              },
+              {
+                "accountId": "parity-account-0003",
+                "addresses": [
+                  {
+                    "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+                    "chainIndex": 196,
+                    "chainName": "okb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "8WvgWb6srLJFTearpmAKMCVoXs6iqNP5J8KcNqV9vvgq",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances-batch",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenName": "OKB",
+                "tokenAddress": "",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "1.5",
+                "rawBalance": "1500000000000000000",
+                "decimal": "18",
+                "tokenPrice": "48.12",
+                "usdValue": "72.18",
+                "tokenType": "1",
+                "isRiskToken": false,
+                "imageUrl": "https://static.okx.com/cdn/wallet/logo/okb.png",
+                "priceChangeRate24H": "-0.0123"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "SOL",
+                "tokenName": "Solana",
+                "tokenAddress": "",
+                "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                "balance": "0.25",
+                "rawBalance": "250000000",
+                "decimal": "9",
+                "tokenPrice": "150.4",
+                "usdValue": "",
+                "tokenType": "1",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "12.345",
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": null,
+                "tokenType": "2",
+                "isRiskToken": false
+              }
+            ]
+          },
+          {
+            "accountId": "parity-account-0002",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenName": "OKB",
+                "tokenAddress": "",
+                "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                "balance": "1.5",
+                "rawBalance": "1500000000000000000",
+                "decimal": "18",
+                "tokenPrice": "48.12",
+                "usdValue": "72.18",
+                "tokenType": "1",
+                "isRiskToken": false,
+                "imageUrl": "https://static.okx.com/cdn/wallet/logo/okb.png",
+                "priceChangeRate24H": "-0.0123"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "SOL",
+                "tokenName": "Solana",
+                "tokenAddress": "",
+                "address": "AuvBeXxWB6jB4hHwAYxViToDZRDsdMUCE1gb6vL4T9DH",
+                "balance": "0.25",
+                "rawBalance": "250000000",
+                "decimal": "9",
+                "tokenPrice": "150.4",
+                "usdValue": "",
+                "tokenType": "1",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                "balance": "12.345",
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": null,
+                "tokenType": "2",
+                "isRiskToken": false
+              }
+            ]
+          },
+          {
+            "accountId": "parity-account-0003",
+            "tokenAssets": []
+          },
+          {
+            "accountId": "other-project-account",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenName": "OKB",
+                "tokenAddress": "",
+                "address": "0x4a1cfe3d7fbf5894dd4eb0df579908c68e06bcd2",
+                "balance": "1.5",
+                "rawBalance": "1500000000000000000",
+                "decimal": "18",
+                "tokenPrice": "48.12",
+                "usdValue": "72.18",
+                "tokenType": "1",
+                "isRiskToken": false,
+                "imageUrl": "https://static.okx.com/cdn/wallet/logo/okb.png",
+                "priceChangeRate24H": "-0.0123"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "SOL",
+                "tokenName": "Solana",
+                "tokenAddress": "",
+                "address": "7Y2z7QsgR5BeqTYi19261bmXzg5dTUNBYynJ1fZCZyfh",
+                "balance": "0.25",
+                "rawBalance": "250000000",
+                "decimal": "9",
+                "tokenPrice": "150.4",
+                "usdValue": "",
+                "tokenType": "1",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0x4a1cfe3d7fbf5894dd4eb0df579908c68e06bcd2",
+                "balance": "12.345",
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": null,
+                "tokenType": "2",
+                "isRiskToken": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenName": "OKB",
+                "tokenAddress": "",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "1.5",
+                "rawBalance": "1500000000000000000",
+                "decimal": "18",
+                "tokenPrice": "48.12",
+                "usdValue": "72.18",
+                "tokenType": "1",
+                "isRiskToken": false,
+                "imageUrl": "https://static.okx.com/cdn/wallet/logo/okb.png",
+                "priceChangeRate24H": "-0.0123"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "SOL",
+                "tokenName": "Solana",
+                "tokenAddress": "",
+                "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                "balance": "0.25",
+                "rawBalance": "250000000",
+                "decimal": "9",
+                "tokenPrice": "150.4",
+                "usdValue": "",
+                "tokenType": "1",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "12.345",
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": null,
+                "tokenType": "2",
+                "isRiskToken": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/chain/support/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "chainIndex": 1,
+            "realChainIndex": 1,
+            "chainName": "eth",
+            "isEvmChain": true,
+            "alias": [
+              "eth链",
+              "ethereum",
+              "以太坊"
+            ],
+            "showName": "Ethereum"
+          },
+          {
+            "chainIndex": 137,
+            "realChainIndex": 137,
+            "chainName": "matic",
+            "isEvmChain": true,
+            "alias": [
+              "polygon",
+              "Polygon链"
+            ],
+            "showName": "Polygon"
+          },
+          {
+            "chainIndex": 43114,
+            "realChainIndex": 43114,
+            "chainName": "avax",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Avalanche C"
+          },
+          {
+            "chainIndex": 10,
+            "realChainIndex": 10,
+            "chainName": "op_eth",
+            "isEvmChain": true,
+            "alias": [
+              "op",
+              "optimism",
+              "OP主网"
+            ],
+            "showName": "Optimism"
+          },
+          {
+            "chainIndex": 250,
+            "realChainIndex": 250,
+            "chainName": "ftm",
+            "isEvmChain": true,
+            "alias": [
+              "ftm",
+              "fantom"
+            ],
+            "showName": "Fantom"
+          },
+          {
+            "chainIndex": 81457,
+            "realChainIndex": 81457,
+            "chainName": "blast_eth",
+            "isEvmChain": true,
+            "alias": [
+              "blast",
+              "Blast链"
+            ],
+            "showName": "Blast"
+          },
+          {
+            "chainIndex": 534352,
+            "realChainIndex": 534352,
+            "chainName": "scroll_eth",
+            "isEvmChain": true,
+            "alias": [
+              "scroll",
+              "Scroll链"
+            ],
+            "showName": "Scroll"
+          },
+          {
+            "chainIndex": 146,
+            "realChainIndex": 146,
+            "chainName": "s",
+            "isEvmChain": true,
+            "alias": [
+              "sonic",
+              "Sonic链"
+            ],
+            "showName": "Sonic"
+          },
+          {
+            "chainIndex": 56,
+            "realChainIndex": 56,
+            "chainName": "bnb",
+            "isEvmChain": true,
+            "alias": [
+              "bsc",
+              "bnb",
+              "BNB链",
+              "币安链"
+            ],
+            "showName": "BNB Chain"
+          },
+          {
+            "chainIndex": 42161,
+            "realChainIndex": 42161,
+            "chainName": "arb_eth",
+            "isEvmChain": true,
+            "alias": [
+              "arbitrum",
+              "ARB链",
+              "Arbitrum链"
+            ],
+            "showName": "Arbitrum One"
+          },
+          {
+            "chainIndex": 8453,
+            "realChainIndex": 8453,
+            "chainName": "base_eth",
+            "isEvmChain": true,
+            "alias": [
+              "base",
+              "Base链"
+            ],
+            "showName": "Base"
+          },
+          {
+            "chainIndex": 324,
+            "realChainIndex": 324,
+            "chainName": "era_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "zkSync Era"
+          },
+          {
+            "chainIndex": 59144,
+            "realChainIndex": 59144,
+            "chainName": "linea_eth",
+            "isEvmChain": true,
+            "alias": [
+              "linea",
+              "Linea链"
+            ],
+            "showName": "Linea"
+          },
+          {
+            "chainIndex": 143,
+            "realChainIndex": 143,
+            "chainName": "mon",
+            "isEvmChain": true,
+            "alias": [
+              "monad",
+              "Monad链"
+            ],
+            "showName": "Monad"
+          },
+          {
+            "chainIndex": 1030,
+            "realChainIndex": 1030,
+            "chainName": "cfx",
+            "isEvmChain": true,
+            "alias": [
+              "cfx",
+              "conflux",
+              "Conflux链",
+              "树图链"
+            ],
+            "showName": "Conflux"
+          },
+          {
+            "chainIndex": 196,
+            "realChainIndex": 196,
+            "chainName": "okb",
+            "isEvmChain": true,
+            "alias": [
+              "xlayer"
+            ],
+            "showName": "X Layer"
+          },
+          {
+            "chainIndex": 501,
+            "realChainIndex": 501,
+            "chainName": "sol",
+            "isEvmChain": false,
+            "alias": [
+              "sol",
+              "solana",
+              "索拉纳"
+            ],
+            "showName": "Solana"
+          },
+          {
+            "chainIndex": 4217,
+            "realChainIndex": 4217,
+            "chainName": "tempo",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Tempo"
+          },
+          {
+            "chainIndex": 1952,
+            "realChainIndex": 1952,
+            "chainName": "xlayer_test",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "XLayer Testnet"
+          },
+          {
+            "chainIndex": 4663,
+            "realChainIndex": 4663,
+            "chainName": "robinhood",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Robinhood Chain"
+          },
+          {
+            "chainIndex": 988,
+            "realChainIndex": 988,
+            "chainName": "gusdt",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Stable"
+          },
+          {
+            "chainIndex": 57073,
+            "realChainIndex": 57073,
+            "chainName": "ink",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Ink"
+          },
+          {
+            "chainIndex": 9745,
+            "realChainIndex": 9745,
+            "chainName": "xpl",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Plasma"
+          },
+          {
+            "chainIndex": 4326,
+            "realChainIndex": 4326,
+            "chainName": "mega_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "MegaETH"
+          },
+          {
+            "chainIndex": 2020,
+            "realChainIndex": 2020,
+            "chainName": "ron",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Ronin"
+          },
+          {
+            "chainIndex": 8217,
+            "realChainIndex": 8217,
+            "chainName": "klay",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Kaia"
+          },
+          {
+            "chainIndex": 204,
+            "realChainIndex": 204,
+            "chainName": "op_bnb",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "opBNB"
+          },
+          {
+            "chainIndex": 288,
+            "realChainIndex": 288,
+            "chainName": "boba_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Boba"
+          },
+          {
+            "chainIndex": 100,
+            "realChainIndex": 100,
+            "chainName": "xdai",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Gnosis"
+          },
+          {
+            "chainIndex": 1116,
+            "realChainIndex": 1116,
+            "chainName": "core",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Core"
+          },
+          {
+            "chainIndex": 70000080,
+            "realChainIndex": 999,
+            "chainName": "evm_hype",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "HyperEVM"
+          },
+          {
+            "chainIndex": 5000,
+            "realChainIndex": 5000,
+            "chainName": "mnt",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Mantle"
+          },
+          {
+            "chainIndex": 0,
+            "realChainIndex": 0,
+            "chainName": "btc",
+            "isEvmChain": false,
+            "alias": [],
+            "showName": "Bitcoin"
+          },
+          {
+            "chainIndex": 784,
+            "realChainIndex": 784,
+            "chainName": "sui",
+            "isEvmChain": false,
+            "alias": [],
+            "showName": "SUI"
+          },
+          {
+            "chainIndex": 747474,
+            "realChainIndex": 747474,
+            "chainName": "katana_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Katana"
+          },
+          {
+            "chainIndex": 169,
+            "realChainIndex": 169,
+            "chainName": "manta_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Manta Pacific"
+          },
+          {
+            "chainIndex": 34443,
+            "realChainIndex": 34443,
+            "chainName": "mode_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Mode Network"
+          },
+          {
+            "chainIndex": 1329,
+            "realChainIndex": 1329,
+            "chainName": "evm_sei",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Sei EVM"
+          },
+          {
+            "chainIndex": 33139,
+            "realChainIndex": 33139,
+            "chainName": "ape",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "ApeChain"
+          },
+          {
+            "chainIndex": 130,
+            "realChainIndex": 130,
+            "chainName": "unichain_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Unichain"
+          },
+          {
+            "chainIndex": 10001,
+            "realChainIndex": 10001,
+            "chainName": "ethw",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "EthereumPoW"
+          },
+          {
+            "chainIndex": 42220,
+            "realChainIndex": 42220,
+            "chainName": "celo",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Celo"
+          },
+          {
+            "chainIndex": 14,
+            "realChainIndex": 14,
+            "chainName": "flr",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Flare"
+          },
+          {
+            "chainIndex": 314,
+            "realChainIndex": 314,
+            "chainName": "fil",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Filecoin"
+          },
+          {
+            "chainIndex": 648,
+            "realChainIndex": 648,
+            "chainName": "ace",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Endurance"
+          },
+          {
+            "chainIndex": 2222,
+            "realChainIndex": 2222,
+            "chainName": "evm_kava",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Kava EVM"
+          },
+          {
+            "chainIndex": 369,
+            "realChainIndex": 369,
+            "chainName": "pls",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "PulseChain"
+          },
+          {
+            "chainIndex": 11155111,
+            "realChainIndex": 11155111,
+            "chainName": "sepolia_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Sepolia"
+          },
+          {
+            "chainIndex": 11235,
+            "realChainIndex": 11235,
+            "chainName": "islm",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Haqq Network"
+          },
+          {
+            "chainIndex": 200901,
+            "realChainIndex": 200901,
+            "chainName": "bitlayer_btc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "BitLayer"
+          },
+          {
+            "chainIndex": 88888,
+            "realChainIndex": 88888,
+            "chainName": "chz",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Chiliz"
+          },
+          {
+            "chainIndex": 60808,
+            "realChainIndex": 60808,
+            "chainName": "bob_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "BOB"
+          },
+          {
+            "chainIndex": 167000,
+            "realChainIndex": 167000,
+            "chainName": "taiko_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Taiko"
+          },
+          {
+            "chainIndex": 7777777,
+            "realChainIndex": 7777777,
+            "chainName": "zora_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Zora"
+          },
+          {
+            "chainIndex": 1625,
+            "realChainIndex": 1625,
+            "chainName": "g",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Gravity Alpha"
+          },
+          {
+            "chainIndex": 80094,
+            "realChainIndex": 80094,
+            "chainName": "bera",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Berachain"
+          },
+          {
+            "chainIndex": 16661,
+            "realChainIndex": 16661,
+            "chainName": "og",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "0G"
+          },
+          {
+            "chainIndex": 50,
+            "realChainIndex": 50,
+            "chainName": "xdc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "XDC Network"
+          },
+          {
+            "chainIndex": 25,
+            "realChainIndex": 25,
+            "chainName": "cro",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Cronos"
+          },
+          {
+            "chainIndex": 1088,
+            "realChainIndex": 1088,
+            "chainName": "metis",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Metis"
+          },
+          {
+            "chainIndex": 7000,
+            "realChainIndex": 7000,
+            "chainName": "zeta_mainnet",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "ZetaChain"
+          },
+          {
+            "chainIndex": 4200,
+            "realChainIndex": 4200,
+            "chainName": "merlin_btc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Merlin"
+          },
+          {
+            "chainIndex": 4689,
+            "realChainIndex": 4689,
+            "chainName": "iotx",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "IoTeX"
+          },
+          {
+            "chainIndex": 1672,
+            "realChainIndex": 1672,
+            "chainName": "pros",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Pharos"
+          },
+          {
+            "chainIndex": 1313161554,
+            "realChainIndex": 1313161554,
+            "chainName": "aurora_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Aurora"
+          },
+          {
+            "chainIndex": 1111,
+            "realChainIndex": 1111,
+            "chainName": "wemix",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Wemix 3.0"
+          },
+          {
+            "chainIndex": 1100,
+            "realChainIndex": 1100,
+            "chainName": "dym",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Dymension"
+          },
+          {
+            "chainIndex": 421614,
+            "realChainIndex": 421614,
+            "chainName": "arbsepolia_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Arbitrum Sepolia"
+          },
+          {
+            "chainIndex": 13371,
+            "realChainIndex": 13371,
+            "chainName": "imx",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Immutable zkEVM"
+          },
+          {
+            "chainIndex": 810180,
+            "realChainIndex": 810180,
+            "chainName": "zklink_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "zkLink Nova"
+          },
+          {
+            "chainIndex": 223,
+            "realChainIndex": 223,
+            "chainName": "b2_btc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "B² Network"
+          },
+          {
+            "chainIndex": 698,
+            "realChainIndex": 698,
+            "chainName": "mat",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Matchain"
+          },
+          {
+            "chainIndex": 30,
+            "realChainIndex": 30,
+            "chainName": "rbtc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Rootstock"
+          },
+          {
+            "chainIndex": 70000063,
+            "realChainIndex": 1729,
+            "chainName": "reya_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Reya Network"
+          },
+          {
+            "chainIndex": 48900,
+            "realChainIndex": 48900,
+            "chainName": "zircuit_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Zircuit"
+          },
+          {
+            "chainIndex": 177,
+            "realChainIndex": 177,
+            "chainName": "hsk",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "HashKey"
+          },
+          {
+            "chainIndex": 2741,
+            "realChainIndex": 2741,
+            "chainName": "abstract_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Abstract"
+          },
+          {
+            "chainIndex": 1514,
+            "realChainIndex": 1514,
+            "chainName": "ip_mainnet",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Story"
+          },
+          {
+            "chainIndex": 313313,
+            "realChainIndex": 313313,
+            "chainName": "testnet_sahara",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Sahara Testnet"
+          },
+          {
+            "chainIndex": 98866,
+            "realChainIndex": 98866,
+            "chainName": "plume",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Plume"
+          },
+          {
+            "chainIndex": 1689,
+            "realChainIndex": 1689,
+            "chainName": "nero",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "NERO"
+          },
+          {
+            "chainIndex": 31612,
+            "realChainIndex": 31612,
+            "chainName": "mezo_btc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Mezo"
+          },
+          {
+            "chainIndex": 2345,
+            "realChainIndex": 2345,
+            "chainName": "goat_btc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "GOAT Network"
+          },
+          {
+            "chainIndex": 2818,
+            "realChainIndex": 2818,
+            "chainName": "morph_eth",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "Morph"
+          },
+          {
+            "chainIndex": 2366,
+            "realChainIndex": 2366,
+            "chainName": "kite",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "KiteAI"
+          },
+          {
+            "chainIndex": 195,
+            "realChainIndex": 195,
+            "chainName": "trx",
+            "isEvmChain": false,
+            "alias": [],
+            "showName": "TRON"
+          },
+          {
+            "chainIndex": 637,
+            "realChainIndex": 1,
+            "chainName": "apt",
+            "isEvmChain": false,
+            "alias": [],
+            "showName": "Aptos"
+          },
+          {
+            "chainIndex": 5042,
+            "realChainIndex": 5042,
+            "chainName": "arc",
+            "isEvmChain": true,
+            "alias": [],
+            "showName": "ARC"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/policy/query",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "singleTxLimit": "1000",
+            "singleTxFlag": true,
+            "dailyTransferTxLimit": "5000",
+            "dailyTransferTxFlag": true,
+            "dailyTransferTxUsed": "120.5",
+            "dailyTradeTxLimit": "10000",
+            "dailyTradeTxFlag": false,
+            "dailyTradeTxUsed": "0"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent-heartbeat",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "data": true,
+        "msg": ""
+      }
+    }
+  }
+]

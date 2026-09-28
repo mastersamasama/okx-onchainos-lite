@@ -1,0 +1,22 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/approve-tx",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "approveAddress": "0x27a16dc786820B16E5c9028b75B99F6f604b5d26",
+            "chainIndex": "8453",
+            "needApprove": true,
+            "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+            "tx": null
+          }
+        ]
+      }
+    }
+  }
+]

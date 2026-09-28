@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "jobId": "jobE",
+  "deliveryId": "d1",
+  "venue": "",
+  "action": "",
+  "amount": "",
+  "executionMode": "auto",
+  "status": "skipped",
+  "reason": "not actionable",
+  "notificationPending": false,
+  "notificationAttempts": 0,
+  "nextNotificationAttemptAt": 0,
+  "createdAt": 1700000000,
+  "updatedAt": 1700000000
+}

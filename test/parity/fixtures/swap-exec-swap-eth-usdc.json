@@ -1,0 +1,92 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/swap",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "routerResult": {
+              "chainIndex": "1",
+              "contextSlot": 26076234,
+              "dexRouterList": [
+                {
+                  "dexProtocol": {
+                    "dexName": "Uniswap V3",
+                    "percent": "100"
+                  },
+                  "fromToken": {
+                    "decimal": "18",
+                    "isHoneyPot": false,
+                    "latestMultiplier": "",
+                    "taxRate": "0",
+                    "tokenContractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                    "tokenSymbol": "ETH",
+                    "tokenUnitPrice": "2684.14"
+                  },
+                  "fromTokenIndex": "0",
+                  "toToken": {
+                    "decimal": "6",
+                    "isHoneyPot": false,
+                    "latestMultiplier": "",
+                    "taxRate": "0",
+                    "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                    "tokenSymbol": "USDC",
+                    "tokenUnitPrice": "1"
+                  },
+                  "toTokenIndex": "1"
+                }
+              ],
+              "estimateGasFee": "162000",
+              "fromToken": {
+                "decimal": "18",
+                "isHoneyPot": false,
+                "latestMultiplier": "1",
+                "taxRate": "0",
+                "tokenContractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                "tokenSymbol": "ETH",
+                "tokenUnitPrice": "2684.14"
+              },
+              "fromTokenAmount": "10000000000000000",
+              "mode": "dex",
+              "priceImpactPercent": "-0.01",
+              "quoteId": "3140306018660230006",
+              "router": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee--0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "signData": null,
+              "swapMode": "exactIn",
+              "toToken": {
+                "decimal": "6",
+                "isHoneyPot": false,
+                "latestMultiplier": "1",
+                "taxRate": "0",
+                "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "tokenSymbol": "USDC",
+                "tokenUnitPrice": "1"
+              },
+              "toTokenAmount": "26841400",
+              "tradeFee": "0.5952398088040839"
+            },
+            "tx": {
+              "data": "0x0d5f0e3b00000000000000003bbfef3ad825f780e3cb88b383907ff427495d1dca352d44",
+              "from": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "gas": "251092",
+              "gasPrice": "1816032190",
+              "maxPriorityFeePerGas": "1079801956",
+              "maxSpendAmount": "",
+              "minReceiveAmount": "368781174521867",
+              "signatureData": [
+                ""
+              ],
+              "slippagePercent": "1",
+              "to": "0x8feab81d36e7576107d5de0758c1b839be31b4f6",
+              "value": "10000000000000000"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

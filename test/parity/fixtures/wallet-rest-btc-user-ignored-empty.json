@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "USER_IGNORED_LIST"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "userIgnoredList": {
+              "count": 0,
+              "utxos": []
+            }
+          }
+        ]
+      }
+    }
+  }
+]

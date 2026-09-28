@@ -1,0 +1,56 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 3,
+          "totalNoCondition": 9,
+          "list": [
+            {
+              "jobId": "j1",
+              "jobType": 1,
+              "status": 3,
+              "title": "T1",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "trailStartTime": 5,
+              "trailEndTime": 6,
+              "serviceDescription": "desc",
+              "deviceList": [
+                1,
+                "x"
+              ],
+              "categoryCodes": null,
+              "extra": "ignored",
+              "hasFeedBack": true,
+              "periodIndex": null,
+              "subBufferEndTime": 9
+            },
+            {
+              "jobId": "j2",
+              "jobType": 1,
+              "status": 1,
+              "buyerAgentId": "other",
+              "providerAgentId": "1001",
+              "deviceList": "x",
+              "categoryCodes": {}
+            },
+            {
+              "jobId": "j0",
+              "jobType": 1,
+              "status": 42,
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "deviceList": {}
+            }
+          ]
+        }
+      }
+    }
+  }
+]

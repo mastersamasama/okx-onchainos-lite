@@ -1,0 +1,20 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/token/get-token-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "chainIndex": "0",
+            "tokenAddress": "btc-brc20-ordi",
+            "tokenSymbol": "ordi"
+          }
+        ]
+      }
+    }
+  }
+]

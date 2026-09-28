@@ -1,0 +1,142 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "match": {
+      "query": {
+        "statusType": "1"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 2,
+          "page": 1,
+          "pageSize": 2,
+          "list": [
+            {
+              "jobId": "a1",
+              "jobType": 1,
+              "status": 0,
+              "title": "Pending",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "s",
+              "serviceTokenAmount": " 3 ",
+              "serviceTokenAddress": " 0xabc ",
+              "autoRenew": 1,
+              "periodIndex": 0,
+              "trialType": 0,
+              "deviceList": []
+            },
+            {
+              "jobId": "a2",
+              "jobType": 1,
+              "status": 1,
+              "title": "Zero end",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "s",
+              "serviceTokenAmount": "",
+              "serviceTokenAddress": "0xabc",
+              "autoRenew": 1,
+              "subEndTime": 0,
+              "trialType": 1,
+              "deviceList": [
+                "dev-a",
+                7
+              ]
+            },
+            {
+              "jobId": "a3",
+              "jobType": 1,
+              "status": 1,
+              "buyerAgentId": "someone-else"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "match": {
+      "query": {
+        "statusType": "2"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 5,
+          "page": 1,
+          "pageSize": 2,
+          "list": [
+            {
+              "jobId": "e1",
+              "jobType": 1,
+              "status": 7,
+              "title": "Ended",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0xdef",
+              "autoRenew": 1,
+              "periodIndex": 4,
+              "subEndTime": 1702592000
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/token/basic-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "tokenSymbol": "ABC",
+            "tokenContractAddress": "0xabc"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 2,
+          "list": [
+            {
+              "deviceId": "dev-a",
+              "deviceName": "Laptop",
+              "lastOnlineTime": 0
+            },
+            {
+              "deviceId": "dev-b",
+              "lastOnlineTime": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+]

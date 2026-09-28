@@ -1,0 +1,11 @@
+{
+  "channels": [
+    "kol_smartmoney-tracker-activity"
+  ],
+  "wallet_addresses": [],
+  "token_pairs": [],
+  "chain_indexes": [],
+  "env": "prod",
+  "created_at": 1727500000000,
+  "idle_timeout_ms": 1800000
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/providerConfirmStatus",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "amount": "0",
+          "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "escrow": {
+            "escrowContract": "0x4444444444444444444444444444444444444444"
+          }
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,103 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "0x35de662efa4103c16bb3bcac0aa15d7030e5c8685177457b075648c83bd751da",
+            "hash": "0x9b68b8f61ae46dc84e24cf87612734f958cf8b2ef3ec57397564d96fae4b3338",
+            "authHashFor7702": null,
+            "executeErrorMsg": "",
+            "executeResult": true,
+            "extraData": {
+              "gasLimit": "251092",
+              "maxFeePerGas": "32000000000",
+              "maxPriorityFeePerGas": "1500000000",
+              "nonce": 17,
+              "chainId": 1,
+              "freeGas": false,
+              "extJson": {
+                "source": "dex"
+              }
+            },
+            "signType": "eip1559",
+            "encoding": "hex",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": false,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": null,
+            "serviceChargeSymbol": null,
+            "serviceChargeFeeTokenAddress": null,
+            "needUpdate7702": false,
+            "gasStationTokenList": null,
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "NOT_APPLICABLE",
+            "contractNonce": null,
+            "eoaNonce": null,
+            "user712Data": null,
+            "user7702Data": null,
+            "defaultGasTokenAddress": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "",
+            "orderId": "",
+            "orderType": "1",
+            "txHash": "0x2a5c7e9f1b3d5f7092a4c6e8f0b2d4f6a8c0e2f4b6d8f0a2c4e6f8a0b2d4f6a8"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/post-transaction/transaction-detail-by-txhash",
+    "match": {
+      "query": {
+        "txHash": "0x2a5c7e9f1b3d5f7092a4c6e8f0b2d4f6a8c0e2f4b6d8f0a2c4e6f8a0b2d4f6a8"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "1",
+            "txHash": "0x2a5c7e9f1b3d5f7092a4c6e8f0b2d4f6a8c0e2f4b6d8f0a2c4e6f8a0b2d4f6a8",
+            "txStatus": "fail",
+            "height": "23456789",
+            "txTime": "1790601855000",
+            "fromDetails": [],
+            "toDetails": []
+          }
+        ]
+      }
+    }
+  }
+]

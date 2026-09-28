@@ -1,0 +1,23 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/claimable",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "account": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "rewards": [
+            {
+              "symbol": "USDT",
+              "amount": "0",
+              "rawAmount": "0"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

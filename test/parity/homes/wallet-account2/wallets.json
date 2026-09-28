@@ -1,0 +1,217 @@
+{
+  "email": "parity@example.com",
+  "isNew": false,
+  "projectId": "parity-project-0001",
+  "selectedAccountId": "parity-account-0002",
+  "accountsMap": {
+    "parity-account-0001": {
+      "addressList": [
+        {
+          "accountId": "parity-account-0001",
+          "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "chainIndex": "1",
+          "chainName": "eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0001",
+          "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "chainIndex": "56",
+          "chainName": "bnb",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0001",
+          "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "chainIndex": "196",
+          "chainName": "okb",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0001",
+          "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "chainIndex": "8453",
+          "chainName": "base_eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0001",
+          "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "chainIndex": "42161",
+          "chainName": "arb_eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0001",
+          "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+          "chainIndex": "501",
+          "chainName": "sol",
+          "addressType": "eoa",
+          "chainPath": "m/44'/501'/0'/0'"
+        },
+        {
+          "accountId": "parity-account-0001",
+          "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+          "chainIndex": "0",
+          "chainName": "btc",
+          "addressType": "taproot",
+          "chainPath": "m/86'/0'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0001",
+          "address": "0x62302347ebc82b410cbc07446d2f7565f25f86c6c714b59d25c281c89e6b640a",
+          "chainIndex": "784",
+          "chainName": "sui",
+          "addressType": "eoa",
+          "chainPath": "m/44'/784'/0'/0'/0'"
+        }
+      ]
+    },
+    "parity-account-0002": {
+      "addressList": [
+        {
+          "accountId": "parity-account-0002",
+          "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "chainIndex": "1",
+          "chainName": "eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0002",
+          "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "chainIndex": "56",
+          "chainName": "bnb",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0002",
+          "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "chainIndex": "196",
+          "chainName": "okb",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0002",
+          "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "chainIndex": "8453",
+          "chainName": "base_eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0002",
+          "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "chainIndex": "42161",
+          "chainName": "arb_eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0002",
+          "address": "AuvBeXxWB6jB4hHwAYxViToDZRDsdMUCE1gb6vL4T9DH",
+          "chainIndex": "501",
+          "chainName": "sol",
+          "addressType": "eoa",
+          "chainPath": "m/44'/501'/0'/0'"
+        },
+        {
+          "accountId": "parity-account-0002",
+          "address": "bc1pewxy5fe3jtj6fch5vl7wzkl0s6wyhh39z24st4q6djy8clk8ktus9dvja9",
+          "chainIndex": "0",
+          "chainName": "btc",
+          "addressType": "taproot",
+          "chainPath": "m/86'/0'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0002",
+          "address": "0x4ac697be760ed466d14f51cb1e3cbfd7e6486bea782503343c1ca5cd1557d76e",
+          "chainIndex": "784",
+          "chainName": "sui",
+          "addressType": "eoa",
+          "chainPath": "m/44'/784'/0'/0'/0'"
+        }
+      ]
+    },
+    "parity-account-0003": {
+      "addressList": [
+        {
+          "accountId": "parity-account-0003",
+          "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+          "chainIndex": "1",
+          "chainName": "eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0003",
+          "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+          "chainIndex": "56",
+          "chainName": "bnb",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0003",
+          "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+          "chainIndex": "196",
+          "chainName": "okb",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0003",
+          "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+          "chainIndex": "8453",
+          "chainName": "base_eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0003",
+          "address": "0xba5952ee7274044fb604e0e00062704272a33fb8",
+          "chainIndex": "42161",
+          "chainName": "arb_eth",
+          "addressType": "eoa",
+          "chainPath": "m/44'/60'/0'/0/0"
+        },
+        {
+          "accountId": "parity-account-0003",
+          "address": "8WvgWb6srLJFTearpmAKMCVoXs6iqNP5J8KcNqV9vvgq",
+          "chainIndex": "501",
+          "chainName": "sol",
+          "addressType": "eoa",
+          "chainPath": "m/44'/501'/0'/0'"
+        }
+      ]
+    }
+  },
+  "accounts": [
+    {
+      "projectId": "parity-project-0001",
+      "accountId": "parity-account-0001",
+      "accountName": "Account 1",
+      "isDefault": true
+    },
+    {
+      "projectId": "parity-project-0001",
+      "accountId": "parity-account-0002",
+      "accountName": "Account 2",
+      "isDefault": false
+    },
+    {
+      "projectId": "parity-project-0001",
+      "accountId": "parity-account-0003",
+      "accountName": "Account 3",
+      "isDefault": false
+    }
+  ],
+  "loginType": "google"
+}

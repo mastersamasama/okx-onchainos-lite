@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/close",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "51002",
+        "msg": "task status changed",
+        "data": null
+      }
+    }
+  }
+]

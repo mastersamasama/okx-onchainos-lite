@@ -1,0 +1,4262 @@
+[
+ {
+  "id": "agent-autotrade-tk-missing",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-tk-missing-multi",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot",
+   "--asset-class",
+   "perp",
+   "--asset-class",
+   "spot",
+   "--environment",
+   "demo"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-tk-bad-class",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "futures"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-tk-bad-class-upper",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "SPOT"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-tk-bad-class-defi",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot",
+   "--asset-class",
+   "defi"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-tk-bad-env",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot",
+   "--environment",
+   "prod"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-tk-no-class",
+  "argv": [
+   "agent",
+   "trade-kit-readiness"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-tk-ready",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot",
+   "--asset-class",
+   "perp",
+   "--asset-class",
+   "prediction",
+   "--asset-class",
+   "option",
+   "--environment",
+   "live"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-ready;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-caps",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot",
+   "--asset-class",
+   "perp",
+   "--asset-class",
+   "option"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-caps;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-caps-spot",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-caps;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-old",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot",
+   "--asset-class",
+   "prediction"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-old;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-pre",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "option"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-pre;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-fail",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-fail;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-badjson",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-badjson;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-nomodules",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "perp"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-nomodules;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-bare",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-bare;C:\\Windows\\System32"
+  }
+ },
+ {
+  "id": "agent-autotrade-tk-slow",
+  "argv": [
+   "agent",
+   "trade-kit-readiness",
+   "--asset-class",
+   "spot"
+  ],
+  "home": "agent-autotrade-okx",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.checkedAt"
+  ],
+  "env": {
+   "PATH": "test\\parity\\homes\\agent-autotrade-okx\\bin-slow;C:\\Windows\\System32"
+  },
+  "timeoutMs": 60000
+ },
+ {
+  "id": "agent-autotrade-gc-no-file",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job1",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-format-yaml",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "yaml"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-format-upper",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "JSON"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-bad-job",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "../../etc/passwd",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-check-order",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job/x",
+   "--venue",
+   "nasdaq",
+   "--action",
+   "hodl",
+   "--amount",
+   "x",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-bad-venue",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "nasdaq",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-bad-venue-case",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "DEX",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-bad-action",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "hodl",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-amount-zero",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "0.000",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-amount-neg",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount=-1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-amount-exp",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1e3",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-amount-empty",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-amount-dot",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   ".",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-amount-overflow",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "9999999999999999999999999999999999999999",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-ok-hyperliquid",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "hyperliquid",
+   "--action",
+   "sell",
+   "--amount",
+   "999",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-ok-leading-dot",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   ".5",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-ok-multi-trade-kit",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-multi",
+   "--venue",
+   "trade_kit",
+   "--action",
+   "buy",
+   "--amount",
+   "100000",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-ok-multi-polymarket",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-multi",
+   "--venue",
+   "polymarket",
+   "--action",
+   "sell",
+   "--amount",
+   "007",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-venue-not-authorized",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "polymarket",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-expired",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-expired",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-version-too-new",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-v2",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-job-mismatch",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-mismatch",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-bad-json",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-bad",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-unknown-field",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-unknown",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-venue-unknown-field",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-venue-unknown",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-float-version",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-float",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-dir",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-dir",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcu-missing",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-seq",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "[]"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-eof",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":1"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-trailing",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{} x"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-apikey",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"apiKey\":\"x\"}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-access-token",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"b\":1,\"my_Access-Token\":2}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-bad-job",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "../x",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-ok",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"tradeAmount\":\"20\",\"marginMode\":\"cross\",\"nested\":{\"z\":1,\"a\":[1.50,2,-0,18446744073709551616]},\"n\":1e2,\"big\":18446744073709551615}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-dup",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":1,\"a\":{\"k\":[true,null]}}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-empty",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-prepared",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job3",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-expired",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job4",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-legacy-md",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job5",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-bad-header",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job6",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-no-split",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job7",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-version",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job8",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-bad-hash",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job12",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-bad-lifecycle",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job16",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-missing-fields",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job17",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-no-consent",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-anon",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-gcn-ttl0",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "{}",
+   "--ttl-sec",
+   "0"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-ttl-neg",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "{}",
+   "--ttl-sec",
+   "-1"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-ttl-text",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "{}",
+   "--ttl-sec",
+   "abc"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-values-bad",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "[1]"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-cred",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "{\"password\":\"x\"}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-exists",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-created",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "{\"tradeAmount\":\"15\",\"z\":[1,{\"b\":2,\"a\":1}]}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture",
+  "masks": [
+   "home.autotrade/consent/job2.md"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcn-prepared-overwrite",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job3",
+   "--values-json",
+   "{}",
+   "--ttl-sec",
+   "60"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture",
+  "masks": [
+   "home.autotrade/consent/job3.md"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcn-expired-overwrite",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job4",
+   "--values-json",
+   "{\"x\":\"y\"}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture",
+  "masks": [
+   "home.autotrade/consent/job4.md"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcn-ttl-max",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job2",
+   "--values-json",
+   "{}",
+   "--ttl-sec",
+   "18446744073709551615"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture",
+  "masks": [
+   "home.autotrade/consent/job2.md"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcn-legacy",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job5",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-guide-bad-hash",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job9",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-guide-mismatch",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job10",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-guide-header",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job11",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-guide-service",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job13",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-guide-unknown",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job14",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-guide-type",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job15",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-bad-job",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "../x",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcn-no-guide",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "job6x",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-cr-anon",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "job1",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d1",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-cr-bad-delivery",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobA",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d/1",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-bad-job",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "j.1",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d1",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-agent-direct",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobA",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d1",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.outcome.createdAt",
+   "stdout.data.outcome.updatedAt",
+   "stdout.data.outcome.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-cr-existing",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobE",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d1",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-ctx-version",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobF",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d1",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-ctx-unknown",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobF",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d2",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-ctx-id-mismatch",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobF",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d3",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-ctx-badjson",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobF",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d4",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-ctx-bad-path",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobF",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d5",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-cr-ctx-neg",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobF",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d6",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dr-anon",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "job1",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   "test"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-dr-bad-status",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "done",
+   "--reason",
+   "x"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dr-legacy-failed",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_execution",
+   "--reason",
+   "  a \t  b "
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-retired-reason",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_execution",
+   "--reason",
+   "No Auto-Trade Consent found"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-agent-direct-no-contract",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobA",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_execution",
+   "--reason",
+   "x"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-agent-direct-contract",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobC",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_execution",
+   "--reason",
+   "pre-trade check failed。"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-reserved",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobD",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   "x"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dr-existing",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobE",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   "x"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dr-normalize",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobE",
+   "--delivery-id",
+   "d2",
+   "--status",
+   "skipped",
+   "--reason",
+   "x"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-long-reason",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-empty-reason",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   "   "
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-bad-outcome-id",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1:x",
+   "--status",
+   "skipped",
+   "--reason",
+   "x"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-df-anon",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "job1",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-df-legacy",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-bad-tool",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "bad tool",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-long-tool",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-not-claimed",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d3",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-no-mode",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d2",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-no-receipt",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-bad-receipt",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "a b"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-bad-status",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "done",
+   "--tool-id",
+   "okx"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-submitted",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx-cex-trade",
+   "--receipt-id",
+   "order:123",
+   "--reason",
+   "ignored"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-failed-auth",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d5",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "trade_kit",
+   "--reason",
+   "Error: Failed to spawn okx-auth"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-failed-auth-other-tool",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d5",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "okx",
+   "--reason",
+   "not logged in"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-redact",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "okx",
+   "--reason",
+   "apiKey=abc token: x Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.abcdefghijklmn authorization: Basic zzz next password secret1 (\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.sigsigsigsig\") x-api-key=1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-unknown-default",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "unknown_after_submit",
+   "--tool-id",
+   "okx"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-failed-default",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "trade_kit"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-existing",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d4",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "okx"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-latch-mismatch",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d6",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-df-latch-bad-phase",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d7",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "r1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-anon",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "job1",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-oa-no-pending",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-pending-mismatch",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH3",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-latch",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH4",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-bad-amount",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH2",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "abc"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-empty-amount",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH2",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   ""
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-zero",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH2",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "0.00"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-no-consent",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH2",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-guide-consent",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH8",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-manual",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH6",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-no-cap",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH7",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-under-cap",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH5",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "50.000"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-created",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH5",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100.50"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.expiresAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-oa-existing",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH9",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "075"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-existing-different",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobH9",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "80"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-of-anon",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "job1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-of-bad-job",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "a/b"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-of-flush",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "jobR"
+  ],
+  "home": "agent-autotrade-flush",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.*.updatedAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-of-bad-version",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "jobS"
+  ],
+  "home": "agent-autotrade-flush",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-of-bad-json",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "jobT"
+  ],
+  "home": "agent-autotrade-flush",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-of-not-dir",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "jobU"
+  ],
+  "home": "agent-autotrade-flush",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-of-maint",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "jobM"
+  ],
+  "home": "agent-autotrade-maint",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.*.updatedAt",
+   "stdout.data.*.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt",
+   "home.*.entries.*.nextResumeAttemptAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-of-maint-other",
+  "argv": [
+   "agent",
+   "autotrade-outcome-flush",
+   "--job-id",
+   "none"
+  ],
+  "home": "agent-autotrade-maint",
+  "network": "fixture",
+  "masks": [
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt",
+   "home.*.entries.*.nextResumeAttemptAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-ca-anon",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "job1",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-sufficient",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK1",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-over-cap",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK2",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.entries.*.createdAt",
+   "home.*.entries.*.updatedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-ca-manual",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK3",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-empty-amount",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK4",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-version",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK5",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-mismatch",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK6",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-guide-md",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK7",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-no-cap-plain",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK8",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.entries.*.createdAt",
+   "home.*.entries.*.updatedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-ca-prepared",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK9",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-expired",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK10",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-configured-env",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK11",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-legacy-flat",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK12",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-required-missing",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobK13",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-bad-job",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "../x",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gp-anon",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "job1",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-gp-legacy",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobP",
+   "--delivery-id",
+   "d3"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gp-missing-saved",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobP",
+   "--delivery-id",
+   "d2"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gp-logged-out",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobP",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dc-anon",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "job1",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-dc-legacy",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobP",
+   "--delivery-id",
+   "d3"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dc-missing-saved",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobP",
+   "--delivery-id",
+   "d2"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dc-logged-out",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobP",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gp-jobw1",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW1",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw1",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW1",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ],
+  "masks": [
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw2",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW2",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw2",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW2",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw3",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW3",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw3",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW3",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw4",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW4",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw4",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW4",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw5",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW5",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw5",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW5",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw7",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW7",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw7",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW7",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw8",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW8",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw8",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW8",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw10",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW10",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw10",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW10",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw6",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW6",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "agent-autotrade-services",
+   "wallet-common"
+  ],
+  "masks": [
+   "home.autotrade/guide/jobW6.md"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw6",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW6",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "agent-autotrade-services",
+   "wallet-common"
+  ],
+  "masks": [
+   "home.autotrade/guide/jobW6.md",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw9",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW9",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ],
+  "masks": [
+   "home.*.updatedAtMs"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw9",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW9",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe",
+   "wallet-common"
+  ],
+  "masks": [
+   "home.*.updatedAtMs",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw1-api-error",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW1",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe-error",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw3-http-404",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW3",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe-error",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw3-http-404",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW3",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe-error",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-oa-pending-other-job",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobO1",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "100"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-oa-expired-permit-replaced",
+  "argv": [
+   "agent",
+   "autotrade-once-authorize",
+   "--job-id",
+   "jobO2",
+   "--delivery-id",
+   "d1",
+   "--amount",
+   "75"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.expiresAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcu-consent-dir",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "jobO3",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-gcn-consent-dir",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "jobO3",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-gcn-guide-dir",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-new",
+   "--job-id",
+   "jobO4",
+   "--values-json",
+   "{}"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-autotrade-dr-clears-pending-advances-queue",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobO5",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   "user skipped"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt",
+   "home.*.entries.*.nextResumeAttemptAt",
+   "home.*.entries.*.resumeSentAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-existing-pending",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobO6",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   "x"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-saved-dir",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobO7",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dc-saved-dir",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobO7",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-ca-over-cap-no-summary",
+  "argv": [
+   "agent",
+   "autotrade-cap-adjust-request",
+   "--job-id",
+   "jobO8",
+   "--agent-id",
+   "a-user"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "masks": [
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.entries.*.createdAt",
+   "home.*.entries.*.updatedAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-cr-normalize-existing",
+  "argv": [
+   "agent",
+   "autotrade-consent-request",
+   "--job-id",
+   "jobO9",
+   "--agent-id",
+   "7",
+   "--delivery-id",
+   "d1",
+   "--signal-type",
+   "trade"
+  ],
+  "home": "agent-autotrade-state2",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.outcome.createdAt",
+   "stdout.data.outcome.updatedAt",
+   "stdout.data.outcome.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw11",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW11",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw11",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW11",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw12",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW12",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ],
+  "masks": [
+   "home.*.updatedAtMs"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw12",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW12",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ],
+  "masks": [
+   "home.*.updatedAtMs"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw13",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW13",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw13",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW13",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gp-jobw14",
+  "argv": [
+   "agent",
+   "autotrade-guide-prepare",
+   "--job-id",
+   "jobW14",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dc-jobw14",
+  "argv": [
+   "agent",
+   "autotrade-direct-claim",
+   "--job-id",
+   "jobW14",
+   "--delivery-id",
+   "d1"
+  ],
+  "home": "agent-autotrade-wallet2",
+  "network": "fixture",
+  "fixtures": [
+   "agent-autotrade-subscribe2",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-pretty-ok",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_PRETTY": "1"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-pretty-format",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job-ok",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "x"
+  ],
+  "home": "agent-autotrade-grants",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_PRETTY": "1"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gc-pretty-no-file",
+  "argv": [
+   "agent",
+   "autotrade-grant-check",
+   "--job-id",
+   "job1",
+   "--venue",
+   "dex",
+   "--action",
+   "buy",
+   "--amount",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_PRETTY": "1"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcu-pretty",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"b\":1,\"a\":\"x\"}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_PRETTY": "1"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-proto",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"__proto__\":1,\"a\":{\"__proto__\":[1]}}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-floats",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":0.30000000000000004441,\"b\":1.7976931348623157e308,\"c\":123456789012345678901234567890,\"d\":-0.0,\"e\":5e-324,\"f\":1.23e-7,\"g\":100000000000000000000.0,\"h\":2.2250738585072011e-308,\"i\":9007199254740993,\"j\":-9223372036854775809,\"k\":1E+2,\"l\":0.1e1}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-longmant",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":1.00000000000000011102230246251565404236316680908203125,\"b\":123456789012345678901234567890.123456789,\"c\":0.000000000000000000000000000000000000000000001}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-inf",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":1e400}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-surrogate",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":\"\ud800\"}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-surrogate-pair",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":\"😀 é\"}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-deep",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-unicode-key",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"éè\":\"中\",\"Z\":1,\"a\":2,\"_\":3}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-bom",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "﻿{}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-ctrl",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":\"x\u0001y\"}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-gcu-serde-neg-big",
+  "argv": [
+   "agent",
+   "autotrade-guide-consent-update",
+   "--job-id",
+   "job1",
+   "--values-json",
+   "{\"a\":-18446744073709551616}"
+  ],
+  "home": "agent-autotrade-guide",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-autotrade-dr-unicode-ws",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   " a　b c​de"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-dr-long-astral",
+  "argv": [
+   "agent",
+   "autotrade-delivery-report",
+   "--job-id",
+   "jobB",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "skipped",
+   "--reason",
+   "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-redact2",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "okx",
+   "--reason",
+   "Authorization: Basic abc def ghi x-api-key=1 password: \"p\" BEARER tok more \u0007bell (\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.abc\"),"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-redact3",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "unknown_after_submit",
+   "--tool-id",
+   "a/b:c.d_e-f",
+   "--reason",
+   "my_Secret-Key=zzz token:abc Cookie= a b c"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-receipt-empty",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "submitted",
+   "--tool-id",
+   "okx",
+   "--receipt-id",
+   ""
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-reason-empty",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "trade_kit",
+   "--reason",
+   ""
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ },
+ {
+  "id": "agent-autotrade-df-tk-auth-50110",
+  "argv": [
+   "agent",
+   "autotrade-direct-finalize",
+   "--job-id",
+   "jobG",
+   "--delivery-id",
+   "d1",
+   "--status",
+   "failed_before_submit",
+   "--tool-id",
+   "trade_kit",
+   "--reason",
+   "code 50110 RUN OKX AUTH LOGIN"
+  ],
+  "home": "agent-autotrade-state",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.createdAt",
+   "stdout.data.updatedAt",
+   "stdout.data.nextNotificationAttemptAt",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.outcome.createdAt",
+   "home.*.outcome.updatedAt",
+   "home.*.outcome.nextNotificationAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt"
+  ]
+ }
+]

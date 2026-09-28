@@ -1,0 +1,33 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/security/token-scan",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "chainId": "1",
+              "tokenAddress": "0xabc",
+              "isChainSupported": true,
+              "riskLevel": "HIGH",
+              "buyTaxes": null,
+              "sellTaxes": null,
+              "isHoneypot": false,
+              "isRubbishAirdrop": false,
+              "isAirdropScam": false,
+              "isLowLiquidity": false,
+              "isMintable": false,
+              "isHasFrozenAuth": false,
+              "isNotRenounced": false
+            }
+          ],
+          "total": 1
+        }
+      }
+    }
+  }
+]

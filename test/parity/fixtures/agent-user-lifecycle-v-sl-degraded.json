@@ -1,0 +1,81 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "match": {
+      "query": {
+        "statusType": "1"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 1,
+          "page": 1,
+          "pageSize": 10,
+          "list": [
+            {
+              "jobId": "a1",
+              "jobType": 1,
+              "status": 1,
+              "title": "Active",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "s",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0xabc",
+              "autoRenew": 0,
+              "periodIndex": 5,
+              "trialType": 0
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "match": {
+      "query": {
+        "statusType": "2"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 0,
+          "page": 1,
+          "pageSize": 10,
+          "list": []
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/token/basic-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "token not found",
+        "data": []
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "response": {
+      "status": 500,
+      "body": "down"
+    }
+  }
+]

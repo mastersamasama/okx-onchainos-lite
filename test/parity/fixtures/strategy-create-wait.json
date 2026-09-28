@@ -1,0 +1,19 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/createOrder",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": {
+          "orderId": "21",
+          "status": 2,
+          "estimatedWaitTime": 3,
+          "eventCursor": "cur-9"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/wakeupNotify",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "jobId": "0xj1",
+            "buyerAgentId": "1",
+            "providerAgentId": "2",
+            "status": 1
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/by-communication-address",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "4242",
+            "communicationAddress": "0xabc",
+            "role": 2
+          }
+        ]
+      }
+    }
+  }
+]

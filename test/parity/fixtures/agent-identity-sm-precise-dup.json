@@ -1,0 +1,62 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "ownerAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "agentList": [
+                {
+                  "agentId": "  "
+                },
+                {
+                  "agentId": 9001,
+                  "role": 1,
+                  "name": "Buyer"
+                }
+              ]
+            }
+          ],
+          "page": 1,
+          "pageSize": 10,
+          "total": 1
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "services": [
+            {
+              "serviceId": "svc-001",
+              "asp": {
+                "securityRate": 4.5,
+                "onlineStatus": 1
+              },
+              "subscribedInfo": {
+                "isActive": true,
+                "jobId": " 0xjob1 ",
+                "title": "Daily alpha",
+                "status": 2
+              }
+            }
+          ],
+          "tip": "x"
+        }
+      }
+    }
+  }
+]

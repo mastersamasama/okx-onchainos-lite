@@ -1,0 +1,1689 @@
+{
+  "skill": "okx-defi",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "chars": 5418
+    },
+    {
+      "path": "_shared/preflight.md",
+      "chars": 741
+    },
+    {
+      "path": "references/invest.md",
+      "chars": 14031
+    },
+    {
+      "path": "references/invest-cli-reference.md",
+      "chars": 28460
+    },
+    {
+      "path": "references/invest-troubleshooting.md",
+      "chars": 2338
+    },
+    {
+      "path": "references/portfolio.md",
+      "chars": 6880
+    },
+    {
+      "path": "references/portfolio-cli-reference.md",
+      "chars": 2997
+    },
+    {
+      "path": "references/portfolio-troubleshooting.md",
+      "chars": 1421
+    }
+  ],
+  "units": [
+    {
+      "id": "okx-defi-001",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#frontmatter",
+      "obsolete": false,
+      "text": "okx-defi owns multi-chain OKX-aggregated DeFi products and positions: generic or venue-agnostic yield/APY/TVL discovery and history; deposits, staking, liquidity add/remove, withdrawals/redeem, reward claims, lending (borrow/repay), CLMM/V3 liquidity analysis; DeFi portfolio/position views. Trigger phrases: earn yield, best APY, DeFi product, APY/TVL history, deposit, stake, withdraw, redeem, provide or remove liquidity, claim rewards, borrow or repay, CLMM, V3 liquidity charts, DeFi portfolio, DeFi holdings."
+    },
+    {
+      "id": "okx-defi-002",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Intent Routing (closing paragraph); SKILL.md#frontmatter",
+      "obsolete": false,
+      "text": "Named third-party DApp/protocol requests - including protocol-specific APY, TVL, volume, history or timeframe analysis - route to okx-dapp-discovery. Generic cross-protocol yield/APY/TVL and V3-liquidity analysis stays in okx-defi."
+    },
+    {
+      "id": "okx-defi-003",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "token search",
+        "market price"
+      ],
+      "source": "SKILL.md#Intent Routing (closing paragraph)",
+      "obsolete": false,
+      "text": "Token search / price / chart requests route to okx-dex-market (token/market domain), not okx-defi."
+    },
+    {
+      "id": "okx-defi-004",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "swap",
+        "wallet balance",
+        "wallet login",
+        "wallet contract-call",
+        "gateway broadcast"
+      ],
+      "source": "SKILL.md#Intent Routing (closing paragraph)",
+      "obsolete": false,
+      "text": "Spot swaps, wallet balances, login, contract calls and transaction broadcasts route to okx-agentic-wallet (DeFi flows call into it for balance check, signing and broadcasting)."
+    },
+    {
+      "id": "okx-defi-005",
+      "kind": "other",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#frontmatter",
+      "obsolete": true,
+      "text": "Skill metadata: name okx-defi, license MIT, author okx, version \"4.6.3\", homepage https://web3.okx.com. The version is used only as the preflight --skill-version argument.",
+      "note": "Version pin only feeds the obsolete installer preflight; lite targets CLI 4.6.3 via docs/DESIGN.md instead."
+    },
+    {
+      "id": "okx-defi-006",
+      "kind": "installation",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Preflight",
+      "obsolete": true,
+      "text": "At the start of each thread, complete the checks in ../okx-agentic-wallet/_shared/preflight.md; if missing, read the local _shared/preflight.md.",
+      "note": "Lite skill folder is self-contained; no installer preflight. Use `ocl doctor` for environment/egress/login diagnostics."
+    },
+    {
+      "id": "okx-defi-007",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Intent Routing",
+      "obsolete": false,
+      "text": "Load only the reference files required by the selected route (progressive disclosure)."
+    },
+    {
+      "id": "okx-defi-008",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi list",
+        "defi detail",
+        "defi invest",
+        "defi withdraw",
+        "defi collect",
+        "defi rate-chart",
+        "defi tvl-chart",
+        "defi depth-price-chart"
+      ],
+      "source": "SKILL.md#Intent Routing",
+      "obsolete": false,
+      "text": "Invest capability (invest.md) covers: discover/search DeFi products and best APY; product detail (APY, TVL, accepted tokens); deposit/stake/provide liquidity; withdraw/redeem a position (full or partial); claim rewards (platform / investment / V3 fee / bonus / unlocked principal); APY history, TVL history, V3 depth/price charts."
+    },
+    {
+      "id": "okx-defi-009",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "SKILL.md#Intent Routing",
+      "obsolete": false,
+      "text": "Portfolio capability (portfolio.md) covers: view DeFi positions/holdings overview; per-protocol position detail."
+    },
+    {
+      "id": "okx-defi-010",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Intent Routing",
+      "obsolete": false,
+      "text": "Exact parameters/return schemas: invest, shared-support (support-chains/support-platforms) and chart commands -> invest-cli-reference.md; positions commands -> portfolio-cli-reference.md. Errors/failed deposits/expired calldata -> invest-troubleshooting.md; errors/empty positions/address-format issues -> portfolio-troubleshooting.md.",
+      "note": "In lite, exact flag syntax lives only in references/commands/defi.md; return-schema/field knowledge must be kept separately."
+    },
+    {
+      "id": "okx-defi-011",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "SKILL.md#Intent Routing",
+      "obsolete": false,
+      "text": "Typical chained flow: view positions (Portfolio) -> redeem or claim (Invest). When a request chains them, read both the portfolio and invest references."
+    },
+    {
+      "id": "okx-defi-012",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Chain Name Support; references/portfolio.md#Portfolio-specific Notes",
+      "obsolete": false,
+      "text": "The CLI resolves chain names automatically (e.g. ethereum -> 1, bsc -> 56, solana -> 501). DeFi-specific aliases are in the portfolio Chain Support table."
+    },
+    {
+      "id": "okx-defi-013",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "wallet status",
+        "wallet addresses"
+      ],
+      "source": "SKILL.md#Security > Address Resolution; references/invest.md (intro); references/portfolio.md (intro)",
+      "obsolete": false,
+      "text": "When the user does NOT provide a wallet address, resolve it from the Agentic Wallet BEFORE running any defi command: (1) `wallet status` -> check logged in, get active account; (2) `wallet addresses` -> addresses grouped by chain category (XLayer, EVM, Solana); (3) match to target chain: EVM chains -> EVM address, Solana -> Solana address, XLayer -> XLayer address. Apply before every invest and portfolio command."
+    },
+    {
+      "id": "okx-defi-014",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Security > Address Resolution",
+      "obsolete": false,
+      "text": "If the user provides an explicit address, use it directly and skip wallet address resolution."
+    },
+    {
+      "id": "okx-defi-015",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "wallet status",
+        "wallet login"
+      ],
+      "source": "SKILL.md#Security > Address Resolution; references/portfolio.md#Step 2: Collect Parameters",
+      "obsolete": false,
+      "text": "If the wallet is not logged in, ask the user to log in first (-> okx-agentic-wallet) or to provide an address manually.",
+      "note": "Lite login = upstream social-login link flow: `wallet login` -> loginUrl -> user completes on OKX web page on any device -> `wallet login --phase poll`."
+    },
+    {
+      "id": "okx-defi-016",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "wallet balance",
+        "wallet switch",
+        "wallet addresses"
+      ],
+      "source": "SKILL.md#Security > Address Resolution",
+      "obsolete": false,
+      "text": "If the user says \"check all accounts\" / \"all wallets\": `wallet balance --all` to get all account IDs, then for each account `wallet switch <id>` + `wallet addresses`."
+    },
+    {
+      "id": "okx-defi-017",
+      "kind": "confirmation",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "wallet addresses"
+      ],
+      "source": "SKILL.md#Security > Address Resolution",
+      "obsolete": false,
+      "text": "Always confirm the resolved address with the user before proceeding if the account has multiple addresses of the same type."
+    },
+    {
+      "id": "okx-defi-018",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "SKILL.md#Security > Address-Chain Compatibility",
+      "obsolete": false,
+      "text": "The --address and chain parameters must be compatible: EVM addresses (0x...) only query EVM chains; Solana addresses (base58) only query solana. Never mix them - the API returns error 84019 (Address format error)."
+    },
+    {
+      "id": "okx-defi-019",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "SKILL.md#Security > Address-Chain Compatibility",
+      "obsolete": false,
+      "text": "Address -> allowed chains: 0x... -> only EVM chains `ethereum,bsc,polygon,arbitrum,base,xlayer,avalanche,optimism,fantom,linea,scroll,zksync`; base58 -> only `solana`; Sui address -> only `sui`; Tron (T...) -> only `tron`; TON -> only `ton`."
+    },
+    {
+      "id": "okx-defi-020",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions"
+      ],
+      "source": "SKILL.md#Security > Address-Chain Compatibility; references/portfolio-troubleshooting.md#Common Errors",
+      "obsolete": false,
+      "text": "If the user wants positions across both EVM and Solana, make TWO separate `defi positions` calls, each with its matching address."
+    },
+    {
+      "id": "okx-defi-021",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Global Notes",
+      "obsolete": false,
+      "text": "The wallet address parameter for ALL defi commands is `--address`."
+    },
+    {
+      "id": "okx-defi-022",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "SKILL.md#Global Notes; references/portfolio.md#Portfolio-specific Notes",
+      "obsolete": false,
+      "text": "`defi positions` uses `--chains` (plural, comma-separated, e.g. `--chains ethereum,bsc`) - do NOT use `--chain`; `defi position-detail` uses `--chain` (singular) - do NOT use `--chains`."
+    },
+    {
+      "id": "okx-defi-023",
+      "kind": "other",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [],
+      "source": "SKILL.md#Global Notes",
+      "obsolete": false,
+      "text": "Before reporting completion: verify the selected command actually succeeded, apply the output format and safety checks from its routed reference, and explicitly report any partial or failed on-chain step."
+    },
+    {
+      "id": "okx-defi-024",
+      "kind": "installation",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [],
+      "source": "_shared/preflight.md#Preflight Checks",
+      "obsolete": true,
+      "text": "Run preflight once per conversation/task thread before the first CLI command needing it; do not rerun for later turns/sub-operations; rerun only when the CLI requires it, the previous preflight asks for a retry, or the user explicitly asks to recheck/update.",
+      "note": "No installer/preflight in lite."
+    },
+    {
+      "id": "okx-defi-025",
+      "kind": "installation",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [],
+      "source": "_shared/preflight.md#Preflight Checks",
+      "obsolete": true,
+      "text": "Preflight step: run `npx -y @okxweb3/onchainos-installer install --throttle --skill-version <this skill's frontmatter version>`.",
+      "note": "Upstream installer is obsolete for lite."
+    },
+    {
+      "id": "okx-defi-026",
+      "kind": "troubleshooting",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [],
+      "source": "_shared/preflight.md#Global Notes",
+      "obsolete": true,
+      "text": "A global install that prints `PromptScript does not support global skill installation` (only with `npx skills add ... --yes -g`) is a known npx-skills limitation; skill files installed correctly; safe to ignore."
+    },
+    {
+      "id": "okx-defi-027",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Capability: Invest",
+      "obsolete": false,
+      "text": "Invest = multi-chain DeFi product discovery and investment execution; the CLI handles precision conversion, multi-step orchestration and validation internally."
+    },
+    {
+      "id": "okx-defi-028",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi support-chains",
+        "defi support-platforms",
+        "defi list",
+        "defi search",
+        "defi detail",
+        "defi invest",
+        "defi withdraw",
+        "defi collect",
+        "defi rate-chart",
+        "defi tvl-chart",
+        "defi depth-price-chart"
+      ],
+      "source": "references/invest.md#Command Index",
+      "obsolete": false,
+      "text": "Invest command set: support-chains, support-platforms, list (top products by APY), search, detail (full product details), invest (one-step deposit: CLI handles prepare + precision + calldata), withdraw (one-step withdrawal: CLI handles position lookup + calldata), collect (one-step reward claim: CLI handles reward check + calldata), rate-chart (APY history), tvl-chart (TVL history), depth-price-chart (V3 pool depth or price history). The high-level invest/withdraw/collect are the recommended write path."
+    },
+    {
+      "id": "okx-defi-029",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Command Index",
+      "obsolete": false,
+      "text": "`defi positions` / `defi position-detail` belong to the Portfolio capability but are called in Invest as MANDATORY pre-steps before withdraw/collect."
+    },
+    {
+      "id": "okx-defi-030",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search"
+      ],
+      "source": "references/invest.md#Investment Types; references/invest-cli-reference.md#4. onchainos defi search",
+      "obsolete": false,
+      "text": "productGroup values: SINGLE_EARN = single-token yield (savings, staking, vaults) [search default]; DEX_POOL = liquidity pools (Uniswap V2/V3, PancakeSwap, etc.); LENDING = lending/borrowing (Aave, Compound, etc.)."
+    },
+    {
+      "id": "okx-defi-031",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi detail",
+        "token search",
+        "wallet balance",
+        "defi invest"
+      ],
+      "source": "references/invest.md#Operation Flow > Deposit (invest)",
+      "obsolete": false,
+      "text": "Deposit flow: 1) `defi search --token USDC --chain ethereum` -> pick investmentId; 2) `defi detail --investment-id <id>` -> confirm APY/TVL, get underlyingToken[].tokenAddress; 3) `token search --query <tokenAddress> --chains <chain>` -> get decimal; 4) ask user for amount, convert userAmount x 10^decimal (100 USDC -> 100000000); 5) check wallet balance (okx-agentic-wallet), if insufficient warn and stop; 6) `defi invest --investment-id <id> --address <addr> --token USDC --amount 100000000` -> CLI returns calldata (APPROVE + DEPOSIT steps); 7) user signs and broadcasts each step in order."
+    },
+    {
+      "id": "okx-defi-032",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi detail",
+        "token search"
+      ],
+      "source": "references/invest.md#Operation Flow > Deposit (invest)",
+      "obsolete": false,
+      "text": "Token decimal lookup: take tokenAddress from `defi detail` -> underlyingToken[].tokenAddress, then `token search --query <tokenAddress>` to get `decimal` (same approach as DEX swap).",
+      "note": "`defi detail` also returns underlyingToken[].tokenPrecision directly, and invest-specific notes say tokenPrecision can come from detail or position-detail."
+    },
+    {
+      "id": "okx-defi-033",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest"
+      ],
+      "source": "references/invest.md#Invest-specific Notes; references/invest-troubleshooting.md#Common Failure Patterns",
+      "obsolete": false,
+      "text": "`defi invest --amount` must be an integer in MINIMAL units: userAmount x 10^tokenPrecision (e.g. 0.1 USDC, precision 6 -> `--amount 100000`; 100 USDC -> 100000000). Get tokenPrecision from `defi detail` or `defi position-detail`. Decimal/UI-unit values are rejected.",
+      "note": "Verified in upstream Rust: validate_amount rejects any \".\" and zero/empty."
+    },
+    {
+      "id": "okx-defi-034",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "wallet balance"
+      ],
+      "source": "references/invest.md#Operation Flow > Deposit (invest)",
+      "obsolete": false,
+      "text": "CRITICAL - balance check REQUIRED before `defi invest`: verify via okx-agentic-wallet that the user has sufficient balance of the deposit token BEFORE generating calldata. If insufficient, STOP and warn the user; never proceed to `defi invest` without confirmed balance (skipping wastes gas and yields failed on-chain txs)."
+    },
+    {
+      "id": "okx-defi-035",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail",
+        "defi withdraw"
+      ],
+      "source": "references/invest.md#Operation Flow > Withdraw",
+      "obsolete": false,
+      "text": "CRITICAL - `defi position-detail` is MANDATORY immediately before every `defi withdraw`, even if position data was fetched earlier. Never reuse stale position-detail results."
+    },
+    {
+      "id": "okx-defi-036",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "defi withdraw"
+      ],
+      "source": "references/invest.md#Operation Flow > Withdraw",
+      "obsolete": false,
+      "text": "Withdraw flow: 1) `defi positions --address <addr> --chains ethereum`; 2) `defi position-detail --address <addr> --chain ethereum --platform-id <pid>` (fresh) -> investmentId, tokenPrecision, coinAmount (current balance); 3) full exit: `defi withdraw --investment-id <id> --address <addr> --chain ethereum --ratio 1 --platform-id <pid>`; partial exit: `defi withdraw ... --amount <minimal_units> --platform-id <pid>`; 4) user signs and broadcasts."
+    },
+    {
+      "id": "okx-defi-037",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi withdraw",
+        "defi position-detail"
+      ],
+      "source": "references/invest.md#Operation Flow > Withdraw",
+      "obsolete": false,
+      "text": "Partial exit --amount: position-detail returns coinAmount human-readable (e.g. \"2.3792\") and tokenPrecision (e.g. 6); convert with floor: floor(2.3792 x 10^6) = 2379200 -> `--amount 2379200`.",
+      "note": "Upstream CLI --help text says \"Human-readable partial withdrawal amount\", but Rust cmd_withdraw calls validate_amount (integer minimal units) - the skill doc is correct. CLI also requires --platform-id with --amount, rejects amount > current balance, and requires --ratio or --amount for non-V3."
+    },
+    {
+      "id": "okx-defi-038",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Operation Flow > Claim Rewards",
+      "obsolete": false,
+      "text": "CRITICAL - `defi position-detail` is MANDATORY immediately before every `defi collect`, even if position data exists from earlier in the conversation: rewards, investmentId, platformId and tokenId change after each on-chain operation (withdraw, previous collect), so stale data gives wrong params or failed txs. Never skip; never reuse earlier results."
+    },
+    {
+      "id": "okx-defi-039",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Operation Flow > Claim Rewards",
+      "obsolete": false,
+      "text": "Claim flow: 1) `defi positions --address <addr> --chains ethereum`; 2) `defi position-detail --address <addr> --chain ethereum --platform-id <pid>` (fresh); 3) `defi collect --address <addr> --chain ethereum --reward-type REWARD_INVESTMENT --investment-id <id> --platform-id <pid>` -> CLI returns calldata, or skips if there are no rewards; 4) user signs and broadcasts."
+    },
+    {
+      "id": "okx-defi-040",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi detail",
+        "defi depth-price-chart",
+        "wallet balance",
+        "defi invest"
+      ],
+      "source": "references/invest.md#Operation Flow > V3 Pool Deposit",
+      "obsolete": false,
+      "text": "V3 Pool deposit flow: 1) `defi search --token USDT --platform PancakeSwap --chain bsc --product-group DEX_POOL`; 2) `defi detail --investment-id <id>`; 3) optional `defi depth-price-chart --investment-id <id>` to show liquidity distribution for choosing tick range; 4) ask user for amount and tick range; 5) check wallet balance (okx-agentic-wallet), stop if insufficient; 6) `defi invest --investment-id <id> --address <addr> --token USDT --amount 100000000 --range 5` -> CLI runs calculate-entry internally, returns calldata; 7) user signs and broadcasts.",
+      "note": "CLI help: --range = price range % around current price (5 = +/-5%), required for V3 if --tick-lower/--tick-upper not given; --token2/--amount2 for dual-token V3 entry (amount2 may be 0 for single-sided); --token-id adds to an existing V3 position."
+    },
+    {
+      "id": "okx-defi-041",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi rate-chart"
+      ],
+      "source": "references/invest.md#View Chart Data; references/invest-cli-reference.md#11. onchainos defi rate-chart",
+      "obsolete": false,
+      "text": "APY history (check yield trend before depositing): `defi rate-chart --investment-id <id> --time-range MONTH`. Time ranges: WEEK (default), MONTH, SEASON (3 months), YEAR; DAY is V3 Pool only. Returns array of {timestamp (ms), rate (APY = base + mining), bonusRate (extra reward APY: OKX Bonus / Merkl), limitValue (1 = peak, -1 = trough, null = normal), totalReward (fee + bonus reward for period)}."
+    },
+    {
+      "id": "okx-defi-042",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi tvl-chart"
+      ],
+      "source": "references/invest.md#View Chart Data; references/invest-cli-reference.md#12. onchainos defi tvl-chart",
+      "obsolete": false,
+      "text": "TVL history (evaluate pool size stability): `defi tvl-chart --investment-id <id> --time-range SEASON`. Same time ranges as rate-chart. Returns data object {chartVos[]: {timestamp (ms), tvl (USD), limitValue (1/-1/null)}, text (nullable description)}."
+    },
+    {
+      "id": "okx-defi-043",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi depth-price-chart"
+      ],
+      "source": "references/invest.md#View Chart Data; references/invest-cli-reference.md#13. onchainos defi depth-price-chart",
+      "obsolete": false,
+      "text": "V3 depth chart (V3 Pool only): `defi depth-price-chart --investment-id <id>` (chart-type DEPTH default). Returns per tick {tick, liquidity, liquidityNet, token0Price, token1Price}. DEPTH always returns the current snapshot; --time-range has no effect. Use before a V3 deposit to see where liquidity concentrates and pick tickLower/tickUpper."
+    },
+    {
+      "id": "okx-defi-044",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi depth-price-chart"
+      ],
+      "source": "references/invest.md#View Chart Data; references/invest-cli-reference.md#13. onchainos defi depth-price-chart",
+      "obsolete": false,
+      "text": "V3 price history: `defi depth-price-chart --investment-id <id> --chart-type PRICE --time-range WEEK`. Chart types DEPTH (default) | PRICE; --time-range only applies to PRICE: DAY (default) | WEEK. Returns {token0Price, token1Price, timestamp (ms)} per point."
+    },
+    {
+      "id": "okx-defi-045",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi rate-chart",
+        "defi tvl-chart",
+        "defi depth-price-chart"
+      ],
+      "source": "references/invest.md#View Chart Data",
+      "obsolete": false,
+      "text": "Use chart commands to analyze product trends before investing or to monitor existing positions."
+    },
+    {
+      "id": "okx-defi-046",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "gateway",
+      "commands": [
+        "gateway broadcast",
+        "gateway orders",
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Sign & Broadcast Calldata > Path A",
+      "obsolete": false,
+      "text": "Path A (user-provided/external wallet), for each dataList step in order: 1) user signs externally using dataList[N].to, dataList[N].serializedData, dataList[N].value; 2) `gateway broadcast --signed-tx <signed_hex> --address <addr> --chain <chain>`; 3) poll `gateway orders --address <addr> --chain <chain> --order-id <orderId>` until txStatus=2, then proceed to next step."
+    },
+    {
+      "id": "okx-defi-047",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "wallet",
+      "commands": [
+        "wallet contract-call",
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Sign & Broadcast Calldata > Path B",
+      "obsolete": false,
+      "text": "Path B (Agentic Wallet) per dataList step. EVM (Ethereum, BSC, Polygon, Arbitrum, Base, XLayer=196, ...): `wallet contract-call --to <dataList[N].to> --chain <chainIndex> --input-data <dataList[N].serializedData> --amt <dataList[N].valueNormalized> --biz-type defi`. Solana: `wallet contract-call --to <dataList[N].to> --chain 501 --unsigned-tx <dataList[N].serializedData> --biz-type defi`. contract-call does TEE signing and broadcasting internally - no separate broadcast step.",
+      "note": "Sui serializedData is base64 BCS; lite contract-call exposes --sui-tx-bytes but the upstream defi doc gives no Sui Path B recipe."
+    },
+    {
+      "id": "okx-defi-048",
+      "kind": "safety",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [
+        "wallet contract-call",
+        "gateway broadcast"
+      ],
+      "source": "references/invest.md#Sign & Broadcast Calldata",
+      "obsolete": false,
+      "text": "CRITICAL - prepared transaction data is opaque: for each dataList[N], use to, serializedData and any applicable value field directly from that same entry. Never recreate, edit, truncate, pad, concatenate, re-encode or annotate a returned transaction field; pass the complete serializedData through the chain-specific argument."
+    },
+    {
+      "id": "okx-defi-049",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "wallet contract-call"
+      ],
+      "source": "references/invest.md#Sign & Broadcast Calldata; references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "`--amt` = dataList[N].valueNormalized passed directly: already a minimal-unit decimal integer string computed by the CLI (hex -> decimal; \"\"/null/\"0x0\" -> \"0\"). No conversion. If a step carries valueNormalizeError (value unparseable; valueNormalized then \"0\", not guessed), do NOT execute that step - relay the error and stop."
+    },
+    {
+      "id": "okx-defi-050",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "wallet contract-call",
+        "gateway broadcast"
+      ],
+      "source": "references/invest.md#Sign & Broadcast Calldata",
+      "obsolete": false,
+      "text": "--chain for `wallet contract-call` and `gateway broadcast` must be the realChainIndex (1 = Ethereum, 137 = Polygon, 56 = BSC, 501 = Solana, 196 = XLayer)."
+    },
+    {
+      "id": "okx-defi-051",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "wallet contract-call",
+        "gateway broadcast",
+        "gateway orders"
+      ],
+      "source": "references/invest.md#Sign & Broadcast Calldata > Execution rules; references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "dataList execution: run dataList[0], then dataList[1], ... strictly in array order, never in parallel. Wait for on-chain confirmation before the next step (Path A: txStatus=2; Path B: contract-call returns txHash). If any step fails, stop all remaining steps and report which succeeded and which failed."
+    },
+    {
+      "id": "okx-defi-052",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Sign & Broadcast Calldata",
+      "obsolete": false,
+      "text": "`invest` / `withdraw` / `collect` only return UNSIGNED calldata - they do not broadcast; the CLI never holds private keys."
+    },
+    {
+      "id": "okx-defi-053",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi list"
+      ],
+      "source": "references/invest.md#Displaying Search / List Results",
+      "obsolete": false,
+      "text": "Search/list results table columns: # | Platform | Chain | investmentId | Name | APY | TVL (example: 1 | Aave V3 | ETH | 9502 | USDC | 1.89% | $3.52B)."
+    },
+    {
+      "id": "okx-defi-054",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi list"
+      ],
+      "source": "references/invest.md#Displaying Search / List Results",
+      "obsolete": false,
+      "text": "investmentId is MANDATORY in every search/list row."
+    },
+    {
+      "id": "okx-defi-055",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi list",
+        "defi detail"
+      ],
+      "source": "references/invest.md#Displaying Search / List Results; references/invest-cli-reference.md#4. onchainos defi search",
+      "obsolete": false,
+      "text": "`rate` is a decimal APY -> multiply by 100 and append \"%\" (\"0.01820\" = 1.82%); `tvl` (USD) -> human-readable USD ($3.52B, $537M)."
+    },
+    {
+      "id": "okx-defi-056",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi list"
+      ],
+      "source": "references/invest.md#Displaying Search / List Results",
+      "obsolete": false,
+      "text": "Display data as-is - do NOT editorialize on APY values."
+    },
+    {
+      "id": "okx-defi-057",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi collect"
+      ],
+      "source": "references/invest.md#rewardType Reference; references/invest-cli-reference.md#9. onchainos defi claim",
+      "obsolete": false,
+      "text": "`defi collect --reward-type` values and required params: REWARD_PLATFORM (protocol-level rewards, e.g. AAVE token from Aave safety module) -> --platform-id; REWARD_INVESTMENT (product mining/staking rewards) -> --investment-id + --platform-id; V3_FEE (Uniswap V3 / PancakeSwap V3 trading fees) -> --investment-id + --token-id; REWARD_OKX_BONUS (OKX bonus) -> --investment-id + --platform-id; REWARD_MERKLE_BONUS (Merkle proof-based bonus / airdrop claims) -> --investment-id + --platform-id; UNLOCKED_PRINCIPAL (principal unlocked after lock period) -> --investment-id + --principal-index."
+    },
+    {
+      "id": "okx-defi-058",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi deposit",
+        "defi redeem",
+        "defi invest",
+        "defi withdraw"
+      ],
+      "source": "references/invest.md#Key Protocol Rules; references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "Aave borrow returns callDataType=WITHDRAW (borrow = withdraw from pool) and Aave repay returns callDataType=DEPOSIT (repay = deposit back) - normal Aave internal semantics; do NOT expose these callDataType labels to the user."
+    },
+    {
+      "id": "okx-defi-059",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi withdraw"
+      ],
+      "source": "references/invest.md#Key Protocol Rules",
+      "obsolete": false,
+      "text": "Withdraw parameter choice: V3 Pool exit -> `--token-id` + `--ratio` (`--ratio 1` = full exit); partial withdrawal (non-V3) -> `--amount`; full withdrawal -> `--ratio 1`.",
+      "note": "Verified in Rust: V3 path bails without --ratio; product with isSupportRedeem=false bails."
+    },
+    {
+      "id": "okx-defi-060",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi list",
+        "defi search",
+        "defi detail",
+        "defi rate-chart",
+        "defi tvl-chart",
+        "defi depth-price-chart",
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Post-execution Suggestions",
+      "obsolete": false,
+      "text": "Post-execution suggestions: after list/search -> view detail (`defi detail`) or start deposit flow; after detail -> check trends (`defi rate-chart` / `defi tvl-chart`) or proceed to `defi invest`; after detail of a V3 Pool -> `defi depth-price-chart` (depth) and `defi depth-price-chart --chart-type PRICE`; after invest success -> view positions (Portfolio) or search more; after withdraw success -> check positions (Portfolio) or balance (okx-agentic-wallet); after collect success -> check positions or swap rewards (okx-agentic-wallet)."
+    },
+    {
+      "id": "okx-defi-061",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi deposit",
+        "defi redeem"
+      ],
+      "source": "references/invest.md#Invest-specific Notes; references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "--slippage default \"0.01\" (1%); \"0.1\" = 10%. Suggest \"0.03\"-\"0.05\" for volatile V3 pools."
+    },
+    {
+      "id": "okx-defi-062",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi collect",
+        "wallet contract-call"
+      ],
+      "source": "references/invest.md#Invest-specific Notes",
+      "obsolete": false,
+      "text": "CRITICAL - Solana transaction expiry: Solana DeFi txs are base58 VersionedTransactions whose blockhash expires in ~60 seconds. After receiving Solana calldata you MUST warn: \"This Solana transaction must be signed and broadcast within 60 seconds or it will expire. Please sign immediately.\" Deliver this warning before moving on to anything else."
+    },
+    {
+      "id": "okx-defi-063",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi list"
+      ],
+      "source": "references/invest.md#Invest-specific Notes",
+      "obsolete": false,
+      "text": "CRITICAL - high APY warning: when displaying search/list results, if any product has APY > 50% (rate > 0.5), you MUST warn: \"WARNING: This product shows APY above 50%, which indicates elevated risk (potential impermanent loss, smart contract risk, or unsustainable rewards). Proceed with caution.\" Never silently display high-APY products."
+    },
+    {
+      "id": "okx-defi-064",
+      "kind": "confirmation",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest.md#Invest-specific Notes",
+      "obsolete": false,
+      "text": "User confirmation is required before every invest / withdraw / collect execution."
+    },
+    {
+      "id": "okx-defi-065",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi collect",
+        "wallet contract-call"
+      ],
+      "source": "references/invest.md#Invest-specific Notes",
+      "obsolete": false,
+      "text": "The address used for calldata generation MUST match the signing address."
+    },
+    {
+      "id": "okx-defi-066",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi prepare",
+        "defi deposit",
+        "defi redeem",
+        "defi claim",
+        "defi calculate-entry"
+      ],
+      "source": "references/invest-cli-reference.md#(intro)",
+      "obsolete": false,
+      "text": "The CLI reference claims \"all 15 DeFi commands\" but documents 13 here (support-chains, support-platforms, list, search, detail, prepare, deposit, redeem, claim, calculate-entry, rate-chart, tvl-chart, depth-price-chart) plus positions/position-detail in portfolio-cli-reference. It does NOT document the high-level invest/withdraw/collect that invest.md flows use; CLI 4.6.3 has 18 defi subcommands. prepare/deposit/redeem/claim/calculate-entry are the low-level path.",
+      "note": "Several low-level examples are stale vs CLI 4.6.3 (see units on deposit/redeem/calculate-entry)."
+    },
+    {
+      "id": "okx-defi-067",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi support-chains"
+      ],
+      "source": "references/invest-cli-reference.md#1. onchainos defi support-chains",
+      "obsolete": false,
+      "text": "`defi support-chains` (no params) returns array of {chainIndex (e.g. \"1\" Ethereum, \"56\" BSC, \"137\" POLYGON, \"42161\" ARBITRUM, \"8453\" BASE), network (e.g. \"ETH\", \"BSC\", \"POLYGON\")}."
+    },
+    {
+      "id": "okx-defi-068",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi support-platforms"
+      ],
+      "source": "references/invest-cli-reference.md#2. onchainos defi support-platforms",
+      "obsolete": false,
+      "text": "`defi support-platforms` (no params) returns array of {analysisPlatformId (used as --platform-id in other commands), platformName (e.g. \"Aave V3\", \"Lido\"), investmentCount}."
+    },
+    {
+      "id": "okx-defi-069",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi list"
+      ],
+      "source": "references/invest-cli-reference.md#3. onchainos defi list; references/invest-cli-reference.md#Input / Output Examples",
+      "obsolete": false,
+      "text": "`defi list [--page-num <n>]`: all products, no filters, sorted by APY descending; page size fixed at 20 (default page 1). Internally the same API as `defi search` with no filters; same return fields as search."
+    },
+    {
+      "id": "okx-defi-070",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search"
+      ],
+      "source": "references/invest-cli-reference.md#4. onchainos defi search",
+      "obsolete": false,
+      "text": "`defi search`: at least one of --token or --platform is REQUIRED (CLI errors if both omitted). --token / --platform take comma-separated keywords (\"USDC,ETH\", \"Aave,Compound\"); --chain is a chain name; --product-group defaults to SINGLE_EARN; page size fixed at 20."
+    },
+    {
+      "id": "okx-defi-071",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi list"
+      ],
+      "source": "references/invest-cli-reference.md#4. onchainos defi search",
+      "obsolete": false,
+      "text": "search/list return `data` = {total, list[]: {investmentId (used in detail/prepare/deposit), name, platformName, rate (APY decimal string), tvl (USD), chainIndex, feeRate (nullable), detailPath (nullable)}}."
+    },
+    {
+      "id": "okx-defi-072",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi detail"
+      ],
+      "source": "references/invest-cli-reference.md#5. onchainos defi detail",
+      "obsolete": false,
+      "text": "`defi detail --investment-id <id>` returns: investmentId, investmentName, platformName, platformLogo, investType (1=Save, 2=Pool, 3=Farm, 5=Stake, 6=Borrow, ...), chainIndex, network, rate (APY decimal), tvl (USD), feeRate (DEX_POOL only), hasBonus, isSupportClaim, isInvestable, isSupportRedeem, analysisPlatformId (for positions/claim), subscriptionMethod / redeemMethod (DEX_POOL/LENDING only), detailPath, underlyingToken[] {tokenSymbol, tokenAddress, chainIndex, tokenPrecision, tokenLogo}, aboutToken[] {same + marketCap, price}, rateDetails[] {tokenAddress, tokenSymbol, rate, title} (APY breakdown).",
+      "note": "isInvestable / isSupportRedeem / isSupportClaim gate the write commands (Rust withdraw bails when isSupportRedeem=false)."
+    },
+    {
+      "id": "okx-defi-073",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi prepare"
+      ],
+      "source": "references/invest-cli-reference.md#6. onchainos defi prepare",
+      "obsolete": false,
+      "text": "`defi prepare --investment-id <id>` (pre-investment info) returns investWithTokenList[] {tokenId, tokenSymbol, tokenName, tokenAddress, tokenPrecision, chainIndex, network, coinAmount (current balance), currencyAmount (USD)}; DEX_POOL adds feeRate, currentTick, currentPrice (token0 price ratio), tickSpacing, underlyingTokenList[] (index0 = token0, index1 = token1; tokenId, tokenSymbol, tokenName, tokenLogo, tokenAddress, network, chainIndex, tokenPrecision, isBaseToken = native token)."
+    },
+    {
+      "id": "okx-defi-074",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi deposit",
+        "defi prepare"
+      ],
+      "source": "references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "Low-level `defi deposit --user-input` = JSON array `[{\"tokenAddress\":\"0x...\",\"chainIndex\":\"1\",\"coinAmount\":\"50000\",\"tokenPrecision\":\"6\"}]` using tokenAddress, chainIndex, tokenPrecision from `defi prepare` investWithTokenList. coinAmount MUST be minimal units (integer = userAmount x 10^tokenPrecision); tokenPrecision REQUIRED; CLI converts to decimal internally; decimal coinAmount or missing tokenPrecision is rejected.",
+      "note": "Verified in Rust helpers.convert_minimal_to_decimal (also rejects zero/empty). The doc's own \"Find top USDC yield\" example omits tokenPrecision and would be rejected."
+    },
+    {
+      "id": "okx-defi-075",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi deposit",
+        "defi invest",
+        "defi calculate-entry"
+      ],
+      "source": "references/invest-cli-reference.md#7. onchainos defi deposit; references/invest-cli-reference.md#10. onchainos defi calculate-entry",
+      "obsolete": false,
+      "text": "V3 params: --token-id = V3 NFT tokenId (required to add to an existing V3 position); --tick-lower / --tick-upper required for a NEW V3 position. Use `=` for negative tick values: `--tick-lower=-11`."
+    },
+    {
+      "id": "okx-defi-076",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi deposit",
+        "defi redeem",
+        "defi claim",
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "Write-command return `data.dataList[]` (execute in order): callDataType, from (user wallet), to (target contract), value (native value, e.g. \"0x0\"), valueNormalized (minimal-unit decimal string for --amt), valueNormalizeError (only if value unparseable), serializedData (EVM hex 0x / Solana base58 / Sui base64 BCS), originalData (EVM ABI metadata JSON), signatureData (permit, if any), transactionPayload (Aptos JSON), gas (non-EVM only). redeem and claim return the same structure."
+    },
+    {
+      "id": "okx-defi-077",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi deposit",
+        "defi redeem",
+        "defi invest",
+        "defi withdraw"
+      ],
+      "source": "references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "callDataType enum: APPROVE (ERC-20 approve), DEPOSIT, SWAP,DEPOSIT (V3: single token into dual-token pool), WITHDRAW, WITHDRAW,SWAP (V3: withdraw then swap back to target token)."
+    },
+    {
+      "id": "okx-defi-078",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "gateway broadcast"
+      ],
+      "source": "references/invest-cli-reference.md#7. onchainos defi deposit",
+      "obsolete": false,
+      "text": "serializedData client handling (external signer, Path A): EVM - hex, use as tx.data with `to` as target; Solana - bs58 decode -> skip first 65 bytes (signature placeholder) -> VersionedMessage.deserialize() -> sign -> broadcast within 60 s; Sui - base64 decode -> prepend intent [0,0,0] -> blake2b-256 -> Ed25519 sign -> submit; Aptos - use transactionPayload JSON, build via SDK build.simple() -> sign -> submit."
+    },
+    {
+      "id": "okx-defi-079",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi redeem"
+      ],
+      "source": "references/invest-cli-reference.md#8. onchainos defi redeem",
+      "obsolete": false,
+      "text": "Low-level `defi redeem --id <id> --address <addr>`: --ratio \"1\" = 100% / \"0.5\" = 50% (use \"1\" for full exit; partial exit uses --user-input); --token/--symbol/--amount/--precision = LP/receipt token single-token shorthand (human-readable amount + decimals); --chain required for LP token input; --token-id = V3 NFT (required for V3 remove liquidity); --user-input JSON `[{\"tokenAddress\":\"<underlying>\",\"chainIndex\":\"<id>\",\"coinAmount\":\"<amount>\"}]` required for liquid-staking exits (Jito/JitoSOL, Lido/stETH) and other non-lending, non-V3 exits, and takes precedence over --token/--amount; --slippage default \"0.01\".",
+      "note": "CLI 4.6.3 validates redeem --user-input the same way as deposit (integer minimal coinAmount + tokenPrecision required); the doc format omits tokenPrecision and the Aave example uses \"100.23\" - stale."
+    },
+    {
+      "id": "okx-defi-080",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail",
+        "defi redeem"
+      ],
+      "source": "references/invest-cli-reference.md#8. onchainos defi redeem",
+      "obsolete": false,
+      "text": "Redeem rules: always call `defi position-detail` before `defi redeem` (investmentId + underlying token info). Full exit: --ratio 1 (+ --user-input if token info available, preferred). Partial exit: MUST pass --user-input with underlying token address and exact amount. Lending repay: always --user-input with exact repay amount, never --ratio 1. V3 Pool exits: --token-id only, no --user-input or --ratio.",
+      "note": "Conflicts with invest.md Key Protocol Rules (\"V3 exit: --token-id + --ratio\"), which is for high-level `defi withdraw` (CLI requires --ratio there)."
+    },
+    {
+      "id": "okx-defi-081",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi redeem",
+        "defi withdraw"
+      ],
+      "source": "references/invest-cli-reference.md#8. onchainos defi redeem",
+      "obsolete": false,
+      "text": "Common redeem callDataType patterns: [WITHDRAW] standard single-step; [APPROVE, WITHDRAW] aToken approval needed first; [WITHDRAW, SWAP] V3 remove liquidity then swap back; [DEPOSIT] Aave repay."
+    },
+    {
+      "id": "okx-defi-082",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi claim",
+        "defi position-detail"
+      ],
+      "source": "references/invest-cli-reference.md#9. onchainos defi claim",
+      "obsolete": false,
+      "text": "Low-level `defi claim --address <addr> --reward-type <type>`: --id required for REWARD_INVESTMENT, REWARD_OKX_BONUS, REWARD_MERKLE_BONUS, V3_FEE; --platform-id required for REWARD_PLATFORM and also enables auto-fetch of expectOutputList; --token-id required for V3_FEE; --principal-index required for UNLOCKED_PRINCIPAL; --expect-output JSON `[{\"tokenAddress\":\"0x...\",\"chainIndex\":\"1\",\"coinAmount\":\"0.01\"}]` - pass directly from position-detail rewardDefiTokenInfo when available (preferred), auto-fetch via --platform-id is the fallback. V3_FEE and UNLOCKED_PRINCIPAL need no --expect-output."
+    },
+    {
+      "id": "okx-defi-083",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi calculate-entry",
+        "defi prepare",
+        "defi deposit"
+      ],
+      "source": "references/invest-cli-reference.md#10. onchainos defi calculate-entry",
+      "obsolete": false,
+      "text": "Low-level `defi calculate-entry --id <id> --address <addr> --input-token <addr> --input-amount <amt> --token-decimal <n> [--tick-lower=<n> --tick-upper=<n>]`: must be called after `defi prepare` for V3 pools; user gives one token amount, returns tokenList[] {tokenAddress, tokenSymbol, coinAmount, chainIndex} with exact amounts for BOTH pool tokens, to be used in `defi deposit --user-input`.",
+      "note": "Doc says --input-amount is human-readable (\"100\"); CLI 4.6.3 requires integer minimal units (rejects \".\"), and converts output coinAmount to minimal units and adds tokenPrecision. High-level `defi invest --range/--tick-*` runs this internally."
+    },
+    {
+      "id": "okx-defi-084",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi detail",
+        "defi prepare",
+        "defi deposit"
+      ],
+      "source": "references/invest-cli-reference.md#Input / Output Examples > Find top USDC yield on Ethereum",
+      "obsolete": false,
+      "text": "Low-level deposit example: `defi search --token USDC --chain ethereum --product-group SINGLE_EARN` -> `defi detail --investment-id 9502` (check isInvestable) -> `defi prepare --investment-id 9502` (tokenAddress, chainIndex, tokenPrecision) -> `defi deposit --investment-id 9502 --address <addr> --user-input '[...]'` -> dataList -> sign and broadcast via okx-agentic-wallet.",
+      "note": "Example passes coinAmount \"100\" without tokenPrecision - contradicts the minimal-units + tokenPrecision rule; prefer high-level `defi invest`."
+    },
+    {
+      "id": "okx-defi-085",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi search",
+        "defi prepare",
+        "defi calculate-entry",
+        "defi deposit"
+      ],
+      "source": "references/invest-cli-reference.md#Input / Output Examples > V3 Pool entry with calculate-entry",
+      "obsolete": false,
+      "text": "Low-level V3 entry: `defi search --token USDT --platform PancakeSwap --chain bsc --product-group DEX_POOL` -> `defi prepare` (currentTick, tickSpacing, underlyingTokenList) -> `defi calculate-entry ... --tick-lower=-32150 --tick-upper=-31350` (amounts for both tokens) -> `defi deposit --user-input '[tokenA, tokenB]'` with the same ticks."
+    },
+    {
+      "id": "okx-defi-086",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "defi redeem"
+      ],
+      "source": "references/invest-cli-reference.md#Input / Output Examples > Redeem full position from Aave",
+      "obsolete": false,
+      "text": "Low-level full Aave redeem: `defi positions --address <addr> --chains ethereum` (analysisPlatformId e.g. \"44\" for Aave) -> `defi position-detail --address <addr> --chain ethereum --platform-id 44` (investmentId, coinAmount) -> `defi redeem --id 9502 --chain ethereum --address <addr> --ratio 1 --user-input '[...]'` -> dataList [WITHDRAW] -> sign and broadcast."
+    },
+    {
+      "id": "okx-defi-087",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail",
+        "defi claim"
+      ],
+      "source": "references/invest-cli-reference.md#Input / Output Examples > Claim rewards (REWARD_INVESTMENT)",
+      "obsolete": false,
+      "text": "Low-level REWARD_INVESTMENT claim: position-detail first (MUST) -> take rewardDefiTokenInfo [{tokenAddress, chainIndex, coinAmount}] -> `defi claim --address <addr> --chain ethereum --reward-type REWARD_INVESTMENT --id 9502 --platform-id 44 --expect-output '[...]'` (direct pass preferred over auto-fetch)."
+    },
+    {
+      "id": "okx-defi-088",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail",
+        "defi claim"
+      ],
+      "source": "references/invest-cli-reference.md#Input / Output Examples > Claim V3 trading fees",
+      "obsolete": false,
+      "text": "Low-level V3 fee claim: `defi position-detail` to get tokenId + investmentId -> `defi claim --address <addr> --chain ethereum --reward-type V3_FEE --id <investmentId> --token-id <tokenId>` (no --expect-output)."
+    },
+    {
+      "id": "okx-defi-089",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions"
+      ],
+      "source": "references/invest-cli-reference.md#Input / Output Examples > Check holdings across multiple chains",
+      "obsolete": false,
+      "text": "Multi-chain holdings: `defi positions --address <addr> --chains ethereum,bsc,avalanche,solana` -> per-chain platform list with totalValue, analysisPlatformId.",
+      "note": "Example mixes a 0x address with solana, contradicting the Address-Chain Compatibility rule (84019); follow the rule and split EVM vs Solana."
+    },
+    {
+      "id": "okx-defi-090",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi withdraw",
+        "defi invest"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes",
+      "obsolete": false,
+      "text": "84400 Parameter null -> check required params; a partial exit needs --amount or --ratio. Also triggered by a decimal/UI-unit --amount."
+    },
+    {
+      "id": "okx-defi-091",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes; references/portfolio-troubleshooting.md#Common Errors",
+      "obsolete": false,
+      "text": "84021 Asset syncing -> tell the user \"Position data is syncing, please retry shortly\"."
+    },
+    {
+      "id": "okx-defi-092",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi collect",
+        "defi claim"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes",
+      "obsolete": false,
+      "text": "84023 Invalid expectOutputList -> CLI auto-constructs it from position-detail; retry or pass --platform-id."
+    },
+    {
+      "id": "okx-defi-093",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "wallet balance"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes",
+      "obsolete": false,
+      "text": "84014 Balance check failed -> insufficient balance; check with okx-agentic-wallet."
+    },
+    {
+      "id": "okx-defi-094",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes",
+      "obsolete": false,
+      "text": "84018 Balancing failed (V3) -> adjust price range or increase slippage."
+    },
+    {
+      "id": "okx-defi-095",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi detail",
+        "defi invest"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes",
+      "obsolete": false,
+      "text": "84010 Token not supported -> check supported tokens via `defi detail`."
+    },
+    {
+      "id": "okx-defi-096",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi support-platforms"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes",
+      "obsolete": false,
+      "text": "84001 Platform not supported -> the DeFi platform is not supported."
+    },
+    {
+      "id": "okx-defi-097",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes",
+      "obsolete": false,
+      "text": "84016 Contract execution failed -> check parameters and retry."
+    },
+    {
+      "id": "okx-defi-098",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "references/invest-troubleshooting.md#Error Codes; references/portfolio-troubleshooting.md#Common Errors",
+      "obsolete": false,
+      "text": "84019 Address format mismatch -> --address and chain params incompatible (EVM 0x vs Solana base58 vs Sui/Tron/TON); apply Address-Chain Compatibility and split EVM and Solana into two separate calls."
+    },
+    {
+      "id": "okx-defi-099",
+      "kind": "troubleshooting",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [],
+      "source": "references/invest-troubleshooting.md#Error Codes; references/invest-troubleshooting.md#Common Failure Patterns; references/portfolio-troubleshooting.md#Common Errors",
+      "obsolete": false,
+      "text": "50011 Rate limit -> wait 1-2 s and retry once; if it persists, tell the user the service is rate-limiting."
+    },
+    {
+      "id": "okx-defi-100",
+      "kind": "troubleshooting",
+      "scope": "global",
+      "domain": "defi",
+      "commands": [
+        "wallet contract-call"
+      ],
+      "source": "references/invest-troubleshooting.md#Common Failure Patterns",
+      "obsolete": false,
+      "text": "CLI-generated payload rejected before submission: if `wallet contract-call` returns `-32602 Invalid params` or a calldata/payload validation error WITHOUT a txHash -> stop and discard the unexecuted dataList; never inspect, edit, re-encode or resubmit the old serializedData; rerun the documented DeFi preparation flow and use only the newly returned fields. If a txHash was returned this rule does not apply - use the wallet transaction-status flow."
+    },
+    {
+      "id": "okx-defi-101",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest-troubleshooting.md#Common Failure Patterns",
+      "obsolete": false,
+      "text": "Calldata generated but broadcast fails on-chain -> the position changed between position-detail and the write call (another withdraw/claim landed first); re-run `defi position-detail` and regenerate; never reuse stale calldata."
+    },
+    {
+      "id": "okx-defi-102",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw",
+        "defi collect"
+      ],
+      "source": "references/invest-troubleshooting.md#Common Failure Patterns",
+      "obsolete": false,
+      "text": "Solana calldata expired (blockhash ~60 s) -> if signing took too long, regenerate the calldata; do not retry the expired payload."
+    },
+    {
+      "id": "okx-defi-103",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi invest",
+        "defi withdraw"
+      ],
+      "source": "references/invest-troubleshooting.md#Common Failure Patterns",
+      "obsolete": false,
+      "text": "--amount rejected -> must be an integer in minimal units (userAmount x 10^tokenPrecision); a decimal or UI-unit value triggers parameter errors (84400)."
+    },
+    {
+      "id": "okx-defi-104",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Capability: Portfolio",
+      "obsolete": false,
+      "text": "Portfolio = read-only viewing of DeFi positions and holdings across protocols and chains (commands: support-chains, support-platforms, positions, position-detail)."
+    },
+    {
+      "id": "okx-defi-105",
+      "kind": "command-usage",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Quickstart",
+      "obsolete": false,
+      "text": "Quickstart: `defi positions --address <addr> --chains ethereum,bsc,solana` (overview) then `defi position-detail --address <addr> --chain ethereum --platform-id <analysisPlatformId from positions>`.",
+      "note": "Quickstart mixes EVM chains and solana with one 0x address - contradicts the compatibility rule."
+    },
+    {
+      "id": "okx-defi-106",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [],
+      "source": "references/portfolio.md#Chain Support",
+      "obsolete": false,
+      "text": "DeFi chain aliases -> chainIndex: Ethereum ethereum/eth 1; BSC bsc/bnb 56; Polygon polygon/matic 137; Arbitrum arbitrum/arb 42161; Base base 8453; X Layer xlayer/okb 196; Avalanche avalanche/avax 43114; Optimism optimism/op 10; Fantom fantom/ftm 250; Sui sui 784; Tron tron/trx 195; TON ton 607; Linea linea 59144; Scroll scroll 534352; zkSync zksync 324; Solana solana/sol 501."
+    },
+    {
+      "id": "okx-defi-107",
+      "kind": "routing",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Step 1: Identify Intent",
+      "obsolete": false,
+      "text": "Portfolio intent: view positions/portfolio/holdings -> `defi positions`; view detail for a protocol -> `defi position-detail`; redeem/claim after viewing -> switch to the Invest capability."
+    },
+    {
+      "id": "okx-defi-108",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "wallet status",
+        "wallet addresses"
+      ],
+      "source": "references/portfolio.md#Step 2: Collect Parameters; references/portfolio-troubleshooting.md#Edge Cases",
+      "obsolete": false,
+      "text": "Missing params: address -> address-resolution flow (wallet status -> wallet addresses) or ask if not logged in; chains -> ask which chains or suggest common ones (ethereum, bsc, solana); platform-id -> run `defi positions` first and use its analysisPlatformId (position-detail requires it as --platform-id)."
+    },
+    {
+      "id": "okx-defi-109",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions"
+      ],
+      "source": "references/portfolio.md#Displaying Positions Results",
+      "obsolete": false,
+      "text": "`defi positions` display MUST use exactly these columns in this order, no substitutions/omissions: # | Platform | analysisPlatformId | Chains | Positions | Value(USD) (example: 1 | Aave V3 | 12345 | ETH,BSC | 2 | $120.00)."
+    },
+    {
+      "id": "okx-defi-110",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions"
+      ],
+      "source": "references/portfolio.md#Displaying Positions Results",
+      "obsolete": false,
+      "text": "analysisPlatformId is MANDATORY in every positions row (users copy it for position-detail); never omit, hide, or replace it with another field."
+    },
+    {
+      "id": "okx-defi-111",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions"
+      ],
+      "source": "references/portfolio.md#Displaying Positions Results",
+      "obsolete": false,
+      "text": "Never group platforms - every platform is its own row regardless of value size."
+    },
+    {
+      "id": "okx-defi-112",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions"
+      ],
+      "source": "references/portfolio.md#Displaying Positions Results",
+      "obsolete": false,
+      "text": "Positions raw JSON mapping: each element of walletIdPlatformList[*].platformList[*] is one row; platformName -> Platform; analysisPlatformId -> analysisPlatformId; networkBalanceList[*].network joined with comma -> Chains; investmentCount -> Positions; currencyAmount -> Value(USD).",
+      "note": "portfolio-cli-reference lists different per-platform fields (totalValue, investedValue, profitValue, chainIndex, investTypeList, rewardDefiTokenInfo); display mapping here reflects actual API shape."
+    },
+    {
+      "id": "okx-defi-113",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Displaying Position Detail Results; references/portfolio-troubleshooting.md#Edge Cases",
+      "obsolete": false,
+      "text": "`defi position-detail` output shape: {\"ok\": true, \"data\": [ {\"walletIdPlatformDetailList\": [...]}, ... ]} - `data` is an ARRAY; iterate it; calling .get() on data directly is a client-side bug, not an API error."
+    },
+    {
+      "id": "okx-defi-114",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Displaying Position Detail Results",
+      "obsolete": false,
+      "text": "`defi position-detail` display: ALL tokens in a single flat table with exact columns: Type | Asset | Amount | Value(USD) | investmentId | aggregateProductId | Token Contract | Rewards (e.g. Supply | USDT | 1.002285 | $1.0025 | 127 | 71931 | 0x970223...7 | 0.000080 AVAX; Pending | sAVAX | 0.00000091 | $0.000012 | - | - | - | Platform reward). Each token is one row; merge investmentId and aggregateProductId from its parent investment entry."
+    },
+    {
+      "id": "okx-defi-115",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Displaying Position Detail Results",
+      "obsolete": false,
+      "text": "investmentId is MANDATORY in every position-detail row (needed for redeem/claim via Invest); aggregateProductId shown if present, else \"-\"."
+    },
+    {
+      "id": "okx-defi-116",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Displaying Position Detail Results",
+      "obsolete": false,
+      "text": "Token Contract: show the FULL contract address without truncation; \"-\" if native/empty.",
+      "note": "The doc's own example row shows a truncated address (0x970223...7), contradicting the rule."
+    },
+    {
+      "id": "okx-defi-117",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Displaying Position Detail Results",
+      "obsolete": false,
+      "text": "Rewards column: pending reward amount + symbol if present, \"-\" if none; platform rewards show \"Platform reward\". Type column: map investType -> Supply/Borrow/Stake/Farm/Pool etc.; pending-rewards rows use \"Pending\"."
+    },
+    {
+      "id": "okx-defi-118",
+      "kind": "safety",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#Displaying Position Detail Results",
+      "obsolete": false,
+      "text": "Health rate (lending): show separately below the position-detail table, with a warning if healthRate < 1.5."
+    },
+    {
+      "id": "okx-defi-119",
+      "kind": "display",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio.md#V3 Pool Positions - Extra Fields",
+      "obsolete": false,
+      "text": "V3 Pool positions (positionList present): add a section per position with columns tokenId | Status | Range | tickLower | tickUpper, from positionList[].tokenId, positionStatus (ACTIVE | INACTIVE), positionList[].range (e.g. \"0.892 - 0.992 USDC/DAI\"), positionList[].rangeInfo.tickLower / rangeInfo.tickUpper. These fields are critical for V3 operations (add liquidity, withdraw, collect V3 fees)."
+    },
+    {
+      "id": "okx-defi-120",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail",
+        "defi detail"
+      ],
+      "source": "references/portfolio.md#investType Reference; references/portfolio-cli-reference.md#2. onchainos defi position-detail",
+      "obsolete": false,
+      "text": "investType values: 1 Save (savings/yield), 2 Pool (liquidity pool), 3 Farm (yield farming), 4 Vaults, 5 Stake, 6 Borrow, 7 Staking, 8 Locked, 9 Deposit, 10 Vesting."
+    },
+    {
+      "id": "okx-defi-121",
+      "kind": "flow",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail",
+        "defi depth-price-chart"
+      ],
+      "source": "references/portfolio.md#Post-execution Suggestions",
+      "obsolete": false,
+      "text": "Portfolio post-execution suggestions: after `defi positions` -> 1) view detail (`defi position-detail`), 2) redeem (Invest), 3) claim rewards (Invest); after `defi position-detail` -> 1) redeem with investmentId from the table, 2) claim rewards, 3) add more (all Invest); after position-detail of a V3 Pool -> `defi depth-price-chart --investment-id <id>` and `defi depth-price-chart --investment-id <id> --chart-type PRICE`."
+    },
+    {
+      "id": "okx-defi-122",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions"
+      ],
+      "source": "references/portfolio-cli-reference.md#1. onchainos defi positions",
+      "obsolete": false,
+      "text": "`defi positions --address <addr> --chains <comma-separated>` (both required) returns per-platform entries: analysisPlatformId (used by position-detail and claim --platform-id), platformName, chainIndex, totalValue (USD), investedValue (USD), profitValue (unrealized P/L USD), platformLogo, investTypeList[], rewardDefiTokenInfo[] (pending claimable rewards)."
+    },
+    {
+      "id": "okx-defi-123",
+      "kind": "fact",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi position-detail"
+      ],
+      "source": "references/portfolio-cli-reference.md#2. onchainos defi position-detail",
+      "obsolete": false,
+      "text": "`defi position-detail --address <addr> --chain <chain> --platform-id <analysisPlatformId>` (all required) returns per position: investmentId (for redeem/claim), investmentName, investType, coinAmount (current redeemable balance, token units), coinUsdValue, tokenAddress / tokenSymbol (receipt/LP token), apy, earnedTokenList[] (pending rewards), tokenId (V3 NFT; use in redeem --token-id), tickLower, tickUpper, healthRate (LENDING only).",
+      "note": "invest flows also rely on tokenPrecision and rewardDefiTokenInfo from position-detail, which this schema omits."
+    },
+    {
+      "id": "okx-defi-124",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi position-detail"
+      ],
+      "source": "references/portfolio-troubleshooting.md#Edge Cases",
+      "obsolete": false,
+      "text": "--chains vs --chain confusion: passing the wrong one to positions/position-detail is a parameter error, not an empty result."
+    },
+    {
+      "id": "okx-defi-125",
+      "kind": "troubleshooting",
+      "scope": "domain",
+      "domain": "defi",
+      "commands": [
+        "defi positions",
+        "defi support-platforms"
+      ],
+      "source": "references/portfolio-troubleshooting.md#Edge Cases",
+      "obsolete": false,
+      "text": "Empty positions but the user insists they have holdings: check the address/chain pairing first (84019 class), then whether the protocol is supported (`defi support-platforms`); positions on unsupported platforms do not appear."
+    }
+  ]
+}

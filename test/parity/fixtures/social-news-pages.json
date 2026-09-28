@@ -1,0 +1,97 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/latest",
+  "match": {
+   "query": {
+    "cursor": "p2"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "",
+     "articles": [
+      {
+       "id": "a3",
+       "title": "T-a3",
+       "summary": "s-a3",
+       "content": "",
+       "sourceUrl": "https://example.com/a3",
+       "source": "odaily",
+       "timestamp": 1716892020000,
+       "tokenSymbols": [
+        "BTC"
+       ],
+       "importance": "high",
+       "tokenSymbolSentiments": [
+        {
+         "tokenSymbol": "BTC",
+         "sentiment": "bullish"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/latest",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "p2",
+     "articles": [
+      {
+       "id": "a1",
+       "title": "T-a1",
+       "summary": "s-a1",
+       "content": "",
+       "sourceUrl": "https://example.com/a1",
+       "source": "blockbeats",
+       "timestamp": 1716892020000,
+       "tokenSymbols": [
+        "BTC"
+       ],
+       "importance": "high",
+       "tokenSymbolSentiments": [
+        {
+         "tokenSymbol": "BTC",
+         "sentiment": "bullish"
+        }
+       ]
+      },
+      {
+       "id": "a2",
+       "title": "T-a2",
+       "summary": "s-a2",
+       "content": "",
+       "sourceUrl": "https://example.com/a2",
+       "source": "blockbeats",
+       "timestamp": 1716892020000,
+       "tokenSymbols": [
+        "BTC",
+        "ETH"
+       ],
+       "importance": "high",
+       "tokenSymbolSentiments": [
+        {
+         "tokenSymbol": "BTC",
+         "sentiment": "bullish"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ }
+]

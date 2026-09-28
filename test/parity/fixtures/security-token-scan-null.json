@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/security/token-scan",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": ""
+      }
+    }
+  }
+]

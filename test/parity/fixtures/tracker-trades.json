@@ -1,0 +1,28 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/address-tracker/trades",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "trades": [
+      {
+       "txHash": "0xabc",
+       "walletAddress": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+       "chainIndex": "1",
+       "tradeType": "1",
+       "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+       "tokenSymbol": "USDC",
+       "volumeUsd": "1000",
+       "tradeTime": "1716892020000",
+       "marketCap": "33000000000"
+      }
+     ]
+    }
+   }
+  }
+ }
+]

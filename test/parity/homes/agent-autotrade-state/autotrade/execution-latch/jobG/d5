@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "jobId": "jobG",
+  "deliveryId": "d5",
+  "phase": "spawned",
+  "updatedAt": 1700000000,
+  "directExecutionMode": "manual",
+  "directAmount": "25"
+}

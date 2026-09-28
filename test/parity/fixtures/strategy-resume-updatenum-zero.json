@@ -1,0 +1,16 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/reactivate",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": {
+          "updateNum": 0
+        }
+      }
+    }
+  }
+]

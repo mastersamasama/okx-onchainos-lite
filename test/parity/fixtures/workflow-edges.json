@@ -1,0 +1,36 @@
+[
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "match": { "body": { "chainIndex": "137" } },
+  "response": { "status": 200, "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":[{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":123,\"address\":\"NumTcaFallback111111111111111111111111111111\",\"walletCount\":4},{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":null,\"address\":\"NullTcaFallback11111111111111111111111111111\",\"walletCount\":4},{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":\"\",\"address\":\"EmptyTcaNoFallback111111111111111111111111111\",\"walletCount\":99},{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":\"ExpCount111111111111111111111111111111111111\",\"walletCount\":1e2,\"addressCount\":2},{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":\"MaxU64Count11111111111111111111111111111111\",\"walletCount\":18446744073709551615},{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":\"ObjCount11111111111111111111111111111111111\",\"walletCount\":{\"n\":1000},\"addressCount\":[5]},{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":\"BoolCount1111111111111111111111111111111111\",\"walletCount\":true,\"addressCount\":3},{\"chainIndex\":\"137\",\"walletType\":\"1\",\"tokenContractAddress\":\"MaxU64Count11111111111111111111111111111111\",\"walletCount\":18446744073709551615,\"note\":\"tie on u64::MAX keeps the first row\"}]}" }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "match": { "body": { "chainIndex": "10" } },
+  "response": { "status": 200, "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":[{\"chainIndex\":\"10\",\"tokenContractAddress\":\"NegZero111111111111111111111111111111111111\",\"walletCount\":-0,\"addressCount\":6},{\"chainIndex\":\"10\",\"tokenContractAddress\":\"HugeF64111111111111111111111111111111111111\",\"walletCount\":18446744073709551616,\"addressCount\":1}]}" }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/search",
+  "match": { "query": { "search": "sevenhits" } },
+  "response": { "status": 200, "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":[{\"tokenSymbol\":\"S1\",\"tokenContractAddress\":\"Hit1\",\"chainIndex\":\"137\"},{\"tokenSymbol\":\"S2\",\"tokenContractAddress\":\"Hit2\",\"chainIndex\":\"137\"},{\"tokenSymbol\":\"S3\",\"tokenContractAddress\":\"Hit3\",\"chainIndex\":\"137\"},{\"tokenSymbol\":\"S4\",\"tokenContractAddress\":\"Hit4\",\"chainIndex\":\"137\"},{\"tokenSymbol\":\"S5\",\"tokenContractAddress\":\"Hit5\",\"chainIndex\":\"137\"},{\"tokenSymbol\":\"S6\",\"tokenContractAddress\":\"Hit6\",\"chainIndex\":\"137\"},null,[1,2],{\"price\":2.50,\"marketCap\":1.0,\"logoUrl\":\"\",\"symbol\":{\"nested\":true},\"name\":\"n\",\"address\":\"Hit9\",\"chain\":137}]}" }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenList",
+  "match": { "query": { "chainIndex": "43114" } },
+  "response": { "status": 200, "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":[{\"tokenContractAddress\":5,\"address\":\"AvaxNumFallback\"},{\"tokenContractAddress\":null,\"address\":\"\"},{\"address\":\"AvaxAddrOnly\"},{\"tokenContractAddress\":\"Avax01\"},{\"tokenContractAddress\":\"Avax02\"},{\"tokenContractAddress\":\"Avax01\",\"dup\":true},{\"tokenContractAddress\":\"Avax03\"},{\"tokenContractAddress\":\"Avax04\"},{\"tokenContractAddress\":\"Avax05\"},{\"tokenContractAddress\":\"Avax06\"},{\"tokenContractAddress\":\"Avax07\"},{\"tokenContractAddress\":\"Avax08\"},{\"tokenContractAddress\":\"Avax09\"},{\"tokenContractAddress\":\"Avax10\"}]}" }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": { "query": { "chainIndex": "137" } },
+  "response": { "status": 200, "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"protocolId\":\"\",\"riskControlLevel\":\"1\"}}" }
+ },
+ {
+  "pathRegex": "^/api/v6/",
+  "response": { "status": 200, "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"ok\":1}}" }
+ }
+]

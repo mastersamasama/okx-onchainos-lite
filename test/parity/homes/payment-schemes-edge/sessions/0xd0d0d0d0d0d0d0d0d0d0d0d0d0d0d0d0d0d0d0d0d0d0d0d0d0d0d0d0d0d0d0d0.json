@@ -1,0 +1,9 @@
+{
+  "channel_id": "0xd0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0",
+  "owner_wallet": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+  "deposit": "1000",
+  "deposit": "5000",
+  "cumulative": "100",
+  "created_at": 1700000000,
+  "updated_at": 1700000000
+}

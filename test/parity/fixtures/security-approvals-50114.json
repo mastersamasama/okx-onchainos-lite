@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/security/approval-mng",
+    "response": {
+      "status": 401,
+      "body": {
+        "code": "50114",
+        "msg": "Invalid Authority"
+      }
+    }
+  }
+]

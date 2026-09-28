@@ -1,0 +1,16 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/calculator/enter/info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "liquidity": "1"
+        }
+      }
+    }
+  }
+]

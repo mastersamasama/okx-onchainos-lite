@@ -1,0 +1,45 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/chain/support/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "chainList": [
+            {
+              "chainIndex": 1,
+              "realChainIndex": 1,
+              "chainName": "eth",
+              "isEvmChain": true,
+              "alias": [
+                "ethereum"
+              ],
+              "showName": "Ethereum"
+            },
+            {
+              "chainIndex": "0",
+              "realChainIndex": "0",
+              "chainName": "btc",
+              "isEvmChain": false,
+              "alias": [],
+              "showName": "Bitcoin",
+              "nativeSymbol": "BTC"
+            },
+            {
+              "chainIndex": 784,
+              "realChainIndex": 784,
+              "chainName": "sui",
+              "isEvmChain": false,
+              "alias": [],
+              "showName": "SUI",
+              "gasPrice": 1.5
+            }
+          ]
+        }
+      }
+    }
+  }
+]

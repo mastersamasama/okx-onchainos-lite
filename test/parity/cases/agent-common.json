@@ -1,0 +1,4587 @@
+[
+ {
+  "id": "agent-common-na-not-json",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "not json"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-missing-event",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"jobId\":\"0x1\"}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-missing-jobid",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"event\":\"job_accepted\"}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-bad-jobid",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0x12\"}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-failure-title",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"event\":\"job_created\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"code\":1,\"jobTitle\":\"T\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-na-failure-provider",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"event\":\"job_closed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"code\":7,\"provider\":\"2002\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-na-failure-sub-cancel",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_cancel\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"code\":-3,\"jobTitle\":\"Daily alpha\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-na-failure-code-float",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"reward_claimed\",\"code\":1.5}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-role-x-skip-all",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"reward_claimed\"}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-repaired-control-chars",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"reward_claimed\",\"data\":\"line1\nline2\tend\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-common-na-system-jobid",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"create_task\",\"jobId\":\"system_42\"}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-unknown-event-role-x",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"totally_unknown\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-a2a-file-outside-temp",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"event\":\"deliverable_received\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}",
+   "--a2a-file",
+   "README.md"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-a2a-file-missing",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"event\":\"deliverable_received\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}",
+   "--a2a-file",
+   "does-not-exist.json"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-na-stale-user-job-accepted",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "user",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-submitted"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-na-asp-job-rejected-stale",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agent-id",
+   "2002",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime"
+  ]
+ },
+ {
+  "id": "agent-common-na-job-accepted-fetch-error",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-error"
+  ]
+ },
+ {
+  "id": "agent-common-na-sub-open-not-created",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_open\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-sub-open-active"
+  ]
+ },
+ {
+  "id": "agent-common-na-sub-user-reject-owner",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "2002",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_user_reject\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-sub-reject-other-owner"
+  ]
+ },
+ {
+  "id": "agent-common-na-relay-status-unavailable",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-error"
+  ]
+ },
+ {
+  "id": "agent-common-na-stale-role-x",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"job_submitted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-na-role-x-after-fresh",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime"
+  ]
+ },
+ {
+  "id": "agent-common-na-anon-no-login-role-x",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "1001",
+   "--role",
+   "x",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-cache-notify",
+  "argv": [
+   "agent",
+   "cache-notify",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--event-key",
+   "job_completed_escrow",
+   "--content",
+   "Done ✓"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-cache-rating",
+  "argv": [
+   "agent",
+   "cache-rating",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--score",
+   "4.50",
+   "--comment",
+   "solid work"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-deliverable-save-bad-role",
+  "argv": [
+   "agent",
+   "task-deliverable-save",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "x",
+   "--file",
+   "README.md",
+   "--title",
+   "Report",
+   "--short-id",
+   "0xab…abab"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-deliverable-save-missing-file",
+  "argv": [
+   "agent",
+   "task-deliverable-save",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--file",
+   "does-not-exist.txt",
+   "--title",
+   "Report",
+   "--short-id",
+   "0xab"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-deliverable-list-all",
+  "argv": [
+   "agent",
+   "task-deliverable-list"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-deliverable-list-job",
+  "argv": [
+   "agent",
+   "task-deliverable-list",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-deliverable-list-search",
+  "argv": [
+   "agent",
+   "task-deliverable-list",
+   "--search",
+   "report"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-deliverable-list-bad-role",
+  "argv": [
+   "agent",
+   "task-deliverable-list",
+   "--role",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-deliverable-list-unsafe-job",
+  "argv": [
+   "agent",
+   "task-deliverable-list",
+   "--job-id",
+   "../x"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-user-notify-image-missing",
+  "argv": [
+   "agent",
+   "user-notify",
+   "--content",
+   "hello",
+   "--image-path",
+   "does-not-exist.png"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-user-notify-file-link",
+  "argv": [
+   "agent",
+   "user-notify",
+   "--content",
+   "see file:///tmp/x.png"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-user-notify-md-image",
+  "argv": [
+   "agent",
+   "user-notify",
+   "--content",
+   "look ![x](y.png)"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-user-notify-spawn",
+  "argv": [
+   "agent",
+   "user-notify",
+   "--content",
+   "hello\\nworld"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-funding-notice-notify-user",
+  "argv": [
+   "agent",
+   "funding-notice",
+   "--chain",
+   "XLayer",
+   "--currency",
+   "USDT",
+   "--shortfall",
+   "0.5",
+   "--deposit-address",
+   "0x1234567890abcdef1234567890abcdef12345678",
+   "--notify-user",
+   "--content",
+   "Top up please",
+   "--image-dir",
+   ".cache/parity-agent-qr"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-funding-notice-bad-reason",
+  "argv": [
+   "agent",
+   "funding-notice",
+   "--chain",
+   "XLayer",
+   "--currency",
+   "USDT",
+   "--shortfall",
+   "1",
+   "--deposit-address",
+   "0xabc",
+   "--reason",
+   "bogus"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-funding-notice-blank-chain",
+  "argv": [
+   "agent",
+   "funding-notice",
+   "--chain",
+   " ",
+   "--currency",
+   "USDT",
+   "--shortfall",
+   "1",
+   "--deposit-address",
+   "0xabc"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-funding-notice-notify-no-content",
+  "argv": [
+   "agent",
+   "funding-notice",
+   "--chain",
+   "XLayer",
+   "--currency",
+   "USDT",
+   "--shortfall",
+   "1",
+   "--deposit-address",
+   "0xabc",
+   "--notify-user"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-funding-notice-blank-deposit-chain",
+  "argv": [
+   "agent",
+   "funding-notice",
+   "--chain",
+   "XLayer",
+   "--currency",
+   "USDT",
+   "--shortfall",
+   "1",
+   "--deposit-address",
+   "0xabc",
+   "--deposit-chain",
+   "  "
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-session-cleanup-default",
+  "argv": [
+   "agent",
+   "session-cleanup",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-session-cleanup-keep",
+  "argv": [
+   "agent",
+   "session-cleanup",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_KEEP_SESSION": "TRUE"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-session-cleanup-keep-1",
+  "argv": [
+   "agent",
+   "session-cleanup",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_KEEP_SESSION": "1"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-dispute-upload-bad-role",
+  "argv": [
+   "agent",
+   "dispute",
+   "upload",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--role",
+   "ASP"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-dispute-upload-no-evidence",
+  "argv": [
+   "agent",
+   "dispute",
+   "upload",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--role",
+   "user"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-dispute-upload-text-too-long",
+  "argv": [
+   "agent",
+   "dispute",
+   "upload",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--role",
+   "user",
+   "--text",
+   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-dispute-upload-missing-file",
+  "argv": [
+   "agent",
+   "dispute",
+   "upload",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--role",
+   "asp",
+   "--text",
+   "evidence",
+   "--file",
+   "does-not-exist.bin"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-common-dispute-upload-ok",
+  "argv": [
+   "agent",
+   "dispute",
+   "upload",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--role",
+   "user",
+   "--text",
+   "  evidence \"quoted\" \\ back  ",
+   "--file",
+   "LICENSE"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-evidence-upload"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-dispute-upload-server-error",
+  "argv": [
+   "agent",
+   "dispute",
+   "upload",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--role",
+   "user",
+   "--text",
+   "evidence"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-server-error"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-list-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "list"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/last-display.json.displayed_at"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-list-json-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "list",
+   "--format",
+   "json"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/last-display.json.displayed_at"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-list-refund-json-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "list",
+   "--scope",
+   "refund",
+   "--format",
+   "json"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/last-display.json.displayed_at"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-list-refund-md-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "list",
+   "--scope",
+   "refund"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/last-display.json.displayed_at"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-resolve-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve",
+   "--user-reply",
+   "A"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-pick-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "pick",
+   "--index",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/last-display.json.displayed_at"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-pick-job-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "pick",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/last-display.json.displayed_at"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-cancel-empty",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "cancel",
+   "--index",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/last-display.json.displayed_at"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-request-bad-choices",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--choices-json",
+   "[]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-choices-syntax",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--choices-json",
+   "[{\"key\":\"A\""
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-template-missing",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body {{__OKX_TASK_TITLE__}}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-template-invalid",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body",
+   "--template-vars-b64",
+   "!!!"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-template-unknown-key",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body",
+   "--template-vars-b64",
+   "eyJfX09USEVSX18iOiJ4In0="
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-template-no-placeholder",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body",
+   "--template-vars-b64",
+   "eyJfX09LWF9UQVNLX1RJVExFX18iOiJUIn0="
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-queue",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--to-agent-id",
+   "2002",
+   "--list-label",
+   "[Decision 0xabab…abab] price decision",
+   "--user-content",
+   "Accept the quote?\\nA) yes B) no",
+   "--source-event",
+   "negotiate_reply"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-request-cli-mode",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "negotiate_reply"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "agent-common-pv2-request-retired",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "autotrade_consent"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-request-prompt-rendered",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "[Decision] {{__OKX_TASK_LABEL_TITLE__}}",
+   "--user-content",
+   "Body {{__OKX_TASK_TITLE__}} {{keep}}",
+   "--template-vars-b64",
+   "eyJfX09LWF9UQVNLX0xBQkVMX1RJVExFX18iOiJMYWJlbCB7e19fT0tYX1RBU0tfVElUTEVfX319IiwiX19PS1hfVEFTS19USVRMRV9fIjoiVGl0bGUg4pyTIn0=",
+   "--to-agent-id",
+   "1001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-request-content-file-missing",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content-file",
+   "does-not-exist.txt"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code"
+ },
+ {
+  "id": "agent-common-pv2-request-buyer-review",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Review?",
+   "--source-event",
+   "job_submitted"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-request-asp-decision",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "Refund",
+   "--user-content",
+   "Refund?",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--expires-at",
+   "4102444800"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-request-prompt-refund-bad-b64",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--refund-display-b64",
+   "!!!"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-prompt-refund-non-decision",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_submitted",
+   "--refund-display-b64",
+   "eyJzZXJ2aWNlTmFtZSI6IlJlcG9ydCBzZXJ2aWNlIiwidGFza1R5cGUiOiJPbmUtdGltZSIsImFtb3VudCI6IjUiLCJ0b2tlblN5bWJvbCI6IlVTRFQiLCJyZXNwb25zZURlYWRsaW5lIjo0MTAyNDQ0ODAwfQ"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-prompt-refund-type-mismatch",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "sub_user_reject",
+   "--refund-display-b64",
+   "eyJzZXJ2aWNlTmFtZSI6IlJlcG9ydCBzZXJ2aWNlIiwidGFza1R5cGUiOiJPbmUtdGltZSIsImFtb3VudCI6IjUiLCJ0b2tlblN5bWJvbCI6IlVTRFQiLCJyZXNwb25zZURlYWRsaW5lIjo0MTAyNDQ0ODAwfQ"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-request-prompt-refund-ok",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--refund-display-b64",
+   "eyJzZXJ2aWNlTmFtZSI6IlJlcG9ydCBzZXJ2aWNlIiwidGFza1R5cGUiOiJPbmUtdGltZSIsImFtb3VudCI6IjUiLCJ0b2tlblN5bWJvbCI6IlVTRFQiLCJyZXNwb25zZURlYWRsaW5lIjo0MTAyNDQ0ODAwfQ"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at"
+  ]
+ },
+ {
+  "id": "agent-common-pv2-rws-b-reason",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "B reason: late delivery",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-no-decision-id",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "B late",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-a",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "agree to refund",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-ambiguous",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "a or b",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-b-no-reason",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "Request evaluation",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-role-user",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-expired",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]",
+   "--expires-at",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-bad-choices",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\"}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-relay-spawn",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "好的，同意",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--to-agent-id",
+   "1001",
+   "--source-event",
+   "job_submitted"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-candidate-non-candidate",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--source-event",
+   "job_submitted",
+   "--autotrade-candidate-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rws-sub-binding",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "b: service never delivered",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "sub_user_reject",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:sub_user_reject:2",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"sub_agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionBindingKey\":\"periodIndex\",\"decisionBindingValue\":\"2\"}},{\"key\":\"B\",\"actionId\":\"sub_dispute\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionBindingKey\":\"periodIndex\",\"decisionBindingValue\":\"2\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rp-no-decision-id",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-prompt",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rp-no-entry",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-prompt",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-pv2-rp-relay-spawn",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-prompt",
+   "--user-reply",
+   "approve it please",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--source-event",
+   "job_submitted"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-my-agents-anon",
+  "argv": [
+   "agent",
+   "my-agents"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-my-agents-role-anon",
+  "argv": [
+   "agent",
+   "my-agents",
+   "--role",
+   " ASP "
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-my-agents-bad-role",
+  "argv": [
+   "agent",
+   "my-agents",
+   "--role",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-gate-check-anon",
+  "argv": [
+   "agent",
+   "gate-check",
+   "--role",
+   "user"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-gate-check-bad-role",
+  "argv": [
+   "agent",
+   "gate-check",
+   "--role",
+   "boss"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-communication-check-skip",
+  "argv": [
+   "agent",
+   "communication-check"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-common-communication-check-missing",
+  "argv": [
+   "agent",
+   "communication-check"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-prepare-create-invalid",
+  "argv": [
+   "agent",
+   "prepare-create",
+   "--budget",
+   "-1",
+   "--title",
+   " ",
+   "--description",
+   "short",
+   "--currency",
+   "BTC",
+   "--max-budget",
+   "0.1234567"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-prepare-create-preflight",
+  "argv": [
+   "agent",
+   "prepare-create",
+   "--title",
+   "Market report",
+   "--budget",
+   "1",
+   "--max-budget",
+   "2",
+   "--currency",
+   "usd₮0"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-prepare-create-max-lt-budget",
+  "argv": [
+   "agent",
+   "prepare-create",
+   "--budget",
+   "5",
+   "--max-budget",
+   "2"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-profile-empty",
+  "argv": [
+   "agent",
+   "profile",
+   " "
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-designated-route-empty",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "  "
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-context-bad-job",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "task-001",
+   "--agent-id",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-context-bad-role",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "boss",
+   "--agent-id",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-context-empty-agent",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-context-anon",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-status-anon-no-identity",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-status-onetime",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-errors",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-error"
+  ]
+ },
+ {
+  "id": "agent-common-status-dispute-fallback",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-error-dispute"
+  ]
+ },
+ {
+  "id": "agent-common-status-disputed",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-disputed"
+  ]
+ },
+ {
+  "id": "agent-common-status-completed",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-completed-nodispute"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-subscription",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-sub"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-subscription-failed",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-sub-failed"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-server-error",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-server-error"
+  ]
+ },
+ {
+  "id": "agent-common-tasks-list",
+  "argv": [
+   "agent",
+   "tasks",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-tasks-filter-page",
+  "argv": [
+   "agent",
+   "tasks",
+   "--status",
+   "accepted",
+   "--page",
+   "2",
+   "--limit",
+   "5",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-tasks-disputed",
+  "argv": [
+   "agent",
+   "tasks",
+   "--status",
+   "disputed",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-dispute-list"
+  ]
+ },
+ {
+  "id": "agent-common-tasks-disputed-zero-limit",
+  "argv": [
+   "agent",
+   "tasks",
+   "--status",
+   "disputed",
+   "--limit",
+   "0",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-tasks-anon-no-identity",
+  "argv": [
+   "agent",
+   "tasks"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-arbitration-list",
+  "argv": [
+   "agent",
+   "arbitration-list",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-dispute-list"
+  ]
+ },
+ {
+  "id": "agent-common-arbitration-list-paged",
+  "argv": [
+   "agent",
+   "arbitration-list",
+   "--agent-id",
+   "1001",
+   "--page",
+   "2",
+   "--page-size",
+   "5"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-dispute-list"
+  ]
+ },
+ {
+  "id": "agent-common-arbitration-list-blank-agent",
+  "argv": [
+   "agent",
+   "arbitration-list",
+   "--agent-id",
+   "  "
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-arbitration-list-page-zero",
+  "argv": [
+   "agent",
+   "arbitration-list",
+   "--agent-id",
+   "1",
+   "--page",
+   "0"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-common-arbitration-detail",
+  "argv": [
+   "agent",
+   "arbitration-detail",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-dispute-detail"
+  ]
+ },
+ {
+  "id": "agent-common-arbitration-detail-sub",
+  "argv": [
+   "agent",
+   "arbitration-detail",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-dispute-detail-sub"
+  ]
+ },
+ {
+  "id": "agent-common-arbitration-detail-bad",
+  "argv": [
+   "agent",
+   "arbitration-detail",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-dispute-detail-bad"
+  ]
+ },
+ {
+  "id": "agent-common-arbitration-detail-error",
+  "argv": [
+   "agent",
+   "arbitration-detail",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-dispute-detail-error"
+  ]
+ },
+ {
+  "id": "agent-common-arbitration-detail-empty-job",
+  "argv": [
+   "agent",
+   "arbitration-detail",
+   " ",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-refund-list-provider-available",
+  "argv": [
+   "agent",
+   "refund-list",
+   "--role",
+   "provider",
+   "--scope",
+   "available"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-refund-list-anon",
+  "argv": [
+   "agent",
+   "refund-list",
+   "--role",
+   "buyer",
+   "--scope",
+   "available"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-refund-detail-anon",
+  "argv": [
+   "agent",
+   "refund-detail",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "provider"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-active-tasks-anon",
+  "argv": [
+   "agent",
+   "active-tasks"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-active-tasks-terminal-anon",
+  "argv": [
+   "agent",
+   "active-tasks",
+   "--role",
+   "asp",
+   "--include-terminal"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-active-tasks-bad-role",
+  "argv": [
+   "agent",
+   "active-tasks",
+   "--role",
+   "foo"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-in-progress-none",
+  "argv": [
+   "agent",
+   "task-in-progress"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-in-progress-too-many",
+  "argv": [
+   "agent",
+   "task-in-progress",
+   "--agent-ids",
+   "1000,1001,1002,1003,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016,1017,1018,1019,1020"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-in-progress-anon",
+  "argv": [
+   "agent",
+   "task-in-progress",
+   "--agent-ids",
+   "1001"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-in-progress",
+  "argv": [
+   "agent",
+   "task-in-progress",
+   "--agent-ids",
+   "1001,2002",
+   "--agent-ids",
+   "3003"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-in-progress"
+  ]
+ },
+ {
+  "id": "agent-common-in-progress-server-error",
+  "argv": [
+   "agent",
+   "task-in-progress",
+   "--agent-ids",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-server-error"
+  ]
+ },
+ {
+  "id": "agent-common-lifecycle-anon",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-context-wallet-asp",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   ","
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-context-wallet-sparse",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "evaluator",
+   "--agent-id",
+   ","
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-context-sparse"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-context-no-title",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ","
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-context-no-title"
+  ]
+ },
+ {
+  "id": "agent-common-context-bad-type",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ","
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-context-bad-type"
+  ]
+ },
+ {
+  "id": "agent-common-context-bad-float",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ","
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-context-bad-float"
+  ]
+ },
+ {
+  "id": "agent-common-context-api-error",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ","
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-context-api-error"
+  ]
+ },
+ {
+  "id": "agent-common-context-role-space",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user ",
+   "--agent-id",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-common-status-sub-expired",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-sub-expired"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-sub-trial-failed",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-sub-trial-failed"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-sub-grace-ended",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-sub-grace-ended"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-sub-failed-unproven",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-sub-failed-unproven"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-sub-cancelled-expired",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   " 1001 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-sub-cancelled-expired"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-onetime-strings",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime-strings"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-status-api-error",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-context-api-error"
+  ]
+ },
+ {
+  "id": "agent-common-v-my-agents-wallet",
+  "argv": [
+   "agent",
+   "my-agents"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-my-agents-wallet-role",
+  "argv": [
+   "agent",
+   "my-agents",
+   "--role",
+   " Evaluator "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-gate-check-wallet-asp",
+  "argv": [
+   "agent",
+   "gate-check",
+   "--role",
+   "asp"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-gate-check-wallet-none",
+  "argv": [
+   "agent",
+   "gate-check",
+   "--role",
+   "user"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-server-error"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-profile-wallet",
+  "argv": [
+   "agent",
+   "profile",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-profile-not-found",
+  "argv": [
+   "agent",
+   "profile",
+   " 9999 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-route-a2a",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-route-mcp",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "2002",
+   "--service-id",
+   "svc-mcp"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-route-numeric-id",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "2002",
+   "--service-id",
+   "11"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-route-svc-missing",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "2002",
+   "--service-id",
+   "nope"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-route-not-provider",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "3003"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-route-unknown",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "9999"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-route-offline",
+  "argv": [
+   "agent",
+   "designated-route",
+   "--provider",
+   "4004",
+   "--service-id",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-prepare-create-wallet",
+  "argv": [
+   "agent",
+   "prepare-create",
+   "--title",
+   "Market report",
+   "--description",
+   "Summarize the confirmed market inputs for Q3",
+   "--budget",
+   "1",
+   "--max-budget",
+   "2",
+   "--currency",
+   "USDT",
+   "--provider",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-context-wallet-profile",
+  "argv": [
+   "agent",
+   "common",
+   "context",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime",
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-status-resolve-user",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-onetime"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-tasks-resolve-user",
+  "argv": [
+   "agent",
+   "tasks",
+   "--limit",
+   "3"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-active-tasks-wallet",
+  "argv": [
+   "agent",
+   "active-tasks"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-active"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-active-tasks-asp-terminal",
+  "argv": [
+   "agent",
+   "active-tasks",
+   "--role",
+   "ASP",
+   "--include-terminal"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-active"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-na-role-auto",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "2002",
+   "--role",
+   "auto",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-onetime"
+  ]
+ },
+ {
+  "id": "agent-common-v-na-role-auto-unknown",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9999",
+   "--role",
+   "auto",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-wallet",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-onetime"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-resolve",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-sub"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-not-user",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-onetime"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-submitted",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   " 1001 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-lc-submitted"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-strings",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-lc-strings"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-completed",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-lc-completed"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-no-type",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-lc-no-type"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-no-status",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-lc-no-status"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-error",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-error"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-created",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-created"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-rejected",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-rejected"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-sub-failed",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-sub-failed"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-sub-expired",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-sub-expired"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-sub-trial-failed",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-sub-trial-failed"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-sub-grace-ended",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-sub-grace-ended"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-lifecycle-sub-cancelled-expired",
+  "argv": [
+   "agent",
+   "lifecycle",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-task-sub-cancelled-expired"
+  ],
+  "masks": [
+   "stdout.data.syncedAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-bad-choices",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--choices-json",
+   "[]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-choices-syntax",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--choices-json",
+   "[{\"key\":\"A\""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-template-missing",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body {{__OKX_TASK_TITLE__}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-template-invalid",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body",
+   "--template-vars-b64",
+   "!!!"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-template-unknown-key",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body",
+   "--template-vars-b64",
+   "eyJfX09USEVSX18iOiJ4In0="
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-template-no-placeholder",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Body",
+   "--template-vars-b64",
+   "eyJfX09LWF9UQVNLX1RJVExFX18iOiJUIn0="
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-queue",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--to-agent-id",
+   "2002",
+   "--list-label",
+   "[Decision 0xabab…abab] price decision",
+   "--user-content",
+   "Accept the quote?\\nA) yes B) no",
+   "--source-event",
+   "negotiate_reply"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ],
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  }
+ },
+ {
+  "id": "agent-common-v-pv2q-request-retired",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "autotrade_consent"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-prompt-rendered",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "[Decision] {{__OKX_TASK_LABEL_TITLE__}}",
+   "--user-content",
+   "Body {{__OKX_TASK_TITLE__}} {{keep}}",
+   "--template-vars-b64",
+   "eyJfX09LWF9UQVNLX0xBQkVMX1RJVExFX18iOiJMYWJlbCB7e19fT0tYX1RBU0tfVElUTEVfX319IiwiX19PS1hfVEFTS19USVRMRV9fIjoiVGl0bGUg4pyTIn0=",
+   "--to-agent-id",
+   "1001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ],
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  }
+ },
+ {
+  "id": "agent-common-v-pv2q-request-content-file-missing",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content-file",
+   "does-not-exist.txt"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "osErrorText": "code",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-buyer-review",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--list-label",
+   "L",
+   "--user-content",
+   "Review?",
+   "--source-event",
+   "job_submitted"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ],
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  }
+ },
+ {
+  "id": "agent-common-v-pv2q-request-asp-decision",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "Refund",
+   "--user-content",
+   "Refund?",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--expires-at",
+   "4102444800"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ],
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  }
+ },
+ {
+  "id": "agent-common-v-pv2q-request-prompt-refund-bad-b64",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--refund-display-b64",
+   "!!!"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-prompt-refund-non-decision",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_submitted",
+   "--refund-display-b64",
+   "eyJzZXJ2aWNlTmFtZSI6IlJlcG9ydCBzZXJ2aWNlIiwidGFza1R5cGUiOiJPbmUtdGltZSIsImFtb3VudCI6IjUiLCJ0b2tlblN5bWJvbCI6IlVTRFQiLCJyZXNwb25zZURlYWRsaW5lIjo0MTAyNDQ0ODAwfQ"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-prompt-refund-type-mismatch",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "sub_user_reject",
+   "--refund-display-b64",
+   "eyJzZXJ2aWNlTmFtZSI6IlJlcG9ydCBzZXJ2aWNlIiwidGFza1R5cGUiOiJPbmUtdGltZSIsImFtb3VudCI6IjUiLCJ0b2tlblN5bWJvbCI6IlVTRFQiLCJyZXNwb25zZURlYWRsaW5lIjo0MTAyNDQ0ODAwfQ"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-request-prompt-refund-ok",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "request-prompt",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--list-label",
+   "L",
+   "--user-content",
+   "c",
+   "--source-event",
+   "job_rejected",
+   "--refund-display-b64",
+   "eyJzZXJ2aWNlTmFtZSI6IlJlcG9ydCBzZXJ2aWNlIiwidGFza1R5cGUiOiJPbmUtdGltZSIsImFtb3VudCI6IjUiLCJ0b2tlblN5bWJvbCI6IlVTRFQiLCJyZXNwb25zZURlYWRsaW5lIjo0MTAyNDQ0ODAwfQ"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ],
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  }
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-b-reason",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "B reason: late delivery",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-no-decision-id",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "B late",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-a",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "agree to refund",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-ambiguous",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "a or b",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-b-no-reason",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "Request evaluation",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-role-user",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-expired",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}},{\"key\":\"B\",\"actionId\":\"raise_arbitration\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}]",
+   "--expires-at",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-bad-choices",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"agree_refund\"}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-relay-spawn",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "好的，同意",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--to-agent-id",
+   "1001",
+   "--source-event",
+   "job_submitted"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-candidate-non-candidate",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--source-event",
+   "job_submitted",
+   "--autotrade-candidate-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rws-sub-binding",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-with-sessionkey",
+   "--user-reply",
+   "b: service never delivered",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "sub_user_reject",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:sub_user_reject:2",
+   "--choices-json",
+   "[{\"key\":\"A\",\"actionId\":\"sub_agree_refund\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionBindingKey\":\"periodIndex\",\"decisionBindingValue\":\"2\"}},{\"key\":\"B\",\"actionId\":\"sub_dispute\",\"params\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionBindingKey\":\"periodIndex\",\"decisionBindingValue\":\"2\"}}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rp-no-decision-id",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-prompt",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rp-no-entry",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-prompt",
+   "--user-reply",
+   "A",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "asp",
+   "--agent-id",
+   "2002",
+   "--source-event",
+   "job_rejected",
+   "--decision-id",
+   "0xabababababababababababababababababababababababababababababababab:job_rejected:e1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-pv2q-rp-relay-spawn",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "resolve-prompt",
+   "--user-reply",
+   "approve it please",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "user",
+   "--agent-id",
+   "1001",
+   "--source-event",
+   "job_submitted"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/pending-decisions-new.json.entries.*.created_at",
+   "home.task/pending-decisions-new.json.entries.*.updated_at",
+   "home.task/last-display.json.displayed_at"
+  ]
+ },
+ {
+  "id": "agent-common-v-tasks-status-encoding",
+  "argv": [
+   "agent",
+   "tasks",
+   "--status",
+   "a b&c=d/é?#x",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-tasks-status-plus",
+  "argv": [
+   "agent",
+   "tasks",
+   "--status",
+   "1+2%3",
+   "--page",
+   "3",
+   "--limit",
+   "7",
+   "--agent-id",
+   "10 01"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-status-agent-space",
+  "argv": [
+   "agent",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "10 01é"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-task-onetime"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-common-v-arbitration-list-order",
+  "argv": [
+   "agent",
+   "arbitration-list",
+   "--agent-id",
+   "1",
+   "--page-size",
+   "0",
+   "--page",
+   "0"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-common-v-arbitration-list-order-eq",
+  "argv": [
+   "agent",
+   "arbitration-list",
+   "--page-size=0",
+   "--agent-id",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-common-v-user-notify-empty-image",
+  "argv": [
+   "agent",
+   "user-notify",
+   "--content",
+   "x",
+   "--image-path",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-common-v-funding-notice-empty-image-dir",
+  "argv": [
+   "agent",
+   "funding-notice",
+   "--chain",
+   "XLayer",
+   "--currency",
+   "USDT",
+   "--shortfall",
+   "1",
+   "--deposit-address",
+   "0xabc",
+   "--image-dir="
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-common-v-refund-list-buyer",
+  "argv": [
+   "agent",
+   "refund-list",
+   "--role",
+   "buyer",
+   "--scope",
+   "available",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-refund",
+   "agent-common-agents"
+  ]
+ },
+ {
+  "id": "agent-common-v-refund-list-buyer-requested",
+  "argv": [
+   "agent",
+   "refund-list",
+   "--role",
+   "buyer",
+   "--scope",
+   "requested",
+   "--agent-id",
+   "1001",
+   "--page",
+   "2",
+   "--page-size",
+   "3"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-refund",
+   "agent-common-agents"
+  ]
+ },
+ {
+  "id": "agent-common-v-refund-list-provider",
+  "argv": [
+   "agent",
+   "refund-list",
+   "--role",
+   "provider",
+   "--scope",
+   "requested",
+   "--agent-id",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-refund",
+   "agent-common-agents"
+  ]
+ },
+ {
+  "id": "agent-common-v-refund-list-resolve",
+  "argv": [
+   "agent",
+   "refund-list",
+   "--role",
+   "provider",
+   "--scope",
+   "requested"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-agents",
+   "agent-common-refund"
+  ]
+ },
+ {
+  "id": "agent-common-v-refund-detail-provider",
+  "argv": [
+   "agent",
+   "refund-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--role",
+   "provider",
+   "--agent-id",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-refund",
+   "agent-common-agents"
+  ]
+ },
+ {
+  "id": "agent-common-v-refund-detail-buyer",
+  "argv": [
+   "agent",
+   "refund-detail",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--role",
+   "buyer",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-common-refund",
+   "agent-common-agents"
+  ]
+ },
+ {
+  "id": "agent-common-v-maint-pv2-list",
+  "argv": [
+   "agent",
+   "pending-decisions-v2",
+   "list",
+   "--format",
+   "json"
+  ],
+  "home": "agent-autotrade-maint",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  },
+  "masks": [
+   "home.task/last-display.json.displayed_at",
+   "home.*.createdAt",
+   "home.*.updatedAt",
+   "home.*.nextNotificationAttemptAt",
+   "home.*.nextAttemptAt",
+   "home.*.updatedAtMs",
+   "home.*.expiresAt",
+   "home.*.entries.*.nextResumeAttemptAt"
+  ]
+ },
+ {
+  "id": "agent-common-v-flush-cache-notify",
+  "argv": [
+   "agent",
+   "cache-notify",
+   "--job-id",
+   "jobR",
+   "--event-key",
+   "k",
+   "--content",
+   "v"
+  ],
+  "home": "agent-autotrade-flush",
+  "network": "fixture",
+  "env": {
+   "CLAUDECODE": "",
+   "CODEX_THREAD_ID": ""
+  }
+ }
+]

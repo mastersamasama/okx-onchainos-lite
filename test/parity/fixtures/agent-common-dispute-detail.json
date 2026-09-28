@@ -1,0 +1,85 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/dispute/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "currentRound": 1,
+          "taskStatus": 4,
+          "disputeRoundStatus": 1,
+          "prepareEndTime": 1700007200000,
+          "roundEndTime": 4102444800000,
+          "tokenAmount": "5",
+          "tokenSymbol": "USDT",
+          "disputeTime": 1700003600
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "taskId": 7001,
+          "title": "Market report",
+          "description": "Summarize the confirmed market inputs for Q3",
+          "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "tokenSymbol": "USDT",
+          "tokenAmount": "5",
+          "paymentTokenAmount": "5",
+          "paymentMode": 1,
+          "status": 4,
+          "jobType": 0,
+          "buyerAgentId": "1001",
+          "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "providerAgentId": "2002",
+          "providerAgentAddress": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "userAgentId": "1001",
+          "userAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "chainId": 196,
+          "minCreditScore": 3.5,
+          "expireConfig": {
+            "openExpireSec": 86400,
+            "acceptedExpireSec": 259200
+          },
+          "createTime": 1700000000,
+          "paymentMostTokenAmount": "8",
+          "serviceName": "Report service",
+          "refundAmount": "5",
+          "fundDestination": "pending"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/evidence",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "client": {
+            "reason": "Deliverable missed the brief"
+          },
+          "provider": {
+            "reason": "Delivered as agreed"
+          }
+        }
+      }
+    }
+  }
+]

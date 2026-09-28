@@ -1,0 +1,21 @@
+[
+  {
+    "method": "GET",
+    "pathRegex": "^/priapi/v1/aieco/task/",
+    "response": {
+      "status": 502,
+      "body": "<html>bad gateway</html>",
+      "headers": {
+        "content-type": "text/html"
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "pathRegex": "^/priapi/v1/aieco/task/",
+    "response": {
+      "status": 500,
+      "body": "{\"code\":\"500\",\"msg\":\"boom\"}"
+    }
+  }
+]

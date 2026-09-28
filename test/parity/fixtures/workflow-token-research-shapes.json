@@ -1,0 +1,101 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/token/basic-info",
+    "match": {
+      "body": [
+        {
+          "tokenContractAddress": "NullStep1111111111111111111111111111111pump"
+        }
+      ]
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/price-info",
+    "match": {
+      "body": [
+        {
+          "tokenContractAddress": "NullStep1111111111111111111111111111111pump"
+        }
+      ]
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": ""
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/advanced-info",
+    "match": {
+      "query": {
+        "tokenContractAddress": "NullStep1111111111111111111111111111111pump"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/security/token-scan",
+    "match": {
+      "body": {
+        "tokenList": [
+          {
+            "contractAddress": "NullStep1111111111111111111111111111111pump"
+          }
+        ]
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/advanced-info",
+    "match": {
+      "query": {
+        "tokenContractAddress": "ArrShape11111111111111111111111111111111pump"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "protocolId": "120596",
+            "tokenTags": [
+              "devHoldingStatusSell"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

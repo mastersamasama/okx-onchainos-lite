@@ -1,0 +1,27 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/vote/commit",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "type": 501,
+          "salt": "0x5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a5a",
+          "commitHash": "0xc0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0",
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  }
+]

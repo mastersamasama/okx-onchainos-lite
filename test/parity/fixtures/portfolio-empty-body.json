@@ -1,0 +1,12 @@
+[
+  {
+    "pathRegex": "^/api/v6/dex/balance/",
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": ""
+    }
+  }
+]

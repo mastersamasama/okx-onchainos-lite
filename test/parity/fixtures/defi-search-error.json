@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50011",
+        "msg": " ",
+        "data": null
+      }
+    }
+  }
+]

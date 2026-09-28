@@ -1,0 +1,13 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"success\",\"data\":{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"title\":\"T\",\"description\":\"D\",\"status\":1,\"taskId\":7001.0,\"minCreditScore\":1e2}}",
+      "headers": {
+        "content-type": "application/json"
+      }
+    }
+  }
+]

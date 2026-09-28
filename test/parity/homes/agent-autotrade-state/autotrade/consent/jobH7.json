@@ -1,0 +1,10 @@
+{
+  "version": 6,
+  "jobId": "jobH7",
+  "mode": "auto",
+  "tradeAmountU": "20",
+  "quoteToken": "usdt",
+  "lifecycle": "active",
+  "createdAt": 1700000000,
+  "expiresAt": 4102444800
+}

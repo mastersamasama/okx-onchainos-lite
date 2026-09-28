@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "jobId": "jobQ",
+  "entries": [
+    {
+      "deliveryId": "q2",
+      "state": "resume_pending",
+      "enqueuedAtMs": 1,
+      "nextResumeAttemptAt": 0,
+      "resumeAttempts": 0,
+      "resumeSentAt": 0,
+      "processingStartedAt": 0,
+      "processingAttempt": 0,
+      "resumeProtocolVersion": 0
+    },
+    {
+      "deliveryId": "q1",
+      "state": "waiting",
+      "enqueuedAtMs": 2
+    }
+  ]
+}

@@ -1,0 +1,1565 @@
+[
+  {
+    "id": "ws-channels",
+    "argv": [
+      "ws",
+      "channels"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channels-pretty",
+    "argv": [
+      "ws",
+      "channels"
+    ],
+    "env": {
+      "ONCHAINOS_PRETTY": "1"
+    },
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channels-global-chain",
+    "argv": [
+      "--chain",
+      "solana",
+      "ws",
+      "channels"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channel-info-price",
+    "argv": [
+      "ws",
+      "channel-info",
+      "--channel",
+      "price"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channel-info-candle",
+    "argv": [
+      "ws",
+      "channel-info",
+      "--channel",
+      "dex-token-candle5m"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channel-info-candle-bare",
+    "argv": [
+      "ws",
+      "channel-info",
+      "--channel",
+      "dex-token-candle"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channel-info-kol",
+    "argv": [
+      "ws",
+      "channel-info",
+      "--channel",
+      "kol_smartmoney-tracker-activity"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channel-info-memepump",
+    "argv": [
+      "ws",
+      "channel-info",
+      "--channel",
+      "dex-market-memepump-update-metrics-openapi"
+    ],
+    "env": {
+      "ONCHAINOS_PRETTY": "1"
+    },
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channel-info-unknown",
+    "argv": [
+      "ws",
+      "channel-info",
+      "--channel",
+      "nope"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-channel-info-missing",
+    "argv": [
+      "ws",
+      "channel-info"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-list-empty",
+    "argv": [
+      "ws",
+      "list"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-list-sessions",
+    "argv": [
+      "ws",
+      "list"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-no-creds",
+    "argv": [
+      "ws",
+      "start"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-no-secret",
+    "argv": [
+      "ws",
+      "start",
+      "--idle-timeout",
+      "0"
+    ],
+    "env": {
+      "OKX_PROD_API_KEY": "k"
+    },
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-pre-no-passphrase",
+    "argv": [
+      "ws",
+      "start",
+      "--env",
+      "pre",
+      "--idle-timeout",
+      " 2h "
+    ],
+    "env": {
+      "OKX_PRE_API_KEY": "k",
+      "OKX_PRE_SECRET_KEY": "s"
+    },
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-pre-ignores-prod-creds",
+    "argv": [
+      "ws",
+      "start",
+      "--env",
+      "pre"
+    ],
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-bad-env",
+    "argv": [
+      "ws",
+      "start",
+      "--env",
+      "staging"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-env-case",
+    "argv": [
+      "ws",
+      "start",
+      "--env",
+      "PROD"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-wallet-missing",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "address-tracker-activity",
+      "--wallet-addresses",
+      " , ,"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-wallet-too-many",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "address-tracker-activity",
+      "--wallet-addresses",
+      "0x0000000000000000000000000000000000000000,0x0000000000000000000000000000000000000001,0x0000000000000000000000000000000000000002,0x0000000000000000000000000000000000000003,0x0000000000000000000000000000000000000004,0x0000000000000000000000000000000000000005,0x0000000000000000000000000000000000000006,0x0000000000000000000000000000000000000007,0x0000000000000000000000000000000000000008,0x0000000000000000000000000000000000000009,0x000000000000000000000000000000000000000a,0x000000000000000000000000000000000000000b,0x000000000000000000000000000000000000000c,0x000000000000000000000000000000000000000d,0x000000000000000000000000000000000000000e,0x000000000000000000000000000000000000000f,0x0000000000000000000000000000000000000010,0x0000000000000000000000000000000000000011,0x0000000000000000000000000000000000000012,0x0000000000000000000000000000000000000013,0x0000000000000000000000000000000000000014,0x0000000000000000000000000000000000000015,0x0000000000000000000000000000000000000016,0x0000000000000000000000000000000000000017,0x0000000000000000000000000000000000000018,0x0000000000000000000000000000000000000019,0x000000000000000000000000000000000000001a,0x000000000000000000000000000000000000001b,0x000000000000000000000000000000000000001c,0x000000000000000000000000000000000000001d,0x000000000000000000000000000000000000001e,0x000000000000000000000000000000000000001f,0x0000000000000000000000000000000000000020,0x0000000000000000000000000000000000000021,0x0000000000000000000000000000000000000022,0x0000000000000000000000000000000000000023,0x0000000000000000000000000000000000000024,0x0000000000000000000000000000000000000025,0x0000000000000000000000000000000000000026,0x0000000000000000000000000000000000000027,0x0000000000000000000000000000000000000028,0x0000000000000000000000000000000000000029,0x000000000000000000000000000000000000002a,0x000000000000000000000000000000000000002b,0x000000000000000000000000000000000000002c,0x000000000000000000000000000000000000002d,0x000000000000000000000000000000000000002e,0x000000000000000000000000000000000000002f,0x0000000000000000000000000000000000000030,0x0000000000000000000000000000000000000031,0x0000000000000000000000000000000000000032,0x0000000000000000000000000000000000000033,0x0000000000000000000000000000000000000034,0x0000000000000000000000000000000000000035,0x0000000000000000000000000000000000000036,0x0000000000000000000000000000000000000037,0x0000000000000000000000000000000000000038,0x0000000000000000000000000000000000000039,0x000000000000000000000000000000000000003a,0x000000000000000000000000000000000000003b,0x000000000000000000000000000000000000003c,0x000000000000000000000000000000000000003d,0x000000000000000000000000000000000000003e,0x000000000000000000000000000000000000003f,0x0000000000000000000000000000000000000040,0x0000000000000000000000000000000000000041,0x0000000000000000000000000000000000000042,0x0000000000000000000000000000000000000043,0x0000000000000000000000000000000000000044,0x0000000000000000000000000000000000000045,0x0000000000000000000000000000000000000046,0x0000000000000000000000000000000000000047,0x0000000000000000000000000000000000000048,0x0000000000000000000000000000000000000049,0x000000000000000000000000000000000000004a,0x000000000000000000000000000000000000004b,0x000000000000000000000000000000000000004c,0x000000000000000000000000000000000000004d,0x000000000000000000000000000000000000004e,0x000000000000000000000000000000000000004f,0x0000000000000000000000000000000000000050,0x0000000000000000000000000000000000000051,0x0000000000000000000000000000000000000052,0x0000000000000000000000000000000000000053,0x0000000000000000000000000000000000000054,0x0000000000000000000000000000000000000055,0x0000000000000000000000000000000000000056,0x0000000000000000000000000000000000000057,0x0000000000000000000000000000000000000058,0x0000000000000000000000000000000000000059,0x000000000000000000000000000000000000005a,0x000000000000000000000000000000000000005b,0x000000000000000000000000000000000000005c,0x000000000000000000000000000000000000005d,0x000000000000000000000000000000000000005e,0x000000000000000000000000000000000000005f,0x0000000000000000000000000000000000000060,0x0000000000000000000000000000000000000061,0x0000000000000000000000000000000000000062,0x0000000000000000000000000000000000000063,0x0000000000000000000000000000000000000064,0x0000000000000000000000000000000000000065,0x0000000000000000000000000000000000000066,0x0000000000000000000000000000000000000067,0x0000000000000000000000000000000000000068,0x0000000000000000000000000000000000000069,0x000000000000000000000000000000000000006a,0x000000000000000000000000000000000000006b,0x000000000000000000000000000000000000006c,0x000000000000000000000000000000000000006d,0x000000000000000000000000000000000000006e,0x000000000000000000000000000000000000006f,0x0000000000000000000000000000000000000070,0x0000000000000000000000000000000000000071,0x0000000000000000000000000000000000000072,0x0000000000000000000000000000000000000073,0x0000000000000000000000000000000000000074,0x0000000000000000000000000000000000000075,0x0000000000000000000000000000000000000076,0x0000000000000000000000000000000000000077,0x0000000000000000000000000000000000000078,0x0000000000000000000000000000000000000079,0x000000000000000000000000000000000000007a,0x000000000000000000000000000000000000007b,0x000000000000000000000000000000000000007c,0x000000000000000000000000000000000000007d,0x000000000000000000000000000000000000007e,0x000000000000000000000000000000000000007f,0x0000000000000000000000000000000000000080,0x0000000000000000000000000000000000000081,0x0000000000000000000000000000000000000082,0x0000000000000000000000000000000000000083,0x0000000000000000000000000000000000000084,0x0000000000000000000000000000000000000085,0x0000000000000000000000000000000000000086,0x0000000000000000000000000000000000000087,0x0000000000000000000000000000000000000088,0x0000000000000000000000000000000000000089,0x000000000000000000000000000000000000008a,0x000000000000000000000000000000000000008b,0x000000000000000000000000000000000000008c,0x000000000000000000000000000000000000008d,0x000000000000000000000000000000000000008e,0x000000000000000000000000000000000000008f,0x0000000000000000000000000000000000000090,0x0000000000000000000000000000000000000091,0x0000000000000000000000000000000000000092,0x0000000000000000000000000000000000000093,0x0000000000000000000000000000000000000094,0x0000000000000000000000000000000000000095,0x0000000000000000000000000000000000000096,0x0000000000000000000000000000000000000097,0x0000000000000000000000000000000000000098,0x0000000000000000000000000000000000000099,0x000000000000000000000000000000000000009a,0x000000000000000000000000000000000000009b,0x000000000000000000000000000000000000009c,0x000000000000000000000000000000000000009d,0x000000000000000000000000000000000000009e,0x000000000000000000000000000000000000009f,0x00000000000000000000000000000000000000a0,0x00000000000000000000000000000000000000a1,0x00000000000000000000000000000000000000a2,0x00000000000000000000000000000000000000a3,0x00000000000000000000000000000000000000a4,0x00000000000000000000000000000000000000a5,0x00000000000000000000000000000000000000a6,0x00000000000000000000000000000000000000a7,0x00000000000000000000000000000000000000a8,0x00000000000000000000000000000000000000a9,0x00000000000000000000000000000000000000aa,0x00000000000000000000000000000000000000ab,0x00000000000000000000000000000000000000ac,0x00000000000000000000000000000000000000ad,0x00000000000000000000000000000000000000ae,0x00000000000000000000000000000000000000af,0x00000000000000000000000000000000000000b0,0x00000000000000000000000000000000000000b1,0x00000000000000000000000000000000000000b2,0x00000000000000000000000000000000000000b3,0x00000000000000000000000000000000000000b4,0x00000000000000000000000000000000000000b5,0x00000000000000000000000000000000000000b6,0x00000000000000000000000000000000000000b7,0x00000000000000000000000000000000000000b8,0x00000000000000000000000000000000000000b9,0x00000000000000000000000000000000000000ba,0x00000000000000000000000000000000000000bb,0x00000000000000000000000000000000000000bc,0x00000000000000000000000000000000000000bd,0x00000000000000000000000000000000000000be,0x00000000000000000000000000000000000000bf,0x00000000000000000000000000000000000000c0,0x00000000000000000000000000000000000000c1,0x00000000000000000000000000000000000000c2,0x00000000000000000000000000000000000000c3,0x00000000000000000000000000000000000000c4,0x00000000000000000000000000000000000000c5,0x00000000000000000000000000000000000000c6,0x00000000000000000000000000000000000000c7,0x00000000000000000000000000000000000000c8"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-token-pair-bad",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "price",
+      "--token-pair",
+      "bad,1:,:0xabc"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-candle-needs-pair",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "dex-token-candle1H"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-chain-index-missing",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "dex-market-memepump-new-token-openapi"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-unknown-channel-global",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "whatever"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-idle-invalid",
+    "argv": [
+      "ws",
+      "start",
+      "--idle-timeout",
+      "30x"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-idle-no-number",
+    "argv": [
+      "ws",
+      "start",
+      "--idle-timeout",
+      "m"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-idle-negative",
+    "argv": [
+      "ws",
+      "start",
+      "--idle-timeout=-5m"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-idle-overflow",
+    "argv": [
+      "ws",
+      "start",
+      "--idle-timeout",
+      "99999999999999999d"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-idle-before-env",
+    "argv": [
+      "ws",
+      "start",
+      "--idle-timeout",
+      "1w",
+      "--env",
+      "x"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-multi-channel",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "price",
+      "--channel",
+      "address-tracker-activity",
+      "--token-pair",
+      "1:0xdac17f958d2ee523a2206206994597c13d831ec7"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-already-running",
+    "argv": [
+      "ws",
+      "start"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-already-running-pre-differs",
+    "argv": [
+      "ws",
+      "start",
+      "--env",
+      "pre"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-start-spawn",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "price",
+      "--token-pair",
+      " 1:0xdac17f958d2ee523a2206206994597c13d831ec7 ,1:0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "--idle-timeout",
+      "45m"
+    ],
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-start-stream"
+    ],
+    "ws": {
+      "daemon": true,
+      "waitFrames": 2,
+      "settleMs": 1500
+    },
+    "masks": [
+      "stdout.data.pid"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "ws-start-spawn-pre-chains",
+    "argv": [
+      "ws",
+      "start",
+      "--channel",
+      "dex-market-new-signal-openapi",
+      "--chain-index",
+      " 501, 1,56,1,",
+      "--env",
+      "pre",
+      "--idle-timeout",
+      "99999999999d"
+    ],
+    "env": {
+      "OKX_PRE_API_KEY": "pre-key",
+      "OKX_PRE_SECRET_KEY": "pre-secret",
+      "OKX_PRE_PASSPHRASE": "pre-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-start-stream"
+    ],
+    "ws": {
+      "daemon": true,
+      "waitFrames": 2,
+      "settleMs": 1500
+    },
+    "masks": [
+      "stdout.data.pid"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "ws-poll-unknown",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_nope"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-missing-id",
+    "argv": [
+      "ws",
+      "poll"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-default-channel",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_price",
+      "--limit",
+      "2"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-all",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_price"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-limit-zero",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_price",
+      "--limit",
+      "0"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-empty-channel",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_price",
+      "--channel",
+      "trades"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-rotated",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_rotated",
+      "--channel",
+      "price"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-rotated-limit",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_rotated",
+      "--limit",
+      "1"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker-kol-profit",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--tag",
+      "kol",
+      "--min-pnl",
+      "0"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker-buy-trader",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--min-quote-amount",
+      "100",
+      "--trade-type",
+      "BUY",
+      "--trader",
+      "0xab",
+      "--since",
+      "1727500000000",
+      "--limit",
+      "1"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker-mcap",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--min-market-cap",
+      "1e6"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker-sm-sell",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--tag",
+      "sm",
+      "--trade-type",
+      "sell",
+      "--min-quote-amount",
+      "inf"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker-tradetype-raw",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--trade-type",
+      "buy ",
+      "--tag",
+      "1"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker-all-types",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--trade-type",
+      "all",
+      "--since",
+      "0",
+      "--min-pnl",
+      "NaN"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tracker-nomatch",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--trader",
+      "0xzzz"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-tag-bad",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--tag",
+      "whale"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-filters-ignored-nontracker",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_price",
+      "--min-pnl",
+      "0",
+      "--tag",
+      "foo",
+      "--limit",
+      "1"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-corrupt-config",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_corrupt"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-corrupt-with-channel",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_corrupt",
+      "--channel",
+      "price"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-legacy-missing-fields",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "watch_legacy"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-dir-without-config",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "other"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-limit-invalid",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_price",
+      "--limit",
+      "-1"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-min-pnl-invalid",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--min-pnl",
+      "1,5"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-since-invalid",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_tracker",
+      "--since",
+      "1.5"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-none",
+    "argv": [
+      "ws",
+      "stop"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-none-flush",
+    "argv": [
+      "ws",
+      "stop",
+      "--flush"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-unknown-id",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "ws_nope"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-id",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "ws_price"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-id-flush",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "ws_price",
+      "--flush"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-rotated-flush",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "ws_rotated",
+      "--flush"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-corrupt-flush",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "ws_corrupt",
+      "--flush"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-non-session-dir",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "other"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-all",
+    "argv": [
+      "ws",
+      "stop"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-all-flush",
+    "argv": [
+      "ws",
+      "stop",
+      "--flush"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-missing-config",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_noconfig"
+    ],
+    "home": "ws-daemon",
+    "network": "fixture",
+    "osErrorText": "code",
+    "exact": true
+  },
+  {
+    "id": "ws-stop-flush-missing-config",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "ws_noconfig",
+      "--flush"
+    ],
+    "home": "ws-daemon",
+    "network": "fixture",
+    "osErrorText": "code",
+    "exact": true
+  },
+  {
+    "id": "ws-list-daemon-home",
+    "argv": [
+      "ws",
+      "list"
+    ],
+    "home": "ws-daemon",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-missing",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "nope"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-no-id",
+    "argv": [
+      "ws",
+      "run-daemon"
+    ],
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-corrupt",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_corrupt"
+    ],
+    "home": "ws-sessions",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-missing-config",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_noconfig"
+    ],
+    "home": "ws-daemon",
+    "network": "fixture",
+    "osErrorText": "code",
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-no-creds",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "network": "fixture",
+    "masks": [
+      "home.watch/ws_daemon/status",
+      "stdout.error"
+    ],
+    "note": "upstream races the heartbeat task's first \"running\" write against \"stopped|…|credentials:…\" on the same .status.tmp: the final status is nondeterministic, and when the rename loses, write_status()? surfaces \"(os error 2)\" instead of the credentials error on stdout",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "ws-run-daemon-stream",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-stream"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-notice",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-notice"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-login-error",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-login-error"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-login-code-number",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-login-code-number"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-login-close",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-login-close"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-login-drop",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-login-drop"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-subscribe-error",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-subscribe-error"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-stream-drop",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-stream-drop"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-live-bad-key",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_live"
+    ],
+    "home": "ws-daemon-price",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "timeoutMs": 60000,
+    "exact": true
+  },
+  {
+    "id": "ws-poll-invalid-utf8-tail",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_utf8"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-cursor-u32-wrap",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_wrap"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-limit-usize-wrap",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_many",
+      "--tag",
+      "kol",
+      "--limit",
+      "4611686018427387905"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-number-formats",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_nums"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-file-session",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_file"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true,
+    "osErrorText": "code"
+  },
+  {
+    "id": "ws-stop-file-session",
+    "argv": [
+      "ws",
+      "stop",
+      "--id",
+      "ws_file"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true,
+    "osErrorText": "code"
+  },
+  {
+    "id": "ws-stop-all-file-session",
+    "argv": [
+      "ws",
+      "stop",
+      "--flush"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true,
+    "osErrorText": "code"
+  },
+  {
+    "id": "ws-list-edge",
+    "argv": [
+      "ws",
+      "list"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true
+  },
+  {
+    "id": "ws-poll-limit-negative-zero",
+    "argv": [
+      "ws",
+      "poll",
+      "--id",
+      "ws_nums",
+      "--limit=-0"
+    ],
+    "home": "ws-edge",
+    "network": "fixture",
+    "exact": true,
+    "note": "clap usize rejects any \"-\" sign (\"invalid digit found in string\"); needs core/cli.mjs typed() fix"
+  },
+  {
+    "id": "ws-run-daemon-numbers",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-numbers"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-login-close-fin",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-login-close-fin"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-close-bad-code",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-close-bad-code"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-login-ping",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-login-ping"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-reset",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-reset"
+    ],
+    "exact": true,
+    "osErrorText": "code"
+  },
+  {
+    "id": "ws-run-daemon-close-short",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-close-short"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-bad-utf8",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-bad-utf8"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-masked-frame",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-masked"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-reserved-bits",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-rsv"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-fragments",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-fragments"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-http-418",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-http-418"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-http-10",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-http-10"
+    ],
+    "exact": true
+  },
+  {
+    "id": "ws-run-daemon-accept-mismatch",
+    "argv": [
+      "ws",
+      "run-daemon",
+      "--id",
+      "ws_daemon"
+    ],
+    "home": "ws-daemon",
+    "env": {
+      "OKX_PROD_API_KEY": "test-key",
+      "OKX_PROD_SECRET_KEY": "test-secret",
+      "OKX_PROD_PASSPHRASE": "test-pass"
+    },
+    "network": "fixture",
+    "wsFixtures": [
+      "ws-daemon-accept-mismatch"
+    ],
+    "exact": true
+  }
+]

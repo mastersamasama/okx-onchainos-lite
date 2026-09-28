@@ -1,0 +1,1 @@
+[{ "method": "POST", "path": "/api/v6/dex/market/price", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": [{ "chainIndex": "Foo", "tokenContractAddress": "0xabc", "time": "1716892020000", "price": "26.458143090226812" }] } } }]

@@ -1,0 +1,18 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 1,
+          "page": -1,
+          "list": []
+        }
+      }
+    }
+  }
+]

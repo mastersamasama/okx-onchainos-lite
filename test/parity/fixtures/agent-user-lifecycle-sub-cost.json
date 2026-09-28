@@ -1,0 +1,24 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/cost/active",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "totalCost": "6.5",
+          "currency": "USDT",
+          "items": [
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "amount": "3"
+            }
+          ],
+          "zebra": 1
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/sign-msg",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "signature": "0x784069a02fdb52a5ac2b4df89fd1a60f85dab3e82fe78b8d909b5c62235630f4859d7653c42a70d8c9d9ce086e9bfab74e75467c15bdc0be1ce8f458e0bf830a1c"
+          }
+        ]
+      }
+    }
+  }
+]

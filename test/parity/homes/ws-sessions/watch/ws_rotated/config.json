@@ -1,0 +1,16 @@
+{
+  "channels": [
+    "price"
+  ],
+  "wallet_addresses": [],
+  "token_pairs": [
+    {
+      "chain_index": "1",
+      "token_contract_address": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+    }
+  ],
+  "chain_indexes": [],
+  "env": "prod",
+  "created_at": 1727500000000,
+  "idle_timeout_ms": 1800000
+}

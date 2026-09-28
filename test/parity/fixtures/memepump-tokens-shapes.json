@@ -1,0 +1,46 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenList",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "tokenAddress": "Old1pump",
+      "symbol": "OLD",
+      "createdTimestamp": "1",
+      "tags": {
+       "bundlersPercent": "0",
+       "devHoldingsPercent": "0.0",
+       "freshWalletsPercent": "0",
+       "insidersPercent": "0",
+       "snipersPercent": "0",
+       "suspectedPhishingWalletPercent": "0",
+       "top10HoldingsPercent": "12.5"
+      }
+     },
+     {
+      "tokenAddress": "Future1pump",
+      "symbol": "FUT",
+      "createdTimestamp": "99999999999999",
+      "tags": {
+       "snipersPercent": "0",
+       "bundlersPercent": 0
+      }
+     },
+     {
+      "tokenAddress": "NoTs1pump",
+      "symbol": "NTS",
+      "tags": {
+       "snipersPercent": "0"
+      }
+     },
+     "not-a-token"
+    ]
+   }
+  }
+ }
+]

@@ -1,0 +1,2905 @@
+[
+  {
+    "id": "defi-support-chains-anon",
+    "argv": [
+      "defi",
+      "support-chains"
+    ],
+    "home": "anon",
+    "network": "real"
+  },
+  {
+    "id": "defi-support-platforms-anon",
+    "argv": [
+      "defi",
+      "support-platforms"
+    ],
+    "home": "anon",
+    "network": "real"
+  },
+  {
+    "id": "defi-support-chains-anon-global",
+    "argv": [
+      "--chain",
+      "bsc",
+      "defi",
+      "support-chains"
+    ],
+    "home": "anon",
+    "network": "real"
+  },
+  {
+    "id": "defi-support-chains-live-jwt",
+    "argv": [
+      "defi",
+      "support-chains"
+    ],
+    "home": "wallet",
+    "network": "real",
+    "fixtures": [
+      "defi-refresh"
+    ]
+  },
+  {
+    "id": "defi-list-anon",
+    "argv": [
+      "defi",
+      "list"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "defi-detail-anon",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "defi-support-chains",
+    "argv": [
+      "defi",
+      "support-chains"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-support-platforms",
+    "argv": [
+      "defi",
+      "support-platforms"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-list",
+    "argv": [
+      "defi",
+      "list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-list-page",
+    "argv": [
+      "defi",
+      "list",
+      "--page-num",
+      "2"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-list-page-plus",
+    "argv": [
+      "defi",
+      "list",
+      "--page-num",
+      "+3"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-list-page-negative",
+    "argv": [
+      "defi",
+      "list",
+      "--page-num",
+      "-1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-list-page-invalid",
+    "argv": [
+      "defi",
+      "list",
+      "--page-num",
+      "x"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-list-page-overflow",
+    "argv": [
+      "defi",
+      "list",
+      "--page-num",
+      "4294967296"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-search-none",
+    "argv": [
+      "defi",
+      "search",
+      "--product-group",
+      "LENDING"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-search-token-chain",
+    "argv": [
+      "defi",
+      "search",
+      "--token",
+      "USDC, ETH,",
+      "--chain",
+      "ethereum"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-search-platform",
+    "argv": [
+      "defi",
+      "search",
+      "--platform",
+      "Aave, Compound",
+      "--product-group",
+      "LENDING",
+      "--page-num",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-search-global-chain",
+    "argv": [
+      "--chain",
+      "bsc",
+      "defi",
+      "search",
+      "--token",
+      "USDC"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-search-unknown-chain",
+    "argv": [
+      "defi",
+      "search",
+      "--token",
+      "USDC",
+      "--chain",
+      "Mantle"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-search-error",
+    "argv": [
+      "defi",
+      "search",
+      "--token",
+      "USDC"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-search-error",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-detail",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "defi-detail-api-error",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-api-error",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-prepare",
+    "argv": [
+      "defi",
+      "prepare",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-rate-chart",
+    "argv": [
+      "defi",
+      "rate-chart",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-rate-chart-range",
+    "argv": [
+      "defi",
+      "rate-chart",
+      "--investment-id",
+      "9502",
+      "--time-range",
+      "MONTH"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-tvl-chart",
+    "argv": [
+      "defi",
+      "tvl-chart",
+      "--investment-id",
+      "124",
+      "--time-range",
+      "YEAR"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-depth-price-chart",
+    "argv": [
+      "defi",
+      "depth-price-chart",
+      "--investment-id",
+      "1589649169"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-depth-price-chart-args",
+    "argv": [
+      "defi",
+      "depth-price-chart",
+      "--investment-id",
+      "1589649169",
+      "--chart-type",
+      "PRICE",
+      "--time-range",
+      "WEEK"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-empty-investment-id",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      ""
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-positions",
+    "argv": [
+      "defi",
+      "positions",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chains",
+      "ethereum, bsc,,solana"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-positions-global",
+    "argv": [
+      "--chain",
+      "bsc",
+      "defi",
+      "positions",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chains",
+      "eth"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-position-detail",
+    "argv": [
+      "defi",
+      "position-detail",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-position-detail-global",
+    "argv": [
+      "--chain",
+      "eth",
+      "defi",
+      "position-detail",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-deposit-ok",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"tokenAddress\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"chainIndex\":\"1\",\"coinAmount\":\"500000\",\"tokenPrecision\":\"6\",\"extra\":{\"b\":1,\"a\":[1.50,2e3,-0]}}]",
+      "--token-id",
+      "7",
+      "--tick-lower",
+      "-887220",
+      "--tick-upper",
+      "887220",
+      "--slippage",
+      "0.005"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-decimal",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"tokenAddress\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"chainIndex\":\"1\",\"coinAmount\":\"0.5\",\"tokenPrecision\":\"6\"}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-no-precision",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"tokenAddress\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"chainIndex\":\"1\",\"coinAmount\":\"500000\"}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-zero",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"tokenAddress\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"chainIndex\":\"1\",\"coinAmount\":\"000\",\"tokenPrecision\":6}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-empty-amount",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"tokenAddress\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"coinAmount\":\"\",\"tokenPrecision\":6}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-numeric",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"tokenAddress\":\"0x1\",\"coinAmount\":5,\"tokenPrecision\":18},{\"tokenAddress\":\"0x2\",\"chainIndex\":\"1\",\"coinAmount\":\"1154528481238320444\",\"tokenPrecision\":\"18\"},{\"coinAmount\":\"500000\",\"tokenPrecision\":4294967302},{\"coinAmount\":\"42\",\"tokenPrecision\":\"+0\"}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-precision-overflow",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"coinAmount\":\"500000\",\"tokenPrecision\":\"4294967296\"}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-bad-json",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "not json"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-object-json",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "{\"a\":1}"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-trailing",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[] x"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-empty-list",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      " [ ] "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-deposit-tick-bad",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[]",
+      "--tick-lower",
+      "abc"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-deposit-tick-inline",
+    "argv": [
+      "defi",
+      "deposit",
+      "--investment-id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[]",
+      "--tick-lower=-5",
+      "--tick-upper=+7"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-redeem-ratio",
+    "argv": [
+      "defi",
+      "redeem",
+      "--id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-redeem-token",
+    "argv": [
+      "defi",
+      "redeem",
+      "--id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "bsc",
+      "--token",
+      "0x55d398326f99059ff775485246999027b3197955",
+      "--amount",
+      "1.5",
+      "--symbol",
+      "USDT",
+      "--precision",
+      "18"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-redeem-token-no-chain",
+    "argv": [
+      "defi",
+      "redeem",
+      "--id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--token",
+      "0x55d398326f99059ff775485246999027b3197955",
+      "--amount",
+      "1.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-redeem-token-no-amount",
+    "argv": [
+      "defi",
+      "redeem",
+      "--id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--token",
+      "0x55d398326f99059ff775485246999027b3197955",
+      "--symbol",
+      "USDT"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-redeem-user-input",
+    "argv": [
+      "defi",
+      "redeem",
+      "--id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[{\"tokenAddress\":\"0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48\",\"chainIndex\":\"1\",\"coinAmount\":\"100230000\",\"tokenPrecision\":6}]",
+      "--token",
+      "ignored",
+      "--amount",
+      "5",
+      "--token-id",
+      "99",
+      "--slippage",
+      "0.03"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-redeem-user-input-bad",
+    "argv": [
+      "defi",
+      "redeem",
+      "--id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--user-input",
+      "[1]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-redeem-precision-bad",
+    "argv": [
+      "defi",
+      "redeem",
+      "--id",
+      "9502",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--precision",
+      "1.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-claim-auto",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-auto-investment",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "eth",
+      "--reward-type",
+      "REWARD_INVESTMENT",
+      "--platform-id",
+      "10",
+      "--id",
+      "9502"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-auto-okx-bonus",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "1",
+      "--reward-type",
+      "REWARD_OKX_BONUS",
+      "--platform-id",
+      "10",
+      "--id",
+      "9506"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-auto-none",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "bsc",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "30"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-auto-not-array",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "40"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-auto-error",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-pd-error",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-v3",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--reward-type",
+      "V3_FEE",
+      "--id",
+      "1",
+      "--token-id",
+      "2"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-explicit",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "56",
+      "--reward-type",
+      "REWARD_INVESTMENT",
+      "--platform-id",
+      "10",
+      "--principal-index",
+      "3",
+      "--expect-output",
+      "[{\"chainIndex\":\"1\",\"tokenAddress\":\"0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9\",\"coinAmount\":\"0.0169\"}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-bad-expect",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--reward-type",
+      "X",
+      "--expect-output",
+      "not json"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-claim-chain-nonnumeric",
+    "argv": [
+      "defi",
+      "claim",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "foo",
+      "--reward-type",
+      "UNLOCKED_PRINCIPAL",
+      "--principal-index",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-calc-ok",
+    "argv": [
+      "defi",
+      "calculate-entry",
+      "--id",
+      "42001",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--input-token",
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "--input-amount",
+      "5000000000000000",
+      "--token-decimal",
+      "18",
+      "--tick-lower",
+      "-887220",
+      "--tick-upper=887220"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "defi-calc-usdc",
+    "argv": [
+      "defi",
+      "calculate-entry",
+      "--id",
+      "42001",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--input-token",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+      "--input-amount",
+      "10000000",
+      "--token-decimal",
+      "6"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-calc-decimal",
+    "argv": [
+      "defi",
+      "calculate-entry",
+      "--id",
+      "42001",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--input-token",
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "--input-amount",
+      "0.005",
+      "--token-decimal",
+      "18"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-calc-bad-decimal",
+    "argv": [
+      "defi",
+      "calculate-entry",
+      "--id",
+      "42001",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--input-token",
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "--input-amount",
+      "5",
+      "--token-decimal",
+      "x"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-calc-decimal-zero",
+    "argv": [
+      "defi",
+      "calculate-entry",
+      "--id",
+      "42001",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--input-token",
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "--input-amount",
+      "17",
+      "--token-decimal",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-calc-no-list",
+    "argv": [
+      "defi",
+      "calculate-entry",
+      "--id",
+      "42001",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--input-token",
+      "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+      "--input-amount",
+      "5",
+      "--token-decimal",
+      "18"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-calc-missing",
+      "defi-prepare-missing",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-standard",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "usdc",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-warn",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9503",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000",
+      "--slippage",
+      "0.15"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-invest-by-address",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "0xA0B86991C6218B36C1D19D4A2E9EB0CE3606EB48",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-decimal-amount",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "0.1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-zero-amount",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-slippage-error",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000",
+      "--slippage",
+      "0.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-slippage-inf",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000",
+      "--slippage",
+      "inf"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-slippage-tie",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000",
+      "--slippage",
+      "0.2025"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-not-investable",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9504",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-investable-missing",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9505",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-token-not-found",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9503",
+      "--token",
+      "DAI",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-token-empty-address",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "usdc",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-bad-tokens",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-token-empty-chain",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "DAI",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-bad-tokens",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-token-chain-not-string",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "usdt",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-bad-tokens",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-token-no-symbol",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "0x0000000000000000000000000000000000000ABC",
+      "--amount",
+      "12345678"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-bad-tokens",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-token-not-found-list",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "WBTC",
+      "--amount",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-bad-tokens",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-token2-not-found",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--token2",
+      "DAI",
+      "--amount2",
+      "5",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-prepare-missing",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-missing",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-enter-null",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9503",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-enter-null",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-enter-big",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-enter-big",
+      "defi-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-range",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-dual",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--token2",
+      "usdc",
+      "--amount2",
+      "20000000",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-dual-t2",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--token2",
+      "USDC",
+      "--amount2",
+      "10000000",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-dual-exact",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--token2",
+      "USDC",
+      "--amount2",
+      "17123456",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-auto-t2",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--amount2",
+      "0",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-t2-decimal",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--amount2",
+      "1.5",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-no-range",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--tick-lower",
+      "-195180"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-token-id",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--token-id",
+      "777"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-ticks",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--tick-lower",
+      "-195180",
+      "--tick-upper",
+      "-195060",
+      "--range",
+      "1000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-range-bad",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--range",
+      "150"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-range-negative",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--range=-5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-range-invalid",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--range",
+      "abc"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-numeric-ticks",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--range",
+      "0.001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-v3-numeric",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-bad-spacing",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-prepare-v3-zero-spacing",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-v3-calc-missing",
+    "argv": [
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--token",
+      "WETH",
+      "--amount",
+      "5000000000000000",
+      "--range",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-calc-missing",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-invest-global-chain",
+    "argv": [
+      "--chain",
+      "bsc",
+      "defi",
+      "invest",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--token",
+      "USDC",
+      "--amount",
+      "100000",
+      "--chain",
+      "solana"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-ratio",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-nothing",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-amount-no-pid",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--amount",
+      "1000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-amount-decimal",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--amount",
+      "1.5",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-amount-pid",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--amount",
+      "50000000",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-exceeds",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--amount",
+      "200000000",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-full-exit",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--platform-id",
+      "10",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-market-position",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9506",
+      "--chain",
+      "ethereum",
+      "--platform-id",
+      "10",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-borrow-position",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9507",
+      "--chain",
+      "ethereum",
+      "--platform-id",
+      "10",
+      "--amount",
+      "5000000"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-no-position",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9999",
+      "--chain",
+      "ethereum",
+      "--platform-id",
+      "10",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-empty-assets",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9510",
+      "--chain",
+      "ethereum",
+      "--platform-id",
+      "10",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-pd-not-array",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--platform-id",
+      "40",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-v3-no-ratio",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--chain",
+      "ethereum",
+      "--token-id",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-v3",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "42001",
+      "--chain",
+      "bsc",
+      "--token-id",
+      "5",
+      "--ratio",
+      "0.5",
+      "--amount",
+      "ignored"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-not-redeemable",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9504",
+      "--chain",
+      "ethereum",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-redeem-string",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9503",
+      "--chain",
+      "ethereum",
+      "--ratio",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-withdraw-slippage-warn",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9502",
+      "--chain",
+      "ethereum",
+      "--ratio",
+      "1",
+      "--slippage",
+      "0.2"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-withdraw-slippage-big",
+    "argv": [
+      "defi",
+      "withdraw",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--investment-id",
+      "9504",
+      "--chain",
+      "ethereum",
+      "--ratio",
+      "1",
+      "--slippage",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-withdraw-global-chain",
+    "argv": [
+      "--chain",
+      "eth",
+      "defi",
+      "withdraw",
+      "--investment-id",
+      "1",
+      "--address",
+      "0x0000000000000000000000000000000000000001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-collect-bad-type",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "reward_platform"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-platform",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-okx-bonus",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_OKX_BONUS",
+      "--investment-id",
+      "9506",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-investment",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_INVESTMENT",
+      "--investment-id",
+      "9502",
+      "--platform-id",
+      "10",
+      "--token-id",
+      "t",
+      "--principal-index",
+      "p"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-merkle-zero",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_MERKLE_BONUS",
+      "--investment-id",
+      "9507",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-zero",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "20"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-none",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "30"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-not-array",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "40"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-v3",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "V3_FEE",
+      "--investment-id",
+      "1",
+      "--token-id",
+      "2",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-v3-missing",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "V3_FEE",
+      "--investment-id",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-unlocked",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "UNLOCKED_PRINCIPAL",
+      "--investment-id",
+      "1",
+      "--principal-index",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-unlocked-missing",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "UNLOCKED_PRINCIPAL",
+      "--principal-index",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-investment-missing",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_INVESTMENT",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-platform-missing",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-pd-error",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-pd-error",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-pd-500",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "ethereum",
+      "--reward-type",
+      "REWARD_PLATFORM",
+      "--platform-id",
+      "10"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-pd-500",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-collect-chain-nonnumeric",
+    "argv": [
+      "defi",
+      "collect",
+      "--address",
+      "0x0000000000000000000000000000000000000001",
+      "--chain",
+      "mantle",
+      "--reward-type",
+      "V3_FEE",
+      "--investment-id",
+      "1",
+      "--token-id",
+      "2"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-detail-expired-jwt",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet-expired",
+    "network": "fixture",
+    "fixtures": [
+      "defi-refresh",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-detail-refresh-expired",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet-refresh-expired",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "defi-detail-session-expired",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet-session-expired",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-detail-no-keyring",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet-no-keyring",
+    "network": "fixture",
+    "fixtures": [
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-detail-refresh-error",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet-expired",
+    "network": "fixture",
+    "fixtures": [
+      "defi-refresh-error",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-detail-invalid-token-retry",
+    "argv": [
+      "defi",
+      "detail",
+      "--investment-id",
+      "9502"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "defi-invalid-token-once",
+      "defi-refresh",
+      "defi-common"
+    ]
+  },
+  {
+    "id": "defi-support-chains-expired-jwt",
+    "argv": [
+      "defi",
+      "support-chains"
+    ],
+    "home": "wallet-expired",
+    "network": "fixture",
+    "fixtures": [
+      "defi-refresh",
+      "defi-common"
+    ]
+  }
+]

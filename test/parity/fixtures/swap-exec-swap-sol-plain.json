@@ -1,0 +1,84 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/swap",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "routerResult": {
+              "chainIndex": "501",
+              "contextSlot": 26076234,
+              "dexRouterList": [
+                {
+                  "dexProtocol": {
+                    "dexName": "Uniswap V3",
+                    "percent": "100"
+                  },
+                  "fromToken": {
+                    "decimal": "9",
+                    "isHoneyPot": false,
+                    "latestMultiplier": "",
+                    "taxRate": "0",
+                    "tokenContractAddress": "11111111111111111111111111111111",
+                    "tokenSymbol": "SOL",
+                    "tokenUnitPrice": "150.2"
+                  },
+                  "fromTokenIndex": "0",
+                  "toToken": {
+                    "decimal": "6",
+                    "isHoneyPot": false,
+                    "latestMultiplier": "",
+                    "taxRate": "0",
+                    "tokenContractAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                    "tokenSymbol": "USDC",
+                    "tokenUnitPrice": "1"
+                  },
+                  "toTokenIndex": "1"
+                }
+              ],
+              "estimateGasFee": "162000",
+              "fromToken": {
+                "decimal": "9",
+                "isHoneyPot": false,
+                "latestMultiplier": "1",
+                "taxRate": "0",
+                "tokenContractAddress": "11111111111111111111111111111111",
+                "tokenSymbol": "SOL",
+                "tokenUnitPrice": "150.2"
+              },
+              "fromTokenAmount": "1000000",
+              "mode": "dex",
+              "priceImpactPercent": "-0.01",
+              "quoteId": "3140306018660230006",
+              "router": "11111111111111111111111111111111--EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+              "signData": null,
+              "swapMode": "exactIn",
+              "toToken": {
+                "decimal": "6",
+                "isHoneyPot": false,
+                "latestMultiplier": "1",
+                "taxRate": "0",
+                "tokenContractAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+                "tokenSymbol": "USDC",
+                "tokenUnitPrice": "1"
+              },
+              "toTokenAmount": "150200",
+              "tradeFee": "0.5952398088040839"
+            },
+            "tx": {
+              "data": "PFjLKxtMMHGcPotVHYRfzmsofdo6ADwKCQA8zEoKN7n9JU1F4Nby1zdFyRe3CYF5crnUy5GjbZrdhPp7dLLfJ6K759LhQz6aZThMHnxtxVNHajQ1phSgjghxVLRm7J9JLeM",
+              "signatureData": [
+                "not json"
+              ],
+              "value": "0"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

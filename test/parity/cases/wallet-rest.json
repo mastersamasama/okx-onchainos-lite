@@ -1,0 +1,4535 @@
+[
+  {
+    "id": "wallet-rest-chains-cached",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-chains-global-chain",
+    "argv": [
+      "--chain",
+      "eth",
+      "wallet",
+      "chains"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-chains-fetch",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-rest-chains-chainlist-shape",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-chainlist",
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "wallet-rest-chains-nonarray",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-nonarray",
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-rest-chains-api-error",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-chains-server-error",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-500",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-chains-stale-cache",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "wallet-with-caches",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-chainlist",
+      "wallet-common"
+    ],
+    "masks": [
+      "home.chain_cache.json.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-rest-chains-bad-cache",
+    "argv": [
+      "wallet",
+      "chains"
+    ],
+    "home": "wallet-bad-chain-cache",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-default",
+    "argv": [
+      "wallet",
+      "balance"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-default-sort",
+    "argv": [
+      "wallet",
+      "balance"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-sort",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-default-account2",
+    "argv": [
+      "wallet",
+      "balance"
+    ],
+    "home": "wallet-account2",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-default-force-list-error",
+    "argv": [
+      "wallet",
+      "balance",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-account-list-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-default-force-address-error",
+    "argv": [
+      "wallet",
+      "balance",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-address-list-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-force-value-rejected",
+    "argv": [
+      "wallet",
+      "balance",
+      "--force",
+      "true"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-default-force",
+    "argv": [
+      "wallet",
+      "balance",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-default-api-error",
+    "argv": [
+      "wallet",
+      "balance"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-chain",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "ethereum"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-eth",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-chain-global",
+    "argv": [
+      "--chain",
+      "eth",
+      "wallet",
+      "balance"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-eth",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-chain-unsupported",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "nochain"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-chain-api-error",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-token-evm",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "1",
+      "--token-address",
+      "  0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48 "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-token-usdc",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-token-no-chain",
+    "argv": [
+      "wallet",
+      "balance",
+      "--token-address",
+      "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-token-sui",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "sui",
+      "--token-address",
+      "0x0002::sui::SUI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-token-sui",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-token-sui-bad",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "sui",
+      "--token-address",
+      "SUI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-token-btc-nonbrc20",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "0xabc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-token-unsupported-chain",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "nochain",
+      "--token-address",
+      "0xabc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-token-all-normalizes",
+    "argv": [
+      "wallet",
+      "balance",
+      "--all",
+      "--chain",
+      "btc",
+      "--token-address",
+      "ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-balance-ordi",
+      "wallet-rest-btc-transferable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20-nosum",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "btc",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-balance-ordi-noprice",
+      "wallet-rest-btc-transferable-nosum",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20-missing-asset",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-balance-noordi",
+      "wallet-rest-btc-transferable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20-exceeds",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-balance-ordi",
+      "wallet-rest-btc-transferable-exceed",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20-no-decimals",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info-nodecimals",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20-token-info-error",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20-transferable-error",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-balance-ordi",
+      "wallet-rest-btc-available-44001",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-brc20-panic",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-balance-ordi",
+      "wallet-rest-btc-transferable-panic",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-all-force",
+    "argv": [
+      "wallet",
+      "balance",
+      "--all",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "req.query.accountIds",
+      "stdout.data.details.*.updated_at",
+      "home.balance_cache.json.batch_updated_at",
+      "home.balance_cache.json.accounts.*.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-all-miss",
+    "argv": [
+      "wallet",
+      "balance",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "masks": [
+      "req.query.accountIds",
+      "stdout.data.details.*.updated_at",
+      "home.balance_cache.json.batch_updated_at",
+      "home.balance_cache.json.accounts.*.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-all-api-error",
+    "argv": [
+      "wallet",
+      "balance",
+      "--all",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-batch-error",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.query.accountIds"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-all-no-accounts",
+    "argv": [
+      "wallet",
+      "balance",
+      "--all"
+    ],
+    "home": "wallet-seq-wallets",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-not-logged-in",
+    "argv": [
+      "wallet",
+      "balance"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-refresh-expired",
+    "argv": [
+      "wallet",
+      "balance",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-refresh-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-expired-refreshes",
+    "argv": [
+      "wallet",
+      "balance"
+    ],
+    "home": "wallet-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-chains-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-funding-ready-absent-token",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "1",
+      "--token-address",
+      "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "--required",
+      "0",
+      "--asset",
+      " USDT "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-funding-ready-native",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "xlayer",
+      "--required",
+      "1",
+      "--asset",
+      "OKB"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-xlayer-low",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-funding-ready-token-number",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "196",
+      "--token-address",
+      "0x779DED0C9E1022225F8E0630B35A9B54BE713736",
+      "--required",
+      "1.999",
+      "--asset",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-xlayer-low",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-funding-insufficient",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "xlayer",
+      "--required",
+      "10.25",
+      "--asset",
+      "OKB"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-xlayer-low",
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-funding-insufficient-renamed",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "xlayer",
+      "--required",
+      "10",
+      "--asset",
+      "OKB"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-xlayer-low",
+      "wallet-rest-accounts-renamed",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-funding-target-unavailable",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "xlayer",
+      "--required",
+      "10",
+      "--asset",
+      "OKB"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-xlayer-low",
+      "wallet-rest-account-list-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-funding-target-no-address",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "195",
+      "--required",
+      ".5",
+      "--asset",
+      "TRX"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-tron-empty",
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-funding-balance-unavailable",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "1",
+      "--required",
+      "1",
+      "--asset",
+      "ETH"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-funding-non-decimal-balance",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "1",
+      "--token-address",
+      "0xdac17f958d2ee523a2206206994597c13d831ec7",
+      "--required",
+      "1",
+      "--asset",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-nondecimal",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-funding-bad-required",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "1",
+      "--required",
+      "abc",
+      "--asset",
+      "ETH"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-funding-negative-required",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "1",
+      "--required",
+      "1e3",
+      "--asset",
+      "ETH"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-funding-blank-asset",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "1",
+      "--required",
+      "1",
+      "--asset",
+      "   "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-funding-unsupported-chain",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "nochain",
+      "--required",
+      "1",
+      "--asset",
+      "X"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-funding-global-chain",
+    "argv": [
+      "--chain",
+      "eth",
+      "wallet",
+      "funding-check",
+      "--required",
+      "1",
+      "--asset",
+      "ETH"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-funding-missing-required",
+    "argv": [
+      "wallet",
+      "funding-check",
+      "--chain",
+      "1",
+      "--asset",
+      "ETH"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-history-list",
+    "argv": [
+      "wallet",
+      "history",
+      "--limit",
+      "20"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-list",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-list-all-filters",
+    "argv": [
+      "wallet",
+      "history",
+      "--limit",
+      "20",
+      "--cursor",
+      "next-page-token",
+      "--chain",
+      "ethereum",
+      "--begin",
+      "1789000000000",
+      "--end",
+      "1790000000000",
+      "--address",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-list",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-list-object",
+    "argv": [
+      "wallet",
+      "history",
+      "--account-id",
+      "parity-account-0002",
+      "--limit",
+      ""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-list-object",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-list-global-chain",
+    "argv": [
+      "--chain",
+      "sol",
+      "wallet",
+      "history"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-list-object",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-list-empty-chain",
+    "argv": [
+      "wallet",
+      "history",
+      "--chain",
+      ""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-list-object",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-detail",
+    "argv": [
+      "wallet",
+      "history",
+      "--chain",
+      "1",
+      "--tx-hash",
+      "0xabc",
+      "--address",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-detail",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-detail-order",
+    "argv": [
+      "wallet",
+      "history",
+      "--chain",
+      "sol",
+      "--order-id",
+      "1971032288712115001",
+      "--account-id",
+      ""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-detail-object",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-detail-uop-empty",
+    "argv": [
+      "wallet",
+      "history",
+      "--chain",
+      "x-layer",
+      "--uop-hash",
+      ""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-detail-object",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-detail-no-chain",
+    "argv": [
+      "wallet",
+      "history",
+      "--tx-hash",
+      "0xabc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-history-detail-api-error",
+    "argv": [
+      "wallet",
+      "history",
+      "--chain",
+      "1",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-detail-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-unsupported-chain",
+    "argv": [
+      "wallet",
+      "history",
+      "--chain",
+      "nochain"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-history-api-error",
+    "argv": [
+      "wallet",
+      "history"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-history-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-history-not-logged-in",
+    "argv": [
+      "wallet",
+      "history"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-history-no-selection",
+    "argv": [
+      "wallet",
+      "history"
+    ],
+    "home": "wallet-seq-wallets",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-history-page-num-rejected",
+    "argv": [
+      "wallet",
+      "history",
+      "--page-num",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-receive-generic",
+    "argv": [
+      "wallet",
+      "receive"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.evmQr.imagePath",
+      "stdout.data.payload.evmQr.markdownImage",
+      "stdout.data.payload.evmQr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-receive-generic-renamed",
+    "argv": [
+      "wallet",
+      "receive"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-renamed",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.evmQr.imagePath",
+      "stdout.data.payload.evmQr.markdownImage",
+      "stdout.data.payload.evmQr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-receive-chain",
+    "argv": [
+      "wallet",
+      "receive",
+      "--chain",
+      "ethereum"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-receive-chain-xlayer",
+    "argv": [
+      "wallet",
+      "receive",
+      "--chain",
+      "xlayer"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-receive-chain-no-address",
+    "argv": [
+      "wallet",
+      "receive",
+      "--chain",
+      "trx"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-chain-unsupported",
+    "argv": [
+      "wallet",
+      "receive",
+      "--chain",
+      "nochain"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-receive-chain-refresh-error",
+    "argv": [
+      "wallet",
+      "receive",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-account-list-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-address-list-error",
+    "argv": [
+      "wallet",
+      "receive"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-address-list-error",
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-multi",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      " USDT "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-multi",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-single",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-single",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-receive-token-single-no-address",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-single-noaddress",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-none",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "NOPE"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-none",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-page10",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-page10",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-cursor",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "USDT",
+      "--cursor",
+      "9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-page10-cursor",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-empty-cursor",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "USDT",
+      "--cursor",
+      ""
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-list-shape",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-search-error",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-token-blank",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "   "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-receive-clap-conflict",
+    "argv": [
+      "wallet",
+      "receive",
+      "--chain",
+      "1",
+      "--token",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-clap-cursor-requires-token",
+    "argv": [
+      "wallet",
+      "receive",
+      "--cursor",
+      "9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-global-chain",
+    "argv": [
+      "--chain",
+      "eth",
+      "wallet",
+      "receive"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs",
+      "stdout.data.payload.evmQr.imagePath",
+      "stdout.data.payload.evmQr.markdownImage",
+      "stdout.data.payload.evmQr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-receive-global-chain-token",
+    "argv": [
+      "--chain",
+      "eth",
+      "wallet",
+      "receive",
+      "--token",
+      "USDT"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-accounts-single",
+      "wallet-rest-search-single",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "wallet-rest-receive-not-logged-in",
+    "argv": [
+      "wallet",
+      "receive"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-preview",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-fee-rate",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--fee-rate",
+      " 1.25 "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe-feerate",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-from",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--from",
+      "BC1P35LR6647UTU5DFM4SE3WLAZD706A0NL6Z5QXJUACM3FHJXWJN2YQYFNVAN"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-from-mismatch",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--from",
+      "bc1pewxy5fe3jtj6fch5vl7wzkl0s6wyhh39z24st4q6djy8clk8ktus9dvja9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-account-list-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-force-no-token",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-token-no-force",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--operation-token",
+      "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-bad-token",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--operation-token",
+      "sha256:abc",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-token-mismatch",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--operation-token",
+      "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-force",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--operation-token",
+      "sha256:5f8142d8d5a2a489e3f89f108819f445c6a1a966176b01df878460a7496cac50",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe",
+      "wallet-rest-btc-inscribe-signed",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-force-single",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--operation-token",
+      "sha256:5f8142d8d5a2a489e3f89f108819f445c6a1a966176b01df878460a7496cac50",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe",
+      "wallet-rest-btc-inscribe-broadcast-noorder",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-force-82005",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--operation-token",
+      "sha256:5f8142d8d5a2a489e3f89f108819f445c6a1a966176b01df878460a7496cac50",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe",
+      "wallet-rest-btc-inscribe-broadcast-82005",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-eth",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "ethereum",
+      "--token-address",
+      "btc-brc20-x",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-unsupported",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "nochain",
+      "--token-address",
+      "btc-brc20-x",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-bad-ticker",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "btc",
+      "--token-address",
+      "ordi",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-bad-fee-rate",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--fee-rate",
+      "0.01"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-fee-rate-format",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5",
+      "--fee-rate",
+      "1."
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-create-bad-amount",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi",
+      "--readable-amount",
+      "0.0000000000000000001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-44002",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe-44002",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-preexec-fail",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe-preexec-fail",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-wrong-signtype",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe-wrong-signtype",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-foreign-input",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe-foreign-input",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-unavailable-input",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-inscribe-unavailable-input",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-undercount",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "BTC-BRC20-ORDI",
+      "--readable-amount",
+      "1.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-unavailable-undercount",
+      "wallet-rest-btc-inscribe",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.headers.idempotency-key"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-create-clap-missing",
+    "argv": [
+      "wallet",
+      "inscription",
+      "create",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-order",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--order-id",
+      "1971032288712115201"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-pending",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-tx-ready",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "btc",
+      "--tx-hash",
+      "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-ready",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-four",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "0",
+      "--order-id",
+      "77"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-four",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-failed",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--order-id",
+      "1971032288712115202"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-failed",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-unknown",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--order-id",
+      "1971032288712115203"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-unknown",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-waiting",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-waiting",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-mismatch",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-mismatch",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-account-mismatch",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--order-id",
+      "9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-account-mismatch",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-order-mismatch",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--order-id",
+      "9"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-order-mismatch",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-api-error",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-status-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-eth",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "eth",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-inscription-status-clap-none",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-clap-both",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "a",
+      "--order-id",
+      "b"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-global-chain",
+    "argv": [
+      "--chain",
+      "bitcoin",
+      "wallet",
+      "inscription",
+      "status",
+      "--order-id",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-available",
+    "argv": [
+      "wallet",
+      "utxo",
+      "available",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-available",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-available-batches",
+    "argv": [
+      "wallet",
+      "utxo",
+      "available",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-available-11",
+      "wallet-rest-btc-asset-info-object",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-available-nosection",
+    "argv": [
+      "wallet",
+      "utxo",
+      "available",
+      "--chain",
+      "btc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-available-nosection",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-available-44001",
+    "argv": [
+      "wallet",
+      "utxo",
+      "available",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-available-44001",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-available-asset-error",
+    "argv": [
+      "wallet",
+      "utxo",
+      "available",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-available",
+      "wallet-rest-btc-asset-info-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-available-eth",
+    "argv": [
+      "wallet",
+      "utxo",
+      "available",
+      "--chain",
+      "ethereum"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-utxo-available-clap-missing",
+    "argv": [
+      "wallet",
+      "utxo",
+      "available"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-available-global-chain",
+    "argv": [
+      "--chain",
+      "bitcoin",
+      "wallet",
+      "utxo",
+      "available"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-unavailable",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unavailable",
+      "--chain",
+      "btc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-user-ignored",
+    "argv": [
+      "wallet",
+      "utxo",
+      "user-ignored",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-utxo-user-ignored-empty",
+    "argv": [
+      "wallet",
+      "utxo",
+      "user-ignored",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-user-ignored-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-exact",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "3"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-no-match",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "4"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-singles",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-four",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-subsets",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "4.5"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-mix",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-nosum",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-nosum",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-flat",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-flat",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-empty",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-missing-txhash",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-missing-txhash",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-bad-outpoint",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-bad-outpoint",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-zero-value",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable-panic",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-bad-amount",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-ORDI",
+      "--readable-amount",
+      "-1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-token-info",
+      "wallet-rest-btc-transferable",
+      "wallet-rest-btc-asset-info",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-bad-token",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-bad-ticker",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "bitcoin",
+      "--token-address",
+      "btc-brc20-or/di"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-brc20-transferable-sui",
+    "argv": [
+      "wallet",
+      "utxo",
+      "brc20-transferable",
+      "--chain",
+      "sui",
+      "--token-address",
+      "btc-brc20-ordi"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-unlock-all-preview",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-outpoint-preview",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9AB8BD36E51E1F1BE1A8B97791D33F29477914A7E48008D93FDC922416D22262:10",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-outpoint-preview-single",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9AB8BD36E51E1F1BE1A8B97791D33F29477914A7E48008D93FDC922416D22262:10"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-no-token",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-unlock-token-no-force",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--operation-token",
+      "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-unlock-bad-token",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--operation-token",
+      "sha256:xyz",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-unlock-uncertain",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable-uncertain",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-uncertain-outpoint",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable-uncertain",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-incomplete",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable-incomplete",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-all-empty",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-state-changed",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0:0"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-duplicate",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--outpoint",
+      "9AB8BD36E51E1F1BE1A8B97791D33F29477914A7E48008D93FDC922416D22262:2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-invalid-outpoint",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "abc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-invalid-vout",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:02"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-invalid-txid",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "b8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-mismatch",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--operation-token",
+      "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-ok",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:10",
+      "--operation-token",
+      "sha256:cfc0efea8ad3ce8a84984dbf02520c51a65533cc117b71779c77648a25b7fcbd",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-manage-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-rejected",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:10",
+      "--operation-token",
+      "sha256:cfc0efea8ad3ce8a84984dbf02520c51a65533cc117b71779c77648a25b7fcbd",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-manage-rejected",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-82002",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:10",
+      "--operation-token",
+      "sha256:cfc0efea8ad3ce8a84984dbf02520c51a65533cc117b71779c77648a25b7fcbd",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-manage-82002",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-bad-response",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:10",
+      "--operation-token",
+      "sha256:cfc0efea8ad3ce8a84984dbf02520c51a65533cc117b71779c77648a25b7fcbd",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-manage-bad",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-server-error",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:10",
+      "--operation-token",
+      "sha256:cfc0efea8ad3ce8a84984dbf02520c51a65533cc117b71779c77648a25b7fcbd",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-manage-500",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-force-ok-multi",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:10",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--operation-token",
+      "sha256:e96a483a836315062936dd2d0efada5ddc4b907b1eea1402ed6b347111158016",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-manage-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-clap-both",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262:2",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-clap-neither",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-all-preview",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-user-ignored",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-outpoint-preview",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9:7"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-user-ignored",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-all-upper",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-user-ignored-upper",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-outpoint-case-mismatch",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--outpoint",
+      "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9:7"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-user-ignored-upper",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-all-empty",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-user-ignored-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-force-ok",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--operation-token",
+      "sha256:006411130d8a9647619d7d4daf64eef32b858046a07df29d3e20574d16ebdf0e",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-user-ignored",
+      "wallet-rest-btc-manage-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-eth",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "eth",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-reclaim-preview",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      " 0B1C2D3E4F5A6B7C8D9E0F1A2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C ",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-preview-single",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      " 0B1C2D3E4F5A6B7C8D9E0F1A2B3C4D5E6F7A8B9C0D1E2F3A4B5C6D7E8F9A0B1C "
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-invalid",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "abc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-reclaim-invalid-char",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a798g"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-reclaim-duplicate",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+      "--tx-hash",
+      "1F2E3D4C5B6A79881F2E3D4C5B6A79881F2E3D4C5B6A79881F2E3D4C5B6A7988"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-reclaim-nothing",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-force-ok",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-rest-btc-close-ok-single",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-force-ok-multi",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+      "--tx-hash",
+      "0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-rest-btc-close-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-force-partial",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-rest-btc-close-partial-single",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-force-unexpected",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-rest-btc-close-unexpected",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-force-uncovered",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-rest-btc-close-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-force-error",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin",
+      "--tx-hash",
+      "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable",
+      "wallet-rest-btc-order-detail-reclaim",
+      "wallet-rest-btc-close-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-reclaim-clap-missing",
+    "argv": [
+      "wallet",
+      "utxo",
+      "reclaim",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "ethereum"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-first-time",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-from",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "42161",
+      "--from",
+      "0xD825F780E3CB88B383907FF427495D1DCA352D44"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-ready",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-ready-nodefault",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "arbitrum"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-ready-nodefault",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-pending-tx",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "base"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-pending-tx",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-insufficient",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "bsc"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-insufficient",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-not-applicable",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "xlayer"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-not-applicable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-reenable",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-reenable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-not-support",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-not-support",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-unknown-used",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-unknown-used",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-null-status",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-null-status",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-insufficient-status",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-insufficient-status",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-api-error",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-empty-data",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-bad-shape",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-bad-shape",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-status-unsupported",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "nochain"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-status-from-unknown",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1",
+      "--from",
+      "0x0000000000000000000000000000000000000001"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-status-no-address",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "tron"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-status-not-logged-in",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status",
+      "--chain",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-status-clap-missing",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "status"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-first-time",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "42161",
+      "--gas-token-address",
+      "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+      "--relayer-id",
+      "relayer-usdt-42161"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-setup-first-time",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-first-time-from",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "arbitrum",
+      "--gas-token-address",
+      "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+      "--relayer-id",
+      "relayer-usdt-42161",
+      "--from",
+      "0xd825f780e3cb88b383907ff427495d1dca352d44"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-setup-first-time",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-already",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "42161",
+      "--gas-token-address",
+      "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+      "--relayer-id",
+      "relayer-usdt-42161"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-ready",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-switch",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "42161",
+      "--gas-token-address",
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      "--relayer-id",
+      "relayer-usdc-42161"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-ready",
+      "wallet-rest-gs-update-default",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-switch-nodefault",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "42161",
+      "--gas-token-address",
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      "--relayer-id",
+      "r"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-ready-nodefault",
+      "wallet-rest-gs-update-default",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-switch-error",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "42161",
+      "--gas-token-address",
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      "--relayer-id",
+      "r"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-ready",
+      "wallet-rest-gs-update-default-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-not-eligible",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "arb",
+      "--gas-token-address",
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      "--relayer-id",
+      "r"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-pending-tx",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-not-eligible-na",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "arb",
+      "--gas-token-address",
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+      "--relayer-id",
+      "r"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-probe-not-applicable",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-clap-missing-relayer",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "42161",
+      "--gas-token-address",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-update-default-token",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "update-default-token",
+      "--chain",
+      "42161",
+      "--gas-token-address",
+      "0xaf88d065e77c8cc2239327c5edb3a432268e5831"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-update-default",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-update-default-token-array",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "update-default-token",
+      "--chain",
+      "solana",
+      "--gas-token-address",
+      "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-update-default-array",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-update-default-token-error",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "update-default-token",
+      "--chain",
+      "1",
+      "--gas-token-address",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-update-default-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-update-default-token-unsupported",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "update-default-token",
+      "--chain",
+      "nochain",
+      "--gas-token-address",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-update-default-token-no-session",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "update-default-token",
+      "--chain",
+      "1",
+      "--gas-token-address",
+      "x"
+    ],
+    "home": "wallet-no-keyring",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-enable",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "enable",
+      "--chain",
+      "solana"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-update",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-disable",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "disable",
+      "--chain",
+      "sol"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-update-null",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-enable-error",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "enable",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-gs-update-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-enable-unsupported",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "enable",
+      "--chain",
+      "nochain"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-disable-no-address",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "disable",
+      "--chain",
+      "sui"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture"
+  },
+  {
+    "id": "wallet-rest-gs-enable-global-chain",
+    "argv": [
+      "--chain",
+      "sol",
+      "wallet",
+      "gas-station",
+      "enable"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-clap-multi-conflict",
+    "argv": [
+      "wallet",
+      "receive",
+      "--chain",
+      "1",
+      "--cursor",
+      "9",
+      "--token",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-clap-cursor-chain",
+    "argv": [
+      "wallet",
+      "receive",
+      "--cursor",
+      "9",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-receive-clap-token-cursor-chain",
+    "argv": [
+      "wallet",
+      "receive",
+      "--token",
+      "x",
+      "--cursor",
+      "9",
+      "--chain",
+      "1"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-clap-neither-force",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--force",
+      "--chain",
+      "bitcoin",
+      "--operation-token",
+      "x"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-clap-all-outpoint",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--force",
+      "--outpoint",
+      "a"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-clap-both-reversed",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin",
+      "--order-id",
+      "b",
+      "--tx-hash",
+      "a"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-inscription-status-clap-chain-only",
+    "argv": [
+      "wallet",
+      "inscription",
+      "status",
+      "--chain",
+      "bitcoin"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-clap-global-chain-all",
+    "argv": [
+      "--chain",
+      "bitcoin",
+      "wallet",
+      "utxo",
+      "unlock",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-gs-setup-clap-usage-used",
+    "argv": [
+      "wallet",
+      "gas-station",
+      "setup",
+      "--chain",
+      "1",
+      "--from",
+      "x",
+      "--relayer-id",
+      "y"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-lock-clap-missing-value",
+    "argv": [
+      "wallet",
+      "utxo",
+      "lock",
+      "--chain",
+      "bitcoin",
+      "--outpoint"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "wallet-rest-balance-all-stale-merge",
+    "argv": [
+      "wallet",
+      "balance",
+      "--all"
+    ],
+    "home": "wallet-with-caches",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-balance-batch-partial",
+      "wallet-common"
+    ],
+    "masks": [
+      "req.query.accountIds",
+      "stdout.data.details.parity-account-0002.updated_at",
+      "home.balance_cache.json.batch_updated_at",
+      "home.balance_cache.json.accounts.parity-account-0002.updated_at"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-all-preview-51",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-unavailable-51",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-all-force-51-partial",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--operation-token",
+      "sha256:fbbfd156a638ec5bd853a0c0ac9287d08b6dd8aa8af8d466c5afedb61aec2b62",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-manage-partial",
+      "wallet-rest-btc-unavailable-51",
+      "wallet-rest-btc-user-ignored",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "wallet-rest-unlock-all-force-51-rejected",
+    "argv": [
+      "wallet",
+      "utxo",
+      "unlock",
+      "--chain",
+      "bitcoin",
+      "--all",
+      "--operation-token",
+      "sha256:fbbfd156a638ec5bd853a0c0ac9287d08b6dd8aa8af8d466c5afedb61aec2b62",
+      "--force"
+    ],
+    "home": "wallet-chains",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-rest-btc-manage-rejected",
+      "wallet-rest-btc-unavailable-51",
+      "wallet-rest-btc-user-ignored",
+      "wallet-common"
+    ]
+  }
+]

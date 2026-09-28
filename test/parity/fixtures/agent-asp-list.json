@@ -1,0 +1,391 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/my",
+    "match": {
+      "query": {
+        "page": "1"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 25,
+          "list": [
+            {
+              "jobId": "task-1",
+              "title": "Task 1",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 1,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192600
+            },
+            {
+              "jobId": "task-2",
+              "title": "Task 2",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 2,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192601
+            },
+            {
+              "jobId": "task-3",
+              "title": "Task 3",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 3,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192602
+            },
+            {
+              "jobId": "task-4",
+              "title": "Task 4",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 0,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192603
+            },
+            {
+              "jobId": "task-5",
+              "title": "Task 5",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 1,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192604
+            },
+            {
+              "jobId": "task-6",
+              "title": "Task 6",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 2,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192605
+            },
+            {
+              "jobId": "task-7",
+              "title": "Task 7",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 3,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192606
+            },
+            {
+              "jobId": "task-8",
+              "title": "Task 8",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 0,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192607
+            },
+            {
+              "jobId": "task-9",
+              "title": "Task 9",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 1,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192608
+            },
+            {
+              "jobId": "task-10",
+              "title": "Task 10",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 2,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192609
+            },
+            {
+              "jobId": "task-11",
+              "title": "Task 11",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 3,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192610
+            },
+            {
+              "jobId": "task-12",
+              "title": "Task 12",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 0,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192611
+            },
+            {
+              "jobId": "task-13",
+              "title": "Task 13",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 1,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192612
+            },
+            {
+              "jobId": "task-14",
+              "title": "Task 14",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 2,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192613
+            },
+            {
+              "jobId": "task-15",
+              "title": "Task 15",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 3,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192614
+            },
+            {
+              "jobId": "task-16",
+              "title": "Task 16",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 0,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192615
+            },
+            {
+              "jobId": "task-17",
+              "title": "Task 17",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 1,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192616
+            },
+            {
+              "jobId": "task-18",
+              "title": "Task 18",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 2,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192617
+            },
+            {
+              "jobId": "task-19",
+              "title": "Task 19",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 3,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192618
+            },
+            {
+              "jobId": "task-20",
+              "title": "Task 20",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 0,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192619
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/my",
+    "match": {
+      "query": {
+        "page": "2"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 25,
+          "list": [
+            {
+              "jobId": "task-21",
+              "title": "Task 21",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 1,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192600
+            },
+            {
+              "jobId": "task-22",
+              "title": "Task 22",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 2,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192601
+            },
+            {
+              "jobId": "task-23",
+              "title": "Task 23",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 3,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192602
+            },
+            {
+              "jobId": "task-24",
+              "title": "Task 24",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 0,
+              "tokenAmount": "0",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192603
+            },
+            {
+              "jobId": "task-25",
+              "title": "Task 25",
+              "buyerAgentName": "Research Agent",
+              "buyerAgentId": "8415",
+              "status": 1,
+              "tokenAmount": "0.1",
+              "tokenSymbol": "USDT",
+              "createTime": 1788192604
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 3,
+          "list": [
+            {
+              "jobId": "sub-1",
+              "jobType": 1,
+              "title": "Daily Brief",
+              "description": "Daily alpha brief",
+              "buyerAgentId": "8415",
+              "providerAgentId": "9001",
+              "serviceId": "svc-1",
+              "serviceTokenAmount": "10",
+              "paymentTokenSymbol": "USDT",
+              "tokenSymbol": "USDT",
+              "periodIndex": 2,
+              "subStartTime": 1788192600,
+              "subEndTime": 4099852800,
+              "subBufferEndTime": 4102444800,
+              "autoRenew": 1,
+              "createTime": 1788192600,
+              "trialType": 0,
+              "status": 1
+            },
+            {
+              "jobId": "sub-2",
+              "jobType": 1,
+              "title": "Daily Brief",
+              "description": "Daily alpha brief",
+              "buyerAgentId": "8415",
+              "providerAgentId": "1234",
+              "serviceId": "svc-1",
+              "serviceTokenAmount": "10",
+              "paymentTokenSymbol": "USDT",
+              "tokenSymbol": "USDT",
+              "periodIndex": 2,
+              "subStartTime": 1788192600,
+              "subEndTime": 4099852800,
+              "subBufferEndTime": 4102444800,
+              "autoRenew": 1,
+              "createTime": 1788192600,
+              "trialType": 0,
+              "status": 7
+            },
+            {
+              "jobId": "sub-3",
+              "jobType": 1,
+              "title": "Daily Brief",
+              "description": "Daily alpha brief",
+              "buyerAgentId": "8415",
+              "providerAgentId": "9001",
+              "serviceId": "svc-1",
+              "serviceTokenAmount": "10",
+              "paymentTokenSymbol": "USDT",
+              "tokenSymbol": "USDT",
+              "periodIndex": 2,
+              "subStartTime": 1788192600,
+              "subEndTime": 4099852800,
+              "subBufferEndTime": 4102444800,
+              "autoRenew": "false",
+              "createTime": 1788192600,
+              "trialType": 1,
+              "subStatus": 3,
+              "aspAgentId": "9001"
+            },
+            {
+              "jobType": 1,
+              "title": "Daily Brief",
+              "description": "Daily alpha brief",
+              "buyerAgentId": "8415",
+              "providerAgentId": "9001",
+              "serviceId": "svc-1",
+              "serviceTokenAmount": "0",
+              "paymentTokenSymbol": "USDT",
+              "tokenSymbol": "USDT",
+              "periodIndex": 2,
+              "subStartTime": 1788192600,
+              "subEndTime": 4099852800,
+              "subBufferEndTime": 4102444800,
+              "autoRenew": 1,
+              "createTime": 1788192600,
+              "trialType": 0,
+              "subId": "sub-4",
+              "status": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+]

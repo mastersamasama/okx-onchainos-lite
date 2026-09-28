@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances-batch",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50000",
+        "msg": "batch balance unavailable",
+        "data": []
+      }
+    }
+  }
+]

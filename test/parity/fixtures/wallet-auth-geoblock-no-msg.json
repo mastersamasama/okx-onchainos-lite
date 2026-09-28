@@ -1,0 +1,13 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/geoblock/check",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 51001,
+        "data": null
+      }
+    }
+  }
+]

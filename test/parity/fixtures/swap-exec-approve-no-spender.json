@@ -1,0 +1,16 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/approve-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "data": "0x095ea7b300000000000000000000000040aa958dd87fc8305b97f2ba922cddca374bcd7f0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      }
+    }
+  }
+]

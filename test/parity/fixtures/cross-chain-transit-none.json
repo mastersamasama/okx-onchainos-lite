@@ -1,0 +1,19 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/supported/tokens",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "8453",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000001"
+          }
+        ]
+      }
+    }
+  }
+]

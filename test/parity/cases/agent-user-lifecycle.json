@@ -1,0 +1,5970 @@
+[
+ {
+  "id": "aul-close-disabled",
+  "argv": [
+   "agent",
+   "close",
+   "0xabc",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-claim-auto-refund-disabled",
+  "argv": [
+   "agent",
+   "claim-auto-refund",
+   "0xabc"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-subscribe-reject-disabled",
+  "argv": [
+   "agent",
+   "subscribe-reject",
+   "0xabc",
+   "--reason",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-subscribe-reject-missing-reason",
+  "argv": [
+   "agent",
+   "subscribe-reject",
+   "0xabc"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-target-required",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-blank-target",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "   "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-login-required",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-login-required",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_bogus"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-bad-operation",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xab",
+   "--operation",
+   "refund",
+   "--refund-context-id",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-page-size-zero",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "0"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-page-size-over",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "101"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "aul-asp-match-blank-job",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   " "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-set-asp-bad-service-type",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "s",
+   "--service-type",
+   "FOO",
+   "--service-params",
+   "x",
+   "--service-token-address",
+   "0xa",
+   "--service-token-amount",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-subscribe-cost-login-required",
+  "argv": [
+   "agent",
+   "subscribe-cost"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-subscribe-cancel-login-required",
+  "argv": [
+   "agent",
+   "subscribe-cancel",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-start-autorenew-login-required",
+  "argv": [
+   "agent",
+   "start-autorenew",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-login-required",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-status-bad",
+  "argv": [
+   "agent",
+   "my-subscriptions",
+   "--status",
+   "ACTIV"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-status-name",
+  "argv": [
+   "agent",
+   "my-subscriptions",
+   "--status",
+   "active"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-my"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-role-bad",
+  "argv": [
+   "agent",
+   "my-subscriptions",
+   "--role",
+   "asp"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-direct",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-direct-unfunded",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct-unfunded"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-accepted",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-accepted"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-submitted-reason-required",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-submitted-with-reason",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "not delivered as agreed"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-submitted-blank-reason",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "   "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-submitted-long-reason",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-submitted-not-escrow",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted-nomode"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-provider-pending",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-provider-pending"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-arbitration",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-arbitration"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-completed",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-completed"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-closed-paid",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-closed-paid"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-closed-no-mode",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-closed-nomode"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-expired",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-expired"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-refunded",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-refunded"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-free-created",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-free-created"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-free-submitted",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-free-submitted"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-free-closed",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-free-closed"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-unknown-status",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-unknown-status"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-no-job-type",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-no-job-type"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-other-owner",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-other-owner"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-bad-amount",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-bad-amount"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-no-provider",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-no-provider"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-task-error",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-error"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-active",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-active"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-active-reason",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--reason",
+   "signals were wrong"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-active"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-trial",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-trial"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-trial-off",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-trial-off"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-created",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-created"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-closed",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-closed"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-failed",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-failed"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-expired-zero",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-expired-zero"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-no-period",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-no-period"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-bad-period",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-bad-period"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-sub-no-trial-type",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-no-trial-type"
+  ]
+ },
+ {
+  "id": "aul-refund-prepare-no-user-identity",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity-asp-only",
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-stale-context",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_bogus"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-not-confirmed",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-operation-not-available",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "close-zero",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-ok",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-ok",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-nohash",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-ok",
+   "agent-user-lifecycle-broadcast-nohash"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-rejected",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-rejected"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-notype",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-notype"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-wrongjob",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-wrongjob"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-preflight",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-preflight"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-broadcast-fail",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-ok",
+   "agent-user-lifecycle-broadcast-fail"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-no-receipt",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-ok",
+   "agent-user-lifecycle-broadcast-noreceipt"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-wallet-preflight",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity-no-wallet",
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-request-ok",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "request-refund",
+   "--refund-context-id",
+   "refundctx_82e0f564da8234952ed659b34054e9bf3e95bafd9bb8f1f49a55d4514156d3a0",
+   "--reason",
+   "not delivered as agreed",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted",
+   "agent-user-lifecycle-reject-ok",
+   "agent-user-lifecycle-sign",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-request-no-nonce",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "request-refund",
+   "--refund-context-id",
+   "refundctx_82e0f564da8234952ed659b34054e9bf3e95bafd9bb8f1f49a55d4514156d3a0",
+   "--reason",
+   "not delivered as agreed",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted",
+   "agent-user-lifecycle-pre-reject-nononce"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-request-no-reason",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "request-refund",
+   "--refund-context-id",
+   "refundctx_e81a28f1cb12c5eb025ef18e4d9779a9d72417e52b0c3ba572ec349d552e982d",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-sub-request-ok",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--operation",
+   "request-refund",
+   "--refund-context-id",
+   "refundctx_3c1b51c2b3fb3a36ec1200bac5b2c98c49591aca3cee935b5544400fb8839ef6",
+   "--reason",
+   "signals were wrong",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-active",
+   "agent-user-lifecycle-sub-reject",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-sub-trial-cancel-ok",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--operation",
+   "cancel-trial-conversion",
+   "--refund-context-id",
+   "refundctx_732cfe9fa8be340dea932ef0e3dfa600439e6cf5ff60f89eca59fc83ea054257",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-trial",
+   "agent-user-lifecycle-sub-cancel",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-sub-created-close-ok",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--operation",
+   "close-created-subscription",
+   "--refund-context-id",
+   "refundctx_7827e326a6bf15880aea7ece6bf22f0e59c32ab543488a31ea6e9087b1d68bba",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-created",
+   "agent-user-lifecycle-sub-cancel",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-close-zero-ok",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "close-zero",
+   "--refund-context-id",
+   "refundctx_718a7743ee11389cfd9320f3b677aa23509d50b8bee0c42829bc528f5b6ea761",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-free-created",
+   "agent-user-lifecycle-close-ok",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-sub-cancel-rejected",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--operation",
+   "cancel-trial-conversion",
+   "--refund-context-id",
+   "refundctx_732cfe9fa8be340dea932ef0e3dfa600439e6cf5ff60f89eca59fc83ea054257",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-trial",
+   "agent-user-lifecycle-sub-cancel-error"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-asp-match-json",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "JSON"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match"
+  ]
+ },
+ {
+  "id": "aul-asp-match-text",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--page",
+   "2",
+   "--payment-token-amount",
+   "5",
+   "--provider-agent-id",
+   "2002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match"
+  ]
+ },
+ {
+  "id": "aul-asp-match-empty",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aul-asp-match-info-json",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "json",
+   "--payment-token-amount",
+   "0.7"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-info"
+  ]
+ },
+ {
+  "id": "aul-asp-match-resolve-agent",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aul-asp-match-error",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-error"
+  ]
+ },
+ {
+  "id": "aul-tss-matched-json",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "audit",
+   "--limit",
+   "1",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-matched"
+  ]
+ },
+ {
+  "id": "aul-tss-matched-text",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "audit",
+   "--format",
+   "text"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-matched"
+  ]
+ },
+ {
+  "id": "aul-tss-search-after",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--search-after",
+   "cursor-2",
+   "--limit",
+   "3",
+   "--agentic-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-matched"
+  ]
+ },
+ {
+  "id": "aul-tss-sub-no-agentic",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "alpha"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-sub"
+  ]
+ },
+ {
+  "id": "aul-tss-sub-duplicate",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "alpha",
+   "--agentic-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-sub",
+   "agent-user-lifecycle-sub-my"
+  ]
+ },
+ {
+  "id": "aul-tss-sub-clear",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "alpha",
+   "--agentic-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-sub",
+   "agent-user-lifecycle-sub-my-empty"
+  ]
+ },
+ {
+  "id": "aul-tss-offline",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--sid",
+   "33803",
+   "--asp-agent-id",
+   "2003",
+   "--asp-name",
+   "Other",
+   "--service-name",
+   "Audit",
+   "--min-payment-token-amount",
+   "1",
+   "--max-payment-token-amount",
+   "9"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-offline"
+  ]
+ },
+ {
+  "id": "aul-tss-none",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "nothing"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-none"
+  ]
+ },
+ {
+  "id": "aul-set-asp-a2a-in-sync",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "svc-1",
+   "--service-params",
+   "symbol: BTC",
+   "--service-token-address",
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+   "--service-token-amount",
+   "5",
+   "--service-type",
+   "a2a",
+   "--agent-id",
+   "1001",
+   "--payment-token-symbol",
+   "USDT"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-set-asp-a2a-sync-mode",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "svc-1",
+   "--service-params",
+   "symbol: BTC",
+   "--service-token-address",
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+   "--service-token-amount",
+   "5",
+   "--service-type",
+   "A2A",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct-unfunded",
+   "agent-user-lifecycle-set-payment-mode",
+   "agent-user-lifecycle-broadcast",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-set-asp-a2mcp",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "svc-1",
+   "--service-params",
+   "symbol: BTC",
+   "--service-token-address",
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+   "--service-token-amount",
+   "5",
+   "--service-type",
+   "A2MCP",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-payment-mode",
+   "agent-user-lifecycle-broadcast",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-set-asp-error",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "svc-1",
+   "--service-params",
+   "symbol: BTC",
+   "--service-token-address",
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+   "--service-token-amount",
+   "5",
+   "--service-type",
+   "A2A",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp-error"
+  ]
+ },
+ {
+  "id": "aul-set-asp-resolve-agent",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "svc-1",
+   "--service-params",
+   "symbol: BTC",
+   "--service-token-address",
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+   "--service-token-amount",
+   "5",
+   "--service-type",
+   "A2A"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-set-asp-cli-mode",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "svc-1",
+   "--service-params",
+   "symbol: BTC",
+   "--service-token-address",
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+   "--service-token-amount",
+   "5",
+   "--service-type",
+   "A2A",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-reset-asp-explicit",
+  "argv": [
+   "agent",
+   "reset-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-reset-asp-resolve",
+  "argv": [
+   "agent",
+   "reset-asp",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-user-reject-explicit",
+  "argv": [
+   "agent",
+   "user-reject",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-user-reject-resolve",
+  "argv": [
+   "agent",
+   "user-reject",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-user-reject-error",
+  "argv": [
+   "agent",
+   "user-reject",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-user-reject-error"
+  ]
+ },
+ {
+  "id": "aul-complete-legacy-x402",
+  "argv": [
+   "agent",
+   "complete",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-x402"
+  ]
+ },
+ {
+  "id": "aul-complete-no-gate",
+  "argv": [
+   "agent",
+   "complete",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-complete-login-required",
+  "argv": [
+   "agent",
+   "complete",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-subscribe-cost",
+  "argv": [
+   "agent",
+   "subscribe-cost"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-cost"
+  ]
+ },
+ {
+  "id": "aul-subscribe-cost-no-identity",
+  "argv": [
+   "agent",
+   "subscribe-cost"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity-asp-only"
+  ]
+ },
+ {
+  "id": "aul-subscribe-cancel-ok",
+  "argv": [
+   "agent",
+   "subscribe-cancel",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-cancel",
+   "agent-user-lifecycle-broadcast"
+  ]
+ },
+ {
+  "id": "aul-subscribe-cancel-cli-mode",
+  "argv": [
+   "agent",
+   "subscribe-cancel",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-cancel",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-subscribe-cancel-error",
+  "argv": [
+   "agent",
+   "subscribe-cancel",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-cancel-error"
+  ]
+ },
+ {
+  "id": "aul-start-autorenew-ok",
+  "argv": [
+   "agent",
+   "start-autorenew",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-start-autorenew",
+   "agent-user-lifecycle-sign",
+   "agent-user-lifecycle-broadcast"
+  ]
+ },
+ {
+  "id": "aul-start-autorenew-empty",
+  "argv": [
+   "agent",
+   "start-autorenew",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-start-autorenew-empty"
+  ]
+ },
+ {
+  "id": "aul-start-autorenew-no-typed",
+  "argv": [
+   "agent",
+   "start-autorenew",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-start-autorenew-notyped"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-text",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-detail"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-json",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-detail",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-plain-json",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "Json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-detail-plain",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-plain-text",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-detail-plain"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-error",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-detail-error"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-buyer",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-my"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-provider",
+  "argv": [
+   "agent",
+   "my-subscriptions",
+   "--role",
+   "provider"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-my"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-status",
+  "argv": [
+   "agent",
+   "my-subscriptions",
+   "--status",
+   "7"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-my"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-bad-row",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-my-bad"
+  ]
+ },
+ {
+  "id": "aul-my-subscriptions-no-identity",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity-asp-only",
+   "agent-user-lifecycle-sub-my"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-basic",
+  "argv": [
+   "agent",
+   "subscription-list"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sl-basic"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-paged",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sl-paged"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-cursor",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2",
+   "--cursor",
+   "eyJ2ZXJzaW9uIjoxLCJzdGFnZSI6ImFjdGl2ZSIsInBhZ2UiOjIsIm9mZnNldCI6MCwicGFnZV9zaXplIjoyLCJhY3RpdmVfY291bnQiOjMsImVuZGVkX2NvdW50IjoxfQ"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sl-paged"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-cursor-ended",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2",
+   "--cursor",
+   "eyJ2ZXJzaW9uIjoxLCJzdGFnZSI6ImVuZGVkIiwicGFnZSI6MSwib2Zmc2V0IjowLCJwYWdlX3NpemUiOjIsImFjdGl2ZV9jb3VudCI6MywiZW5kZWRfY291bnQiOjF9"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sl-paged"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-cursor-mismatch",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--cursor",
+   "eyJ2ZXJzaW9uIjoxLCJzdGFnZSI6ImFjdGl2ZSIsInBhZ2UiOjIsIm9mZnNldCI6MCwicGFnZV9zaXplIjoyLCJhY3RpdmVfY291bnQiOjMsImVuZGVkX2NvdW50IjoxfQ"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sl-paged"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-bad-cursor",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--cursor",
+   "not-a-cursor"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-missing-page",
+  "argv": [
+   "agent",
+   "subscription-list"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sl-missing-page"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-empty",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "5"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sl-empty"
+  ]
+ },
+ {
+  "id": "aul-subscription-list-no-identity",
+  "argv": [
+   "agent",
+   "subscription-list"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity-asp-only"
+  ]
+ },
+ {
+  "id": "aul-na-create-task-common",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"create_task\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-create-task-regular",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"create_task\",\"branch\":\"regular\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-create-task-subscription",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"create_task\",\"branch\":\"subscription\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-create-task-subscription-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"create_task\",\"branch\":\"subscription\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-na-ud-cli-failed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_cli_failed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"  retry  \"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-job-submitted",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_job_submitted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"A\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-review-deadline",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_review_deadline_warn\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"B wrong output\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-reject-reason",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_reject_reason_required\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"late\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-asp-match-pick",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_asp_match_pick\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"2\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-asp-match-pick-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_asp_match_pick\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"2\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CODEX_THREAD_ID": "thread-1"
+  }
+ },
+ {
+  "id": "aul-na-ud-not-provider",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_not_provider\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"A 864\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-over-budget-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_over_budget\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"B\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-na-ud-negotiate-over-budget",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_negotiate_over_budget\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"C\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-apply-over-budget",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_apply_over_budget\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"A\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-provider-reject-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_job_provider_reject\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"B 555\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-na-ud-set-asp-params",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_set_asp_params\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"ok\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-set-asp-params-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_set_asp_params\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"ok\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-na-ud-unknown-source",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_mystery\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"hello\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-autotrade-consent",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_autotrade_consent\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"yes\",\"deliveryId\":\"msg:abc\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-autotrade-manual",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_autotrade_manual_signal\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"buy\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-autotrade-over-cap",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_autotrade_over_cap\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-autotrade-tool-select",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_autotrade_tool_select\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"okx\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-autotrade-cap-adjust",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_autotrade_cap_adjust\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"A\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-autotrade-plugin",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_autotrade_plugin_install\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"install\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-sub-asp-claim-notify",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_asp_claim_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-staked-unknown",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"staked\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-wakeup-notify",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"wakeup_notify\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"Market report\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-reward-claimed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reward_claimed\",\"jobTitle\":\"Staking reward\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-autotrade-resume-missing-delivery",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"autotrade_queued_resume\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-autotrade-resume-not-head",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"autotrade_queued_resume\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"deliveryId\":\"msg:1\",\"resumeEnvelopeVersion\":2,\"resumeAttempt\":1}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-designated-a2a-no-provider",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"designated_a2a\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-job-accepted",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-accepted"
+  ]
+ },
+ {
+  "id": "aul-na-job-accepted-title",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"Market report\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-accepted"
+  ]
+ },
+ {
+  "id": "aul-na-job-rejected",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-provider-pending"
+  ]
+ },
+ {
+  "id": "aul-na-job-rejected-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"Market report\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-provider-pending"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-na-job-disputed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_disputed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-arbitration"
+  ]
+ },
+ {
+  "id": "aul-na-review-deadline-warn",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"review_deadline_warn\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"Market report\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-na-job-submitted-waiting",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_submitted\",\"jobId\":\"0x9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e9e\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-k-submitted"
+  ]
+ },
+ {
+  "id": "aul-na-job-submitted-x402",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_submitted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-x402"
+  ]
+ },
+ {
+  "id": "aul-na-job-completed-rating",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-completed",
+   "agent-user-lifecycle-feedback-none"
+  ]
+ },
+ {
+  "id": "aul-na-job-completed-rated",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-completed",
+   "agent-user-lifecycle-feedback-done"
+  ]
+ },
+ {
+  "id": "aul-na-job-completed-same-owner",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-same-owner-completed"
+  ]
+ },
+ {
+  "id": "aul-na-job-completed-stale",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-na-job-completed-unavailable",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-error"
+  ]
+ },
+ {
+  "id": "aul-na-sub-complete-notify",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_complete_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-complete-task",
+   "agent-user-lifecycle-feedback-none"
+  ]
+ },
+ {
+  "id": "aul-na-sub-complete-notify-rated",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_complete_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-complete-task",
+   "agent-user-lifecycle-feedback-done"
+  ]
+ },
+ {
+  "id": "aul-na-sub-complete-notify-mismatch",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_complete_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-complete-mismatch"
+  ]
+ },
+ {
+  "id": "aul-na-job-expired",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_expired\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-expired"
+  ]
+ },
+ {
+  "id": "aul-na-submit-expired",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"submit_expired\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-expired"
+  ]
+ },
+ {
+  "id": "aul-na-job-refunded",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_refunded\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"providerAgentId\":\"2002\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-refunded"
+  ]
+ },
+ {
+  "id": "aul-na-job-auto-refunded",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_auto_refunded\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-refunded"
+  ]
+ },
+ {
+  "id": "aul-na-job-refunded-event-mismatch",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_refunded\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"refundAmount\":\"4\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-refunded"
+  ]
+ },
+ {
+  "id": "aul-na-job-closed-paid",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_closed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-closed-paid"
+  ]
+ },
+ {
+  "id": "aul-na-job-closed-free",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"close\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-free-closed"
+  ]
+ },
+ {
+  "id": "aul-na-job-asp-accept-expire",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_accept_expire\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-expired"
+  ]
+ },
+ {
+  "id": "aul-na-job-asp-reject-closed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_reject_closed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"aspRejectReason\":\"too busy\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-closed-paid"
+  ]
+ },
+ {
+  "id": "aul-na-job-asp-reject-expire-free",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_reject_expire\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-free-failed"
+  ]
+ },
+ {
+  "id": "aul-na-reject-expired",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reject_expired\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-provider-pending"
+  ]
+ },
+ {
+  "id": "aul-na-provider-applied-over-budget",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"provider_applied\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aul-na-attachment-added-no-path",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"attachment_added\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-na-attachment-added-upload-fails",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"attachment_added\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"filePath\":\"C:/nonexistent/file.txt\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-na-unknown-event-fresh",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct"
+  ]
+ },
+ {
+  "id": "aul-na-approve-review-no-gate",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"approve_review\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-na-reject-review-paid",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reject_review\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-na-reject-review-paid-reason",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reject_review\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"The report \\\"missed\\\" Q3\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aul-na-reject-review-free-no-reason",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reject_review\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-free-submitted"
+  ]
+ },
+ {
+  "id": "aul-na-reject-review-free-reason",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reject_review\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"wrong format\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-free-submitted",
+   "agent-user-lifecycle-reject-ok",
+   "agent-user-lifecycle-sign",
+   "agent-user-lifecycle-broadcast"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-na-reject-review-free-stale",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reject_review\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-free-created"
+  ]
+ },
+ {
+  "id": "aul-na-sub-open",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_open\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"tokenAmount\":\"3\",\"tokenSymbol\":\"USDT\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-created"
+  ]
+ },
+ {
+  "id": "aul-na-sub-open-trial",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_open\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"trialType\":1}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-created"
+  ]
+ },
+ {
+  "id": "aul-na-sub-created",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_created\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"autoRenew\":1,\"subStartTime\":1700000000,\"subEndTime\":1702592000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-created-trial",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_created\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"trialType\":1,\"trailStartTime\":1700000000,\"trialEndTime\":1700259200000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-asp-selected",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_asp_selected\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-cancel-trial",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_cancel\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"trialType\":1}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-cancel-formal",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_cancel\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"trialType\":0,\"subEndTime\":1702592000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-cancel-fail",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_cancel\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"cancelResult\":\"fail\",\"failReasopn\":\"chain busy\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-user-reject",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_user_reject\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"tokenAmount\":\"3\",\"tokenSymbol\":\"USDT\",\"rejectWindowEndsAt\":1700100000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-rejected"
+  ]
+ },
+ {
+  "id": "aul-na-sub-asp-dispute",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_asp_dispute\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-disputed"
+  ]
+ },
+ {
+  "id": "aul-na-sub-trial-into-active",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_trial_into_active\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"tokenAmount\":\"3\",\"subStartTime\":1700000000,\"subEndTime\":1702592000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-renew-ok",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_renew\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"tokenAmount\":\"3\",\"tokenSymbol\":\"USDT\",\"subEndTime\":1702592000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-expire-warn",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_expire_warn\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-active"
+  ]
+ },
+ {
+  "id": "aul-na-sub-expire-warn-off",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_expire_warn\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-autorenew-off"
+  ]
+ },
+ {
+  "id": "aul-na-sub-close-notify",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_close_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-closed"
+  ]
+ },
+ {
+  "id": "aul-na-sub-close-notify-reason",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_close_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"aspRejectReason\":\"capacity\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-status-closed"
+  ]
+ },
+ {
+  "id": "aul-na-sub-asp-agree",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_asp_agree\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-failed"
+  ]
+ },
+ {
+  "id": "aul-na-sub-reject-refund-notify",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_reject_refund_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"rejectWindowEndsAt\":1700100000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-failed"
+  ]
+ },
+ {
+  "id": "aul-na-sub-failed-notify",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_failed_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-failed"
+  ]
+ },
+ {
+  "id": "aul-na-dispute-resolved-completed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-completed"
+  ]
+ },
+ {
+  "id": "aul-na-dispute-resolved-other-owner",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-other-owner"
+  ]
+ },
+ {
+  "id": "aul-na-dispute-resolved-error",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-error"
+  ]
+ },
+ {
+  "id": "aul-na-designated-error-no-provider",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"designated_error\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-sub-renew-fail-enough",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_renew\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"renewResult\":\"fail\",\"tokenAmount\":\"3\",\"tokenSymbol\":\"USD₮\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-status-active",
+   "agent-user-lifecycle-balance-ok"
+  ]
+ },
+ {
+  "id": "aul-na-job-expired-free",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_expired\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-free-expired"
+  ]
+ },
+ {
+  "id": "aul-na-submit-expired-free",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"submit_expired\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-free-expired"
+  ]
+ },
+ {
+  "id": "aul-na-job-expired-sub-zero",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_expired\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-expired-zero"
+  ]
+ },
+ {
+  "id": "aul-na-job-asp-accept-expire-sub",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_accept_expire\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-expired-zero"
+  ]
+ },
+ {
+  "id": "aul-na-job-asp-reject-expire-paid",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_reject_expire\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"rejectWindowEndsAt\":1700086400}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-refunded"
+  ]
+ },
+ {
+  "id": "aul-na-job-asp-reject-closed-sub",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_reject_closed\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"reason\":\"capacity\",\"trialType\":0}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-sub-closed"
+  ]
+ },
+ {
+  "id": "aul-na-job-closed-other-owner",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_closed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-other-owner"
+  ]
+ },
+ {
+  "id": "aul-na-unstake-requested",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"unstake_requested\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-autotrade-config-required",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_autotrade_config_required\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"configure\",\"deliveryId\":\"msg:abc\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-no-asp-found",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_no_asp_found\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"A\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "aul-na-ud-provider-offline-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_provider_offline\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"B\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aul-tss-child-error",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "audit",
+   "--agentic-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-error"
+  ]
+ },
+ {
+  "id": "aul-set-asp-no-buyer-address",
+  "argv": [
+   "agent",
+   "set-asp",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--provider-agent-id",
+   "2002",
+   "--service-id",
+   "svc-1",
+   "--service-type",
+   "a2a",
+   "--service-params",
+   "{}",
+   "--service-token-address",
+   "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+   "--service-token-amount",
+   "5"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-no-buyer-address"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-json-token-lookup",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-detail-nosymbol",
+   "agent-user-lifecycle-services",
+   "agent-user-lifecycle-basic-info"
+  ]
+ },
+ {
+  "id": "aul-subscribe-detail-json-token-missing",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-detail-nosymbol",
+   "agent-user-lifecycle-services",
+   "agent-user-lifecycle-basic-info-empty"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-broadcast-5xx",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-ok",
+   "agent-user-lifecycle-broadcast-5xx"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-close-5xx",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-5xx"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aul-refund-execute-direct-close-4xx",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_8b6be3815cf6f6af7a97b73799898a3d4a985b077b05ed84866f567d14435453",
+   "--confirm"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-close-4xx"
+  ],
+  "masks": [
+   "req.body.deadline",
+   "req.body.signatureData.deadline",
+   "home.*.updatedAt"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-text-edge",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-v-asp-match-edge"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-json-edge",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "",
+   "--format",
+   "Json",
+   "--payment-token-amount",
+   "1e3"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-v-asp-match-edge"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-nextpage-null",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "json",
+   "--payment-token-amount",
+   "0.1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-v-asp-match-nextpage-null"
+  ]
+ },
+ {
+  "id": "aulv-subscribe-detail-json-edge",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-detail-edge",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-subscribe-detail-text-edge",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-detail-edge-text"
+  ]
+ },
+ {
+  "id": "aulv-subscribe-detail-json-trial0",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "JSON"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-detail-trial0",
+   "agent-user-lifecycle-v-services-notrial"
+  ]
+ },
+ {
+  "id": "aulv-my-subscriptions-edge",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-my-edge"
+  ]
+ },
+ {
+  "id": "aulv-my-subscriptions-edge-provider",
+  "argv": [
+   "agent",
+   "my-subscriptions",
+   "--role",
+   "provider",
+   "--status",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-my-edge"
+  ]
+ },
+ {
+  "id": "aulv-my-subscriptions-err-order",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-my-order-err"
+  ]
+ },
+ {
+  "id": "aulv-my-subscriptions-dup-alias",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-my-dup-alias"
+  ]
+ },
+ {
+  "id": "aulv-my-subscriptions-float-total",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-my-float"
+  ]
+ },
+ {
+  "id": "aulv-my-subscriptions-neg-page",
+  "argv": [
+   "agent",
+   "my-subscriptions"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-my-u32"
+  ]
+ },
+ {
+  "id": "aulv-subscription-list-edge",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sl-edge"
+  ]
+ },
+ {
+  "id": "aulv-refund-prepare-string-fields",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "  late delivery  "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-task-strfields",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-refund-prepare-odd-amount",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-task-oddamount",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-refund-execute-odd-amount-noconfirm",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "direct-refund",
+   "--refund-context-id",
+   "refundctx_x"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-task-oddamount",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-job-refunded-ci-symbol",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_refunded\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"tokenSymbol\":\"usdt\",\"code\":\"SUCCESS\",\"refundAmount\":\"5.0\",\"serviceName\":\"Audit\",\"buyerAgentId\":\"1001\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-refunded",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-job-refunded-fail-code",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_refunded\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"txStatus\":\"Failure\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-refunded",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-job-refunded-amount-mismatch",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_auto_refunded\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"paymentTokenAmount\":4}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-refunded",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-reject-review-paid-special",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"reject_review\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"  he said \\\"no\\\"\\\\ \\t tab 😀   end  \"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aulv-na-provider-applied-string-flag",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"provider_applied\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"overMostBudget\":\"false\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-task-direct",
+   "agent-user-lifecycle-set-asp"
+  ]
+ },
+ {
+  "id": "aulv-na-job-accepted-zero",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-v-task-accepted-zero"
+  ]
+ },
+ {
+  "id": "aulv-na-dispute-resolved-jobtype-mismatch",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobType\":\"1\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-completed",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-sub-asp-agree-settled",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_asp_agree\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"subStartTime\":1700000000,\"subEndTime\":1702592000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-failed",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-sub-reject-refund-settled",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_reject_refund_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"rejectWindowEndsAt\":1700003600,\"jobType\":1}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-failed",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-subscription-list-cursor-seq",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2",
+   "--cursor",
+   "WzEsImFjdGl2ZSIsMSwwLDIsMiw1XQ"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sl-edge"
+  ]
+ },
+ {
+  "id": "aulv-subscription-list-cursor-dup",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2",
+   "--cursor",
+   "eyJ2ZXJzaW9uIjoxLCJzdGFnZSI6ImFjdGl2ZSIsInBhZ2UiOjEsIm9mZnNldCI6MCwicGFnZV9zaXplIjoyLCJhY3RpdmVfY291bnQiOjIsImVuZGVkX2NvdW50Ijo1LCJ2ZXJzaW9uIjoxfQ"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sl-edge"
+  ]
+ },
+ {
+  "id": "aulv-subscription-list-cursor-mapstage",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2",
+   "--cursor",
+   "eyJ2ZXJzaW9uIjoxLCJzdGFnZSI6eyJlbmRlZCI6bnVsbH0sInBhZ2UiOjEsIm9mZnNldCI6MCwicGFnZV9zaXplIjoyLCJhY3RpdmVfY291bnQiOjIsImVuZGVkX2NvdW50Ijo1LCJleHRyYSI6WzEseyJ4IjoyfV19"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sl-edge"
+  ]
+ },
+ {
+  "id": "aulv-subscription-list-cursor-bom",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2",
+   "--cursor",
+   "77u_eyJ2ZXJzaW9uIjoxLCJzdGFnZSI6ImFjdGl2ZSIsInBhZ2UiOjEsIm9mZnNldCI6MCwicGFnZV9zaXplIjoyLCJhY3RpdmVfY291bnQiOjIsImVuZGVkX2NvdW50Ijo1fQ"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sl-edge"
+  ]
+ },
+ {
+  "id": "aulv-subscription-list-cursor-trailing",
+  "argv": [
+   "agent",
+   "subscription-list",
+   "--page-size",
+   "2",
+   "--cursor",
+   "eyJ2ZXJzaW9uIjoxLCJzdGFnZSI6ImFjdGl2ZSIsInBhZ2UiOjEsIm9mZnNldCI6MCwicGFnZV9zaXplIjoyLCJhY3RpdmVfY291bnQiOjIsImVuZGVkX2NvdW50Ijo1fSB4"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sl-edge"
+  ]
+ },
+ {
+  "id": "aulv-subscribe-cost-floats",
+  "argv": [
+   "agent",
+   "subscribe-cost"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-cost-floats"
+  ]
+ },
+ {
+  "id": "aulv-tss-blank-args",
+  "argv": [
+   "agent",
+   "task-service-select",
+   "--keywords",
+   "",
+   "  ",
+   "audit",
+   "--asp-name",
+   "",
+   "--sid",
+   "s1",
+   "--limit",
+   "2",
+   "--format",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sm-matched"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-empty-provider",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--provider-agent-id",
+   "",
+   "--page",
+   "0",
+   "--format",
+   "text"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aulv-refund-prepare-sub-detail-500",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-task-sub-nodetail"
+  ]
+ },
+ {
+  "id": "aulv-refund-prepare-service-list-error",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-task-noname"
+  ]
+ },
+ {
+  "id": "aulv-refund-prepare-agent-fallback",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-v-batch-empty",
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-task-noname",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-refund-execute-request-context-reason",
+  "argv": [
+   "agent",
+   "refund-execute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--operation",
+   "request-refund",
+   "--refund-context-id",
+   "refundctx_x",
+   "--reason",
+   " late "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aulv-na-sub-open-empty-provider",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"sub_open\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"providerAgentId\":\"\",\"tokenAmount\":\"\",\"tokenSymbol\":\"?\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-open-detail"
+  ]
+ },
+ {
+  "id": "aulv-na-job-expired-sub-paid",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_expired\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"code\":\"failed\",\"tokenAmount\":\"1\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-expired-paid",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-job-asp-accept-expire-trial",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_accept_expire\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"serviceName\":\"Event name\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-expired-trial",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-job-asp-reject-closed-msg-trial",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"job_asp_reject_closed\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\",\"trialType\":\"1\",\"aspRejectReason\":\" \",\"reason\":42}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-closed",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-na-sub-failed-notify-other-owner",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1002",
+   "--message",
+   "{\"event\":\"sub_failed_notify\",\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-sub-failed",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-amount-nan",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "json",
+   "--payment-token-amount=NaN"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-amount-neg-inf",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "json",
+   "--payment-token-amount=-infinity"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-amount-neg-zero",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "json",
+   "--payment-token-amount=-0"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-amount-plus-frac",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "json",
+   "--payment-token-amount=+.5"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aulv-asp-match-amount-overflow",
+  "argv": [
+   "agent",
+   "asp-match",
+   "--job-id",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "1001",
+   "--format",
+   "json",
+   "--payment-token-amount=1e400"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-asp-match-empty"
+  ]
+ },
+ {
+  "id": "aulv-refund-prepare-reason-2000-chars",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "éééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aulv-refund-prepare-reason-2001-chars",
+  "argv": [
+   "agent",
+   "refund-prepare",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "ééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééééé😀😀"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-task-submitted"
+  ]
+ },
+ {
+  "id": "aulv-subscribe-detail-json-trial-hours",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-detail-trial-hours",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-subscription-list-degraded",
+  "argv": [
+   "agent",
+   "subscription-list"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sl-degraded"
+  ]
+ },
+ {
+  "id": "aulv-na-ud-negotiate-over-budget-cli",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_negotiate_over_budget\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"A 864\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CLAUDECODE": "1"
+  }
+ },
+ {
+  "id": "aulv-na-ud-asp-match-pick-codex",
+  "argv": [
+   "agent",
+   "next-action",
+   "--role",
+   "user",
+   "--agentId",
+   "1001",
+   "--message",
+   "{\"event\":\"user_decision_asp_match_pick\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"  2  \"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "CODEX_THREAD_ID": "thread-1"
+  }
+ },
+ {
+  "id": "aulv-subscribe-detail-json-ns-trial",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+   "--format",
+   "json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-detail-ns-trial",
+   "agent-user-lifecycle-services"
+  ]
+ },
+ {
+  "id": "aulv-subscribe-detail-text-ns-trial",
+  "argv": [
+   "agent",
+   "subscribe-detail",
+   "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-user-lifecycle-identity",
+   "agent-user-lifecycle-v-sub-detail-ns-trial"
+  ]
+ }
+]

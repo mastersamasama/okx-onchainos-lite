@@ -1,0 +1,62 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "",
+            "hash": "0x9b68b8f61ae46dc84e24cf87612734f958cf8b2ef3ec57397564d96fae4b3338",
+            "authHashFor7702": null,
+            "executeErrorMsg": "execution reverted: ERC20: transfer amount exceeds balance",
+            "executeResult": false,
+            "extraData": {
+              "gasLimit": "21000",
+              "maxFeePerGas": "32000000000",
+              "maxPriorityFeePerGas": "1500000000",
+              "nonce": 17,
+              "chainId": 1,
+              "gasPriceGwei": 12.5,
+              "estimateGasFee": "0.000672",
+              "freeGas": false,
+              "riskLevel": null,
+              "tokenInfo": {
+                "symbol": "ETH",
+                "decimal": 18,
+                "isNative": true
+              }
+            },
+            "signType": "eip1559",
+            "encoding": "hex",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": false,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": null,
+            "serviceChargeSymbol": null,
+            "serviceChargeFeeTokenAddress": null,
+            "needUpdate7702": false,
+            "gasStationTokenList": null,
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "NOT_APPLICABLE",
+            "contractNonce": null,
+            "eoaNonce": null,
+            "user712Data": null,
+            "user7702Data": null,
+            "defaultGasTokenAddress": null
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/address/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50002",
+        "msg": "address service unavailable",
+        "data": []
+      }
+    }
+  }
+]

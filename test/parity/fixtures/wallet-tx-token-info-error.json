@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/token/get-token-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "51001",
+        "msg": "Token not found",
+        "data": []
+      }
+    }
+  }
+]

@@ -1,0 +1,31 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "msgHash": "0xabababababababababababababababababababababababababababababababab",
+            "domainHash": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/sign-msg",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81003",
+        "msg": "session signature invalid",
+        "data": []
+      }
+    }
+  }
+]

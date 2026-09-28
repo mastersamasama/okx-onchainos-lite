@@ -1,0 +1,7 @@
+{
+  "sessions": [
+    {
+      "handshake": "HTTP/1.0 101 Switching Protocols\r\nConnection: Upgrade\r\nUpgrade: websocket\r\n\r\n"
+    }
+  ]
+}

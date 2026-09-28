@@ -1,0 +1,52 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/sign-tx",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "signedTxList": [
+              {
+                "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0",
+                "signedTx": "02000000000101c0d7aa5b"
+              },
+              {
+                "txHash": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+                "signedTx": "02000000000101e2f7a1c3"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/batch-broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "pkg-1",
+            "orderId": "1971032288712115301",
+            "orderType": "51",
+            "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0"
+          },
+          {
+            "pkgId": "pkg-1",
+            "orderId": "1971032288712115302",
+            "orderType": "51",
+            "txHash": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262"
+          }
+        ]
+      }
+    }
+  }
+]

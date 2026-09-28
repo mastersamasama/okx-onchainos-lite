@@ -1,0 +1,37 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "task not found",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/dispute/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "currentRound": 1,
+          "selectedVoter": null,
+          "taskStatus": 4,
+          "disputeRoundStatus": 1,
+          "prepareEndTime": 4102444800000,
+          "roundEndTime": 4102531200000,
+          "tokenAmount": "5",
+          "tokenSymbol": "USDT"
+        }
+      }
+    }
+  }
+]

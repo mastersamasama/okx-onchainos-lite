@@ -1,0 +1,42 @@
+{
+  "sessions": [
+    {
+      "connId": "4e5b6c7d",
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "0",
+              "msg": "",
+              "connId": "4e5b6c7d"
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            "$acks",
+            {
+              "arg": {
+                "channel": "price",
+                "chainIndex": "1",
+                "tokenContractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+              },
+              "data": [
+                {
+                  "tokenContractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                  "chainIndex": "1",
+                  "time": "1727500000123",
+                  "price": "1.0002"
+                }
+              ]
+            }
+          ],
+          "then": "end"
+        }
+      ]
+    }
+  ]
+}

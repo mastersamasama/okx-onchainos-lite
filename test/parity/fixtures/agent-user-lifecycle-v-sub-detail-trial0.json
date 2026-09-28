@@ -1,0 +1,38 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "status": 1,
+          "trialType": 0,
+          "autoRenew": 0,
+          "periodIndex": 3,
+          "serviceId": "svc-sub-7",
+          "serviceTokenAmount": "3",
+          "serviceTokenSymbol": " ",
+          "tokenSymbol": "USDT",
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "providerAgentName": "Parity ASP",
+          "periodStartTime": 1700000000,
+          "subStartTime": 1700000000,
+          "subEndTime": 1702592000,
+          "title": "Daily alpha signals",
+          "description": "",
+          "offlineReceiveFlag": 0,
+          "deviceList": [],
+          "categoryCodes": [
+            "c1",
+            2
+          ]
+        }
+      }
+    }
+  }
+]

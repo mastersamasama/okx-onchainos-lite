@@ -1,0 +1,22 @@
+[
+  {"id":"portfolio-chains","argv":["portfolio","chains"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-chains-ignored-chain","argv":["portfolio","chains","--chain","solana"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-total-value","argv":["portfolio","total-value","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","ethereum"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-total-value-options","argv":["portfolio","total-value","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","ethereum, base","--asset-type","1","--exclude-risk","false"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-all-balances","argv":["portfolio","all-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","ethereum"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-all-balances-options","argv":["portfolio","all-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","ethereum","--exclude-risk","0","--filter","1"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-token-balances","argv":["portfolio","token-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--tokens","1:0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48,1:"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-token-balances-risk","argv":["portfolio","token-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--tokens","ethereum:","--exclude-risk","1"],"masks":["home.payment_cache.json.updated_at"]},
+  {"id":"portfolio-total-value-bad-bool","argv":["portfolio","total-value","--address","0x1","--chains","1","--exclude-risk","yes"],"network":"fixture"},
+  {"id":"portfolio-total-value-missing-chains","argv":["portfolio","total-value","--address","0x1"],"network":"fixture"},
+  {"id":"portfolio-all-balances-hyphen","argv":["portfolio","all-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","1","--filter","-1"],"network":"fixture"},
+  {"id":"portfolio-chains-ok","argv":["portfolio","chains"],"network":"fixture","fixtures":["portfolio-ok"]},
+  {"id":"portfolio-total-value-ok","argv":["--chain","solana","portfolio","total-value","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains"," xlayer ,sol,,","--exclude-risk","true","--asset-type",""],"network":"fixture","fixtures":["portfolio-ok"]},
+  {"id":"portfolio-all-balances-ok","argv":["portfolio","all-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","eth","--exclude-risk","","--filter","0"],"network":"fixture","fixtures":["portfolio-ok"]},
+  {"id":"portfolio-token-balances-ok","argv":["portfolio","token-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--tokens"," 1 :0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48,ethereum,sol:a:b,","--exclude-risk","0"],"network":"fixture","fixtures":["portfolio-ok"]},
+  {"id":"portfolio-token-balances-logged-in","argv":["portfolio","token-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--tokens","196:"],"network":"fixture","fixtures":["portfolio-ok"],"home":"wallet"},
+  {"id":"portfolio-total-value-api-error","argv":["portfolio","total-value","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","1"],"network":"fixture","fixtures":["portfolio-api-error"]},
+  {"id":"portfolio-all-balances-non-json","argv":["portfolio","all-balances","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","1"],"network":"fixture","fixtures":["portfolio-non-json"]},
+  {"id":"portfolio-chains-empty-body","argv":["portfolio","chains"],"network":"fixture","fixtures":["portfolio-empty-body"]},
+  {"id":"portfolio-total-value-unicode-trim","argv":["portfolio","total-value","--address","0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045","--chains","eth\u0085,\ufeffsol"],"network":"fixture","fixtures":["portfolio-ok"]}
+]

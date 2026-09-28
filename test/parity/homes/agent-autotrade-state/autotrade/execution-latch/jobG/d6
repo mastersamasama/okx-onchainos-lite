@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "jobId": "jobX",
+  "deliveryId": "d6",
+  "phase": "spawned",
+  "updatedAt": 1700000000,
+  "directExecutionMode": "auto"
+}

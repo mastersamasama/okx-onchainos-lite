@@ -1,0 +1,17 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "$close": 1005,
+              "reason": "x"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

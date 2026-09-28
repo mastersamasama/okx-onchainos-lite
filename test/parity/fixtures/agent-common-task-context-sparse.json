@@ -1,0 +1,28 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "title": "Tiny",
+          "description": "Short task",
+          "status": 42,
+          "paymentMode": 3,
+          "minCreditScore": 2,
+          "expireConfig": {
+            "openExpireSec": "86400",
+            "acceptedExpireSec": 7200
+          },
+          "createTime": 0,
+          "providerAgentId": "2002",
+          "userAgentId": "1001"
+        }
+      }
+    }
+  }
+]

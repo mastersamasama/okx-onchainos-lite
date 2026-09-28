@@ -1,0 +1,13 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/im/message/eligible",
+    "response": {
+      "status": 403,
+      "body": {
+        "code": "403",
+        "msg": "forbidden"
+      }
+    }
+  }
+]

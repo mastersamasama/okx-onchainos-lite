@@ -1,0 +1,93 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 4,
+          "list": [
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "jobType": 1,
+              "status": 1,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            },
+            {
+              "jobId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+              "jobType": 1,
+              "status": 7,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-x",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0,
+              "deviceList": [],
+              "categoryCodes": [
+                "ai",
+                3
+              ]
+            },
+            {
+              "jobId": "0x2222222222222222222222222222222222222222222222222222222222222222",
+              "jobType": 1,
+              "status": 1,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "3003",
+              "providerAgentId": "1001",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0,
+              "trailStartTime": 1700000000,
+              "serviceDescription": "desc"
+            },
+            {
+              "jobId": "0x3333333333333333333333333333333333333333333333333333333333333333",
+              "jobType": 1,
+              "status": 0,
+              "title": "Daily alpha signals",
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 1,
+              "deviceList": [
+                "dev-a",
+                "dev-b"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+]

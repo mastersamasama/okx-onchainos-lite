@@ -1,0 +1,26 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "status": 1,
+          "title": "Free job",
+          "description": "",
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "paymentTokenAmount": "0.00",
+          "tokenAmount": "0.00",
+          "tokenSymbol": "USDT",
+          "paymentMode": 1
+        }
+      }
+    }
+  }
+]

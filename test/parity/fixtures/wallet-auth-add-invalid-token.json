@@ -1,0 +1,128 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/create",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "10008",
+        "msg": "Invalid access token",
+        "data": []
+      }
+    },
+    "times": 1
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/create",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0004",
+            "accountName": "Account 4",
+            "addressList": [
+              {
+                "address": "0x2508d05ace779cfc91a22ed1adec8602872728cc",
+                "chainIndex": 1,
+                "chainName": "eth",
+                "addressType": "eoa",
+                "chainPath": "m/44'/60'/0'/0/0"
+              },
+              {
+                "address": "0x2508d05ace779cfc91a22ed1adec8602872728cc",
+                "chainIndex": 56,
+                "chainName": "bnb",
+                "addressType": "eoa",
+                "chainPath": "m/44'/60'/0'/0/0"
+              },
+              {
+                "address": "0x2508d05ace779cfc91a22ed1adec8602872728cc",
+                "chainIndex": 196,
+                "chainName": "okb",
+                "addressType": "eoa",
+                "chainPath": "m/44'/60'/0'/0/0"
+              },
+              {
+                "address": "0x2508d05ace779cfc91a22ed1adec8602872728cc",
+                "chainIndex": 8453,
+                "chainName": "base_eth",
+                "addressType": "eoa",
+                "chainPath": "m/44'/60'/0'/0/0"
+              },
+              {
+                "address": "0x2508d05ace779cfc91a22ed1adec8602872728cc",
+                "chainIndex": 42161,
+                "chainName": "arb_eth",
+                "addressType": "eoa",
+                "chainPath": "m/44'/60'/0'/0/0"
+              },
+              {
+                "address": "2aX8UvLU2nDounoGWYd3xkVUziSWqVaQsbb4vGJWGonr",
+                "chainIndex": 501,
+                "chainName": "sol",
+                "addressType": "eoa",
+                "chainPath": "m/44'/501'/0'/0'"
+              },
+              {
+                "address": "bc1pwxjtr83ja9gpz4c5y9tejumyew9qj4ddm4yeqcxgqpysawhr8l4qx2ccpq",
+                "chainIndex": 0,
+                "chainName": "btc",
+                "addressType": "taproot",
+                "chainPath": "m/86'/0'/0'/0/0"
+              },
+              {
+                "address": "0x9905d91db6592ea5796316f1f8a2fd5956dfd514061f35b010b07b58b24c8dd2",
+                "chainIndex": 784,
+                "chainName": "sui",
+                "addressType": "eoa",
+                "chainPath": "m/44'/784'/0'/0'/0'"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0001",
+            "accountName": "Account 1",
+            "isDefault": true
+          },
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0002",
+            "accountName": "Account 2",
+            "isDefault": false
+          },
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0003",
+            "accountName": "Account 3",
+            "isDefault": false
+          },
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0004",
+            "accountName": "Account 4",
+            "isDefault": false
+          }
+        ]
+      }
+    }
+  }
+]

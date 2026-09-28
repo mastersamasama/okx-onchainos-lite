@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "agentId": "a-user",
+  "serviceId": "svc2",
+  "executionMode": "signal_only",
+  "updatedAtMs": 1700000000000
+}

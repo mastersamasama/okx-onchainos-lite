@@ -1,0 +1,13 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/search",
+  "response": {
+   "status": 500,
+   "headers": {
+    "content-type": "text/plain"
+   },
+   "body": "boom"
+  }
+ }
+]

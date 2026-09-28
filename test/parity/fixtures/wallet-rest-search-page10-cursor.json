@@ -1,0 +1,120 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/search",
+    "match": {
+      "query": {
+        "cursor": "9"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000011",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "11",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000012",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "12",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000013",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "13",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000014",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "14",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000015",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "15",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000016",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "16",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000017",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "17",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000018",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "18",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000019",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "19",
+            "change": "0.01"
+          },
+          {
+            "chainIndex": "8453",
+            "tokenName": "Tether USD",
+            "tokenSymbol": "USDT",
+            "tokenContractAddress": "0x0000000000000000000000000000000000000020",
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/usdt.png",
+            "cursor": "",
+            "change": "0.01"
+          }
+        ]
+      }
+    }
+  }
+]

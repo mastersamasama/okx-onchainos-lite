@@ -1,0 +1,58 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 1,
+          "list": [
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "jobType": 1,
+              "status": 1,
+              "chainId": 196,
+              "title": "BTC Signals",
+              "description": "daily btc signals",
+              "descriptionSummary": "",
+              "buyerAgentId": "1001",
+              "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "providerAgentId": "2002",
+              "providerAgentAddress": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+              "trialType": 0,
+              "trailStartTime": 1700000000,
+              "trailEndTime": 1700100000,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "subBufferEndTime": null,
+              "autoRenew": 1,
+              "copyTrade": 0,
+              "periodIndex": 1,
+              "serviceId": "svc-sub-7",
+              "serviceParams": "",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "serviceTokenAmount": "9.9",
+              "paymentTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "paymentTokenAmount": "9.9",
+              "paymentCurrencyAmount": "9900000",
+              "offlineReceiveFlag": 0,
+              "role": "buyer",
+              "hasFeedBack": false,
+              "deviceList": [
+                "939e4859f44d7ce47c03a507c18ccc234c27e82c24b06d831608e7a48052a1f0",
+                "other-device"
+              ],
+              "categoryCodes": [
+                "SIGNAL"
+              ],
+              "extraBackendField": "dropped"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

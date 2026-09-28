@@ -1,0 +1,59 @@
+{
+  "_doc": "Commands that exist only in onchainos-lite (not in upstream). Merged into the parser surface by core/cli.mjs; excluded from the upstream coverage gate.",
+  "nodes": {
+    "doctor": {
+      "help": "Diagnose the onchainos-lite runtime: Node version, TLS trust store and transport, proxy, hosts to allow in sandboxed environments, API reachability and login state (never prints secrets)\n\nUsage: onchainos doctor [OPTIONS]\n\nOptions:\n      --offline  Skip the network reachability check\n  -h, --help     Print help\n",
+      "opts": [{ "name": "offline", "long": "--offline", "flag": true }],
+      "lite": true
+    },
+    "auth": {
+      "help": "Credentials for onchainos-lite: OKX API key (HMAC) auth and encrypted transfer of local credentials to another machine (e.g. a Muse VM)\n\nUsage: onchainos auth <COMMAND>\n\nCommands:\n  status    Show which auth mode requests will use (never prints secrets)\n  api-key   Store or clear an OKX Web3 API key (key, secret, passphrase)\n  transfer  Move credentials to another machine without exposing them in chat\n  help      Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n",
+      "opts": [],
+      "subs": ["status", "api-key", "transfer"],
+      "lite": true
+    },
+    "auth status": {
+      "help": "Show which auth mode requests will use (wallet JWT, API key, anonymous) — never prints secrets\n\nUsage: onchainos auth status\n\nOptions:\n  -h, --help  Print help\n",
+      "opts": [],
+      "lite": true
+    },
+    "auth api-key": {
+      "help": "Store or clear an OKX Web3 API key (key, secret, passphrase)\n\nUsage: onchainos auth api-key <COMMAND>\n\nCommands:\n  set    Store an API key in the encrypted keyring\n  clear  Remove the stored API key\n  help   Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n",
+      "opts": [],
+      "subs": ["set", "clear"],
+      "lite": true
+    },
+    "auth api-key set": {
+      "help": "Store an OKX Web3 API key in the encrypted keyring. Values are read from the environment (OKX_API_KEY, OKX_SECRET_KEY, OKX_PASSPHRASE, optional OKX_PROJECT_ID) with --from-env, or from stdin (KEY=VALUE lines or a JSON object with the same names) with --stdin — never from command-line arguments\n\nUsage: onchainos auth api-key set [OPTIONS]\n\nOptions:\n      --from-env  Read OKX_API_KEY / OKX_SECRET_KEY / OKX_PASSPHRASE / OKX_PROJECT_ID from the environment\n      --stdin     Read the same names from stdin (KEY=VALUE lines or JSON)\n  -h, --help      Print help\n",
+      "opts": [{ "name": "fromEnv", "long": "--from-env", "flag": true }, { "name": "stdin", "long": "--stdin", "flag": true }],
+      "lite": true
+    },
+    "auth api-key clear": {
+      "help": "Remove the stored API key from the encrypted keyring\n\nUsage: onchainos auth api-key clear\n\nOptions:\n  -h, --help  Print help\n",
+      "opts": [],
+      "lite": true
+    },
+    "auth transfer": {
+      "help": "Move credentials to another machine (e.g. a Muse VM) without exposing them: the target creates a one-time key, the source seals the credentials to it, the target opens the sealed blob\n\nUsage: onchainos auth transfer <COMMAND>\n\nCommands:\n  init  (target) Create a one-time recipient code, valid 30 minutes\n  seal  (source) Encrypt local credentials to a recipient code\n  open  (target) Decrypt a sealed blob into the local encrypted keyring\n  help  Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n",
+      "opts": [],
+      "subs": ["init", "seal", "open"],
+      "lite": true
+    },
+    "auth transfer init": {
+      "help": "(target machine) Create a one-time X25519 recipient code, valid 30 minutes\n\nUsage: onchainos auth transfer init\n\nOptions:\n  -h, --help  Print help\n",
+      "opts": [],
+      "lite": true
+    },
+    "auth transfer seal": {
+      "help": "(source machine) Encrypt local credentials to a recipient code with HPKE (X25519/HKDF-SHA256/AES-256-GCM). Includes the API key when one is configured; --session also moves the wallet login\n\nUsage: onchainos auth transfer seal [OPTIONS] --to <TO>\n\nOptions:\n      --to <TO>   Recipient code printed by `auth transfer init` on the target\n      --session   Also include the wallet login (tokens, session key, wallet list). Use the session on one machine only: the next token refresh invalidates the other copy\n      --no-api-key  Do not include the API key\n  -h, --help      Print help\n",
+      "opts": [{ "name": "to", "long": "--to", "value": "TO", "required": true }, { "name": "session", "long": "--session", "flag": true }, { "name": "noApiKey", "long": "--no-api-key", "flag": true }],
+      "lite": true
+    },
+    "auth transfer open": {
+      "help": "(target machine) Decrypt a sealed blob from `auth transfer seal` into the local encrypted keyring\n\nUsage: onchainos auth transfer open <SEALED>\n\nArguments:\n  <SEALED>  The sealed blob (ocl-seal-v1.…)\n\nOptions:\n  -h, --help  Print help\n",
+      "opts": [],
+      "args": [{ "name": "SEALED", "required": true }],
+      "lite": true
+    }
+  }
+}

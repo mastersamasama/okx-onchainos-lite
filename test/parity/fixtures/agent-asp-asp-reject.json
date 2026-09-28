@@ -1,0 +1,17 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/asp/reject",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "code": 0,
+          "msg": "declined"
+        }
+      }
+    }
+  }
+]

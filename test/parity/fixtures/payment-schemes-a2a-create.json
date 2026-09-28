@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/pay/a2a/payment/create",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "paymentId": "pay_a2a_0001",
+          "status": "pending",
+          "deliveries": {
+            "url": "https://web3.okx.com/pay/a2a/pay_a2a_0001",
+            "qrCode": "data:image/png;base64,AAAA",
+            "expiresAt": 1790000000,
+            "fee": {
+              "bps": 30,
+              "amount": 0.5
+            }
+          }
+        }
+      }
+    }
+  }
+]

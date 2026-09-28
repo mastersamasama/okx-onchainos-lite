@@ -1,0 +1,24 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/utxo-asset-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0",
+          "voutIndex": 0,
+          "assets": [
+            {
+              "protocol": "BRC20",
+              "ticker": "ordi",
+              "amount": "1"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

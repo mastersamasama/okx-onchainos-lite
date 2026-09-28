@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/detail",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50114",
+        "msg": "Invalid Authority",
+        "data": null
+      }
+    }
+  }
+]

@@ -1,0 +1,45 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/approve-transaction",
+    "match": {
+      "query": {
+        "approveAmount": "0"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "data": "0x095ea7b300000000000000000000000040aa958dd87fc8305b97f2ba922cddca374bcd7f0000000000000000000000000000000000000000000000000000000000000000",
+            "dexContractAddress": "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
+            "gasLimit": "70000",
+            "gasPrice": "1833731135"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/aggregator/approve-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "data": "0x095ea7b300000000000000000000000040aa958dd87fc8305b97f2ba922cddca374bcd7f00000000000000000000000000000000000000000000000000000000000f4240",
+            "dexContractAddress": "0x40aA958dd87FC8305b97f2BA922CDdCa374bcD7f",
+            "gasLimit": "70000",
+            "gasPrice": "1833731135"
+          }
+        ]
+      }
+    }
+  }
+]

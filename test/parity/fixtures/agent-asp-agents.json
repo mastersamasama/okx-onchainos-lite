@@ -1,0 +1,36 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/batch-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "agentId": "9001",
+            "name": "ASP One",
+            "role": 2,
+            "status": 1,
+            "agentWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44"
+          },
+          {
+            "agentId": "548",
+            "name": "Eval One",
+            "role": 3,
+            "status": 1,
+            "agentWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44"
+          },
+          {
+            "agentId": "7777",
+            "name": "Ghost",
+            "role": 2,
+            "status": 1,
+            "agentWalletAddress": "0x1111111111111111111111111111111111111111"
+          }
+        ]
+      }
+    }
+  }
+]

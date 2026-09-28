@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": []
+      }
+    }
+  }
+]

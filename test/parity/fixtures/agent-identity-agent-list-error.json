@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50030",
+        "msg": "agent list unavailable",
+        "data": null
+      }
+    }
+  }
+]

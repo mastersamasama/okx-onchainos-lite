@@ -1,0 +1,10 @@
+{
+  "batch_updated_at": 1700000000,
+  "accounts": {
+    "parity-account-0001": {
+      "updated_at": 1700000000,
+      "data": [],
+      "total_value_usd": "0.00"
+    }
+  }
+}

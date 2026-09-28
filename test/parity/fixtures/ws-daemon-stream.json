@@ -1,0 +1,125 @@
+{
+  "sessions": [
+    {
+      "connId": "4e5b6c7d",
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "0",
+              "msg": "",
+              "connId": "4e5b6c7d"
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            "$acks",
+            {
+              "arg": {
+                "channel": "price",
+                "chainIndex": "1",
+                "tokenContractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+              },
+              "data": [
+                {
+                  "tokenContractAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+                  "chainIndex": "1",
+                  "time": "1727500000123",
+                  "price": "1.0002"
+                }
+              ]
+            },
+            {
+              "arg": {
+                "channel": "kol_smartmoney-tracker-activity"
+              },
+              "data": [
+                {
+                  "walletAddress": "0x1111111111111111111111111111111111111111",
+                  "quoteTokenSymbol": "USDC",
+                  "quoteTokenAmount": "250.75",
+                  "tokenSymbol": "PEPE",
+                  "tokenContractAddress": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+                  "chainIndex": "1",
+                  "tokenPrice": "0.0000123",
+                  "marketCap": "5100000000",
+                  "realizedPnlUsd": "12.5",
+                  "tradeType": "1",
+                  "tradeTime": "1727500001000",
+                  "trackerType": [
+                    1
+                  ],
+                  "txHash": "0xfeed"
+                },
+                {
+                  "walletAddress": "0x3333333333333333333333333333333333333333",
+                  "quoteTokenSymbol": "USDC",
+                  "quoteTokenAmount": "250.75",
+                  "tokenSymbol": "PEPE",
+                  "tokenContractAddress": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+                  "chainIndex": "1",
+                  "tokenPrice": "0.0000123",
+                  "marketCap": "5100000000",
+                  "realizedPnlUsd": "-1.25",
+                  "tradeType": "2",
+                  "tradeTime": "1727500001000",
+                  "trackerType": [
+                    2
+                  ],
+                  "txHash": "0xfeed",
+                  "amount": 1.5,
+                  "n": 12345678901234567000
+                }
+              ]
+            },
+            "{\"arg\":{\"channel\":\"address-tracker-activity\",\"walletAddress\":\"0x2222222222222222222222222222222222222222\"},\"data\":[{\"walletAddress\":\"0x2222222222222222222222222222222222222222\",\"z\":1,\"a\":{\"y\":[3,2.0,1e-7],\"b\":\"é/\"}}]}",
+            {
+              "arg": {
+                "channel": "dex-market-new-signal-openapi",
+                "chainIndex": "501"
+              },
+              "data": []
+            },
+            {
+              "arg": {
+                "channel": "price"
+              },
+              "data": {
+                "not": "an array"
+              }
+            },
+            {
+              "event": "info",
+              "msg": "ignored"
+            },
+            "hello, not json",
+            "pong",
+            {
+              "$ping": "hb"
+            },
+            {
+              "arg": {
+                "channel": "price",
+                "chainIndex": "501",
+                "tokenContractAddress": "So11111111111111111111111111111111111111112"
+              },
+              "data": [
+                {
+                  "chainIndex": "501",
+                  "price": "151.25",
+                  "time": "1727500000456",
+                  "tokenContractAddress": "So11111111111111111111111111111111111111112"
+                }
+              ]
+            }
+          ],
+          "then": "close"
+        }
+      ]
+    }
+  ]
+}

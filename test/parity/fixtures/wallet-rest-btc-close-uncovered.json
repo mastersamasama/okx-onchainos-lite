@@ -1,0 +1,19 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v5/wallet/pre-transaction/close-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "txHash": "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+            "closed": true
+          }
+        ]
+      }
+    }
+  }
+]

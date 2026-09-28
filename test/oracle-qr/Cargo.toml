@@ -1,0 +1,18 @@
+[package]
+name = "oracle-qr"
+version = "0.1.0"
+edition = "2021"
+publish = false
+description = "Vector generator for skill/onchainos-lite/lib/core/qr.mjs: the exact qrcode 0.14.1 crate + upstream qr.rs render code."
+
+[dependencies]
+# Same crate/version/features as upstream cli/Cargo.toml (qrcode = { version = "0.14", default-features = false }, lock 0.14.1).
+qrcode = { version = "=0.14.1", default-features = false }
+sha2 = "=0.10.9"
+serde_json = "=1.0.149"
+
+[workspace]
+
+[profile.release]
+# Upstream builds release (overflow checks off); mirror it so wrapping arithmetic matches.
+opt-level = 3

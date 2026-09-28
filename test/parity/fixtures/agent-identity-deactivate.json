@@ -1,0 +1,20 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent-status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "42",
+            "status": 2,
+            "approvalStatus": 4
+          }
+        ]
+      }
+    }
+  }
+]

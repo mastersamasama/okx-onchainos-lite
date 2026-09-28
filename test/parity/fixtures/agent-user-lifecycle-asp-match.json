@@ -1,0 +1,102 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/match",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "recommendations": [
+            {
+              "providerAgentId": "2002",
+              "providerAgentName": "Parity ASP",
+              "securityRate": 4.125,
+              "feedbackRate": 0.375,
+              "soldCount": 12,
+              "supportA2MCP": false,
+              "extra": 1,
+              "services": [
+                {
+                  "serviceId": "svc-1",
+                  "serviceName": "Audit",
+                  "serviceType": "A2A",
+                  "serviceDescription": "Security audit of a contract",
+                  "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                  "feeTokenSymbol": "USDT",
+                  "feeAmount": "5",
+                  "endpoint": "",
+                  "serviceGuide": "",
+                  "extraField": "dropped"
+                },
+                {
+                  "serviceId": "svc-2",
+                  "serviceName": "",
+                  "serviceType": "A2A",
+                  "serviceDescription": "",
+                  "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                  "feeTokenSymbol": "USDT",
+                  "feeAmount": 7,
+                  "endpoint": "",
+                  "serviceGuide": "Step 1: ask",
+                  "extraField": "dropped"
+                },
+                {
+                  "serviceId": "svc-sub",
+                  "serviceName": "Daily alpha",
+                  "serviceType": "A2A",
+                  "serviceDescription": "Security audit of a contract",
+                  "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                  "feeTokenSymbol": "USDT",
+                  "feeAmount": "9",
+                  "endpoint": "",
+                  "serviceGuide": "",
+                  "extraField": "dropped",
+                  "supportTrial": true,
+                  "freeTrial": 24,
+                  "subscription": [
+                    {
+                      "interval": "week",
+                      "fee": "1"
+                    },
+                    {
+                      "interval": "month",
+                      "fee": "3.5"
+                    }
+                  ]
+                },
+                {
+                  "serviceId": "svc-neg",
+                  "serviceName": "Negotiated",
+                  "serviceType": "A2A",
+                  "serviceDescription": "Security audit of a contract",
+                  "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                  "feeTokenSymbol": "USDT",
+                  "feeAmount": "  ",
+                  "endpoint": "",
+                  "serviceGuide": "",
+                  "extraField": "dropped",
+                  "supportSubscription": true,
+                  "subscription": [
+                    {
+                      "fee": null
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "providerAgentId": "2003",
+              "securityRate": 2.5,
+              "soldCount": 0,
+              "supportA2MCP": true,
+              "services": []
+            }
+          ],
+          "nextPage": 2
+        }
+      }
+    }
+  }
+]

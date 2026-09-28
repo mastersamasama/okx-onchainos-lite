@@ -1,0 +1,26 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/token/basic-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "chainIndex": "196",
+            "tokenContractAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+            "tokenSymbol": "USDT0",
+            "tokenName": "USDT0",
+            "decimal": "6",
+            "tokenLogoUrl": "",
+            "tagList": {
+              "communityRecognized": true
+            }
+          }
+        ]
+      }
+    }
+  }
+]

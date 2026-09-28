@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/report-plugin-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50000",
+        "msg": "Invalid pluginParameter",
+        "data": []
+      }
+    }
+  }
+]

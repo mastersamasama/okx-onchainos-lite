@@ -1,0 +1,80 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "",
+            "hash": "",
+            "authHashFor7702": null,
+            "executeErrorMsg": "",
+            "executeResult": true,
+            "extraData": {
+              "gasStationEligible": true
+            },
+            "signType": "",
+            "encoding": "",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": true,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": null,
+            "serviceChargeSymbol": null,
+            "serviceChargeFeeTokenAddress": null,
+            "needUpdate7702": false,
+            "gasStationTokenList": [
+              {
+                "feeCoinId": 7,
+                "symbol": "USDT",
+                "feeTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "serviceCharge": "0.13",
+                "balance": "25.5",
+                "sufficient": true,
+                "relayerId": "relayer-usdt-196",
+                "context": "ctx-usdt-2f7a"
+              },
+              {
+                "feeCoinId": 9,
+                "symbol": "USDC",
+                "feeTokenAddress": "0x74b7f16337b8972027f6196a17a631ac6de26d22",
+                "serviceCharge": "0.14",
+                "balance": "0.02",
+                "sufficient": false,
+                "relayerId": "relayer-usdc-196",
+                "context": "ctx-usdc-8b1c"
+              },
+              {
+                "feeCoinId": 11,
+                "symbol": "USDG",
+                "feeTokenAddress": "0x4ae46a509f6b1d9056937ba4500cb143933d2dc8",
+                "serviceCharge": "0.12",
+                "balance": "4",
+                "sufficient": true,
+                "relayerId": "relayer-usdg-196",
+                "context": null
+              }
+            ],
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "READY_TO_USE",
+            "contractNonce": null,
+            "eoaNonce": null,
+            "user712Data": null,
+            "user7702Data": null,
+            "defaultGasTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+          }
+        ]
+      }
+    }
+  }
+]

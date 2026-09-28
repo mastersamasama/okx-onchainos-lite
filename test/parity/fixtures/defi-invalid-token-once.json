@@ -1,0 +1,15 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/detail",
+    "times": 1,
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "53017",
+        "msg": "Your Agentic Wallet Authorization has expired. Please log in again or refresh your authorization.",
+        "data": null
+      }
+    }
+  }
+]

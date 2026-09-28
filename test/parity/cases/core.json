@@ -1,0 +1,8 @@
+[
+  { "id": "core-preflight", "argv": ["preflight"] },
+  { "id": "core-market-price-eth", "argv": ["market", "price", "--address", "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "--chain", "ethereum"], "masks": ["stdout.data.*.price", "stdout.data.*.time"] },
+  { "id": "core-market-price-global-chain", "argv": ["--chain", "solana", "market", "price", "--address", "  So11111111111111111111111111111111111111112 "], "masks": ["stdout.data.*.price", "stdout.data.*.time"] },
+  { "id": "core-market-price-empty", "argv": ["market", "price", "--address", "   "] },
+  { "id": "core-market-price-fixture-empty", "argv": ["market", "price", "--address", "0xdead", "--chain", "8453"], "network": "fixture", "fixtures": ["core-empty-price"] },
+  { "id": "core-market-price-api-error", "argv": ["market", "price", "--address", "0xabc", "--chain", "Foo"], "network": "fixture", "fixtures": ["core-api-error"] }
+]

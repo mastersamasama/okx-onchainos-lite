@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/apply",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "3001",
+        "msg": "job not open",
+        "data": null
+      }
+    }
+  }
+]

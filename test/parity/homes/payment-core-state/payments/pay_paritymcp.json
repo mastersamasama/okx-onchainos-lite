@@ -1,0 +1,101 @@
+{
+  "payment_id": "pay_paritymcp",
+  "owner_wallet": "parity-account-0001",
+  "created_at": 1700000000,
+  "expires_at": 4102444800,
+  "accepts": [
+    {
+      "index": 0,
+      "scheme": "exact",
+      "amount": "1000000",
+      "asset": "0x2222222222222222222222222222222222222222",
+      "network": "eip155:196"
+    },
+    {
+      "index": 1,
+      "scheme": "upto",
+      "amount": "5000",
+      "asset": "0x3333333333333333333333333333333333333333",
+      "network": "eip155:8453"
+    }
+  ],
+  "decoded_challenge": {
+    "amount": "1000000",
+    "amountHuman": "1",
+    "decimals": 6,
+    "recipient": "0x1111111111111111111111111111111111111111",
+    "expires": 0,
+    "supported": true,
+    "unsupported_reason": null
+  },
+  "candidates": [
+    {
+      "scheme": "exact",
+      "acceptsIndex": 0,
+      "chainId": "196",
+      "chainName": "X Layer",
+      "isMainnet": true,
+      "tokenSymbol": "USDG",
+      "amount": "1000000",
+      "amountHuman": "1",
+      "decimals": 6,
+      "hasBalance": false,
+      "balanceStatus": "unavailable",
+      "availableAmount": "",
+      "requiredAmount": "1",
+      "shortfall": "",
+      "depositAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "recommended": null
+    },
+    {
+      "scheme": "upto",
+      "acceptsIndex": 1,
+      "chainId": "8453",
+      "chainName": "Base",
+      "isMainnet": true,
+      "tokenSymbol": "0x3333333333333333333333333333333333333333",
+      "amount": "5000",
+      "amountHuman": "0.005",
+      "decimals": 6,
+      "hasBalance": false,
+      "balanceStatus": "unavailable",
+      "availableAmount": "",
+      "requiredAmount": "0.005",
+      "shortfall": "",
+      "depositAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+      "recommended": false
+    }
+  ],
+  "known_params": {
+    "city": "paris"
+  },
+  "merchant_body": "{\"error\":\"payment required\"}",
+  "endpoint_url": "http://127.0.0.1:1/mcp",
+  "raw_accepts": [
+    {
+      "amount": "1000000",
+      "asset": "0x2222222222222222222222222222222222222222",
+      "extra": {
+        "name": "USDG",
+        "version": "1"
+      },
+      "maxTimeoutSeconds": 300,
+      "network": "eip155:196",
+      "payTo": "0x1111111111111111111111111111111111111111",
+      "scheme": "exact"
+    },
+    {
+      "amount": "5000",
+      "asset": "0x3333333333333333333333333333333333333333",
+      "extra": {
+        "facilitatorAddress": "0x4444444444444444444444444444444444444444"
+      },
+      "network": "eip155:8453",
+      "payTo": "0x1111111111111111111111111111111111111111",
+      "scheme": "upto"
+    }
+  ],
+  "method": "POST",
+  "param_plan": [],
+  "mcpTool": "weather"
+}

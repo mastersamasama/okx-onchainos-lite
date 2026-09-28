@@ -1,0 +1,10 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/session/result",
+    "response": {
+      "status": 500,
+      "body": "upstream unavailable"
+    }
+  }
+]

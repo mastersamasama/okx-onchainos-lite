@@ -1,0 +1,4326 @@
+[
+ {
+  "id": "agent-identity-vl-pass",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Summarizer Bot",
+   "--description",
+   "A helpful agent.",
+   "--service",
+   "[{\"serviceName\":\"Document Summarizer\",\"serviceDescription\":\"Summarizes text.\",\"serviceType\":\"A2MCP\",\"fee\":\"10\",\"endpoint\":\"https://example.com/mcp\"}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-bot3",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Bot#3"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-user-ignores-service",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--role",
+   "user",
+   "--name",
+   "Buyer Bot",
+   "--service",
+   "not json"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-sub-zero",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Agent Name",
+   "--service",
+   "[{\"serviceName\":\"Pricing Service\",\"serviceDescription\":\"Does a thing.\",\"serviceType\":\"A2A\",\"fee\":\"\",\"subscription\":[{\"interval\":\"month\",\"fee\":\"0\"}]}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-d2-suggest",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Agent Name",
+   "--service",
+   "[{\"serviceName\":\"Doc Summarizer\",\"serviceDescription\":\"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\",\"serviceType\":\"A2A\",\"fee\":\"5\"}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-parse-error",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Agent Name",
+   "--service",
+   "[{\"serviceName\":1}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-parse-bad-op",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--service",
+   "[{\"serviceName\":\"S\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"operation\":\"upsert\"}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-role-invalid-defaults-asp",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--role",
+   "buyer",
+   "--name",
+   "x",
+   "--description",
+   "see https://github.com/foo (test)",
+   "--service",
+   "   "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-names",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--role",
+   "evaluator",
+   "--name",
+   "测试智能体Pro",
+   "--description",
+   "demo -pre"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-name-cjk-long",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "这是一个非常非常长的中文名字超过十二个字"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-name-ordinals",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Casino7"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-name-paren",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Helper (2) "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-name-hyphen",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "- Alpha - Beta",
+   "--description",
+   "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-name-bilingual-ok",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "价格 · Price",
+   "--description",
+   "protest and predict"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-services-types",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Oracle Agent",
+   "--service",
+   "[{\"serviceName\":\"Oracle Agent\",\"serviceDescription\":\"uses A2MCP bridge\",\"serviceType\":\"a2a\",\"fee\":\"1.234\",\"endpoint\":\"https://x.example.com\",\"freeTrial\":\"0\"},{\"serviceName\":\"Free Feed\",\"serviceDescription\":\"A2A relay\",\"serviceType\":\"A2MCP\",\"fee\":\"\",\"subscription\":[{\"interval\":\"year\",\"fee\":\"\"}],\"freeTrial\":\"24\",\"endpoint\":\"http://api.example.com\"},{\"serviceName\":\"Bulk 5 USDT\",\"serviceDescription\":\"\",\"serviceType\":\"Rest\",\"fee\":\"1,000\"},{\"serviceName\":\"Local Tool\",\"serviceDescription\":\"call https://localhost/tool\",\"serviceType\":\"A2MCP\",\"fee\":\"0.1234567\",\"endpoint\":\"https://LOCALHOST:8443/tool\"},{\"serviceName\":\"Private\",\"serviceDescription\":\"svc [test]\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"endpoint\":\"https://172.20.1.1/x\"},{\"serviceName\":\"Private\",\"serviceDescription\":\"svc\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"endpoint\":\"https://svc.internal\"}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-vl-services-pricing",
+  "argv": [
+   "agent",
+   "validate-listing",
+   "--name",
+   "Pricing Agent",
+   "--service",
+   "[{\"serviceName\":\"Both Models\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"5\",\"subscription\":[{\"interval\":\"Month\",\"fee\":\"10.001\"},{\"interval\":\"\",\"fee\":\"\"}],\"freeTrial\":\"72\"},{\"serviceName\":\"Neither Model\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"\",\"freeTrial\":\"abc\"},{\"serviceName\":\"Guide Heavy\",\"serviceDescription\":\"visit http://a.b\",\"serviceType\":\"A2A\",\"fee\":\"1\",\"serviceGuide\":\"指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指指\"},{\"serviceName\":\"Deleted Guide\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\",\"serviceGuide\":\"ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg\",\"operation\":\"delete\",\"id\":3},{\"serviceName\":\"Shared EP\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"endpoint\":\"https://ep.example.com/a\",\"id\":\"x1\"},{\"serviceName\":\"shared ep\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"endpoint\":\"HTTPS://EP.example.com/a\",\"id\":\"x1\"},{\"serviceName\":\"Third EP\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"endpoint\":\"https://ep.example.com/a\",\"id\":7},{\"serviceName\":\"Gone EP\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"endpoint\":\"https://ep.example.com/a\",\"operation\":\"delete\",\"id\":\"z\"}]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-create-anon",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Alice"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-missing-role",
+  "argv": [
+   "agent",
+   "create",
+   "--name",
+   "Alice"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-bad-role",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   " ADMIN ",
+   "--name",
+   "X"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-asp-no-description",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "asp",
+   "--name",
+   "Price Bot"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-missing-name",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "User",
+   "--name",
+   "   "
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-asp-no-service",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "asp",
+   "--name",
+   "Price Bot",
+   "--description",
+   "Quotes prices",
+   "--picture",
+   "https://cdn.example.com/p.png"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-asp-no-avatar",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "asp",
+   "--name",
+   "Price Bot",
+   "--description",
+   "Quotes prices",
+   "--service",
+   "[{\"serviceName\":\"Quote\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-not-json",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "not json"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-empty",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-object",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "{\"serviceName\":\"x\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-missing-field",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Quote\",\"serviceType\":\"A2A\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-bad-op",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"operation\":\"upsert\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-numeric-fee",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":10}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-null-guide",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"serviceGuide\":null}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-dup-field",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceName\":\"R\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-trailing",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\"}] x"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-blank-name",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"  \",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-blank-desc",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\" \",\"serviceType\":\"A2A\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-both-models",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"a2a\",\"fee\":\"1\",\"subscription\":[{\"interval\":\"month\",\"fee\":\"2\"}]}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-no-model",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"subscription\":[{\"interval\":\" \",\"fee\":\"\"}]}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-interval",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"subscription\":[{\"interval\":\"Week\",\"fee\":\"2\"}]}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-tier-empty",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"subscription\":[{\"interval\":\"month\",\"fee\":\" \"}]}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-tier-format",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"subscription\":[{\"interval\":\"month\",\"fee\":\"10 USDT\"}]}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-tier-zero",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"subscription\":[{\"interval\":\"MONTH\",\"fee\":\"0.00\"}]}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-fee-format",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1.005\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-trial-single",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\",\"freeTrial\":\"72\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-trial-format",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"subscription\":[{\"interval\":\"month\",\"fee\":\"3\"}],\"freeTrial\":\"0\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-mcp-sub",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"subscription\":[{\"interval\":\"month\",\"fee\":\"3\"}]}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-mcp-trial",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"freeTrial\":\"1\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-mcp-no-fee",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-mcp-fee-format",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"0.0000001\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-mcp-no-endpoint",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2MCP\",\"fee\":\"0.000001\",\"endpoint\":\"  \"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-bad-type",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\" rest \"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-empty-type",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-create-with-id",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"id\":5,\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\",\"operation\":\"create\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-update-no-id",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"id\":\"  \",\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\",\"operation\":\"update\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-bad-id",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"id\":1.5,\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-svc-guide-long",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\",\"serviceGuide\":\"ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-create-user-push",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   " Alice ",
+   "--description",
+   " hi "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-create"
+  ],
+  "wsFixtures": [
+   "agent-identity-ws-push"
+  ],
+  "masks": [
+   "req.body.keyUuid",
+   "req.body.sessionSignature",
+   "req.body.extraData"
+  ]
+ },
+ {
+  "id": "agent-identity-create-asp-ws-reject",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "asp",
+   "--name",
+   "Price Bot",
+   "--description",
+   "Quotes prices",
+   "--picture",
+   " https://cdn.example.com/p.png ",
+   "--service",
+   "[{\"serviceName\":\" Quote \",\"serviceDescription\":\"Quotes\",\"serviceType\":\"a2a\",\"fee\":\"\",\"subscription\":[{\"interval\":\" Month \",\"fee\":\" 9.9 \"},{\"interval\":\"\",\"fee\":\"\"}],\"freeTrial\":\" 72 \",\"endpoint\":\"https://drop.me\",\"serviceGuide\":\" guide \"},{\"serviceName\":\"Feed\",\"serviceDescription\":\"API\",\"serviceType\":\"A2MCP\",\"fee\":\"0.000001\",\"endpoint\":\" https://api.example.com/feed \",\"freeTrial\":\"\",\"operation\":\"create\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-create"
+  ],
+  "wsFixtures": [
+   "agent-identity-ws-reject"
+  ],
+  "masks": [
+   "req.body.keyUuid",
+   "req.body.sessionSignature",
+   "req.body.extraData"
+  ]
+ },
+ {
+  "id": "agent-identity-create-evaluator-ws-error",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "evaluator",
+   "--name",
+   "Judge"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-create"
+  ],
+  "wsFixtures": [
+   "agent-identity-ws-error"
+  ],
+  "masks": [
+   "req.body.keyUuid",
+   "req.body.sessionSignature",
+   "req.body.extraData"
+  ]
+ },
+ {
+  "id": "agent-identity-create-api-error",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Alice"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-create-error"
+  ],
+  "masks": [
+   "req.body.keyUuid",
+   "req.body.sessionSignature",
+   "req.body.extraData"
+  ]
+ },
+ {
+  "id": "agent-identity-create-empty-unsigned",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Alice"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-create-empty"
+  ],
+  "masks": [
+   "req.body.keyUuid",
+   "req.body.sessionSignature",
+   "req.body.extraData"
+  ]
+ },
+ {
+  "id": "agent-identity-create-sim-failed",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Alice"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-create-simfail"
+  ],
+  "wsFixtures": [
+   "agent-identity-ws-reject"
+  ],
+  "masks": [
+   "req.body.keyUuid",
+   "req.body.sessionSignature",
+   "req.body.extraData"
+  ]
+ },
+ {
+  "id": "agent-identity-update-missing-id",
+  "argv": [
+   "agent",
+   "update"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-delete-no-id",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   "[{\"operation\":\"delete\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-create-with-id",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   "[{\"operation\":\"create\",\"id\":\"5\",\"serviceName\":\"S\",\"serviceDescription\":\"d\",\"serviceType\":\"A2A\",\"fee\":\"1\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-empty-service",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-entry-missing",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   "[{\"serviceDescription\":\"d\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-entry-not-object",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   "[\"x\"]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-delete-bad-id",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   "[{\"operation\":\"delete\",\"id\":true}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-full-push",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   " 42 ",
+   "--name",
+   " New Name ",
+   "--description",
+   "",
+   "--picture",
+   "https://cdn.example.com/n.png",
+   "--service",
+   "[{\"operation\":\"create\",\"serviceName\":\"Market Signals\",\"serviceDescription\":\"d\",\"serviceType\":\"a2a\",\"fee\":\"10\",\"endpoint\":\"x\"},{\"operation\":\"update\",\"id\":7,\"serviceName\":\"Feed\",\"serviceDescription\":\"API\",\"serviceType\":\"A2MCP\",\"fee\":\"1\",\"endpoint\":\"https://f.example.com\",\"serviceGuide\":\"\"},{\"operation\":\"delete\",\"id\":\" 9 \",\"serviceName\":\"ignored\"}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-update"
+  ],
+  "wsFixtures": [
+   "agent-identity-ws-push"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-ws-close",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--description",
+   "Only description"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-update"
+  ],
+  "wsFixtures": [
+   "agent-identity-ws-close"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-update-preflight",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-get-anon",
+  "argv": [
+   "agent",
+   "get"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-get-list",
+  "argv": [
+   "agent",
+   "get"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-get-paged",
+  "argv": [
+   "agent",
+   "get",
+   "--page",
+   "2",
+   "--page-size",
+   "3"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list-singleton"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-get-ids",
+  "argv": [
+   "agent",
+   "get",
+   "--agent-ids",
+   "13373,9967"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list"
+  ]
+ },
+ {
+  "id": "agent-identity-get-ids-empty",
+  "argv": [
+   "agent",
+   "get",
+   "--agent-ids",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list"
+  ]
+ },
+ {
+  "id": "agent-identity-get-page-zero",
+  "argv": [
+   "agent",
+   "get",
+   "--page",
+   "0"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-get-page-size-bad",
+  "argv": [
+   "agent",
+   "get",
+   "--page-size",
+   "1.5"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-get-api-error",
+  "argv": [
+   "agent",
+   "get"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list-error"
+  ]
+ },
+ {
+  "id": "agent-identity-get-server-error",
+  "argv": [
+   "agent",
+   "get"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-server-error"
+  ]
+ },
+ {
+  "id": "agent-identity-gma-default",
+  "argv": [
+   "agent",
+   "get-my-agents"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-gma-role-page",
+  "argv": [
+   "agent",
+   "get-my-agents",
+   "--role",
+   "asp",
+   "--page",
+   "+1",
+   "--page-size",
+   "5",
+   "--owner-address",
+   " 0xabc "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list-singleton"
+  ]
+ },
+ {
+  "id": "agent-identity-gma-ids",
+  "argv": [
+   "agent",
+   "get-my-agents",
+   "--role",
+   "user",
+   "--agent-ids",
+   "13373,9967"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list"
+  ]
+ },
+ {
+  "id": "agent-identity-gma-bad-role",
+  "argv": [
+   "agent",
+   "get-my-agents",
+   "--role",
+   "buyer"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-gma-page-size-huge",
+  "argv": [
+   "agent",
+   "get-my-agents",
+   "--page-size",
+   "4294967296"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-ga-ids",
+  "argv": [
+   "agent",
+   "get-agents",
+   "--agent-ids",
+   "1791, ,1002"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-batch-list"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-ga-blank-ids",
+  "argv": [
+   "agent",
+   "get-agents",
+   "--agent-ids",
+   " , "
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-ga-missing",
+  "argv": [
+   "agent",
+   "get-agents"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-pc-missing-role",
+  "argv": [
+   "agent",
+   "pre-check"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-pc-bad-role",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "buyer"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-pc-anon",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "user"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-pc-has-agents-asp",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "ASP"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-precheck-has-agents"
+  ]
+ },
+ {
+  "id": "agent-identity-pc-has-user",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "user"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-precheck-has-user"
+  ]
+ },
+ {
+  "id": "agent-identity-pc-consent-required",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "evaluator"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-precheck-consent-required"
+  ]
+ },
+ {
+  "id": "agent-identity-pc-consent-done",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "user",
+   "--consent-key",
+   " ck-001 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-precheck-consent-done"
+  ]
+ },
+ {
+  "id": "agent-identity-pc-consent-error",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "user",
+   "--consent-key",
+   "ck-x"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-precheck-consent-error"
+  ]
+ },
+ {
+  "id": "agent-identity-pc-list-error",
+  "argv": [
+   "agent",
+   "pre-check",
+   "--role",
+   "user"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list-error"
+  ]
+ },
+ {
+  "id": "agent-identity-gba-ok",
+  "argv": [
+   "agent",
+   "get-by-address",
+   "--communication-address",
+   " 0xabc "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-by-address"
+  ]
+ },
+ {
+  "id": "agent-identity-gba-chain",
+  "argv": [
+   "agent",
+   "get-by-address",
+   "--communication-address",
+   "0xabc",
+   "--chain-index",
+   " 1 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-by-address"
+  ]
+ },
+ {
+  "id": "agent-identity-gba-blank",
+  "argv": [
+   "agent",
+   "get-by-address",
+   "--communication-address",
+   "  "
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-gba-missing",
+  "argv": [
+   "agent",
+   "get-by-address"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-activate-missing-lang",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-missing-id",
+  "argv": [
+   "agent",
+   "activate",
+   "--preferred-language",
+   "en"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-not-found",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "en"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-activate-missing"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-user-block",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "zh"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-activate-user"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-asp-submit",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   " 42 ",
+   "--preferred-language",
+   "zh_cn"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-activate-asp"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-asp-bad-lang",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "1-CN"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-activate-asp"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-asp-script-lang",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "ZH-hant-tw"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-activate-asp"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-listed",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "en"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-activate-listed"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-status-error",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "en"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-activate-status-error"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-list-error",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "en"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-agent-list-error"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-identity-activate-preflight",
+  "argv": [
+   "agent",
+   "activate",
+   "--agent-id",
+   "42",
+   "--preferred-language",
+   "en"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-deactivate-anon",
+  "argv": [
+   "agent",
+   "deactivate",
+   "--agent-id",
+   "42"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-deactivate-missing",
+  "argv": [
+   "agent",
+   "deactivate"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-deactivate-ok",
+  "argv": [
+   "agent",
+   "deactivate",
+   "--agent-id",
+   "42"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-deactivate"
+  ]
+ },
+ {
+  "id": "agent-identity-upload-anon",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-avatar-webp.json"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-upload-missing-flag",
+  "argv": [
+   "agent",
+   "upload"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-upload-no-file",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "missing-avatar.png"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "masks": [
+   "stdout.error"
+  ]
+ },
+ {
+  "id": "agent-identity-upload-no-dir",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "no-such-dir/avatar.png"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "masks": [
+   "stdout.error"
+  ]
+ },
+ {
+  "id": "agent-identity-upload-not-image",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-upload.json"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-upload-ok",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-avatar-webp.json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-upload-resp"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-upload-array",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-avatar-webp.json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-upload-array"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ]
+ },
+ {
+  "id": "agent-identity-upload-missing-url",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-avatar-webp.json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-upload-missing"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ]
+ },
+ {
+  "id": "agent-identity-search-anon",
+  "argv": [
+   "agent",
+   "search",
+   "--query",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-search-table",
+  "argv": [
+   "agent",
+   "search",
+   "--query",
+   " market analysis "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-search"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-search-filters",
+  "argv": [
+   "agent",
+   "search",
+   "--query",
+   "dex",
+   "--page",
+   "2",
+   "--page-size",
+   "500",
+   "--status",
+   "1, 2",
+   "--status",
+   " ",
+   "--feedback",
+   "good",
+   "--agent-info",
+   "a,b",
+   "--service",
+   "svc"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-search"
+  ]
+ },
+ {
+  "id": "agent-identity-search-missing-query",
+  "argv": [
+   "agent",
+   "search"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-search-format-removed",
+  "argv": [
+   "agent",
+   "search",
+   "--query",
+   "x",
+   "--format",
+   "table"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-search-page-bad",
+  "argv": [
+   "agent",
+   "search",
+   "--query",
+   "x",
+   "--page",
+   "-1"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sl-default",
+  "argv": [
+   "agent",
+   "service-list",
+   "--agent-id",
+   "1921"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-services"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sl-service-id",
+  "argv": [
+   "agent",
+   "service-list",
+   "--agent-id",
+   "1921",
+   "--service-id",
+   " 4a7f30a7-46fb-4695-80a1-25d160da33b3 ",
+   "--page",
+   "3",
+   "--page-size",
+   "20"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-services"
+  ]
+ },
+ {
+  "id": "agent-identity-sl-blank-service-id",
+  "argv": [
+   "agent",
+   "service-list",
+   "--agent-id",
+   "42",
+   "--service-id",
+   "  "
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sl-page-abc",
+  "argv": [
+   "agent",
+   "service-list",
+   "--agent-id",
+   "42",
+   "--page",
+   "abc",
+   "--service-id",
+   " "
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sl-missing-id",
+  "argv": [
+   "agent",
+   "service-list"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-default",
+  "argv": [
+   "agent",
+   "service-match"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-fuzzy"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-keywords",
+  "argv": [
+   "agent",
+   "service-match",
+   "--keywords",
+   "smart contract",
+   "--keywords",
+   " ",
+   "--keywords",
+   "audit",
+   "--min-payment-token-amount",
+   "5",
+   "--max-payment-token-amount",
+   "20",
+   "--asp-name",
+   " Auditor ",
+   "--service-name",
+   "Deep Audit",
+   "--limit",
+   "0"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-single"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-amount-forms",
+  "argv": [
+   "agent",
+   "service-match",
+   "--min-payment-token-amount",
+   "10.50",
+   "--max-payment-token-amount",
+   "1e2"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-none"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-amount-neg-zero",
+  "argv": [
+   "agent",
+   "service-match",
+   "--min-payment-token-amount=-0",
+   "--max-payment-token-amount",
+   "10.0",
+   "--keywords",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-nomore"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-search-after",
+  "argv": [
+   "agent",
+   "service-match",
+   "--search-after",
+   " cursor-2 ",
+   "--limit",
+   "5"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-array"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-search-after-combined",
+  "argv": [
+   "agent",
+   "service-match",
+   "--search-after",
+   "next",
+   "--keywords",
+   "a"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-too-many-keywords",
+  "argv": [
+   "agent",
+   "service-match",
+   "--keywords",
+   "a",
+   "--keywords",
+   "b",
+   "--keywords",
+   "c",
+   "--keywords",
+   "d",
+   "--keywords",
+   "e",
+   "--keywords",
+   "f",
+   "--keywords",
+   "g",
+   "--keywords",
+   "h",
+   "--keywords",
+   "i",
+   "--keywords",
+   "j",
+   "--keywords",
+   "k"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-keywords-multi",
+  "argv": [
+   "agent",
+   "service-match",
+   "--keywords",
+   "smart contract",
+   "audit",
+   "--limit",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-single"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-min-negative",
+  "argv": [
+   "agent",
+   "service-match",
+   "--min-payment-token-amount=-1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-min-invalid",
+  "argv": [
+   "agent",
+   "service-match",
+   "--min-payment-token-amount",
+   "abc"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-max-leading-zero",
+  "argv": [
+   "agent",
+   "service-match",
+   "--max-payment-token-amount",
+   "05"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-max-trailing-dot",
+  "argv": [
+   "agent",
+   "service-match",
+   "--max-payment-token-amount",
+   "5."
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-max-out-of-range",
+  "argv": [
+   "agent",
+   "service-match",
+   "--max-payment-token-amount",
+   "1e400"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-min-gt-max",
+  "argv": [
+   "agent",
+   "service-match",
+   "--min-payment-token-amount",
+   "5",
+   "--max-payment-token-amount",
+   "4.99"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-removed-flag",
+  "argv": [
+   "agent",
+   "service-match",
+   "--agentic-id",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-precise-anon",
+  "argv": [
+   "agent",
+   "service-match",
+   "--sid",
+   "svc-001"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-sm-precise-dup",
+  "argv": [
+   "agent",
+   "service-match",
+   "--sid",
+   " svc-001 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-precise-dup"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-precise-offline",
+  "argv": [
+   "agent",
+   "service-match",
+   "--asp-agent-id",
+   "11"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-precise-offline"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-precise-confirm",
+  "argv": [
+   "agent",
+   "service-match",
+   "--asp-agent-id",
+   "11",
+   "--sid",
+   "svc-001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-precise-confirm"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-precise-no-user",
+  "argv": [
+   "agent",
+   "service-match",
+   "--sid",
+   "svc-001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-precise-nouser"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-real-fuzzy",
+  "argv": [
+   "agent",
+   "service-match",
+   "--keywords",
+   "audit",
+   "--limit",
+   "2"
+  ],
+  "home": "anon",
+  "network": "real",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-fbs-anon",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbs-missing-agent",
+  "argv": [
+   "agent",
+   "feedback-submit"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbs-missing-creator",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbs-missing-score",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1",
+   "--creator-id",
+   "2",
+   "--score",
+   " "
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbs-score-range",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1",
+   "--creator-id",
+   "2",
+   "--score",
+   "5.01",
+   "--task-id",
+   "0xabc"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbs-score-format",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1",
+   "--creator-id",
+   "2",
+   "--score",
+   "3.333",
+   "--task-id",
+   "0xabc"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbs-missing-task",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1",
+   "--creator-id",
+   "2",
+   "--score",
+   "4.5"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbs-ok",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   " 1 ",
+   "--creator-id",
+   " 2 ",
+   "--score",
+   "3.33",
+   "--description",
+   " Great \"work\" ",
+   "--task-id",
+   " 0xabc "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-feedback"
+  ]
+ },
+ {
+  "id": "agent-identity-fbs-81362",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1",
+   "--creator-id",
+   "2",
+   "--score",
+   "5",
+   "--task-id",
+   "0xabc"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-feedback-81362"
+  ]
+ },
+ {
+  "id": "agent-identity-fbs-bad-unsigned",
+  "argv": [
+   "agent",
+   "feedback-submit",
+   "--agent-id",
+   "1",
+   "--creator-id",
+   "2",
+   "--score",
+   "0",
+   "--task-id",
+   "0xabc"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-feedback-bad-unsigned"
+  ]
+ },
+ {
+  "id": "agent-identity-fbs-alias",
+  "argv": [
+   "agent",
+   "feedbacksubmit",
+   "--agent-id",
+   "1",
+   "--creator-id",
+   "2",
+   "--score",
+   "4.5"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbl-default",
+  "argv": [
+   "agent",
+   "feedback-list",
+   "--agent-id",
+   "42"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-reviews"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-fbl-clamp",
+  "argv": [
+   "agent",
+   "feedback-list",
+   "--agent-id",
+   "42",
+   "--page",
+   "3",
+   "--page-size",
+   "51"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-reviews-items"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-fbl-page-size-zero",
+  "argv": [
+   "agent",
+   "feedback-list",
+   "--agent-id",
+   "42",
+   "--page-size",
+   "0"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-fbl-missing-id",
+  "argv": [
+   "agent",
+   "feedback-list"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-tf-ok",
+  "argv": [
+   "agent",
+   "task-feedback",
+   "--agent-id",
+   "7",
+   "--task-id",
+   "0xabc"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-task-feedback"
+  ]
+ },
+ {
+  "id": "agent-identity-tf-missing-task",
+  "argv": [
+   "agent",
+   "task-feedback",
+   "--agent-id",
+   "7"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-xs-anon",
+  "argv": [
+   "agent",
+   "xmtp-sign",
+   "--key-uuid",
+   "k",
+   "--message",
+   "hi"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-xs-missing-key",
+  "argv": [
+   "agent",
+   "xmtp-sign",
+   "--message",
+   "hi"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-xs-missing-message",
+  "argv": [
+   "agent",
+   "xmtp-sign",
+   "--key-uuid",
+   "k",
+   "--message",
+   "  "
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-xs-ok",
+  "argv": [
+   "agent",
+   "xmtp-sign",
+   "--key-uuid",
+   " 0b9e8d7c-6a5b-4c3d-8e2f-1a0b9c8d7e6f ",
+   "--message",
+   " hello "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sign"
+  ]
+ },
+ {
+  "id": "agent-identity-xs-empty",
+  "argv": [
+   "agent",
+   "xmtp-sign",
+   "--key-uuid",
+   "k",
+   "--message",
+   "m"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sign-empty"
+  ]
+ },
+ {
+  "id": "agent-identity-xs-no-signature",
+  "argv": [
+   "agent",
+   "xmtp-sign",
+   "--key-uuid",
+   "k",
+   "--message",
+   "m"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sign-nosig"
+  ]
+ },
+ {
+  "id": "agent-identity-xs-api-error",
+  "argv": [
+   "agent",
+   "xmtp-sign",
+   "--key-uuid",
+   "k",
+   "--message",
+   "m"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sign-error"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-sensitive-anon",
+  "argv": [
+   "agent",
+   "sensitive-words"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-chat-sensitive",
+  "argv": [
+   "agent",
+   "sensitive-words"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sensitive-words"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-system-config",
+  "argv": [
+   "agent",
+   "system-config"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-system-config"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-heartbeat",
+  "argv": [
+   "agent",
+   "heartbeat",
+   "--chain-index",
+   "196"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-heartbeat"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-heartbeat-bad",
+  "argv": [
+   "agent",
+   "heartbeat",
+   "--chain-index",
+   "x"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-chat-wakeup-empty",
+  "argv": [
+   "agent",
+   "wakeup-notify"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-chat-wakeup",
+  "argv": [
+   "agent",
+   "wakeup-notify",
+   "--agent-ids",
+   "1001,1002",
+   "--agent-ids",
+   "1003"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-wakeup"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-eligible",
+  "argv": [
+   "agent",
+   "message-eligible",
+   "--agent-id",
+   "1001",
+   "--client-agent-id",
+   "1001",
+   "--provider-agent-id",
+   "2002",
+   "--job-id",
+   "0xjob",
+   "--group-id",
+   "g 1",
+   "--direction",
+   "c2p",
+   "--client-communication-address",
+   "0xc",
+   "--provider-communication-address",
+   "",
+   "--provider-security-rate",
+   "4.5",
+   "--is-offline-replay",
+   "false"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-eligible-ok"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-eligible-replay",
+  "argv": [
+   "agent",
+   "message-eligible",
+   "--agent-id",
+   "1001",
+   "--client-agent-id",
+   "1001",
+   "--provider-agent-id",
+   "2002",
+   "--job-id",
+   "0xjob",
+   "--group-id",
+   "g 1",
+   "--direction",
+   "c2p",
+   "--client-communication-address",
+   "0xc",
+   "--provider-communication-address",
+   "",
+   "--is-offline-replay",
+   "true"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-eligible-ok"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-eligible-boolish",
+  "argv": [
+   "agent",
+   "message-eligible",
+   "--agent-id",
+   "1001",
+   "--client-agent-id",
+   "1001",
+   "--provider-agent-id",
+   "2002",
+   "--job-id",
+   "0xjob",
+   "--group-id",
+   "g 1",
+   "--direction",
+   "c2p",
+   "--client-communication-address",
+   "0xc",
+   "--provider-communication-address",
+   "",
+   "--is-offline-replay",
+   "yes"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-eligible-ok"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-eligible-reject",
+  "argv": [
+   "agent",
+   "message-eligible",
+   "--agent-id",
+   "1001",
+   "--client-agent-id",
+   "1001",
+   "--provider-agent-id",
+   "2002",
+   "--job-id",
+   "0xjob",
+   "--group-id",
+   "g 1",
+   "--direction",
+   "c2p",
+   "--client-communication-address",
+   "0xc",
+   "--provider-communication-address",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-eligible-reject"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-eligible-50114",
+  "argv": [
+   "agent",
+   "message-eligible",
+   "--agent-id",
+   "1001",
+   "--client-agent-id",
+   "1001",
+   "--provider-agent-id",
+   "2002",
+   "--job-id",
+   "0xjob",
+   "--group-id",
+   "g 1",
+   "--direction",
+   "c2p",
+   "--client-communication-address",
+   "0xc",
+   "--provider-communication-address",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-eligible-50114"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-eligible-403",
+  "argv": [
+   "agent",
+   "message-eligible",
+   "--agent-id",
+   "1001",
+   "--client-agent-id",
+   "1001",
+   "--provider-agent-id",
+   "2002",
+   "--job-id",
+   "0xjob",
+   "--group-id",
+   "g 1",
+   "--direction",
+   "c2p",
+   "--client-communication-address",
+   "0xc",
+   "--provider-communication-address",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-eligible-403"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-eligible-bad-bool",
+  "argv": [
+   "agent",
+   "message-eligible",
+   "--agent-id",
+   "1001",
+   "--client-agent-id",
+   "1001",
+   "--provider-agent-id",
+   "2002",
+   "--job-id",
+   "0xjob",
+   "--group-id",
+   "g 1",
+   "--direction",
+   "c2p",
+   "--client-communication-address",
+   "0xc",
+   "--provider-communication-address",
+   "",
+   "--is-offline-replay",
+   "maybe"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-chat-upload-missing",
+  "argv": [
+   "agent",
+   "file-upload",
+   "--file",
+   "does-not-exist.bin",
+   "--agent-id",
+   "1",
+   "--job-id",
+   "0xj"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "masks": [
+   "stdout.error"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-upload-dir",
+  "argv": [
+   "agent",
+   "file-upload",
+   "--file",
+   "test",
+   "--agent-id",
+   "1",
+   "--job-id",
+   "0xj"
+  ],
+  "home": "wallet",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-chat-upload-anon",
+  "argv": [
+   "agent",
+   "file-upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-file-upload.json",
+   "--agent-id",
+   "1",
+   "--job-id",
+   "0xj"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-chat-upload-ok",
+  "argv": [
+   "agent",
+   "file-upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-file-upload.json",
+   "--agent-id",
+   "1001",
+   "--job-id",
+   "0xjob"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-file-upload-resp"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-download-write-fail",
+  "argv": [
+   "agent",
+   "file-download",
+   "--file-key",
+   "fk 1",
+   "--agent-id",
+   "1001",
+   "--output",
+   "no-such-dir/out.bin"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-download-bytes"
+  ],
+  "masks": [
+   "stdout.error"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-download-code",
+  "argv": [
+   "agent",
+   "file-download",
+   "--file-key",
+   "fk-1",
+   "--agent-id",
+   "1001",
+   "--output",
+   "no-such-dir/out.bin"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-download-code"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-download-http",
+  "argv": [
+   "agent",
+   "file-download",
+   "--file-key",
+   "fk-1",
+   "--agent-id",
+   "1001",
+   "--output",
+   "no-such-dir/out.bin"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-download-http"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-download-anon",
+  "argv": [
+   "agent",
+   "file-download",
+   "--file-key",
+   "fk-1",
+   "--agent-id",
+   "1",
+   "--output",
+   "x"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-probe-schema-2",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":2,\"serviceSnapshot\":{}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-routing-syntax",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-routing-missing-snapshot",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-routing-negative-version",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":-1,\"serviceSnapshot\":{}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-snapshot-not-object",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":[]}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-snapshot-type",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2A\"}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-snapshot-endpoint-missing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"a2mcp\"}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-snapshot-endpoint-relative",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"not a url\"}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-snapshot-endpoint-port",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://example.com:99999/x\"}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-snapshot-endpoint-http",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"http://example.com/x\"}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-params-syntax",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"}}",
+   "--params-json",
+   "{\"a\":"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-params-array",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"}}",
+   "--params-json",
+   "[1]"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-service-id-missing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"  \",\"endpoint\":\"https://127.0.0.1:9/x\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-service-id-number",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":77,\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"method\":\"POST\",\"fields\":[{\"name\":\"q\"}]}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-unsupported-type",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"fields\":[{\"name\":\"q\",\"type\":\"date\"}]}}",
+   "--params-json",
+   "{\"q\":\"2024\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-invalid-param",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"method\":\"POST\",\"fields\":[{\"name\":\"brand\",\"type\":\"string\",\"required\":true,\"carrier\":\"body\"},{\"name\":\"n\",\"type\":\"integer\"}]}}",
+   "--params-json",
+   "{\"brand\":1,\"n\":1.5}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-invalid-param-outputschema",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\",\"outputSchema\":{\"input\":{\"count\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\",\"required\":false}}}}}",
+   "--params-json",
+   "{\"count\":\"3\",\"name\":\"x\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-input-required",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"method\":\"POST\",\"fields\":[{\"name\":\"brand\",\"type\":\"string\",\"required\":true,\"carrier\":\"body\"}]}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-input-required-anyof",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\",\"serviceName\":\"Lookup\",\"asp\":{\"aspAgentId\":11},\"outputSchema\":{\"input\":[\"symbol\",{\"name\":\"chain\",\"required\":false}],\"requiredAnyOf\":[\"address\",\"symbol\"],\"method\":\"get\"}}}",
+   "--params-json",
+   "{\"chain\":\"eth\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-input-required-curl",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://api.example.com:443/v1/price\",\"serviceDescription\":\"[Request Example] curl -X POST https://api.example.com/v1/price \\\\\\n  -d '{\\\"symbol\\\":\\\"BTC\\\"}'\",\"outputSchema\":{\"input\":{\"symbol\":{\"type\":\"string\",\"description\":\"Ticker\"}}}}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-curl-mismatch",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\",\"serviceDescription\":\"Usage: curl https://other.example.com/x -d x\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-declared-method-path",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\",\"serviceDescription\":\"line\\n[请求方式] POST /wrong\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-declared-method-none",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\",\"serviceDescription\":\"[Request Method] PATCH\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-curl-head",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\",\"serviceDescription\":\"[request example] curl -I \\\"https://127.0.0.1:9/x\\\"\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-method-unsupported",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"method\":\"put\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-path-carrier",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x/{id}\"},\"requestSpec\":{\"method\":\"POST\",\"fields\":[{\"name\":\"id\",\"carrier\":\"path\"}]}}",
+   "--params-json",
+   "{\"id\":\"7\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-body-on-get",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"method\":\"GET\",\"fields\":[{\"name\":\"q\",\"carrier\":\"body\"}]}}",
+   "--params-json",
+   "{\"q\":\"v\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-bad-carrier",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"method\":\"GET\",\"fields\":[{\"name\":\"q\",\"carrier\":\"cookie\"}]}}",
+   "--params-json",
+   "{\"q\":\"v\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-non-scalar-query",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"},\"requestSpec\":{\"method\":\"GET\",\"fields\":[{\"name\":\"q\",\"type\":\"object\"}]}}",
+   "--params-json",
+   "{\"q\":{\"a\":1}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-endpoint-refused",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"}}",
+   "--params-json",
+   "{\"q\":\"v\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-b64-invalid",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-base64",
+   "!!!"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-b64-not-utf8",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-base64",
+   "/w=="
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-b64-params-invalid",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-base64",
+   "eyJzY2hlbWFWZXJzaW9uIjoxLCJzZXJ2aWNlU25hcHNob3QiOnsic2VydmljZVR5cGUiOiJBMk1DUCIsInNlcnZpY2VJZCI6InMxIiwiZW5kcG9pbnQiOiJodHRwczovLzEyNy4wLjAuMTo5L3gifX0=",
+   "--params-base64",
+   "e30"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-b64-ok-input-required",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-base64",
+   "eyJzY2hlbWFWZXJzaW9uIjoxLCJzZXJ2aWNlU25hcHNob3QiOnsic2VydmljZVR5cGUiOiJBMk1DUCIsInNlcnZpY2VJZCI6InMxIiwiZW5kcG9pbnQiOiJodHRwczovLzEyNy4wLjAuMTo5L3gifSwicmVxdWVzdFNwZWMiOnsiZmllbGRzIjpbIngiXX19",
+   "--params-base64",
+   "e30="
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-both-routing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{}",
+   "--routing-base64",
+   "e30="
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-probe-no-routing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe"
+  ],
+  "home": "anon",
+  "network": "fixture"
+ },
+ {
+  "id": "agent-identity-a2mcp-confirm-bad-id",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "confirm-free",
+   "--confirmation-id",
+   "bad"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-confirm-missing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "confirm-free",
+   "--confirmation-id",
+   "a2free_0123456789abcdef0123456789abcdef"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-confirm-missing-yes",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "confirm-free",
+   "--confirmation-id",
+   "a2free_0123456789ABCDEF0123456789abcdef",
+   "--yes"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-refresh-anon",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "refresh-balance",
+   "--prepared-id",
+   "a2prep_0123456789abcdef0123456789abcdef"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-refresh-missing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "refresh-balance",
+   "--prepared-id",
+   "a2prep_0123456789abcdef0123456789abcdef"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-refresh-bad-id",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "refresh-balance",
+   "--prepared-id",
+   "x"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-funding-anon",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "funding",
+   "--prepared-id",
+   "a2prep_0123456789abcdef0123456789abcdef",
+   "--candidate-id",
+   "candidate_0"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-funding-missing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "funding",
+   "--prepared-id",
+   "a2prep_0123456789abcdef0123456789abcdef",
+   "--candidate-id",
+   "candidate_0"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-resume-no-yes",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "resume-after-funding",
+   "--prepared-id",
+   "x",
+   "--candidate-id",
+   "y"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-resume-anon",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "resume-after-funding",
+   "--prepared-id",
+   "x",
+   "--candidate-id",
+   "y",
+   "--yes"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-resume-missing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "resume-after-funding",
+   "--prepared-id",
+   "a2prep_0123456789abcdef0123456789abcdef",
+   "--candidate-id",
+   "y",
+   "--yes"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-prepare-anon",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "prepare-payment",
+   "--prepared-id",
+   "x",
+   "--candidate-id",
+   "y"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-prepare-missing",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "prepare-payment",
+   "--prepared-id",
+   "a2prep_0123456789abcdef0123456789abcdef",
+   "--candidate-id",
+   "y",
+   "--yes"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-a2mcp-prepare-bad-id",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "prepare-payment",
+   "--prepared-id",
+   "a2prep_zz",
+   "--candidate-id",
+   "y"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-upload-obj",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "test/parity/fixtures/agent-identity-avatar-webp.json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-upload-obj"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-upload-winpath",
+  "argv": [
+   "agent",
+   "upload",
+   "--file",
+   "D:\\Job\\okx\\muse-research\\onchainos-lite\\test\\parity\\fixtures\\agent-identity-avatar-webp.json"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-upload-resp"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-upload-winpath",
+  "argv": [
+   "agent",
+   "file-upload",
+   "--file",
+   "test\\parity\\fixtures\\agent-identity-file-upload.json",
+   "--agent-id",
+   " 1001 ",
+   "--job-id",
+   "0xjob"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-file-upload-resp"
+  ],
+  "masks": [
+   "req.body",
+   "req.headers.content-type"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-download-ok",
+  "argv": [
+   "agent",
+   "file-download",
+   "--file-key",
+   "fk 1",
+   "--agent-id",
+   "1001",
+   "--output",
+   ".cache/agent-identity-download.bin"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-download-bytes"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-amount-rounding",
+  "argv": [
+   "agent",
+   "service-match",
+   "--min-payment-token-amount",
+   "0.10590644906288117",
+   "--max-payment-token-amount",
+   "9007199254740993.0"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-none"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-amount-exp-overflow",
+  "argv": [
+   "agent",
+   "service-match",
+   "--max-payment-token-amount",
+   "1e99999999999999"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-sm-amount-exp-underflow",
+  "argv": [
+   "agent",
+   "service-match",
+   "--max-payment-token-amount",
+   "1e-99999999999999",
+   "--min-payment-token-amount",
+   "0.0e99999999999"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-sm-none"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-http-fallback-hint",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"svc-echo\",\"serviceName\":\"Echo\",\"asp\":{\"aspAgentId\":42},\"feeAmount\":\"0.5\",\"feeTokenSymbol\":\"usdt\",\"endpoint\":\"https://httpbin.org/base64/eyJlcnJvciI6InN5bWJvbCBpcyByZXF1aXJlZC4ifQ==\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "timeoutMs": 120000
+ },
+ {
+  "id": "agent-identity-probe-http-405-default-get",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"svc-echo\",\"serviceName\":\"Echo\",\"asp\":{\"aspAgentId\":42},\"feeAmount\":\"0.5\",\"feeTokenSymbol\":\"usdt\",\"endpoint\":\"https://httpbin.org/status/405\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "timeoutMs": 120000
+ },
+ {
+  "id": "agent-identity-probe-http-post-405-allow-get",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"svc-echo\",\"serviceName\":\"Echo\",\"asp\":{\"aspAgentId\":42},\"feeAmount\":\"0.5\",\"feeTokenSymbol\":\"usdt\",\"endpoint\":\"https://httpbin.org/base64/eyJzdGF0dXMiOiJpbnB1dF9yZXF1aXJlZCIsImZpZWxkcyI6WyJzeW1ib2wiXX0=\"},\"requestSpec\":{\"method\":\"POST\"}}",
+   "--params-json",
+   "{}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "timeoutMs": 120000
+ },
+ {
+  "id": "agent-identity-create-svc-exp-overflow",
+  "argv": [
+   "agent",
+   "create",
+   "--role",
+   "user",
+   "--name",
+   "Buyer",
+   "--service",
+   "[{\"serviceName\":\"Q\",\"id\":1e99999999999999}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-update-svc-exp-overflow",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   "[{\"operation\":\"delete\",\"id\":0.5e99999999999}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-update-svc-exp-underflow",
+  "argv": [
+   "agent",
+   "update",
+   "--agent-id",
+   "42",
+   "--service",
+   "[{\"operation\":\"delete\",\"id\":-1e-99999999999999}]"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  },
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-routing-exp-overflow",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1e99999999999999,\"serviceSnapshot\":{}}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-probe-params-exp-overflow",
+  "argv": [
+   "agent",
+   "a2mcp-probe",
+   "probe",
+   "--routing-json",
+   "{\"schemaVersion\":1,\"serviceSnapshot\":{\"serviceType\":\"A2MCP\",\"serviceId\":\"s1\",\"endpoint\":\"https://127.0.0.1:9/x\"}}",
+   "--params-json",
+   "{\"a\":[0.1e99999999999]}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-wakeup-empty-value",
+  "argv": [
+   "agent",
+   "wakeup-notify",
+   "--agent-ids",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-wakeup"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-chat-wakeup-commas",
+  "argv": [
+   "agent",
+   "wakeup-notify",
+   "--agent-ids",
+   ", 7,"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-wakeup"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-fbl-date-edges",
+  "argv": [
+   "agent",
+   "feedback-list",
+   "--agent-id",
+   "42"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-reviews-edge"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-identity-search-special-chars",
+  "argv": [
+   "agent",
+   "search",
+   "--query",
+   "　a+b c&d=é/?#%　",
+   "--agent-info",
+   " v w , ",
+   "--page-size",
+   "+7"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "agent-identity-search"
+  ],
+  "exact": [
+   "stdout"
+  ]
+ }
+]

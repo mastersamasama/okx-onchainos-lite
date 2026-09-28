@@ -1,0 +1,25 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "status": 6,
+          "jobType": 0,
+          "providerAgentId": "2002",
+          "tokenAmount": "5",
+          "tokenSymbol": "USDT",
+          "createTime": 1700000000,
+          "acceptedAt": 1700001000,
+          "submitTime": 1700002000,
+          "completeTime": 1700003000
+        }
+      }
+    }
+  }
+]

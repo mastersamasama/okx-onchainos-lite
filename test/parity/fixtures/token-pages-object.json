@@ -1,0 +1,121 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/top-trader",
+    "match": {
+      "query": {
+        "cursor": "p2"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "total": 3,
+          "zeta": [
+            {
+              "holderWalletAddress": "Trader91111111111111111111111111111111111",
+              "holdAmount": "0",
+              "holdPercent": "0",
+              "nativeTokenBalance": "1",
+              "boughtAmount": "10",
+              "avgBuyPrice": "1",
+              "soldAmount": "10",
+              "avgSellPrice": "2",
+              "totalPnlUsd": "90",
+              "realizedPnlUsd": "90",
+              "unrealizedPnlUsd": "0",
+              "fundingSource": "",
+              "cursor": "zz"
+            }
+          ],
+          "alpha": [
+            {
+              "holderWalletAddress": "Trader31111111111111111111111111111111111",
+              "holdAmount": "0",
+              "holdPercent": "0",
+              "nativeTokenBalance": "1",
+              "boughtAmount": "10",
+              "avgBuyPrice": "1",
+              "soldAmount": "10",
+              "avgSellPrice": "2",
+              "totalPnlUsd": "30",
+              "realizedPnlUsd": "30",
+              "unrealizedPnlUsd": "0",
+              "fundingSource": "",
+              "cursor": "p3"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/top-trader",
+    "times": 1,
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "holderWalletAddress": "Trader11111111111111111111111111111111111",
+              "holdAmount": "0",
+              "holdPercent": "0",
+              "nativeTokenBalance": "1",
+              "boughtAmount": "10",
+              "avgBuyPrice": "1",
+              "soldAmount": "10",
+              "avgSellPrice": "2",
+              "totalPnlUsd": "10",
+              "realizedPnlUsd": "10",
+              "unrealizedPnlUsd": "0",
+              "fundingSource": "",
+              "cursor": "p1"
+            },
+            {
+              "holderWalletAddress": "Trader21111111111111111111111111111111111",
+              "holdAmount": "0",
+              "holdPercent": "0",
+              "nativeTokenBalance": "1",
+              "boughtAmount": "10",
+              "avgBuyPrice": "1",
+              "soldAmount": "10",
+              "avgSellPrice": "2",
+              "totalPnlUsd": "20",
+              "realizedPnlUsd": "20",
+              "unrealizedPnlUsd": "0",
+              "fundingSource": "",
+              "cursor": "p2"
+            }
+          ],
+          "cursor": "ignored"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/top-trader",
+    "match": {
+      "query": {
+        "cursor": "p3"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "note": "no arrays here"
+        }
+      }
+    }
+  }
+]

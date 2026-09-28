@@ -1,0 +1,64 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/detail/prepare",
+    "match": {
+      "body": {
+        "investmentId": "42001"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": [
+            {
+              "tokenId": null,
+              "tokenSymbol": "WETH",
+              "tokenName": "Wrapped Ether",
+              "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "tokenPrecision": "18",
+              "chainIndex": "1",
+              "network": "ETH",
+              "coinAmount": "0",
+              "currencyAmount": "0"
+            },
+            {
+              "tokenId": null,
+              "tokenSymbol": "USDC",
+              "tokenName": "USD Coin",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenPrecision": "6",
+              "chainIndex": "1",
+              "network": "ETH",
+              "coinAmount": "0",
+              "currencyAmount": "0"
+            }
+          ],
+          "feeRate": "0.0005",
+          "currentTick": "-195123",
+          "currentPrice": "0.000331",
+          "tickSpacing": "x",
+          "underlyingTokenList": [
+            {
+              "tokenSymbol": "WETH",
+              "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "chainIndex": "1",
+              "tokenPrecision": "18",
+              "isBaseToken": false
+            },
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": "1",
+              "tokenPrecision": "6",
+              "isBaseToken": false
+            }
+          ]
+        }
+      }
+    }
+  }
+]

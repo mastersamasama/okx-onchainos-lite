@@ -1,0 +1,32 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "services": [
+            {
+              "sid": "33803",
+              "serviceId": "svc-1",
+              "serviceName": "Audit",
+              "serviceType": "A2A",
+              "serviceDescription": "Security audit",
+              "feeToken": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "feeTokenSymbol": "USDT",
+              "feeAmount": "5",
+              "asp": {
+                "aspAgentId": "2003",
+                "onlineStatus": 2
+              }
+            }
+          ],
+          "unmatchReason": "offline"
+        }
+      }
+    }
+  }
+]

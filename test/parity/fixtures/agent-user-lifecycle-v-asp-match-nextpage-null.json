@@ -1,0 +1,17 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/match",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "recommendations": [],
+          "nextPage": null
+        }
+      }
+    }
+  }
+]

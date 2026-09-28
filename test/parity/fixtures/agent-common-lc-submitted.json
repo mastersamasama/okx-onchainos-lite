@@ -1,0 +1,29 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "title": "Market report",
+          "tokenSymbol": "USDT",
+          "tokenAmount": "5",
+          "paymentTokenAmount": "5.50",
+          "paymentMode": 1,
+          "status": 2,
+          "jobType": 0,
+          "buyerAgentId": "1001",
+          "providerAgentId": 2002,
+          "createTime": 1700000000,
+          "acceptTime": 1700003600000,
+          "submittedAt": "2023-11-15T01:20:00Z",
+          "rejectTime": "  "
+        }
+      }
+    }
+  }
+]

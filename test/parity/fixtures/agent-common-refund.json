@@ -1,0 +1,155 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 4,
+          "list": [
+            {
+              "jobId": "0xabababababababababababababababababababababababababababababababab",
+              "status": 2,
+              "title": "Market report",
+              "rejectDeadline": 4102444800
+            },
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "status": 3,
+              "title": "Logo design",
+              "rejectDeadline": "4102444000"
+            },
+            {
+              "jobId": " 0xabababababababababababababababababababababababababababababababab ",
+              "status": 2
+            },
+            {
+              "jobId": "0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+              "status": 3,
+              "title": "No deadline"
+            },
+            {
+              "jobId": "",
+              "status": 3
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 0,
+          "list": []
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "status": 2,
+          "title": "Market report",
+          "tokenSymbol": "USDT",
+          "tokenAmount": "5",
+          "paymentTokenAmount": "5",
+          "paymentMode": 1,
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "submitTime": 1700000000,
+          "createTime": 1699990000,
+          "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "providerAgentAddress": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "jobType": 0,
+          "status": 3,
+          "title": "Logo design",
+          "tokenSymbol": "USDG",
+          "tokenAmount": "12.5",
+          "paymentTokenAmount": "12.5",
+          "paymentMode": 1,
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "providerAgentName": "Oracle ASP",
+          "rejectReason": "late delivery",
+          "rejectTime": 1700001000,
+          "createTime": 1699990000,
+          "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "providerAgentAddress": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+          "jobType": 0,
+          "status": 3,
+          "title": "No deadline",
+          "tokenSymbol": "USDT",
+          "tokenAmount": "1",
+          "paymentMode": 1,
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "responseDeadline": 4102440000,
+          "createTime": 1699990000,
+          "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "providerAgentAddress": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "pathRegex": "/dispute/status$",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "no dispute",
+        "data": null
+      }
+    }
+  }
+]

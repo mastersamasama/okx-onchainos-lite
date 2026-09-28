@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "msgHash": "0x3549e3e2663187dfdfa5d2219ecc854d3471f6868e87ea4cd1e165f5a03ad28d"
+          }
+        ]
+      }
+    }
+  }
+]

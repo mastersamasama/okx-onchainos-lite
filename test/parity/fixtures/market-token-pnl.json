@@ -1,0 +1,3 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/portfolio/token/latest-pnl", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": {
+  "totalPnlUsd": "-3.2", "totalPnlPercent": "-0.32", "unrealizedPnlUsd": "-3.2", "unrealizedPnlPercent": "-0.32", "realizedPnlUsd": "0", "realizedPnlPercent": "0", "isPnlSupported": true
+} } } }]

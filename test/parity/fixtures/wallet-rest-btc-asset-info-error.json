@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/utxo-asset-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82003",
+        "msg": "invalid utxo request",
+        "data": []
+      }
+    }
+  }
+]

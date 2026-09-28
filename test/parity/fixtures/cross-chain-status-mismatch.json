@@ -1,0 +1,34 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "bridgeId": 52,
+            "chainIndex": "8453",
+            "status": "PENDING",
+            "toAmount": "",
+            "toChainIndex": "42161",
+            "toTokenAddress": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+            "toTxHash": "",
+            "txHash": "0x3b6d8fa1c3e5f7092b4d6f8a1c3e5f7092b4d6f8a1c3e5f7092b4d6f8a1c3e5f"
+          },
+          {
+            "bridgeId": "636",
+            "chainIndex": "8453",
+            "status": "SUCCESS",
+            "txHash": "0x3b6d8fa1c3e5f7092b4d6f8a1c3e5f7092b4d6f8a1c3e5f7092b4d6f8a1c3e5f"
+          },
+          {
+            "status": "NOT_FOUND"
+          }
+        ]
+      }
+    }
+  }
+]

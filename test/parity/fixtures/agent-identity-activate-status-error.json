@@ -1,0 +1,33 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "agentId": "42",
+              "role": 2
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent-status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81012",
+        "msg": "agent is frozen",
+        "data": null
+      }
+    }
+  }
+]

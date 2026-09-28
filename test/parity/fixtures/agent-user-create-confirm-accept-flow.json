@@ -1,0 +1,126 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/providerConfirmStatus",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "amount": "0",
+          "currency": "0x779DED0C9E1022225F8E0630B35A9B54BE713736",
+          "escrow": {
+            "escrowContract": "0x6666666666666666666666666666666666666666",
+            "provider": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+            "arbitrator": "0x5555555555555555555555555555555555555555",
+            "receiver": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+            "submitWindow": "86400",
+            "disputeWindow": 259200,
+            "arbitrationWindow": "259200",
+            "terminationWindow": "604800",
+            "expiredAt": "4102444800",
+            "hook": "0x7777777777777777777777777777777777777777",
+            "hookData": "0x",
+            "salt": "0x0202020202020202020202020202020202020202020202020202020202020202"
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "msgHash": "0xabababababababababababababababababababababababababababababababab",
+            "domainHash": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/sign-msg",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "signature": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1b"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/accept",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "type": 203,
+          "uopData": {
+            "unsignedTxHash": null,
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "authHashFor7702": null,
+            "executeErrorMsg": "",
+            "executeResult": true,
+            "extraData": {
+              "gasLimit": "251092",
+              "maxFeePerGas": "0",
+              "maxPriorityFeePerGas": "0",
+              "nonce": 3,
+              "chainId": 196,
+              "freeGas": true,
+              "extJson": {
+                "source": "aieco"
+              }
+            },
+            "signType": "eip1559",
+            "encoding": "hex",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": false,
+            "needUpdate7702": false,
+            "hasPendingTx": false
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/broadcast",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "pkgId": "pkg-1",
+            "orderId": "ord-1",
+            "orderType": "1",
+            "bizUniqKey": "biz-1",
+            "txHash": "0x2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a"
+          }
+        ]
+      }
+    }
+  }
+]

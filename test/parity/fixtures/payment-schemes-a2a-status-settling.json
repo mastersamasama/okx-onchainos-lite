@@ -1,0 +1,25 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/p1/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "status": "settling",
+          "executed": {
+            "txHash": "0x7777777777777777777777777777777777777777777777777777777777777777",
+            "blockNumber": 123,
+            "blockTimestamp": "2026-01-01T00:00:00Z"
+          },
+          "fee": {
+            "amount": "30",
+            "bps": 30
+          }
+        }
+      }
+    }
+  }
+]

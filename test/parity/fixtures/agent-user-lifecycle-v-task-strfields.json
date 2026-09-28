@@ -1,0 +1,32 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": "0",
+          "status": " 2 ",
+          "title": "  Market report  ",
+          "buyerAgentId": 1001,
+          "providerAgentId": "2002",
+          "serviceId": "svc-1",
+          "paymentTokenAmount": 5,
+          "tokenAmount": "9",
+          "tokenSymbol": "USDT",
+          "paymentTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "paymentMode": "1",
+          "chainId": "196",
+          "updateTime": 1700000100,
+          "rejectDeadline": 1700003600,
+          "refundRequestedAt": 1700000500,
+          "rejectReason": "old reason"
+        }
+      }
+    }
+  }
+]

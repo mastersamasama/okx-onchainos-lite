@@ -1,0 +1,37 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "BRC20_TRANSFERABLE_UTXO_LIST"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "brc20TransferableUtxoList": {
+              "count": 1,
+              "sumValueRaw": "5000000000000000000",
+              "utxos": [
+                {
+                  "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0",
+                  "voutIndex": 0,
+                  "utxoAmountRaw": "546",
+                  "valueRaw": "5000000000000000000",
+                  "utxoId": "4d3f6a7a-0",
+                  "inscriptionId": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0i0",
+                  "offset": "0"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+]

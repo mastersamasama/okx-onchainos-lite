@@ -1,0 +1,16 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/upload-picture",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "url": "https://cdn.example.com/avatar/o.webp"
+        }
+      }
+    }
+  }
+]

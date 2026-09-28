@@ -1,0 +1,25 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/jobW1",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50103",
+        "msg": "subscription not found",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/jobW3",
+    "response": {
+      "status": 404,
+      "body": {
+        "code": "404",
+        "msg": "Not Found"
+      }
+    }
+  }
+]

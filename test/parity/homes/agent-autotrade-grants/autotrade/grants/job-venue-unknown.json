@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "jobId": "job-venue-unknown",
+  "grants": {
+    "dex": {
+      "maxBuy": "1",
+      "cap": "2"
+    }
+  },
+  "createdAt": 1,
+  "expiresAt": 4102444800
+}

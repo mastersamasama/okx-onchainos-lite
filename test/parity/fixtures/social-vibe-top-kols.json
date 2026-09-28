@@ -1,0 +1,31 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/vibe/top-kols",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "kols": [
+      {
+       "handle": "a",
+       "nickname": "A",
+       "followers": "12000",
+       "engagement": "300",
+       "mentions": "4",
+       "impressions": "90000",
+       "tweetUrl": "https://x.com/a/1",
+       "content": "leak",
+       "text": "leak",
+       "translatedContent": "leak"
+      }
+     ],
+     "total": 1,
+     "text": "top-level leak"
+    }
+   }
+  }
+ }
+]

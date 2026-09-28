@@ -1,0 +1,51 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/price",
+    "times": 1,
+    "response": {
+      "status": 402,
+      "headers": {
+        "content-type": "application/json",
+        "payment-required": "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoieCJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RHIiwidmVyc2lvbiI6IjEifX1dfQ=="
+      },
+      "body": {
+        "x402Version": 2,
+        "error": "payment required",
+        "accepts": [
+          {
+            "scheme": "exact",
+            "network": "eip155:196",
+            "amount": "100",
+            "asset": "0x2222222222222222222222222222222222222222",
+            "payTo": "0x1111111111111111111111111111111111111111",
+            "maxTimeoutSeconds": 300,
+            "extra": {
+              "name": "USDG",
+              "version": "1"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/price",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "196",
+            "tokenContractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+            "time": "1700000000000",
+            "price": "42.5"
+          }
+        ]
+      }
+    }
+  }
+]

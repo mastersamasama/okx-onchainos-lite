@@ -1,0 +1,33 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances-batch",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-9999",
+            "tokenAssets": [
+              { "chainIndex": "1", "symbol": "ETH", "tokenName": "Ethereum", "tokenAddress": "", "balance": "9", "rawBalance": "9000000000000000000", "decimal": "18", "tokenPrice": "3000", "usdValue": "27000" }
+            ]
+          },
+          {
+            "accountId": "parity-account-0002",
+            "tokenAssets": [
+              { "chainIndex": "1", "symbol": "ETH", "tokenName": "Ethereum", "tokenAddress": "", "address": "0x8a8d5b4c3e2f1a0b9c8d7e6f5a4b3c2d1e0f9a8b", "balance": "0.25", "rawBalance": "250000000000000000", "decimal": "18", "tokenPrice": "3000.5", "usdValue": 750.125, "isRiskToken": false },
+              { "chainIndex": 196, "symbol": "USDT", "tokenName": "Tether USD", "tokenAddress": "0x1e4a5963abfd975d8c9021ce480b42188849d41d", "balance": "10", "rawBalance": "10000000", "decimal": 6, "tokenPrice": 1.0, "usdValue": null },
+              { "chainIndex": "501", "symbol": "SOL", "tokenName": "Solana", "tokenAddress": "", "balance": 2, "rawBalance": "2000000000", "decimal": "9", "tokenPrice": "150", "usdValue": "" }
+            ]
+          },
+          {
+            "accountId": 12345,
+            "tokenAssets": []
+          }
+        ]
+      }
+    }
+  }
+]

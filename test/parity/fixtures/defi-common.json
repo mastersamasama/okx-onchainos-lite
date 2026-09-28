@@ -1,0 +1,1177 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/supported-chains",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "1",
+            "network": "ETH"
+          },
+          {
+            "chainIndex": "56",
+            "network": "BSC"
+          },
+          {
+            "chainIndex": "137",
+            "network": "POLYGON"
+          },
+          {
+            "chainIndex": "42161",
+            "network": "ARBITRUM"
+          },
+          {
+            "chainIndex": "8453",
+            "network": "BASE"
+          },
+          {
+            "chainIndex": "501",
+            "network": "SOL"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/supported-platforms",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "analysisPlatformId": "10",
+            "platformName": "Aave V3",
+            "investmentCount": 68
+          },
+          {
+            "analysisPlatformId": "20",
+            "platformName": "Lido",
+            "investmentCount": 1
+          },
+          {
+            "analysisPlatformId": "30",
+            "platformName": "PancakeSwap V3",
+            "investmentCount": 120
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "total": 2,
+          "list": [
+            {
+              "investmentId": 9502,
+              "name": "USDC",
+              "platformName": "Aave V3",
+              "rate": "0.01820",
+              "tvl": "3612345678.1200",
+              "chainIndex": "1",
+              "feeRate": null,
+              "detailPath": "aave-v3-usdc"
+            },
+            {
+              "investmentId": 9503,
+              "name": "USDC",
+              "platformName": "Compound V3",
+              "rate": "0.7512",
+              "tvl": "812345678.5",
+              "chainIndex": "1",
+              "feeRate": null,
+              "detailPath": "compound-v3-usdc"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/detail",
+    "match": {
+      "query": {
+        "investmentId": "9502"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investmentId": 9502,
+          "investmentName": "USDC",
+          "platformName": "Aave V3",
+          "platformLogo": "https://static.okx.com/cdn/web3/protocol/logo/aave-v3.png",
+          "investType": 1,
+          "chainIndex": "1",
+          "network": "Ethereum",
+          "rate": "0.01820",
+          "tvl": "3612345678.12",
+          "feeRate": null,
+          "hasBonus": false,
+          "isSupportClaim": true,
+          "isInvestable": true,
+          "isSupportRedeem": true,
+          "analysisPlatformId": 10,
+          "subscriptionMethod": 1,
+          "redeemMethod": 1,
+          "detailPath": "aave-v3-usdc",
+          "underlyingToken": [
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6,
+              "tokenLogo": "https://static.okx.com/cdn/wallet/logo/USDC.png"
+            }
+          ],
+          "aboutToken": [
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6,
+              "marketCap": "72000000000",
+              "price": "0.99985"
+            }
+          ],
+          "rateDetails": [
+            {
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenSymbol": "USDC",
+              "rate": "0.0182",
+              "title": "Supply APY"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/detail",
+    "match": {
+      "query": {
+        "investmentId": "9503"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investmentId": 9503,
+          "investmentName": "USDC",
+          "platformName": "Compound V3",
+          "platformLogo": "https://static.okx.com/cdn/web3/protocol/logo/aave-v3.png",
+          "investType": "1",
+          "chainIndex": "1",
+          "network": "Ethereum",
+          "rate": 0.7512,
+          "tvl": "3612345678.12",
+          "feeRate": null,
+          "hasBonus": false,
+          "isSupportClaim": true,
+          "isInvestable": "1",
+          "isSupportRedeem": "1",
+          "analysisPlatformId": 10,
+          "subscriptionMethod": 1,
+          "redeemMethod": 1,
+          "detailPath": "aave-v3-usdc",
+          "underlyingToken": [
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6,
+              "tokenLogo": "https://static.okx.com/cdn/wallet/logo/USDC.png"
+            }
+          ],
+          "aboutToken": [
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6,
+              "marketCap": "72000000000",
+              "price": "0.99985"
+            }
+          ],
+          "rateDetails": [
+            {
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenSymbol": "USDC",
+              "rate": "0.0182",
+              "title": "Supply APY"
+            }
+          ],
+          "healthRate": "1.20"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/detail",
+    "match": {
+      "query": {
+        "investmentId": "9504"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investmentId": 9504,
+          "investmentName": "USDC",
+          "platformName": "Aave V3",
+          "platformLogo": "https://static.okx.com/cdn/web3/protocol/logo/aave-v3.png",
+          "investType": 1,
+          "chainIndex": "1",
+          "network": "Ethereum",
+          "rate": "0.01820",
+          "tvl": "3612345678.12",
+          "feeRate": null,
+          "hasBonus": false,
+          "isSupportClaim": true,
+          "isInvestable": false,
+          "isSupportRedeem": "false",
+          "analysisPlatformId": 10,
+          "subscriptionMethod": 1,
+          "redeemMethod": 1,
+          "detailPath": "aave-v3-usdc",
+          "underlyingToken": [
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6,
+              "tokenLogo": "https://static.okx.com/cdn/wallet/logo/USDC.png"
+            }
+          ],
+          "aboutToken": [
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6,
+              "marketCap": "72000000000",
+              "price": "0.99985"
+            }
+          ],
+          "rateDetails": [
+            {
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenSymbol": "USDC",
+              "rate": "0.0182",
+              "title": "Supply APY"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/detail",
+    "match": {
+      "query": {
+        "investmentId": "9505"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investmentId": 9505,
+          "investType": 1,
+          "rate": "n/a",
+          "healthRate": 3.5
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/detail",
+    "match": {
+      "query": {
+        "investmentId": "42001"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investmentId": 42001,
+          "investmentName": "WETH-USDC",
+          "platformName": "Uniswap V3",
+          "platformLogo": "https://static.okx.com/cdn/web3/protocol/logo/aave-v3.png",
+          "investType": 2,
+          "chainIndex": "1",
+          "network": "Ethereum",
+          "rate": "0.2231",
+          "tvl": "3612345678.12",
+          "feeRate": "0.0005",
+          "hasBonus": false,
+          "isSupportClaim": true,
+          "isInvestable": true,
+          "isSupportRedeem": true,
+          "analysisPlatformId": 10,
+          "subscriptionMethod": 1,
+          "redeemMethod": 1,
+          "detailPath": "aave-v3-usdc",
+          "underlyingToken": [
+            {
+              "tokenSymbol": "WETH",
+              "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "chainIndex": 1,
+              "tokenPrecision": 18
+            },
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6
+            }
+          ],
+          "aboutToken": [
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": 1,
+              "tokenPrecision": 6,
+              "marketCap": "72000000000",
+              "price": "0.99985"
+            }
+          ],
+          "rateDetails": [
+            {
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenSymbol": "USDC",
+              "rate": "0.0182",
+              "title": "Supply APY"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/detail/prepare",
+    "match": {
+      "body": {
+        "investmentId": "9502"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": [
+            {
+              "tokenId": null,
+              "tokenSymbol": "USDC",
+              "tokenName": "USD Coin",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenPrecision": "6",
+              "chainIndex": "1",
+              "network": "ETH",
+              "coinAmount": "0",
+              "currencyAmount": "0"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/detail/prepare",
+    "match": {
+      "body": {
+        "investmentId": "9503"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": [
+            {
+              "tokenId": null,
+              "tokenSymbol": "USDC",
+              "tokenName": "USD Coin",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenPrecision": 6,
+              "chainIndex": "1",
+              "network": "ETH",
+              "coinAmount": "0",
+              "currencyAmount": "0"
+            },
+            {
+              "tokenId": null,
+              "tokenSymbol": "USDT",
+              "tokenName": "Tether",
+              "tokenAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+              "tokenPrecision": "6x",
+              "chainIndex": "1",
+              "network": "ETH",
+              "coinAmount": "0",
+              "currencyAmount": "0"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/detail/prepare",
+    "match": {
+      "body": {
+        "investmentId": "9505"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": "none"
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/detail/prepare",
+    "match": {
+      "body": {
+        "investmentId": "42001"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": [
+            {
+              "tokenId": null,
+              "tokenSymbol": "WETH",
+              "tokenName": "Wrapped Ether",
+              "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "tokenPrecision": "18",
+              "chainIndex": "1",
+              "network": "ETH",
+              "coinAmount": "0",
+              "currencyAmount": "0"
+            },
+            {
+              "tokenId": null,
+              "tokenSymbol": "USDC",
+              "tokenName": "USD Coin",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenPrecision": "6",
+              "chainIndex": "1",
+              "network": "ETH",
+              "coinAmount": "0",
+              "currencyAmount": "0"
+            }
+          ],
+          "feeRate": "0.0005",
+          "currentTick": "-195123",
+          "currentPrice": "0.000331",
+          "tickSpacing": "60",
+          "underlyingTokenList": [
+            {
+              "tokenSymbol": "WETH",
+              "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "chainIndex": "1",
+              "tokenPrecision": "18",
+              "isBaseToken": false
+            },
+            {
+              "tokenSymbol": "USDC",
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "chainIndex": "1",
+              "tokenPrecision": "6",
+              "isBaseToken": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/transaction/enter",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "dataList": [
+            {
+              "callDataType": "APPROVE",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "value": "0x0",
+              "serializedData": "0x095ea7b3000000000000000000000000a0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "originalData": "",
+              "signatureData": ""
+            },
+            {
+              "callDataType": "DEPOSIT",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "value": "0x1a",
+              "serializedData": "0x095ea7b300000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "originalData": "",
+              "signatureData": "",
+              "gas": null
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/transaction/exit",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "dataList": [
+            {
+              "callDataType": "APPROVE",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c",
+              "value": "",
+              "serializedData": "0x095ea7b300000000000000000000000098c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c",
+              "originalData": "",
+              "signatureData": ""
+            },
+            {
+              "callDataType": "WITHDRAW",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "value": "abc",
+              "serializedData": "0x095ea7b300000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "originalData": "",
+              "signatureData": ""
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/transaction/claim",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "dataList": [
+            {
+              "callDataType": "CLAIM",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0x8164cc65827dcfe994ab23944cbc90e0aa80bfcb",
+              "value": null,
+              "serializedData": "0x095ea7b30000000000000000000000008164cc65827dcfe994ab23944cbc90e0aa80bfcb",
+              "originalData": "",
+              "signatureData": ""
+            },
+            {
+              "callDataType": "CLAIM",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "value": 12,
+              "serializedData": "0x095ea7b300000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "originalData": "",
+              "signatureData": ""
+            },
+            {
+              "callDataType": "CLAIM",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "value": -1,
+              "serializedData": "0x095ea7b300000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "originalData": "",
+              "signatureData": ""
+            },
+            {
+              "callDataType": "CLAIM",
+              "from": "0x0000000000000000000000000000000000000001",
+              "to": "0x87870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "value": 1.5,
+              "serializedData": "0x095ea7b300000000000000000000000087870bca3f3fd6335c3f4ce8392d69350b4fa4e2",
+              "originalData": "",
+              "signatureData": ""
+            },
+            "raw-step"
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/calculator/enter/info",
+    "match": {
+      "body": {
+        "inputTokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": [
+            {
+              "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "tokenSymbol": "WETH",
+              "coinAmount": "0.005",
+              "chainIndex": "1"
+            },
+            {
+              "tokenAddress": "0xA0b86991c6218b36c1d19d4a2e9eB0cE3606eB48",
+              "tokenSymbol": "USDC",
+              "coinAmount": "17.123456789"
+            },
+            {
+              "tokenAddress": "0xunknown",
+              "tokenSymbol": "X",
+              "coinAmount": 5
+            }
+          ],
+          "liquidity": "1234567890"
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/calculator/enter/info",
+    "match": {
+      "body": {
+        "inputTokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": [
+            {
+              "tokenAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+              "tokenSymbol": "WETH",
+              "coinAmount": "0.0031",
+              "chainIndex": "1"
+            },
+            {
+              "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+              "tokenSymbol": "USDC",
+              "coinAmount": "10",
+              "chainIndex": "1"
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/rate/chart",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "timestamp": "1741737600000",
+            "rate": "0.0312",
+            "bonusRate": "0.0045",
+            "limitValue": 1,
+            "totalReward": "0.0357"
+          },
+          {
+            "timestamp": "1741651200000",
+            "rate": "0.0298",
+            "bonusRate": "0.0045",
+            "limitValue": null,
+            "totalReward": "0.0343"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/tvl/chart",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "chartVos": [
+            {
+              "timestamp": "1741737600000",
+              "tvl": "523847291.45",
+              "limitValue": 1
+            },
+            {
+              "timestamp": "1741651200000",
+              "tvl": "498312044.78",
+              "limitValue": null
+            }
+          ],
+          "text": null
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/defi/product/depth-price/chart",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "tick": -32932,
+            "liquidity": "1234567890123456",
+            "liquidityNet": "500000000000000",
+            "token0Price": "0.9985",
+            "token1Price": "1.0015"
+          },
+          {
+            "tick": -32931,
+            "liquidity": "1234567890123456",
+            "liquidityNet": "0",
+            "token0Price": "0.9986",
+            "token1Price": "1.0014"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/user/asset/platform/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "walletIdPlatformList": [
+            {
+              "walletId": "w-1",
+              "platformList": [
+                {
+                  "analysisPlatformId": "10",
+                  "platformName": "Aave V3",
+                  "chainIndex": "1",
+                  "totalValue": "105.23",
+                  "investedValue": "100",
+                  "profitValue": "5.23",
+                  "investTypeList": [
+                    1,
+                    6
+                  ],
+                  "rewardDefiTokenInfo": []
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/user/asset/platform/detail",
+    "match": {
+      "body": {
+        "platformList": [
+          {
+            "analysisPlatformId": "10"
+          }
+        ]
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "analysisPlatformId": "10",
+            "platformName": "Aave V3",
+            "platformLogo": "https://static.okx.com/cdn/web3/protocol/logo/aave-v3.png",
+            "walletIdPlatformDetailList": [
+              {
+                "walletId": "w-1",
+                "networkHoldVoList": [
+                  {
+                    "chainIndex": "1",
+                    "network": "ETH",
+                    "totalValue": "105.23",
+                    "investTokenBalanceVoList": [
+                      {
+                        "investmentId": 9510,
+                        "investmentName": "AAVE staking",
+                        "assetsTokenList": []
+                      },
+                      {
+                        "investmentId": 9502,
+                        "investmentName": "USDC",
+                        "investType": "1",
+                        "healthRate": null,
+                        "assetsTokenList": [
+                          {
+                            "tokenSymbol": "aEthUSDC",
+                            "tokenAddress": "0x98c23e9d8f34fefb1b7bd6a91b7ff122f4e16f5c",
+                            "tokenPrecision": "6",
+                            "coinAmount": "100.235",
+                            "chainIndex": "1",
+                            "currencyAmount": "100.22"
+                          }
+                        ],
+                        "rewardDefiTokenInfo": [
+                          {
+                            "rewardType": "REWARD_INVESTMENT",
+                            "baseDefiTokenInfos": [
+                              {
+                                "tokenAddress": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+                                "coinAmount": "0.0169",
+                                "tokenSymbol": "AAVE",
+                                "tokenPrecision": "18"
+                              }
+                            ]
+                          },
+                          {
+                            "rewardType": "REWARD_PLATFORM",
+                            "baseDefiTokenInfos": [
+                              {
+                                "tokenAddress": "0x4da27a545c0c5b758a6ba100e3a049001de870f5",
+                                "coinAmount": "1.25",
+                                "tokenSymbol": "stkAAVE",
+                                "tokenPrecision": "18"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "investmentId": "9511",
+                        "investmentName": "string id",
+                        "rewardDefiTokenInfo": [
+                          {
+                            "rewardType": "REWARD_INVESTMENT",
+                            "baseDefiTokenInfos": [
+                              {
+                                "tokenAddress": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+                                "coinAmount": "9",
+                                "tokenSymbol": "AAVE",
+                                "tokenPrecision": "18"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "investMarketTokenBalanceVoList": [
+                      {
+                        "marketName": "Core",
+                        "marketRewards": [
+                          {
+                            "rewardType": "REWARD_PLATFORM",
+                            "baseDefiTokenInfos": [
+                              {
+                                "tokenAddress": "0x4da27a545c0c5b758a6ba100e3a049001de870f5",
+                                "coinAmount": "1.25",
+                                "tokenSymbol": "stkAAVE",
+                                "tokenPrecision": "18"
+                              },
+                              {
+                                "tokenAddress": "0xdead00000000000000000000000000000000beef",
+                                "coinAmount": "0",
+                                "tokenSymbol": "ZERO",
+                                "tokenPrecision": "18"
+                              }
+                            ]
+                          }
+                        ],
+                        "assetMap": {
+                          "SUPPLY": [
+                            {
+                              "investmentId": 9506,
+                              "assetsTokenList": [
+                                {
+                                  "tokenSymbol": "aEthWETH",
+                                  "tokenAddress": "0x4d5f47fa6a74757f35c14fd3a6ef8e3c9bc514e8",
+                                  "tokenPrecision": 18,
+                                  "coinAmount": "0.5",
+                                  "chainIndex": "1"
+                                }
+                              ],
+                              "rewardDefiTokenInfo": [
+                                {
+                                  "rewardType": "REWARD_OKX_BONUS",
+                                  "baseDefiTokenInfos": [
+                                    {
+                                      "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                                      "coinAmount": "0.5",
+                                      "tokenSymbol": "USDC",
+                                      "tokenPrecision": "18"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "rewardType": "REWARD_INVESTMENT",
+                                  "baseDefiTokenInfos": [
+                                    {
+                                      "tokenAddress": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+                                      "coinAmount": "0.002",
+                                      "tokenSymbol": "AAVE",
+                                      "tokenPrecision": "18"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ],
+                          "BORROW": [
+                            {
+                              "investmentId": 9507,
+                              "assetsTokenList": [
+                                {
+                                  "tokenSymbol": "variableDebtUSDC",
+                                  "tokenAddress": "0x72e95b8931767c79ba4eee721354d6e99a61d004",
+                                  "coinAmount": "20",
+                                  "chainIndex": "1"
+                                }
+                              ],
+                              "rewardDefiTokenInfo": [
+                                {
+                                  "rewardType": "REWARD_MERKLE_BONUS",
+                                  "baseDefiTokenInfos": [
+                                    {
+                                      "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                                      "coinAmount": "0.000",
+                                      "tokenSymbol": "USDC",
+                                      "tokenPrecision": "18"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ],
+                    "availableRewards": [
+                      {
+                        "rewardType": "REWARD_PLATFORM",
+                        "baseDefiTokenInfos": [
+                          {
+                            "tokenAddress": "0x4da27a545c0c5b758a6ba100e3a049001de870f5",
+                            "coinAmount": "1.25",
+                            "tokenSymbol": "stkAAVE",
+                            "tokenPrecision": "18"
+                          },
+                          {
+                            "tokenAddress": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+                            "coinAmount": "0.3",
+                            "tokenSymbol": "AAVE",
+                            "tokenPrecision": "18"
+                          }
+                        ]
+                      },
+                      {
+                        "rewardType": "REWARD_OKX_BONUS",
+                        "baseDefiTokenInfos": [
+                          {
+                            "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                            "coinAmount": "0.5",
+                            "tokenSymbol": "USDC",
+                            "tokenPrecision": "18"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/user/asset/platform/detail",
+    "match": {
+      "body": {
+        "platformList": [
+          {
+            "analysisPlatformId": "20"
+          }
+        ]
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "analysisPlatformId": "20",
+            "walletIdPlatformDetailList": [
+              {
+                "networkHoldVoList": [
+                  {
+                    "chainIndex": "1",
+                    "availableRewards": [
+                      {
+                        "rewardType": "REWARD_PLATFORM",
+                        "baseDefiTokenInfos": [
+                          {
+                            "tokenAddress": "0x4da27a545c0c5b758a6ba100e3a049001de870f5",
+                            "coinAmount": "0.000",
+                            "tokenSymbol": "stkAAVE",
+                            "tokenPrecision": "18"
+                          },
+                          {
+                            "tokenAddress": "0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9",
+                            "coinAmount": "",
+                            "tokenSymbol": "AAVE",
+                            "tokenPrecision": "18"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/user/asset/platform/detail",
+    "match": {
+      "body": {
+        "platformList": [
+          {
+            "analysisPlatformId": "30"
+          }
+        ]
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "analysisPlatformId": "30",
+            "walletIdPlatformDetailList": [
+              {
+                "networkHoldVoList": [
+                  {
+                    "chainIndex": "56"
+                  }
+                ]
+              },
+              {
+                "noNetworks": true
+              }
+            ]
+          },
+          {
+            "noWallets": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/user/asset/platform/detail",
+    "match": {
+      "body": {
+        "platformList": [
+          {
+            "analysisPlatformId": "40"
+          }
+        ]
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "notAnArray": true
+        }
+      }
+    }
+  }
+]

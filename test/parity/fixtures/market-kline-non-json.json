@@ -1,0 +1,1 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/candles", "response": { "status": 403, "headers": { "content-type": "text/html" }, "body": "  <html>Forbidden</html>\n" } }]

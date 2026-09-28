@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/token/get-token-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "44010",
+        "msg": "token not supported",
+        "data": []
+      }
+    }
+  }
+]

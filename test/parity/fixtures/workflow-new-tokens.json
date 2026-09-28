@@ -1,0 +1,470 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenList",
+  "match": {
+   "query": {
+    "stage": "MIGRATING"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "tokenContractAddress": "New21pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N21",
+      "name": "New Token 21",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50021",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New22pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N22",
+      "name": "New Token 22",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50022",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenList",
+  "match": {
+   "query": {
+    "chainIndex": "56"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "data": [
+      {
+       "tokenContractAddress": "New31pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+       "symbol": "N31",
+       "name": "New Token 31",
+       "createdTimestamp": "1790590000000",
+       "market": {
+        "marketCapUsd": "50031",
+        "volumeUsd1h": "1234.5"
+       },
+       "bondingPercent": "100"
+      },
+      {
+       "tokenContractAddress": "New31pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+       "symbol": "N31",
+       "name": "New Token 31",
+       "createdTimestamp": "1790590000000",
+       "market": {
+        "marketCapUsd": "50031",
+        "volumeUsd1h": "1234.5"
+       },
+       "bondingPercent": "100"
+      },
+      {
+       "tokenContractAddress": "New32pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+       "symbol": "N32",
+       "name": "New Token 32",
+       "createdTimestamp": "1790590000000",
+       "market": {
+        "marketCapUsd": "50032",
+        "volumeUsd1h": "1234.5"
+       },
+       "bondingPercent": "100"
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenList",
+  "match": {
+   "query": {
+    "chainIndex": "8453"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "tokenAddress": "Real1pump",
+      "symbol": "REAL",
+      "createdTimestamp": "1790590000000",
+      "tags": {
+       "snipersPercent": "0"
+      }
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenList",
+  "match": {
+   "query": {
+    "chainIndex": "1"
+   }
+  },
+  "response": {
+   "status": 500,
+   "body": {
+    "code": "50000",
+    "msg": "System error"
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenList",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "tokenContractAddress": "New01pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N1",
+      "name": "New Token 1",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50001",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New02pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N2",
+      "name": "New Token 2",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50002",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "address": "AltAddrPumpToken111111111111111111111111pump",
+      "symbol": "ALT",
+      "name": "Alt Address"
+     },
+     {
+      "tokenContractAddress": "New01pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "DUP",
+      "name": "New Token 1",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50001",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "",
+      "symbol": "EMPTY"
+     },
+     {
+      "symbol": "NOADDR"
+     },
+     "junk",
+     {
+      "tokenContractAddress": "New03pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N3",
+      "name": "New Token 3",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50003",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New04pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N4",
+      "name": "New Token 4",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50004",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New05pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N5",
+      "name": "New Token 5",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50005",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New06pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N6",
+      "name": "New Token 6",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50006",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New07pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N7",
+      "name": "New Token 7",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50007",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New08pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N8",
+      "name": "New Token 8",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50008",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New09pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N9",
+      "name": "New Token 9",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50009",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New10pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N10",
+      "name": "New Token 10",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50010",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     },
+     {
+      "tokenContractAddress": "New11pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "symbol": "N11",
+      "name": "New Token 11",
+      "createdTimestamp": "1790590000000",
+      "market": {
+       "marketCapUsd": "50011",
+       "volumeUsd1h": "1234.5"
+      },
+      "bondingPercent": "100"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/security/token-scan",
+  "match": {
+   "body": {
+    "tokenList": [
+     {
+      "contractAddress": "New02pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump"
+     }
+    ]
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainId": "501",
+      "tokenAddress": "New02pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump",
+      "isChainSupported": true,
+      "riskLevel": "MEDIUM",
+      "buyTaxes": null,
+      "sellTaxes": null,
+      "isHoneypot": false,
+      "isMintable": false,
+      "isFreezable": false,
+      "isAirdropScam": false,
+      "isCounterfeit": false,
+      "isLiquidityRemoval": false
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/security/token-scan",
+  "match": {
+   "body": {
+    "tokenList": [
+     {
+      "contractAddress": "New03pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump"
+     }
+    ]
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "50125",
+    "msg": "Token not supported",
+    "data": []
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/security/token-scan",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainId": "501",
+      "tokenAddress": "generic",
+      "isChainSupported": true,
+      "riskLevel": "LOW",
+      "buyTaxes": null,
+      "sellTaxes": null,
+      "isHoneypot": false,
+      "isMintable": false,
+      "isFreezable": false,
+      "isAirdropScam": false,
+      "isCounterfeit": false,
+      "isLiquidityRemoval": false
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "100",
+     "protocolId": "120596",
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenDevInfo",
+  "match": {
+   "query": {
+    "tokenContractAddress": "New04pumpXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXpump"
+   }
+  },
+  "response": {
+   "status": 429,
+   "body": {
+    "code": "50011",
+    "msg": "Too Many Requests"
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenDevInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "devLaunchedInfo": {
+      "totalTokens": "12",
+      "rugPullCount": "3",
+      "migratedCount": "1",
+      "goldenGemCount": "0"
+     },
+     "devHoldingInfo": {
+      "devHoldingPercent": "0",
+      "devAddress": "Dev1111111111111111111111111111111111111111"
+     }
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenBundleInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "totalBundlers": "4",
+     "bundlerAthPercent": "12.5",
+     "bundledValueNative": "3.2",
+     "bundledTokenAmount": "1000000"
+    }
+   }
+  }
+ }
+]

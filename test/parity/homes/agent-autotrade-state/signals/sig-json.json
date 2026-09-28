@@ -1,0 +1,11 @@
+{
+  "signalId": "sig-001",
+  "signalType": "spot",
+  "params": {
+    "side": "buy",
+    "amount": 25,
+    "amountUnit": "USDT",
+    "chainIndex": "196",
+    "tokenAddress": "0x1234abcd"
+  }
+}

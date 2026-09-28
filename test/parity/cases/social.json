@@ -1,0 +1,838 @@
+[
+ {
+  "id": "social-news-latest-basic",
+  "argv": [
+   "social",
+   "news-latest",
+   "--limit",
+   "5",
+   "--token-symbols",
+   "BTC,ETH"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-news-latest-all-params",
+  "argv": [
+   "social",
+   "news-latest",
+   "--token-symbols",
+   "BTC",
+   "--begin",
+   "1721000000000",
+   "--end",
+   "1721086400000",
+   "--importance",
+   "1",
+   "--platform",
+   "blockbeats",
+   "--limit",
+   "2",
+   "--cursor",
+   "abc",
+   "--detail-level",
+   "2",
+   "--language",
+   "zh_CN"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ]
+ },
+ {
+  "id": "social-news-latest-empty-values",
+  "argv": [
+   "social",
+   "news-latest",
+   "--token-symbols",
+   "",
+   "--begin",
+   "",
+   "--end",
+   "",
+   "--limit",
+   "",
+   "--cursor",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ]
+ },
+ {
+  "id": "social-news-latest-since-zero",
+  "argv": [
+   "social",
+   "news-latest",
+   "--since",
+   "0"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-since-begin",
+  "argv": [
+   "social",
+   "news-latest",
+   "--since",
+   "24h",
+   "--begin",
+   "1000"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-since-empty",
+  "argv": [
+   "social",
+   "news-latest",
+   "--since",
+   ""
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-since-empty-begin",
+  "argv": [
+   "social",
+   "news-latest",
+   "--since",
+   "2h",
+   "--begin",
+   "",
+   "--end",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end"
+  ]
+ },
+ {
+  "id": "social-news-latest-since",
+  "argv": [
+   "social",
+   "news-latest",
+   "--since",
+   "30m",
+   "--limit",
+   "3"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end"
+  ]
+ },
+ {
+  "id": "social-news-latest-since-array",
+  "argv": [
+   "social",
+   "news-latest",
+   "--since",
+   "300s"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-array"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end"
+  ]
+ },
+ {
+  "id": "social-news-latest-max-results-999",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "999"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-max-results-nan",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   " abc "
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-max-results-zero",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "0"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-since-before-max",
+  "argv": [
+   "social",
+   "news-latest",
+   "--since",
+   "x",
+   "--max-results",
+   "0"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-paginate",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "50",
+   "--limit",
+   "2"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-pages"
+  ]
+ },
+ {
+  "id": "social-news-latest-paginate-stop-at-max",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   " 2 "
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-pages"
+  ]
+ },
+ {
+  "id": "social-news-latest-paginate-ten-pages",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "500",
+   "--importance",
+   "1"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-ten-pages"
+  ]
+ },
+ {
+  "id": "social-news-latest-paginate-empty-forward",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "5"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-empty-forward"
+  ]
+ },
+ {
+  "id": "social-news-latest-paginate-first-error",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "5",
+   "--cursor",
+   "start1"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-first-page-error"
+  ]
+ },
+ {
+  "id": "social-news-latest-paginate-list-key",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "10",
+   "--cursor",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-list-key"
+  ]
+ },
+ {
+  "id": "social-news-latest-paginate-since",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "1",
+   "--since",
+   "1d"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end"
+  ]
+ },
+ {
+  "id": "social-news-latest-single-error",
+  "argv": [
+   "social",
+   "news-latest"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-first-page-error"
+  ]
+ },
+ {
+  "id": "social-news-latest-paginate-jwt",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "50",
+   "--limit",
+   "2"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "social-news-pages"
+  ]
+ },
+ {
+  "id": "social-vibe-timeline-strip-expired",
+  "argv": [
+   "social",
+   "vibe-timeline",
+   "--chain",
+   "1",
+   "--token-address",
+   "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+  ],
+  "home": "wallet-expired",
+  "network": "fixture",
+  "fixtures": [
+   "social-vibe-timeline",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "social-news-by-symbol-basic",
+  "argv": [
+   "social",
+   "news-by-symbol",
+   "--token-symbols",
+   "ETH",
+   "--limit",
+   "5"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-news-by-symbol-window",
+  "argv": [
+   "social",
+   "news-by-symbol",
+   "--token-symbols",
+   "BTC",
+   "--sort-by",
+   "2",
+   "--sentiment",
+   "1",
+   "--begin",
+   "1721000000000",
+   "--end",
+   "1721086400000",
+   "--importance",
+   "2",
+   "--platform",
+   "odaily",
+   "--detail-level",
+   "1",
+   "--language",
+   "en_US",
+   "--limit",
+   "4",
+   "--cursor",
+   "k"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ]
+ },
+ {
+  "id": "social-news-by-symbol-stuck-cursor",
+  "argv": [
+   "social",
+   "news-by-symbol",
+   "--token-symbols",
+   "BTC",
+   "--max-results",
+   "20",
+   "--cursor",
+   "p2"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-stuck"
+  ]
+ },
+ {
+  "id": "social-news-by-symbol-empty-symbols",
+  "argv": [
+   "social",
+   "news-by-symbol",
+   "--token-symbols",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ]
+ },
+ {
+  "id": "social-news-by-symbol-missing",
+  "argv": [
+   "social",
+   "news-by-symbol"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-search-basic",
+  "argv": [
+   "social",
+   "news-search",
+   "--keyword",
+   "ethereum upgrade",
+   "--limit",
+   "5"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-news-search-since-max",
+  "argv": [
+   "social",
+   "news-search",
+   "--keyword",
+   "eth",
+   "--since",
+   "7d",
+   "--max-results",
+   "20"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end",
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-news-search-all-params",
+  "argv": [
+   "social",
+   "news-search",
+   "--keyword",
+   "sol~etf/π",
+   "--sort-by",
+   "1",
+   "--sentiment",
+   "3",
+   "--importance",
+   "3",
+   "--platform",
+   "theblock",
+   "--token-symbols",
+   "SOL,ETH",
+   "--begin",
+   "1",
+   "--end",
+   "2",
+   "--detail-level",
+   "2",
+   "--limit",
+   "10",
+   "--cursor",
+   "c:1",
+   "--language",
+   "ja_JP"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-object"
+  ]
+ },
+ {
+  "id": "social-news-search-page-error",
+  "argv": [
+   "social",
+   "news-search",
+   "--keyword",
+   "btc",
+   "--max-results",
+   "30",
+   "--limit",
+   "1"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-page-error"
+  ]
+ },
+ {
+  "id": "social-news-search-missing",
+  "argv": [
+   "social",
+   "news-search"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-detail-bogus",
+  "argv": [
+   "social",
+   "news-detail",
+   "--article-id",
+   "BOGUS_DOES_NOT_EXIST_42"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-news-detail-lang",
+  "argv": [
+   "social",
+   "news-detail",
+   "--article-id",
+   "123",
+   "--language",
+   "zh_CN"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-detail"
+  ]
+ },
+ {
+  "id": "social-news-detail-missing",
+  "argv": [
+   "social",
+   "news-detail"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-platforms",
+  "argv": [
+   "social",
+   "news-platforms"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-news-platforms-fixture",
+  "argv": [
+   "--chain",
+   "solana",
+   "social",
+   "news-platforms"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-sentiment"
+  ]
+ },
+ {
+  "id": "social-sentiment-ranking",
+  "argv": [
+   "social",
+   "sentiment-ranking"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-sentiment-ranking-params",
+  "argv": [
+   "social",
+   "sentiment-ranking",
+   "--time-frame",
+   "2",
+   "--sort-by",
+   "1",
+   "--limit",
+   "5"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-sentiment"
+  ]
+ },
+ {
+  "id": "social-sentiment-symbol",
+  "argv": [
+   "social",
+   "sentiment-symbol",
+   "--token-symbols",
+   "BTC,ETH",
+   "--time-frame",
+   "1"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-sentiment-symbol-trend",
+  "argv": [
+   "social",
+   "sentiment-symbol",
+   "--token-symbols",
+   "BTC",
+   "--trend-points",
+   "8",
+   "--time-frame",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-sentiment"
+  ]
+ },
+ {
+  "id": "social-sentiment-symbol-missing",
+  "argv": [
+   "social",
+   "sentiment-symbol"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-vibe-timeline",
+  "argv": [
+   "social",
+   "vibe-timeline",
+   "--chain",
+   "solana",
+   "--token-address",
+   "So11111111111111111111111111111111111111112",
+   "--time-frame",
+   "1"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-vibe-timeline-strip",
+  "argv": [
+   "social",
+   "vibe-timeline",
+   "--chain",
+   "1",
+   "--token-address",
+   "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-vibe-timeline"
+  ]
+ },
+ {
+  "id": "social-vibe-timeline-missing",
+  "argv": [
+   "social",
+   "vibe-timeline",
+   "--chain",
+   "solana"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-vibe-top-kols",
+  "argv": [
+   "social",
+   "vibe-top-kols",
+   "--chain",
+   "solana",
+   "--token-address",
+   "So11111111111111111111111111111111111111112",
+   "--time-frame",
+   "1",
+   "--limit",
+   "5"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "social-vibe-top-kols-strip",
+  "argv": [
+   "social",
+   "vibe-top-kols",
+   "--chain",
+   "1",
+   "--token-address",
+   "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+   "--sort-by",
+   "2",
+   "--time-frame",
+   "3",
+   "--limit",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-vibe-top-kols"
+  ]
+ },
+ {
+  "id": "social-vibe-top-kols-missing",
+  "argv": [
+   "social",
+   "vibe-top-kols",
+   "--token-address",
+   "0x1"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "social-news-latest-paginate-invalid-token-p2",
+  "argv": [
+   "social",
+   "news-latest",
+   "--max-results",
+   "50",
+   "--limit",
+   "2"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "social-news-invalid-token-p2",
+   "social-news-pages",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "social-vibe-top-kols-invalid-token-retry",
+  "argv": [
+   "social",
+   "vibe-top-kols",
+   "--chain",
+   "sol",
+   "--token-address",
+   "T"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "social-vibe-top-kols-invalid-token",
+   "social-vibe-top-kols",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "social-vibe-timeline-strip-nested",
+  "argv": [
+   "social",
+   "vibe-timeline",
+   "--chain",
+   "sol",
+   "--token-address",
+   "T"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-vibe-timeline-nested"
+  ]
+ },
+ {
+  "id": "social-news-search-since-max-page-500",
+  "argv": [
+   "social",
+   "news-search",
+   "--keyword",
+   "k",
+   "--since",
+   "1d",
+   "--max-results",
+   "3",
+   "--cursor",
+   "c0"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-search-500"
+  ],
+  "masks": [
+   "req.query.begin",
+   "req.query.end",
+   "stdout.data.resolvedWindow.begin",
+   "stdout.data.resolvedWindow.end"
+  ]
+ },
+ {
+  "id": "social-news-by-symbol-numeric-cursor",
+  "argv": [
+   "social",
+   "news-by-symbol",
+   "--token-symbols",
+   "BTC",
+   "--max-results",
+   "3",
+   "--limit",
+   "1"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "social-news-numeric-cursor"
+  ]
+ }
+]

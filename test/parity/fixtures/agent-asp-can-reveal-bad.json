@@ -1,0 +1,18 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/vote/canReveal",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "canReveal": "yes",
+          "b": 1,
+          "a": 2
+        }
+      }
+    }
+  }
+]

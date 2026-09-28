@@ -1,0 +1,65 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "match": {
+      "query": {
+        "chains": "1"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": 1,
+                "symbol": "ETH",
+                "tokenName": "Ethereum",
+                "tokenAddress": "",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "0.5",
+                "rawBalance": "500000000000000000",
+                "decimal": 18,
+                "tokenPrice": 3456.78,
+                "tokenType": "1",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": 12.345,
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1.0001",
+                "usdValue": "",
+                "customName": "my usdc"
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "PEPE",
+                "tokenName": "Pepe",
+                "tokenAddress": "0x6982508145454ce325ddbe47a25d4ec3d2311933",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "1000000",
+                "rawBalance": "1000000000000000000000000",
+                "decimal": "18",
+                "tokenPrice": "0.0000123456",
+                "usdValue": null,
+                "priceChangeRate24H": "0.5"
+              },
+              "malformed-token-entry"
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

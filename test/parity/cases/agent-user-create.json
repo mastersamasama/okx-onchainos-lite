@@ -1,0 +1,2864 @@
+[
+  {
+    "id": "uc-reject-disabled",
+    "argv": [
+      "agent",
+      "reject",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--reason",
+      "x"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-list-attachments-empty",
+    "argv": [
+      "agent",
+      "list-attachments",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-list-attachments-unsafe",
+    "argv": [
+      "agent",
+      "list-attachments",
+      "../x"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-mark-failed-new",
+    "argv": [
+      "agent",
+      "mark-failed",
+      "job-x",
+      "--provider",
+      "42"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "masks": [
+      "home.task/job-x/negotiate-state.json.createdAt"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-ct-title-empty",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-title-too-long",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "任任任任任任任任任任任任任任任任任任任任任任任任任任任任任任任",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-description-blank",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "   ",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-summary-too-long",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--description-summary",
+      "sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-provider-blank",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      " ",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-service-id-blank",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      " ",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-token-address-blank",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      " ",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-service-params-json",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-params",
+      "{\"a\":"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-token-unsupported",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "BTC",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-amount-signed",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "+1",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-amount-precision",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "usd₮0",
+      "--payment-token-amount",
+      "0.0000001",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-service-amount-bad",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1e3"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-chain-id",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--chain-id",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-min-credit-score",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--min-credit-score",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-min-credit-score-nan",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--min-credit-score",
+      "NaN"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-consent-without-guide",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--guide-consent-json",
+      "{}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-hash-without-guide",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide-hash",
+      "abc"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-missing-consent",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      "Follow the signal exactly."
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-blank",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      " ",
+      "--guide-consent-json",
+      "{}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-consent-not-object",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      "Follow the signal exactly.",
+      "--guide-consent-json",
+      "[1,2]"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-consent-bad-json",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      "Follow the signal exactly.",
+      "--guide-consent-json",
+      "{\"a\":1,}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-credential-key",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      "Follow the signal exactly.",
+      "--guide-consent-json",
+      "{\"size\":1,\"api_key\":\"x\"}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-hash-invalid",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      "Follow the signal exactly.",
+      "--service-guide-hash",
+      "sha256:xyz",
+      "--guide-consent-json",
+      "{}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-guide-hash-mismatch",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      "Follow the signal exactly.",
+      "--service-guide-hash",
+      "SHA256:AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "--guide-consent-json",
+      "{}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-session-expired",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-ct-refresh-expired",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "wallet-refresh-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "exact": true
+  },
+  {
+    "id": "uc-ct-bad-session",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "exact": true
+  },
+  {
+    "id": "uc-ct-no-identity",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity-none",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ct-amount-range",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      " 1",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ct-funding",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-balance-low",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "uc-ct-binding-disabled",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--category-code",
+      "FINANCE",
+      "--min-credit-score",
+      "0.5",
+      "--description-summary",
+      "weekly",
+      "--visibility",
+      "public"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-balance",
+      "agent-user-create-create-flow",
+      "wallet-common"
+    ],
+    "env": {
+      "OKX_A2A_DISABLE_JOB_PROVIDER_BINDING": "1"
+    }
+  },
+  {
+    "id": "uc-ct-binding-disabled-guide",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5",
+      "--service-guide",
+      "Follow the signal exactly.",
+      "--guide-consent-json",
+      "{\"size\":\"10\"}",
+      "--file",
+      "test/parity/fixtures/agent-user-create-identity.json"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-balance",
+      "agent-user-create-create-flow",
+      "wallet-common"
+    ],
+    "env": {
+      "OKX_A2A_DISABLE_JOB_PROVIDER_BINDING": "1"
+    },
+    "masks": [
+      "home.autotrade/guide/0xabababababababababababababababababababababababababababababababab.md",
+      "home.autotrade/consent/0xabababababababababababababababababababababababababababababababab.md"
+    ]
+  },
+  {
+    "id": "uc-ct-confirm-bad",
+    "argv": [
+      "agent",
+      "create-task",
+      "--title",
+      "Market report",
+      "--description",
+      "Summarize the market",
+      "--provider-agent-id",
+      "2002",
+      "--payment-token-symbol",
+      "USDT",
+      "--payment-token-amount",
+      "1.5",
+      "--service-id",
+      "svc-1",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--service-token-amount",
+      "1.5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-balance",
+      "agent-user-create-create-confirm-bad",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-cs-auto-renew-bad",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "yes",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-auto-renew-true",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "true",
+      "--title",
+      "",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-service-id-empty",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-title-too-long",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "0123456789012345678901234567890",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-description-empty",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "",
+      "--provider-agent-id",
+      "2002"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-consent-without-guide",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002",
+      "--guide-consent-json",
+      "{}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-guide-missing-consent",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002",
+      "--service-guide",
+      "g"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-session-expired",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-cs-no-keyring",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002",
+      "--use-trial",
+      "true",
+      "--service-params",
+      "{\"symbol\":\"BTC\"}"
+    ],
+    "home": "wallet-no-keyring",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "exact": true
+  },
+  {
+    "id": "uc-cs-no-execution-config",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "1",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002",
+      "--use-trial",
+      "true",
+      "--service-params",
+      "{\"symbol\":\"BTC\"}"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-cs-use-trial-yes",
+    "argv": [
+      "agent",
+      "create-subscribe",
+      "--service-id",
+      "svc-sub-7",
+      "--service-token-amount",
+      "9.9",
+      "--service-token-address",
+      "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "--auto-renew",
+      "2",
+      "--title",
+      "BTC Signals",
+      "--description",
+      "daily btc signals",
+      "--provider-agent-id",
+      "2002",
+      "--use-trial",
+      "yes"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sd-blank-sid",
+    "argv": [
+      "agent",
+      "service-detail",
+      "--sid",
+      " ",
+      "--agentic-id",
+      "1001"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sd-blank-agentic",
+    "argv": [
+      "agent",
+      "service-detail",
+      "--sid",
+      "33803",
+      "--agentic-id",
+      " "
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sd-ok",
+    "argv": [
+      "agent",
+      "service-detail",
+      "--sid",
+      " 33803 ",
+      "--agentic-id",
+      " 1001 "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sd-no-services",
+    "argv": [
+      "agent",
+      "service-detail",
+      "--sid",
+      "33812",
+      "--agentic-id",
+      "1001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sd-no-match",
+    "argv": [
+      "agent",
+      "service-detail",
+      "--sid",
+      "33810",
+      "--agentic-id",
+      "1001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sd-float-format",
+    "argv": [
+      "agent",
+      "service-detail",
+      "--sid",
+      "33820",
+      "--agentic-id",
+      "1001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-service-float",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-tcp-login-required",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33803"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-tcp-refresh-expired",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33803"
+    ],
+    "home": "wallet-refresh-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "exact": true
+  },
+  {
+    "id": "uc-tcp-session-key-expired",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33803"
+    ],
+    "home": "wallet-session-expired",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "exact": true
+  },
+  {
+    "id": "uc-tcp-no-identity",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33803"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity-none",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-blank-sid",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      " "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-a2mcp",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33804"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-unsupported",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33805"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-free",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33803"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-trial",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33806"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "agent-user-create-subscribe-my-empty",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-duplicate",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33807"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "agent-user-create-subscribe-my-dup",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-balance-ok",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33808"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "agent-user-create-balance",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-funding",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33809"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "agent-user-create-balance",
+      "wallet-common"
+    ],
+    "masks": [
+      "stdout.data.payload.qr.imagePath",
+      "stdout.data.payload.qr.markdownImage",
+      "stdout.data.payload.qr.notifyCommandArgs"
+    ],
+    "env": {
+      "ONCHAINOS_FUNDING_IMAGE_DIR": ".cache/parity-funding-qr"
+    }
+  },
+  {
+    "id": "uc-tcp-bad-fee",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33811"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tcp-detail-missing",
+    "argv": [
+      "agent",
+      "task-create-prepare",
+      "--sid",
+      "33812"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-service-search",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spu-bad-json",
+    "argv": [
+      "agent",
+      "service-param-update",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      "1001",
+      "--task-type",
+      "single",
+      "--request-id",
+      "req-1",
+      "--round",
+      "1",
+      "--service-params",
+      "plain"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-spu-round-4",
+    "argv": [
+      "agent",
+      "service-param-update",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      "1001",
+      "--task-type",
+      "single",
+      "--request-id",
+      "req-1",
+      "--round",
+      "4",
+      "--service-params",
+      "{\"symbol\":\"SOL\"}"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "uc-spu-blank-agent",
+    "argv": [
+      "agent",
+      "service-param-update",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      " ",
+      "--task-type",
+      "single",
+      "--request-id",
+      "req-1",
+      "--round",
+      "1",
+      "--service-params",
+      "{\"symbol\":\"SOL\"}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-spu-blank-request",
+    "argv": [
+      "agent",
+      "service-param-update",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      "1001",
+      "--task-type",
+      "single",
+      "--request-id",
+      " ",
+      "--round",
+      "1",
+      "--service-params",
+      "{\"symbol\":\"SOL\"}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-spu-blank-params",
+    "argv": [
+      "agent",
+      "service-param-update",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      "1001",
+      "--task-type",
+      "single",
+      "--request-id",
+      "req-1",
+      "--round",
+      "1",
+      "--service-params",
+      " "
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-no-args",
+    "argv": [
+      "agent",
+      "subscribe-device-update"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-empty-job",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      ""
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-empty-items",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--items",
+      "[]"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-bad-items",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--items",
+      "{\"jobId\":\"0xS\"}"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-bad-item-field",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--items",
+      "[{\"jobId\":\"0xS\",\"deviceList\":\"d1\"}]"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-blank-item-job",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--items",
+      "[{\"jobId\":\"0xS\"},{\"jobId\":\"\"}]"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-conflict",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      "0xS",
+      "--items",
+      "[]"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "uc-sdu-too-many",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--items",
+      "[{\"jobId\":\"j0\"},{\"jobId\":\"j1\"},{\"jobId\":\"j2\"},{\"jobId\":\"j3\"},{\"jobId\":\"j4\"},{\"jobId\":\"j5\"},{\"jobId\":\"j6\"},{\"jobId\":\"j7\"},{\"jobId\":\"j8\"},{\"jobId\":\"j9\"},{\"jobId\":\"j10\"},{\"jobId\":\"j11\"},{\"jobId\":\"j12\"},{\"jobId\":\"j13\"},{\"jobId\":\"j14\"},{\"jobId\":\"j15\"},{\"jobId\":\"j16\"},{\"jobId\":\"j17\"},{\"jobId\":\"j18\"},{\"jobId\":\"j19\"},{\"jobId\":\"j20\"},{\"jobId\":\"j21\"},{\"jobId\":\"j22\"},{\"jobId\":\"j23\"},{\"jobId\":\"j24\"},{\"jobId\":\"j25\"},{\"jobId\":\"j26\"},{\"jobId\":\"j27\"},{\"jobId\":\"j28\"},{\"jobId\":\"j29\"},{\"jobId\":\"j30\"},{\"jobId\":\"j31\"},{\"jobId\":\"j32\"},{\"jobId\":\"j33\"},{\"jobId\":\"j34\"},{\"jobId\":\"j35\"},{\"jobId\":\"j36\"},{\"jobId\":\"j37\"},{\"jobId\":\"j38\"},{\"jobId\":\"j39\"},{\"jobId\":\"j40\"},{\"jobId\":\"j41\"},{\"jobId\":\"j42\"},{\"jobId\":\"j43\"},{\"jobId\":\"j44\"},{\"jobId\":\"j45\"},{\"jobId\":\"j46\"},{\"jobId\":\"j47\"},{\"jobId\":\"j48\"},{\"jobId\":\"j49\"},{\"jobId\":\"j50\"},{\"jobId\":\"j51\"},{\"jobId\":\"j52\"},{\"jobId\":\"j53\"},{\"jobId\":\"j54\"},{\"jobId\":\"j55\"},{\"jobId\":\"j56\"},{\"jobId\":\"j57\"},{\"jobId\":\"j58\"},{\"jobId\":\"j59\"},{\"jobId\":\"j60\"},{\"jobId\":\"j61\"},{\"jobId\":\"j62\"},{\"jobId\":\"j63\"},{\"jobId\":\"j64\"},{\"jobId\":\"j65\"},{\"jobId\":\"j66\"},{\"jobId\":\"j67\"},{\"jobId\":\"j68\"},{\"jobId\":\"j69\"},{\"jobId\":\"j70\"},{\"jobId\":\"j71\"},{\"jobId\":\"j72\"},{\"jobId\":\"j73\"},{\"jobId\":\"j74\"},{\"jobId\":\"j75\"},{\"jobId\":\"j76\"},{\"jobId\":\"j77\"},{\"jobId\":\"j78\"},{\"jobId\":\"j79\"},{\"jobId\":\"j80\"},{\"jobId\":\"j81\"},{\"jobId\":\"j82\"},{\"jobId\":\"j83\"},{\"jobId\":\"j84\"},{\"jobId\":\"j85\"},{\"jobId\":\"j86\"},{\"jobId\":\"j87\"},{\"jobId\":\"j88\"},{\"jobId\":\"j89\"},{\"jobId\":\"j90\"},{\"jobId\":\"j91\"},{\"jobId\":\"j92\"},{\"jobId\":\"j93\"},{\"jobId\":\"j94\"},{\"jobId\":\"j95\"},{\"jobId\":\"j96\"},{\"jobId\":\"j97\"},{\"jobId\":\"j98\"},{\"jobId\":\"j99\"},{\"jobId\":\"j100\"}]"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-session-expired",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      "0xS"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sdu-bad-session",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      "0xS"
+    ],
+    "home": "wallet-bad-session",
+    "network": "fixture",
+    "fixtures": [
+      "wallet-common"
+    ],
+    "exact": true
+  },
+  {
+    "id": "uc-sdu-form-a",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      "0xS",
+      "--device-list",
+      " d1, d2,, "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-batch-update-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sdu-unicode-trim",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      "0xS",
+      "--device-list",
+      "d1,﻿d2,　, d3 ,﻿"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-batch-update-ok",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-sdu-clear",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      "0xS"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-batch-update-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sdu-items",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--items",
+      "[{\"jobId\":\"0xS\",\"deviceList\":[\"d1\"],\"extra\":1},{\"jobId\":\"0xT\"}]"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-batch-update-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sdu-not-confirmed",
+    "argv": [
+      "agent",
+      "subscribe-device-update",
+      "--job-id",
+      "0xS",
+      "--device-list",
+      "d1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-batch-update-false",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sou-bad-flag",
+    "argv": [
+      "agent",
+      "subscribe-offline-update",
+      "--job-id",
+      "0xS",
+      "--flag",
+      "2"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sou-empty-job",
+    "argv": [
+      "agent",
+      "subscribe-offline-update",
+      "--job-id",
+      "",
+      "--flag",
+      "1"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-sou-ok-skip-preflight",
+    "argv": [
+      "agent",
+      "subscribe-offline-update",
+      "--job-id",
+      "0xS",
+      "--flag",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-offline-ok",
+      "wallet-common"
+    ],
+    "env": {
+      "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+    }
+  },
+  {
+    "id": "uc-sou-ok-no-okx-a2a",
+    "argv": [
+      "agent",
+      "subscribe-offline-update",
+      "--job-id",
+      "0xS",
+      "--flag",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-offline-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-sou-not-confirmed",
+    "argv": [
+      "agent",
+      "subscribe-offline-update",
+      "--job-id",
+      "0xS",
+      "--flag",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-offline-false",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-secs-bad-mode",
+    "argv": [
+      "agent",
+      "subscription-execution-config-set",
+      "--service-id",
+      "svc-1",
+      "--execution-mode",
+      "bogus"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-secs-created",
+    "argv": [
+      "agent",
+      "subscription-execution-config-set",
+      "--service-id",
+      "svc-1",
+      "--execution-mode",
+      " guide_direct "
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "wallet-common"
+    ],
+    "masks": [
+      "home.autotrade/subscription-config/1001/svc-1.json.updatedAtMs"
+    ]
+  },
+  {
+    "id": "uc-secs-bad-service-id",
+    "argv": [
+      "agent",
+      "subscription-execution-config-set",
+      "--service-id",
+      "svc 1",
+      "--execution-mode",
+      "signal_only",
+      "--replace"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-secs-no-identity",
+    "argv": [
+      "agent",
+      "subscription-execution-config-set",
+      "--service-id",
+      "svc-1",
+      "--execution-mode",
+      "signal_only"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity-none",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-device-list-session-expired",
+    "argv": [
+      "agent",
+      "device-list"
+    ],
+    "home": "wallet-refresh-expired",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "uc-device-list-token-refresh",
+    "argv": [
+      "agent",
+      "device-list"
+    ],
+    "home": "wallet-expired",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-device-list",
+      "wallet-common"
+    ],
+    "exact": true,
+    "masks": [
+      "home.keyring.enc"
+    ]
+  },
+  {
+    "id": "uc-device-list-ok",
+    "argv": [
+      "agent",
+      "device-list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-device-list",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-device-list-normalize",
+    "argv": [
+      "agent",
+      "device-list",
+      "--page",
+      "0",
+      "--page-size",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-device-list",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-device-list-paginate",
+    "argv": [
+      "agent",
+      "device-list",
+      "--page-size",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-device-list-paged",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-device-list-81001",
+    "argv": [
+      "agent",
+      "device-list",
+      "--page-size",
+      "500"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-device-list-81001",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-device-list-big-page",
+    "argv": [
+      "agent",
+      "device-list",
+      "--page",
+      "9007199254740993",
+      "--page-size",
+      "9007199254740995"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-device-list",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-device-list-big-total",
+    "argv": [
+      "agent",
+      "device-list"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-device-list-bigtotal",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-tvu-blank-job",
+    "argv": [
+      "agent",
+      "task-visibility-update",
+      "--job-id",
+      " ",
+      "--visibility",
+      "public"
+    ],
+    "home": "anon",
+    "network": "fixture"
+  },
+  {
+    "id": "uc-tvu-public",
+    "argv": [
+      "agent",
+      "task-visibility-update",
+      "--job-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--visibility",
+      "public"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-visibility-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tvu-private",
+    "argv": [
+      "agent",
+      "task-visibility-update",
+      "--job-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--visibility",
+      "private"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-visibility-ok",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-tvu-backend-error",
+    "argv": [
+      "agent",
+      "task-visibility-update",
+      "--job-id",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--visibility",
+      "public"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-visibility-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-status-type-3",
+    "argv": [
+      "agent",
+      "my-tasks",
+      "--status-type",
+      "3"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-page-0",
+    "argv": [
+      "agent",
+      "my-tasks",
+      "--page",
+      "0"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-page-size-101",
+    "argv": [
+      "agent",
+      "my-tasks",
+      "--page-size",
+      "101"
+    ],
+    "home": "anon",
+    "network": "fixture",
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-all",
+    "argv": [
+      "agent",
+      "my-tasks"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-my-tasks",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-one-time-ended",
+    "argv": [
+      "agent",
+      "my-tasks",
+      "--task-type",
+      "one-time",
+      "--status-type",
+      "2",
+      "--page",
+      "2",
+      "--page-size",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-my-tasks",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-subscription-active",
+    "argv": [
+      "agent",
+      "my-tasks",
+      "--task-type",
+      "subscription",
+      "--status-type",
+      "1"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-my-tasks",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-no-identity",
+    "argv": [
+      "agent",
+      "my-tasks"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity-none",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-my-tasks-bad-page",
+    "argv": [
+      "agent",
+      "my-tasks",
+      "--task-type",
+      "one-time"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-my-tasks-bad",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-payment",
+    "argv": [
+      "agent",
+      "payment",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-paid",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-payment-sparse",
+    "argv": [
+      "agent",
+      "payment",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      "1001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-task-sparse",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-task-attach-ok",
+    "argv": [
+      "agent",
+      "task-attach",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--file",
+      "test/parity/fixtures/agent-user-create-identity.json",
+      "--file",
+      "test/parity/fixtures/agent-user-create-identity.json"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-task-attach-submitted",
+    "argv": [
+      "agent",
+      "task-attach",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--file",
+      "test/parity/fixtures/agent-user-create-identity.json"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-submitted",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-task-attach-missing-file",
+    "argv": [
+      "agent",
+      "task-attach",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--file",
+      "./nope.txt"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-task-attach-unsafe-job",
+    "argv": [
+      "agent",
+      "task-attach",
+      "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "--file",
+      "test/parity/fixtures/agent-user-create-identity.json"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-unsafe",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ra-ok",
+    "argv": [
+      "agent",
+      "reject-apply",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "agent-user-create-user-reject",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-ra-explicit-agent",
+    "argv": [
+      "agent",
+      "reject-apply",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      "1001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-task-created",
+      "agent-user-create-user-reject",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-ra-missing-buyer",
+    "argv": [
+      "agent",
+      "reject-apply",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--agent-id",
+      "1001"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-task-sparse",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spm-not-created",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--token-symbol",
+      "USDT",
+      "--token-amount",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-accepted",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spm-missing-symbol",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spm-missing-amount",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--token-symbol",
+      "USDT"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spm-x402",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--payment-mode",
+      "x402"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spm-x402-from-task",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-x402",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spm-already-set",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--payment-mode",
+      "escrow",
+      "--token-symbol",
+      "USDT",
+      "--token-amount",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-spm-funding-blocked",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--payment-mode",
+      "escrow",
+      "--token-symbol",
+      "USDT",
+      "--token-amount",
+      "5"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "agent-user-create-balance-low",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-no-payment-mode",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-nopm",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-x402",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-x402",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-no-provider",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-noprovider",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-sparse",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-sparse-buyer",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-pcs-error",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "agent-user-create-pcs-error",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-token-mismatch",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "agent-user-create-pcs-mismatch",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-missing-escrow-field",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "agent-user-create-pcs-noescrow",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-ca-funding-blocked",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-paid",
+      "agent-user-create-balance-low",
+      "wallet-common"
+    ]
+  },
+  {
+    "id": "uc-spm-set",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--payment-mode",
+      "escrow",
+      "--token-symbol",
+      "USDT",
+      "--token-amount",
+      "0"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-nopm",
+      "agent-user-create-set-payment-mode-flow",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-spm-set-default-mode",
+    "argv": [
+      "agent",
+      "set-payment-mode",
+      "0xabababababababababababababababababababababababababababababababab",
+      "--token-symbol",
+      "USDT",
+      "--token-amount",
+      "abc"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "agent-user-create-set-payment-mode-flow",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  },
+  {
+    "id": "uc-ca-ok",
+    "argv": [
+      "agent",
+      "confirm-accept",
+      "0xabababababababababababababababababababababababababababababababab"
+    ],
+    "home": "wallet",
+    "network": "fixture",
+    "fixtures": [
+      "agent-user-create-identity",
+      "agent-user-create-task-created",
+      "agent-user-create-confirm-accept-flow",
+      "wallet-common"
+    ],
+    "exact": [
+      "stdout"
+    ]
+  }
+]

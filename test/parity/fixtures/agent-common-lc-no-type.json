@@ -1,0 +1,18 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": { "code": "0", "msg": "success", "data": { "jobId": "0xabababababababababababababababababababababababababababababababab", "status": 7, "providerAgentId": "2002" } }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": { "code": "0", "msg": "success", "data": { "jobId": "0xother", "subStatus": 1 } }
+    }
+  }
+]

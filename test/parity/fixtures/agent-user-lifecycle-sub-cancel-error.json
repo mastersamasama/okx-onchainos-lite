@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd/cancel",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "52001",
+        "msg": "subscription not cancellable",
+        "data": null
+      }
+    }
+  }
+]

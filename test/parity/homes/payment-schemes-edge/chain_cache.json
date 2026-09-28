@@ -1,0 +1,761 @@
+{
+  "updated_at": 4102444800,
+  "chains": [
+    {
+      "alias": [
+        "eth链",
+        "ethereum",
+        "以太坊"
+      ],
+      "chainIndex": 1,
+      "chainName": "eth",
+      "isEvmChain": true,
+      "realChainIndex": 1,
+      "showName": "Ethereum"
+    },
+    {
+      "alias": [
+        "polygon",
+        "Polygon链"
+      ],
+      "chainIndex": 137,
+      "chainName": "matic",
+      "isEvmChain": true,
+      "realChainIndex": 137,
+      "showName": "Polygon"
+    },
+    {
+      "alias": [],
+      "chainIndex": 43114,
+      "chainName": "avax",
+      "isEvmChain": true,
+      "realChainIndex": 43114,
+      "showName": "Avalanche C"
+    },
+    {
+      "alias": [
+        "op",
+        "optimism",
+        "OP主网"
+      ],
+      "chainIndex": 10,
+      "chainName": "op_eth",
+      "isEvmChain": true,
+      "realChainIndex": 10,
+      "showName": "Optimism"
+    },
+    {
+      "alias": [
+        "ftm",
+        "fantom"
+      ],
+      "chainIndex": 250,
+      "chainName": "ftm",
+      "isEvmChain": true,
+      "realChainIndex": 250,
+      "showName": "Fantom"
+    },
+    {
+      "alias": [
+        "blast",
+        "Blast链"
+      ],
+      "chainIndex": 81457,
+      "chainName": "blast_eth",
+      "isEvmChain": true,
+      "realChainIndex": 81457,
+      "showName": "Blast"
+    },
+    {
+      "alias": [
+        "scroll",
+        "Scroll链"
+      ],
+      "chainIndex": 534352,
+      "chainName": "scroll_eth",
+      "isEvmChain": true,
+      "realChainIndex": 534352,
+      "showName": "Scroll"
+    },
+    {
+      "alias": [
+        "sonic",
+        "Sonic链"
+      ],
+      "chainIndex": 146,
+      "chainName": "s",
+      "isEvmChain": true,
+      "realChainIndex": 146,
+      "showName": "Sonic"
+    },
+    {
+      "alias": [
+        "bsc",
+        "bnb",
+        "BNB链",
+        "币安链"
+      ],
+      "chainIndex": 56,
+      "chainName": "bnb",
+      "isEvmChain": true,
+      "realChainIndex": 56,
+      "showName": "BNB Chain"
+    },
+    {
+      "alias": [
+        "arbitrum",
+        "ARB链",
+        "Arbitrum链"
+      ],
+      "chainIndex": 42161,
+      "chainName": "arb_eth",
+      "isEvmChain": true,
+      "realChainIndex": 42161,
+      "showName": "Arbitrum One"
+    },
+    {
+      "alias": [
+        "base",
+        "Base链"
+      ],
+      "chainIndex": 8453,
+      "chainName": "base_eth",
+      "isEvmChain": true,
+      "realChainIndex": 8453,
+      "showName": "Base"
+    },
+    {
+      "alias": [],
+      "chainIndex": 324,
+      "chainName": "era_eth",
+      "isEvmChain": true,
+      "realChainIndex": 324,
+      "showName": "zkSync Era"
+    },
+    {
+      "alias": [
+        "linea",
+        "Linea链"
+      ],
+      "chainIndex": 59144,
+      "chainName": "linea_eth",
+      "isEvmChain": true,
+      "realChainIndex": 59144,
+      "showName": "Linea"
+    },
+    {
+      "alias": [
+        "monad",
+        "Monad链"
+      ],
+      "chainIndex": 143,
+      "chainName": "mon",
+      "isEvmChain": true,
+      "realChainIndex": 143,
+      "showName": "Monad"
+    },
+    {
+      "alias": [
+        "cfx",
+        "conflux",
+        "Conflux链",
+        "树图链"
+      ],
+      "chainIndex": 1030,
+      "chainName": "cfx",
+      "isEvmChain": true,
+      "realChainIndex": 1030,
+      "showName": "Conflux"
+    },
+    {
+      "alias": [
+        "xlayer"
+      ],
+      "chainIndex": 196,
+      "chainName": "okb",
+      "isEvmChain": true,
+      "realChainIndex": 196,
+      "showName": "X Layer"
+    },
+    {
+      "alias": [
+        "sol",
+        "solana",
+        "索拉纳"
+      ],
+      "chainIndex": 501,
+      "chainName": "sol",
+      "isEvmChain": false,
+      "realChainIndex": 501,
+      "showName": "Solana"
+    },
+    {
+      "alias": [],
+      "chainIndex": 4217,
+      "chainName": "tempo",
+      "isEvmChain": true,
+      "realChainIndex": 4217,
+      "showName": "Tempo"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1952,
+      "chainName": "xlayer_test",
+      "isEvmChain": true,
+      "realChainIndex": 1952,
+      "showName": "XLayer Testnet"
+    },
+    {
+      "alias": [],
+      "chainIndex": 4663,
+      "chainName": "robinhood",
+      "isEvmChain": true,
+      "realChainIndex": 4663,
+      "showName": "Robinhood Chain"
+    },
+    {
+      "alias": [],
+      "chainIndex": 988,
+      "chainName": "gusdt",
+      "isEvmChain": true,
+      "realChainIndex": 988,
+      "showName": "Stable"
+    },
+    {
+      "alias": [],
+      "chainIndex": 57073,
+      "chainName": "ink",
+      "isEvmChain": true,
+      "realChainIndex": 57073,
+      "showName": "Ink"
+    },
+    {
+      "alias": [],
+      "chainIndex": 9745,
+      "chainName": "xpl",
+      "isEvmChain": true,
+      "realChainIndex": 9745,
+      "showName": "Plasma"
+    },
+    {
+      "alias": [],
+      "chainIndex": 4326,
+      "chainName": "mega_eth",
+      "isEvmChain": true,
+      "realChainIndex": 4326,
+      "showName": "MegaETH"
+    },
+    {
+      "alias": [],
+      "chainIndex": 2020,
+      "chainName": "ron",
+      "isEvmChain": true,
+      "realChainIndex": 2020,
+      "showName": "Ronin"
+    },
+    {
+      "alias": [],
+      "chainIndex": 8217,
+      "chainName": "klay",
+      "isEvmChain": true,
+      "realChainIndex": 8217,
+      "showName": "Kaia"
+    },
+    {
+      "alias": [],
+      "chainIndex": 204,
+      "chainName": "op_bnb",
+      "isEvmChain": true,
+      "realChainIndex": 204,
+      "showName": "opBNB"
+    },
+    {
+      "alias": [],
+      "chainIndex": 288,
+      "chainName": "boba_eth",
+      "isEvmChain": true,
+      "realChainIndex": 288,
+      "showName": "Boba"
+    },
+    {
+      "alias": [],
+      "chainIndex": 100,
+      "chainName": "xdai",
+      "isEvmChain": true,
+      "realChainIndex": 100,
+      "showName": "Gnosis"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1116,
+      "chainName": "core",
+      "isEvmChain": true,
+      "realChainIndex": 1116,
+      "showName": "Core"
+    },
+    {
+      "alias": [],
+      "chainIndex": 70000080,
+      "chainName": "evm_hype",
+      "isEvmChain": true,
+      "realChainIndex": 999,
+      "showName": "HyperEVM"
+    },
+    {
+      "alias": [],
+      "chainIndex": 5000,
+      "chainName": "mnt",
+      "isEvmChain": true,
+      "realChainIndex": 5000,
+      "showName": "Mantle"
+    },
+    {
+      "alias": [],
+      "chainIndex": 0,
+      "chainName": "btc",
+      "isEvmChain": false,
+      "realChainIndex": 0,
+      "showName": "Bitcoin"
+    },
+    {
+      "alias": [],
+      "chainIndex": 784,
+      "chainName": "sui",
+      "isEvmChain": false,
+      "realChainIndex": 784,
+      "showName": "SUI"
+    },
+    {
+      "alias": [],
+      "chainIndex": 747474,
+      "chainName": "katana_eth",
+      "isEvmChain": true,
+      "realChainIndex": 747474,
+      "showName": "Katana"
+    },
+    {
+      "alias": [],
+      "chainIndex": 169,
+      "chainName": "manta_eth",
+      "isEvmChain": true,
+      "realChainIndex": 169,
+      "showName": "Manta Pacific"
+    },
+    {
+      "alias": [],
+      "chainIndex": 34443,
+      "chainName": "mode_eth",
+      "isEvmChain": true,
+      "realChainIndex": 34443,
+      "showName": "Mode Network"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1329,
+      "chainName": "evm_sei",
+      "isEvmChain": true,
+      "realChainIndex": 1329,
+      "showName": "Sei EVM"
+    },
+    {
+      "alias": [],
+      "chainIndex": 33139,
+      "chainName": "ape",
+      "isEvmChain": true,
+      "realChainIndex": 33139,
+      "showName": "ApeChain"
+    },
+    {
+      "alias": [],
+      "chainIndex": 130,
+      "chainName": "unichain_eth",
+      "isEvmChain": true,
+      "realChainIndex": 130,
+      "showName": "Unichain"
+    },
+    {
+      "alias": [],
+      "chainIndex": 10001,
+      "chainName": "ethw",
+      "isEvmChain": true,
+      "realChainIndex": 10001,
+      "showName": "EthereumPoW"
+    },
+    {
+      "alias": [],
+      "chainIndex": 42220,
+      "chainName": "celo",
+      "isEvmChain": true,
+      "realChainIndex": 42220,
+      "showName": "Celo"
+    },
+    {
+      "alias": [],
+      "chainIndex": 14,
+      "chainName": "flr",
+      "isEvmChain": true,
+      "realChainIndex": 14,
+      "showName": "Flare"
+    },
+    {
+      "alias": [],
+      "chainIndex": 314,
+      "chainName": "fil",
+      "isEvmChain": true,
+      "realChainIndex": 314,
+      "showName": "Filecoin"
+    },
+    {
+      "alias": [],
+      "chainIndex": 648,
+      "chainName": "ace",
+      "isEvmChain": true,
+      "realChainIndex": 648,
+      "showName": "Endurance"
+    },
+    {
+      "alias": [],
+      "chainIndex": 2222,
+      "chainName": "evm_kava",
+      "isEvmChain": true,
+      "realChainIndex": 2222,
+      "showName": "Kava EVM"
+    },
+    {
+      "alias": [],
+      "chainIndex": 369,
+      "chainName": "pls",
+      "isEvmChain": true,
+      "realChainIndex": 369,
+      "showName": "PulseChain"
+    },
+    {
+      "alias": [],
+      "chainIndex": 11155111,
+      "chainName": "sepolia_eth",
+      "isEvmChain": true,
+      "realChainIndex": 11155111,
+      "showName": "Sepolia"
+    },
+    {
+      "alias": [],
+      "chainIndex": 11235,
+      "chainName": "islm",
+      "isEvmChain": true,
+      "realChainIndex": 11235,
+      "showName": "Haqq Network"
+    },
+    {
+      "alias": [],
+      "chainIndex": 200901,
+      "chainName": "bitlayer_btc",
+      "isEvmChain": true,
+      "realChainIndex": 200901,
+      "showName": "BitLayer"
+    },
+    {
+      "alias": [],
+      "chainIndex": 88888,
+      "chainName": "chz",
+      "isEvmChain": true,
+      "realChainIndex": 88888,
+      "showName": "Chiliz"
+    },
+    {
+      "alias": [],
+      "chainIndex": 60808,
+      "chainName": "bob_eth",
+      "isEvmChain": true,
+      "realChainIndex": 60808,
+      "showName": "BOB"
+    },
+    {
+      "alias": [],
+      "chainIndex": 167000,
+      "chainName": "taiko_eth",
+      "isEvmChain": true,
+      "realChainIndex": 167000,
+      "showName": "Taiko"
+    },
+    {
+      "alias": [],
+      "chainIndex": 7777777,
+      "chainName": "zora_eth",
+      "isEvmChain": true,
+      "realChainIndex": 7777777,
+      "showName": "Zora"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1625,
+      "chainName": "g",
+      "isEvmChain": true,
+      "realChainIndex": 1625,
+      "showName": "Gravity Alpha"
+    },
+    {
+      "alias": [],
+      "chainIndex": 80094,
+      "chainName": "bera",
+      "isEvmChain": true,
+      "realChainIndex": 80094,
+      "showName": "Berachain"
+    },
+    {
+      "alias": [],
+      "chainIndex": 16661,
+      "chainName": "og",
+      "isEvmChain": true,
+      "realChainIndex": 16661,
+      "showName": "0G"
+    },
+    {
+      "alias": [],
+      "chainIndex": 50,
+      "chainName": "xdc",
+      "isEvmChain": true,
+      "realChainIndex": 50,
+      "showName": "XDC Network"
+    },
+    {
+      "alias": [],
+      "chainIndex": 25,
+      "chainName": "cro",
+      "isEvmChain": true,
+      "realChainIndex": 25,
+      "showName": "Cronos"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1088,
+      "chainName": "metis",
+      "isEvmChain": true,
+      "realChainIndex": 1088,
+      "showName": "Metis"
+    },
+    {
+      "alias": [],
+      "chainIndex": 7000,
+      "chainName": "zeta_mainnet",
+      "isEvmChain": true,
+      "realChainIndex": 7000,
+      "showName": "ZetaChain"
+    },
+    {
+      "alias": [],
+      "chainIndex": 4200,
+      "chainName": "merlin_btc",
+      "isEvmChain": true,
+      "realChainIndex": 4200,
+      "showName": "Merlin"
+    },
+    {
+      "alias": [],
+      "chainIndex": 4689,
+      "chainName": "iotx",
+      "isEvmChain": true,
+      "realChainIndex": 4689,
+      "showName": "IoTeX"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1672,
+      "chainName": "pros",
+      "isEvmChain": true,
+      "realChainIndex": 1672,
+      "showName": "Pharos"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1313161554,
+      "chainName": "aurora_eth",
+      "isEvmChain": true,
+      "realChainIndex": 1313161554,
+      "showName": "Aurora"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1111,
+      "chainName": "wemix",
+      "isEvmChain": true,
+      "realChainIndex": 1111,
+      "showName": "Wemix 3.0"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1100,
+      "chainName": "dym",
+      "isEvmChain": true,
+      "realChainIndex": 1100,
+      "showName": "Dymension"
+    },
+    {
+      "alias": [],
+      "chainIndex": 421614,
+      "chainName": "arbsepolia_eth",
+      "isEvmChain": true,
+      "realChainIndex": 421614,
+      "showName": "Arbitrum Sepolia"
+    },
+    {
+      "alias": [],
+      "chainIndex": 13371,
+      "chainName": "imx",
+      "isEvmChain": true,
+      "realChainIndex": 13371,
+      "showName": "Immutable zkEVM"
+    },
+    {
+      "alias": [],
+      "chainIndex": 810180,
+      "chainName": "zklink_eth",
+      "isEvmChain": true,
+      "realChainIndex": 810180,
+      "showName": "zkLink Nova"
+    },
+    {
+      "alias": [],
+      "chainIndex": 223,
+      "chainName": "b2_btc",
+      "isEvmChain": true,
+      "realChainIndex": 223,
+      "showName": "B² Network"
+    },
+    {
+      "alias": [],
+      "chainIndex": 698,
+      "chainName": "mat",
+      "isEvmChain": true,
+      "realChainIndex": 698,
+      "showName": "Matchain"
+    },
+    {
+      "alias": [],
+      "chainIndex": 30,
+      "chainName": "rbtc",
+      "isEvmChain": true,
+      "realChainIndex": 30,
+      "showName": "Rootstock"
+    },
+    {
+      "alias": [],
+      "chainIndex": 70000063,
+      "chainName": "reya_eth",
+      "isEvmChain": true,
+      "realChainIndex": 1729,
+      "showName": "Reya Network"
+    },
+    {
+      "alias": [],
+      "chainIndex": 48900,
+      "chainName": "zircuit_eth",
+      "isEvmChain": true,
+      "realChainIndex": 48900,
+      "showName": "Zircuit"
+    },
+    {
+      "alias": [],
+      "chainIndex": 177,
+      "chainName": "hsk",
+      "isEvmChain": true,
+      "realChainIndex": 177,
+      "showName": "HashKey"
+    },
+    {
+      "alias": [],
+      "chainIndex": 2741,
+      "chainName": "abstract_eth",
+      "isEvmChain": true,
+      "realChainIndex": 2741,
+      "showName": "Abstract"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1514,
+      "chainName": "ip_mainnet",
+      "isEvmChain": true,
+      "realChainIndex": 1514,
+      "showName": "Story"
+    },
+    {
+      "alias": [],
+      "chainIndex": 313313,
+      "chainName": "testnet_sahara",
+      "isEvmChain": true,
+      "realChainIndex": 313313,
+      "showName": "Sahara Testnet"
+    },
+    {
+      "alias": [],
+      "chainIndex": 98866,
+      "chainName": "plume",
+      "isEvmChain": true,
+      "realChainIndex": 98866,
+      "showName": "Plume"
+    },
+    {
+      "alias": [],
+      "chainIndex": 1689,
+      "chainName": "nero",
+      "isEvmChain": true,
+      "realChainIndex": 1689,
+      "showName": "NERO"
+    },
+    {
+      "alias": [],
+      "chainIndex": 31612,
+      "chainName": "mezo_btc",
+      "isEvmChain": true,
+      "realChainIndex": 31612,
+      "showName": "Mezo"
+    },
+    {
+      "alias": [],
+      "chainIndex": 2345,
+      "chainName": "goat_btc",
+      "isEvmChain": true,
+      "realChainIndex": 2345,
+      "showName": "GOAT Network"
+    },
+    {
+      "alias": [],
+      "chainIndex": 2818,
+      "chainName": "morph_eth",
+      "isEvmChain": true,
+      "realChainIndex": 2818,
+      "showName": "Morph"
+    },
+    {
+      "alias": [],
+      "chainIndex": 2366,
+      "chainName": "kite",
+      "isEvmChain": true,
+      "realChainIndex": 2366,
+      "showName": "KiteAI"
+    },
+    {
+      "alias": [],
+      "chainIndex": 195,
+      "chainName": "trx",
+      "isEvmChain": false,
+      "realChainIndex": 195,
+      "showName": "TRON"
+    },
+    {
+      "alias": [],
+      "chainIndex": 637,
+      "chainName": "apt",
+      "isEvmChain": false,
+      "realChainIndex": 1,
+      "showName": "Aptos"
+    },
+    {
+      "alias": [],
+      "chainIndex": 5042,
+      "chainName": "arc",
+      "isEvmChain": true,
+      "realChainIndex": 5042,
+      "showName": "ARC"
+    }
+  ]
+}

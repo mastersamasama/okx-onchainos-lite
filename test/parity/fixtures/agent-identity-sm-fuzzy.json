@@ -1,0 +1,10 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"services\":[{\"serviceId\":\"svc-1\",\"serviceName\":\"Audit\",\"asp\":{\"aspAgentId\":\"11\",\"securityRate\":4.625,\"onlineStatus\":1}},{\"serviceId\":\"svc-2\",\"asp\":{\"securityRate\":0}},{\"serviceId\":\"svc-3\",\"asp\":{\"securityRate\":\"4\"}},{\"serviceId\":\"svc-4\",\"asp\":null}],\"hasMore\":true,\"searchAfter\":\"cursor-2\",\"action\":\"x\",\"phase\":\"old\",\"tip\":\"old tip\"}}"
+    }
+  }
+]

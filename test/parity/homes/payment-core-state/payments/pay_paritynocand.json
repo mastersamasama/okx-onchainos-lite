@@ -1,0 +1,64 @@
+{
+  "payment_id": "pay_paritynocand",
+  "owner_wallet": "parity-account-0001",
+  "created_at": 1700000000,
+  "expires_at": 4102444800,
+  "accepts": [
+    {
+      "index": 0,
+      "scheme": "exact",
+      "amount": "1000000",
+      "asset": "0x2222222222222222222222222222222222222222",
+      "network": "eip155:196"
+    },
+    {
+      "index": 1,
+      "scheme": "upto",
+      "amount": "5000",
+      "asset": "0x3333333333333333333333333333333333333333",
+      "network": "eip155:8453"
+    }
+  ],
+  "decoded_challenge": {
+    "amount": "1000000",
+    "amountHuman": "1",
+    "decimals": 6,
+    "recipient": "0x1111111111111111111111111111111111111111",
+    "expires": 0,
+    "supported": true,
+    "unsupported_reason": null
+  },
+  "candidates": [],
+  "known_params": {
+    "city": "paris"
+  },
+  "merchant_body": "{\"error\":\"payment required\"}",
+  "endpoint_url": "http://127.0.0.1:1/merchant/{sku}",
+  "raw_accepts": [
+    {
+      "amount": "1000000",
+      "asset": "0x2222222222222222222222222222222222222222",
+      "extra": {
+        "name": "USDG",
+        "version": "1"
+      },
+      "maxTimeoutSeconds": 300,
+      "network": "eip155:196",
+      "payTo": "0x1111111111111111111111111111111111111111",
+      "scheme": "exact"
+    }
+  ],
+  "resource": {
+    "mimeType": "application/json",
+    "url": "http://127.0.0.1:1/merchant"
+  },
+  "method": "POST",
+  "param_plan": [
+    {
+      "name": "sku",
+      "carrier": "path",
+      "required": true,
+      "type": "string"
+    }
+  ]
+}

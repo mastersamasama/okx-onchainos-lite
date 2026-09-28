@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/user-asset-manage",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82002",
+        "msg": "utxo not found",
+        "data": []
+      }
+    }
+  }
+]

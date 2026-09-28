@@ -1,0 +1,17 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/gas-station/update",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "enabled": true,
+          "chainIndex": "501"
+        }
+      }
+    }
+  }
+]

@@ -1,0 +1,36 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/detail",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "articles": [
+      {
+       "id": "123",
+       "title": "T-123",
+       "summary": "s-123",
+       "content": "Full article body - kept, not stripped.",
+       "sourceUrl": "https://example.com/123",
+       "source": "blockbeats",
+       "timestamp": 1716892020000,
+       "tokenSymbols": [
+        "BTC"
+       ],
+       "importance": "high",
+       "tokenSymbolSentiments": [
+        {
+         "tokenSymbol": "BTC",
+         "sentiment": "bullish"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ }
+]

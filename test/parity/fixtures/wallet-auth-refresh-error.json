@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/refresh",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "10009",
+        "msg": "Refresh token invalid",
+        "data": []
+      }
+    }
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "ownerAddress": "0xforeign",
+              "agentList": [
+                {
+                  "agentId": "5",
+                  "role": 1
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/agent-consent",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": []
+      }
+    }
+  }
+]

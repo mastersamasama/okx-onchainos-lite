@@ -1,0 +1,25 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/chain/support/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "chainList": [
+            {
+              "chainIndex": 137,
+              "realChainIndex": 137,
+              "chainName": "matic",
+              "isEvmChain": true,
+              "alias": [],
+              "showName": "Polygon"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

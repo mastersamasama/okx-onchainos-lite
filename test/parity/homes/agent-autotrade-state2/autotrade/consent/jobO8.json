@@ -1,0 +1,11 @@
+{
+  "version": 6,
+  "jobId": "jobO8",
+  "mode": "auto",
+  "capU": "50",
+  "tradeAmountU": "60",
+  "quoteToken": "usdc",
+  "lifecycle": "active",
+  "createdAt": 1700000000,
+  "expiresAt": 4102444800
+}

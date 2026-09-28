@@ -1,0 +1,96 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/dispute/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "currentRound": 1,
+          "selectedVoter": {
+            "agentId": "548"
+          },
+          "taskStatus": 4,
+          "disputeRoundStatus": 1,
+          "prepareEndTime": 4102444800,
+          "roundEndTime": 4102448400,
+          "tokenAmount": "5",
+          "tokenSymbol": "USDT"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/evidence",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "title": "Market report",
+          "description": "Summarize Q3 inputs",
+          "provider": {
+            "reason": "Delivered as agreed",
+            "texts": [
+              "chat log"
+            ],
+            "files": [
+              "0xabababababababababababababababababababababababababababababababab/0/aaaa-1111",
+              7
+            ]
+          },
+          "client": {
+            "reason": "Missed the brief",
+            "texts": [],
+            "files": [
+              "0xabababababababababababababababababababababababababababababababab/1/bbbb/2222"
+            ]
+          },
+          "extra": {
+            "files": [
+              "ignored"
+            ]
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/evidence/download",
+    "match": {
+      "query": {
+        "fileKey": "0xabababababababababababababababababababababababababababababababab/0/aaaa-1111"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "body": "PDF-BYTES-1"
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/evidence/download",
+    "match": {
+      "query": {
+        "fileKey": "0xabababababababababababababababababababababababababababababababab/1/bbbb/2222"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/octet-stream"
+      },
+      "body": "IMG-BYTES-2"
+    }
+  }
+]

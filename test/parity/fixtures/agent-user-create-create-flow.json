@@ -1,0 +1,88 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/createAndFundConfirmStatus",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "taskSalt": "0x0101010101010101010101010101010101010101010101010101010101010101",
+          "provider": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "receiver": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+          "evaluator": "0x5555555555555555555555555555555555555555",
+          "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+          "recipient": "0x6666666666666666666666666666666666666666",
+          "amount": "1500000",
+          "submitWindow": 86400,
+          "disputeWindow": "259200",
+          "evaluateWindow": 259200,
+          "completedWindow": 604800,
+          "hook": "0x7777777777777777777777777777777777777777",
+          "hookData": "0x",
+          "salt": "0x0202020202020202020202020202020202020202020202020202020202020202",
+          "expiredAt": 4102444800
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "msgHash": "0xabababababababababababababababababababababababababababababababab",
+            "domainHash": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/sign-msg",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "signature": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee1b"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/createAndFund",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "type": 201,
+          "uopData": {
+            "uopHash": "0x3535353535353535353535353535353535353535353535353535353535353535",
+            "hash": "0x9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b9b",
+            "executeResult": true,
+            "executeErrorMsg": "",
+            "extraData": {
+              "chainId": 196
+            }
+          }
+        }
+      }
+    }
+  }
+]

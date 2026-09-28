@@ -1,0 +1,43 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/utxo-asset-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "txHash": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0",
+            "voutIndex": "0",
+            "assets": [
+              {
+                "protocol": "BRC20",
+                "ticker": "ordi",
+                "amount": "1",
+                "inscriptionId": "4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0i0"
+              }
+            ]
+          },
+          {
+            "txHash": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+            "voutIndex": 1,
+            "assets": []
+          },
+          {
+            "txHash": "e3f1c1cfb0c6a4b0d9e8fd3c7a7c7b6f1e2d3c4b5a69788796a5b4c3d2e1f0a9",
+            "voutIndex": 0,
+            "assets": [
+              {
+                "protocol": "BRC20",
+                "ticker": "sats",
+                "amount": "100000"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

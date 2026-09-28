@@ -1,0 +1,48 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "agentId": "9001",
+              "role": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/asp/service/search",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "services": [
+            {
+              "serviceId": "svc-001",
+              "asp": {
+                "onlineStatus": 1
+              }
+            },
+            {
+              "serviceId": "svc-002",
+              "asp": {
+                "onlineStatus": 1
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+]

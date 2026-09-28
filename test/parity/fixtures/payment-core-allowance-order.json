@@ -1,0 +1,7 @@
+[
+  {
+    "method": "GET",
+    "pathRegex": "^/api/v6/pay/x402/buyers/[^/]+/allowance-status$",
+    "response": { "status": 200, "body": { "code": "0", "msg": "", "data": [{ "reservedAmount": [], "subscriptionContract": 5, "approvedAmount": {} }] } }
+  }
+]

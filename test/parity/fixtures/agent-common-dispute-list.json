@@ -1,0 +1,92 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/dispute/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 3,
+          "list": [
+            {
+              "jobId": "0xabababababababababababababababababababababababababababababababab",
+              "title": "Market report",
+              "serviceName": "Report service",
+              "status": 4,
+              "createTime": "1700000000",
+              "disputeTime": 1700003600
+            },
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "title": "Logo design",
+              "status": 6,
+              "updateTime": 1700090000
+            },
+            {
+              "jobId": "  ",
+              "title": "blank"
+            },
+            {
+              "jobId": "0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef",
+              "title": "Refunded",
+              "status": 9,
+              "testFlag": true
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/dispute/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "jobType": 0,
+          "currentRound": 1,
+          "taskStatus": 4,
+          "disputeRoundStatus": 1,
+          "prepareEndTime": 4102444800,
+          "roundEndTime": 4102531200,
+          "tokenAmount": "5",
+          "tokenSymbol": "USDT"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd/dispute/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "taskStatus": 6,
+          "disputeStatus": 3
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefefef/dispute/status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "dispute not found",
+        "data": null
+      }
+    }
+  }
+]

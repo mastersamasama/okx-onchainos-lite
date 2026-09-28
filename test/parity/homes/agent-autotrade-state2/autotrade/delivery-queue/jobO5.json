@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "jobId": "jobO5",
+  "entries": [
+    {
+      "deliveryId": "d1",
+      "state": "awaiting_decision",
+      "enqueuedAtMs": 1
+    },
+    {
+      "deliveryId": "d2",
+      "state": "waiting",
+      "enqueuedAtMs": 2
+    }
+  ]
+}

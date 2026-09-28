@@ -1,0 +1,7 @@
+{"tokenContractAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7","time":"1727500000000","price":"1.0001","chainIndex":"1"}
+
+not json
+  {"chainIndex":"1","price":1.50,"time":1727500001000,"tokenContractAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7","note":"café / é","big":18446744073709551615,"neg":-0.0,"exp":1E3}  
+{"chainIndex":"1","price":"0.9999","time":"1727500002000","tokenContractAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7"}
+{"chainIndex":"1","price":"0.9998","time":"1727500003000","tokenContractAddress":"0xdac17f958d2ee523a2206206994597c13d831ec7"}
+{"partial":tr

@@ -1,0 +1,292 @@
+[
+ {
+  "id": "signal-chains",
+  "argv": [
+   "signal",
+   "chains"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "signal-chains-fixture",
+  "argv": [
+   "--chain",
+   "solana",
+   "signal",
+   "chains"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-chains"
+  ]
+ },
+ {
+  "id": "signal-list-basic",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "signal-list-filters",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "solana",
+   "--wallet-type",
+   "1,2",
+   "--limit",
+   "3",
+   "--cursor",
+   "abc",
+   "--min-amount-usd",
+   "0"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-ok"
+  ]
+ },
+ {
+  "id": "signal-list-all-filters",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "base",
+   "--wallet-type",
+   "3",
+   "--min-amount-usd",
+   "10",
+   "--max-amount-usd",
+   "1000000",
+   "--min-address-count",
+   "2",
+   "--max-address-count",
+   "50",
+   "--token-address",
+   "0x4200000000000000000000000000000000000006",
+   "--min-market-cap-usd",
+   "1000",
+   "--max-market-cap-usd",
+   "",
+   "--min-liquidity-usd",
+   "5000",
+   "--max-liquidity-usd",
+   "9e9",
+   "--limit",
+   "100",
+   "--cursor",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-ok"
+  ]
+ },
+ {
+  "id": "signal-list-limit-plus",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "Foo",
+   "--limit",
+   "+007"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-ok"
+  ]
+ },
+ {
+  "id": "signal-list-limit-zero",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit",
+   "0"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-limit-101",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit",
+   "101"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-limit-nan",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit",
+   "x"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-limit-empty",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit",
+   ""
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-limit-space",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit",
+   " 5"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-limit-huge",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit",
+   "18446744073709551615"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-api-error",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-api-error"
+  ]
+ },
+ {
+  "id": "signal-list-missing-chain",
+  "argv": [
+   "signal",
+   "list"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-global-chain",
+  "argv": [
+   "--chain",
+   "ethereum",
+   "signal",
+   "list"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-ok"
+  ]
+ },
+ {
+  "id": "signal-list-expired-refreshes",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "solana",
+   "--limit",
+   "3"
+  ],
+  "home": "wallet-expired",
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-ok",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "signal-list-limit-error-expired",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "solana",
+   "--limit",
+   "0"
+  ],
+  "home": "wallet-expired",
+  "network": "fixture",
+  "fixtures": [
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "signal-list-limit-neg-eq",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit=-1"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "signal-list-limit-dash-value",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "ethereum",
+   "--limit",
+   "-1"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-ok"
+  ]
+ },
+ {
+  "id": "signal-list-body-unicode",
+  "argv": [
+   "signal",
+   "list",
+   "--chain",
+   "sol",
+   "--token-address",
+   "\"\\u0001é ",
+   "--limit",
+   "100"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "signal-list-ok"
+  ]
+ }
+]

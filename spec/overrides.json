@@ -1,0 +1,19 @@
+{
+  "_doc": "Clap relations the model dump cannot expose (Arg::requires / required_unless_present are private in clap 4). Keys are clap arg ids (snake_case field names). Source lines: agentic_wallet/mod.rs:88,155,340-345,385,400; cross_chain.rs:827-840; task/asp/mod.rs:219-227; task/common/pending_v2.rs:567,619,719-726; payment/dispatcher.rs:31,75. tools/sync-upstream.mjs lists new occurrences of these attributes so this file stays complete.",
+  "requires": {
+    "wallet receive": { "cursor": ["token"] },
+    "wallet send": { "brc20_outpoint": ["contract_token"] }
+  },
+  "requiredUnless": {
+    "wallet inscription status": { "tx_hash": ["order_id"], "order_id": ["tx_hash"] },
+    "cross-chain status": { "tx_hash": ["order_id"], "order_id": ["tx_hash"] },
+    "wallet utxo unlock": { "outpoint": ["all"] },
+    "wallet utxo lock": { "outpoint": ["all"] },
+    "agent dispute confirm": { "reason": ["reason_b64"], "reason_b64": ["reason"] },
+    "agent pending-decisions-v2 request": { "user_content": ["user_content_file"] },
+    "agent pending-decisions-v2 request-prompt": { "user_content": ["user_content_file"] },
+    "agent pending-decisions-v2 pick": { "index": ["job_id"], "job_id": ["index"] },
+    "payment pay": { "payload": ["payment_id"] },
+    "payment decode-receipt": { "header": ["receipt"] }
+  }
+}

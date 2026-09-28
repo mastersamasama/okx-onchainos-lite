@@ -1,0 +1,29 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/balance/all-token-balances-by-address",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "tokenContractAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "symbol": "USDT",
+                "balance": "0.1",
+                "tokenPrice": "1",
+                "isRiskToken": false,
+                "rawBalance": "100000",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

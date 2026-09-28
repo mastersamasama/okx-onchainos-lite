@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/user-asset-manage",
+    "response": {
+      "status": 502,
+      "headers": {
+        "content-type": "text/html"
+      },
+      "body": "<html>bad gateway</html>"
+    }
+  }
+]

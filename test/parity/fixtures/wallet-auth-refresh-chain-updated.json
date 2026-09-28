@@ -1,0 +1,155 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/refresh",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktcmVmcmVzaC1yb3RhdGVkIiwiaXNzIjoib25jaGFpbm9zLWxpdGUtcGFyaXR5IiwiZXhwIjo0MTAyNDQ0ODAwfQ.-284yYoFyd-kHp_SYXSWAaRIPZIEq30yGcjTMkNdXgk",
+            "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktYWNjZXNzLXJvdGF0ZWQiLCJpc3MiOiJvbmNoYWlub3MtbGl0ZS1wYXJpdHkiLCJleHAiOjQxMDI0NDQ4MDB9.Js3wr5x1pcRMiPZszJpBX6Is7MytGO7g65-nVwx4Ix4",
+            "chainUpdated": true,
+            "allAccountAddressList": [
+              {
+                "accountId": "parity-account-0001",
+                "accountName": "Account 1",
+                "isDefault": true,
+                "addresses": [
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 196,
+                    "chainName": "okb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  },
+                  {
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "chainIndex": 0,
+                    "chainName": "btc",
+                    "addressType": "taproot",
+                    "chainPath": "m/86'/0'/0'/0/0"
+                  },
+                  {
+                    "address": "0x62302347ebc82b410cbc07446d2f7565f25f86c6c714b59d25c281c89e6b640a",
+                    "chainIndex": 784,
+                    "chainName": "sui",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/784'/0'/0'/0'"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 4217,
+                    "chainName": "tempo",
+                    "addressType": "eoa",
+                    "chainPath": null
+                  }
+                ]
+              },
+              {
+                "accountId": "parity-account-0002",
+                "accountName": "Account 2",
+                "isDefault": false,
+                "addresses": [
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 196,
+                    "chainName": "okb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "AuvBeXxWB6jB4hHwAYxViToDZRDsdMUCE1gb6vL4T9DH",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  },
+                  {
+                    "address": "bc1pewxy5fe3jtj6fch5vl7wzkl0s6wyhh39z24st4q6djy8clk8ktus9dvja9",
+                    "chainIndex": 0,
+                    "chainName": "btc",
+                    "addressType": "taproot",
+                    "chainPath": "m/86'/0'/0'/0/0"
+                  },
+                  {
+                    "address": "0x4ac697be760ed466d14f51cb1e3cbfd7e6486bea782503343c1ca5cd1557d76e",
+                    "chainIndex": 784,
+                    "chainName": "sui",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/784'/0'/0'/0'"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/order/detail",
+    "match": {
+      "query": {
+        "txHash": "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "chainIndex": "0",
+            "accountId": "parity-account-0001",
+            "txHash": "1f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a79881f2e3d4c5b6a7988",
+            "orderId": "1971032288712115101",
+            "txStatus": "MEMPOOL_REMOVED",
+            "coinAmount": "0.00001"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/order/detail",
+    "match": {
+      "query": {
+        "txHash": "0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "chainIndex": 0,
+            "accountId": "",
+            "txHash": "0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c",
+            "orderId": "1971032288712115102",
+            "txStatus": "3"
+          }
+        ]
+      }
+    }
+  }
+]

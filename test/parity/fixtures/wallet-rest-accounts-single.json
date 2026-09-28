@@ -1,0 +1,102 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0001",
+            "accountName": "Account 1",
+            "isDefault": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/address/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountCnt": 1,
+            "validAccountCnt": 1,
+            "addressCnt": 8,
+            "accounts": [
+              {
+                "accountId": "parity-account-0001",
+                "addresses": [
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": "196",
+                    "chainName": "okb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": null
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  },
+                  {
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "chainIndex": 0,
+                    "chainName": "btc",
+                    "addressType": "taproot",
+                    "chainPath": "m/86'/0'/0'/0/0"
+                  },
+                  {
+                    "address": "0x62302347ebc82b410cbc07446d2f7565f25f86c6c714b59d25c281c89e6b640a",
+                    "chainIndex": 784,
+                    "chainName": "sui",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/784'/0'/0'/0'"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

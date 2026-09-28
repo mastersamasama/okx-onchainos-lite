@@ -1,0 +1,27 @@
+[
+  {
+    "method": "GET",
+    "pathRegex": "^/api/v6/pay/x402/buyers/[^/]+/allowance-status$",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "approvedAmount": "0",
+            "expiration": 0,
+            "nonce": "3",
+            "reservedAmount": "100",
+            "reservedExpiration": 4200000000,
+            "tokenBalance": "0",
+            "availableAmount": "0",
+            "permit2Allowance": "",
+            "subscriptionContract": "0x4020000000000000000000000000000000000003",
+            "permit2Contract": "0x000000000022d473030f116ddee9f6b43ac78ba3"
+          }
+        ]
+      }
+    }
+  }
+]

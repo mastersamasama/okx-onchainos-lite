@@ -1,0 +1,10 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/reviews",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"list\":[{\"score\":80,\"time\":-8334632851200000,\"createdAt\":\"min-utc\"},{\"score\":80,\"time\":-8334601228800001,\"createdAt\":\"below-local\"},{\"score\":80,\"time\":-8334601228800000,\"createdAt\":\"x\"},{\"score\":80,\"time\":8210266876799999,\"createdAt\":\"y\"},{\"score\":80,\"time\":8210266876800000,\"createdAt\":\"above-local\"},{\"score\":80,\"time\":\"-62135596800001\"},{\"score\":80,\"time\":9223372036854775807,\"createdAt\":123},{\"score\":80,\"time\":1.5e12,\"createdAt\":\"float-time\"}]}}"
+    }
+  }
+]

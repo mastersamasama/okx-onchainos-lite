@@ -1,0 +1,18 @@
+[
+ "ws run-daemon",
+ "agent get",
+ "agent get-by-address",
+ "agent xmtp-sign",
+ "agent validate-listing",
+ "agent autotrade-grant-write",
+ "agent autotrade-consent-request",
+ "agent autotrade-once-authorize",
+ "agent autotrade-guide-prepare",
+ "agent autotrade-direct-claim",
+ "agent autotrade-direct-finalize",
+ "agent autotrade-outcome-flush",
+ "agent autotrade-delivery-report",
+ "agent autotrade-cap-adjust-request",
+ "agent cache-notify",
+ "agent cache-rating"
+]

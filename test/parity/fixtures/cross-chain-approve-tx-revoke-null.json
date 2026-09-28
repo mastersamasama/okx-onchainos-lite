@@ -1,0 +1,53 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/approve-tx",
+    "match": {
+      "query": {
+        "approveAmount": "0"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "approveAddress": "0x27a16dc786820B16E5c9028b75B99F6f604b5d26",
+            "chainIndex": "8453",
+            "needApprove": true,
+            "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+            "tx": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/approve-tx",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "approveAddress": "0x27a16dc786820B16E5c9028b75B99F6f604b5d26",
+            "chainIndex": "8453",
+            "needApprove": true,
+            "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+            "tx": {
+              "data": "0x095ea7b300000000000000000000000027a16dc786820b16e5c9028b75b99f6f604b5d260000000000000000000000000000000000000000000000000000000000989680",
+              "from": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "gasLimit": "60000",
+              "to": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+              "value": "0"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

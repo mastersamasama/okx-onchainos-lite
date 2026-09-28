@@ -1,0 +1,13 @@
+[
+  {
+    "pathRegex": "^/api/v6/dex/balance/",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "51001",
+        "msg": "Invalid chains",
+        "data": []
+      }
+    }
+  }
+]

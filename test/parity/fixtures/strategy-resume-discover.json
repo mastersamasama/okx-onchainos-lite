@@ -1,0 +1,57 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/getOpenOrder",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": {
+          "cursor": "",
+          "hasNext": false,
+          "dataList": [
+            {
+              "orderId": "101",
+              "status": 4,
+              "canResume": true
+            },
+            {
+              "orderId": "103",
+              "status": 4,
+              "canResume": false
+            },
+            {
+              "orderId": "102",
+              "status": 4,
+              "canResume": true
+            },
+            {
+              "orderId": "104",
+              "status": 4
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/reactivate",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": {
+          "successIds": [
+            "101"
+          ],
+          "failIds": [
+            "102"
+          ]
+        }
+      }
+    }
+  }
+]

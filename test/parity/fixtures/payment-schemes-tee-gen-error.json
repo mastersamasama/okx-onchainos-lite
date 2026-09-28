@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81002",
+        "msg": "risk control rejected",
+        "data": []
+      }
+    }
+  }
+]

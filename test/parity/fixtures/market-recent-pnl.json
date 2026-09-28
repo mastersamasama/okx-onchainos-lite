@@ -1,0 +1,4 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/portfolio/recent-pnl", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": {
+  "cursor": "abc2",
+  "pnlList": [{ "chainIndex": "1", "tokenContractAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee", "tokenSymbol": "ETH", "lastActiveTimestamp": "1716892020000", "unrealizedPnlUsd": "SELL_ALL", "unrealizedPnlPercent": "0", "realizedPnlUsd": "12.3", "realizedPnlPercent": "1.2", "totalPnlUsd": "12.3", "totalPnlPercent": "1.2", "tokenBalanceUsd": "0", "tokenBalanceAmount": "0", "tokenPositionPercent": "0", "tokenPositionDuration": { "holdingTimestamp": "1716000000000", "sellOffTimestamp": "1716892020000" }, "buyTxCount": "1", "buyTxVolume": "1000", "buyAvgPrice": "3000", "sellTxCount": "1", "sellTxVolume": "1012.3", "sellAvgPrice": "3036.9" }]
+} } } }]

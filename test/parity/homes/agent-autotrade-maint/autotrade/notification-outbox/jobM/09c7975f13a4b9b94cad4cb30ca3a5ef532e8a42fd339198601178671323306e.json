@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "jobId": "jobM",
+  "idempotencyKey": "autotrade-degrade:k1",
+  "content": "hello",
+  "attempts": 3,
+  "nextAttemptAt": 0,
+  "createdAt": 1700000000,
+  "updatedAt": 1700000000
+}

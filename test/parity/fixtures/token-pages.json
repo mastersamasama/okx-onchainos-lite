@@ -1,0 +1,142 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/holder",
+    "match": {
+      "query": {
+        "cursor": "102"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000003",
+            "holdAmount": "997.5",
+            "holdPercent": "9.70",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": "c3"
+          },
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000004",
+            "holdAmount": "996.5",
+            "holdPercent": "9.60",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": "c4"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/holder",
+    "match": {
+      "query": {
+        "cursor": "c4"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000005",
+            "holdAmount": "995.5",
+            "holdPercent": "9.50",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": "c5"
+          },
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000006",
+            "holdAmount": "994.5",
+            "holdPercent": "9.40",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": "c6"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/holder",
+    "times": 1,
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000001",
+            "holdAmount": "999.5",
+            "holdPercent": "9.90",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": 101
+          },
+          {
+            "holderWalletAddress": "0x0000000000000000000000000000000000000002",
+            "holdAmount": "998.5",
+            "holdPercent": "9.80",
+            "nativeTokenBalance": "0.1",
+            "boughtAmount": "0",
+            "avgBuyPrice": "0",
+            "totalSellAmount": "0",
+            "avgSellPrice": "0",
+            "totalPnlUsd": "0",
+            "realizedPnlUsd": "0",
+            "unrealizedPnlUsd": "0",
+            "fundingSource": "",
+            "cursor": 102
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "totalNoCondition": 20,
+          "page": 1,
+          "pageSize": 10,
+          "list": []
+        }
+      }
+    }
+  }
+]

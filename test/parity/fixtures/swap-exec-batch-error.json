@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/batch/supportChainIndexList",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "Service temporarily unavailable",
+        "data": []
+      }
+    }
+  }
+]

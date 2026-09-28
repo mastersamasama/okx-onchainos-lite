@@ -1,0 +1,44 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/x402/buyers/0xd825f780e3cb88b383907ff427495d1dca352d44/subscriptions",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "subscriptions": [
+              {
+                "chainIndex": 196,
+                "subId": "0x1111111111111111111111111111111111111111111111111111111111111111",
+                "state": 0,
+                "payer": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "token": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "amountPerPeriod": "5000000",
+                "periodSec": 2592000,
+                "periodMode": 0,
+                "billingAnchorAt": 0,
+                "maxPeriods": 12,
+                "startAt": 1750000000,
+                "initialChargePeriods": 1,
+                "initialChargeAmount": "5000000",
+                "lastChargedPeriod": 2,
+                "totalPulled": "15000000",
+                "planId": "pro_monthly",
+                "planTier": 2,
+                "changedToSubId": null,
+                "isActive": true,
+                "serviceEnded": false,
+                "currentPeriod": 3,
+                "nextChargeableAt": 1757776000
+              }
+            ],
+            "total": 1
+          }
+        ]
+      }
+    }
+  }
+]

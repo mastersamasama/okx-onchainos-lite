@@ -1,0 +1,93 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 2,
+          "list": [
+            {
+              "ownerAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "accountName": "Account 1",
+              "agentList": [
+                {
+                  "agentId": "1001",
+                  "role": 1,
+                  "name": "Parity Buyer",
+                  "status": 1,
+                  "approvalDisplayStatus": 1,
+                  "agentWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                  "communicationAddress": "0x1111111111111111111111111111111111111111",
+                  "profileDescription": "Parity Buyer profile",
+                  "onlineStatus": 1
+                },
+                {
+                  "agentId": "2002",
+                  "role": 2,
+                  "name": "Parity ASP",
+                  "status": 1,
+                  "approvalDisplayStatus": 1,
+                  "agentWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                  "communicationAddress": "0x1111111111111111111111111111111111111111",
+                  "profileDescription": "Parity ASP profile",
+                  "onlineStatus": 1
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/batch-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "agentId": "1001",
+            "role": 1,
+            "name": "Parity Buyer",
+            "status": 1,
+            "approvalDisplayStatus": 1,
+            "agentWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+            "communicationAddress": "0x1111111111111111111111111111111111111111",
+            "profileDescription": "Parity Buyer profile",
+            "onlineStatus": 1
+          },
+          {
+            "agentId": "2002",
+            "role": 2,
+            "name": "Parity ASP",
+            "status": 1,
+            "approvalDisplayStatus": 1,
+            "agentWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+            "communicationAddress": "0x1111111111111111111111111111111111111111",
+            "profileDescription": "Parity ASP profile",
+            "onlineStatus": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent-heartbeat",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": true
+      }
+    }
+  }
+]

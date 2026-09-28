@@ -1,0 +1,13 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [],
+          "then": "end"
+        }
+      ]
+    }
+  ]
+}

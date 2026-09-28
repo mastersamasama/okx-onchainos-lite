@@ -1,0 +1,39 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [],
+          "page": 1,
+          "pageSize": 10,
+          "total": 0
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/agent-consent",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "consent": {
+              "consentKey": "ck-001",
+              "terms": "OKX.AI Agent terms v1",
+              "version": 1
+            }
+          }
+        ]
+      }
+    }
+  }
+]

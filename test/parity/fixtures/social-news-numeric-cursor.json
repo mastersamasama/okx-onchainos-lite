@@ -1,0 +1,29 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/by-symbol",
+  "match": {
+   "query": {
+    "cursor": "1.5"
+   }
+  },
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"cursor\":-0,\"list\":[{\"id\":2}]}}"
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/news/by-symbol",
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"cursor\":1.50,\"list\":[{\"id\":1}],\"zz\":[9]}}"
+  }
+ }
+]

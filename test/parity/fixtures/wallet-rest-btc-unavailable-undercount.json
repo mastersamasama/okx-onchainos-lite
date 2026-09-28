@@ -1,0 +1,36 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "UNAVAILABLE_BREAKDOWN"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unavailableBreakdown": {
+              "totalUnavailableCount": 9,
+              "assetLocked": {
+                "count": 1,
+                "utxos": [
+                  {
+                    "txHash": "9ab8bd36e51e1f1be1a8b97791d33f29477914a7e48008d93fdc922416d22262",
+                    "voutIndex": 2,
+                    "valueRaw": "546",
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan"
+                  }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+]

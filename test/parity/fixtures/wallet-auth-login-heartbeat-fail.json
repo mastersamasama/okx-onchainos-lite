@@ -1,0 +1,216 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/auth/session/result",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktcmVmcmVzaCIsImlzcyI6Im9uY2hhaW5vcy1saXRlLXBhcml0eSIsImV4cCI6NDEwMjQ0NDgwMH0.vGCXPCCAcZPtgLtaMTcgSw4BwZ9Us9PVZcMEQcKKs18",
+            "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwYXJpdHktYWNjZXNzIiwiaXNzIjoib25jaGFpbm9zLWxpdGUtcGFyaXR5IiwiZXhwIjo0MTAyNDQ0ODAwfQ.Cd5ZY7fgFDVTENKcVMlq7IoAKhZeJqzihiX98oiXNgk",
+            "teeId": "parity-tee-0001",
+            "saTeeId": "parity-sa-tee-0001",
+            "sessionCert": "parity-session-cert-3b11bafab157fcb047d4bc0a10a4f546",
+            "encryptedSessionSk": "+NOFj8RBwBuUo5gOPwHXXP3cD8DoGstGa6oBCKC+z3gA8+YlzWqTbZzsTSiCzb8Y903GbJHbLbcoqs8lO93kwac5dA5hZi2kUXQUuEgWf9w=",
+            "sessionKeyExpireAt": 4102444800,
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0001",
+            "accountName": "Account 1",
+            "isNew": 1,
+            "addressList": [],
+            "loginInfo": {
+              "email": "parity@example.com",
+              "nickname": "Parity",
+              "username": "parity",
+              "loginType": "google"
+            },
+            "allAccountAddressList": [
+              {
+                "accountId": "parity-account-0001",
+                "accountName": "Account 1",
+                "isDefault": true,
+                "addresses": [
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 1,
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 56,
+                    "chainName": "bnb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 8453,
+                    "chainName": "base_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                    "chainIndex": 42161,
+                    "chainName": "arb_eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                    "chainIndex": 501,
+                    "chainName": "sol",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/501'/0'/0'"
+                  },
+                  {
+                    "address": "bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan",
+                    "chainIndex": 0,
+                    "chainName": "btc",
+                    "addressType": "taproot",
+                    "chainPath": "m/86'/0'/0'/0/0"
+                  },
+                  {
+                    "address": "0x62302347ebc82b410cbc07446d2f7565f25f86c6c714b59d25c281c89e6b640a",
+                    "chainIndex": 784,
+                    "chainName": "sui",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/784'/0'/0'/0'"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances-batch",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenName": "OKB",
+                "tokenAddress": "",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "1.5",
+                "rawBalance": "1500000000000000000",
+                "decimal": "18",
+                "tokenPrice": "48.12",
+                "usdValue": "72.18",
+                "tokenType": "1",
+                "isRiskToken": false,
+                "imageUrl": "https://static.okx.com/cdn/wallet/logo/okb.png",
+                "priceChangeRate24H": "-0.0123"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "SOL",
+                "tokenName": "Solana",
+                "tokenAddress": "",
+                "address": "GU61DfyoDNiH45fNSwGbQgPYU4iiiBcUyycV7us9hH4R",
+                "balance": "0.25",
+                "rawBalance": "250000000",
+                "decimal": "9",
+                "tokenPrice": "150.4",
+                "usdValue": "",
+                "tokenType": "1",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "12.345",
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": null,
+                "tokenType": "2",
+                "isRiskToken": false
+              }
+            ]
+          },
+          {
+            "accountId": "other-project-account",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": "OKB",
+                "tokenName": "OKB",
+                "tokenAddress": "",
+                "address": "0x4a1cfe3d7fbf5894dd4eb0df579908c68e06bcd2",
+                "balance": "1.5",
+                "rawBalance": "1500000000000000000",
+                "decimal": "18",
+                "tokenPrice": "48.12",
+                "usdValue": "72.18",
+                "tokenType": "1",
+                "isRiskToken": false,
+                "imageUrl": "https://static.okx.com/cdn/wallet/logo/okb.png",
+                "priceChangeRate24H": "-0.0123"
+              },
+              {
+                "chainIndex": "501",
+                "symbol": "SOL",
+                "tokenName": "Solana",
+                "tokenAddress": "",
+                "address": "7Y2z7QsgR5BeqTYi19261bmXzg5dTUNBYynJ1fZCZyfh",
+                "balance": "0.25",
+                "rawBalance": "250000000",
+                "decimal": "9",
+                "tokenPrice": "150.4",
+                "usdValue": "",
+                "tokenType": "1",
+                "isRiskToken": false
+              },
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0x4a1cfe3d7fbf5894dd4eb0df579908c68e06bcd2",
+                "balance": "12.345",
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": null,
+                "tokenType": "2",
+                "isRiskToken": false
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent-heartbeat",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50001",
+        "msg": "Service temporarily unavailable",
+        "data": []
+      }
+    }
+  }
+]

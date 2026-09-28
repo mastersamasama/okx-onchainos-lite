@@ -1,0 +1,30 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/services",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "agentInfo": {
+              "agentId": "2002",
+              "name": "Parity ASP"
+            },
+            "list": [
+              {
+                "serviceId": "svc-sub-7",
+                "serviceName": "Daily alpha",
+                "supportTrial": true,
+                "freeTrial": 48,
+                "providerAgentName": "Catalog ASP"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

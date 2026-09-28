@@ -1,0 +1,13 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/cancel",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 60015,
+        "data": null
+      }
+    }
+  }
+]

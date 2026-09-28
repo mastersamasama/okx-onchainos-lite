@@ -1,0 +1,5855 @@
+[
+ {
+  "id": "agent-asp-apply-negative",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount=-1",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-not-number",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "abc",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-blank-amount",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "  ",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-nan",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "NaN",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-blank-symbol",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "1",
+   "--token-symbol",
+   "  ",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-empty-agent",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "1",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-missing-flags",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-ok",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "5",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-apply",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-zero-ok",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "0",
+   "--token-symbol",
+   "USDG",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-apply",
+   "agent-asp-broadcast-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-unknown-agent",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "5",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "4040"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-wallet-not-local",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "5",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "7777"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-no-uop",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "5",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-apply-nouop"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-preflight-failed",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "5",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-apply-preflight"
+  ]
+ },
+ {
+  "id": "agent-asp-apply-api-error",
+  "argv": [
+   "agent",
+   "apply",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--token-amount",
+   "5",
+   "--token-symbol",
+   "USDT",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-apply-error"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-neither",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-both",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--file",
+   "a.txt",
+   "--deliverable-text",
+   "b",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-empty-agent",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "b",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-created",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "report",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-x402",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "report",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-x402"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-no-status",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "report",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-nostatus"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-big-status",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "report",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-bigstatus"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-no-buyer",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "report",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-nobuyer"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-send-failed",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "report",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-long-text-send-failed",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-file-missing",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--file",
+   "no-such-deliverable.pdf",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-file-upload-failed",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--file",
+   "test/parity/fixtures/agent-asp-deliverable-sample.json",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-sub-ended",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-ended"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-sub-past-buffer",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-pastbuffer"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-sub-send-failed",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-sub-no-buyer",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-nobuyer"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-sub-lookup-failed",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-error"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-task-error",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-error"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-jobtype-sub-active",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-jobtypesub",
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-jobtype-sub-ended",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-jobtypesub",
+   "agent-asp-sub-ended"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-jobtype-sub-lookup-failed",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-jobtypesub",
+   "agent-asp-sub-error"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-sub-pretty",
+  "argv": [
+   "agent",
+   "deliver",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--deliverable-text",
+   "signal",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-ended"
+  ],
+  "env": {
+   "ONCHAINOS_PRETTY": "1"
+  }
+ },
+ {
+  "id": "agent-asp-agree-refund-empty-agent",
+  "argv": [
+   "agent",
+   "agree-refund",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-agree-refund-ok",
+  "argv": [
+   "agent",
+   "agree-refund",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-agree-refund",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-reject-empty-agent",
+  "argv": [
+   "agent",
+   "asp-reject",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-reject-ok",
+  "argv": [
+   "agent",
+   "asp-reject",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-asp-reject"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-reject-reason",
+  "argv": [
+   "agent",
+   "asp-reject",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001",
+   "--reason",
+   "capacity"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-asp-reject"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-reject-null-data",
+  "argv": [
+   "agent",
+   "asp-reject",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-asp-reject-null"
+  ]
+ },
+ {
+  "id": "agent-asp-claim-auto-complete-empty-agent",
+  "argv": [
+   "agent",
+   "claim-auto-complete",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-claim-auto-complete-ok",
+  "argv": [
+   "agent",
+   "claim-auto-complete",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-claim-auto-complete",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-claimable-empty-agent",
+  "argv": [
+   "agent",
+   "asp-claimable",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-claimable-nonzero",
+  "argv": [
+   "agent",
+   "asp-claimable",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-claimable"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-claimable-zero",
+  "argv": [
+   "agent",
+   "asp-claimable",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-claimable-zero"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-claimable-empty",
+  "argv": [
+   "agent",
+   "asp-claimable",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-claimable-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-claim-rewards-empty-agent",
+  "argv": [
+   "agent",
+   "asp-claim-rewards",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-asp-claim-rewards-ok",
+  "argv": [
+   "agent",
+   "asp-claim-rewards",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-claim",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-blank-job",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   " ",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-blank-agent",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "  "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-decline-job-blank-reason",
+  "argv": [
+   "agent",
+   "decline-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001",
+   "--reason",
+   "  "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-decline-sub-long-reason",
+  "argv": [
+   "agent",
+   "decline-subscription",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001",
+   "--reason",
+   "理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-no-session",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-already",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-decline-job-already",
+  "argv": [
+   "agent",
+   "decline-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001",
+   "--reason",
+   "busy"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-wrong-status",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-submitted"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-no-status",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-nostatus"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-detail-error",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-error"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-ok",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-accept-job",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-no-receipt",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-accept-job",
+   "agent-asp-broadcast-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-wrong-job",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-accept-job-wrong-job"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-no-uop",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-accept-job-no-uop"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-bad-biz",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-accept-job-bad-biz"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-missing-job",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-accept-job-missing-job"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-job-api-error",
+  "argv": [
+   "agent",
+   "accept-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-accept-job-error"
+  ]
+ },
+ {
+  "id": "agent-asp-decline-job-ok",
+  "argv": [
+   "agent",
+   "decline-job-by-provider",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001",
+   "--reason",
+   "  out of scope  "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-agents",
+   "agent-asp-decline-job",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-sub-ok",
+  "argv": [
+   "agent",
+   "accept-subscription",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-created",
+   "agent-asp-agents",
+   "agent-asp-accept-sub",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-accept-sub-already",
+  "argv": [
+   "agent",
+   "accept-subscription",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-decline-sub-ok",
+  "argv": [
+   "agent",
+   "decline-subscription",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001",
+   "--reason",
+   "unsupported region"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-created",
+   "agent-asp-agents",
+   "agent-asp-decline-sub",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-decline-sub-wrong-status",
+  "argv": [
+   "agent",
+   "decline-subscription",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001",
+   "--reason",
+   "x"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-ended"
+  ]
+ },
+ {
+  "id": "agent-asp-status-blank-job",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "  ",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-status-one-time",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-status-jobtype-sub",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-jobtypesub",
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-status-jobtype-sub-fallback",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-jobtypesub",
+   "agent-asp-sub-error"
+  ]
+ },
+ {
+  "id": "agent-asp-status-sub",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-status-disputed",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-disputed",
+   "agent-asp-dispute-status"
+  ]
+ },
+ {
+  "id": "agent-asp-status-disputed-bad",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-disputed",
+   "agent-asp-dispute-status-bad"
+  ]
+ },
+ {
+  "id": "agent-asp-status-completed-no-dispute",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-completed",
+   "agent-asp-dispute-status-error"
+  ]
+ },
+ {
+  "id": "agent-asp-status-failed-dispute",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-failed",
+   "agent-asp-dispute-status-terminal"
+  ]
+ },
+ {
+  "id": "agent-asp-status-dispute-only",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-error",
+   "agent-asp-dispute-status"
+  ]
+ },
+ {
+  "id": "agent-asp-status-all-fail",
+  "argv": [
+   "agent",
+   "asp",
+   "status",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-error",
+   "agent-asp-dispute-status-error"
+  ]
+ },
+ {
+  "id": "agent-asp-list-page-zero",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--page",
+   "0",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-list-limit-zero",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--limit",
+   "0",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-list-bad-page",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--page",
+   "x",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-asp-list-default",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-list"
+  ]
+ },
+ {
+  "id": "agent-asp-list-page2-limit3",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--status",
+   "active",
+   "--page",
+   "2",
+   "--limit",
+   "3",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-list"
+  ]
+ },
+ {
+  "id": "agent-asp-list-window-span",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--page",
+   "4",
+   "--limit",
+   "6",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-list"
+  ]
+ },
+ {
+  "id": "agent-asp-list-submitted",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--status",
+   " submitted ",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-list"
+  ]
+ },
+ {
+  "id": "agent-asp-list-empty",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-list-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-list-disputed",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--status",
+   "DISPUTED",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-dispute-list"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-active-blank",
+  "argv": [
+   "agent",
+   "subscribe-active",
+   "--agent-id",
+   "  "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-active",
+  "argv": [
+   "agent",
+   "subscribe-active",
+   "--agent-id",
+   " 9001 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-subscribe-my"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-active-array",
+  "argv": [
+   "agent",
+   "subscribe-active",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-subscribe-my-array"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-agree-refund-blank",
+  "argv": [
+   "agent",
+   "subscribe-agree-refund",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   " "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-agree-refund-ok",
+  "argv": [
+   "agent",
+   "subscribe-agree-refund",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-sub-agree-refund",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-asp-claim-blank",
+  "argv": [
+   "agent",
+   "subscribe-asp-claim",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-asp-claim-ok",
+  "argv": [
+   "agent",
+   "subscribe-asp-claim",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-sub-asp-claim",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-dispute-blank-reason",
+  "argv": [
+   "agent",
+   "subscribe-dispute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   " ",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-dispute-long-reason",
+  "argv": [
+   "agent",
+   "subscribe-dispute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-dispute-blank-agent",
+  "argv": [
+   "agent",
+   "subscribe-dispute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met spec",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-dispute-no-buyer",
+  "argv": [
+   "agent",
+   "subscribe-dispute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met spec",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-sub-nobuyer"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-dispute-sub-error",
+  "argv": [
+   "agent",
+   "subscribe-dispute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met spec",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-sub-error"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-dispute-handoff-failed",
+  "argv": [
+   "agent",
+   "subscribe-dispute",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met spec",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-sub-rejected",
+   "agent-asp-approve-dispute"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-empty-agent",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "x",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-blank-reason",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-long-reason",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理理",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-task-error",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-error"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-free-handoff-failed",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-freezero",
+   "agent-asp-approve-dispute"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-no-extra",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-freezero",
+   "agent-asp-approve-dispute-noextra"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-api-error",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-freezero",
+   "agent-asp-approve-dispute-error"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-blank-buyer",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-nobuyer-free",
+   "agent-asp-approve-dispute"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-bond-blocked",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-rejected",
+   "agent-asp-balance-low"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-bond-missing-token",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-rejected",
+   "agent-asp-balance-none"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-bond-query-failed",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-rejected",
+   "agent-asp-balance-error"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-raise-bond-ok-handoff-failed",
+  "argv": [
+   "agent",
+   "dispute",
+   "raise",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "met the brief",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-task-rejected",
+   "agent-asp-balance-ok",
+   "agent-asp-approve-dispute"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-retired",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "ok",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-ok",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "b2s",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-invalid",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "%%%",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-padding",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "b2s=",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-len",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "b",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-last",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "b2t",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-utf8",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "_w",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-utf8-incomplete",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "4pw",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-b64-blank",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason-b64",
+   "ICA",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-empty-agent",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "ok",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-long",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-neither",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-asp-dispute-confirm-both",
+  "argv": [
+   "agent",
+   "dispute",
+   "confirm",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--reason",
+   "a",
+   "--reason-b64",
+   "YQ",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-bad-vote",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "2",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-vote-256",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "256",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-blank-reason",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "1",
+   "--reason",
+   "  ",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-blank-summary",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "1",
+   "--reason",
+   "r",
+   "--reason-summary",
+   " ",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-long-summary",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "1",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "sssssssssssssssssssssssssssssss",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-blank-agent",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "0",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   " "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-ok",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "1",
+   "--reason",
+   "Verdict\\n\\nJob: x\\tok \\\"quoted\\\" \\q\\",
+   "--reason-summary",
+   " ASP delivered as specified ",
+   "--agent-id",
+   " 548 "
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-vote-commit",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-no-salt",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "0",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-vote-commit-nosalt"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-no-hash",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "0",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-vote-commit-nohash",
+   "agent-asp-broadcast-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-unknown-evaluator",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "0",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   "4040"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-commit-evaluator-not-local",
+  "argv": [
+   "agent",
+   "vote-commit",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--vote",
+   "0",
+   "--reason",
+   "r",
+   "--reason-summary",
+   "s",
+   "--agent-id",
+   "7777"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-reveal-blank-agent",
+  "argv": [
+   "agent",
+   "vote-reveal",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   " "
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-reveal-false",
+  "argv": [
+   "agent",
+   "vote-reveal",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-can-reveal-false"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-reveal-malformed",
+  "argv": [
+   "agent",
+   "vote-reveal",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-can-reveal-bad"
+  ]
+ },
+ {
+  "id": "agent-asp-vote-reveal-ok",
+  "argv": [
+   "agent",
+   "vote-reveal",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-can-reveal-true",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-arbitration-claim-blank",
+  "argv": [
+   "agent",
+   "arbitration-claim",
+   "--agent-id",
+   ""
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-arbitration-claim-ok",
+  "argv": [
+   "agent",
+   "arbitration-claim",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-claim",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-arbitration-claimable-nonzero",
+  "argv": [
+   "agent",
+   "arbitration-claimable",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-claimable"
+  ]
+ },
+ {
+  "id": "agent-asp-arbitration-claimable-zero",
+  "argv": [
+   "agent",
+   "arbitration-claimable",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-claimable-zero"
+  ]
+ },
+ {
+  "id": "agent-asp-arbitration-claimable-empty-agent",
+  "argv": [
+   "agent",
+   "arbitration-claimable",
+   "--agent-id",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-claimable-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-staking-config",
+  "argv": [
+   "agent",
+   "staking-config",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-staking-config"
+  ]
+ },
+ {
+  "id": "agent-asp-staking-config-fractional",
+  "argv": [
+   "agent",
+   "staking-config",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-staking-config-frac"
+  ]
+ },
+ {
+  "id": "agent-asp-staking-config-number",
+  "argv": [
+   "agent",
+   "staking-config",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-staking-config-number"
+  ]
+ },
+ {
+  "id": "agent-asp-staking-config-bad-string",
+  "argv": [
+   "agent",
+   "staking-config",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-staking-config-badstr"
+  ]
+ },
+ {
+  "id": "agent-asp-staking-config-missing",
+  "argv": [
+   "agent",
+   "staking-config",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-staking-config-missing"
+  ]
+ },
+ {
+  "id": "agent-asp-my-stake",
+  "argv": [
+   "agent",
+   "my-stake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-ok"
+  ]
+ },
+ {
+  "id": "agent-asp-my-stake-timestamps",
+  "argv": [
+   "agent",
+   "my-stake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-ts"
+  ]
+ },
+ {
+  "id": "agent-asp-my-stake-defaults",
+  "argv": [
+   "agent",
+   "my-stake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-min"
+  ]
+ },
+ {
+  "id": "agent-asp-my-stake-bad",
+  "argv": [
+   "agent",
+   "my-stake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-bad"
+  ]
+ },
+ {
+  "id": "agent-asp-increase-stake-abc",
+  "argv": [
+   "agent",
+   "increase-stake",
+   "--amount",
+   "abc",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-increase-stake-empty",
+  "argv": [
+   "agent",
+   "increase-stake",
+   "--amount",
+   "",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-stake-a2a-not-ready",
+  "argv": [
+   "agent",
+   "stake",
+   "--amount",
+   "1",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-asp-stake-thousands",
+  "argv": [
+   "agent",
+   "stake",
+   "--amount",
+   "1,000",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  }
+ },
+ {
+  "id": "agent-asp-stake-unregistered-ok",
+  "argv": [
+   "agent",
+   "stake",
+   "--amount",
+   "0.001",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  },
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-unreg",
+   "agent-asp-staking-config",
+   "agent-asp-stake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-stake-too-low",
+  "argv": [
+   "agent",
+   "stake",
+   "--amount",
+   "0.0001",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "env": {
+   "ONCHAINOS_SKIP_A2A_PREFLIGHT": "1"
+  },
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-unreg",
+   "agent-asp-staking-config"
+  ]
+ },
+ {
+  "id": "agent-asp-increase-stake-registered-ok",
+  "argv": [
+   "agent",
+   "increase-stake",
+   "--amount",
+   " 0.5 ",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok",
+   "agent-asp-staking-config",
+   "agent-asp-stake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-increase-stake-dot",
+  "argv": [
+   "agent",
+   "increase-stake",
+   "--amount",
+   ".",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-unreg",
+   "agent-asp-staking-config",
+   "agent-asp-stake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-increase-stake-mystake-error",
+  "argv": [
+   "agent",
+   "increase-stake",
+   "--amount",
+   "1",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-bad"
+  ]
+ },
+ {
+  "id": "agent-asp-increase-stake-config-error",
+  "argv": [
+   "agent",
+   "increase-stake",
+   "--amount",
+   "1",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok",
+   "agent-asp-staking-config-missing"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-zero",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "0",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-1.2.3",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "1.2.3",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-empty",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   " ",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-abc",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount=-1",
+   "--agent-id",
+   "548"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-disputes",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "0.0002",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-disputes"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-exceeds",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "0.002",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-below-retain",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "0.0003",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok",
+   "agent-asp-staking-config"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-partial-ok",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "0.0002",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok",
+   "agent-asp-staking-config",
+   "agent-asp-unstake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-full-ok",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "0.0012",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok",
+   "agent-asp-staking-config-frac",
+   "agent-asp-unstake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-claim-unstake-none",
+  "argv": [
+   "agent",
+   "claim-unstake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok"
+  ]
+ },
+ {
+  "id": "agent-asp-claim-unstake-cooldown",
+  "argv": [
+   "agent",
+   "claim-unstake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ts"
+  ]
+ },
+ {
+  "id": "agent-asp-claim-unstake-ok",
+  "argv": [
+   "agent",
+   "claim-unstake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-claimable",
+   "agent-asp-unstake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-claim-unstake-mystake-error-ok",
+  "argv": [
+   "agent",
+   "claim-unstake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-bad",
+   "agent-asp-unstake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-cancel-unstake-none",
+  "argv": [
+   "agent",
+   "cancel-unstake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok"
+  ]
+ },
+ {
+  "id": "agent-asp-cancel-unstake-finished",
+  "argv": [
+   "agent",
+   "cancel-unstake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-claimable"
+  ]
+ },
+ {
+  "id": "agent-asp-cancel-unstake-ok",
+  "argv": [
+   "agent",
+   "cancel-unstake",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ts",
+   "agent-asp-unstake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-terminal",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-ds-terminal"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-bad-round",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "abc"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-dispute-status"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-empty-round",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   ""
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-dispute-status"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-null-round",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-ds-null-round"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-mismatch",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "+2"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-dispute-status"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-null-status",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-ds-null-status"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-reveal-phase",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-ds-alias"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-other-status",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-ds-other"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-not-selected",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-ds-unselected"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-parse-error",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-dispute-status-bad"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-null-task-status",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-ds-null-task"
+  ]
+ },
+ {
+  "id": "agent-asp-evidence-ok",
+  "argv": [
+   "agent",
+   "evidence-info",
+   "0xabababababababababababababababababababababababababababababababab",
+   "--agent-id",
+   "548",
+   "--round-num",
+   "1"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-evidence"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-user-reject",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_user_reject\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-agree-refund-pseudo",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"agree_refund\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-dispute-pseudo",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_dispute\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-staked",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"staked\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-evaluator-selected",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"evaluator_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-wakeup",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"wakeup_notify\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-reward-claimed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"reward_claimed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-asp-claim-notify",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_asp_claim_notify\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"BTC Signals\",\"tokenAmount\":12.5,\"tokenSymbol\":\"USDT\",\"txHash\":\"0xreceive\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-asp-claim-notify-defaults",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_asp_claim_notify\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-attachment-missing",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_attachment_received\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"fileKey\":\"k\",\"salt\":\"\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-attachment-download-failed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_attachment_received\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"fileKey\":\"k\",\"digest\":\"d\",\"salt\":\"s\",\"nonce\":\"n\",\"secret\":\"x\",\"filename\":\"a.pdf\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout",
+   "stderr"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-unknown",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"mystery_event\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-submit",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_submit_deadline_warn\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"  submit now  \"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-cli-failed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_cli_failed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"data\":\"A\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-other",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_price_check\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-rejected-ok",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionId\":\"0xabababababababababababababababababababababababababababababababab:job_rejected:e1\",\"selectedActionId\":\"dispute_raise\",\"params\":{\"reason\":\"delivery matched\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-rejected-refund",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionId\":\"0xabababababababababababababababababababababababababababababababab:job_rejected:e1\",\"selectedActionId\":\"agree_refund\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-rejected-no-reason",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionId\":\"0xabababababababababababababababababababababababababababababababab:job_rejected:e1\",\"selectedActionId\":\"raise_arbitration\",\"params\":{\"reason\":\"  \"}}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-rejected-bad-action",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionId\":\"0xabababababababababababababababababababababababababababababababab:job_rejected:e1\",\"selectedActionId\":\"sub_agree_refund\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-rejected-unbound",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionId\":\"0xabababababababababababababababababababababababababababababababab:job_rejected:\",\"selectedActionId\":\"agree_refund\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-rejected-no-action",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionId\":\"0xabababababababababababababababababababababababababababababababab:job_rejected:e1\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-relay-rejected-other-job",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"user_decision_job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"decisionId\":\"0xabababababababababababababababababababababababababababababababab:job_rejected:e1\",\"selectedActionId\":\"agree_refund\",\"params\":{\"jobId\":\"0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd\"}}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-provider-applied",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"provider_applied\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-accepted",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-accepted-status-name",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-accepted-no-detail",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_accepted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-error"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-submitted",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_submitted\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-submitted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-dispute-approved",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"dispute_approved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-disputed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_disputed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-disputed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-created",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_created\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-dispute-resolved",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobStatus\":\"complete\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-completed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-review-expired",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"review_expired\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-submitted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-submit-deadline-warn",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"submit_deadline_warn\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"Q3 \\\"report\\\"\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-vote-committed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"vote_committed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-rejected",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"eventId\":\"evt-9\",\"tokenAmount\":\"5\",\"tokenSymbol\":\"USDT\",\"rejectReason\":\"It's wrong\",\"rejectWindowEndsAt\":4102444800}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-rejected-missing",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-rejected-bare"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-rejected-free",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_rejected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"reason\":\"Not what I asked\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-freezero"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-asp-selected",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_asp_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-services"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-asp-selected-no-service",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_asp_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"serviceId\":\"svc-9\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-created",
+   "agent-asp-services-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-asp-selected-dup",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_asp_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-open",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_open\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-created",
+   "agent-asp-services"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-asp-selected",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_asp_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"subStartTime\":1700000000,\"subEndTime\":1702592000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-asp-selected-trial",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_asp_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"trialType\":1,\"trailStartTime\":1700000000,\"trailEndTime\":1700604800,\"tokenSymbol\":\"?\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-renew",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_renew\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-complete",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_complete_notify\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"subEndTime\":1702592000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-completed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-close",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_close_notify\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"title\":\"Daily Brief\",\"aspRejectReason\":\"unsupported region\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-closed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-failed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_failed_notify\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-failed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-asp-dispute",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_asp_dispute\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-disputed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-created",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"sub_created\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-sub-active"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-completed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-completed",
+   "agent-asp-task-feedback-empty"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-completed-rated",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-completed",
+   "agent-asp-task-feedback-done"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-completed-stale",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"event\":\"job_completed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-submitted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-selected",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"evaluator_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"agentName\":\"Judge\",\"budget\":12.5,\"tokenSymbol\":\"USDT\",\"commitDeadline\":1700000000,\"roundNum\":1}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-selected-no-round",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"evaluator_selected\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"commitDeadline\":1700000000}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-vote-committed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"vote_committed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"vote\":\"0\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-commit-warn",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"vote_commit_deadline_warn\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"commitDeadline\":1700000000,\"slashTimeoutBps\":\"0.3%\",\"slashedCooldownSeconds\":86400}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-reveal-warn",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"vote_reveal_deadline_warn\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"slashedCooldownSeconds\":\"7199\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-reveal-started",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"reveal_started\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-vote-revealed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"vote_revealed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-round-failed-invalidated",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"round_failed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"abstainCount\":2,\"totalSlashed\":\"0.0006\",\"slashTimeoutBps\":\"0.3%\",\"revealCount\":3}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-round-failed-missed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"round_failed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"agentName\":\"Judge\",\"hasCommit\":\"1\",\"hasReveal\":0,\"slashTimeoutBps\":\"0.3%\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-reward-claimed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"reward_claimed\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-unknown",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"weird\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-stake-stopped",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"stake_stopped\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-unstake-claimed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"unstake_claimed\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-staked",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"staked\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-ok"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-staked-no-stake",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"staked\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-bad"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-unstake-requested",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"unstake_requested\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-ts"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-unstake-requested-no-time",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"unstake_requested\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-ok"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-cooldown",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"cooldown_entered\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-ts"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-cooldown-none",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"cooldown_entered\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-my-stake-ok"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-dispute-resolved-won",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"vote\":1,\"jobStatus\":\"complete\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-completed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-dispute-resolved-lost",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"jobTitle\":\"T\",\"vote\":1,\"jobStatus\":\"failed\",\"slashMinorityBps\":\"1%\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-failed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-eval-dispute-resolved-missed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "548",
+   "--role",
+   "evaluator",
+   "--message",
+   "{\"event\":\"dispute_resolved\",\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"hasCommit\":0}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-completed"
+  ]
+ },
+ {
+  "id": "agent-asp-staking-config-ties",
+  "argv": [
+   "agent",
+   "staking-config",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-staking-config-ties"
+  ]
+ },
+ {
+  "id": "agent-asp-request-unstake-cooldown-tie",
+  "argv": [
+   "agent",
+   "request-unstake",
+   "--amount",
+   "0.0002",
+   "--agent-id",
+   "548"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-agents",
+   "agent-asp-my-stake-ok",
+   "agent-asp-staking-config-ties",
+   "agent-asp-unstake-post",
+   "agent-asp-broadcast"
+  ]
+ },
+ {
+  "id": "agent-asp-list-status-constructor",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--status",
+   "constructor",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-list"
+  ]
+ },
+ {
+  "id": "agent-asp-list-status-closed",
+  "argv": [
+   "agent",
+   "asp",
+   "list-tasks",
+   "--status",
+   " Closed ",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-list"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-refunded",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_refunded\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-failed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-accept-expire-one-time",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_asp_accept_expire\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-expired"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-accept-expire-sub",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_asp_accept_expire\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-expired"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-accept-expire-sub-trial",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_asp_accept_expire\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-expired-trial"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-accept-expire-stale",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_asp_accept_expire\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-reject-closed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_asp_reject_closed\",\"aspRejectReason\":\"capacity\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-closed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-reject-expire",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_asp_reject_expire\",\"rejectWindowEndsAt\":1700000000}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-failed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-reject-expire-free",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_asp_reject_expire\",\"rejectWindowEndsAt\":\"1700000000\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-freezero"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-expired",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_expired\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-expired"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-submit-expired-sub",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"submit_expired\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-expired"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-closed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_closed\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-closed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-reject-expired",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"reject_expired\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-accepted"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-job-auto-refunded",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_auto_refunded\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-failed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-negotiate-reply",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"negotiate_reply\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-attachment-added",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"attachment_added\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-provider-reject",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"job_provider_reject\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-user-reject",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"sub_user_reject\",\"eventId\":\"evt-3\",\"tokenAmount\":\"10\",\"tokenSymbol\":\"USDT\",\"rejectReason\":\"Stale data\",\"rejectWindowEndsAt\":4102444800}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-rejected"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-decision-other-source",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"user_decision_cli_failed\",\"data\":\"  retry  \"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-decision-unknown-source",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"user_decision_foo_bar\",\"data\":\"ok\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-sub-cancel",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"sub_cancel\"}"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-task-notfound",
+   "agent-asp-sub-closed"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-unstake-claimed",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"unstake_claimed\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-na-asp-reveal-started",
+  "argv": [
+   "agent",
+   "next-action",
+   "--agentId",
+   "9001",
+   "--role",
+   "asp",
+   "--message",
+   "{\"jobId\":\"0xabababababababababababababababababababababababababababababababab\",\"event\":\"reveal_started\"}"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-deliver-dashdash-jobid",
+  "argv": [
+   "agent",
+   "deliver",
+   "--agent-id",
+   "9001",
+   "--",
+   "--file"
+  ],
+  "home": "anon",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ]
+ },
+ {
+  "id": "agent-asp-subscribe-active-i64-edges",
+  "argv": [
+   "agent",
+   "subscribe-active",
+   "--agent-id",
+   "9001"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "exact": [
+   "stdout"
+  ],
+  "fixtures": [
+   "agent-asp-subscribe-my-i64"
+  ]
+ }
+]

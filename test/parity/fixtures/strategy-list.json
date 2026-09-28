@@ -1,0 +1,94 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/getOpenOrder",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": 0,
+        "msg": "success",
+        "data": {
+          "cursor": "Y3Vyc29yLTI=",
+          "hasNext": true,
+          "dataList": [
+            {
+              "orderId": "17296046425729984",
+              "strategyId": "8812345",
+              "userWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "status": 3,
+              "strategyMode": 7,
+              "orderType": 1,
+              "strategyType": 2,
+              "exchangeDirection": 0,
+              "chainId": "1",
+              "chainName": "Ethereum",
+              "canResume": false,
+              "fromToken": {
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "tokenSymbol": "USDC",
+                "amount": "5",
+                "decimal": 6
+              },
+              "toToken": {
+                "tokenAddress": "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+                "tokenSymbol": "ETH",
+                "decimal": 18
+              },
+              "triggerInfo": {
+                "triggerPrice": "2000",
+                "currentPrice": "2500.12",
+                "triggerType": 1
+              },
+              "createTime": "1759046400000",
+              "expireTime": "1759651200000",
+              "transactionInfo": null,
+              "executionHistoryList": [
+                {
+                  "code": 3016,
+                  "time": "1759046460000",
+                  "txHash": null
+                },
+                {
+                  "code": 9999,
+                  "msg": "raw be string",
+                  "time": "1759046470000"
+                },
+                {
+                  "code": "3015",
+                  "time": "1759046480000"
+                },
+                {
+                  "code": 0,
+                  "time": "1759046490000",
+                  "txHash": "0xabc123"
+                },
+                "not-an-object"
+              ],
+              "orderStatusUpdateTime": "1759046460000",
+              "estimatedWaitTime": null,
+              "eventCursor": "ev-1",
+              "slippage": "0.15",
+              "priceImpact": 0.0012,
+              "feeInfo": {
+                "limitOrderFeeLevel": 2,
+                "rate": 1
+              }
+            },
+            {
+              "orderId": "17296046425729985",
+              "status": 4,
+              "canResume": true,
+              "chainId": "501",
+              "estimatedWaitTime": 0,
+              "executionHistoryList": null
+            },
+            {
+              "orderId": "17296046425729986",
+              "status": -4
+            }
+          ]
+        }
+      }
+    }
+  }
+]

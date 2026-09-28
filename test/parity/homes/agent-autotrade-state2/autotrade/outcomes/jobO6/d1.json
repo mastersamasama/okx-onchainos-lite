@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "jobId": "jobO6",
+  "deliveryId": "d1",
+  "venue": "agent_direct/okx",
+  "action": "execute",
+  "amount": "",
+  "executionMode": "one_time",
+  "status": "unknown_after_submit",
+  "reason": "timeout",
+  "notificationPending": true,
+  "notificationAttempts": 1,
+  "nextNotificationAttemptAt": 0,
+  "createdAt": 1700000000,
+  "updatedAt": 1700000000
+}

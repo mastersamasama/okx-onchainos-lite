@@ -1,0 +1,1 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/candles", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": { "requestTime": 1721000000000, "candles": [["1700000000000", "1.0"]] } } } }]

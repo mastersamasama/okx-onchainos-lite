@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "jobId": "job-multi",
+  "grants": {
+    "defi": {
+      "maxBuy": null,
+      "maxSell": null
+    },
+    "polymarket": {},
+    "trade_kit": {
+      "maxBuy": "5",
+      "maxSell": "5"
+    }
+  },
+  "createdAt": 1,
+  "expiresAt": 4102444800
+}

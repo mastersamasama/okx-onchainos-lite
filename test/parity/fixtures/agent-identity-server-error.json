@@ -1,0 +1,12 @@
+[
+  {
+    "pathRegex": ".*",
+    "response": {
+      "status": 502,
+      "headers": {
+        "content-type": "text/html"
+      },
+      "body": "<html>bad gateway</html>"
+    }
+  }
+]

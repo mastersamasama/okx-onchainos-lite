@@ -1,0 +1,41 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "match": {
+      "query": {
+        "chains": "196"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "196",
+                "symbol": " OKB ",
+                "tokenAddress": "",
+                "balance": "1.5",
+                "decimal": "18",
+                "tokenPrice": "48.12"
+              },
+              {
+                "chainIndex": 196,
+                "symbol": "",
+                "tokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "balance": 2,
+                "decimal": 6,
+                "tokenPrice": "1"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

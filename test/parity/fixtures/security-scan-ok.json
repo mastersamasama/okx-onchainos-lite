@@ -1,0 +1,164 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/security/token-scan",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainId": "1",
+            "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "isChainSupported": true,
+            "riskLevel": "LOW",
+            "buyTaxes": null,
+            "sellTaxes": null,
+            "isHoneypot": false,
+            "isRubbishAirdrop": false,
+            "isAirdropScam": false,
+            "isLowLiquidity": false,
+            "isMintable": true,
+            "isHasFrozenAuth": true,
+            "isNotRenounced": true
+          },
+          {
+            "chainId": "501",
+            "tokenAddress": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+            "isChainSupported": true,
+            "riskLevel": "MEDIUM",
+            "buyTaxes": null,
+            "sellTaxes": null,
+            "isHoneypot": false,
+            "isRubbishAirdrop": false,
+            "isAirdropScam": false,
+            "isLowLiquidity": false,
+            "isMintable": true,
+            "isHasFrozenAuth": true,
+            "isNotRenounced": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/security/dapp-scan",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "isMalicious": false
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/security/transaction-scan/evm",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "action": "",
+          "riskItemDetail": [],
+          "simulator": {
+            "gasLimit": 21000,
+            "gasUsed": 21000,
+            "revertReason": ""
+          },
+          "warnings": []
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/security/transaction-scan/sol",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "action": "warn",
+          "riskItemDetail": [
+            {
+              "name": "SOLANA_SIGN_ALL_TRANSACTIONS",
+              "description": {
+                "en": "Signing all transactions at once"
+              },
+              "reason": [],
+              "action": "warn"
+            }
+          ],
+          "simulator": {
+            "gasLimit": 0,
+            "gasUsed": 5000,
+            "revertReason": ""
+          },
+          "warnings": []
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/security/approval-mng",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "approvalList": [
+            {
+              "tokenSymbol": "USDT",
+              "tokenAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+              "chainIndex": "1",
+              "spenderAddress": "0x000000000022d473030f116ddee9f6b43ac78ba3",
+              "allowance": "unlimited",
+              "riskLevel": "LOW"
+            }
+          ],
+          "cursor": "2"
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/security/sign-message-check",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "action": "block",
+          "riskItemDetail": [
+            {
+              "name": "SPENDER_ADDRESS_BLACK",
+              "description": {
+                "en": "Approval target blacklisted"
+              },
+              "reason": [
+                "0xbad"
+              ],
+              "action": "block"
+            }
+          ],
+          "simulator": null,
+          "warnings": [
+            "permit signature"
+          ]
+        }
+      }
+    }
+  }
+]

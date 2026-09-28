@@ -1,0 +1,178 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "total": 4,
+          "list": [
+            {
+              "accountName": "Account 1",
+              "ownerAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "agentList": [
+                {
+                  "agentId": "1001",
+                  "name": "Buyer Bot",
+                  "role": 1,
+                  "status": 1,
+                  "agentWalletAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44"
+                },
+                {
+                  "agentId": "2002",
+                  "name": "Oracle ASP",
+                  "role": 2,
+                  "status": 1,
+                  "onlineStatus": 1,
+                  "accountName": "Own Name"
+                },
+                {
+                  "agentId": "3003",
+                  "name": "Judge",
+                  "role": 3,
+                  "status": "2"
+                },
+                {
+                  "agentId": "",
+                  "name": "Blank",
+                  "role": 2
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/batch-list",
+    "match": {
+      "query": {
+        "agentIdList": "2002"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "2002",
+            "name": "Oracle ASP",
+            "role": 2,
+            "status": 1,
+            "onlineStatus": 1,
+            "agentWalletAddress": "0x3dea778778daf33d3c0e0ae5b0b80529c9e041d1",
+            "communicationAddress": "0x9999999999999999999999999999999999999999",
+            "profileDescription": "Data oracle for markets"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/batch-list",
+    "match": {
+      "query": {
+        "agentIdList": "4004"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "4004",
+            "name": "Sleepy ASP",
+            "role": 2,
+            "status": 1,
+            "onlineStatus": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/batch-list",
+    "match": {
+      "query": {
+        "agentIdList": "3003"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "3003",
+            "name": "Judge",
+            "role": 3,
+            "status": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/batch-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": []
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/services",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentInfo": {
+              "agentId": "2002",
+              "name": "Oracle ASP"
+            },
+            "list": [
+              {
+                "serviceId": "svc-a2a",
+                "id": 11,
+                "serviceName": "Report",
+                "serviceType": "A2A",
+                "fee": "1"
+              },
+              {
+                "serviceId": "svc-mcp",
+                "id": 12,
+                "serviceName": "MCP",
+                "serviceType": "a2mcp",
+                "fee": "0.5",
+                "endpoint": "https://api.example.com/mcp"
+              }
+            ],
+            "page": 1,
+            "pageSize": 100,
+            "total": 2
+          }
+        ]
+      }
+    }
+  }
+]

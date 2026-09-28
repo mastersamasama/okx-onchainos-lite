@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "agentId": "a-user",
+  "serviceId": "svc1",
+  "executionMode": "guide_direct",
+  "updatedAtMs": 1700000000000
+}

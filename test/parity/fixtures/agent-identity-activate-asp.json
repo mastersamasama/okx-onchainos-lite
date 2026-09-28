@@ -1,0 +1,61 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "ownerAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "agentList": [
+                {
+                  "agentId": "42",
+                  "role": 2,
+                  "name": "Oracle",
+                  "profileDescription": "d"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent-status",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "42",
+            "status": 1,
+            "approvalStatus": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/agent/submit-approval",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "approvalId": "ap-1",
+          "status": 2
+        }
+      }
+    }
+  }
+]

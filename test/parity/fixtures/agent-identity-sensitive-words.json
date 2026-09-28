@@ -1,0 +1,20 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/im/risk/a2a/sensitive/word/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "words": [
+            "scam",
+            "rug pull"
+          ],
+          "version": 3
+        }
+      }
+    }
+  }
+]

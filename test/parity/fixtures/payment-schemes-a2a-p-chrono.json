@@ -1,0 +1,282 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c1",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2026-13-01T00:00:0xZ",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c2",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2099-01-01T00:00:00−01:00",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c3",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2026-02-30X00:00:00Z",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c4",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2099-01-01T24:00:00.Zz",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c5",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2099-01-01T00:00:00+24:00x",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c6",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2099-12-31T23:59:60.5+23:59",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c7",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "0000-01-01T00:00:00.123456789123z",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c8",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2099-01-01t00:00:00 z",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c9",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2099-01-01 00:00:00-00:60",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/pay/a2a/p/c10",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "challenge": {
+            "data": {
+              "intent": "charge",
+              "expires": "2099-01-01T00:00:00+0:00",
+              "request": {
+                "amount": "10000",
+                "currency": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+                "recipient": "0x2222222222222222222222222222222222222222",
+                "methodDetails": {
+                  "chainId": 196,
+                  "authorizationType": "transferWithAuthorization"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+]

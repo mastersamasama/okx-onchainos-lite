@@ -1,0 +1,27 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "match": {
+      "body": {
+        "queryType": "BRC20_TRANSFERABLE_UTXO_LIST"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "brc20TransferableUtxoList": {
+              "count": 0,
+              "sumValueRaw": "0",
+              "utxos": []
+            }
+          }
+        ]
+      }
+    }
+  }
+]

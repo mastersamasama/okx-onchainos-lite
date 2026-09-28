@@ -1,0 +1,60 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "projectId": "parity-project-0001",
+            "accountId": "parity-account-0009",
+            "accountName": "Renamed",
+            "isDefault": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/account/address/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountCnt": 1,
+            "validAccountCnt": 1,
+            "addressCnt": 2,
+            "accounts": [
+              {
+                "accountId": "parity-account-0009",
+                "addresses": [
+                  {
+                    "address": "0x1111111111111111111111111111111111111111",
+                    "chainIndex": "1",
+                    "chainName": "eth",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  },
+                  {
+                    "address": "0x1111111111111111111111111111111111111111",
+                    "chainIndex": "196",
+                    "chainName": "okb",
+                    "addressType": "eoa",
+                    "chainPath": "m/44'/60'/0'/0/0"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

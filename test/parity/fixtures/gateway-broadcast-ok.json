@@ -1,0 +1,19 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/pre-transaction/broadcast-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "orderId": "202609280001",
+            "txHash": "0x5f3a7c1e2b9d4f6a8c0e1d3b5a7f9c2e4d6b8a0c1e3f5a7b9d2c4e6f8a0b1c3d"
+          }
+        ]
+      }
+    }
+  }
+]

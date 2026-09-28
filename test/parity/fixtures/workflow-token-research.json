@@ -1,0 +1,555 @@
+[
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/token/basic-info",
+  "match": {
+   "body": [
+    {
+     "tokenContractAddress": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+    }
+   ]
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "decimal": "5",
+      "tagList": {
+       "communityRecognized": true
+      },
+      "tokenContractAddress": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+      "tokenLogoUrl": "https://static.okx.com/cdn/web3/currency/token/501-9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump-1.png",
+      "tokenName": "Pump Example",
+      "tokenSymbol": "PMP"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/token/basic-info",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "decimal": "5",
+      "tagList": {
+       "communityRecognized": true
+      },
+      "tokenContractAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "tokenLogoUrl": "https://static.okx.com/cdn/web3/currency/token/501-DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263-1.png",
+      "tokenName": "Bonk",
+      "tokenSymbol": "Bonk"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/price-info",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "circSupply": "88852734117045.36",
+      "holders": "983412",
+      "liquidity": "18234567.12",
+      "marketCap": "1875209111.83",
+      "maxPrice": "0.0000219",
+      "minPrice": "0.0000201",
+      "price": "0.0000211",
+      "priceChange1H": "-0.42",
+      "priceChange24H": "3.17",
+      "priceChange4H": "1.05",
+      "priceChange5M": "0",
+      "time": "1790594800123",
+      "tokenContractAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "tradeNum": "45012",
+      "txs1H": "2011",
+      "txs24H": "45012",
+      "txs4H": "8123",
+      "txs5M": "97",
+      "volume1H": "812345.6",
+      "volume24H": "19234567.8",
+      "volume4H": "3123456.7",
+      "volume5M": "41234.5"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": {
+   "query": {
+    "tokenContractAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "",
+     "protocolId": "",
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": {
+   "query": {
+    "tokenContractAddress": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "100",
+     "protocolId": "120596",
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "match": {
+   "query": {
+    "tokenContractAddress": "NumProto1111111111111111111111111111111pump"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "bundleHoldingPercent": "0.52",
+     "createTime": "1703123456000",
+     "creatorAddress": "9AhKqLR67hwapvG8SA2JFXaCshXc9nALJjpKaHZrsbkw",
+     "devCreateTokenCount": "3",
+     "devHoldingPercent": "0",
+     "devLaunchedTokenCount": "3",
+     "devRugPullTokenCount": "1",
+     "isInternal": false,
+     "lpBurnedPercent": "100",
+     "progress": "100",
+     "protocolId": 120596,
+     "requestTime": 1790594800456,
+     "riskControlLevel": "1",
+     "sniperHoldingPercent": "0.1",
+     "snipersClearAddressCount": "12",
+     "snipersTotal": "14",
+     "suspiciousHoldingPercent": "0",
+     "tokenTags": [
+      "communityRecognized"
+     ],
+     "top10HoldPercent": "31.62",
+     "totalFee": "12.5"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/advanced-info",
+  "response": {
+   "status": 200,
+   "headers": {
+    "content-type": "application/json"
+   },
+   "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"riskControlLevel\":\"2\",\"top10HoldPercent\":\"12.5\",\"score\":1.0,\"ratio\":1e-7,\"big\":12345678901234567890,\"neg\":-3,\"tokenTags\":[]}}"
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/security/token-scan",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainId": "501",
+      "tokenAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "isChainSupported": true,
+      "riskLevel": "LOW",
+      "buyTaxes": null,
+      "sellTaxes": null,
+      "isHoneypot": false,
+      "isMintable": false,
+      "isFreezable": false,
+      "isAirdropScam": false,
+      "isCounterfeit": false,
+      "isLiquidityRemoval": false
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/holder",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "holdAmount": "5103871290411.12",
+      "holdPercent": "5.74",
+      "holderWalletAddress": "5Q544fKrFoe6tsEbD7S8EmxGTJYAKtTVhAW5Q5pge4j1",
+      "fundingSource": "Binance",
+      "tagList": [
+       "exchange"
+      ]
+     },
+     {
+      "holdAmount": "2231870000000",
+      "holdPercent": "2.51",
+      "holderWalletAddress": "9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+      "fundingSource": "",
+      "tagList": []
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/cluster/overview",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "clusterConcentration": "Low",
+     "top100HoldingsPercent": "41.2",
+     "rugPullPercent": "0",
+     "holderNewAddressPercent": "4.1",
+     "clusterList": [
+      {
+       "clusterId": "c-1",
+       "holdingPercent": "3.2",
+       "addressCount": "4"
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/top-trader",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "holderWalletAddress": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU",
+      "realizedPnlUsd": "120345.6",
+      "unrealizedPnlUsd": "2031.4",
+      "totalPnlUsd": "122377",
+      "buyValueUsd": "50000",
+      "sellValueUsd": "170345.6",
+      "tagList": [
+       "smartMoney"
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "POST",
+  "path": "/api/v6/dex/market/signal/list",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "timestamp": "1790594700000",
+      "chainIndex": "501",
+      "walletType": "1",
+      "triggerWalletCount": "3",
+      "triggerWalletAddress": "7xKXtg2CW87d97TXJSDpbD5jBkheTqA83TZRuJosgAsU,9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM",
+      "amountUsd": "15230.5",
+      "soldRatioPercent": "12.5",
+      "cursor": "1790594700000_17",
+      "price": "0.0000211",
+      "token": {
+       "tokenAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+       "symbol": "Bonk",
+       "name": "Bonk",
+       "logo": "",
+       "marketCapUsd": "1875209111.83",
+       "holders": "983412",
+       "top10HolderPercent": "31.62"
+      }
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenDetails",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "tokenAddress": "9BB6NFEcjBCtnNLFko2FqVQBq8HHM13kCyYcdQbgpump",
+     "symbol": "PMP",
+     "name": "Pump Example",
+     "protocolId": "120596",
+     "bondingPercent": "100",
+     "migratedTime": "1790500000000",
+     "market": {
+      "marketCapUsd": "812345",
+      "volumeUsd1h": "23123.4"
+     },
+     "tags": {
+      "top10HoldingsPercent": "22.1",
+      "devHoldingsPercent": "0",
+      "snipersPercent": "1.2"
+     }
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenDevInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "devLaunchedInfo": {
+      "totalTokens": "12",
+      "rugPullCount": "3",
+      "migratedCount": "1",
+      "goldenGemCount": "0"
+     },
+     "devHoldingInfo": {
+      "devHoldingPercent": "0",
+      "devAddress": "Dev1111111111111111111111111111111111111111"
+     }
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/tokenBundleInfo",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "totalBundlers": "4",
+     "bundlerAthPercent": "12.5",
+     "bundledValueNative": "3.2",
+     "bundledTokenAmount": "1000000"
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/memepump/similarToken",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "tokenAddress": "Sim1pump",
+      "symbol": "SIM",
+      "createdTimestamp": "1790400000000",
+      "marketCapUsd": "120000"
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/search",
+  "match": {
+   "query": {
+    "search": "zzznotfound"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": []
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/search",
+  "match": {
+   "query": {
+    "search": "objdata"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "list": []
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/search",
+  "match": {
+   "query": {
+    "search": "apierror"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "51000",
+    "msg": "Parameter chains error",
+    "data": []
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/token/search",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "chainIndex": "501",
+      "decimal": "5",
+      "explorerUrl": "https://web3.okx.com/explorer/solana/token/DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "holders": "983412",
+      "liquidity": "18234567.12",
+      "marketCap": "1875209111.83",
+      "price": "0.0000211",
+      "change": "3.17",
+      "tagList": {
+       "communityRecognized": true
+      },
+      "tokenContractAddress": "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+      "tokenLogoUrl": "https://static.okx.com/cdn/web3/currency/token/501-bonk.png",
+      "tokenName": "Bonk",
+      "tokenSymbol": "Bonk"
+     },
+     {
+      "chain": "501",
+      "address": "BonkAlt11111111111111111111111111111111111",
+      "name": "Bonk Alt",
+      "symbol": "BONKA",
+      "price": "0.1",
+      "marketCap": null,
+      "logoUrl": "https://static.okx.com/cdn/x.png"
+     },
+     {
+      "tokenSymbol": null,
+      "symbol": "IGNORED",
+      "tokenName": "Null Symbol",
+      "tokenContractAddress": "BonkNull1111111111111111111111111111111111",
+      "chainIndex": 501
+     },
+     "not-a-token",
+     {
+      "tokenContractAddress": "BonkNum11111111111111111111111111111111111",
+      "price": 1,
+      "marketCap": 12345678901234567000
+     }
+    ]
+   }
+  }
+ }
+]

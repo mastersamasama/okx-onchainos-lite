@@ -1,0 +1,24 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/staking/config",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "minCumulativeStakeOkb": "0.001",
+          "partialUnstakeMinRetainOkb": "0.001",
+          "unstakeCooldownSeconds": "10800",
+          "arbitrationFeeBps": "5%",
+          "commitPhaseSeconds": "450",
+          "revealPhaseSeconds": "2250",
+          "slashMinorityBps": "1%",
+          "slashTimeoutBps": "0.3%",
+          "slashedCooldownSeconds": "4050"
+        }
+      }
+    }
+  }
+]

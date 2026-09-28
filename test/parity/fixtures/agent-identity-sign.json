@@ -1,0 +1,20 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/sign-msg",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "signature": "0x5167a0",
+            "publicKey": "pk-1",
+            "keyUuid": "k"
+          }
+        ]
+      }
+    }
+  }
+]

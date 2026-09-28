@@ -1,0 +1,114 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/pre-transaction/gas-price",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "normal": "1532847112",
+            "min": "1432847112",
+            "max": "2032847112",
+            "supporteip1559": true,
+            "eip1559Protocol": {
+              "suggestBaseFee": "1432847112",
+              "baseFee": "1432847112",
+              "proposePriorityFee": "100000000",
+              "safePriorityFee": "50000000",
+              "fastPriorityFee": "200000000"
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/pre-transaction/gas-limit",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "gasLimit": "21000"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/pre-transaction/simulate",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "intention": "Transfer",
+            "assetChange": [
+              {
+                "symbol": "ETH",
+                "rawValue": "-1000000000000"
+              }
+            ],
+            "gasUsed": "21000",
+            "failReason": "",
+            "risks": []
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/post-transaction/orders",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "cursor": "1",
+            "orders": [
+              {
+                "orderId": "202609280001",
+                "txHash": "0x5f3a7c1e2b9d4f6a8c0e1d3b5a7f9c2e4d6b8a0c1e3f5a7b9d2c4e6f8a0b1c3d",
+                "chainIndex": "1",
+                "address": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+                "txStatus": "2",
+                "failReason": ""
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/pre-transaction/supported/chain",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "1",
+            "name": "Ethereum",
+            "logoUrl": "https://static.okx.com/cdn/wallet/logo/ETH-20220328.png",
+            "shortName": "eth"
+          }
+        ]
+      }
+    }
+  }
+]

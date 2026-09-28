@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/user/reject",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50011",
+        "msg": "no asp to reject",
+        "data": null
+      }
+    }
+  }
+]

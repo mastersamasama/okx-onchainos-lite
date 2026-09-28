@@ -1,0 +1,10 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/chain/support/list",
+    "response": {
+      "status": 502,
+      "body": "Bad Gateway"
+    }
+  }
+]

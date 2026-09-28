@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/broadcast",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81001",
+        "msg": "broadcast rejected by node",
+        "data": null
+      }
+    }
+  }
+]

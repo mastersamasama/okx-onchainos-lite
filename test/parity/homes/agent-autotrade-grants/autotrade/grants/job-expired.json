@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "jobId": "job-expired",
+  "grants": {
+    "dex": {
+      "maxBuy": "1",
+      "maxSell": "1"
+    }
+  },
+  "createdAt": 1,
+  "expiresAt": 1700000000
+}

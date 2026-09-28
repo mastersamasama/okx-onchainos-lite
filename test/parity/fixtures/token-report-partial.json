@@ -1,0 +1,58 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/token/basic-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "chainIndex": "8453",
+            "tokenContractAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+            "tokenName": "USD Coin",
+            "tokenSymbol": "USDC",
+            "tokenLogoUrl": "https://static.okx.com/cdn/web3/currency/token/8453-usdc.png",
+            "decimal": "6",
+            "tagList": {
+              "communityRecognized": true
+            }
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/dex/market/price-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50125",
+        "msg": "Token not supported",
+        "data": []
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/market/token/advanced-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": null
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/api/v6/security/token-scan",
+    "response": {
+      "status": 500,
+      "body": "upstream connect error"
+    }
+  }
+]

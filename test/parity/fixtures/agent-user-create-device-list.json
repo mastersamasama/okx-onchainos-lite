@@ -1,0 +1,32 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "total": 2,
+            "page": 1,
+            "pageSize": 20,
+            "list": [
+              {
+                "deviceId": "939e4859f44d7ce47c03a507c18ccc234c27e82c24b06d831608e7a48052a1f0",
+                "deviceName": "parity-host",
+                "lastOnlineTime": 1784620000000
+              },
+              {
+                "deviceId": "dev-2",
+                "deviceName": "Phone",
+                "lastOnlineTime": 0
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

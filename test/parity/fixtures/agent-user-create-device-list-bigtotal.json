@@ -1,0 +1,13 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "response": {
+      "status": 200,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": "{\"code\":\"0\",\"msg\":\"success\",\"data\":{\"total\":9007199254740993,\"page\":1,\"pageSize\":20,\"list\":[{\"deviceId\":\"dev-9\",\"deviceName\":\"Big\",\"lastOnlineTime\":9007199254740993}]}}"
+    }
+  }
+]

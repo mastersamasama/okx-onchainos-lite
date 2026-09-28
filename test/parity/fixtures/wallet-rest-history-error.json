@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/order/list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50101",
+        "msg": "order service busy",
+        "data": []
+      }
+    }
+  }
+]

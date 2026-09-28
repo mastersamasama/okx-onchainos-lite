@@ -1,0 +1,22 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/im/xmtp/system-config",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "xmtpEnv": "production",
+          "systemAccounts": [
+            {
+              "address": "0xsys1",
+              "role": "notify"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

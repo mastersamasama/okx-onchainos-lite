@@ -1,0 +1,56 @@
+{
+  "sessions": [
+    {
+      "connId": "4e5b6c7d",
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "login",
+              "code": "0",
+              "msg": "",
+              "connId": "4e5b6c7d"
+            }
+          ]
+        },
+        {
+          "on": "subscribe",
+          "send": [
+            "$acks",
+            {
+              "$frame": {
+                "op": 1,
+                "text": "{\"arg\":{\"channel\":\"price\"},",
+                "fin": false
+              }
+            },
+            {
+              "$ping": "mid"
+            },
+            {
+              "$frame": {
+                "op": 0,
+                "text": "\"data\":[{\"frag\":1.0,",
+                "fin": false
+              }
+            },
+            {
+              "$frame": {
+                "op": 0,
+                "text": "\"x\":\"é\"}]}"
+              }
+            },
+            {
+              "$frame": {
+                "op": 2,
+                "b64": "AAEC"
+              }
+            }
+          ],
+          "then": "close"
+        }
+      ]
+    }
+  ]
+}

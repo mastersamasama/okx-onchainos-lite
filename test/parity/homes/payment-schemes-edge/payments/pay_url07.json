@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "source": "okx_ai_a2mcp",
+  "paymentId": "pay_url07",
+  "probeId": "probe_parity",
+  "ownerAccountId": "parity-account-0001",
+  "payerAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+  "frozenRequest": {
+    "endpoint": "https://example.com:8a/pay",
+    "method": "POST",
+    "typedParams": {
+      "count": 2,
+      "q": "hello"
+    },
+    "paramPlan": [
+      {
+        "name": "q",
+        "carrier": "query",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "resource": {
+      "mimeType": "application/json",
+      "url": "https://example.com:8a/pay"
+    }
+  },
+  "selectedAccept": {
+    "raw": {
+      "scheme": "exact",
+      "network": "eip155:196",
+      "asset": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+      "amount": "10000",
+      "payTo": "0x2222222222222222222222222222222222222222",
+      "maxTimeoutSeconds": 300,
+      "extra": {
+        "name": "USD₮0",
+        "version": "1"
+      }
+    },
+    "network": "eip155:196",
+    "asset": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+    "symbol": "USDT",
+    "decimals": 6,
+    "scheme": "exact",
+    "authorizationType": "eip3009",
+    "amount": "10000",
+    "payTo": "0x2222222222222222222222222222222222222222",
+    "balanceStatus": "sufficient"
+  },
+  "execution": {
+    "state": "prepared",
+    "signatureAttempts": 0
+  },
+  "createdAt": 1700000000,
+  "expiresAt": 4102444800
+}

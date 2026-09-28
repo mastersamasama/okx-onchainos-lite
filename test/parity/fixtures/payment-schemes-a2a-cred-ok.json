@@ -1,0 +1,18 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/pay/a2a/p/p1/credential",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "success": true,
+          "status": "settling",
+          "txHash": "0x7777777777777777777777777777777777777777777777777777777777777777"
+        }
+      }
+    }
+  }
+]

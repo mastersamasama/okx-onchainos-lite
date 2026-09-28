@@ -1,0 +1,187 @@
+[
+ {
+  "id": "tracker-activities-smart-money",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "smart_money"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "tracker-activities-kol-filters",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "kol",
+   "--chain",
+   "solana",
+   "--trade-type",
+   "1",
+   "--min-volume",
+   "1000"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "tracker-trades"
+  ]
+ },
+ {
+  "id": "tracker-activities-multi",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "multi_address",
+   "--wallet-address",
+   "0xd8da6bf26964af9d7eed9e03e53415d37aa96045,0xab5801a7d398351b8be11c439e05c5b3259aec9b"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "tracker-activities-all-filters",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "3",
+   "--wallet-address",
+   "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+   "--trade-type",
+   "2",
+   "--chain",
+   "Foo",
+   "--min-volume",
+   "1",
+   "--max-volume",
+   "2",
+   "--min-holders",
+   "3",
+   "--min-market-cap",
+   "4",
+   "--max-market-cap",
+   "5",
+   "--min-liquidity",
+   "6",
+   "--max-liquidity",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "tracker-trades"
+  ]
+ },
+ {
+  "id": "tracker-activities-multi-empty-wallet",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "multi_address",
+   "--wallet-address",
+   ""
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "tracker-trades"
+  ]
+ },
+ {
+  "id": "tracker-activities-3-missing-wallet",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "3"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "tracker-activities-multi-missing-wallet",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "multi_address",
+   "--chain",
+   "ethereum"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "tracker-activities-passthrough-type",
+  "argv": [
+   "--chain",
+   "base",
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "Smart_Money"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "tracker-trades"
+  ]
+ },
+ {
+  "id": "tracker-activities-missing-type",
+  "argv": [
+   "tracker",
+   "activities"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "tracker-activities-invalid-token-retry",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "kol"
+  ],
+  "home": "wallet",
+  "network": "fixture",
+  "fixtures": [
+   "tracker-invalid-token",
+   "tracker-trades",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "tracker-activities-3-missing-wallet-expired",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "3"
+  ],
+  "home": "wallet-expired",
+  "network": "fixture",
+  "fixtures": [
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "tracker-activities-query-encoding",
+  "argv": [
+   "tracker",
+   "activities",
+   "--tracker-type",
+   "kol",
+   "--min-volume",
+   "a b&c=d/é+",
+   "--chain",
+   "ＳＯＬ"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "tracker-trades"
+  ]
+ }
+]

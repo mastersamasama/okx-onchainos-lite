@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/im/message/eligible",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "51001",
+        "msg": "provider has blocked this conversation",
+        "data": null
+      }
+    }
+  }
+]

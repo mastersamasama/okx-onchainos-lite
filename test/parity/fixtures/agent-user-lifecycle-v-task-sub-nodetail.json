@@ -1,0 +1,31 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+          "jobType": 1,
+          "status": 1,
+          "title": "Sub",
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "paymentTokenAmount": "3",
+          "tokenSymbol": "USDT"
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 500,
+      "body": "upstream exploded"
+    }
+  }
+]

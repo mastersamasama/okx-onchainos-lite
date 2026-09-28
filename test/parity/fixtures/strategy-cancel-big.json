@@ -1,0 +1,10 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v1/dex/strategy/agentic/limitOrder/cancel",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":0,\"msg\":\"success\",\"data\":{\"updateNum\":9007199254740993,\"estimatedWaitTime\":-1}}"
+    }
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {
+    "pathRegex": "^/api/v6/dex/p",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82000",
+        "msg": "Insufficient liquidity",
+        "data": []
+      }
+    }
+  }
+]

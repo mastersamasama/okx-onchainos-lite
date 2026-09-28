@@ -1,0 +1,32 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "title": "Market report",
+          "description": "Summarize Q3 inputs",
+          "tokenSymbol": "USDT",
+          "tokenAmount": "5",
+          "paymentTokenAmount": "5",
+          "paymentMode": 1,
+          "jobType": 0,
+          "buyerAgentId": "8415",
+          "buyerAgentAddress": "0x2222222222222222222222222222222222222222",
+          "providerAgentId": "9001",
+          "providerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "serviceId": "svc-1",
+          "serviceParams": "{\"symbol\":\"BTC\"}",
+          "createTime": 1788192600,
+          "testFlag": false,
+          "status": 6
+        }
+      }
+    }
+  }
+]

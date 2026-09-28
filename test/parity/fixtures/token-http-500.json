@@ -1,0 +1,12 @@
+[
+  {
+    "pathRegex": "^/api/v6/",
+    "response": {
+      "status": 500,
+      "body": {
+        "code": "50000",
+        "msg": "System error"
+      }
+    }
+  }
+]

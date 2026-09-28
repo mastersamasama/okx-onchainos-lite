@@ -1,0 +1,45 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v6/dex/cross-chain/swap",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "fromTokenAmount": "10000000",
+            "minimumReceived": "9998999",
+            "router": {
+              "bridgeId": 640,
+              "bridgeName": "STARGATE V2 TAXI MODE",
+              "crossChainFee": "0",
+              "crossChainFeeTokenAddress": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+              "estimateGasFee": "",
+              "estimateTime": "71",
+              "minimumReceived": "9998999",
+              "needApprove": false,
+              "needCancelApprove": false,
+              "otherNativeFee": "110718175174586",
+              "priceImpactPercentage": "",
+              "toTokenAmount": "9998999",
+              "warningMessage": ""
+            },
+            "toTokenAmount": "9998999",
+            "tx": {
+              "data": "0xe8017952000000000000000000000000d825f780e3cb88b383907ff427495d1dca352d44",
+              "from": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "gasLimit": "63000",
+              "gasPrice": "19825011",
+              "maxPriorityFeePerGas": "13075011",
+              "randomKeyAccount": [],
+              "signatureData": [],
+              "value": "110718175174586"
+            }
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,15 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/social/vibe/top-kols",
+  "times": 1,
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "53017",
+    "msg": "token expired",
+    "data": []
+   }
+  }
+ }
+]

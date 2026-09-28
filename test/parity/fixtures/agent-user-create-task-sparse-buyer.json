@@ -1,0 +1,20 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "jobId": "0xabababababababababababababababababababababababababababababababab",
+          "buyerAgentAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "tokenSymbol": "USDT"
+        }
+      }
+    }
+  }
+]

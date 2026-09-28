@@ -1,0 +1,202 @@
+[
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/overview",
+  "match": {
+   "query": {
+    "timeFrame": "3"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "realizedPnlUsd": "234.5",
+     "top3PnlTokenSumUsd": "900.1",
+     "top3PnlTokenPercent": "72.9",
+     "topPnlTokenList": [
+      {
+       "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+       "tokenSymbol": "USDC",
+       "tokenPnLUsd": "500.0",
+       "tokenPnLPercent": "12.5"
+      }
+     ],
+     "winRate": "0.5",
+     "tokenCountByPnlPercent": {
+      "over500Percent": "0",
+      "zeroTo500Percent": "7",
+      "zeroToMinus50Percent": "3",
+      "overMinus50Percent": "1"
+     },
+     "buyTxCount": "20",
+     "buyTxVolume": "10000",
+     "sellTxCount": "18",
+     "sellTxVolume": "11234.56",
+     "avgBuyValueUsd": "500",
+     "preferredMarketCap": "3",
+     "buysByMarketCap": [
+      {
+       "marketCapRange": "1",
+       "buyCount": "4"
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/overview",
+  "match": {
+   "query": {
+    "timeFrame": "4"
+   }
+  },
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "realizedPnlUsd": "1234.56",
+     "top3PnlTokenSumUsd": "900.1",
+     "top3PnlTokenPercent": "72.9",
+     "topPnlTokenList": [
+      {
+       "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+       "tokenSymbol": "USDC",
+       "tokenPnLUsd": "500.0",
+       "tokenPnLPercent": "12.5"
+      }
+     ],
+     "winRate": "0.61",
+     "tokenCountByPnlPercent": {
+      "over500Percent": "0",
+      "zeroTo500Percent": "7",
+      "zeroToMinus50Percent": "3",
+      "overMinus50Percent": "1"
+     },
+     "buyTxCount": "20",
+     "buyTxVolume": "10000",
+     "sellTxCount": "18",
+     "sellTxVolume": "11234.56",
+     "avgBuyValueUsd": "500",
+     "preferredMarketCap": "3",
+     "buysByMarketCap": [
+      {
+       "marketCapRange": "1",
+       "buyCount": "4"
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/balance/all-token-balances-by-address",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "tokenAssets": [
+       {
+        "chainIndex": "1",
+        "tokenContractAddress": "",
+        "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+        "symbol": "ETH",
+        "balance": "1.2345",
+        "rawBalance": "1234500000000000000",
+        "tokenPrice": "3012.5",
+        "isRiskToken": false
+       },
+       {
+        "chainIndex": "1",
+        "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "address": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+        "symbol": "USDC",
+        "balance": "100.5",
+        "rawBalance": "100500000",
+        "tokenPrice": "0.9998",
+        "isRiskToken": false
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/portfolio/recent-pnl",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "eyJwIjoyfQ==",
+     "pnlList": [
+      {
+       "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+       "tokenSymbol": "USDC",
+       "lastActiveTimestamp": "1790500000000",
+       "realizedPnlUsd": "12.5",
+       "unrealizedPnlUsd": "0",
+       "totalPnlUsd": "12.5",
+       "totalPnlPercent": "1.2"
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/market/address-tracker/trades",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": {
+     "cursor": "",
+     "trades": [
+      {
+       "txHash": "0x3f1c0000000000000000000000000000000000000000000000000000000000aa",
+       "walletAddress": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+       "chainIndex": "1",
+       "tradeType": "1",
+       "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+       "tokenSymbol": "USDC",
+       "amountUsd": "1000",
+       "tradeTime": "1790500000000"
+      }
+     ]
+    }
+   }
+  }
+ },
+ {
+  "method": "GET",
+  "path": "/api/v6/dex/balance/total-value-by-address",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": [
+     {
+      "totalValue": "3818.2587"
+     }
+    ]
+   }
+  }
+ }
+]

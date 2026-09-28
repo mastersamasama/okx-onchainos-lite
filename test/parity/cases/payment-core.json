@@ -1,0 +1,1543 @@
+[
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-no-args",
+    "argv": [
+      "payment",
+      "pay"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-conflict",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "x",
+      "--payment-id",
+      "y"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-conflict-rev",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "y",
+      "--payload",
+      "x"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-index-negative",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "x",
+      "--selected-index",
+      "-1"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-index-invalid",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "x",
+      "--selected-index",
+      "abc"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-bad-blob",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "@@@"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-no-accepts",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6Mn0"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-index-out-of-range",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0=",
+      "--selected-index",
+      "5"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-index-not-array",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJhY2NlcHRzIjp7InNjaGVtZSI6ImV4YWN0IiwibmV0d29yayI6ImVpcDE1NToxOTYiLCJhbW91bnQiOiIxMDAwMDAwIiwicGF5VG8iOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJhc3NldCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RHIiwidmVyc2lvbiI6IjEifX19",
+      "--selected-index",
+      "0"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-logged-out",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tiered-no-tier",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50Ijp7ImJhc2ljIjoiMSIsInByZW1pdW0iOiIyIn0sInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-bad-network",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJiYXNlIiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-xko-off-xlayer",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MyIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IlhLTzVhQWViNjA1M0YzRTk0QzliOUEwOWYzMzY2OTQzNUU3RWYxQmVBZWQiLCJhc3NldCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RHIiwidmVyc2lvbiI6IjEifX1dfQ=="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-missing-asset",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsibmFtZSI6IlVTREciLCJ2ZXJzaW9uIjoiMSJ9fV19"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-empty-accepts",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbXX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-chain-not-found",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6OTk5OTk5IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-exact-v2",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ],
+    "masks": [
+      "stdout.data.authorization_header",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-exact-v1",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MSwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsibmFtZSI6IlVTREciLCJ2ZXJzaW9uIjoiMSJ9fV19"
+    ],
+    "masks": [
+      "stdout.data.authorization.nonce",
+      "stdout.data.authorization.validBefore",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-deferred-selected",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MSwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsibmFtZSI6IlVTREciLCJ2ZXJzaW9uIjoiMSJ9fSx7InNjaGVtZSI6ImFnZ3JfZGVmZXJyZWQiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsibmFtZSI6IlVTREciLCJ2ZXJzaW9uIjoiMSJ9fV19",
+      "--selected-index",
+      "1"
+    ],
+    "masks": [
+      "stdout.data.authorization.nonce",
+      "req.body.nonce"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-gen-hash-error",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee-errors"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-missing-signature",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee-nosig"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-permit2-base",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MyIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsiYXNzZXRUcmFuc2Zlck1ldGhvZCI6InBlcm1pdDIifX1dfQ=="
+    ],
+    "masks": [
+      "stdout.data.authorization_header",
+      "req.body.payload.*.message.message.nonce",
+      "req.body.payload.*.message.message.deadline",
+      "req.body.payload.*.message.message.witness.validAfter"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-upto-no-facilitator",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJ1cHRvIiwibmV0d29yayI6ImVpcDE1NTo4NDUzIiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "real",
+    "id": "payment-core-pay-tee-permit2-xlayer-allowance",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDc3OWRlZDBjOWUxMDIyMjI1ZjhlMDYzMGIzNWE5YjU0YmU3MTM3MzYiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJhc3NldFRyYW5zZmVyTWV0aG9kIjoiUGVybWl0MiJ9fV19"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-period-mismatch",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-allowance-mismatch"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJwZXJpb2QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjUwMDAwMDAiLCJhc3NldCI6IjB4Nzc5ZGVkMGM5ZTEwMjIyMjVmOGUwNjMwYjM1YTliNTRiZTcxMzczNiIsInBheVRvIjoiMHgwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDBjYWZlIiwibWF4VGltZW91dFNlY29uZHMiOjYwMCwiZXh0cmEiOnsiY29udHJhY3RzIjp7InN1YnNjcmlwdGlvbiI6IjB4NDAyMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMyIsInBlcm1pdDIiOiIweDAwMDAwMDAwMDAyMkQ0NzMwMzBGMTE2ZERFRTlGNkI0M2FDNzhCQTMifSwiZmFjaWxpdGF0b3IiOiIweDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMGRlYWQiLCJhbW91bnRQZXJQZXJpb2QiOiI1MDAwMDAwIiwicGVyaW9kU2VjIjoyNTkyMDAwLCJtYXhQZXJpb2RzIjoxMiwicGxhbiI6eyJpZCI6InBybyIsInRpZXIiOjJ9fX1dfQ=="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-invalid-id",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "bad id!"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-missing",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_doesnotexist0000000000",
+      "--yes"
+    ],
+    "osErrorText": "code"
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-confirming",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parity0001"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-confirming-index",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parity0001",
+      "--selected-index",
+      "1"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-confirming-fallback",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_paritynocand",
+      "--selected-index",
+      "0"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-confirming-summary",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_paritynocand"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-bad-param",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parity0001",
+      "--param",
+      "novalue",
+      "--yes"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-empty-param-key",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parity0001",
+      "--param",
+      " =v"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-index-out-of-range",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parity0001",
+      "--selected-index",
+      "2"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-cross-user",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parityother"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-expired",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parityexpired",
+      "--yes"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-bad-json",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_paritybadjson"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-bad-schema",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parityschema"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-unknown-source",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_paritysource"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-a2mcp-overrides",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_paritya2mcp",
+      "--selected-index",
+      "0",
+      "--yes"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-a2mcp-needs-yes",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_paritya2mcp"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-replay-failed",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_parity0001",
+      "--selected-index",
+      "0",
+      "--param",
+      "sku=A 1",
+      "--yes"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay2-replay-mcp-failed",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payment-id",
+      "pay_paritymcp",
+      "--selected-index",
+      "0",
+      "--yes"
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-json",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--receipt",
+      "{\"status\":\"success\",\"txHash\":\"0xdef456\",\"amount\":\"10000\",\"from\":\"0xfrom\",\"chainId\":\"196\"}"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-header",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--header",
+      "eyJzdWNjZXNzIjp0cnVlLCJ0cmFuc2FjdGlvbiI6IjB4YWJjMTIzIiwibmV0d29yayI6Ijg0NTMiLCJwYXllciI6IjB4cGF5ZXIifQ=="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-header-urlsafe",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--header",
+      "eyJzdWNjZXNzIjp0cnVlLCJ0cmFuc2FjdGlvbiI6IjB4YWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYmFiYWJhYiIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwicGF5ZXIiOiIweGNkY2RjZGNkY2RjZGNkY2RjZGNkY2RjZGNkY2RjZGNkY2RjZGNkY2QiLCJhbW91bnQiOjEyMzQ1fQ"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-bad-json",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--receipt",
+      "{bad json"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-failed",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--receipt",
+      "{\"success\":false,\"transaction\":\"0x0\"}"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-numbers",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--receipt",
+      "{\"status\":\"success\",\"transactionHash\":\"0xaaa\",\"value\":\"42\",\"from\":\"0xf\",\"chainId\":8453}"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-unknown-status",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--receipt",
+      "{\"status\":\"\",\"amount\":1.50,\"chain_id\":\"x\"}"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-www-auth",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--header",
+      "Payment id=\"r1\", method=\"evm\", intent=\"charge\", status=\"success\", transaction=\"0xfeed\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-blank",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--receipt",
+      "   "
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-none",
+    "argv": [
+      "payment",
+      "decode-receipt"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-receipt-both",
+    "argv": [
+      "payment",
+      "decode-receipt",
+      "--header",
+      "a",
+      "--receipt",
+      "b"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-no-payload",
+    "argv": [
+      "payment",
+      "pay-local"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-exact-v2",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ],
+    "masks": [
+      "stdout.data.authorization_header"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-exact-v1",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MSwiYWNjZXB0cyI6W3sic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsibmFtZSI6IlVTRCBDb2luIn19XX0="
+    ],
+    "masks": [
+      "stdout.data.authorization.nonce",
+      "stdout.data.authorization.validBefore",
+      "stdout.data.signature"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-deferred-only",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJhZ2dyX2RlZmVycmVkIiwibmV0d29yayI6ImVpcDE1NToxOTYiLCJhbW91bnQiOiIxMDAwMDAwIiwicGF5VG8iOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJhc3NldCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RHIiwidmVyc2lvbiI6IjEifX1dfQ=="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-deferred-filtered",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MSwiYWNjZXB0cyI6W3sic2NoZW1lIjoiYWdncl9kZWZlcnJlZCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19LHsic2NoZW1lIjoiZXhhY3QiLCJuZXR3b3JrIjoiZWlwMTU1OjE5NiIsImFtb3VudCI6IjciLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsibmFtZSI6IlVTREciLCJ2ZXJzaW9uIjoiMSJ9fV19"
+    ],
+    "masks": [
+      "stdout.data.authorization.nonce",
+      "stdout.data.authorization.validBefore",
+      "stdout.data.signature"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-no-domain-name",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6e319XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-bad-amount",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMXgwIiwicGF5VG8iOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJhc3NldCI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsIm1heFRpbWVvdXRTZWNvbmRzIjozMDAsImV4dHJhIjp7Im5hbWUiOiJVU0RHIiwidmVyc2lvbiI6IjEifX1dfQ=="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-bad-asset",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDEyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsibmFtZSI6IlVTREciLCJ2ZXJzaW9uIjoiMSJ9fV19"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-key-short",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1234"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-key-not-hex",
+    "env": {
+      "EVM_PRIVATE_KEY": " zz "
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-key-zero",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-no-key",
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ],
+    "osErrorText": "code"
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-env-file",
+    "home": "payment-core-env",
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ],
+    "masks": [
+      "stdout.data.authorization_header"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-permit2-base",
+    "home": "payment-core-chains",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MyIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsiYXNzZXRUcmFuc2Zlck1ldGhvZCI6InBlcm1pdDIifX1dfQ=="
+    ],
+    "masks": [
+      "stdout.data.authorization_header"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-upto-v1",
+    "home": "payment-core-chains",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MSwiYWNjZXB0cyI6W3sic2NoZW1lIjoidXB0byIsIm5ldHdvcmsiOiJlaXAxNTU6ODQ1MyIsImFtb3VudCI6IjEwMDAwMDAiLCJwYXlUbyI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsImFzc2V0IjoiMHgyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyIiwibWF4VGltZW91dFNlY29uZHMiOjMwMCwiZXh0cmEiOnsiZmFjaWxpdGF0b3JBZGRyZXNzIjoiMHg0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0NDQ0In19XX0="
+    ],
+    "masks": [
+      "stdout.data.signature",
+      "stdout.data.permit2Authorization.nonce",
+      "stdout.data.permit2Authorization.deadline",
+      "stdout.data.permit2Authorization.witness.validAfter"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-local-upto-no-facilitator",
+    "home": "payment-core-chains",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJ1cHRvIiwibmV0d29yayI6ImVpcDE1NTo4NDUzIiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJuYW1lIjoiVVNERyIsInZlcnNpb24iOiIxIn19XX0="
+    ]
+  },
+  {
+    "network": "real",
+    "id": "payment-core-local-permit2-xlayer-allowance",
+    "home": "payment-core-chains",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "argv": [
+      "payment",
+      "pay-local",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vZGF0YSIsIm1pbWVUeXBlIjoiYXBwbGljYXRpb24vanNvbiJ9LCJhY2NlcHRzIjpbeyJzY2hlbWUiOiJleGFjdCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiMTAwMDAwMCIsInBheVRvIjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIiwiYXNzZXQiOiIweDc3OWRlZDBjOWUxMDIyMjI1ZjhlMDYzMGIzNWE5YjU0YmU3MTM3MzYiLCJtYXhUaW1lb3V0U2Vjb25kcyI6MzAwLCJleHRyYSI6eyJhc3NldFRyYW5zZmVyTWV0aG9kIjoicGVybWl0MiJ9fV19"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x1234567890123456789012345678901234567890",
+      "--chain",
+      "196",
+      "--name",
+      "USDG"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-trim",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      " 0x1234567890123456789012345678901234567890 ",
+      "--chain",
+      " +8453 ",
+      "--name",
+      "  ",
+      "--tier",
+      " "
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-chain-name",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x1234567890123456789012345678901234567890",
+      "--chain",
+      "xlayer"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-chain-empty",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x1234567890123456789012345678901234567890",
+      "--chain",
+      "  "
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-non-evm",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x1234567890123456789012345678901234567890",
+      "--chain",
+      "501"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-bad-tier",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x1234567890123456789012345678901234567890",
+      "--chain",
+      "196",
+      "--tier",
+      "gold"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-bad-asset",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x123",
+      "--chain",
+      "196"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-bad-checksum",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x5AAeb6053F3E94C9b9A09f33669435E7Ef1BeAed",
+      "--chain",
+      "196"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-global-chain",
+    "argv": [
+      "--chain",
+      "1",
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x1234567890123456789012345678901234567890"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-set-tier-premium",
+    "home": "payment-core-cache",
+    "argv": [
+      "payment",
+      "default",
+      "set",
+      "--asset",
+      "0x5aAeb6053F3E94C9b9A09f33669435E7Ef1BeAed",
+      "--chain",
+      "1",
+      "--tier",
+      "PREMIUM"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-get-empty",
+    "argv": [
+      "payment",
+      "default",
+      "get"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-get",
+    "home": "payment-core-cache",
+    "argv": [
+      "payment",
+      "default",
+      "get"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-unset",
+    "home": "payment-core-cache",
+    "argv": [
+      "payment",
+      "default",
+      "unset"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-default-unset-empty",
+    "argv": [
+      "payment",
+      "default",
+      "unset"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-tempo",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"a\", realm=\"r\", method=\"tempo\", intent=\"charge\", request=\"e30\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-missing-fields",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment realm=\"x\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-missing-recipient",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"charge\", request=\"e30\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-missing-request",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"1\", realm=\"r\", method=\"evm\", intent=\"charge\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-bad-base64",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"1\", method=\"evm\", intent=\"charge\", request=\"e30!\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-bad-json",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"1\", method=\"evm\", intent=\"charge\", request=\"eyI\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-missing-chainid",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7fX0\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-xko-off-xlayer",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiJYS081YUFlYjYwNTNGM0U5NEM5YjlBMDlmMzM2Njk0MzVFN0VmMUJlQWVkIiwibWV0aG9kRGV0YWlscyI6eyJjaGFpbklkIjoxfX0\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-not-logged-in",
+    "home": "payment-core-chains",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Nn19\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-unknown-chain",
+    "home": "payment-core-chains",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjk5OTk5OX19\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-hash-mode",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", expires=\"2030-01-01T00:00:00Z\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5NiwiZmVlUGF5ZXIiOmZhbHNlfX0\"",
+      "--tx-hash",
+      "0x1111111111111111111111111111111111111111111111111111111111111111"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-hash-mode-from",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjg0NTMsImZlZVBheWVyIjpmYWxzZX19\"",
+      "--tx-hash",
+      "0xaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaBaB",
+      "--from",
+      "0xD825F780E3CB88B383907FF427495D1DCA352D44"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-hash-mode-no-hash",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5NiwiZmVlUGF5ZXIiOmZhbHNlfX0\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-hash-mode-bad-hash",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5NiwiZmVlUGF5ZXIiOmZhbHNlfX0\"",
+      "--tx-hash",
+      "0x1234"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-from-unknown",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Nn19\"",
+      "--from",
+      "0x0000000000000000000000000000000000000001"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-tx-with-hash",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Nn19\"",
+      "--tx-hash",
+      "0x1111111111111111111111111111111111111111111111111111111111111111"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-bad-expires",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", expires=\"tomorrow\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Nn19\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-expired",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", expires=\"2020-01-01T00:00:00+08:00\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Nn19\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-split-sum",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Niwic3BsaXRzIjpbeyJhbW91bnQiOiIxMDAwIiwicmVjaXBpZW50IjoiMHgxMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExIn1dfX0\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-bad-amount",
+    "home": "payment-core-state",
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxeDAiLCJjdXJyZW5jeSI6IjB4MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMiIsInJlY2lwaWVudCI6IjB4MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMSIsIm1ldGhvZERldGFpbHMiOnsiY2hhaW5JZCI6MTk2fX0\""
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-tx-mode",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Niwic3BsaXRzIjpbeyJhbW91bnQiOiIxMDAiLCJyZWNpcGllbnQiOiIweDMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMifV19fQ\""
+    ],
+    "masks": [
+      "stdout.data.authorization_header",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-charge-tee-error",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-tee-errors"
+    ],
+    "argv": [
+      "payment",
+      "charge",
+      "--challenge",
+      "Payment id=\"ch_1\", realm=\"api.example.com\", method=\"evm\", intent=\"charge\", request=\"eyJhbW91bnQiOiIxMDAwIiwiY3VycmVuY3kiOiIweDIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIiLCJyZWNpcGllbnQiOiIweDExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTEiLCJtZXRob2REZXRhaWxzIjp7ImNoYWluSWQiOjE5Nn19\""
+    ],
+    "masks": [
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-quote-bad-param",
+    "argv": [
+      "payment",
+      "quote",
+      "https://example.com/x",
+      "--param",
+      "noequals"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-quote-empty-key",
+    "argv": [
+      "payment",
+      "quote",
+      "https://example.com/x",
+      "--param",
+      "  =1"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-quote-unreachable",
+    "argv": [
+      "payment",
+      "quote",
+      "http://127.0.0.1:1/x",
+      "--param",
+      "a=1"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-quote-unreachable-post",
+    "argv": [
+      "payment",
+      "quote",
+      "http://127.0.0.1:1/x",
+      "--method",
+      "post",
+      "--param",
+      "a=1"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-quote-mcp-url-unreachable",
+    "argv": [
+      "payment",
+      "quote",
+      "http://127.0.0.1:1/api/mcp/"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-quote-tool-unreachable",
+    "argv": [
+      "payment",
+      "quote",
+      "http://127.0.0.1:1/x",
+      "--tool",
+      "weather"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-quote-invalid-url",
+    "argv": [
+      "payment",
+      "quote",
+      "not a url"
+    ]
+  },
+  {
+    "network": "real",
+    "id": "payment-core-quote-auth-required",
+    "argv": [
+      "payment",
+      "quote",
+      "https://web3.okx.com/api/v6/dex/market/config"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-x402-autopay-tee",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-x402-price",
+      "payment-core-tee"
+    ],
+    "argv": [
+      "market",
+      "price",
+      "--address",
+      "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "--chain",
+      "196"
+    ],
+    "masks": [
+      "req.headers.payment-signature",
+      "req.body.nonce",
+      "req.body.validBefore"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-x402-autopay-local",
+    "env": {
+      "EVM_PRIVATE_KEY": "0x1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "fixtures": [
+      "payment-core-x402-price"
+    ],
+    "argv": [
+      "market",
+      "price",
+      "--address",
+      "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "--chain",
+      "196"
+    ],
+    "masks": [
+      "req.headers.payment-signature"
+    ],
+    "exact": [
+      "stderr"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-period-allowance-order",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-allowance-order"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vc3ViIiwibWltZVR5cGUiOiJhcHBsaWNhdGlvbi9qc29uIn0sImFjY2VwdHMiOlt7InNjaGVtZSI6InBlcmlvZCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiNTAwMDAwMCIsImFzc2V0IjoiMHg3NzlkZWQwYzllMTAyMjIyNWY4ZTA2MzBiMzVhOWI1NGJlNzEzNzM2IiwicGF5VG8iOiIweDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMGNhZmUiLCJtYXhUaW1lb3V0U2Vjb25kcyI6NjAwLCJleHRyYSI6eyJjb250cmFjdHMiOnsic3Vic2NyaXB0aW9uIjoiMHg0MDIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAzIiwicGVybWl0MiI6IjB4MDAwMDAwMDAwMDIyRDQ3MzAzMEYxMTZkREVFOUY2QjQzYUM3OEJBMyJ9LCJmYWNpbGl0YXRvciI6IjB4MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwZGVhZCIsImFtb3VudFBlclBlcmlvZCI6IjUwMDAwMDAiLCJwZXJpb2RTZWMiOjI1OTIwMDAsIm1heFBlcmlvZHMiOjEyLCJzdGFydEF0Ijo0MTAyNDQ0MDAwLCJwbGFuIjp7ImlkIjoicHJvIiwidGllciI6Mn19fV19"
+    ]
+  },
+  {
+    "network": "fixture",
+    "id": "payment-core-pay-tee-period-u256-wrap",
+    "home": "payment-core-state",
+    "fixtures": [
+      "payment-core-allowance-wrap",
+      "payment-core-tee"
+    ],
+    "argv": [
+      "payment",
+      "pay",
+      "--payload",
+      "eyJ4NDAyVmVyc2lvbiI6MiwicmVzb3VyY2UiOnsidXJsIjoiaHR0cHM6Ly9hcGkuZXhhbXBsZS5jb20vc3ViIiwibWltZVR5cGUiOiJhcHBsaWNhdGlvbi9qc29uIn0sImFjY2VwdHMiOlt7InNjaGVtZSI6InBlcmlvZCIsIm5ldHdvcmsiOiJlaXAxNTU6MTk2IiwiYW1vdW50IjoiNTAwMDAwMCIsImFzc2V0IjoiMHg3NzlkZWQwYzllMTAyMjIyNWY4ZTA2MzBiMzVhOWI1NGJlNzEzNzM2IiwicGF5VG8iOiIweDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMGNhZmUiLCJtYXhUaW1lb3V0U2Vjb25kcyI6NjAwLCJleHRyYSI6eyJjb250cmFjdHMiOnsic3Vic2NyaXB0aW9uIjoiMHg0MDIwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAzIiwicGVybWl0MiI6IjB4MDAwMDAwMDAwMDIyRDQ3MzAzMEYxMTZkREVFOUY2QjQzYUM3OEJBMyJ9LCJmYWNpbGl0YXRvciI6IjB4MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwZGVhZCIsImFtb3VudFBlclBlcmlvZCI6IjB4ZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZiIsInBlcmlvZFNlYyI6MjU5MjAwMCwibWF4UGVyaW9kcyI6MTIsInN0YXJ0QXQiOjQxMDI0NDQwMDAsInBsYW4iOnsiaWQiOiJwcm8iLCJ0aWVyIjoyfX19XX0="
+    ],
+    "masks": [
+      "stdout.data.authorization_header",
+      "req.body.payload.*.message.message.sigDeadline",
+      "req.body.payload.*.message.message.salt",
+      "req.body.payload.*.message.message.permitHash",
+      "req.body.payload.*.message.message.termsDeadline"
+    ]
+  }
+]

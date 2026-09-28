@@ -1,0 +1,66 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "unsignedTxHash": "",
+            "unsignHash": "",
+            "unsignedTx": "",
+            "uopHash": "",
+            "hash": "",
+            "authHashFor7702": null,
+            "executeErrorMsg": "",
+            "executeResult": true,
+            "extraData": {},
+            "signType": "",
+            "encoding": "",
+            "jitoUnsignedTx": null,
+            "eip712MessageHash": "",
+            "gasStationUsed": false,
+            "gasStationFirstTimePrompt": false,
+            "serviceCharge": null,
+            "serviceChargeSymbol": null,
+            "serviceChargeFeeTokenAddress": null,
+            "needUpdate7702": false,
+            "gasStationTokenList": [
+              {
+                "feeCoinId": 7,
+                "symbol": "USDT",
+                "feeTokenAddress": "0xfd086bc7cd5c481dcc9c85ebe478a1c0b69fcbb9",
+                "serviceCharge": "0.13",
+                "balance": "25.5",
+                "sufficient": true,
+                "relayerId": "relayer-usdt-42161",
+                "context": "ctx-USDT"
+              },
+              {
+                "feeCoinId": 9,
+                "symbol": "USDC",
+                "feeTokenAddress": "0xaf88d065e77c8cc2239327c5edb3a432268e5831",
+                "serviceCharge": "0.14",
+                "balance": null,
+                "sufficient": false,
+                "relayerId": "relayer-usdc-42161",
+                "context": "ctx-USDC"
+              }
+            ],
+            "hasPendingTx": false,
+            "insufficientAll": false,
+            "autoSelectedToken": false,
+            "gasStationDisabled": false,
+            "gasStationStatus": "REENABLE_ONLY",
+            "contractNonce": null,
+            "eoaNonce": "3",
+            "defaultGasTokenAddress": ""
+          }
+        ]
+      }
+    }
+  }
+]

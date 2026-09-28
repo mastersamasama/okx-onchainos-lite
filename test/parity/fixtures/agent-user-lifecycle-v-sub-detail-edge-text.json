@@ -1,0 +1,33 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "status": 3,
+          "trialType": 1,
+          "autoRenew": 0,
+          "periodIndex": -1,
+          "serviceTokenAmount": 3,
+          "buyerAgentId": "1001",
+          "providerAgentId": "2002",
+          "subStartTime": "1700000000",
+          "subEndTime": 1702592000,
+          "trailStartTime": 1700000000,
+          "trialEndTime": 1700259200,
+          "offlineReceiveFlag": 5,
+          "deviceList": [
+            "939e4859f44d7ce47c03a507c18ccc234c27e82c24b06d831608e7a48052a1f0",
+            "abcdefghijklmnop",
+            "short",
+            "ÅÅÅÅÅÅÅÅÅÅ"
+          ]
+        }
+      }
+    }
+  }
+]

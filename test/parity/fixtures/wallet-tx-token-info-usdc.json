@@ -1,0 +1,24 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/token/get-token-info",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "chainIndex": "1",
+            "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+            "tokenSymbol": "USDC",
+            "tokenName": "USD Coin",
+            "decimals": 6,
+            "decimal": "6",
+            "tokenLogoUrl": "https://static.okx.com/cdn/wallet/logo/usdc.png"
+          }
+        ]
+      }
+    }
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/providerConfirmStatus",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "50013",
+        "msg": "provider has not applied",
+        "data": null
+      }
+    }
+  }
+]

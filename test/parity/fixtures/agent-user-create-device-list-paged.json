@@ -1,0 +1,54 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "match": {
+      "query": {
+        "page": "1"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 2,
+          "list": [
+            {
+              "deviceId": "dev-1",
+              "deviceName": "A",
+              "lastOnlineTime": 1700000000000
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/device-list",
+    "match": {
+      "query": {
+        "page": "2"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 2,
+          "list": [
+            {
+              "deviceId": "dev-2",
+              "deviceName": "B",
+              "lastOnlineTime": -1
+            }
+          ]
+        }
+      }
+    }
+  }
+]

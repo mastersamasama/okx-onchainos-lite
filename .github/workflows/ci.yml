@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [18, 22, 24]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: unit tests (crypto vectors, transport, helpers)
+        run: node --test test/unit/
+      - name: coverage gate (every upstream command has a handler with the upstream options)
+        run: node tools/check.mjs
+      - name: generated command docs are current
+        run: node tools/gen-docs.mjs --check
+      - name: skill package builds
+        run: node tools/package.mjs
+      - name: runtime smoke (no network)
+        run: |
+          node skill/onchainos-lite/bin/ocl.mjs --version
+          node skill/onchainos-lite/bin/ocl.mjs doctor --offline

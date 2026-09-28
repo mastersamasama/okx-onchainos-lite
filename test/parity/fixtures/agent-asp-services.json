@@ -1,0 +1,32 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/services",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "agentInfo": {
+              "agentId": "9001",
+              "name": "ASP One"
+            },
+            "list": [
+              {
+                "serviceId": "svc-1",
+                "serviceName": "Audit Service",
+                "serviceType": "A2A",
+                "serviceDescription": "Audits smart contracts"
+              }
+            ],
+            "page": 1,
+            "pageSize": 100,
+            "total": 1
+          }
+        ]
+      }
+    }
+  }
+]

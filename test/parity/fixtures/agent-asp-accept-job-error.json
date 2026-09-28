@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v1/aieco/task/0xabababababababababababababababababababababababababababababababab/acceptJobByProvider",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "3002",
+        "msg": "escrow not funded",
+        "data": null
+      }
+    }
+  }
+]

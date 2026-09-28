@@ -1,0 +1,14 @@
+[
+ {
+  "method": "GET",
+  "pathRegex": "^/api/v6/dex/market/social/news/",
+  "response": {
+   "status": 200,
+   "body": {
+    "code": "0",
+    "msg": "",
+    "data": []
+   }
+  }
+ }
+]

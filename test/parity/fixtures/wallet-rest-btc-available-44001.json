@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/availability-details",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "44001",
+        "msg": "insufficient utxo",
+        "data": []
+      }
+    }
+  }
+]

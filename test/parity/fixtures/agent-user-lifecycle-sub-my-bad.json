@@ -1,0 +1,34 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v1/aieco/task/subscribe/my",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": {
+          "total": 1,
+          "list": [
+            {
+              "jobId": "0xcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+              "jobType": 1,
+              "status": 1,
+              "title": null,
+              "buyerAgentId": "1001",
+              "providerAgentId": "2002",
+              "serviceId": "svc-sub-7",
+              "serviceTokenAmount": "3",
+              "serviceTokenAddress": "0x779ded0c9e1022225f8e0630b35a9b54be713736",
+              "autoRenew": 1,
+              "periodIndex": 2,
+              "subStartTime": 1700000000,
+              "subEndTime": 1702592000,
+              "trialType": 0
+            }
+          ]
+        }
+      }
+    }
+  }
+]

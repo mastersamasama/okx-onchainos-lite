@@ -1,0 +1,1 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/candles", "response": { "status": 429, "body": { "code": "50011", "msg": "Too Many Requests", "data": [] } } }]

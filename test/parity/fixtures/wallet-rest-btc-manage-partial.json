@@ -1,0 +1,37 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/user-asset-manage",
+    "times": 1,
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "result": true,
+            "reason": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/utxo/user-asset-manage",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "result": false,
+            "reason": "utxo is occupied by a pending order"
+          }
+        ]
+      }
+    }
+  }
+]

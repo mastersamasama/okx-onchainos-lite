@@ -1,0 +1,38 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "match": {
+      "query": {
+        "tokenAddresses[0].tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "1",
+                "symbol": "USDC",
+                "tokenName": "USD Coin",
+                "tokenAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+                "address": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+                "balance": "12.345",
+                "rawBalance": "12345000",
+                "decimal": "6",
+                "tokenPrice": "1",
+                "usdValue": "12.345",
+                "tokenType": "2"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

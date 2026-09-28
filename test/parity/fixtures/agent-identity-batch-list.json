@@ -1,0 +1,76 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/batch-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": [
+          {
+            "agentId": "4242",
+            "name": "Price Oracle Pro",
+            "role": 2,
+            "status": 1,
+            "approvalDisplayStatus": 4,
+            "reputation": {
+              "score": 92,
+              "count": 18
+            },
+            "agentWalletAddress": "0x30C1aBcDeF0123456789abcdef012345678959d7",
+            "profileDescription": "On-chain data analysis.",
+            "profilePicture": "https://cdn.example.com/x.png",
+            "services": [
+              {
+                "serviceName": "TVL Query",
+                "serviceType": "A2MCP",
+                "fee": "10",
+                "endpoint": "https://api.example.com/mcp"
+              },
+              {
+                "serviceName": "Loop Helper",
+                "serviceType": "a2a",
+                "fee": "",
+                "subscription": [
+                  {
+                    "interval": "month",
+                    "fee": "10"
+                  }
+                ],
+                "freeTrial": "72"
+              },
+              {
+                "serviceName": "Yield Check",
+                "serviceType": "A2A"
+              },
+              {
+                "serviceName": "Probe",
+                "serviceType": "A2MCP",
+                "endpoint": "https://p.example.com"
+              },
+              {
+                "serviceDescription": "nameless"
+              }
+            ]
+          },
+          {
+            "agentId": "77",
+            "name": "Eval",
+            "role": 3,
+            "status": 5,
+            "approvalDisplayStatus": 5,
+            "approvalRemark": " bad picture ",
+            "reputation": {
+              "score": 89,
+              "count": 3
+            },
+            "txHash": " 0xabc ",
+            "address": "0x12"
+          },
+          "junk"
+        ]
+      }
+    }
+  }
+]

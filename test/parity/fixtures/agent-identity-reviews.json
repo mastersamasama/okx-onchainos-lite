@@ -1,0 +1,10 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/reviews",
+    "response": {
+      "status": 200,
+      "body": "{\"code\":\"0\",\"msg\":\"\",\"data\":{\"average\":89,\"list\":[{\"score\":90,\"valueString\":\"95/100\",\"agentName\":\"Buyer\",\"time\":1700000000000,\"content\":\"Great\"},{\"score\":67,\"value\":70,\"creatorId\":12,\"createdAt\":\"2024-01-01\",\"description\":\"ok\"},{\"score\":\"x\",\"creatorId\":\"  \",\"time\":\"abc\",\"content\":\"  \"},{\"score\":100,\"valueString\":\"bad\",\"value\":\"88.5\",\"time\":\"1700086400000\"}],\"page\":1,\"pageSize\":5,\"total\":7}}"
+    }
+  }
+]

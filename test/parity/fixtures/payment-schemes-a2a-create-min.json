@@ -1,0 +1,16 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/pay/a2a/payment/create",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "paymentId": "pay_a2a_0002"
+        }
+      }
+    }
+  }
+]

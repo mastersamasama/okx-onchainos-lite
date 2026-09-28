@@ -1,0 +1,22 @@
+{
+  "sessions": [
+    {
+      "rules": [
+        {
+          "on": "login",
+          "send": [
+            {
+              "event": "error",
+              "code": "60005",
+              "msg": "Invalid apiKey"
+            },
+            {
+              "event": "login",
+              "code": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

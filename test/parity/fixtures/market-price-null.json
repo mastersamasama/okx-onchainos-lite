@@ -1,0 +1,1 @@
+[{ "method": "POST", "path": "/api/v6/dex/market/price", "response": { "status": 200, "body": { "code": "0", "msg": "" } } }]

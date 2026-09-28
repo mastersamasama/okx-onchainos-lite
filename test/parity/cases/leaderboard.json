@@ -1,0 +1,195 @@
+[
+ {
+  "id": "leaderboard-supported-chains",
+  "argv": [
+   "leaderboard",
+   "supported-chains"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "leaderboard-supported-chains-fixture",
+  "argv": [
+   "leaderboard",
+   "supported-chains"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-list"
+  ]
+ },
+ {
+  "id": "leaderboard-list-basic",
+  "argv": [
+   "leaderboard",
+   "list",
+   "--chain",
+   "ethereum",
+   "--time-frame",
+   "3",
+   "--sort-by",
+   "1"
+  ],
+  "masks": [
+   "home.payment_cache.json.updated_at"
+  ]
+ },
+ {
+  "id": "leaderboard-list-smart-money",
+  "argv": [
+   "leaderboard",
+   "list",
+   "--chain",
+   "solana",
+   "--time-frame",
+   "1",
+   "--sort-by",
+   "2",
+   "--wallet-type",
+   "smartMoney"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-list"
+  ]
+ },
+ {
+  "id": "leaderboard-list-case-sensitive",
+  "argv": [
+   "leaderboard",
+   "list",
+   "--chain",
+   "solana",
+   "--time-frame",
+   "1",
+   "--sort-by",
+   "2",
+   "--wallet-type",
+   "SmartMoney"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-list"
+  ]
+ },
+ {
+  "id": "leaderboard-list-all-filters",
+  "argv": [
+   "leaderboard",
+   "list",
+   "--chain",
+   "bsc",
+   "--time-frame",
+   "5",
+   "--sort-by",
+   "5",
+   "--wallet-type",
+   "pump",
+   "--min-realized-pnl-usd",
+   "100",
+   "--max-realized-pnl-usd",
+   "1e6",
+   "--min-win-rate-percent",
+   "50",
+   "--max-win-rate-percent",
+   "",
+   "--min-txs",
+   "3",
+   "--max-txs",
+   "300",
+   "--min-tx-volume",
+   "1000",
+   "--max-tx-volume",
+   "5000000"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-list"
+  ]
+ },
+ {
+  "id": "leaderboard-list-types",
+  "argv": [
+   "leaderboard",
+   "list",
+   "--chain",
+   "xlayer",
+   "--time-frame",
+   "",
+   "--sort-by",
+   "4",
+   "--wallet-type",
+   "influencer"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-list"
+  ]
+ },
+ {
+  "id": "leaderboard-list-missing-sort",
+  "argv": [
+   "leaderboard",
+   "list",
+   "--chain",
+   "ethereum",
+   "--time-frame",
+   "3"
+  ],
+  "network": "fixture"
+ },
+ {
+  "id": "leaderboard-list-expired-refreshes",
+  "argv": [
+   "leaderboard",
+   "list",
+   "--chain",
+   "ethereum",
+   "--time-frame",
+   "3",
+   "--sort-by",
+   "1"
+  ],
+  "home": "wallet-expired",
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-list",
+   "wallet-common"
+  ]
+ },
+ {
+  "id": "leaderboard-supported-chains-json-edges",
+  "argv": [
+   "leaderboard",
+   "supported-chains"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-json-edges"
+  ]
+ },
+ {
+  "id": "leaderboard-supported-chains-proto-key",
+  "argv": [
+   "leaderboard",
+   "supported-chains"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-json-proto"
+  ]
+ },
+ {
+  "id": "leaderboard-supported-chains-lone-surrogate",
+  "argv": [
+   "leaderboard",
+   "supported-chains"
+  ],
+  "network": "fixture",
+  "fixtures": [
+   "leaderboard-json-lone-surrogate"
+  ]
+ }
+]

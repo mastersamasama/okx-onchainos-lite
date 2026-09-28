@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/priapi/v5/wallet/agentic/pre-transaction/agent-consent",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "81001",
+        "msg": "consent key expired",
+        "data": null
+      }
+    }
+  }
+]

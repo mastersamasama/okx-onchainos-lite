@@ -1,0 +1,33 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/asset/wallet-all-token-balances",
+    "match": {
+      "query": {
+        "chains": "1"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "success",
+        "data": [
+          {
+            "accountId": "parity-account-0001",
+            "tokenAssets": [
+              {
+                "chainIndex": "1",
+                "symbol": "USDT",
+                "tokenAddress": "0xDAC17F958D2EE523A2206206994597C13D831EC7",
+                "balance": "1e5",
+                "decimal": "6",
+                "tokenPrice": "1"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  }
+]

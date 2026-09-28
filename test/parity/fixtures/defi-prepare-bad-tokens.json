@@ -1,0 +1,56 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v6/defi/product/detail/prepare",
+    "match": {
+      "body": {
+        "investmentId": "9502"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "investWithTokenList": [
+            {
+              "tokenId": null,
+              "tokenSymbol": "USDC",
+              "tokenName": "USD Coin",
+              "tokenAddress": "",
+              "tokenPrecision": "6",
+              "chainIndex": "1",
+              "network": "ETH"
+            },
+            {
+              "tokenId": null,
+              "tokenSymbol": "DAI",
+              "tokenName": "Dai",
+              "tokenAddress": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "tokenPrecision": 18,
+              "chainIndex": "",
+              "network": "ETH"
+            },
+            {
+              "tokenId": null,
+              "tokenSymbol": "USDT",
+              "tokenName": "Tether",
+              "tokenAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+              "chainIndex": 1,
+              "network": "ETH"
+            },
+            {
+              "tokenId": null,
+              "tokenName": "No symbol, precision as a JSON number",
+              "tokenAddress": "0x0000000000000000000000000000000000000abc",
+              "tokenPrecision": 8,
+              "chainIndex": "1",
+              "network": "ETH"
+            }
+          ]
+        }
+      }
+    }
+  }
+]

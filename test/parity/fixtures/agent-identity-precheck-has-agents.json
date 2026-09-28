@@ -1,0 +1,76 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "match": {
+      "query": {
+        "role": "2"
+      }
+    },
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "ownerAddress": "0xD825F780E3CB88B383907FF427495D1DCA352D44",
+              "agentList": [
+                {
+                  "agentId": "11",
+                  "role": 2,
+                  "name": " ASP One "
+                },
+                {
+                  "agentId": 12,
+                  "role": 2,
+                  "name": "ASP Two"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/agent/agent-list",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "0",
+        "msg": "",
+        "data": {
+          "list": [
+            {
+              "ownerAddress": "0xd825f780e3cb88b383907ff427495d1dca352d44",
+              "agentList": [
+                {
+                  "agentId": "11",
+                  "role": 2,
+                  "name": "ASP One"
+                },
+                {
+                  "agentId": "1001",
+                  "role": 1,
+                  "name": "Buyer"
+                }
+              ]
+            },
+            {
+              "ownerAddress": "0xforeign",
+              "agentList": [
+                {
+                  "agentId": "99",
+                  "role": 1
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+]

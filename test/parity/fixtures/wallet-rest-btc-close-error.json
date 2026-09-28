@@ -1,0 +1,14 @@
+[
+  {
+    "method": "POST",
+    "path": "/api/v5/wallet/pre-transaction/close-transaction",
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "82001",
+        "msg": "utxo permission denied",
+        "data": []
+      }
+    }
+  }
+]

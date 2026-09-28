@@ -1,0 +1,15 @@
+[
+  {
+    "method": "GET",
+    "path": "/priapi/v5/wallet/agentic/policy/query",
+    "times": 1,
+    "response": {
+      "status": 200,
+      "body": {
+        "code": "10008",
+        "msg": "Invalid access token",
+        "data": []
+      }
+    }
+  }
+]

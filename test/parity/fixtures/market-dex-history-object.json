@@ -1,0 +1,4 @@
+[{ "method": "GET", "path": "/api/v6/dex/market/portfolio/dex-history", "response": { "status": 200, "body": { "code": "0", "msg": "", "data": {
+  "cursor": "1716892020000_2",
+  "transactionList": [{ "type": "1", "chainIndex": "1", "tokenContractAddress": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", "tokenSymbol": "USDC", "valueUsd": "100.5", "amount": "100.5", "price": "1", "marketCap": "33000000000", "pnlUsd": "0", "time": "1716892020000" }]
+} } } }]
