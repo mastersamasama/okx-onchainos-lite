@@ -26,7 +26,8 @@ import { u64SaturatingAdd } from '../../../../core/rs/num.mjs';
 import { sha256Hex } from '../../../../core/rs/codec.mjs';
 import { isObject, get, asStr } from '../../../../core/rs/value.mjs';
 import { splitWhitespace, isControl, eqIgnoreAsciiCase, asciiLower } from '../../../../core/rs/str.mjs';
-import { ctx, outerMessage } from './_err.mjs';
+import { context as withContext } from '../../../../core/errors.mjs';   // anyhow .context()
+import { outermost } from '../../../../core/rs/anyhow.mjs';
 import { SubscriptionTradePath } from '../config.mjs';
 import { resolve as resolveLang, Lang } from '../user-lang.mjs';
 import { userNotifyScoped, userNotifyScopedWithTimeout, tradeRecordsInsert } from '../okx-a2a.mjs';
@@ -198,14 +199,14 @@ async function terminalReconciliationComplete(o) {
 // upstream: executor.rs::sync_a2a_trade_record
 async function syncA2aTradeRecord(o) {
   let context;
-  try { context = consent.loadDeliveryContext(o.jobId, o.deliveryId); } catch (e) { throw ctx('trusted delivery context is unavailable for trade record', e); }
+  try { context = consent.loadDeliveryContext(o.jobId, o.deliveryId); } catch (e) { throw withContext('trusted delivery context is unavailable for trade record', e); }
   return recordSignalStatus(o.jobId, o.deliveryId, o.status, o.reason ?? '', context.savedPath);
 }
 
 // upstream: executor.rs::record_signal_status
 export async function recordSignalStatus(jobId, deliveryId, status, reason, savedPath) {
   let raw;
-  try { raw = readToString(savedPath); } catch (e) { throw ctx('saved subscription Signal is unavailable for trade record', e); }
+  try { raw = readToString(savedPath); } catch (e) { throw withContext('saved subscription Signal is unavailable for trade record', e); }
   let extra;
   try { extra = fromStr(raw, T.value); } catch { extra = { content: raw }; }
   return tradeRecordsInsert([{ jobId, deliveryId, status, reason, extra }]);
@@ -222,13 +223,13 @@ function readOneTimePermit(path) {
 // upstream: executor.rs::authorize_one_time → OneTimePermit
 export function authorizeOneTime(jobId, deliveryId, amount) {
   let context;
-  try { context = consent.loadDeliveryContext(jobId, deliveryId); } catch (e) { throw ctx('trusted delivery context is unavailable', e); }
+  try { context = consent.loadDeliveryContext(jobId, deliveryId); } catch (e) { throw withContext('trusted delivery context is unavailable', e); }
   const pending = consent.loadPendingDeliveryContext(jobId);
   if (!pending) throw new Error('no delivery is awaiting a one-time execution decision');
   if (!consent.deliveryContextEq(context, pending) || context.deliveryId !== deliveryId) throw new Error('one-time authorization does not match the pending delivery');
   if (exists(latchPath(jobId, deliveryId))) throw new Error('delivery already has a terminal execution outcome');
   let normalized;
-  try { normalized = Decimal.parse(amount).toPlainString(); } catch (e) { throw ctx('invalid one-time execution amount', e); }
+  try { normalized = Decimal.parse(amount).toPlainString(); } catch (e) { throw withContext('invalid one-time execution amount', e); }
   if (normalized === '0') throw new Error('one-time execution amount must be positive');
   let policy;
   try { policy = consent.loadConsent(jobId); } catch (e) { throw new Error(e.code ?? e.message); }
@@ -249,10 +250,10 @@ export function authorizeOneTime(jobId, deliveryId, amount) {
   const createdAt = nowSecs();
   const permit = { version: ONE_TIME_PERMIT_VERSION, jobId, deliveryId, amount: normalized, createdAt, expiresAt: u64SaturatingAdd(createdAt, ONE_TIME_PERMIT_TTL_SEC) };
   let created;
-  try { created = createNew(path, stringify(oneTimePermitJson(permit), true)); } catch (e) { throw ctx('one-time permit was concurrently replaced', e); }
+  try { created = createNew(path, stringify(oneTimePermitJson(permit), true)); } catch (e) { throw withContext('one-time permit was concurrently replaced', e); }
   // OpenOptions::create_new on an existing path: Windows CreateFileW(CREATE_NEW) fails with
   // ERROR_FILE_EXISTS (80, "The file exists."); Unix open(O_EXCL) with EEXIST (17).
-  if (!created) throw ctx('one-time permit was concurrently replaced', new Error(process.platform === 'win32'
+  if (!created) throw withContext('one-time permit was concurrently replaced', new Error(process.platform === 'win32'
     ? 'The file exists. (os error 80)' : 'File exists (os error 17)'));
   return oneTimePermitJson(permit);
 }
@@ -358,7 +359,7 @@ async function requireGuideDirectSubscription(jobId, context) {
 
 function loadTrustedAgentDirect(jobId, deliveryId) {
   let context;
-  try { context = consent.loadDeliveryContext(jobId, deliveryId); } catch (e) { throw ctx('trusted delivery context is unavailable', e); }
+  try { context = consent.loadDeliveryContext(jobId, deliveryId); } catch (e) { throw withContext('trusted delivery context is unavailable', e); }
   if (context.executionPath !== SubscriptionTradePath.AgentDirect) throw new Error('delivery is pinned to the legacy execution wrapper');
   return context;
 }
@@ -371,7 +372,7 @@ export async function prepareGuideDirect(jobId, deliveryId) {
   try {
     await requireGuideDirectSubscription(jobId, context);
     reason = guide.hasActiveExecutionContract(jobId) ? undefined : 'active local Service Guide and Guide Consent are required';
-  } catch (e) { reason = outerMessage(e); }
+  } catch (e) { reason = outermost(e); }
   return guidePrepareResult(jobId, deliveryId, reason);
 }
 
@@ -528,7 +529,7 @@ function isRetiredExecutionConsentReason(reason) {
 // upstream: executor.rs::report_delivery → ExecutionOutcome (serialised)
 export async function reportDelivery(jobId, deliveryId, status, reason) {
   let context;
-  try { context = consent.loadDeliveryContext(jobId, deliveryId); } catch (e) { throw ctx('trusted delivery context is unavailable', e); }
+  try { context = consent.loadDeliveryContext(jobId, deliveryId); } catch (e) { throw withContext('trusted delivery context is unavailable', e); }
   if (context.jobId !== jobId || context.deliveryId !== deliveryId) throw new Error('trusted delivery context mismatch');
   let st;
   if (status === 'skipped') st = OutcomeStatus.Skipped;

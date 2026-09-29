@@ -22,8 +22,8 @@ test('strings: escapes, surrogate pairs, lone surrogates and raw control chars r
 });
 
 test('structure: recursion limit 128, __proto__ is an own key, sorted keys unless struct()', () => {
-  assert.doesNotThrow(() => parse('['.repeat(128) + ']'.repeat(128)));
-  assert.throws(() => parse('['.repeat(129) + ']'.repeat(129)), /recursion limit/);
+  assert.doesNotThrow(() => parse('['.repeat(127) + ']'.repeat(127)));
+  assert.throws(() => parse('['.repeat(128) + ']'.repeat(128)), /^SyntaxError: recursion limit exceeded at line 1 column 128$/);   // serde_json
   const o = parse('{"__proto__":1,"b":2}');
   assert.equal(Object.keys(o).join(), '__proto__,b');
   assert.equal(stringify(o), '{"__proto__":1,"b":2}');

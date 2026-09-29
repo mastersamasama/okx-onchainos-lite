@@ -7,7 +7,7 @@ import { isatty } from 'node:tty';
 import * as zlib from 'node:zlib';
 import { userInfo } from 'node:os';
 import { execFileSync } from 'node:child_process';
-import { struct } from './json.mjs';
+import { struct, parse as serdeParse } from './json.mjs';
 import { home } from './home.mjs';
 
 // ===========================================================================
@@ -1029,8 +1029,8 @@ export function readFirstLine(path) {
 
 /** upstream: qr.rs::display_mode_from_codex_session_line */
 export function displayModeFromCodexSessionLine(line) {
-  const value = serdeJsonFromStr(line);
-  if (value === undefined) return null;
+  let value;
+  try { value = serdeParse(line); } catch { return null; }   // serde_json::from_str::<Value>
   let meta = value;
   if (isJsonObject(value)) {
     if (Object.hasOwn(value, 'session_meta')) meta = value.session_meta;
@@ -1076,30 +1076,6 @@ const byUtf8 = (a, b) => Buffer.compare(Buffer.from(a, 'utf8'), Buffer.from(b, '
 
 // serde_json::from_str::<Value> acceptance on top of JSON.parse: nesting limit
 // (128 → error), lone surrogate escapes and f64-overflowing numbers are errors.
-const LONE_SURROGATE = /[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?<![\uD800-\uDBFF])[\uDC00-\uDFFF]/;
-function serdeJsonFromStr(text) {
-  let depth = 0, inString = false;
-  for (let i = 0; i < text.length; i++) {
-    const c = text.charCodeAt(i);
-    if (inString) {
-      if (c === 0x5c) i++;
-      else if (c === 0x22) inString = false;
-    } else if (c === 0x22) inString = true;
-    else if (c === 0x5b || c === 0x7b) { if (++depth >= 128) return undefined; }
-    else if (c === 0x5d || c === 0x7d) depth--;
-  }
-  let bad = false;
-  let value;
-  try {
-    value = JSON.parse(text, (k, v) => {
-      if (LONE_SURROGATE.test(k) || (typeof v === 'string' && LONE_SURROGATE.test(v)) || (typeof v === 'number' && !Number.isFinite(v))) bad = true;
-      return v;
-    });
-  } catch {
-    return undefined;
-  }
-  return bad ? undefined : value;
-}
 
 
 // ---------------------------------------------------------------------------

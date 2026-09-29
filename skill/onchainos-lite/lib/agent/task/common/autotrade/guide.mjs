@@ -11,7 +11,7 @@ import { nowSecs } from '../../../../core/rs/time.mjs';
 import { u64SaturatingAdd } from '../../../../core/rs/num.mjs';
 import { sha256Hex } from '../../../../core/rs/codec.mjs';
 import { trim, asciiLower } from '../../../../core/rs/str.mjs';
-import { ctx } from './_err.mjs';
+import { context as withContext } from '../../../../core/errors.mjs';   // anyhow .context()
 import * as consent from './consent.mjs';
 import * as subscriptionConfig from './subscription-config.mjs';
 
@@ -115,7 +115,7 @@ export function parseMarkdownDocument(kind, raw, type) {
   let body = rest.slice(i + '\n-->\n'.length);
   if (body.startsWith('\n')) body = body.slice(1);
   let parsed;
-  try { parsed = fromStr(metadata, type); } catch (e) { throw ctx('local autotrade document metadata is invalid', e); }
+  try { parsed = fromStr(metadata, type); } catch (e) { throw withContext('local autotrade document metadata is invalid', e); }
   return [parsed, body];
 }
 // upstream: guide.rs::parse_markdown
@@ -138,7 +138,7 @@ export function writeGuide(file, source) {
 export function loadGuide(jobId) {
   const path = guidePath(jobId);
   let raw;
-  try { raw = readToString(path); } catch (e) { throw ctx('service guide is not available locally', e); }
+  try { raw = readToString(path); } catch (e) { throw withContext('service guide is not available locally', e); }
   const [file] = parseMarkdownDocument('guide', raw, GUIDE_FILE_T);
   validateFile(file);
   if (file.jobId !== jobId) throw new Error('service guide job id mismatch');
@@ -158,7 +158,7 @@ export function readGuideConsent(jobId) {
   const path = consentPath(jobId);
   if (!exists(path)) return null;
   let raw;
-  try { raw = readToString(path); } catch (e) { throw ctx('Guide Consent is not readable', e); }
+  try { raw = readToString(path); } catch (e) { throw withContext('Guide Consent is not readable', e); }
   const consent = parseMarkdown('consent', raw, GUIDE_CONSENT_FILE_T);
   if (consent.version !== GUIDE_CONSENT_VERSION || consent.jobId !== jobId || !isSha256Hex(consent.guideHash)) {
     throw new Error('Guide Consent metadata is invalid');
@@ -244,13 +244,13 @@ export function migrateLegacyJsonConsentIfNeeded(jobId, agentId, serviceId) {
   else if (exists(legacyPath)) path = legacyPath;
   else return;
   let raw;
-  try { raw = readToString(path); } catch (e) { throw ctx('local Consent is not readable', e); }
+  try { raw = readToString(path); } catch (e) { throw withContext('local Consent is not readable', e); }
   if (raw.startsWith('<!-- onchainos-autotrade:consent\n')) {
     readGuideConsent(jobId);
     return;
   }
   let legacy;
-  try { legacy = fromStr(raw, consent.CONSENT_FILE_T); } catch (e) { throw ctx('local Consent is neither current Guide Consent nor legacy JSON', e); }
+  try { legacy = fromStr(raw, consent.CONSENT_FILE_T); } catch (e) { throw withContext('local Consent is neither current Guide Consent nor legacy JSON', e); }
   if (legacy.version > consent.CONSENT_VERSION || legacy.jobId !== jobId) throw new Error('legacy Consent metadata is invalid');
   if (legacy.lifecycle !== consent.ConsentLifecycle.Active || legacy.expiresAt <= nowSecs()) return;
   const guide = loadGuide(jobId);

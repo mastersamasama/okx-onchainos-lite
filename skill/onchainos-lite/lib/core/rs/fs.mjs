@@ -23,6 +23,46 @@ const UNIX_TEXT = {
   ENOTEMPTY: ['Directory not empty', process.platform === 'darwin' ? 66 : 39],
 };
 
+// Socket errnos (reqwest / tungstenite wrap the io::Error): Windows FormatMessageW (English) or strerror.
+const SOCKET_TEXT = {
+  win32: {
+    ECONNREFUSED: ['No connection could be made because the target machine actively refused it.', 10061],
+    ECONNRESET: ['An existing connection was forcibly closed by the remote host.', 10054],
+    ECONNABORTED: ['An established connection was aborted by the software in your host machine.', 10053],
+    ETIMEDOUT: ['A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.', 10060],
+    ENETUNREACH: ['A socket operation was attempted to an unreachable network.', 10051],
+    EHOSTUNREACH: ['A socket operation was attempted to an unreachable host.', 10065],
+    EADDRNOTAVAIL: ['The requested address is not valid in its context.', 10049],
+    EPIPE: ['The pipe is being closed.', 232],
+  },
+  linux: {
+    ECONNREFUSED: ['Connection refused', 111], ECONNRESET: ['Connection reset by peer', 104], ECONNABORTED: ['Software caused connection abort', 103],
+    ETIMEDOUT: ['Connection timed out', 110], ENETUNREACH: ['Network is unreachable', 101], EHOSTUNREACH: ['No route to host', 113],
+    EADDRNOTAVAIL: ['Cannot assign requested address', 99], EPIPE: ['Broken pipe', 32],
+  },
+  darwin: {
+    ECONNREFUSED: ['Connection refused', 61], ECONNRESET: ['Connection reset by peer', 54], ECONNABORTED: ['Software caused connection abort', 53],
+    ETIMEDOUT: ['Operation timed out', 60], ENETUNREACH: ['Network is unreachable', 51], EHOSTUNREACH: ['No route to host', 65],
+    EADDRNOTAVAIL: ["Can't assign requested address", 49], EPIPE: ['Broken pipe', 32],
+  },
+};
+// io::Error Display of a socket errno, or undefined when the code has no entry.
+export function socketErrorText(code) {
+  const t = (SOCKET_TEXT[process.platform] ?? SOCKET_TEXT.linux)[code];
+  return t ? `${t[0]} (os error ${t[1]})` : undefined;
+}
+
+// Resolver failure (Node ENOTFOUND / EAI_AGAIN) as Rust prints it: Windows WSA error text, else
+// std's "failed to lookup address information: <gai_strerror>".
+export function dnsErrorText(code) {
+  if (process.platform === 'win32') return code === 'EAI_AGAIN'
+    ? 'This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server. (os error 11002)'
+    : 'No such host is known. (os error 11001)';
+  const detail = process.platform === 'darwin' ? 'nodename nor servname provided, or not known'
+    : code === 'EAI_AGAIN' ? 'Temporary failure in name resolution' : 'Name or service not known';
+  return `failed to lookup address information: ${detail}`;
+}
+
 // std::io::Error whose message is Rust's Display text; `code` keeps the Node errno name.
 export class IoError extends Error {
   constructor(text, code, cause) {

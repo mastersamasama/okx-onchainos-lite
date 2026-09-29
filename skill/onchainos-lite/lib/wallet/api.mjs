@@ -9,6 +9,7 @@ import { request as transport } from '../core/transport.mjs';
 import { stringify, F64, formatF64 } from '../core/json.mjs';
 import { fromStr, unexpected } from '../core/serde.mjs';
 import { trim } from '../core/rs/str.mjs';
+import { socketErrorText as osErrorText, dnsErrorText } from '../core/rs/fs.mjs';
 import { anonymousHeaders, jwtHeaders, USER_AGENT, baseUrl } from '../core/http.mjs';
 import { CliError, context } from '../core/errors.mjs';
 import * as keyring from '../core/keyring.mjs';
@@ -339,32 +340,6 @@ export async function forceRefreshAccessToken() {
 
 // ── transport ───────────────────────────────────────────────────────
 
-// std::io::Error Display for OS errors: "<strerror / FormatMessage text> (os error N)".
-// (Windows text is the English system message; localized Windows installs differ.)
-const OS_ERRORS = {
-  linux: { ECONNREFUSED: ['Connection refused', 111], ECONNRESET: ['Connection reset by peer', 104], EHOSTUNREACH: ['No route to host', 113],
-    ENETUNREACH: ['Network is unreachable', 101], ETIMEDOUT: ['Connection timed out', 110], EPIPE: ['Broken pipe', 32],
-    ECONNABORTED: ['Software caused connection abort', 103], EADDRNOTAVAIL: ['Cannot assign requested address', 99] },
-  darwin: { ECONNREFUSED: ['Connection refused', 61], ECONNRESET: ['Connection reset by peer', 54], EHOSTUNREACH: ['No route to host', 65],
-    ENETUNREACH: ['Network is unreachable', 51], ETIMEDOUT: ['Operation timed out', 60], EPIPE: ['Broken pipe', 32],
-    ECONNABORTED: ['Software caused connection abort', 53], EADDRNOTAVAIL: ["Can't assign requested address", 49] },
-  win32: { ECONNREFUSED: ['No connection could be made because the target machine actively refused it.', 10061],
-    ECONNRESET: ['An existing connection was forcibly closed by the remote host.', 10054],
-    EHOSTUNREACH: ['A socket operation was attempted to an unreachable host.', 10065],
-    ENETUNREACH: ['A socket operation was attempted to an unreachable network.', 10051],
-    ETIMEDOUT: ['A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.', 10060],
-    ECONNABORTED: ['An established connection was aborted by the software in your host machine.', 10053],
-    EADDRNOTAVAIL: ['The requested address is not valid in its context.', 10049] },
-};
-const osErrorText = (code) => { const t = (OS_ERRORS[process.platform] ?? OS_ERRORS.linux)[code]; return t ? `${t[0]} (os error ${t[1]})` : undefined; };
-function dnsErrorText(code) {
-  if (process.platform === 'win32') return code === 'EAI_AGAIN'
-    ? 'This is usually a temporary error during hostname resolution and means that the local server did not receive a response from an authoritative server. (os error 11002)'
-    : 'No such host is known. (os error 11001)';
-  const detail = process.platform === 'darwin' ? 'nodename nor servname provided, or not known'
-    : code === 'EAI_AGAIN' ? 'Temporary failure in name resolution' : 'Name or service not known';
-  return `failed to lookup address information: ${detail}`;
-}
 const TLS_CODES = new Set(['UNABLE_TO_VERIFY_LEAF_SIGNATURE', 'SELF_SIGNED_CERT_IN_CHAIN', 'DEPTH_ZERO_SELF_SIGNED_CERT', 'UNABLE_TO_GET_ISSUER_CERT_LOCALLY',
   'UNABLE_TO_GET_ISSUER_CERT', 'CERT_UNTRUSTED', 'CERT_HAS_EXPIRED', 'ERR_TLS_CERT_ALTNAME_INVALID', 'EPROTO']);
 // hyper parse errors surfaced as `client error (SendRequest): <kind>`

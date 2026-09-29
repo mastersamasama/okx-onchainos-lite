@@ -27,6 +27,7 @@ export function spawnSelfDetached(args, { env, logFd, stdoutFd, stderrFd } = {})
   const out = stdoutFd !== undefined ? stdoutFd : logFd ?? 'ignore';
   const err = stderrFd !== undefined ? stderrFd : logFd ?? 'ignore';
   const p = spawn(process.execPath, [ENTRY, ...args], { env: { ...process.env, ...env }, detached: true, stdio: ['ignore', out ?? 'ignore', err ?? 'ignore'], windowsHide: true });
+  p.on('error', () => {});   // a failed start leaves pid undefined
   p.unref();
   return p.pid;
 }

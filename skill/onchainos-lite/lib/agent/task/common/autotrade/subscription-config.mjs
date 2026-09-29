@@ -9,7 +9,7 @@ import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
 import { exists, readBytes, io } from '../../../../core/rs/fs.mjs';
 import { nowMs } from '../../../../core/rs/time.mjs';
 import { trim } from '../../../../core/rs/str.mjs';
-import { ctx } from './_err.mjs';
+import { context as withContext } from '../../../../core/errors.mjs';   // anyhow .context()
 
 const CONFIG_VERSION = 1;
 
@@ -46,9 +46,9 @@ export function loadConfig(agentId, serviceId) {
   const path = configPath(agentId, serviceId);
   if (!exists(path)) return null;
   let bytes;
-  try { bytes = readBytes(path); } catch (e) { throw ctx(`subscription execution configuration is unreadable: ${path}`, e); }
+  try { bytes = readBytes(path); } catch (e) { throw withContext(`subscription execution configuration is unreadable: ${path}`, e); }
   let config;
-  try { config = fromSlice(bytes, CONFIG_T); } catch (e) { throw ctx('subscription execution configuration is invalid', e); }
+  try { config = fromSlice(bytes, CONFIG_T); } catch (e) { throw withContext('subscription execution configuration is invalid', e); }
   if (config.version > CONFIG_VERSION || config.agentId !== agentId || config.serviceId !== serviceId) {
     throw new Error('subscription execution configuration is invalid');
   }

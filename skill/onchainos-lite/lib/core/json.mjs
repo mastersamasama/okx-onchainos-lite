@@ -55,7 +55,7 @@ export class F64 {
 // JSON.parse replacement with serde_json::Value number semantics:
 // integers stay integers (BigInt beyond 2^53), decimals/exponents become F64.
 // Acceptance rules follow serde_json 1.0 (what upstream uses for every response):
-// recursion limit 128, no raw control characters in strings, no lone surrogates,
+// recursion limit 128 (127 nested levels), no raw control characters in strings, no lone surrogates,
 // numbers out of f64 range rejected, "-0" is the float -0.0, "__proto__" is a plain key.
 export function parse(text) {
   let i = 0, depth = 0;
@@ -66,7 +66,8 @@ export function parse(text) {
     if (k === '__proto__') Object.defineProperty(o, k, { value: v, enumerable: true, writable: true, configurable: true });
     else o[k] = v;
   };
-  const enter = () => { if (++depth > 128) fail('recursion limit exceeded'); };
+  // check_recursion!: remaining_depth starts at 128 and errors when it reaches 0 → 127 levels
+  const enter = () => { if (++depth >= 128) fail('recursion limit exceeded'); };
   function value() {
     ws();
     const c = s[i];

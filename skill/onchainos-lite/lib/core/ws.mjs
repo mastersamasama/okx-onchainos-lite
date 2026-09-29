@@ -10,6 +10,7 @@ import net from 'node:net';
 import { randomBytes, createHash } from 'node:crypto';
 import { connectTls } from './transport.mjs';
 import { HTTP_TIMEOUT_MS } from '../config.mjs';
+import { socketErrorText, dnsErrorText } from './rs/fs.mjs';
 
 export const OP = Object.freeze({ CONT: 0x0, TEXT: 0x1, BINARY: 0x2, CLOSE: 0x8, PING: 0x9, PONG: 0xa });
 export const TIMEOUT = Symbol('ws.timeout');                 // next(ms) elapsed without a message
@@ -181,32 +182,10 @@ export function parseClose(payload) {
 }
 
 // Rust std::io::Error Display for socket errors (what tungstenite wraps as "IO error: …").
-const OS_TEXT = {
-  win32: {
-    ECONNREFUSED: ['No connection could be made because the target machine actively refused it.', 10061],
-    ECONNRESET: ['An existing connection was forcibly closed by the remote host.', 10054],
-    ECONNABORTED: ['An established connection was aborted by the software in your host machine.', 10053],
-    ETIMEDOUT: ['A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.', 10060],
-    ENETUNREACH: ['A socket operation was attempted to an unreachable network.', 10051],
-    EHOSTUNREACH: ['A socket operation was attempted to an unreachable host.', 10065],
-    ENOTFOUND: ['No such host is known.', 11001],
-    EPIPE: ['The pipe is being closed.', 232],
-  },
-  linux: {
-    ECONNREFUSED: ['Connection refused', 111], ECONNRESET: ['Connection reset by peer', 104], ECONNABORTED: ['Software caused connection abort', 103],
-    ETIMEDOUT: ['Connection timed out', 110], ENETUNREACH: ['Network is unreachable', 101], EHOSTUNREACH: ['No route to host', 113], EPIPE: ['Broken pipe', 32],
-  },
-  darwin: {
-    ECONNREFUSED: ['Connection refused', 61], ECONNRESET: ['Connection reset by peer', 54], ECONNABORTED: ['Software caused connection abort', 53],
-    ETIMEDOUT: ['Operation timed out', 60], ENETUNREACH: ['Network is unreachable', 51], EHOSTUNREACH: ['No route to host', 65], EPIPE: ['Broken pipe', 32],
-  },
-};
 export function ioErrorText(e) {
-  const t = (OS_TEXT[process.platform] || OS_TEXT.linux)[e?.code];
-  if (t) return `${t[0]} (os error ${t[1]})`;
-  if (e?.code === 'ENOTFOUND' || e?.code === 'EAI_AGAIN') {
-    return `failed to lookup address information: ${process.platform === 'darwin' ? 'nodename nor servname provided, or not known' : 'Name or service not known'}`;
-  }
+  const t = socketErrorText(e?.code);
+  if (t) return t;
+  if (e?.code === 'ENOTFOUND' || e?.code === 'EAI_AGAIN') return dnsErrorText(e.code);
   return e?.message ?? String(e);
 }
 

@@ -7,8 +7,7 @@ import { randomUUID } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { NO_OUTPUT } from '../../core/context.mjs';
 import { typed, spec } from '../../core/cli.mjs';
-import { sleep } from '../../core/proc.mjs';
-import { spawnSelfDetachedStdio } from '../../watch/_proc.mjs';
+import { sleep, spawnSelfDetached } from '../../core/proc.mjs';
 import { parseDurationMs } from '../../core/sink.mjs';
 import * as store from '../../watch/store.mjs';
 import {
@@ -119,7 +118,7 @@ function wsStart(channelsIn, walletAddressesIn, chainIndexesIn, tokenPairsIn, en
   const logFd = createDaemonLog(pathJoin(dir, 'daemon.log'));
   let pid;
   try {
-    pid = spawnSelfDetachedStdio(['ws', 'run-daemon', '--id', id], { stdout: 'ignore', stderr: logFd });
+    pid = spawnSelfDetached(['ws', 'run-daemon', '--id', id], { stdoutFd: 'ignore', stderrFd: logFd });
   } finally {
     closeSync(logFd);
   }

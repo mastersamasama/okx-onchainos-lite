@@ -83,10 +83,9 @@ something below. There are no `_clap.mjs` workarounds: `core/cli.mjs` enforces c
 | std::process | `core/rs/process.mjs` | spawn-failure and ExitStatus Display |
 | reqwest::Error | `core/rs/reqwest.mjs` | `ReqwestError` Display |
 
-Leftover private copies (fold into core when touched): `payment/_payment-cache.mjs`,
-`payment/_mcp-client.mjs`, `watch/_proc.mjs`, `wallet/utxo/_panic.mjs`,
-`agent/task/common/autotrade/_err.mjs`, the socket-error tables in `core/ws.mjs` and
-`wallet/api.mjs`, and `serdeJsonFromStr` in `core/qr.mjs`.
+Leftover private modules (fold into core when touched): `payment/_payment-cache.mjs` (strict
+reader; `core/paystate.mjs` keeps the lenient one), `payment/_mcp-client.mjs` (mirror of `mcp_client.rs`),
+`payment/_http.mjs` (reqwest client stand-in) and `wallet/utxo/_panic.mjs`.
 
 ## 3. Handler contract
 

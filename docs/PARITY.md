@@ -79,7 +79,6 @@ stable outcome; parity cases mask or avoid those values.
 - `ws run-daemon` credentials error: upstream races its heartbeat's first status write against the final one on the same `.status.tmp`, so the final status (even the stdout error) varies; lite always ends `stopped|…|credentials:…` (upstream random).
 - Fragmented text messages are UTF-8-checked at reassembly, tungstenite per fragment — same error, possibly later when a stream dies mid-message.
 - The handshake response head must use CRLF (httparse also takes bare LF); the 64 KiB `Attack attempt detected` limit applies to the head buffer only.
-- DNS failures print `failed to lookup address information: Name or service not known` (macOS: `nodename nor servname…`) for every resolver error and on Windows too; upstream prints the OS resolver text (`No such host is known. (os error 11001)` on Windows).
 
 **MCP**
 - With several requests in flight upstream's reply order is nondeterministic (multi-threaded runtime); lite replies in completion order and runs shared-client tools FIFO. Parity cases keep one request in flight after the handshake (upstream random).
