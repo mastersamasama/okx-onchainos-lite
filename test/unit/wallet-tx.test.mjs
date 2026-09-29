@@ -2,7 +2,7 @@
 // lib/wallet/{broadcast,sign}.mjs). Oracles are the upstream Rust unit tests (transfer/*.rs,
 // shared/**/*.rs, sign.rs) and the Display texts of the crates upstream links (base64 0.22,
 // hex 0.4, bs58 0.5, rust-bitcoin 0.32, serde_json 1.0).
-import { test, after } from 'node:test';
+import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, cpSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 process.env.OCL_BASE_URL = `http://127.0.0.1:${server.address().port}`;
-after(() => server.close());
+server.unref();   // Node 18 runs a file-level after() hook before later top-level tests
 
 const L = '../../skill/onchainos-lite/lib/';
 const amount = await import(L + 'wallet/shared/common/amount.mjs');

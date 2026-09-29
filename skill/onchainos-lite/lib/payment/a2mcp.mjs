@@ -232,6 +232,51 @@ function percentDecode(s) {
   }
   return Buffer.from(out);
 }
+// RFC 3492 punycode decode → code points, or null when malformed.
+function punycodeDecode(input) {
+  const base = 36, tMin = 1, tMax = 26;
+  const adapt = (delta, numPoints, first) => {
+    delta = first ? Math.floor(delta / 700) : delta >> 1;
+    delta += Math.floor(delta / numPoints);
+    let k = 0;
+    for (; delta > ((base - tMin) * tMax) >> 1; k += base) delta = Math.floor(delta / (base - tMin));
+    return k + Math.floor(((base - tMin + 1) * delta) / (delta + 38));
+  };
+  const digit = (c) => (c >= 0x30 && c <= 0x39 ? c - 22 : c >= 0x41 && c <= 0x5a ? c - 0x41 : c >= 0x61 && c <= 0x7a ? c - 0x61 : base);
+  const out = [];
+  const b = Math.max(input.lastIndexOf('-'), 0);
+  for (let j = 0; j < b; j++) { if (input.charCodeAt(j) >= 0x80) return null; out.push(input.charCodeAt(j)); }
+  let n = 128, i = 0, bias = 72;
+  for (let idx = b > 0 ? b + 1 : 0; idx < input.length;) {
+    const oldi = i;
+    for (let w = 1, k = base; ; k += base) {
+      if (idx >= input.length) return null;
+      const d = digit(input.charCodeAt(idx++));
+      if (d >= base) return null;
+      i += d * w;
+      const t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+      if (d < t) break;
+      w *= base - t;
+      if (i > 0x7fffffff || w > 0x7fffffff) return null;
+    }
+    bias = adapt(i - oldi, out.length + 1, oldi === 0);
+    n += Math.floor(i / (out.length + 1));
+    i %= out.length + 1;
+    if (n > 0x10ffff) return null;
+    out.splice(i++, 0, n);
+  }
+  return out;
+}
+// idna (UTS 46 ToASCII as the url crate runs it) rejects an `xn--` label that is not valid
+// punycode or decodes to nothing, to pure ASCII or to control characters. Node's WHATWG parser
+// stopped checking this (Ada 4 in Node 24.20 accepts `xn--a.com`; Ada 3.3 in 24.11 did not), so
+// it is checked here explicitly.
+const invalidPunycodeLabel = (label) => {
+  if (!/^xn--/i.test(label)) return false;
+  const cps = punycodeDecode(label.slice(4));
+  return !cps || cps.length === 0 || cps.every((c) => c < 0x80) || cps.some((c) => c < 0x20 || (c >= 0x7f && c <= 0x9f));
+};
+
 // Special-scheme host (url host.rs::Host::parse_cow) → ParseError text | null when valid.
 function specialHostError(host) {
   if (host.startsWith('[')) {
@@ -256,6 +301,7 @@ function specialHostError(host) {
   if ([...Buffer.from(ascii)].some(forbiddenDomainCp)) return URL_ERR.idna;
   if (ascii === '') return URL_ERR.emptyHost;
   if (endsInANumber(ascii) && !validIpv4(ascii)) return URL_ERR.ipv4;
+  if (ascii.split('.').some(invalidPunycodeLabel)) return URL_ERR.idna;
   try { new URL(`https://${host}/`); return null; } catch { return URL_ERR.idna; }
 }
 // url parser.rs::parse_port (Context::UrlParser) on the text after the host's ':'.
@@ -309,6 +355,9 @@ export class A2mcpFrozenRequestV1 {
     if (m !== 'GET' && m !== 'POST') throw new Error(`${ERR_INVALID_PARAMS}: A2MCP request method must be GET or POST`);
     let parsed;
     try { parsed = new URL(endpoint); } catch { throw new Error(`${ERR_INVALID_PARAMS}: invalid Endpoint URL: ${urlParseError(endpoint)}`); }
+    if (SPECIAL_SCHEMES.includes(parsed.protocol.slice(0, -1)) && parsed.hostname.split('.').some(invalidPunycodeLabel)) {
+      throw new Error(`${ERR_INVALID_PARAMS}: invalid Endpoint URL: ${URL_ERR.idna}`);
+    }
     if (parsed.protocol !== 'https:') throw new Error(`${ERR_INVALID_PARAMS}: Endpoint must use HTTPS`);
     for (const spec of paramPlan) {
       if (spec.carrier === state.ParamCarrier.Header && RESERVED_HEADERS.includes(asciiLower(spec.name))) {

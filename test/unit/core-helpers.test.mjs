@@ -605,14 +605,16 @@ test('common: wait_tx_onchain success / fail / pending / request errors / timeou
   // timeout: advance the monotonic clock past the deadline inside the request
   const realNow = performance.now.bind(performance);
   let skew = 0;
-  performance.now = () => realNow() + skew;
+  // defineProperty: `performance.now` is a read-only accessor on Node 18
+  const setNow = (fn) => Object.defineProperty(performance, 'now', { value: fn, configurable: true, writable: true });
+  setNow(() => realNow() + skew);
   try {
     const slow = { async get() { skew += 21000; return []; } };
     await assert.rejects(C.waitTxOnchain(slow, '0x2', '59144'), { message: 'tx 0x2 not confirmed on-chain within 20s (chain=59144)' });
     const slow10 = { async get() { skew += 11000; throw new Error('down'); } };
     await assert.rejects(C.waitTxOnchain(slow10, '0x3', '56'), { message: 'tx 0x3 not confirmed on-chain within 10s (chain=56)' });
   } finally {
-    performance.now = realNow;
+    setNow(realNow);
   }
 });
 

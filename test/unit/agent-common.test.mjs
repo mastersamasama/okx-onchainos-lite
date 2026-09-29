@@ -9,6 +9,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, rmSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
+import { fileURLToPath } from 'node:url';
 
 const HOME = mkdtempSync(join(tmpdir(), 'ocl-unit-agent-common-'));
 process.env.OCL_HOME = HOME;
@@ -637,7 +638,7 @@ test('home: task_state_dir joins like Rust PathBuf::join (absolute / rooted job 
   const { spawnSync } = await import('node:child_process');
   const { readdirSync, statSync, writeFileSync } = await import('node:fs');
   const { relative } = await import('node:path');
-  const ROOT = join(import.meta.dirname, '..', '..');
+  const ROOT = fileURLToPath(new URL('../..', import.meta.url));
   const UP = join(ROOT, '.cache', 'bin', process.platform === 'win32' ? 'onchainos-4.6.3-proxy.exe' : 'onchainos-4.6.3-proxy');
   const LITE = join(ROOT, 'skill', 'onchainos-lite', 'bin', 'ocl.mjs');
   const skip = existsSync(UP) ? false : 'upstream binary not built (.cache/bin)';

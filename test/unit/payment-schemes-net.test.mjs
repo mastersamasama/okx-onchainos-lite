@@ -1,7 +1,7 @@
 // Stub-API unit tests for the payment-schemes unit (a2a-pay create/pay/status polling, sign_escrow,
 // subscription allowance-status / cancel). A logged-in parity home + a local stub OKX API: the TEE
 // sign-msg / credential endpoints never reach a real server.
-import { test, after } from 'node:test';
+import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, cpSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
 });
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 process.env.OCL_BASE_URL = `http://127.0.0.1:${server.address().port}`;
-after(() => server.close());
+server.unref();   // Node 18 runs a file-level after() hook before later top-level tests
 
 const a2a = await import('../../skill/onchainos-lite/lib/payment/a2a-pay.mjs');
 const sub = await import('../../skill/onchainos-lite/lib/payment/subscription.mjs');

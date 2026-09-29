@@ -3,7 +3,7 @@
 // payment/permit2/*.rs, payment/subscription/*.rs, mcp_client.rs) and the spec's derived vectors
 // (spec/extract/g09a/g09b). A stub wallet API + stub merchant exercise the TEE signing and the
 // two-phase replay end to end (fund paths the parity proxy never forwards).
-import { test, after } from 'node:test';
+import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, cpSync, writeFileSync, existsSync, readFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';
@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
 await new Promise((r) => server.listen(0, '127.0.0.1', r));
 const BASE = `http://127.0.0.1:${server.address().port}`;
 process.env.OCL_BASE_URL = BASE;
-after(() => server.close());
+server.unref();   // Node 18 runs a file-level after() hook before later top-level tests
 
 const ok = (data) => ({ body: { code: '0', msg: '', data } });
 const bodies = (path) => STUB.log.filter((x) => x.path === path).map((x) => JSON.parse(x.body));
