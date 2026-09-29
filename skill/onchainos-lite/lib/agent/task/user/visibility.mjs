@@ -2,7 +2,7 @@
 // The update endpoint's wire values are public=1 / private=0 (the inverse of create-task).
 import { stringify } from '../../../core/json.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { trim } from '../../_rs.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 import { resolveUserAgent } from './create.mjs';
 
 const SET_VISIBILITY_ACTION = 'setVisibility';

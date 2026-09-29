@@ -3,7 +3,7 @@
 // action matrix, combinedAction. SW2 (`swap quote` / `swap swap`): per-route honeypot matrix.
 // Enum variants are represented by their wire strings (as_str).
 import { F64 } from './json.mjs';
-import { trim, asciiLower, asciiUpper } from './_rust-str.mjs';
+import { trim, asciiLower, asciiUpper } from './rs/str.mjs';
 
 // upstream: risk_classify.rs::TradeDirection (as_str → "buy" / "sell")
 export const TradeDirection = Object.freeze({ Buy: 'buy', Sell: 'sell' });

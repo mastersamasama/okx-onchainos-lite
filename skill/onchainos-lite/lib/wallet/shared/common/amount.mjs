@@ -1,11 +1,13 @@
 // Minimal-unit / readable amount conversion — upstream agentic_wallet/shared/common/amount.rs.
 import { readableToMinimalStr } from '../../../core/validators.mjs';
-import { rustTrim, isAllAsciiDigits, get, hasOwn, isObject, asU64, parseU32 } from '../_rust.mjs';
+import { trim, allAsciiDigits } from '../../../core/rs/str.mjs';
+import { get, isObject, asU64 } from '../../../core/rs/value.mjs';
+import { parseU32 } from '../../../core/rs/num.mjs';
 
 // upstream: amount.rs::parse_minimal → BigInt
 export function parseMinimal(value, field, allowZero) {
-  const v = rustTrim(value);
-  if (v === '' || !isAllAsciiDigits(v)) throw new Error(`${field} must be a non-negative integer in minimal units`);
+  const v = trim(value);
+  if (v === '' || !allAsciiDigits(v)) throw new Error(`${field} must be a non-negative integer in minimal units`);
   if (v.length > 1 && v.startsWith('0')) throw new Error(`${field} must not contain leading zeros`);
   const parsed = BigInt(v);
   if (!allowZero && parsed === 0n) throw new Error(`${field} must be greater than zero`);
@@ -47,7 +49,7 @@ export function valueAsDecimalString(value) {
 // upstream: amount.rs::decimal_field — first *present* key of `decimal`, `decimals` → u32.
 export function decimalField(value) {
   if (!isObject(value)) return undefined;
-  const key = ['decimal', 'decimals'].find((k) => hasOwn(value, k));
+  const key = ['decimal', 'decimals'].find((k) => get(value, k) !== undefined);
   if (key === undefined) return undefined;
   const text = valueAsDecimalString(get(value, key));
   return text === undefined ? undefined : parseU32(text);

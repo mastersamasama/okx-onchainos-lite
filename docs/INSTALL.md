@@ -76,11 +76,13 @@ ocl auth transfer init                      # prints a one-time recipient code (
 ocl auth transfer seal --to <recipient>     # add --session to also move the wallet login
 # back on the target
 ocl auth transfer open <sealed>             # decrypts into the target's encrypted keyring
+ocl auth transfer open - < sealed.txt       # or read it from stdin (e.g. an attached file)
 ```
 The sealed value is HPKE-encrypted (X25519/HKDF-SHA256/AES-256-GCM) to the target's
 one-time key: whoever relays it (an agent, a chat) only ever sees ciphertext, and it opens
-once. `--session` moves a wallet session — use it on one machine only, because the next
-token refresh on either side invalidates the other copy.
+once. An API key seals to ~0.3 KB, a wallet session to ~3 KB. For a session, save the value to
+a file and attach it, rather than asking the agent to retype it. `--session` moves a wallet
+session. Use it on one machine only: the next token refresh on either side invalidates the other copy.
 
 ## 3. Use it
 
@@ -94,6 +96,9 @@ Muse runs each user's agent in a sandbox VM whose only egress is an authenticate
 TLS-inspecting proxy. onchainos-lite handles that automatically (system CA bundle from
 `NODE_EXTRA_CA_CERTS`/`SSL_CERT_FILE`, CONNECT tunnelling with the proxy credentials from
 `HTTPS_PROXY`, independent of `NODE_USE_ENV_PROXY`). Verified on Muse with Node 24.20.
+The checks were `doctor`, a wallet login through the link, `wallet status` / `addresses` / `balance`,
+an authenticated `market price`, TEE `sign-message`, a sealed session transfer from another
+machine, and the agent picking the skill by itself for a plain-language request.
 
 Muse discovers personal skills in `~/workspace/skills/<name>/SKILL.md` (no registration;
 its `skill_search` matches the SKILL.md description, which already lists OKX / wallet /

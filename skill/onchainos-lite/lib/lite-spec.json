@@ -50,7 +50,7 @@
       "lite": true
     },
     "auth transfer open": {
-      "help": "(target machine) Decrypt a sealed blob from `auth transfer seal` into the local encrypted keyring\n\nUsage: onchainos auth transfer open <SEALED>\n\nArguments:\n  <SEALED>  The sealed blob (ocl-seal-v1.…)\n\nOptions:\n  -h, --help  Print help\n",
+      "help": "(target machine) Decrypt a sealed blob from `auth transfer seal` into the local encrypted keyring\n\nUsage: onchainos auth transfer open <SEALED>\n\nArguments:\n  <SEALED>  The sealed blob (ocl-seal-v1.…), or - to read it from stdin\n\nOptions:\n  -h, --help  Print help\n",
       "opts": [],
       "args": [{ "name": "SEALED", "required": true }],
       "lite": true

@@ -1,7 +1,8 @@
 // Funding notice — upstream task/common/funding_notice.rs.
 import { buildQrOutput, displayMode as qrDisplayMode } from '../../../core/qr.mjs';
 import { stringify } from '../../../core/json.mjs';
-import { at, asStr, trim } from '../../_rs.mjs';
+import { at, asStr } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 import { userNotify } from './okx-a2a.mjs';
 
 // upstream: funding_notice.rs::funding_display_mode

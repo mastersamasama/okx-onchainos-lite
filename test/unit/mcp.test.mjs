@@ -15,6 +15,7 @@ process.on('exit', () => { try { rmSync(HOME, { recursive: true, force: true });
 
 const LIB = '../../skill/onchainos-lite/lib/';
 const S = await import(LIB + 'mcp/serde.mjs');
+const { strDebug } = await import(LIB + 'core/rs/str.mjs');
 const R = await import(LIB + 'mcp/rmcp.mjs');
 const M = await import(LIB + 'mcp/index.mjs');
 const E = await import(LIB + 'core/errors.mjs');
@@ -94,8 +95,7 @@ test('tools without Parameters<T> take no arguments', () => {
 });
 
 test('Rust {:?} of strings and serde_json Values', () => {
-  assert.equal(S.debugStr('a"b\\c\n\t\r\0'), '"a\\"b\\\\c\\n\\t\\r\\0"');
-  assert.equal(S.debugStr('\u0001\u007f ​́é😀 '), '"\\u{1}\\u{7f}\\u{a0}\\u{200b}\\u{301}é😀 "');
+  assert.equal(strDebug('\u0001\u007f ​́é😀 '), '"\\u{1}\\u{7f}\\u{a0}\\u{200b}\\u{301}é😀 "');
   assert.equal(S.debugValue(parse('{"b":[1,-2,1.5,true,null],"a":"x"}')), 'Object {"a": String("x"), "b": Array [Number(1), Number(-2), Number(1.5), Bool(true), Null]}');
 });
 

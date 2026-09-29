@@ -1,6 +1,6 @@
 // ASP declines a designated assignment (off-chain) — upstream task/asp/asp_reject.rs.
 import { auditLog } from '../../../core/audit.mjs';
-import { get, asI64, asStr } from '../../_rs.mjs';
+import { get, asI64, asStr } from '../../../core/rs/value.mjs';
 
 // upstream: asp_reject.rs::handle_asp_reject (prints plain text)
 export async function handleAspReject(client, jobId, agentId, reason) {

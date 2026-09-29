@@ -3,6 +3,7 @@
 //   api-key set reads env or stdin; transfer moves an HPKE-sealed blob that only the
 //   target's one-time key can open (the agent relaying it only ever sees ciphertext).
 import { readFileSync } from 'node:fs';
+import { deflateRawSync, inflateRawSync } from 'node:zlib';
 import { struct } from '../../core/json.mjs';
 import * as keyring from '../../core/keyring.mjs';
 import { load, save, loadSession, saveSession } from '../../core/store.mjs';
@@ -119,7 +120,8 @@ export default {
         payload.session = { keyring: { access_token: blob.access_token, refresh_token: blob.refresh_token, session_key: blob.session_key }, session, wallets: load('wallets.json') };
       }
       if (!payload.apiKey && !payload.session) throw new Error('nothing to transfer: no API key configured (set OKX_API_KEY/OKX_SECRET_KEY/OKX_PASSPHRASE or run `ocl auth api-key set`) and --session not given');
-      const { enc, ciphertext } = seal({ pkR: pk, plaintext: Buffer.from(JSON.stringify(payload)), info: INFO });
+      // deflated: wallets.json repeats each address per chain, so a session blob shrinks ~8x
+      const { enc, ciphertext } = seal({ pkR: pk, plaintext: deflateRawSync(Buffer.from(JSON.stringify(payload)), { level: 9 }), info: INFO });
       return struct({
         sealed: SEALED + b64u(Buffer.concat([enc, ciphertext])),
         contains: [payload.apiKey && 'api-key', payload.session && 'wallet-session'].filter(Boolean),
@@ -136,11 +138,12 @@ export default {
       const sk = blob.transfer_recipient_sk;
       if (!sk) throw new Error('no pending transfer on this machine — run `ocl auth transfer init` first');
       if (Date.now() - Number(blob.transfer_recipient_created || 0) > TTL_MS) throw new Error('the recipient code expired — run `ocl auth transfer init` again');
-      const s = String(o.sealed).trim();
+      // `-` reads the blob from stdin (long session blobs, or keeping it out of the shell history)
+      const s = (o.sealed === '-' ? readStdin() : String(o.sealed)).trim();
       if (!s.startsWith(SEALED)) throw new Error(`sealed value must start with ${SEALED}`);
       const raw = Buffer.from(s.slice(SEALED.length), 'base64url');
       let payload;
-      try { payload = JSON.parse(open({ skR: Buffer.from(sk, 'base64'), enc: raw.subarray(0, 32), ciphertext: raw.subarray(32), info: INFO }).toString('utf8')); }
+      try { payload = JSON.parse(inflateRawSync(open({ skR: Buffer.from(sk, 'base64'), enc: raw.subarray(0, 32), ciphertext: raw.subarray(32), info: INFO })).toString('utf8')); }
       catch { throw new Error('could not open the sealed value (wrong recipient or corrupted input)'); }
       const imported = [];
       if (payload.apiKey) { storeApiKey(payload.apiKey); imported.push('api-key'); }

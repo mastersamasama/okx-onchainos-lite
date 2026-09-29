@@ -7,9 +7,11 @@ import { auditLog } from '../../../core/audit.mjs';
 import { deviceId as cachedDeviceId, deviceName as cachedDeviceName } from '../../../core/device.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
 import { ensureTokensRefreshed } from '../../../wallet/auth.mjs';
-import { onchainosHome, writeSecure } from '../../_home.mjs';
-import { S, fromValue } from '../../_serde.mjs';
-import { get, asStr, asI64, asU64, asBool, asArray, isObj, trim, parseI64, eqIgnoreAsciiCase } from '../../_rs.mjs';
+import { home as onchainosHome, writeSecure } from '../../../core/home.mjs';
+import { T, fromValue } from '../../../core/serde.mjs';
+import { get, asStr, asI64, asU64, asBool, asArray, isObject } from '../../../core/rs/value.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../../core/rs/str.mjs';
+import { parseI64 } from '../../../core/rs/num.mjs';
 import * as signing from '../signing.mjs';
 import { AGENT_ROLE_USER, AGENT_ROLE_ASP, XLAYER_CHAIN_INDEX, fetchAgentProfile, findService } from '../common/index.mjs';
 import { resolveAgentId } from '../common/query.mjs';
@@ -75,9 +77,9 @@ export async function handleStartAutorenew(client, subId) {
   try { confirm = await client.postWithIdentity(`${SUBSCRIBE_API_PREFIX}/providerConfirmStatus`, { subId, autoRenew: 1 }, userAgentId); } catch (e) {
     throw errWith('providerConfirmStatus failed', e);
   }
-  if (confirm === null || !isObj(confirm) || Object.keys(confirm).length === 0) throw new Error('providerConfirmStatus returned empty terms');
+  if (confirm === null || !isObject(confirm) || Object.keys(confirm).length === 0) throw new Error('providerConfirmStatus returned empty terms');
   const typedData = get(confirm, 'typedData');
-  if (typedData === undefined || typedData === null || !isObj(typedData) || Object.keys(typedData).length === 0) throw new Error('providerConfirmStatus response missing typedData');
+  if (typedData === undefined || typedData === null || !isObject(typedData) || Object.keys(typedData).length === 0) throw new Error('providerConfirmStatus response missing typedData');
   const termsSig = await signing.signTypedData(typedData, address);
   const terms = { ...confirm };
   delete terms.typedData;
@@ -250,7 +252,7 @@ const thisDeviceIdOrNull = () => { try { return cachedDeviceId() || null; } catc
 
 // upstream: subscription_ops.rs::enrich_subscription_detail (pure)
 export function enrichSubscriptionDetail(detail, thisDeviceId, defaultAllReceives, facts) {
-  if (!isObj(detail)) return detail;
+  if (!isObject(detail)) return detail;
   const obj = detail;
   const code = asI64(get(obj, 'status') ?? null) ?? -1;
   obj.statusName = statusName(code);
@@ -350,31 +352,29 @@ export async function handleSubscribeCost(client) {
 }
 
 // ── typed subscription rows ──
-const devArray = {
-  expecting: 'any valid JSON value', option: true,
-  de: (v) => (v === null ? null : normalizeStrArray(v)),
-};
+// upstream: subscription_ops.rs::de_opt_str_array
+const devArray = T.with(T.option(T.value), (v) => (v === null ? null : normalizeStrArray(v)));
 // upstream: subscription_ops.rs::SubscriptionInfo (serde(default, rename_all = "camelCase"))
-const SUBSCRIPTION_INFO = S.struct('SubscriptionInfo', [
-  ['jobId', S.string, { default: '' }], ['jobType', S.i64, { default: 0 }], ['status', S.i64, { default: 0 }], ['chainId', S.i64, { default: 0 }],
-  ['title', S.string, { default: '' }], ['description', S.string, { default: '' }], ['descriptionSummary', S.string, { default: '' }],
-  ['buyerAgentId', S.string, { default: '' }], ['buyerAgentAddress', S.string, { default: '' }], ['providerAgentId', S.string, { default: '' }],
-  ['providerAgentAddress', S.string, { default: '' }], ['trialType', S.i64, { default: 0 }],
-  ['trialStartTime', S.option(S.i64), { default: null, aliases: ['trailStartTime'] }], ['trialEndTime', S.option(S.i64), { default: null, aliases: ['trailEndTime'] }],
-  ['subStartTime', S.option(S.i64), { default: null }], ['subEndTime', S.option(S.i64), { default: null }], ['subBufferEndTime', S.option(S.i64), { default: null }],
-  ['autoRenew', S.i64, { default: 0 }], ['copyTrade', S.i64, { default: 0 }], ['periodIndex', S.option(S.i64), { default: null }],
-  ['serviceId', S.string, { default: '' }], ['serviceDescription', S.string, { default: '' }], ['serviceParams', S.string, { default: '' }],
-  ['serviceTokenAddress', S.string, { default: '' }], ['serviceTokenAmount', S.string, { default: '' }], ['paymentTokenAddress', S.string, { default: '' }],
-  ['paymentTokenAmount', S.string, { default: '' }], ['paymentCurrencyAmount', S.string, { default: '' }], ['offlineReceiveFlag', S.i64, { default: 0 }],
-  ['role', S.string, { default: '' }], ['hasFeedBack', S.bool, { default: false }],
-  ['deviceList', devArray, { default: null }], ['categoryCodes', devArray, { default: null }],
+const SUBSCRIPTION_INFO = T.struct('SubscriptionInfo', [
+  ['jobId', T.string, ''], ['jobType', T.i64, 0], ['status', T.i64, 0], ['chainId', T.i64, 0],
+  ['title', T.string, ''], ['description', T.string, ''], ['descriptionSummary', T.string, ''],
+  ['buyerAgentId', T.string, ''], ['buyerAgentAddress', T.string, ''], ['providerAgentId', T.string, ''],
+  ['providerAgentAddress', T.string, ''], ['trialType', T.i64, 0],
+  ['trialStartTime', T.option(T.i64), null, ['trailStartTime']], ['trialEndTime', T.option(T.i64), null, ['trailEndTime']],
+  ['subStartTime', T.option(T.i64), null], ['subEndTime', T.option(T.i64), null], ['subBufferEndTime', T.option(T.i64), null],
+  ['autoRenew', T.i64, 0], ['copyTrade', T.i64, 0], ['periodIndex', T.option(T.i64), null],
+  ['serviceId', T.string, ''], ['serviceDescription', T.string, ''], ['serviceParams', T.string, ''],
+  ['serviceTokenAddress', T.string, ''], ['serviceTokenAmount', T.string, ''], ['paymentTokenAddress', T.string, ''],
+  ['paymentTokenAmount', T.string, ''], ['paymentCurrencyAmount', T.string, ''], ['offlineReceiveFlag', T.i64, 0],
+  ['role', T.string, ''], ['hasFeedBack', T.bool, false],
+  ['deviceList', devArray, null], ['categoryCodes', devArray, null],
 ]);
 // upstream: subscription_ops.rs::SubscriptionList
-const SUBSCRIPTION_LIST = S.struct('SubscriptionList', [
-  ['list', S.vec(SUBSCRIPTION_INFO), { default: () => [] }], ['total', S.u64, { default: 0 }], ['totalNoCondition', S.option(S.u64), { default: null }],
-  ['page', S.option(S.u32), { default: null }], ['pageSize', S.option(S.u32), { default: null }],
+const SUBSCRIPTION_LIST = T.struct('SubscriptionList', [
+  ['list', T.vec(SUBSCRIPTION_INFO), () => []], ['total', T.u64, 0], ['totalNoCondition', T.option(T.u64), null],
+  ['page', T.option(T.u32), null], ['pageSize', T.option(T.u32), null],
 ]);
-export const decodeSubscriptionList = (v) => fromValue(SUBSCRIPTION_LIST, v);
+export const decodeSubscriptionList = (v) => fromValue(v, SUBSCRIPTION_LIST);
 
 // upstream: subscription_ops.rs::enrich_subscription_info (mutates the typed row)
 function enrichSubscriptionInfo(item, thisDeviceId, defaultAllReceives) {

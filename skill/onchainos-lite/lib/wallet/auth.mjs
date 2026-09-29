@@ -22,7 +22,9 @@ import * as store from './store.mjs';
 import { ERR_NOT_LOGGED_IN, maskEmail } from './common.mjs';
 import { switchToAccount } from './account.mjs';
 import { forceRefreshChainCache } from './chain.mjs';
-import { parseI64, parseU64, isI64, isObject, timeoutAt } from './_rs.mjs';
+import { isI64, isObject } from '../core/rs/value.mjs';
+import { intFromStrOk } from '../core/rs/num.mjs';
+import { timeoutAt } from '../core/rs/time.mjs';
 
 // ── Token / session helpers ─────────────────────────────────────────
 
@@ -116,7 +118,7 @@ export function tokenExpTimestamp(token) {
 // upstream: auth/mod.rs::is_session_key_expired — "" / unparseable → expired.
 export function isSessionKeyExpired(expireAt) {
   if (expireAt === '') return true;
-  const exp = parseI64(expireAt);
+  const exp = intFromStrOk(expireAt, 'i64');
   if (exp === undefined) return true;
   return BigInt(nowSecs()) >= exp;
 }
@@ -168,7 +170,7 @@ export function classifyPoll(result) {
 // upstream: auth/mod.rs::resolve_social_login_timeout_secs
 export function resolveSocialLoginTimeoutSecs(raw) {
   if (raw === undefined || raw === null) return SOCIAL_LOGIN_TIMEOUT_DEFAULT_SECS;
-  const v = parseU64(raw);
+  const v = intFromStrOk(raw, 'u64');
   return v !== undefined && v >= BigInt(SOCIAL_LOGIN_TIMEOUT_FLOOR_SECS) ? Number(v) : SOCIAL_LOGIN_TIMEOUT_DEFAULT_SECS;
 }
 
@@ -238,42 +240,29 @@ export function validatedPostLoginAgenticId(agenticId) {
   return t === '' ? null : t;
 }
 
-// ── collaborators owned by other units (late-bound, private fallbacks) ──
-async function importOptional(rel, name) {
-  try {
-    const m = await import(new URL(rel, import.meta.url).href);
-    return typeof m[name] === 'function' ? m[name] : null;
-  } catch { return null; }
-}
-async function agentTaskUser(name) {
-  return (await importOptional('../agent/task/user/index.mjs', name)) ?? (await import('./_post-login.mjs'))[name];
-}
-async function fetchHeartbeat(client, accessToken, chainIndex) {
-  const f = (await importOptional('../agent/chat/index.mjs', 'fetchHeartbeat')) ?? (await import('./_post-login.mjs')).fetchHeartbeat;
-  return f(client, accessToken, chainIndex);
-}
-async function loginAccountSummary(client, accessToken, wallets, accountId) {
-  const f = (await importOptional('./balance/index.mjs', 'loginAccountSummary')) ?? (await import('./_login-summary.mjs')).loginAccountSummary;
-  return f(client, accessToken, wallets, accountId);
-}
+// Post-login collaborators — agent_commerce::{task::user, chat} and balance — are imported on
+// first use: they are large and import this module back.
+const agentTaskUser = () => import('../agent/task/user/index.mjs');
 
 // upstream: auth/mod.rs::prepare_post_login_subscriptions_bounded
 async function preparePostLoginSubscriptionsBounded(agenticId, deadlineMs) {
-  const prepare = await agentTaskUser('preparePostLoginSubscriptions');
-  const r = await timeoutAt(Promise.resolve().then(() => prepare(agenticId)), deadlineMs);
+  const { preparePostLoginSubscriptions } = await agentTaskUser();
+  const r = await timeoutAt(Promise.resolve().then(() => preparePostLoginSubscriptions(agenticId)), deadlineMs);
   return r.ok && !r.error ? r.value ?? null : null;
 }
 
 // upstream: auth/mod.rs::finalize_post_login_subscriptions_bounded
 async function finalizePostLoginSubscriptionsBounded(prepared, deviceRegistrationSucceeded, deadlineMs) {
-  const finalize = await agentTaskUser('finalizePostLoginSubscriptions');
-  const r = await timeoutAt(Promise.resolve().then(() => finalize(prepared, deviceRegistrationSucceeded)), deadlineMs);
+  const { finalizePostLoginSubscriptions } = await agentTaskUser();
+  const r = await timeoutAt(Promise.resolve().then(() => finalizePostLoginSubscriptions(prepared, deviceRegistrationSucceeded)), deadlineMs);
   return r.ok && !r.error ? r.value ?? null : null;
 }
 
-// upstream: auth/mod.rs::report_post_login_device — heartbeat with a 4 s budget; never fails.
+// upstream: auth/mod.rs::report_post_login_device — agent_commerce::chat::fetch_heartbeat with a
+// 4 s budget; never fails.
 export async function reportPostLoginDevice(client, accessToken) {
-  const r = await timeoutAt(Promise.resolve().then(() => fetchHeartbeat(client, accessToken, LOGIN_HEARTBEAT_CHAIN_INDEX)), Date.now() + POST_LOGIN_HEARTBEAT_TIMEOUT_SECS * 1000);
+  const heartbeat = import('../agent/chat/index.mjs').then((chat) => chat.fetchHeartbeat(client, accessToken, LOGIN_HEARTBEAT_CHAIN_INDEX));
+  const r = await timeoutAt(heartbeat, Date.now() + POST_LOGIN_HEARTBEAT_TIMEOUT_SECS * 1000);
   return r.ok && !r.error;
 }
 
@@ -305,12 +294,13 @@ export async function completeLogin(client, authSessionId, sessionPrivateKey) {
 
   const postLoginDeadline = Date.now() + POST_LOGIN_SETUP_TIMEOUT_SECS * 1000;
   const preparationDeadline = Date.now() + POST_LOGIN_PREPARE_TIMEOUT_SECS * 1000;
-  const resolveAgenticId = await agentTaskUser('resolvePostLoginAgenticId');
-  const resolved = await timeoutAt(Promise.resolve().then(() => resolveAgenticId({ deadlineMs: preparationDeadline })), preparationDeadline);
+  const { resolvePostLoginAgenticId } = await agentTaskUser();
+  const resolved = await timeoutAt(Promise.resolve().then(() => resolvePostLoginAgenticId()), preparationDeadline);
   const agenticId = validatedPostLoginAgenticId(resolved.ok && !resolved.error ? resolved.value : null);
   const postLogin = await runPostLoginSetup(client, resp.accessToken, agenticId, preparationDeadline, postLoginDeadline);
 
   const wallets = store.loadWallets() ?? store.walletsJson();
+  const { loginAccountSummary } = await import('./balance/index.mjs');
   const summary = await loginAccountSummary(client, resp.accessToken, wallets, resp.accountId);
   if (isObject(summary)) {
     summary.accountId = resp.accountId;

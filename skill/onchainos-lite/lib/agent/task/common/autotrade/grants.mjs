@@ -3,8 +3,11 @@
 import { join } from 'node:path';
 import { stringify, struct } from '../../../../core/json.mjs';
 import { Decimal } from './amount.mjs';
-import { fromStr, T } from './_serde-json.mjs';
-import { onchainosHome, exists, readToString, writeSecure, removeFileQuiet, nowSecs, satAdd, u64Le } from './_fs.mjs';
+import { fromStr, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
+import { exists, readToString, removeFileQuiet, io } from '../../../../core/rs/fs.mjs';
+import { nowSecs } from '../../../../core/rs/time.mjs';
+import { u64SaturatingAdd } from '../../../../core/rs/num.mjs';
 
 // upstream: grants.rs::GRANT_VERSION
 export const GRANT_VERSION = 1;
@@ -88,16 +91,16 @@ export function checkGrant(jobId, venue, action, amount) {
   try { grant = fromStr(readToString(path), GRANT_FILE); } catch { throw new GrantDeny(DENY_GRANT_UNREADABLE); }
   if (grant.version > GRANT_VERSION) throw new GrantDeny(DENY_VERSION_TOO_NEW);
   if (grant.jobId !== jobId) throw new GrantDeny(DENY_JOB_MISMATCH);
-  if (u64Le(grant.expiresAt, nowSecs())) throw new GrantDeny(DENY_EXPIRED);
+  if (grant.expiresAt <= nowSecs()) throw new GrantDeny(DENY_EXPIRED);
   if (!Object.prototype.hasOwnProperty.call(grant.grants, v)) throw new GrantDeny(DENY_VENUE_NOT_AUTHORIZED);
 }
 
 function writeGrantFile(jobId, grants, ttlSec) {
   const createdAt = nowSecs();
-  const grant = { version: GRANT_VERSION, jobId, grants, createdAt, expiresAt: satAdd(createdAt, ttlSec) };
+  const grant = { version: GRANT_VERSION, jobId, grants, createdAt, expiresAt: u64SaturatingAdd(createdAt, ttlSec) };
   let path;
   try { path = grantPath(jobId); } catch (d) { throw new Error(d.reason); }
-  writeSecure(path, stringify(grantFileJson(grant), true));
+  io(() => writeSecure(path, stringify(grantFileJson(grant), true)));
 }
 
 // upstream: grants.rs::write_grant (debug-build `autotrade-grant-write` only)

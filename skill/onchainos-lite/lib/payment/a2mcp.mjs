@@ -18,14 +18,16 @@ import { createHash, randomUUID } from 'node:crypto';
 import { domainToASCII } from 'node:url';
 import { context } from '../core/errors.mjs';
 import { stringify, struct, F64 } from '../core/json.mjs';
-import { asciiLower, asciiUpper, trim } from '../core/_rust-str.mjs';
-import { fromStr as serdeFromStr, T, SerdeJsonError } from '../wallet/_serde-json.mjs';
+import { asciiLower, asciiUpper, trim } from '../core/rs/str.mjs';
+import { get, asStr, asU64, isObject, cloneValue } from '../core/rs/value.mjs';
+import { intFromStrOk, jsonInt, U64_MAX } from '../core/rs/num.mjs';
+import { ioErrorText } from '../core/rs/fs.mjs';
+import { parseFromRfc3339 } from '../core/rs/time.mjs';
+import { fromSlice, T } from '../core/serde.mjs';
 import { decodePaymentBlob } from './dispatcher.mjs';
 import { extractAmount } from './payment-flow.mjs';
 import { prepareA2mcpCandidates, refreshA2mcpCandidateBalances } from './quote.mjs';
 import * as state from './state.mjs';
-import { get, asStr, asU64, isObj, cloneValue, ioErrorText, tryUint } from './_rs.mjs';
-import { parseFromRfc3339 } from './_chrono.mjs';
 
 // upstream: a2mcp.rs constants
 export const A2MCP_INTENT_VERSION = 1;
@@ -53,8 +55,6 @@ export const A2mcpExecutionState = Object.freeze({
 const EXECUTION_STATES = Object.values(A2mcpExecutionState);
 
 const hasOwn = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
-const U64_MAX = 18446744073709551615n;
-const toNum = (b) => (Number.isSafeInteger(Number(b)) ? Number(b) : b);
 
 // ── serde_json::Value equality (Number: integers by value, floats only equal floats) ──
 export function valueEq(a, b) {
@@ -63,7 +63,7 @@ export function valueEq(a, b) {
   const ai = typeof a === 'number' || typeof a === 'bigint', bi = typeof b === 'number' || typeof b === 'bigint';
   if (ai || bi) return ai && bi && BigInt(a) === BigInt(b);
   if (Array.isArray(a) || Array.isArray(b)) return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((x, i) => valueEq(x, b[i]));
-  if (isObj(a) && isObj(b)) {
+  if (isObject(a) && isObject(b)) {
     const ka = Object.keys(a).filter((k) => a[k] !== undefined), kb = Object.keys(b).filter((k) => b[k] !== undefined);
     return ka.length === kb.length && ka.every((k) => hasOwn(b, k) && valueEq(a[k], b[k]));
   }
@@ -76,7 +76,7 @@ const optValueEq = (a, b) => (a === undefined || b === undefined ? a === b : val
 // Schema: 'str' | 'bool' | 'value' | 'map' | {uint: bits} | {opt: s} | {vec: s} | {oneOf: [..]} |
 // {struct: [[key, schema, default?]]}. Two passes, both throwing on any mismatch (callers map it
 // to their own error token, exactly like upstream's `map_err(|_| …)`):
-//   1. serdeT(schema) drives the streaming serde_json decoder (wallet/_serde-json.mjs), which
+//   1. serdeT(schema) drives the streaming serde_json decoder (core/serde.mjs), which
 //      enforces the derive rules while parsing — `duplicate field`, `missing field`, seq-form
 //      structs (an Option field without #[serde(default)] is still required there), trailing
 //      input — and applies #[serde(default)]s;
@@ -96,7 +96,7 @@ function decode(schema, v) {
   if (schema === 'str') { if (typeof v !== 'string') throw new Error('type'); return v; }
   if (schema === 'bool') { if (typeof v !== 'boolean') throw new Error('type'); return v; }
   if (schema === 'value') return v;
-  if (schema === 'map') { if (!isObj(v)) throw new Error('type'); return v; }
+  if (schema === 'map') { if (!isObject(v)) throw new Error('type'); return v; }
   if (schema.uint) {
     const u = asU64(v);
     if (u === undefined || BigInt(u) > (1n << BigInt(schema.uint)) - 1n) throw new Error('type');
@@ -107,7 +107,7 @@ function decode(schema, v) {
   if (schema.oneOf) {
     // serde_json unit variant: "name", or the externally-tagged map form {"name": null}.
     if (typeof v === 'string' && schema.oneOf.includes(v)) return v;
-    const keys = isObj(v) ? Object.keys(v) : [];
+    const keys = isObject(v) ? Object.keys(v) : [];
     if (keys.length === 1 && schema.oneOf.includes(keys[0]) && v[keys[0]] === null) return keys[0];
     throw new Error('variant');
   }
@@ -123,7 +123,7 @@ function decode(schema, v) {
     });
     return out;
   }
-  if (!isObj(v)) throw new Error('type');
+  if (!isObject(v)) throw new Error('type');
   for (const [k, s, def] of fields) {
     if (hasOwn(v, k)) out[k] = decode(s, v[k]);
     else if (def !== undefined) out[k] = def();
@@ -549,7 +549,7 @@ export function computeExpiresAt(challengeExpiresAt, createdAt) {
   if (ch !== 0n && ch <= created) throw new Error(`${ERR_EXPIRED}: challenge expired`);
   let local = created + BigInt(state.MAX_QUOTE_TTL_SECS);
   if (local > U64_MAX) local = U64_MAX;
-  return toNum(ch === 0n ? local : (ch < local ? ch : local));
+  return jsonInt(ch === 0n ? local : (ch < local ? ch : local));
 }
 
 // upstream: a2mcp.rs::payment_id_for_probe (private) — "pay_" + 24 hex of sha256(source‖0‖probe‖0‖owner).
@@ -566,49 +566,16 @@ export function inspectPaymentSource(paymentId) {
   let bytes;
   try { bytes = readFileSync(path); } catch (e) { throw context(`${state.TOKEN_QUOTE_EXPIRED_OR_MISSING}: ${paymentId}`, new Error(ioErrorText(e))); }
   let value;
-  try { value = valueFromSlice(bytes); } catch (e) { throw context(`${state.TOKEN_QUOTE_EXPIRED_OR_MISSING}: ${paymentId}`, e); }
+  try { value = fromSlice(bytes); } catch (e) { throw context(`${state.TOKEN_QUOTE_EXPIRED_OR_MISSING}: ${paymentId}`, e); }
   const source = asStr(get(value, 'source'));
   if (source === undefined) return A2mcpPaymentSource.GenericQuote;
   if (source === A2MCP_SOURCE) return A2mcpPaymentSource.OkxAiA2mcp;
   throw new Error(`${ERR_INVALID_INTENT}: unknown payment source`);
 }
 
-// serde_json::from_slice::<Value>(bytes): the streaming decoder plus serde_json's UTF-8 check of
-// every string it parses (SliceRead::parse_str_bytes → `invalid unicode code point` positioned at
-// the byte after that string's closing quote) — unless a syntax error comes first in the document.
-const utf8Ok = (buf) => { try { new TextDecoder('utf-8', { fatal: true }).decode(buf); return true; } catch { return false; } };
-function valueFromSlice(bytes) {
-  let value, err;
-  try { value = serdeFromStr(bytes); } catch (e) { err = e; }
-  let limit = bytes.length;
-  if (err) {
-    if (!(err instanceof SerdeJsonError) || !err.line) throw err;
-    let start = 0;
-    for (let l = 1; l < err.line; l++) start = bytes.indexOf(0x0a, start) + 1;
-    limit = start + err.column;
-  }
-  for (let i = 0; i < bytes.length; i++) {
-    if (bytes[i] !== 0x22) continue;
-    let j = i + 1;
-    while (j < bytes.length && bytes[j] !== 0x22) j += bytes[j] === 0x5c ? 2 : 1;
-    if (j >= bytes.length || j + 1 > limit) break;
-    if (!utf8Ok(bytes.subarray(i + 1, j))) {
-      const at = j + 1, lineStart = bytes.lastIndexOf(0x0a, at - 1) + 1;
-      let line = 1;
-      for (let k = bytes.indexOf(0x0a); k !== -1 && k < lineStart; k = bytes.indexOf(0x0a, k + 1)) line++;
-      throw new SerdeJsonError('invalid unicode code point', line, at - lineStart);
-    }
-    i = j;
-  }
-  if (err) throw err;
-  return value;
-}
-
 // serde_json::from_slice::<T>(bytes) for the persisted A2MCP structs (throws on any serde error).
-// UTF-8 is validated up front (a BOM is kept, so serde_json rejects it as upstream does).
 function strictFromSlice(bytes, schema) {
-  new TextDecoder('utf-8', { fatal: true, ignoreBOM: true }).decode(bytes);
-  return decode(schema, serdeFromStr(bytes, serdeT(schema)));
+  return decode(schema, fromSlice(bytes, serdeT(schema)));
 }
 
 // Strict serde decode of a persisted intent file → A2mcpPaymentIntentV1 (throws on any mismatch).
@@ -616,7 +583,7 @@ function decodeIntent(bytes) {
   const d = strictFromSlice(bytes, INTENT);
   d.frozenRequest = new A2mcpFrozenRequestV1(d.frozenRequest);
   d.selectedAccept = new A2mcpSelectedAcceptV1(d.selectedAccept);
-  d.version = toNum(d.version); d.createdAt = toNum(d.createdAt); d.expiresAt = toNum(d.expiresAt);
+  d.version = jsonInt(d.version); d.createdAt = jsonInt(d.createdAt); d.expiresAt = jsonInt(d.expiresAt);
   return new A2mcpPaymentIntentV1(d);
 }
 
@@ -746,10 +713,10 @@ function decodePreparedState(bytes) {
   const p = s.prepared;
   p.frozenRequest = new A2mcpFrozenRequestV1(p.frozenRequest);
   p.confirmationContext = new A2mcpConfirmationContextV1(p.confirmationContext);
-  p.candidates = p.candidates.map((c) => new A2mcpPreparedCandidate({ ...c, decimals: toNum(c.decimals) }));
-  p.version = toNum(p.version); p.challengeExpiresAt = toNum(p.challengeExpiresAt);
+  p.candidates = p.candidates.map((c) => new A2mcpPreparedCandidate({ ...c, decimals: jsonInt(c.decimals) }));
+  p.version = jsonInt(p.version); p.challengeExpiresAt = jsonInt(p.challengeExpiresAt);
   s.prepared = new A2mcpPreparedPayment(p);
-  s.version = toNum(s.version); s.createdAt = toNum(s.createdAt); s.expiresAt = toNum(s.expiresAt);
+  s.version = jsonInt(s.version); s.createdAt = jsonInt(s.createdAt); s.expiresAt = jsonInt(s.expiresAt);
   return s;
 }
 
@@ -895,7 +862,7 @@ export async function prepareA2mcpPaymentFromChallenge(input) {
   else challengeExpiresAt = challengeExpiry < candidateExpiry ? challengeExpiry : candidateExpiry;
   return new A2mcpPreparedPayment({
     version: A2MCP_INTENT_VERSION, source: A2MCP_SOURCE, frozenRequest, confirmationContext: input.confirmationContext,
-    candidates: byToken, challengeExpiresAt: toNum(challengeExpiresAt), walletError: walletError ?? undefined, fundingCandidateId: undefined,
+    candidates: byToken, challengeExpiresAt: jsonInt(challengeExpiresAt), walletError: walletError ?? undefined, fundingCandidateId: undefined,
   });
 }
 
@@ -936,7 +903,7 @@ export function applyBalanceRefresh(candidates, balanceCandidates) {
 export function parseUnixValue(value) {
   const n = asU64(value);
   if (n !== undefined) return BigInt(n);
-  if (typeof value === 'string') return tryUint(value, 64);
+  if (typeof value === 'string') return intFromStrOk(value, 'u64');
   return undefined;
 }
 

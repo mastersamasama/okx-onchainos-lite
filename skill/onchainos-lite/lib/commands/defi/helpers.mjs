@@ -1,7 +1,8 @@
 // DeFi amount conversions and expectOutputList discovery — upstream cli/src/commands/defi/helpers.rs.
 import { stringify } from '../../core/json.mjs';
 import { fetchPositionDetail } from './api.mjs';
-import { get, isObject, asStr, asU64, asI64, toU32, parseU32 } from './_rs.mjs';
+import { get, isObject, asStr, asU64, asI64 } from '../../core/rs/value.mjs';
+import { toU32, parseU32 } from '../../core/rs/num.mjs';
 
 // `v.as_str().and_then(|s| s.parse::<u32>().ok()).or_else(|| v.as_u64().map(|n| n as u32))`
 export function precisionOf(v) {

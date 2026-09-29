@@ -3,11 +3,11 @@
 // Streamable HTTP / SSE against a user-supplied A2MCP endpoint; its own HTTP client (never the
 // OKX ApiClient). Transport failures surface as `endpoint_unreachable: …` errors.
 import { stringify } from '../core/json.mjs';
-import { trim, trimStart, asciiLower } from '../core/_rust-str.mjs';
+import { trim, trimStart, asciiLower } from '../core/rs/str.mjs';
+import { get, isObject, isNumber } from '../core/rs/value.mjs';
 import { UPSTREAM_VERSION } from '../config.mjs';
-import { fromStr as serdeFromStr } from '../wallet/_serde-json.mjs';
+import { fromStr as serdeFromStr } from '../core/serde.mjs';
 import { send, headerStr, text as respText } from './_http.mjs';
-import { get, isObj, isNum } from './_rs.mjs';
 
 // upstream: mcp_client.rs::MCP_PROTOCOL_VERSION
 export const MCP_PROTOCOL_VERSION = '2025-06-18';
@@ -16,7 +16,7 @@ const MCP_TIMEOUT_MS = 30000;
 const MAX_ERROR_BODY_CHARS = 500;
 
 const unreachable = (e) => new Error(`${TOKEN_ENDPOINT_UNREACHABLE}: ${e?.message ?? e}`);
-const hasKey = (v, k) => isObj(v) && Object.prototype.hasOwnProperty.call(v, k);
+const hasKey = (v, k) => isObject(v) && Object.prototype.hasOwnProperty.call(v, k);
 
 // upstream: mcp_client.rs::McpTool (serde: every field defaulted; unknown fields ignored) —
 // null when the entry does not deserialize (the caller skips it).
@@ -25,7 +25,7 @@ export function decodeMcpTool(v) {
   if (Array.isArray(v)) {
     if (v.length > 3) return null;
     [name = '', description, inputSchema] = v;
-  } else if (isObj(v)) {
+  } else if (isObject(v)) {
     name = v.name === undefined ? '' : v.name;
     description = v.description;
     inputSchema = v.inputSchema;
@@ -67,7 +67,7 @@ export function coerceArguments(params, inputSchema) {
 // upstream: mcp_client.rs::coerce_one (private)
 export function coerceOne(raw, ty) {
   const parsed = () => { try { return { v: serdeFromStr(raw) }; } catch { return null; } };
-  if (ty === 'integer' || ty === 'number') { const p = parsed(); return p && isNum(p.v) ? p.v : raw; }
+  if (ty === 'integer' || ty === 'number') { const p = parsed(); return p && isNumber(p.v) ? p.v : raw; }
   if (ty === 'boolean') return raw === 'true' ? true : raw === 'false' ? false : raw;
   if (ty === 'object' || ty === 'array') { const p = parsed(); return p ? p.v : raw; }
   return raw;

@@ -2,7 +2,9 @@
 // next-action `reject_review`; `handle` / `validate_rejection_reason` have no reachable caller
 // upstream (the CLI `reject` command is disabled) but are ported for completeness.
 import { auditLog } from '../../../../core/audit.mjs';
-import { get, asStr, asI64, asU64, trim, charCount, parseI64, debugOptInt } from '../../../_rs.mjs';
+import { get, asStr, asI64, asU64 } from '../../../../core/rs/value.mjs';
+import { trim, charCount, debugOptInt } from '../../../../core/rs/str.mjs';
+import { parseI64 } from '../../../../core/rs/num.mjs';
 import * as signing from '../../signing.mjs';
 import { shortJobId } from '../../common/util.mjs';
 import { isZeroDecimal } from '../refund.mjs';

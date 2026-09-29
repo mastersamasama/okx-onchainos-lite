@@ -5,8 +5,10 @@ import { createHash } from 'node:crypto';
 import { f64 } from '../../../core/json.mjs';
 import { auditLog } from '../../../core/audit.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { fromStr } from '../../../wallet/_serde-json.mjs';
-import { get, asStr, asI64, asU64, asF64, asBool, asArray, isObj, isNum, numText, trim, eqIgnoreAsciiCase, cloneValue } from '../../_rs.mjs';
+import { fromStr } from '../../../core/serde.mjs';
+import { get, asStr, asI64, asU64, asF64, asBool, asArray, isObject, isNumber, numText, cloneValue } from '../../../core/rs/value.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../../core/rs/str.mjs';
+import { formatFixed } from '../../../core/rs/num.mjs';
 import { selfOutput, utf8Lossy } from '../../_proc.mjs';
 import * as signing from '../signing.mjs';
 import { AGENT_ROLE_USER } from '../common/index.mjs';
@@ -18,39 +20,12 @@ import { getDesignatedProvider, saveDesignatedProvider } from './flow-lifecycle/
 
 const out = (s) => process.stdout.write(s);
 
-// Rust `format!("{:.N}", f64)`: exact binary value rounded half-to-even at N decimals.
-export function rustFixed(x, prec) {
-  if (Number.isNaN(x)) return 'NaN';
-  if (!Number.isFinite(x)) return x > 0 ? 'inf' : '-inf';
-  const neg = x < 0 || Object.is(x, -0);
-  const buf = new DataView(new ArrayBuffer(8));
-  buf.setFloat64(0, Math.abs(x));
-  const hi = buf.getUint32(0), lo = buf.getUint32(4);
-  const expBits = (hi >>> 20) & 0x7ff;
-  let mant = (BigInt(hi & 0xfffff) << 32n) | BigInt(lo);
-  let exp;
-  if (expBits === 0) exp = -1074; else { mant |= 1n << 52n; exp = expBits - 1075; }
-  let digits, frac;
-  if (exp >= 0) { digits = mant << BigInt(exp); frac = 0; } else { digits = mant * 5n ** BigInt(-exp); frac = -exp; }
-  let keep;
-  if (frac <= prec) keep = digits * 10n ** BigInt(prec - frac);
-  else {
-    const div = 10n ** BigInt(frac - prec);
-    keep = digits / div;
-    const rem = digits % div, half = div / 2n;
-    if (rem > half || (rem === half && keep % 2n === 1n)) keep += 1n;
-  }
-  let s = keep.toString();
-  if (prec > 0) { s = s.padStart(prec + 1, '0'); s = `${s.slice(0, -prec)}.${s.slice(-prec)}`; }
-  return (neg ? '-' : '') + s;
-}
-
 // ── asp-match ──
 // upstream: asp_ops.rs::scalar_display
 function scalarDisplay(value) {
   const s = asStr(value);
   if (s !== undefined && trim(s) !== '') return trim(s);
-  return isNum(value) ? numText(value) : undefined;
+  return isNumber(value) ? numText(value) : undefined;
 }
 // upstream: asp_ops.rs::supports_trial
 const supportsTrial = (service) => asBool(get(service, 'supportTrial')) ?? false;
@@ -70,12 +45,12 @@ export function selectedSubscriptionFee(service) {
 // upstream: asp_ops.rs::normalize_subscription_fee
 function normalizeSubscriptionFee(service) {
   const fee = selectedSubscriptionFee(service);
-  if (fee !== undefined && isObj(service)) service.feeAmount = fee;
+  if (fee !== undefined && isObject(service)) service.feeAmount = fee;
 }
 // upstream: asp_ops.rs::build_subscription_info
 export function buildSubscriptionInfo(service) {
   const info = get(service, 'subscriptionInfo');
-  if (isObj(info)) return cloneValue(info);
+  if (isObject(info)) return cloneValue(info);
   const subscription = selectedSubscription(service);
   const fee = selectedSubscriptionFee(service);
   const support = subscription !== undefined || (asBool(get(service, 'supportSubscription')) ?? false);
@@ -172,7 +147,7 @@ function applyExistingSubscriptionAnnotations(compact, existing) {
     const serviceId = asStr(get(service, 'serviceId')) ?? '';
     const item = existingSubscriptionForService(existing, serviceId);
     if (item !== undefined) blocking += 1;
-    if (isObj(service)) service.existingSubscription = item !== undefined ? existingSubscriptionValue(item) : null;
+    if (isObject(service)) service.existingSubscription = item !== undefined ? existingSubscriptionValue(item) : null;
   }
   compact.subscriptionCheck = { status: 'checked', blockingServiceCount: blocking };
 }
@@ -204,7 +179,7 @@ function buildDuplicateSubscriptionResolution(compact) {
 // upstream: asp_ops.rs::minimize_selected_duplicate_service
 function minimizeSelectedDuplicateService(compact) {
   const first = (asArray(get(compact, 'services')) ?? [])[0];
-  if (!isObj(first)) return;
+  if (!isObject(first)) return;
   const keep = new Set(['providerAgentId', 'serviceId', 'serviceName', 'serviceType', 'supportSubscription', 'existingSubscription']);
   for (const k of Object.keys(first)) if (!keep.has(k)) delete first[k];
 }
@@ -284,7 +259,7 @@ export async function handleAspMatch(client, jobId, providerAgentId, paymentToke
     const sold = asU64(get(rec, 'soldCount')) ?? 0;
     const a2mcp = asBool(get(rec, 'supportA2MCP')) ?? false;
     t += `━━━ ${i + 1}. ${formatProvider(pid, pname)} ━━━\n`;
-    t += `  security: ${rustFixed(sec, 2)} | feedback: ${rustFixed(fb, 2)} | sold: ${sold} | A2MCP: ${a2mcp}\n`;
+    t += `  security: ${formatFixed(sec, 2)} | feedback: ${formatFixed(fb, 2)} | sold: ${sold} | A2MCP: ${a2mcp}\n`;
     for (const svc of asArray(get(rec, 'services')) ?? []) {
       const sid = asStr(get(svc, 'serviceId')) ?? '?';
       const sname = asStr(get(svc, 'serviceName')) ?? '';

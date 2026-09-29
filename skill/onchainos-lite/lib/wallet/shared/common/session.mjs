@@ -3,8 +3,8 @@ import * as keyring from '../../../core/keyring.mjs';
 import { context } from '../../../core/errors.mjs';
 import { loadSession } from '../../store.mjs';
 import { ERR_NOT_LOGGED_IN } from '../../common.mjs';
-import { hpkeDecryptSessionSk } from '../_crypto.mjs';
-import { hexDecode } from '../_rust.mjs';
+import { hpkeDecryptSessionSk } from '../../../core/crypto.mjs';
+import { hexDecode } from '../../../core/rs/codec.mjs';
 
 // keyring_store::get("session_key").map_err(|_| not logged in) — missing key or unreadable store.
 export function sessionKeyOrNotLoggedIn() {

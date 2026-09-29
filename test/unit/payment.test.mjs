@@ -40,7 +40,6 @@ after(() => server.close());
 const ok = (data) => ({ body: { code: '0', msg: '', data } });
 const bodies = (path) => STUB.log.filter((x) => x.path === path).map((x) => JSON.parse(x.body));
 
-const rs = await import('../../skill/onchainos-lite/lib/payment/_rs.mjs');
 const addr = await import('../../skill/onchainos-lite/lib/payment/addr.mjs');
 const disp = await import('../../skill/onchainos-lite/lib/payment/dispatcher.mjs');
 const flow = await import('../../skill/onchainos-lite/lib/payment/payment-flow.mjs');
@@ -325,18 +324,6 @@ test('dispatcher: compute_valid_before oracles + expires errors', () => {
   assert.equal(disp.computeValidBefore({ expires: 5 }, 10), '310');   // non-string → ignored
 });
 
-test('dispatcher: chrono RFC3339 parser error texts', () => {
-  assert.equal(rs.parseRfc3339('2026-01-01T00:00:00Z'), 1767225600n);
-  assert.equal(rs.parseRfc3339('1970-01-01T01:00:00+01:00'), 0n);
-  assert.equal(rs.parseRfc3339('2026-01-01t00:00:00.123456789123z'), 1767225600n);
-  for (const [s, m] of [['2026-13-01T00:00:00Z', 'input is out of range'], ['2026-02-30T00:00:00Z', 'input is out of range'], ['2026-01-01T00:00:00', 'premature end of input'],
-    ['2026-01-01T00:00:00Zx', 'trailing input'], ['2026-01-01T00:00:00+24:00', 'input is out of range'], ['2026/01/01T00:00:00Z', 'input contains invalid characters'],
-    ['tomorrow', 'premature end of input'], ['x'.repeat(18), 'premature end of input'], ['x'.repeat(19), 'input contains invalid characters'],
-    ['2026-01-01T00:00:00−01:00', 'input contains invalid characters'], ['2021-02-29T00:00:00Z', 'input is out of range']]) {
-    assert.equal(errMsg(() => rs.parseRfc3339(s)), m, s);
-  }
-});
-
 test('dispatcher: compute_primary_split_amounts', () => {
   const r = (a, splits) => ({ amount: a, methodDetails: splits === undefined ? {} : { splits } });
   const R1 = '0x' + '11'.repeat(20), R2 = '0x' + '22'.repeat(20);
@@ -362,8 +349,6 @@ test('dispatcher: channelId / open nonce / topup nonce (ABI encode + keccak)', (
   assert.match(errMsg(() => disp.computeChannelId(a1, a2, a3, '0x1234', a1, a5, 196)), /32 bytes/);
   assert.match(errMsg(() => disp.computeChannelId('0xzz', a2, a3, '0x' + '44'.repeat(32), a1, a5, 196)), /^invalid payer address: /);
   // open nonce: head(5 static + 2 offsets) + two dynamic arrays — cross-check against a hand-built ABI blob
-  const { keccak256 } = rs.__keccak ?? {};
-  void keccak256;
   const zero = '0x' + '0'.repeat(40);
   const n0 = disp.computeOpenNonce(a1, a2, a3, '0x' + '44'.repeat(32), zero, [], []);
   const n1 = disp.computeOpenNonce(a1, a2, a3, '0x' + '44'.repeat(32), zero, [a4], [250]);

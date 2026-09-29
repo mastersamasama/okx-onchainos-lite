@@ -2,37 +2,33 @@
 // State file `<ONCHAINOS_HOME>/task/{jobId}/negotiate-state.json` (pretty JSON, struct order) and
 // `designated-provider.json`. Job ids are joined without sanitisation, exactly like upstream.
 import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync, readdirSync, rmdirSync } from 'node:fs';
-import { onchainosHome } from '../../_home.mjs';
+import { home as onchainosHome } from '../../../core/home.mjs';
 import { rustJoin as join } from '../../../core/qr.mjs';
 import { auditLog } from '../../../core/audit.mjs';
 import { struct, f64, stringify } from '../../../core/json.mjs';
-import { fromStr } from '../../../wallet/_serde-json.mjs';
-import { S, fromValue } from '../../_serde.mjs';
-import { asStr, get, ioErrorText, utcNowRfc3339 } from '../../_rs.mjs';
+import { fromStr, T } from '../../../core/serde.mjs';
+import { asStr, get } from '../../../core/rs/value.mjs';
+import { io } from '../../../core/rs/fs.mjs';
+import { utcNowRfc3339 } from '../../../core/rs/time.mjs';
 
 const STATE_FILE = 'negotiate-state.json';
 const DESIGNATED_FILE = 'designated-provider.json';
 
-// `?` on a std::io::Error → anyhow Display of the io error.
-function io(fn) {
-  try { return fn(); } catch (e) { if (e?.code && e?.syscall) throw new Error(ioErrorText(e)); throw e; }
-}
-
 // upstream: negotiate.rs::ServiceInfo (Deserialize)
-const SERVICE_INFO = S.struct('ServiceInfo', [
-  ['serviceId', S.string], ['serviceName', S.string], ['serviceDescription', S.string, { default: '' }], ['serviceType', S.string],
-  ['sortOrder', S.i64, { default: 0 }], ['feeAmount', S.option(S.f64), { default: null }], ['feeTokenSymbol', S.string, { default: '' }],
-  ['feeToken', S.string, { default: '' }],
+const SERVICE_INFO = T.struct('ServiceInfo', [
+  ['serviceId', T.string], ['serviceName', T.string], ['serviceDescription', T.string, ''], ['serviceType', T.string],
+  ['sortOrder', T.i64, 0], ['feeAmount', T.option(T.f64), null], ['feeTokenSymbol', T.string, ''],
+  ['feeToken', T.string, ''],
 ]);
 // upstream: negotiate.rs::ProviderInfo (Deserialize)
-const PROVIDER_INFO = S.struct('ProviderInfo', [
-  ['providerAddress', S.string], ['providerAgentId', S.string], ['providerName', S.string, { default: '' }], ['matchScore', S.f64],
-  ['creditScore', S.i64], ['capabilitySummary', S.string], ['completedTaskCount', S.i64], ['services', S.vec(SERVICE_INFO), { default: () => [] }],
+const PROVIDER_INFO = T.struct('ProviderInfo', [
+  ['providerAddress', T.string], ['providerAgentId', T.string], ['providerName', T.string, ''], ['matchScore', T.f64],
+  ['creditScore', T.i64], ['capabilitySummary', T.string], ['completedTaskCount', T.i64], ['services', T.vec(SERVICE_INFO), () => []],
 ]);
 // upstream: negotiate.rs::NegotiateState (Deserialize)
-const NEGOTIATE_STATE = S.struct('NegotiateState', [
-  ['jobId', S.string], ['providers', S.vec(PROVIDER_INFO)], ['currentIndex', S.usize], ['createdAt', S.string],
-  ['page', S.usize, { default: 0 }], ['failedProviders', S.vec(S.string), { default: () => [] }],
+const NEGOTIATE_STATE = T.struct('NegotiateState', [
+  ['jobId', T.string], ['providers', T.vec(PROVIDER_INFO)], ['currentIndex', T.usize], ['createdAt', T.string],
+  ['page', T.usize, 0], ['failedProviders', T.vec(T.string), () => []],
 ]);
 
 // upstream: negotiate.rs::ServiceInfo (Serialize, declaration order)
@@ -71,7 +67,7 @@ export function load(jobId) {
   const path = statePath(jobId);
   if (!existsSync(path)) throw new Error(`Negotiation state not found; run \`onchainos agent asp-match --job-id ${jobId}\` first`);
   const raw = io(() => readFileSync(path, 'utf8'));
-  return fromValue(NEGOTIATE_STATE, fromStr(raw));
+  return fromStr(raw, NEGOTIATE_STATE);
 }
 
 // upstream: negotiate.rs::current → ProviderInfo | undefined

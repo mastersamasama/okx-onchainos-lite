@@ -1,32 +1,24 @@
 // ASP arbitration domain — upstream task/arbitration.rs: rejection decisions (choices,
 // deterministic reply resolution, decision results) plus the arbitration list/detail queries.
 import { stringify, struct } from '../../core/json.mjs';
-import * as WALLET_SERDE from '../../wallet/_serde-json.mjs';
+import { fromStr, T } from '../../core/serde.mjs';
 import { context } from '../../core/errors.mjs';
-import {
-  isObj, get, at, asStr, asI64, asU64, trim, trimStart, asciiLower, isWs, b64UrlNoPadDecode, b64UrlNoPadEncode, nowSecs, nowMillis,
-} from '../_rs.mjs';
-import { S, fromValue } from '../_serde.mjs';
+import { isObject, get, at, asStr, asI64, asU64 } from '../../core/rs/value.mjs';
+import { trim, trimStart, asciiLower, isWhitespace } from '../../core/rs/str.mjs';
+import { B64 } from '../../core/rs/codec.mjs';
+import { nowSecs, nowMs } from '../../core/rs/time.mjs';
 import { formatUtcTimestamp, formatLocalTimestampWithOffset } from './common/deadline.mjs';
 import { isTestTask } from './common/index.mjs';
-import { decodeDisputeStatus } from './_dispute-status.mjs';
+import { decodeDisputeStatusResponse } from './evaluator/dispute-status.mjs';
+import { validateDecimal, isZeroDecimal } from './user/refund.mjs';
 
 export const JOB_REJECTED = 'job_rejected';
 export const SUB_USER_REJECT = 'sub_user_reject';
 
-// upstream: task/user/refund.rs::validate_decimal / is_zero_decimal (owned by the user unit; pure)
-export function validateDecimal(value) {
-  const parts = String(value).split('.');
-  if (parts.length > 2) return false;
-  const [whole, fraction] = parts;
-  return whole !== '' && /^[0-9]+$/.test(whole) && (fraction === undefined || /^[0-9]+$/.test(fraction));
-}
-export const isZeroDecimal = (value) => validateDecimal(value) && /^[0.]*$/.test(value);
-
 // ─── RefundDisplayMetadata ───
 // upstream: arbitration.rs::RefundDisplayMetadata { serviceName, taskType, amount, tokenSymbol, responseDeadline }
-const REFUND_DISPLAY = WALLET_SERDE.T.struct('RefundDisplayMetadata', [['serviceName', WALLET_SERDE.T.string], ['taskType', WALLET_SERDE.T.string],
-  ['amount', WALLET_SERDE.T.string], ['tokenSymbol', WALLET_SERDE.T.string], ['responseDeadline', WALLET_SERDE.T.i64]]);
+const REFUND_DISPLAY = T.struct('RefundDisplayMetadata', [['serviceName', T.string], ['taskType', T.string],
+  ['amount', T.string], ['tokenSymbol', T.string], ['responseDeadline', T.i64]]);
 const nonBlank = (v) => { if (v === undefined || v === null) return undefined; const t = trim(v); return t === '' ? undefined : t; };
 
 export class RefundDisplayMetadata {
@@ -52,13 +44,13 @@ export class RefundDisplayMetadata {
     return struct({ serviceName: this.serviceName, taskType: this.taskType, amount: this.amount, tokenSymbol: this.tokenSymbol, responseDeadline: this.responseDeadline });
   }
   // upstream: RefundDisplayMetadata::encode (URL_SAFE_NO_PAD of compact struct JSON)
-  encode() { return b64UrlNoPadEncode(Buffer.from(stringify(this.toStruct()), 'utf8')); }
+  encode() { return B64.URL_SAFE_NO_PAD.encode(Buffer.from(stringify(this.toStruct()), 'utf8')); }
   // upstream: RefundDisplayMetadata::decode
   static decode(raw) {
     let bytes;
-    try { bytes = b64UrlNoPadDecode(raw); } catch (e) { throw context('invalid refund display metadata encoding', e); }
+    try { bytes = B64.URL_SAFE_NO_PAD.decode(raw); } catch (e) { throw context('invalid refund display metadata encoding', e); }
     let m;
-    try { m = WALLET_SERDE.fromStr(bytes, REFUND_DISPLAY); } catch (e) { throw context('invalid refund display metadata payload', e); }
+    try { m = fromStr(bytes, REFUND_DISPLAY); } catch (e) { throw context('invalid refund display metadata payload', e); }
     if (m.taskType !== 'One-time' && m.taskType !== 'Subscription') throw new Error('invalid refund display task type');
     const r = RefundDisplayMetadata.create(m.taskType === 'Subscription' ? SUB_USER_REJECT : JOB_REJECTED, m.serviceName, m.amount, m.tokenSymbol, m.responseDeadline);
     if (!r) throw new Error('refund display metadata is incomplete');
@@ -223,14 +215,14 @@ export const blockedResult = (reason, jobId, details) => stringify(progression('
 export const canonicalActionId = (a) => ({ dispute_raise: 'raise_arbitration', sub_dispute: 'raise_subscription_arbitration', view_dispute: 'view_arbitration' })[a] ?? a;
 
 // `serde_json::from_str::<Vec<DecisionChoice>>` (errors carry the serde position).
-const CHOICE_T = () => WALLET_SERDE.T.vec(WALLET_SERDE.T.struct('DecisionChoice', [['key', WALLET_SERDE.T.string], ['actionId', WALLET_SERDE.T.string], ['params', WALLET_SERDE.T.map(WALLET_SERDE.T.value), () => ({})]]));
+const CHOICE_T = () => T.vec(T.struct('DecisionChoice', [['key', T.string], ['actionId', T.string], ['params', T.map(T.value), () => ({})]]));
 
 // upstream: arbitration.rs::parse_choices → choices; throws the String error text
 export function parseChoices(raw, sourceEvent, jobId) {
   let choices;
   if (raw !== undefined && raw !== null) {
     let v;
-    try { v = WALLET_SERDE.fromStr(raw, CHOICE_T()); } catch (e) { throw new Error(`invalid --choices-json: ${e.message}`); }
+    try { v = fromStr(raw, CHOICE_T()); } catch (e) { throw new Error(`invalid --choices-json: ${e.message}`); }
     choices = v.map((c) => decisionChoice(c.key, c.actionId, { ...c.params }));
   } else choices = defaultChoices(sourceEvent, jobId);
   for (const c of choices) c.actionId = canonicalActionId(c.actionId);
@@ -267,7 +259,7 @@ function startsWithChoice(value, expected) {
   const chars = [...value];
   if (chars[0] !== expected) return false;
   const next = chars[1];
-  return next === undefined || isWs(next) || next === '.' || next === ':' || next === ',';
+  return next === undefined || isWhitespace(next) || next === '.' || next === ':' || next === ',';
 }
 // upstream: arbitration.rs::contains_choice_marker
 const containsChoiceMarker = (value, expected) => value.split(/[^0-9A-Za-z]/).some((t) => t.length === 1 && t === expected);
@@ -304,14 +296,14 @@ export function arbitrationReason(reply) {
     after = p === undefined ? '' : (byteTail(trimmed, p.length) ?? '');
   }
   let reason = after;
-  while (reason.length && (isWs(reason[0]) || '.:,'.includes(reason[0]))) reason = reason.slice(1);
+  while (reason.length && (isWhitespace(reason[0]) || '.:,'.includes(reason[0]))) reason = reason.slice(1);
   const buf = Buffer.from(reason, 'utf8');
   if (buf.length >= 6 && (buf.length === 6 || (buf[6] & 0xc0) !== 0x80)) {
     const prefix = buf.subarray(0, 6).toString('utf8'), rest = buf.subarray(6).toString('utf8');
     const c = rest[0];
-    if (asciiLower(prefix) === 'reason' && (c === undefined || isWs(c) || '.:,'.includes(c))) reason = rest;
+    if (asciiLower(prefix) === 'reason' && (c === undefined || isWhitespace(c) || '.:,'.includes(c))) reason = rest;
   }
-  while (reason.length && (isWs(reason[0]) || reason[0] === ':')) reason = reason.slice(1);
+  while (reason.length && (isWhitespace(reason[0]) || reason[0] === ':')) reason = reason.slice(1);
   reason = trim(reason);
   return reason === '' ? undefined : reason;
 }
@@ -339,7 +331,7 @@ export function resolveChoice(sourceEvent, choices, userReply) {
 export function resolvedAction(sourceEvent, actionIdRaw, jobId, params) {
   const actionId = canonicalActionId(actionIdRaw);
   if (!allowedAction(sourceEvent, actionId)) throw new ChoiceError('UnsupportedAction');
-  const resolved = isObj(params) ? { ...params } : {};
+  const resolved = isObject(params) ? { ...params } : {};
   const pj = asStr(get(resolved, 'jobId'));
   if (pj !== undefined && pj !== jobId) throw new ChoiceError('UnsupportedAction');
   resolved.jobId = jobId;
@@ -398,8 +390,8 @@ export function arbitrationPhaseAt(taskStatus, prepareEndTime, nowSeconds, nowMs
   }
   return 'unknown';
 }
-const evaluationStatus = (t, p) => evaluationStatusAt(t, p, nowSecs(), nowMillis());
-const arbitrationPhase = (t, p) => arbitrationPhaseAt(t, p, nowSecs(), nowMillis());
+const evaluationStatus = (t, p) => evaluationStatusAt(t, p, nowSecs(), nowMs());
+const arbitrationPhase = (t, p) => arbitrationPhaseAt(t, p, nowSecs(), nowMs());
 const arbitrationVerdict = (t) => (n(t) === 6 ? 'asp_won' : n(t) === 9 ? 'asp_lost_auto_refund' : null);
 const mapOpt = (v, f) => (v === undefined || v === null ? null : f(n(v)));
 
@@ -487,7 +479,7 @@ async function handleArbitrationListInner(client, agentIdRaw, page, pageSize, in
     const jobId = js === undefined ? undefined : trim(js);
     let status = null;
     if (jobId) {
-      try { status = decodeDisputeStatus(await client.getWithAgentId(client.endpoint(jobId, 'dispute/status'), agentId)); } catch { status = null; }
+      try { status = decodeDisputeStatusResponse(await client.getWithAgentId(client.endpoint(jobId, 'dispute/status'), agentId)); } catch { status = null; }
     }
     enriched.push([item, status]);
   }
@@ -501,7 +493,7 @@ export async function handleArbitrationDetail(client, jobIdRaw, agentIdRaw) {
   if (agentId === '') throw new Error('--agent-id must not be empty');
   const backend = await client.getWithAgentId(client.endpoint(jobId, 'dispute/status'), agentId);
   let arbitration;
-  try { arbitration = decodeDisputeStatus(backend); } catch (e) { throw context('failed to parse evaluation detail response', e); }
+  try { arbitration = decodeDisputeStatusResponse(backend); } catch (e) { throw context('failed to parse evaluation detail response', e); }
   let supplement;
   try {
     supplement = Number(arbitration.jobType) === 1 && arbitration.jobType !== null

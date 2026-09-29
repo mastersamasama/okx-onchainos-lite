@@ -1,6 +1,7 @@
 // `vote-commit` — upstream task/evaluator/commit.rs (prints plain text).
 import { auditLog } from '../../../core/audit.mjs';
-import { at, asStr, trim, charCount } from '../../_rs.mjs';
+import { at, asStr } from '../../../core/rs/value.mjs';
+import { trim, charCount } from '../../../core/rs/str.mjs';
 import { resolveWalletAndAgentForEvaluator, signUopAndBroadcastWithCommitMeta, extractBizType } from '../signing.mjs';
 
 // upstream: commit.rs::unescape_reason — `\n` `\t` `\r` `\\` `\"`; unknown `\x` kept verbatim.

@@ -4,8 +4,8 @@
 import * as keyring from '../../core/keyring.mjs';
 import { loadWallets, loadSession } from '../../wallet/store.mjs';
 import { broadcastUnsigned } from '../../wallet/broadcast.mjs';
-import { hpkeDecryptSessionSk, ed25519Sign } from '../../wallet/shared/_crypto.mjs';
-import { trim, eqIgnoreAsciiCase } from '../_rs.mjs';
+import { hpkeDecryptSessionSk, ed25519Sign } from '../../core/crypto.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../core/rs/str.mjs';
 import { XLAYER_CHAIN_INDEX, XLAYER_CHAIN_NAME } from './models.mjs';
 
 const NO_XLAYER = 'no XLayer address found in current account';

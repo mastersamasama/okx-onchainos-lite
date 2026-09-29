@@ -4,15 +4,14 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { stringify } from '../../../core/json.mjs';
 import { auditLog } from '../../../core/audit.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { isObj, ioErrorText } from '../../_rs.mjs';
+import { isObject } from '../../../core/rs/value.mjs';
+import { ioError, pathJoin } from '../../../core/rs/fs.mjs';
 import { precheckRoundGate } from './dispute-status.mjs';
-import { evidenceDir, pathBufPush } from './helpers.mjs';
+import { evidenceDir } from './helpers.mjs';
 import { evaluatorSelectedPostEvidenceSteps } from './flow.mjs';
 
 // upstream: info.rs::EVIDENCE_SIDES
 const EVIDENCE_SIDES = ['provider', 'client'];
-
-const ioError = (e) => (e?.code && e?.syscall ? new Error(ioErrorText(e)) : e);
 
 // upstream: info.rs::handle_info (prints plain text)
 export async function handleInfo(client, jobId, agentId, roundNum) {
@@ -21,8 +20,8 @@ export async function handleInfo(client, jobId, agentId, roundNum) {
   const tmpDir = evidenceDir(jobId, agentId);
   try { mkdirSync(tmpDir, { recursive: true }); } catch (e) { throw ioError(e); }
   for (const side of EVIDENCE_SIDES) {
-    const bucket = isObj(data) ? data[side] : undefined;
-    if (!isObj(bucket)) continue;
+    const bucket = isObject(data) ? data[side] : undefined;
+    if (!isObject(bucket)) continue;
     const files = bucket.files;
     if (!Array.isArray(files)) continue;
     for (let i = 0; i < files.length; i++) {
@@ -50,7 +49,7 @@ async function downloadFile(client, jobId, fileKey, tmpDir, agentId) {
   const bytes = await fetchEvidenceBytes(client, jobId, fileKey, agentId);
   const slash = fileKey.indexOf('/');
   const filename = slash < 0 ? fileKey : fileKey.slice(slash + 1).split('/').join('_');
-  const path = pathBufPush(tmpDir, filename);
+  const path = pathJoin(tmpDir, filename);
   try { writeFileSync(path, bytes); } catch (e) { throw ioError(e); }
   return path;
 }

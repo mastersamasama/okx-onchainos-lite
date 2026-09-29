@@ -1,6 +1,6 @@
 // `payment a2a-pay create|pay|status` — upstream commands/payment/a2a_pay.rs::execute.
 // The global `--chain` is accepted and ignored.
-import { clap } from '../../payment/_clap.mjs';
+import { typed } from '../../core/cli.mjs';
 import { execute } from '../../payment/a2a-pay.mjs';
 
 export default {
@@ -8,7 +8,7 @@ export default {
     uses: ['type', 'amount', 'symbol', 'recipient', 'description', 'realm', 'externalId', 'expiresIn'],
     label: 'payment a2a-pay create',
     run(ctx, o) {
-      const { expiresIn } = clap(ctx, { typed: { expiresIn: 'u64' } });
+      const expiresIn = typed(ctx.path, 'expiresIn', o.expiresIn, 'u64');
       return execute({
         kind: 'create',
         args: {
@@ -22,7 +22,6 @@ export default {
     uses: ['paymentId', 'amount', 'currency', 'recipientAddress'],
     label: 'payment a2a-pay pay',
     run(ctx, o) {
-      clap(ctx, {});
       return execute({ kind: 'pay', args: { paymentId: o.paymentId, amount: o.amount, currency: o.currency, recipientAddress: o.recipientAddress } });
     },
   },
@@ -30,7 +29,6 @@ export default {
     uses: ['paymentId', 'wait'],
     label: 'payment a2a-pay status',
     run(ctx, o) {
-      clap(ctx, {});
       return execute({ kind: 'status', paymentId: o.paymentId, wait: !!o.wait });
     },
   },

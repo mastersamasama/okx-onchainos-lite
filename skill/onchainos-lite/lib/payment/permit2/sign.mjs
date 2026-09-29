@@ -7,8 +7,8 @@ import { ensureTokensRefreshed, formatApiError } from '../../wallet/auth.mjs';
 import { WalletApiClient } from '../../wallet/api.mjs';
 import { loadSession } from '../../wallet/store.mjs';
 import { ERR_NOT_LOGGED_IN } from '../../wallet/common.mjs';
-import { hpkeDecryptSessionSk, ed25519SignHex, ed25519SignEip191, secp256k1Sign } from '../_crypto.mjs';
-import { at, asStr } from '../_rs.mjs';
+import { hpkeDecryptSessionSk, ed25519SignHex, ed25519SignEip191, secp256k1Sign } from '../../core/crypto.mjs';
+import { at, asStr } from '../../core/rs/value.mjs';
 import {
   buildExactPermit2Struct, buildExactPermit2TypedData, buildUptoPermit2Struct, buildUptoPermit2TypedData,
   exactSigningHash, uptoSigningHash,

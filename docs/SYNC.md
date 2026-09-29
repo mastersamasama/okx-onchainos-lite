@@ -59,6 +59,6 @@ run the Workflow tool with `scriptPath: tools/sync-port.workflow.js` and
 ```bash
 node tools/check.mjs                      # coverage/options: no problems
 node test/parity/run.mjs                  # all cases pass against the new upstream
-node --test test/unit/                    # unit + crypto vectors pass
+node tools/test-unit.mjs                    # unit + crypto vectors pass
 ```
 Then update `docs/PARITY.md` if a divergence was added or removed.

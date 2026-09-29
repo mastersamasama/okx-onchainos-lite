@@ -8,14 +8,15 @@
 import { connect, TIMEOUT } from '../../core/ws.mjs';
 import { parse, stringify } from '../../core/json.mjs';
 import { context } from '../../core/errors.mjs';
-import { trim, asciiLower, isObj, asI64 } from '../_rs.mjs';
+import { trim, asciiLower } from '../../core/rs/str.mjs';
+import { isObject, asI64 } from '../../core/rs/value.mjs';
 
 // upstream: socket.rs constants
 export const SUBSCRIBE_CHANNEL = 'wallet-agentic-identity';
 export const OPEN_TIMEOUT_MS = 10000;
 
 const tryParse = (text) => { try { return { v: parse(text) }; } catch { return null; } };
-const mget = (m, k) => (isObj(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
+const mget = (m, k) => (isObject(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
 
 // Drop the connection after a best-effort flush of anything already queued.
 async function dropSocket(ws) {
@@ -106,7 +107,7 @@ export function extractPayload(text) {
   const data = mget(v, 'data');
   if (data !== undefined) {
     if (Array.isArray(data)) return data.length ? data[0] : undefined;
-    if (isObj(data)) return data;
+    if (isObject(data)) return data;
   }
   if (mget(v, 'txHash') !== undefined && mget(v, 'agentId') !== undefined) return v;
   return undefined;

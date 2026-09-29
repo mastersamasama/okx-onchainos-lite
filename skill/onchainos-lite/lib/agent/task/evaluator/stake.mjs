@@ -2,7 +2,8 @@
 // Both commands route by `myStake.registered` (increaseStake when registered, else stake).
 import { auditLog } from '../../../core/audit.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { at, trim } from '../../_rs.mjs';
+import { at } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 import { ensureCommunicationReadyPreflight, refreshAgentIdentitiesSilently } from '../common/okx-a2a.mjs';
 import { resolveWalletAndAgentForEvaluator, signUopAndBroadcast, extractBizType } from '../signing.mjs';
 import * as decimalStr from './decimal-str.mjs';

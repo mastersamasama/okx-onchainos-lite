@@ -1,12 +1,13 @@
 // Display-ready refund lists / detail for buyer and provider — upstream task/refund_list.rs.
-// The per-task Refund V2 composition is owned by the user unit (user/refund.rs) and loaded
-// through ../_user.mjs.
-import { get, asStr, asI64, trim } from '../_rs.mjs';
+// The per-task Refund V2 composition comes from user/refund.rs.
+import { get, asStr, asI64 } from '../../core/rs/value.mjs';
+import { trim } from '../../core/rs/str.mjs';
 import { AGENT_ROLE_USER, AGENT_ROLE_ASP } from './common/index.mjs';
 import { resolveAgentIdOrError } from './common/query.mjs';
 import { formatLocalTimestampWithOffset } from './common/deadline.mjs';
-import { getDisputeStatus } from './_dispute-status.mjs';
-import { fetchRefundListItemForIdentity, fetchMySubscriptionsSnapshotForAgentReadOnly } from './_user.mjs';
+import { getDisputeStatus } from './evaluator/dispute-status.mjs';
+import { fetchRefundListItemForIdentity } from './user/refund.mjs';
+import { fetchMySubscriptionsSnapshotForAgentReadOnly } from './user/subscription-ops.mjs';
 
 // upstream: refund_list.rs::RefundListRole / RefundListScope ('buyer'|'provider', 'available'|'requested')
 const agentRole = (role) => (role === 'buyer' ? AGENT_ROLE_USER : AGENT_ROLE_ASP);

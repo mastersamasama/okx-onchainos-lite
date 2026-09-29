@@ -1,7 +1,7 @@
 // Chain registry — upstream chains.rs.
 import { loadChainCache } from './store.mjs';
 import { XLAYER_RPC_URL } from '../config.mjs';
-import { trim } from './_rust-str.mjs';
+import { trim } from './rs/str.mjs';
 
 export const PERMIT2_ADDRESS = '0x000000000022D473030F116dDEE9F6B43aC78BA3';
 export const X402_EXACT_PERMIT2_PROXY = '0x402085c248EeA27D92E8b30b2C58ed07f9E20001';

@@ -12,7 +12,6 @@ process.env.ONCHAINOS_HOME = process.env.OCL_HOME;
 const helpers = await import('../../skill/onchainos-lite/lib/commands/defi/helpers.mjs');
 const ops = await import('../../skill/onchainos-lite/lib/commands/defi/operations.mjs');
 const api = await import('../../skill/onchainos-lite/lib/commands/defi/api.mjs');
-const rs = await import('../../skill/onchainos-lite/lib/commands/defi/_rs.mjs');
 const { parse, stringify } = await import('../../skill/onchainos-lite/lib/core/json.mjs');
 
 // A client stub recording every call and answering from a per-path queue.
@@ -205,18 +204,4 @@ test('invest V3 dual rebalance', async () => {
   assert.equal(json2, '[{"chainIndex":"1","coinAmount":"3100000000000000","tokenAddress":"0xweth","tokenPrecision":"18"},{"chainIndex":"1","coinAmount":"10000000","tokenAddress":"0xusdc","tokenPrecision":"6"}]');
   assert.deepEqual(surplus2, ['WETH', '0xweth', '0.0019']);
   assert.deepEqual(c2.log.map((x) => x.arg.inputAmount), ['0.005', '10']);
-});
-
-test('Rust number helpers', () => {
-  assert.equal(rs.parseU32('+7'), 7);
-  assert.equal(rs.parseU32('4294967296'), undefined);
-  assert.equal(rs.parseI64('-9223372036854775808'), -9223372036854775808n);
-  assert.equal(rs.parseI64('9223372036854775808'), undefined);
-  assert.equal(rs.parseU128('340282366920938463463374607431768211455'), (1n << 128n) - 1n);
-  assert.equal(rs.parseF64('1e3'), 1000);
-  assert.ok(Number.isNaN(rs.parseF64('NaN')));
-  assert.equal(rs.parseF64(' 1'), undefined);
-  assert.equal(rs.formatFixed(20.25, 1), '20.2');
-  assert.equal(rs.formatFixed(15.000000000000002, 1), '15.0');
-  assert.equal(rs.outermost(new Error('plain')), 'plain');
 });

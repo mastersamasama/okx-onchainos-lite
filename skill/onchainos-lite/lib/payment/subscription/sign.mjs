@@ -3,10 +3,11 @@
 // terms.permitHash); cancel / cancel-pending-change = single signatures; all via the TEE eip712
 // path so the contract can `ecrecover` the payer.
 import { randomBytes } from 'node:crypto';
-import { trim } from '../../core/_rust-str.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../core/rs/str.mjs';
+import { get, asStr, asU64 } from '../../core/rs/value.mjs';
+import { u256FromStrRadix, jsonInt } from '../../core/rs/num.mjs';
 import { context } from '../../core/errors.mjs';
 import { stringify } from '../../core/json.mjs';
-import { eqIgnoreAsciiCase } from '../../core/_rust-str.mjs';
 import { teeSignEip712, teeSignPersonal } from '../permit2/sign.mjs';
 import { allowanceStatus } from './facilitator.mjs';
 import {
@@ -14,7 +15,6 @@ import {
   buildSubscriptionTermsTypedData, hex0x, permitSingleStructHash, termsDigest,
 } from './eip712.mjs';
 import { cancelAuth, pendingChangeCancelAuth, subscriptionPayload } from './types.mjs';
-import { get, asStr, asU64, u256FromStrRadix, toNum } from '../_rs.mjs';
 
 // upstream: sign.rs constants
 export const ZERO_BYTES32 = '0x0000000000000000000000000000000000000000000000000000000000000000';
@@ -141,11 +141,11 @@ async function signDouble(chainIndex, chainId, payer, accepted, changeFromSubId,
     const deferred = changeEffectiveAt === 2 ? BigInt(p.periodSec) : 0n;
     newSubEnd = sat(sat(sat(effectiveStart + deferred) + sat(BigInt(p.maxPeriods) * BigInt(p.periodSec))) + BigInt(PERMIT_EXPIRATION_BUFFER_SECS));
   }
-  const expiration = toNum(BigInt(a.reservedExpiration) > newSubEnd ? BigInt(a.reservedExpiration) : newSubEnd);
+  const expiration = jsonInt(BigInt(a.reservedExpiration) > newSubEnd ? BigInt(a.reservedExpiration) : newSubEnd);
   const nonce = a.nonce;
   const now = nowSecs();
   // `now + p.timeout_secs` is a plain u64 `+` — wraps in the (overflow-checks-off) release build.
-  const termsDeadline = toNum(BigInt.asUintN(64, BigInt(now) + BigInt(p.timeoutSecs)));
+  const termsDeadline = jsonInt(BigInt.asUintN(64, BigInt(now) + BigInt(p.timeoutSecs)));
   const sigDeadline = String(termsDeadline);
   const amountStr = amount.toString();
 

@@ -7,8 +7,11 @@ import { BtcApi, UTXO_MANAGE_BATCH_SIZE } from '../shared/adapters/bitcoin/api.m
 import { BtcContext } from '../shared/adapters/bitcoin/context.mjs';
 import { BtcOutPoint, collectOutpoints } from '../shared/adapters/bitcoin/models.mjs';
 import { shellArg } from '../shared/common/json.mjs';
-import { getField as get } from '../_rs.mjs';
-import { asU64, parseU64, jcsStringify, sha256Hex, downcast } from '../shared/_rust.mjs';
+import { get, asU64 } from '../../core/rs/value.mjs';
+import { parseU64 } from '../../core/rs/num.mjs';
+import { jcs } from '../../core/rs/jcs.mjs';
+import { sha256Hex } from '../../core/rs/codec.mjs';
+import { downcast } from '../../core/rs/anyhow.mjs';
 import { pointer } from './brc20.mjs';
 
 // upstream: manage.rs::cmd_unlock → output data (or WalletPreviewConfirming)
@@ -142,7 +145,7 @@ export const isConfirmationToken = (value) => typeof value === 'string' && value
 // critical intent (account, chain, sender, operation, targets).
 export function buildManageConfirmationToken(operationType, chainIndex, accountId, from, targets) {
   const criticalIntent = { operationType, chainIndex, network: 'bitcoin', accountId, from, targets };
-  return `sha256:${sha256Hex(jcsStringify(criticalIntent))}`;
+  return `sha256:${sha256Hex(jcs(criticalIntent))}`;
 }
 
 // upstream: manage.rs::select_targets — `--all` → every candidate; else each requested outpoint

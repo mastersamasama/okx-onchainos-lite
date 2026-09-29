@@ -1,9 +1,11 @@
 // Read-only task queries (status / tasks / active-tasks) — upstream task/common/query.rs.
-import { get, at, asStr, asI64, asU64, trim } from '../../_rs.mjs';
+import { get, at, asStr, asI64, asU64 } from '../../../core/rs/value.mjs';
+import { trim, strDebug } from '../../../core/rs/str.mjs';
 import { resolveAgentIdByRole } from '../signing.mjs';
 import { fetchMyAgents } from './index.mjs';
 import { subscriptionStatusCopy } from './lifecycle.mjs';
-import { getDisputeStatus } from '../_dispute-status.mjs';
+import { getDisputeStatus } from '../evaluator/dispute-status.mjs';
+import { hasCreatedSubscriptionCloseReceipt } from '../user/refund.mjs';
 
 // upstream: query.rs::resolve_agent_id
 export async function resolveAgentId(agentId, role) {
@@ -92,7 +94,6 @@ const jt = (v) => (v === undefined ? undefined : Number(v));
 // upstream: query.rs::handle_status → { json } (arbitration detail data) | { text } (plain text)
 export async function handleStatus(client, jobId, agentId, role) {
   const { buildDetailResult } = await import('../arbitration.mjs');
-  const { hasCreatedSubscriptionCloseReceipt } = await import('../_user.mjs');
   const agent = await resolveAgentIdOrError(agentId, role);
   let resp;
   try { resp = await fetchTaskDetail(client, jobId, agent); } catch (taskError) {
@@ -114,7 +115,7 @@ export async function handleStatus(client, jobId, agentId, role) {
   const t = resp;
   const tokenSym = asStr(at(t, 'tokenSymbol')) ?? '?';
   let out = `Task type: ${taskTypeName(jobType)}\n`;
-  const userClose = jobType === 1 && await hasCreatedSubscriptionCloseReceipt(jobId, agent);
+  const userClose = jobType === 1 && hasCreatedSubscriptionCloseReceipt(jobId, agent);
   const [label, desc] = code !== undefined ? statusCopyForTaskType(jobType, code, statusDetail, userClose) : ['Status unavailable', 'The task status is currently unavailable.'];
   out += `Task status: ${label}\n`;
   out += `Status detail: ${desc}\n`;
@@ -179,8 +180,7 @@ async function activeTaskRow(task, kind, agentId, role, includeTerminal) {
   let taskType, status, label, desc;
   if (kind === 'OneTime') [taskType, status, label, desc] = ['one_time', statusName(statusCode), taskStatusLabel(statusCode), taskStatusDescription(statusCode)];
   else {
-    const { hasCreatedSubscriptionCloseReceipt } = await import('../_user.mjs');
-    const userClose = await hasCreatedSubscriptionCloseReceipt(jobId, agentId);
+    const userClose = hasCreatedSubscriptionCloseReceipt(jobId, agentId);
     [label, desc] = statusCopyForTaskType(1, statusCode, task, userClose);
     [taskType, status] = ['subscription', subscriptionStatusName(statusCode)];
   }
@@ -198,10 +198,7 @@ export async function handleActiveTasks(client, roleFilter, includeTerminal) {
   let agents = await fetchMyAgents();
   if (roleFilter !== undefined && roleFilter !== null) {
     const want = parseRoleArg(roleFilter);
-    if (want === undefined) {
-      const { rustDebugStr } = await import('../../_rs.mjs');
-      throw new Error(`unrecognized --role value: ${rustDebugStr(roleFilter)} (expected user / asp / evaluator)`);
-    }
+    if (want === undefined) throw new Error(`unrecognized --role value: ${strDebug(roleFilter)} (expected user / asp / evaluator)`);
     agents = agents.filter((a) => asI64(get(a, 'role')) === want);
   }
   const all = [], seen = new Set();

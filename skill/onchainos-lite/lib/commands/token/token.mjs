@@ -4,8 +4,9 @@
 import { resolveChain, resolveChains } from '../../core/chains.mjs';
 import { ApiClient, cloneClient } from '../../core/http.mjs';
 import { parseMaxResults, autoPaginate, pageShape, CursorMode } from '../../core/sink.mjs';
-import { trim, parseUnsigned } from '../../core/_rust-str.mjs';
-import { clap } from './_clap.mjs';
+import { typed } from '../../core/cli.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { parseU64 } from '../../core/rs/num.mjs';
 
 const SEARCH_PATH = '/api/v6/dex/market/token/search';
 const BASIC_INFO_PATH = '/api/v6/dex/market/token/basic-info';
@@ -29,7 +30,7 @@ export const SECURITY_SOURCE = 'onchain_os_cli';
 // `s.parse::<u64>()` on the raw string (no trim, optional '+'), then the 1..=100 range check.
 export function validateLimit(limit) {
   if (limit === undefined || limit === null) return;
-  const n = parseUnsigned(String(limit), 'u64');
+  const n = parseU64(String(limit));
   if (n === undefined) throw new Error('--limit must be a number between 1 and 100');
   if (!(n >= 1 && n <= 100)) throw new Error(`--limit must be between 1 and 100, got ${n}`);
 }
@@ -254,7 +255,6 @@ export default {
   'token search': {
     uses: ['query', 'chains', 'limit', 'cursor', 'maxResults'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       if (trim(o.query) === '') throw new Error('Parameter --query cannot be empty');
       const chains = ctx.resolveChainsOr(o.chains, '1,501');
@@ -264,7 +264,6 @@ export default {
   'token info': {
     uses: ['address', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchInfo(client, o.address, addressChain(ctx, o));
     },
@@ -272,7 +271,7 @@ export default {
   'token holders': {
     uses: ['address', 'chain', 'tagFilter', 'limit', 'cursor', 'maxResults'],
     async run(ctx, o) {
-      const { tagFilter } = clap(ctx, o, { types: { tagFilter: 'u8' } });
+      const tagFilter = typed(ctx.path, 'tagFilter', o.tagFilter, 'u8');
       const client = await ctx.api();
       return fetchHolders(client, o.address, addressChain(ctx, o), tagFilter, o.limit, o.cursor, o.maxResults);
     },
@@ -280,7 +279,6 @@ export default {
   'token price-info': {
     uses: ['address', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchPriceInfo(client, o.address, addressChain(ctx, o));
     },
@@ -288,7 +286,6 @@ export default {
   'token liquidity': {
     uses: ['address', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchLiquidity(client, o.address, addressChain(ctx, o));
     },
@@ -296,7 +293,6 @@ export default {
   'token hot-tokens': {
     uses: HOT_FIELDS,
     async run(ctx, o) {
-      clap(ctx, o, { hyphen: ['priceChangeMin', 'priceChangeMax'] });
       const client = await ctx.api();
       return fetchHotTokens(client, hotTokensParams(o));
     },
@@ -304,7 +300,6 @@ export default {
   'token advanced-info': {
     uses: ['address', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchAdvancedInfo(client, o.address, addressChain(ctx, o));
     },
@@ -312,7 +307,7 @@ export default {
   'token top-trader': {
     uses: ['address', 'chain', 'tagFilter', 'limit', 'cursor', 'maxResults'],
     async run(ctx, o) {
-      const { tagFilter } = clap(ctx, o, { types: { tagFilter: 'u8' } });
+      const tagFilter = typed(ctx.path, 'tagFilter', o.tagFilter, 'u8');
       const client = await ctx.api();
       return fetchTopTrader(client, o.address, addressChain(ctx, o), tagFilter, o.limit, o.cursor, o.maxResults);
     },
@@ -320,7 +315,7 @@ export default {
   'token trades': {
     uses: ['address', 'chain', 'limit', 'tagFilter', 'walletFilter'],
     async run(ctx, o) {
-      const { limit } = clap(ctx, o, { types: { limit: 'u32' } });
+      const limit = typed(ctx.path, 'limit', o.limit, 'u32');
       const client = await ctx.api();
       return fetchTokenTrades(client, o.address, addressChain(ctx, o), limit, o.tagFilter, o.walletFilter);
     },
@@ -329,7 +324,6 @@ export default {
   'token cluster-overview': {
     uses: ['address', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o);
       await ctx.api();
       const chainIndex = addressChain(ctx, o);
       return fetchClusterByAddress(await secondClient(), CLUSTER_OVERVIEW_PATH, o.address, chainIndex);
@@ -339,7 +333,6 @@ export default {
   'token cluster-top-holders': {
     uses: ['address', 'chain', 'rangeFilter'],
     async run(ctx, o) {
-      clap(ctx, o);
       await ctx.api();
       const chainIndex = addressChain(ctx, o);
       return fetchClusterTopHolders(await secondClient(), o.address, chainIndex, o.rangeFilter);
@@ -348,7 +341,6 @@ export default {
   'token cluster-list': {
     uses: ['address', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o);
       await ctx.api();
       const chainIndex = addressChain(ctx, o);
       return fetchClusterByAddress(await secondClient(), CLUSTER_LIST_PATH, o.address, chainIndex);
@@ -357,8 +349,7 @@ export default {
   // upstream: token.rs::cluster_supported_chains
   'token cluster-supported-chains': {
     uses: [],
-    async run(ctx, o) {
-      clap(ctx, o);
+    async run(ctx) {
       await ctx.api();
       return fetchClusterSupportedChains(await secondClient());
     },
@@ -366,7 +357,6 @@ export default {
   'token report': {
     uses: ['address', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchReport(client, o.address, addressChain(ctx, o));
     },

@@ -4,8 +4,10 @@
 import { join } from 'node:path';
 import { jobIdIsSafe } from './grants.mjs';
 import { dynamicSettingPresent } from './consent.mjs';
-import { fromStr, T } from './_serde-json.mjs';
-import { onchainosHome, exists, readToString, removeFileQuiet, nowSecs, u64Le } from './_fs.mjs';
+import { fromStr, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome } from '../../../../core/home.mjs';
+import { exists, readToString, removeFileQuiet } from '../../../../core/rs/fs.mjs';
+import { nowSecs } from '../../../../core/rs/time.mjs';
 
 const VERSION = 6;
 
@@ -89,7 +91,7 @@ function readLive(jobId) {
     file.draftReviewConfirmed = false;
   }
   file.version = VERSION;
-  if (u64Le(file.expiresAt, nowSecs())) { removeFileQuiet(path); return null; }
+  if (file.expiresAt <= nowSecs()) { removeFileQuiet(path); return null; }
   return file;
 }
 

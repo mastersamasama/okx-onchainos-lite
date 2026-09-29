@@ -3,7 +3,7 @@ import { randomUUID } from 'node:crypto';
 import { CodedError } from '../../../../core/errors.mjs';
 import { WalletApiClient, ApiCodeError } from '../../../api.mjs';
 import { firstDataItem } from '../../common/json.mjs';
-import { downcast } from '../../_rust.mjs';
+import { downcast } from '../../../../core/rs/anyhow.mjs';
 
 const UNSIGNED_INFO_PATH = '/priapi/v5/wallet/agentic/pre-transaction/unsignedInfo';
 

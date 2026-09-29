@@ -2,15 +2,16 @@
 // Every subcommand except support-chains / support-platforms validates the wallet session and
 // refreshes the access token (auth::ensure_tokens_refreshed) before the API client is built.
 import { resolveChain } from '../../core/chains.mjs';
+import { typed } from '../../core/cli.mjs';
 import { ensureTokensRefreshed } from '../../wallet/auth.mjs';
-import { clap } from '../token/_clap.mjs';
 import {
   fetchChains, fetchProtocols, fetchSearch, fetchDetail, fetchPrepare, fetchEnter, fetchExit, fetchClaim,
   fetchCalculateEntry, fetchRateChart, fetchTvlChart, fetchDepthPriceChart, fetchPositions, fetchPositionDetail,
 } from './api.mjs';
 import { extractExpectOutput, minimalToDecimalStr, decimalToMinimalStr, precisionOf } from './helpers.mjs';
 import { cmdInvest, cmdWithdraw, cmdCollect } from './operations.mjs';
-import { get, parseU32, setIndex } from './_rs.mjs';
+import { get, setIndex } from '../../core/rs/value.mjs';
+import { parseU32 } from '../../core/rs/num.mjs';
 
 export * from './api.mjs';
 export { extractExpectOutput } from './helpers.mjs';
@@ -19,15 +20,7 @@ export { cmdInvest, cmdWithdraw, cmdCollect } from './operations.mjs';
 const some = (v) => v !== undefined && v !== null;
 const optChain = (c) => (some(c) ? resolveChain(c) : undefined);
 
-// <f64 as FromStr> for clap's f64 value parser (`--range`)
-function parseF64Arg(raw) {
-  const m = /^([+-]?)(?:(inf|infinity|nan)|((?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?))$/i.exec(raw);
-  if (!m) throw new Error(raw === '' ? 'cannot parse float from empty string' : 'invalid float literal');
-  if (m[2]) return m[2].toLowerCase() === 'nan' ? NaN : (m[1] === '-' ? -Infinity : Infinity);
-  return Number(m[1] + m[3]);
-}
-
-const TICKS = { types: { tickLower: 'i64', tickUpper: 'i64' }, hyphen: ['tickLower', 'tickUpper'] };
+const TICKS = { tickLower: 'i64', tickUpper: 'i64' };
 
 // upstream: mod.rs::execute — the per-subcommand bodies, keyed by subcommand name. `a` holds the
 // clap-typed arguments (numbers already converted).
@@ -113,14 +106,15 @@ export async function execute(ctx, cmd, a) {
   return COMMANDS[cmd](client, a);
 }
 
-// Handler: clap pass (typed values, hyphen rules, leaf-required --chain) → execute.
-function handler(sub, uses, clapOpts = {}, ignores = []) {
+// Handler: the clap-typed options (`types`: name → value type) converted → execute.
+function handler(sub, uses, types = {}, ignores = []) {
   return {
     uses,
     ignores,
     async run(ctx, o) {
-      const typed = clap(ctx, o, clapOpts);
-      return execute(ctx, sub, { ...o, ...typed });
+      const a = { ...o };
+      for (const [name, type] of Object.entries(types)) a[name] = typed(ctx.path, name, o[name], type);
+      return execute(ctx, sub, a);
     },
   };
 }
@@ -128,12 +122,12 @@ function handler(sub, uses, clapOpts = {}, ignores = []) {
 export default {
   'defi support-chains': handler('support-chains', []),
   'defi support-platforms': handler('support-platforms', []),
-  'defi list': handler('list', ['pageNum'], { types: { pageNum: 'u32' } }),
-  'defi search': handler('search', ['token', 'platform', 'chain', 'productGroup', 'pageNum'], { types: { pageNum: 'u32' } }),
+  'defi list': handler('list', ['pageNum'], { pageNum: 'u32' }),
+  'defi search': handler('search', ['token', 'platform', 'chain', 'productGroup', 'pageNum'], { pageNum: 'u32' }),
   'defi detail': handler('detail', ['investmentId']),
   'defi prepare': handler('prepare', ['investmentId']),
   'defi deposit': handler('deposit', ['investmentId', 'address', 'userInput', 'slippage', 'tokenId', 'tickLower', 'tickUpper'], TICKS),
-  'defi redeem': handler('redeem', ['id', 'address', 'ratio', 'tokenId', 'slippage', 'chain', 'userInput', 'token', 'symbol', 'amount', 'precision'], { types: { precision: 'u32' } }),
+  'defi redeem': handler('redeem', ['id', 'address', 'ratio', 'tokenId', 'slippage', 'chain', 'userInput', 'token', 'symbol', 'amount', 'precision'], { precision: 'u32' }),
   'defi claim': handler('claim', ['address', 'chain', 'rewardType', 'id', 'platformId', 'tokenId', 'principalIndex', 'expectOutput']),
   'defi calculate-entry': handler('calculate-entry', ['id', 'address', 'inputToken', 'inputAmount', 'tokenDecimal', 'tickLower', 'tickUpper'], TICKS),
   'defi rate-chart': handler('rate-chart', ['investmentId', 'timeRange']),
@@ -141,9 +135,9 @@ export default {
   'defi depth-price-chart': handler('depth-price-chart', ['investmentId', 'chartType', 'timeRange']),
   // --chain is parsed but ignored upstream (`chain: _chain`).
   'defi invest': handler('invest', ['investmentId', 'address', 'token', 'amount', 'token2', 'amount2', 'slippage', 'tokenId', 'tickLower', 'tickUpper', 'range'],
-    { types: { tickLower: 'i64', tickUpper: 'i64', range: parseF64Arg }, hyphen: ['tickLower', 'tickUpper'] }, ['chain']),
-  'defi withdraw': handler('withdraw', ['investmentId', 'address', 'chain', 'ratio', 'tokenId', 'slippage', 'amount', 'platformId'], { leafRequired: ['chain'] }),
-  'defi collect': handler('collect', ['address', 'chain', 'rewardType', 'investmentId', 'platformId', 'tokenId', 'principalIndex'], { leafRequired: ['chain'] }),
+    { ...TICKS, range: 'f64' }, ['chain']),
+  'defi withdraw': handler('withdraw', ['investmentId', 'address', 'chain', 'ratio', 'tokenId', 'slippage', 'amount', 'platformId']),
+  'defi collect': handler('collect', ['address', 'chain', 'rewardType', 'investmentId', 'platformId', 'tokenId', 'principalIndex']),
   'defi positions': handler('positions', ['address', 'chains']),
-  'defi position-detail': handler('position-detail', ['address', 'chain', 'platformId'], { leafRequired: ['chain'] }),
+  'defi position-detail': handler('position-detail', ['address', 'chain', 'platformId']),
 };

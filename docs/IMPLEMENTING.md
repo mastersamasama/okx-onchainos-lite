@@ -10,6 +10,7 @@ source for any detail the spec leaves unclear. The Rust source always wins.
 | Upstream (cli/src/…) | Lite (skill/onchainos-lite/lib/…) | Owner |
 |---|---|---|
 | main.rs, output.rs, client.rs, endpoints.rs, config.rs, home.rs, audit.rs, device/, chains.rs, payment_cache.rs, payment_notify.rs (state), keyring_store.rs, file_keyring.rs, crypto.rs | `core/*.mjs`, `crypto/*.mjs` | core (done; request changes, do not edit) |
+| Rust std / crate semantics: `str`, integer / f64 `FromStr` and `{:.N}`, serde_json::Value accessors, std::fs / std::path / io::Error Display, chrono, base64 / hex / bs58, serde_jcs, anyhow, process, reqwest Display | `core/rs/{str,num,value,fs,time,codec,jcs,anyhow,process,reqwest}.mjs` | core |
 | token_alias.rs, validators.rs, commands/sink.rs, funding.rs, qr.rs, commands/common.rs, asset_class.rs | `core/token-alias.mjs`, `core/validators.mjs`, `core/sink.mjs`, `core/funding.mjs`, `core/qr.mjs`, `core/common.mjs`, `core/asset-class.mjs` (top-level `cli/src/<x>.rs` → `lib/core/<x>.mjs`) | foundation: core-helpers |
 | wallet_api.rs, wallet_store.rs, commands/agentic_wallet/{auth,account,common,chain,chain_profile,shared,…} helpers | `wallet/*.mjs` | foundation: wallet |
 | commands/payment/*, payment/permit2, payment/subscription (shared signing) | `payment/*.mjs` | foundation: payment |
@@ -36,6 +37,9 @@ Rules:
   and list it under "requests" in your report so it can be promoted.
 - Never hard-code a URL, header name, version or chain constant — import it from
   `lib/config.mjs` / `core/chains.mjs` / the owning module. One definition per fact.
+- Where JS built-ins differ from Rust at the edges (`trim`, number parsing, `{:?}`, io::Error
+  texts, RFC 3339 parsing, strict base64 …) import the Rust behaviour from `lib/core/rs/*.mjs`;
+  never re-implement it locally.
 - Zero dependencies: Node.js ≥ 18 built-ins only.
 
 ## 2. Handler contract

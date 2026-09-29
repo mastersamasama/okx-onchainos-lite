@@ -5,7 +5,7 @@
 // body, Referer added, sensitive headers dropped cross-host) unless `redirect: 'none'`.
 // Errors are ReqwestError whose message is reqwest's `Display` (`e.to_string()`).
 import { request as transport } from '../core/transport.mjs';
-import { ReqwestError, hrefOf } from './_rs.mjs';
+import { ReqwestError, hrefOf } from '../core/rs/reqwest.mjs';
 
 const SENSITIVE = ['authorization', 'cookie', 'proxy-authorization', 'www-authenticate'];
 const TOKEN = /^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$/;

@@ -8,7 +8,13 @@ import { home } from '../core/home.mjs';
 import * as keyring from '../core/keyring.mjs';
 import { context, Confirming } from '../core/errors.mjs';
 import { stringify, parse as jsonParse } from '../core/json.mjs';
-import { trim, eqIgnoreAsciiCase, asciiLower } from '../core/_rust-str.mjs';
+import { trim, eqIgnoreAsciiCase, asciiLower } from '../core/rs/str.mjs';
+import { hpkeDecryptSessionSk, ed25519Sign, eip3009Sign } from '../core/crypto.mjs';
+import { at, get, asStr, asU64, isObject, numText, isNumber, cloneValue } from '../core/rs/value.mjs';
+import { intFromStr, intFromStrOk, parseU64, u256FromStr, u256FromStrRadix, U256_MAX } from '../core/rs/num.mjs';
+import { hexDecode } from '../core/rs/codec.mjs';
+import { ReqwestError } from '../core/rs/reqwest.mjs';
+import { ioErrorText } from '../core/rs/fs.mjs';
 import { isMainnetChain as chainsIsMainnet, PERMIT2_ADDRESS, X402_EXACT_PERMIT2_PROXY, X402_UPTO_PERMIT2_PROXY } from '../core/chains.mjs';
 import { ensureTokensRefreshed, formatApiError } from '../wallet/auth.mjs';
 import { WalletApiClient } from '../wallet/api.mjs';
@@ -19,6 +25,7 @@ import { resolveAddress } from '../wallet/transfer/index.mjs';
 import { resolveChain } from '../core/chains.mjs';
 import { parseRecipientAddr } from './addr.mjs';
 import * as state from './state.mjs';
+import { A2mcpPaymentSource, ERR_CONFIRMATION_REQUIRED, ERR_OVERRIDES_FORBIDDEN, inspectPaymentSource, readA2mcpPaymentIntent } from './a2mcp.mjs';
 import { decodeReceipt } from './decode-receipt.mjs';
 import { buildRequest, buildTypedRequest } from './http-carrier.mjs';
 import { send, headerStr, text as respText } from './_http.mjs';
@@ -28,11 +35,7 @@ import { CLOCK_SKEW_BACKDATE_SECS, toValue } from './permit2/types.mjs';
 import { signExactPermit2, signUptoPermit2, signExactPermit2Local, signUptoPermit2Local, GEN_MSG_HASH_PATH, SIGN_MSG_PATH } from './permit2/sign.mjs';
 import { signSubscribe } from './subscription/sign.mjs';
 import * as paymentCache from './_payment-cache.mjs';
-import { hpkeDecryptSessionSk, ed25519Sign, privateKeyAddress, eip3009Sign } from './_crypto.mjs';
-import {
-  at, get, asStr, asU64, isObj, numText, isNum, u256FromStr, u256FromStrRadix, U256_MAX, hexDecode, parseUint, tryUint,
-  cloneValue, ReqwestError, ioErrorText, addressFromStr,
-} from './_rs.mjs';
+import { privateKeyAddress, addressFromStr } from './_alloy.mjs';
 
 // ── PaymentTier ──────────────────────────────────────────────────────
 // upstream: payment_flow.rs::PaymentTier — represented by its key string.
@@ -114,13 +117,13 @@ export const extractAmount = (entry) => resolveAmount(entry, null);
 // upstream: payment_flow.rs::resolve_amount (private)
 export function resolveAmount(entry, tier) {
   const amt = get(entry, 'amount');
-  if (isObj(amt)) {
+  if (isObject(amt)) {
     if (!tier) throw new Error('accepts.amount is a tiered object ({basic, premium}) but no tier was specified');
     const key = PaymentTier.asKey(tier);
     const val = get(amt, key);
     if (val === undefined) throw new Error(`accepts.amount is missing '${key}' key`);
     if (typeof val === 'string') return val;
-    if (isNum(val)) return numText(val);
+    if (isNumber(val)) return numText(val);
     throw new Error(`accepts.amount.${key} must be a string or number`);
   }
   if (typeof amt === 'string') return amt;
@@ -134,7 +137,7 @@ export function resolveAmount(entry, tier) {
 // upstream: payment_flow.rs::caip2_to_evm_chain_id (private)
 export function caip2ToEvmChainId(network) {
   if (!network.startsWith('eip155:')) throw new Error(`network '${network}' is not a CAIP-2 EVM identifier (eip155:<id>)`);
-  try { return parseUint(network.slice(7), 64); } catch (e) { throw context(`network '${network}' has non-numeric chain id`, e); }
+  try { return intFromStr(network.slice(7), 'u64'); } catch (e) { throw context(`network '${network}' has non-numeric chain id`, e); }
 }
 
 // upstream: payment_flow.rs::resolve_entry (private) → ResolvedEntry
@@ -214,7 +217,7 @@ export function prepareResolvedEntry(accepts, tier, preferred) {
   if (Array.isArray(accepts)) [entry, scheme] = selectAcceptWithPreference(accepts, preferred);
   else { entry = cloneValue(accepts); scheme = asStr(at(accepts, 'scheme')) ?? null; }
   const params = resolveEntry(entry, scheme, tier);
-  if (isObj(get(entry, 'amount'))) entry.amount = params.amount;
+  if (isObject(get(entry, 'amount'))) entry.amount = params.amount;
   return [entry, params];
 }
 
@@ -442,9 +445,9 @@ export function assembleV2PaymentHeader(proof, entry, resource) {
   const accepted = cloneValue(entry);
   let inner;
   if (proof.kind === 'Eip3009') {
-    if (proof.sessionCert != null && isObj(accepted)) {
+    if (proof.sessionCert != null && isObject(accepted)) {
       if (accepted.extra === undefined) accepted.extra = {};
-      if (isObj(accepted.extra)) accepted.extra.sessionCert = proof.sessionCert;
+      if (isObject(accepted.extra)) accepted.extra.sessionCert = proof.sessionCert;
     }
     inner = { signature: proof.signature, authorization: proof.authorization };
   } else if (proof.kind === 'Permit2' || proof.kind === 'Upto') {
@@ -469,9 +472,9 @@ export function payWithHeaderJson(proof, entry, resource) {
 export function parseEip155ChainId(network) {
   if (!network.startsWith('eip155:')) throw new Error(`unsupported network format: expected 'eip155:<chainId>', got '${network}'`);
   const id = network.slice(7);
-  const v = tryUint(id, 64);
+  const v = parseU64(id);
   if (v === undefined) throw new Error(`invalid chain ID '${id}': must be a valid unsigned integer`);
-  return Number.isSafeInteger(Number(v)) ? Number(v) : v;
+  return v;
 }
 
 // ── two-phase quote/pay support ──────────────────────────────────────
@@ -482,7 +485,7 @@ export const isMainnetChain = (chainId) => chainsIsMainnet(String(chainId));
 export const schemeRank = (s) => ({ aggr_deferred: 0, exact: 1, upto: 2, charge: 3 }[s] ?? 4);
 
 const U128_MAX = (1n << 128n) - 1n;
-const u128OrMax = (s) => tryUint(s, 128) ?? U128_MAX;
+const u128OrMax = (s) => intFromStrOk(s, 'u128') ?? U128_MAX;
 
 // upstream: payment_flow.rs::cmp_candidates (private)
 export function cmpCandidates(a, b) {
@@ -564,24 +567,12 @@ export function payConfirming(st, selectedIndex) {
   return new Confirming({ message, next });
 }
 
-// commands/payment/a2mcp.rs (owned by the P2 unit) — loaded lazily; private fallback when absent.
-async function a2mcp() {
-  let m;
-  try { m = await import('./a2mcp.mjs'); } catch (e) {
-    if (e?.code !== 'ERR_MODULE_NOT_FOUND' || !String(e.message).includes('a2mcp.mjs')) throw e;
-  }
-  if (m && typeof m.inspectPaymentSource === 'function' && typeof m.readA2mcpPaymentIntent === 'function') return m;
-  return import('./_a2mcp.mjs');
-}
-
 // upstream: payment_flow.rs::fetch_pay — CLI + MCP `payment_pay` entry (two-phase complete).
 export async function fetchPay(paymentId, selectedIndex, param, yes) {
   const owner = state.currentOwnerId() ?? '';
-  const a = await a2mcp();
-  const source = await a.inspectPaymentSource(paymentId);
-  if (source === (a.A2mcpPaymentSource?.OkxAiA2mcp ?? 'OkxAiA2mcp')) {
-    if (selectedIndex != null || (param ?? []).length) throw new Error(`${a.ERR_OVERRIDES_FORBIDDEN ?? 'a2mcp_payment_overrides_forbidden'}: A2MCP payment intent does not accept pay-time overrides`);
-    if (!yes) throw new Error(`${a.ERR_CONFIRMATION_REQUIRED ?? 'a2mcp_payment_confirmation_required'}: payment pay requires --yes`);
+  if (inspectPaymentSource(paymentId) === A2mcpPaymentSource.OkxAiA2mcp) {
+    if (selectedIndex != null || (param ?? []).length) throw new Error(`${ERR_OVERRIDES_FORBIDDEN}: A2MCP payment intent does not accept pay-time overrides`);
+    if (!yes) throw new Error(`${ERR_CONFIRMATION_REQUIRED}: payment pay requires --yes`);
     return payA2mcpIntent(paymentId, owner);
   }
   const st = state.read(paymentId, owner, nowUnix());
@@ -596,8 +587,7 @@ export async function fetchPay(paymentId, selectedIndex, param, yes) {
 
 // upstream: payment_flow.rs::pay_a2mcp_intent (private) — A2MCP intent state machine (a2mcp.rs).
 export async function payA2mcpIntent(paymentId, owner) {
-  const a = await a2mcp();
-  const intent = await a.readA2mcpPaymentIntent(paymentId, owner, nowUnix());
+  const intent = readA2mcpPaymentIntent(paymentId, owner, nowUnix());
   await intent.beginSigning(nowUnix());
   const accepts = [cloneValue(intent.selectedAccept().raw())];
   let proof, entry;
@@ -757,14 +747,14 @@ export function classifyRecovery(cur, unit, dep) {
   if (BigInt(unit) === 0n) return 'delta_too_small';
   return null;
 }
-const u128OrZero = (s) => (s == null ? 0n : tryUint(s, 128) ?? 0n);
+const u128OrZero = (s) => (s == null ? 0n : intFromStrOk(s, 'u128') ?? 0n);
 
 // upstream: payment_flow.rs::fetch_session — pure decision layer → SessionData (sorted keys).
 export async function fetchSession(params) {
   const p = sessionParams(params);
   const current = u128OrZero(p.cumulative_amount), unit = u128OrZero(p.unit_amount), deposit = u128OrZero(p.deposit);
   const hasDeposit = p.deposit != null;
-  const srv = p.server_cumulative == null ? undefined : tryUint(p.server_cumulative, 128);
+  const srv = p.server_cumulative == null ? undefined : intFromStrOk(p.server_cumulative, 'u128');
   const drift = srv !== undefined && srv !== current ? srv : undefined;
   const base = drift ?? current;
   const newCum = satAdd(base, unit);

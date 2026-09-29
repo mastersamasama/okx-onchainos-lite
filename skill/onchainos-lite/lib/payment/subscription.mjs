@@ -6,12 +6,12 @@
 import { context } from '../core/errors.mjs';
 import { stringify, toValue } from '../core/json.mjs';
 import { resolveChain } from '../core/chains.mjs';
-import { fromStr as serdeFromStr } from '../wallet/_serde-json.mjs';
+import { fromStr as serdeFromStr } from '../core/serde.mjs';
 import { resolveChainAndPayer, resolveChainAndPayerByChain } from './payment-flow.mjs';
 import { SubscriptionCache, hostOf } from './subscription/cache.mjs';
 import * as facilitator from './subscription/facilitator.mjs';
 import * as sign from './subscription/sign.mjs';
-import { get } from './_rs.mjs';
+import { get } from '../core/rs/value.mjs';
 
 // upstream: subscription.rs::execute — cmd = {kind, …args}; returns the `data` output::success prints.
 export async function execute(cmd) {

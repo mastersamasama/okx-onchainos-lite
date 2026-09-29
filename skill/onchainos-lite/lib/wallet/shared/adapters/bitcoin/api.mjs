@@ -6,7 +6,8 @@ import { WalletApiClient, decodeBroadcastResponse, SerdeError } from '../../../a
 import { decimalField, valueAsDecimalString } from '../../common/amount.mjs';
 import { firstDataItem } from '../../common/json.mjs';
 import { mapApiError } from './error.mjs';
-import { get, rustTrim } from '../../_rust.mjs';
+import { get } from '../../../../core/rs/value.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
 
 // upstream: api.rs::UTXO_MANAGE_BATCH_SIZE / UTXO_ASSET_INFO_BATCH_SIZE
 export const UTXO_MANAGE_BATCH_SIZE = 50;
@@ -180,9 +181,9 @@ export function validateOrderDetailContext(ctx, detail, txHash, orderId) {
 
 // upstream: api.rs::build_manage_utxos_body
 export function buildManageUtxosBody(chainIndex, action, message, outpoints) {
-  if (rustTrim(chainIndex) === '') throw new Error('UTXO management chainIndex must not be empty');
+  if (trim(chainIndex) === '') throw new Error('UTXO management chainIndex must not be empty');
   if (action !== 'ignoreAsset' && action !== 'cancelIgnore') throw new Error(`unsupported UTXO management action: ${action}`);
-  if (rustTrim(message) === '') throw new Error('UTXO management message must not be empty');
+  if (trim(message) === '') throw new Error('UTXO management message must not be empty');
   if (!outpoints.length || outpoints.length > UTXO_MANAGE_BATCH_SIZE) throw new Error(`UTXO management requires 1..=${UTXO_MANAGE_BATCH_SIZE} outpoints per batch`);
   return { chainIndex, action, message, utxos: outpoints.map((o) => o.toApiValue()) };
 }

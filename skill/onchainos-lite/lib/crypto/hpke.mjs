@@ -59,19 +59,3 @@ export function seal({ pkR, plaintext, info, aad = Buffer.alloc(0), aead = 'aes-
   const ct = Buffer.concat([c.update(plaintext), c.final(), c.getAuthTag()]);
   return { enc, ciphertext: ct };
 }
-
-// Upstream hpke_decrypt_session_sk(encrypted_b64, session_key_b64) -> 32-byte ed25519 seed.
-export function decryptSessionSk(encryptedB64, sessionKeyB64) {
-  const encrypted = Buffer.from(encryptedB64, 'base64');
-  const sk = Buffer.from(sessionKeyB64, 'base64');
-  if (sk.length !== 32) throw new Error(`session_key must be 32 bytes, got ${sk.length}`);
-  if (encrypted.length <= 32) throw new Error(`encrypted_session_sk too short: ${encrypted.length} bytes (need > 32)`);
-  let seed;
-  try {
-    seed = open({ skR: sk, enc: encrypted.subarray(0, 32), ciphertext: encrypted.subarray(32), info: Buffer.from('okx-tee-sign') });
-  } catch (e) {
-    throw new Error(`HPKE decryption failed: ${e.message}`);
-  }
-  if (seed.length !== 32) throw new Error(`decrypted signing seed must be 32 bytes, got ${seed.length}`);
-  return seed;
-}

@@ -469,7 +469,7 @@ test('a2mcp: serde Value equality distinguishes floats from integers', () => {
 });
 
 // ── verifier additions: divergences found against the 4.6.3 binary ─────
-const chrono = await import('../../skill/onchainos-lite/lib/payment/_chrono.mjs');
+const chrono = await import('../../skill/onchainos-lite/lib/core/rs/time.mjs');
 
 test('chrono 0.4.44 parse_from_rfc3339: error kinds in upstream check order (parity a2a-pay-rfc3339-*)', () => {
   const errs = {

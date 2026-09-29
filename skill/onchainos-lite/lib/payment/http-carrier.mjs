@@ -3,9 +3,10 @@
 // (query | body | header | path); the result is a request description for _http.mjs `send`
 // ({method, url, headers:[[k, v]], body?}) — the stand-in for upstream's reqwest RequestBuilder.
 import { stringify } from '../core/json.mjs';
-import { asciiUpper } from '../core/_rust-str.mjs';
+import { asciiUpper } from '../core/rs/str.mjs';
+import { isObject, isNumber, numText } from '../core/rs/value.mjs';
+import { ReqwestError } from '../core/rs/reqwest.mjs';
 import { ParamCarrier } from './state.mjs';
-import { isObj, isNum, numText, ReqwestError } from './_rs.mjs';
 
 const byteCmp = (a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b));
 
@@ -79,7 +80,7 @@ export function buildRequest(method, url, params, plan) {
 export function scalarText(value) {
   if (value === null) return 'null';
   if (typeof value === 'boolean') return String(value);
-  if (isNum(value)) return numText(value);
+  if (isNumber(value)) return numText(value);
   if (typeof value === 'string') return value;
   return undefined;
 }
@@ -93,7 +94,7 @@ export function buildTypedRequest(method, url, params, plan) {
   let hasBody = false;
   // `params` is a serde_json::Map (BTreeMap): iterate keys in byte order, not insertion order —
   // it fixes the query-string / header order and which bad key is reported first.
-  const obj = isObj(params) ? params : {};
+  const obj = isObject(params) ? params : {};
   for (const key of Object.keys(obj).sort(byteCmp)) {
     const value = obj[key];
     if (value === undefined) continue;

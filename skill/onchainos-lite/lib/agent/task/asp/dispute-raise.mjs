@@ -1,11 +1,13 @@
 // One-time evaluation request (combined approve-and-create) — upstream task/asp/dispute_raise.rs.
 // The exact ASP reason is handed to the task session before the combined transaction is
 // broadcast; the later `job_disputed` / `sub_asp_dispute` event reuses it for the evidence upload.
-import { stringify } from '../../../core/json.mjs';
+import { stringify, displayF64 } from '../../../core/json.mjs';
 import { auditLog } from '../../../core/audit.mjs';
 import { context, FundingBlocked } from '../../../core/errors.mjs';
 import { parseRustF64 } from '../../../core/cli.mjs';
-import { isObj, at, asStr, trim, charCount, cloneValue, displayF64, b64UrlNoPadEncode } from '../../_rs.mjs';
+import { isObject, at, asStr, cloneValue } from '../../../core/rs/value.mjs';
+import { trim, charCount } from '../../../core/rs/str.mjs';
+import { B64 } from '../../../core/rs/codec.mjs';
 import { ensureSufficientBalanceAt } from '../common/util.mjs';
 import { enrichBlockingAt, balanceWarningBase, InsufficientBalanceError } from '../common/deposit-qr.mjs';
 import { fundingBlockedEnvelope } from '../common/funding-notice.mjs';
@@ -22,7 +24,7 @@ export const ReasonHandoffFlow = Object.freeze({ OneTime: 'OneTime', Subscriptio
 
 // upstream: dispute_raise.rs::build_reason_handoff_for
 export function buildReasonHandoffFor(jobId, providerAgentId, reason, flow) {
-  const ctx = { version: 1, intent: 'arbitration_reason_context', jobId, providerAgentId, reason, reasonB64: b64UrlNoPadEncode(Buffer.from(reason, 'utf8')) };
+  const ctx = { version: 1, intent: 'arbitration_reason_context', jobId, providerAgentId, reason, reasonB64: B64.URL_SAFE_NO_PAD.encode(Buffer.from(reason, 'utf8')) };
   const resumeEvent = flow === ReasonHandoffFlow.OneTime ? 'job_disputed' : 'sub_asp_dispute';
   ctx.taskType = flow === ReasonHandoffFlow.OneTime ? 'one_time' : 'subscription';
   ctx.resumeEvent = resumeEvent;
@@ -38,8 +40,8 @@ export const buildSubscriptionReasonHandoff = (jobId, providerAgentId, reason) =
 // upstream: dispute_raise.rs::with_sa_batch_tx_flag — clone of uopData with extraData.isSaBatchTx = true
 export function withSaBatchTxFlag(uopData) {
   const flagged = cloneValue(uopData);
-  const extra = isObj(flagged) ? flagged.extraData : undefined;
-  if (!isObj(extra)) throw new Error('approveAndCreateDispute response missing object uopData.extraData');
+  const extra = isObject(flagged) ? flagged.extraData : undefined;
+  if (!isObject(extra)) throw new Error('approveAndCreateDispute response missing object uopData.extraData');
   extra.isSaBatchTx = true;
   return flagged;
 }

@@ -7,7 +7,8 @@ import { jobIdIsSafe } from './grants.mjs';
 import { loadPendingDeliveryContext } from './consent.mjs';
 import { isRetiredModeConfigurationDecision } from './index.mjs';
 import { CONSENT_SOURCE_EVENT, CONFIG_REQUIRED_SOURCE_EVENT } from './card.mjs';
-import { onchainosHome, removeFileQuiet } from './_fs.mjs';
+import { home as onchainosHome } from '../../../../core/home.mjs';
+import { removeFileQuiet } from '../../../../core/rs/fs.mjs';
 
 // upstream: consent_reply.rs::is_candidate_source
 export const isCandidateSource = (sourceEvent) => sourceEvent === CONSENT_SOURCE_EVENT || sourceEvent === CONFIG_REQUIRED_SOURCE_EVENT;

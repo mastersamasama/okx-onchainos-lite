@@ -2,9 +2,9 @@
 // File: <home>/task/<jobId>/cache/prefilled-rating.json = pretty struct `{ "score", "comment" }`.
 import { mkdirSync, readFileSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
-import { taskStateDir } from '../../_home.mjs';
+import { taskStateDir } from '../../../core/home.mjs';
 import { stringify, struct } from '../../../core/json.mjs';
-import { fromStr, T } from '../../../wallet/_serde-json.mjs';
+import { fromStr, T } from '../../../core/serde.mjs';
 
 const cacheDir = (jobId) => join(taskStateDir(jobId), 'cache');
 const cachePath = (jobId) => join(cacheDir(jobId), 'prefilled-rating.json');

@@ -1,8 +1,7 @@
 // JSON shape helpers — upstream agentic_wallet/shared/common/json.rs.
 import { valueAsDecimalString } from './amount.mjs';
-import { get, isObject } from '../_rust.mjs';
-
-const cmpBytes = (a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b));
+import { get, isObject } from '../../../core/rs/value.mjs';
+import { cmpBytes } from '../../../core/rs/str.mjs';
 
 // upstream: json.rs::first_data_item — unwraps a single-item array, anything else unchanged.
 export const firstDataItem = (value) => (Array.isArray(value) && value.length === 1 ? value[0] : value);

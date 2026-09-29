@@ -2,8 +2,8 @@
 // Files: <home>/autotrade/lang/<jobId> and <home>/autotrade/lang/_default (literal `zh` / `en`).
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { onchainosHome, writeSecure } from '../../_home.mjs';
-import { splitWhitespace, trim } from '../../_rs.mjs';
+import { home as onchainosHome, writeSecure } from '../../../core/home.mjs';
+import { splitWhitespace, trim } from '../../../core/rs/str.mjs';
 
 // upstream: user_lang.rs::Lang
 export const Lang = Object.freeze({ Zh: 'zh', En: 'en' });

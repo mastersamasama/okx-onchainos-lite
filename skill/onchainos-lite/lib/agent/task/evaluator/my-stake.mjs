@@ -1,6 +1,6 @@
 // `my-stake` — upstream task/evaluator/my_stake.rs (plain text).
 import { getMyStake } from './staking-types.mjs';
-import { fmtLocalYmdHmsZ } from './_time.mjs';
+import { fmtLocalYmdHmsZ } from '../../../core/rs/time.mjs';
 
 // upstream: my_stake.rs::fmt_unix_seconds
 export function fmtUnixSeconds(ts, noneLabel) {

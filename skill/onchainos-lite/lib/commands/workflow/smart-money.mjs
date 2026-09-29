@@ -10,7 +10,8 @@ import { fetchByAddress } from '../memepump/index.mjs';
 import { okOrNull } from './index.mjs';
 import { cloneClient } from '../../core/http.mjs';
 import { isLaunchpadToken } from './token-research.mjs';
-import { index, asStr, asArray, asU64, cmpBytes } from './_value.mjs';
+import { at, asStr, asArray, asU64 } from '../../core/rs/value.mjs';
+import { cmpBytes } from '../../core/rs/str.mjs';
 import { MEMEPUMP_TOKEN_DEV_INFO_PATH, MEMEPUMP_TOKEN_BUNDLE_INFO_PATH } from './_paths.mjs';
 
 export const TOP_N = 5;
@@ -62,13 +63,13 @@ export function assemble(chainIndex, rawSignals, enriched) {
 // (u64) else addressCount (u64) else 0; duplicates keep the strictly higher count (ties keep
 // the first); sorted by count desc, address asc (byte order); first n → [[addr, item]].
 export function extractTopTokens(signals, n) {
-  const arr = asArray(signals) ?? asArray(index(signals, 'data'));
+  const arr = asArray(signals) ?? asArray(at(signals, 'data'));
   if (!arr) return [];
   const byAddr = new Map();
   for (const item of arr) {
-    const addr = asStr(index(item, 'tokenContractAddress')) ?? asStr(index(item, 'address'));
+    const addr = asStr(at(item, 'tokenContractAddress')) ?? asStr(at(item, 'address'));
     if (addr === undefined || addr === '') continue;
-    const count = asU64(index(item, 'walletCount')) ?? asU64(index(item, 'addressCount')) ?? 0n;
+    const count = BigInt(asU64(at(item, 'walletCount')) ?? asU64(at(item, 'addressCount')) ?? 0);
     const existing = byAddr.get(addr);
     if (!existing) byAddr.set(addr, [count, item]);
     else if (count > existing[0]) { existing[0] = count; existing[1] = item; }

@@ -9,7 +9,12 @@
 import { randomBytes } from 'node:crypto';
 import { context, FundingBlocked } from '../core/errors.mjs';
 import { struct } from '../core/json.mjs';
-import { eqIgnoreAsciiCase } from '../core/_rust-str.mjs';
+import { hpkeDecryptSessionSk, ed25519Sign } from '../core/crypto.mjs';
+import { eqIgnoreAsciiCase, trimStartMatches } from '../core/rs/str.mjs';
+import { at, get, asStr, asU64 } from '../core/rs/value.mjs';
+import { intFromStr } from '../core/rs/num.mjs';
+import { hexDecode } from '../core/rs/codec.mjs';
+import { parseFromRfc3339, isAtOrBeforeNow } from '../core/rs/time.mjs';
 import * as keyring from '../core/keyring.mjs';
 import { FUNDING_OPERATION_A2A_PAYMENT, buildFundingBundle } from '../core/funding.mjs';
 import { keccak256 } from '../crypto/keccak.mjs';
@@ -21,12 +26,8 @@ import { getChainByRealChainIndex } from '../wallet/chain.mjs';
 import { resolveAddress } from '../wallet/transfer/index.mjs';
 import { queryTokenReadable, queryTokenMetadata } from '../wallet/balance/index.mjs';
 import { minimalToReadable } from '../wallet/shared/common/amount.mjs';
-import { hpkeDecryptSessionSk, ed25519Sign } from './_crypto.mjs';
 import { GEN_MSG_HASH_PATH, SIGN_MSG_PATH } from './permit2/sign.mjs';
-import {
-  at, get, asStr, asU64, hexDecode, addressFromStr, trimStartMatches0x, word, wordAddr, parseUint,
-} from './_rs.mjs';
-import { parseFromRfc3339, isAtOrBeforeNow } from './_chrono.mjs';
+import { addressFromStr, word, wordAddr } from './_alloy.mjs';
 
 // upstream: a2a_pay.rs::DEFAULT_VALID_BEFORE_SEC
 export const DEFAULT_VALID_BEFORE_SEC = 3600;
@@ -95,7 +96,7 @@ export function parseCreatePaymentResponse(resp) {
 // hookDataHash / salt: 32-byte Buffers or 0x strings; numbers: bigint | number | decimal string.
 export function computeEscrowNonce(f) {
   const addr = (v) => wordAddr(Buffer.isBuffer(v) ? v : addressFromStr(v));
-  const b32 = (v) => (Buffer.isBuffer(v) ? v : hexDecode(trimStartMatches0x(v)));
+  const b32 = (v) => (Buffer.isBuffer(v) ? v : hexDecode(trimStartMatches(v, '0x')));
   const enc = Buffer.concat([
     addr(f.from), addr(f.provider), addr(f.receiver), addr(f.arbitrator), addr(f.currency), word(BigInt(f.amount)),
     word(BigInt(f.submitWindow)), word(BigInt(f.disputeWindow)), word(BigInt(f.arbitrationWindow)), word(BigInt(f.terminationWindow)),
@@ -243,11 +244,11 @@ export async function signEscrow(p) {
   if (ts < 0n) throw context('expired_at predates unix epoch', new Error('out of range integral type conversion attempted'));
   const validBefore = ts;
   let amount;
-  try { amount = parseUint(p.amount, 128); } catch (e) { throw context('amount must be a non-negative integer in minimal units', e); }
+  try { amount = intFromStr(p.amount, 'u128'); } catch (e) { throw context('amount must be a non-negative integer in minimal units', e); }
   let fromAddr;
   try { fromAddr = addressFromStr(fromAddrStr); } catch (e) { throw context('agentic-wallet address is not a valid EVM address', e); }
   let hookData;
-  try { hookData = hexDecode(trimStartMatches0x(p.hookData)); } catch (e) { throw context('hook_data is not valid hex', e); }
+  try { hookData = hexDecode(trimStartMatches(p.hookData, '0x')); } catch (e) { throw context('hook_data is not valid hex', e); }
   const salt = parseBytes32Hex(p.salt, 'salt');
   const nonceHex = '0x' + Buffer.from(computeEscrowNonce({
     from: fromAddr, provider: p.provider, receiver: p.receiver, arbitrator: p.arbitrator, currency: p.currency, amount,
@@ -294,7 +295,7 @@ export async function teeSignEip3009(client, accessToken, chainIndex, from, to, 
 
   const seed = hpkeDecryptSessionSk(session.encryptedSessionSk, sessionKey);
   let msgHashBytes;
-  try { msgHashBytes = hexDecode(trimStartMatches0x(msgHash)); } catch (e) { seed.fill(0); throw context('invalid msgHash hex', e); }
+  try { msgHashBytes = hexDecode(trimStartMatches(msgHash, '0x')); } catch (e) { seed.fill(0); throw context('invalid msgHash hex', e); }
   const sig = ed25519Sign(seed, msgHashBytes);
   seed.fill(0);
   const signBody = { ...base, domainHash, sessionCert: session.sessionCert, sessionSignature: sig.toString('base64') };

@@ -16,7 +16,9 @@ import {
   patternName, tokenPair, cmpTokenPair, tradeEventFromValue, watchConfig,
 } from '../../watch/types.mjs';
 import { Credentials, runDaemon } from '../../watch/daemon.mjs';
-import { cmpBytes, sortDedup, trim, parseF64, parseUnsigned, pathJoin, ioError } from '../../watch/_rs.mjs';
+import { cmpBytes, sortDedup, trim } from '../../core/rs/str.mjs';
+import { parseF64, parseU64 } from '../../core/rs/num.mjs';
+import { pathJoin, ioError } from '../../core/rs/fs.mjs';
 
 // upstream: ws.rs::resolve_trade_type
 export function resolveTradeType(s) {
@@ -189,7 +191,7 @@ export function tradeMatches(value, f, tagFilter, tradeTypeFilter) {
   if (f.minPnl !== undefined && num(e.realizedPnlUsd, -Infinity) < f.minPnl) return false;
   if (f.trader !== undefined && !e.walletAddress.startsWith(f.trader)) return false;
   if (tagFilter !== undefined && !(e.trackerType ?? []).includes(tagFilter)) return false;
-  if (f.since !== undefined && BigInt(parseUnsigned(e.tradeTime, 'u64') ?? 0) < BigInt(f.since)) return false;
+  if (f.since !== undefined && BigInt(parseU64(e.tradeTime) ?? 0) < BigInt(f.since)) return false;
   if (tradeTypeFilter !== undefined && tradeTypeFilter !== '' && tradeTypeFilter !== '0' && e.tradeType !== tradeTypeFilter) return false;
   return true;
 }
@@ -271,7 +273,7 @@ async function runDaemonEntry(id) {
   await runDaemon(id, dir);
 }
 
-const f64Opt = (ctx, name, raw) => (raw === undefined ? undefined : (typed(ctx.path, name, raw, 'f64'), parseF64(raw)));
+const f64Opt = (raw) => (raw === undefined ? undefined : parseF64(raw));
 
 const handlers = {
   'ws channels': {
@@ -298,9 +300,9 @@ const handlers = {
     async run(ctx, o) {
       const limit = BigInt(typed(ctx.path, 'limit', o.limit, 'usize'));
       const f = {
-        minQuoteAmount: f64Opt(ctx, 'minQuoteAmount', o.minQuoteAmount),
-        minMarketCap: f64Opt(ctx, 'minMarketCap', o.minMarketCap),
-        minPnl: f64Opt(ctx, 'minPnl', o.minPnl),
+        minQuoteAmount: f64Opt(o.minQuoteAmount),
+        minMarketCap: f64Opt(o.minMarketCap),
+        minPnl: f64Opt(o.minPnl),
         trader: o.trader,
         tag: o.tag,
         since: typed(ctx.path, 'since', o.since, 'u64'),

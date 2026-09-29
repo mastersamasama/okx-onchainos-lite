@@ -1,11 +1,12 @@
 // Generic task-system helpers — upstream task/common/util.rs.
 import { CodedError } from '../../../core/errors.mjs';
 import { ApiClient } from '../../../core/http.mjs';
-import { parse as parseJson } from '../../../core/json.mjs';
+import { parse as parseJson, displayF64 } from '../../../core/json.mjs';
 import { selfOutput, utf8Lossy } from '../../_proc.mjs';
-import {
-  at, get, asStr, asArray, asI64, asU64, asF64, utcRfc3339, byteLen, isControl, displayF64, exitStatusText, trim, splitWhitespace,
-} from '../../_rs.mjs';
+import { at, asStr, asArray, asI64, asU64, asF64 } from '../../../core/rs/value.mjs';
+import { utcRfc3339 } from '../../../core/rs/time.mjs';
+import { byteLen, isControl, trim, splitWhitespace } from '../../../core/rs/str.mjs';
+import { exitStatusText } from '../../../core/rs/process.mjs';
 import { InsufficientBalanceError, DEPOSIT_QR_MARKER, SCAN_TO_DEPOSIT_OPTION } from './deposit-qr.mjs';
 import { PaymentMode } from './payment-mode.mjs';
 

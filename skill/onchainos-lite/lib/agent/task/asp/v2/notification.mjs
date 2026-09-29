@@ -1,7 +1,9 @@
 // Structured ASP job-notification playbooks — upstream task/asp/v2/notification.rs.
 // Every builder returns a compact JSON string (serde_json `json!` → sorted keys).
 import { stringify } from '../../../../core/json.mjs';
-import { get, asStr, asI64, isNum, numText, trim, parseI64 } from '../../../_rs.mjs';
+import { get, asStr, asI64, isNumber, numText } from '../../../../core/rs/value.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
+import { parseI64 } from '../../../../core/rs/num.mjs';
 import { TERMINAL_NOTIFICATION_MARKER } from '../../common/index.mjs';
 import * as content from '../content.mjs';
 
@@ -12,7 +14,7 @@ const is = (v, n) => has(v) && Number(v) === n;
 export function displayField(message, key) {
   const v = has(message) ? get(message, key) : undefined;
   if (typeof v === 'string') return v !== '' ? v : undefined;
-  if (isNum(v)) return numText(v);
+  if (isNumber(v)) return numText(v);
   return undefined;
 }
 

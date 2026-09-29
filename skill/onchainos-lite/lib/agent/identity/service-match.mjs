@@ -2,9 +2,10 @@
 // commands/agent_commerce/identity/service_match.rs. Fuzzy search is public (no login state is
 // read); precise search (`--sid` / `--asp-agent-id`) is personalised with the account's User
 // Agent id (`agenticId` header).
-import { F64 } from '../../core/json.mjs';
+import { numberFromStr } from '../../core/serde.mjs';
 import { ensureTokensRefreshed } from '../../wallet/auth.mjs';
-import { trim, isObj, isNum, asF64, asI64, numText } from '../_rs.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { isObject, isNumber, asF64, asI64, numText } from '../../core/rs/value.mjs';
 import { formatSearchRate, walletClient } from './utils.mjs';
 import { getMyAgentsWithAccessToken } from './queries.mjs';
 
@@ -16,7 +17,7 @@ const TIP_CONFIRM = 'Reply to confirm that you want to use this service.';
 const TIP_MORE = 'Tell me which service you want to use, or ask for more.';
 const TIP_NO_MORE = 'There are no more matching services. Tell me which service you want to use.';
 
-const mget = (m, k) => (isObj(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
+const mget = (m, k) => (isObject(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
 
 // upstream: service_match.rs::service_match — args {keywords[], aspAgentId, aspName, serviceName,
 // serviceId, minPaymentTokenAmount, maxPaymentTokenAmount, searchAfter, limit (u64)} → data
@@ -43,10 +44,10 @@ export function normalizeSecurityRatings(data) {
   if (!Array.isArray(services)) return;
   for (const service of services) {
     const asp = mget(service, 'asp');
-    if (!isObj(asp)) continue;
+    if (!isObject(asp)) continue;
     const r = mget(asp, 'securityRate');
     let rating = '—';
-    if (isNum(r)) {
+    if (isNumber(r)) {
       const rate = asF64(r);
       rating = rate === 0 ? 'No rating yet' : `★ ${formatSearchRate(rate)}`;
     }
@@ -63,7 +64,7 @@ export const isPreciseSearch = (args) => trimmed(args.serviceId) !== undefined |
 // upstream: service_match.rs::agent_id_string (private)
 function agentIdString(v) {
   if (typeof v === 'string') return trimmed(v);
-  if (isNum(v)) return numText(v);
+  if (isNumber(v)) return numText(v);
   return undefined;
 }
 
@@ -99,7 +100,7 @@ function requireUserAgentId(data) {
 
 // upstream: service_match.rs::add_flow_metadata (private)
 export function addFlowMetadata(data, args) {
-  if (!isObj(data)) return;
+  if (!isObject(data)) return;
   const svc = mget(data, 'services');
   const services = Array.isArray(svc) ? svc : [];
   const precise = isPreciseSearch(args);
@@ -145,7 +146,7 @@ export function activeSubscriptionPayload(service) {
 // upstream: service_match.rs::service_is_offline (private)
 export function serviceIsOffline(service) {
   const status = mget(mget(service, 'asp'), 'onlineStatus');
-  if (isNum(status)) return asI64(status) !== 1;
+  if (isNumber(status)) return asI64(status) !== 1;
   return true;
 }
 
@@ -188,135 +189,4 @@ export function parseNonNegativeDecimal(value, argument) {
   const amount = asF64(number);
   if (!(Number.isFinite(amount) && amount >= 0)) throw new Error(`${argument} must be greater than or equal to 0`);
   return number;
-}
-
-// serde_json 1.0.149 `<Number as FromStr>::from_str` (parse_any_signed_number; upstream's
-// dependency graph enables serde_json's `float_roundtrip` feature — verified against the
-// upstream binary: `0.10590644906288117` / `9007199254740993.0` are sent correctly rounded —
-// while `arbitrary_precision` is off). The whole input must be one JSON number. A port of
-// de.rs parse_integer / parse_number / parse_decimal / parse_exponent / parse_long_* / the
-// overflow paths, so every error carries serde_json's `at line L column C` position (e.g. an
-// i32 exponent overflow stops mid-exponent); the f64 itself is lexical's correctly rounded
-// value of the consumed digits (f64_from_parts / f64_long_from_parts), i.e. JS Number(text).
-const U64_MAX = 18446744073709551615n;
-const I32_MAX = 2147483647;
-const EOF_VALUE = 'EOF while parsing a value';
-const INVALID_NUMBER = 'invalid number';
-const OUT_OF_RANGE = 'number out of range';
-
-export function numberFromStr(s) {
-  const b = Buffer.from(String(s), 'utf8');
-  let i = 0;
-  let digitsStart = 0;   // first byte after the optional '-'
-  // read.rs position_of_index
-  const position = (idx) => {
-    let start = 0, line = 1;
-    for (let k = 0; k < idx; k++) if (b[k] === 0x0a) { line++; start = k + 1; }
-    return `line ${line} column ${idx - start}`;
-  };
-  const error = (msg) => new Error(`${msg} at ${position(i)}`);                            // self.error
-  const peekError = (msg) => new Error(`${msg} at ${position(Math.min(b.length, i + 1))}`);  // self.peek_error
-  const isDigit = (c) => c !== undefined && c >= 0x30 && c <= 0x39;
-  const peekOrNull = () => (i < b.length ? b[i] : 0);
-
-  // f64_from_parts / f64_long_from_parts (float_roundtrip): correctly rounded; ±inf → out of range.
-  const f64FromParts = (positive) => {
-    const f = Number(b.subarray(digitsStart, i).toString('latin1'));
-    if (!Number.isFinite(f)) throw error(OUT_OF_RANGE);
-    return positive ? f : -f;
-  };
-  const parseExponentOverflow = (positive, zeroSignificand, positiveExp) => {
-    if (!zeroSignificand && positiveExp) throw error(OUT_OF_RANGE);
-    while (isDigit(peekOrNull())) i++;
-    return positive ? 0 : -0;
-  };
-  const parseExponent = (positive, significand, startingExp) => {
-    i++;
-    let positiveExp = true;
-    const sign = peekOrNull();
-    if (sign === 0x2b) i++;
-    else if (sign === 0x2d) { i++; positiveExp = false; }
-    if (i >= b.length) throw error(EOF_VALUE);
-    const next = b[i++];
-    if (!isDigit(next)) throw error(INVALID_NUMBER);
-    let exp = next - 0x30;
-    while (isDigit(peekOrNull())) {
-      const digit = b[i++] - 0x30;
-      if (exp * 10 + digit > I32_MAX) return parseExponentOverflow(positive, significand === 0n, positiveExp);
-      exp = exp * 10 + digit;
-    }
-    return f64FromParts(positive);
-  };
-  const parseDecimalOverflow = (positive, significand, exponent) => {
-    while (isDigit(peekOrNull())) i++;
-    const c = peekOrNull();
-    return c === 0x65 || c === 0x45 ? parseExponent(positive, significand, exponent) : f64FromParts(positive);
-  };
-  const parseDecimal = (positive, significand, exponentBefore) => {
-    i++;
-    let exponentAfter = 0;
-    while (isDigit(peekOrNull())) {
-      const digit = BigInt(b[i] - 0x30);
-      if (significand * 10n + digit > U64_MAX) return parseDecimalOverflow(positive, significand, exponentBefore + exponentAfter);
-      i++;
-      significand = significand * 10n + digit;
-      exponentAfter -= 1;
-    }
-    if (exponentAfter === 0) throw i < b.length ? peekError(INVALID_NUMBER) : peekError(EOF_VALUE);
-    const exponent = exponentBefore + exponentAfter;
-    const c = peekOrNull();
-    return c === 0x65 || c === 0x45 ? parseExponent(positive, significand, exponent) : f64FromParts(positive);
-  };
-  const parseLongInteger = (positive, significand) => {
-    let exponent = 0;
-    for (;;) {
-      const c = peekOrNull();
-      if (isDigit(c)) { i++; exponent += 1; } else if (c === 0x2e) return parseDecimal(positive, significand, exponent);
-      else if (c === 0x65 || c === 0x45) return parseExponent(positive, significand, exponent);
-      else return f64FromParts(positive);
-    }
-  };
-  // parse_number → ParserNumber as lite JSON values (u64/i64 integers, F64 floats)
-  const parseNumber = (positive, significand) => {
-    const c = peekOrNull();
-    if (c === 0x2e) return new F64(parseDecimal(positive, significand, 0));
-    if (c === 0x65 || c === 0x45) return new F64(parseExponent(positive, significand, 0));
-    if (positive) return Number.isSafeInteger(Number(significand)) ? Number(significand) : significand;
-    // (significand as i64).wrapping_neg(): >= 0 (i.e. `-0` or below i64::MIN) → f64
-    if (significand === 0n || significand > 9223372036854775808n) return new F64(-Number(significand));
-    const n = -significand;
-    return Number.isSafeInteger(Number(n)) ? Number(n) : n;
-  };
-  const parseInteger = (positive) => {
-    if (i >= b.length) throw error(EOF_VALUE);
-    const next = b[i++];
-    if (next === 0x30) {
-      if (isDigit(peekOrNull())) throw peekError(INVALID_NUMBER);
-      return parseNumber(positive, 0n);
-    }
-    if (next >= 0x31 && next <= 0x39) {
-      let significand = BigInt(next - 0x30);
-      for (;;) {
-        const c = peekOrNull();
-        if (!isDigit(c)) return parseNumber(positive, significand);
-        const digit = BigInt(c - 0x30);
-        if (significand * 10n + digit > U64_MAX) return new F64(parseLongInteger(positive, significand));
-        i++;
-        significand = significand * 10n + digit;
-      }
-    }
-    throw error(INVALID_NUMBER);
-  };
-
-  let result, failure;
-  try {
-    if (i >= b.length) throw peekError(EOF_VALUE);
-    const p = b[i];
-    if (p === 0x2d) { i++; digitsStart = i; result = parseInteger(false); }
-    else if (isDigit(p)) result = parseInteger(true);
-    else throw peekError(INVALID_NUMBER);
-  } catch (e) { failure = e; }
-  if (i < b.length) throw peekError(INVALID_NUMBER);
-  if (failure) throw failure;
-  return result;
 }

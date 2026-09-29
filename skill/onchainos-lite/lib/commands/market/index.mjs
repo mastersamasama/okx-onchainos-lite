@@ -2,10 +2,11 @@
 // The exported fetch* functions are shared with MCP / workflows / strategy (mirror rule:
 // camelCase of the Rust fn, same parameter order; `client` is an ApiClient).
 import { resolveChain } from '../../core/chains.mjs';
+import { typed } from '../../core/cli.mjs';
 import { ApiClient } from '../../core/http.mjs';
 import { invalidInput, nowMs, resolveSinceWindow } from '../../core/sink.mjs';
-import { trim } from '../../core/_rust-str.mjs';
-import { clapTyped, isJsonObject, some } from './_g03.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { isJsonObject, some } from './_g03.mjs';
 
 const PRICE_PATH = '/api/v6/dex/market/price';
 
@@ -146,7 +147,7 @@ export default {
   'market kline': {
     uses: ['address', 'bar', 'limit', 'chain'],
     async run(ctx, o) {
-      const limit = clapTyped(ctx, 'limit', o.limit, 'u32');   // clap u32 value parser
+      const limit = typed(ctx.path, 'limit', o.limit, 'u32');
       const api = await ctx.api();
       return fetchKline(api, o.address, chainOr(ctx, o.chain, 'ethereum'), o.bar, limit);
     },

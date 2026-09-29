@@ -1,5 +1,8 @@
 // Decision / review deadline helpers — upstream task/common/deadline.rs.
-import { asI64, asU64, asStr, get, parseI64, parseRfc3339Secs, trim, fmtLocalMdHm, fmtLocalYmdHmOffset, fmtUtcYmdHm } from '../../_rs.mjs';
+import { asI64, asU64, asStr, get } from '../../../core/rs/value.mjs';
+import { parseI64 } from '../../../core/rs/num.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { fmtLocalMdHm, fmtLocalYmdHmOffset, fmtUtcYmdHm, parseFromRfc3339 } from '../../../core/rs/time.mjs';
 
 // upstream: deadline.rs::REVIEW_WINDOW_SECONDS
 export const REVIEW_WINDOW_SECONDS = 3 * 86400;
@@ -21,8 +24,9 @@ export function parseTimestampSeconds(value) {
   const n = parseI64(t);
   const a = n === undefined ? undefined : normalizeTimestampSeconds(n);
   if (a !== undefined) return a;
-  const r = parseRfc3339Secs(t);
-  return r === undefined ? undefined : normalizeTimestampSeconds(r);
+  let dateTime;
+  try { dateTime = parseFromRfc3339(t); } catch { return undefined; }
+  return normalizeTimestampSeconds(dateTime.secs);
 }
 
 // upstream: deadline.rs::parse_timestamp_value

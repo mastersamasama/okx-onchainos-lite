@@ -1,9 +1,10 @@
 // Registration pre-check (powers `agent pre-check`) — upstream
 // commands/agent_commerce/identity/parts/precheck.rs (re-exported through ../utils.mjs).
-import { trim, asciiLower, isObj, numText, isNum } from '../../_rs.mjs';
+import { trim, asciiLower } from '../../../core/rs/str.mjs';
+import { isObject, numText, isNumber } from '../../../core/rs/value.mjs';
 import { roleLabel, roleTokenFromValue } from '../utils.mjs';
 
-const mget = (m, k) => (isObj(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
+const mget = (m, k) => (isObject(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
 
 // upstream: precheck.rs::role_key_from_value (private)
 const roleKeyFromValue = (role) => roleTokenFromValue(role);
@@ -19,7 +20,7 @@ export function collectOwnedAgents(agentList, signingAddress) {
     const id = mget(row, 'agentId');
     let idStr;
     if (typeof id === 'string' && trim(id) !== '') idStr = trim(id);
-    else if (isNum(id)) idStr = numText(id);
+    else if (isNumber(id)) idStr = numText(id);
     else return;
     const role = mget(row, 'role');
     const name = mget(row, 'name');

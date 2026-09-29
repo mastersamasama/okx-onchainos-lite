@@ -1,6 +1,8 @@
 // Active-subscription determination for model-routed deliveries — upstream autotrade/subscription.rs.
 import { AutoTradeError, DegradeReason } from './index.mjs';
-import { get, asI64, asStr, trim, parseI64 } from '../../../_rs.mjs';
+import { get, asI64, asStr } from '../../../../core/rs/value.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
+import { parseI64 } from '../../../../core/rs/num.mjs';
 
 // upstream: subscription.rs::AUTOTRADE_ACTIVE_STATUS
 const AUTOTRADE_ACTIVE_STATUS = 1;

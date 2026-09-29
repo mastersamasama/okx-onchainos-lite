@@ -1,7 +1,8 @@
 // Rating: 0.00–5.00 stars (CLI surface) ↔ 0–100 score (backend wire) — upstream
 // commands/agent_commerce/identity/parts/rating.rs (re-exported through ../utils.mjs).
 import { F64 } from '../../../core/json.mjs';
-import { trim, isObj, asU64 } from '../../_rs.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { isObject, asU64 } from '../../../core/rs/value.mjs';
 
 // upstream: rating.rs::parse_stars_arg(value, flag) → 0..=100 wire score (round-half-up)
 export function parseStarsArg(value, flag) {
@@ -33,7 +34,7 @@ export function scoreToStars(score) {
 
 // upstream: rating.rs::convert_feedback_list_scores — in place, u64 scores → f64 stars
 export function convertFeedbackListScores(v) {
-  if (!isObj(v)) return;
+  if (!isObject(v)) return;
   const convert = (score) => new F64(scoreToStars(score));
   const avg = asU64(v.average);
   if (Object.prototype.hasOwnProperty.call(v, 'average') && avg !== undefined) v.average = convert(avg);
@@ -41,7 +42,7 @@ export function convertFeedbackListScores(v) {
     const arr = v[key];
     if (!Object.prototype.hasOwnProperty.call(v, key) || !Array.isArray(arr)) continue;
     for (const entry of arr) {
-      if (!isObj(entry) || !Object.prototype.hasOwnProperty.call(entry, 'score')) continue;
+      if (!isObject(entry) || !Object.prototype.hasOwnProperty.call(entry, 'score')) continue;
       const s = asU64(entry.score);
       if (s !== undefined) entry.score = convert(s);
     }

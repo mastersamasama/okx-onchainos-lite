@@ -2,13 +2,15 @@
 // config.json (pretty WatchConfig), pid, status ("state|ms[|reason]"), cursor.<channel>
 // ("file_no|offset"), events.<channel>.<0..2>.jsonl, daemon.log. Same names, same bytes.
 import {
-  existsSync, mkdirSync, writeFileSync, renameSync, readFileSync, statSync, openSync, closeSync,
+  existsSync, mkdirSync, writeFileSync, renameSync, statSync, openSync, closeSync,
   readSync, appendFileSync, unlinkSync, readdirSync, rmSync, lstatSync,
 } from 'node:fs';
 import { home } from '../core/home.mjs';
 import { stringify } from '../core/json.mjs';
 import { DaemonState, watchConfigFromStr, valueFromStr } from './types.mjs';
-import { pathJoin, io, ioError, decodeUtf8, splitn, trim, parseUnsigned, cmpBytes } from './_rs.mjs';
+import { splitn, trim, cmpBytes } from '../core/rs/str.mjs';
+import { intFromStr, parseU32, parseU64 } from '../core/rs/num.mjs';
+import { pathJoin, io, ioError, decodeUtf8, readToString } from '../core/rs/fs.mjs';
 
 const MAX_FILE_SIZE = 32 * 1024 * 1024; // 32 MB
 const MAX_FILES = 3;
@@ -24,8 +26,6 @@ const statusPath = (dir) => pathJoin(dir, 'status');
 const pidPath = (dir) => pathJoin(dir, 'pid');
 const configPath = (dir) => pathJoin(dir, 'config.json');
 
-// fs::read_to_string
-const readToString = (p) => decodeUtf8(io(() => readFileSync(p)));
 // fs::write then fs::rename (tmp + rename)
 function writeAtomic(dir, tmpName, finalPath, text) {
   const tmp = pathJoin(dir, tmpName);
@@ -48,10 +48,7 @@ export function writePid(dir, pid) {
 
 // upstream: store.rs::read_pid → u32 (throws on io / parse errors)
 export function readPid(id) {
-  const s = readToString(pidPath(watchDir(id)));
-  const v = parseUnsigned(trim(s), 'u32');
-  if (v === undefined) throw new Error(trim(s) === '' ? 'cannot parse integer from empty string' : /^\+?\d+$/.test(trim(s)) ? 'number too large to fit in target type' : 'invalid digit found in string');
-  return v;
+  return Number(intFromStr(trim(readToString(pidPath(watchDir(id)))), 'u32'));
 }
 
 // upstream: store.rs::write_status
@@ -79,11 +76,11 @@ export const cursor = (fileNo, offset) => ({ fileNo, offset });
 // upstream: store.rs::read_cursor — missing/unreadable/malformed → {0,0}
 export function readCursor(dir, channel) {
   let s;
-  try { s = decodeUtf8(readFileSync(cursorPath(dir, channel))); } catch { return cursor(0, 0); }
+  try { s = readToString(cursorPath(dir, channel)); } catch { return cursor(0, 0); }
   const parts = splitn(trim(s), 2, '|');
   if (parts.length !== 2) return cursor(0, 0);
-  const fileNo = parseUnsigned(parts[0], 'u32') ?? 0;
-  const offset = parseUnsigned(parts[1], 'u64') ?? 0;
+  const fileNo = parseU32(parts[0]) ?? 0;
+  const offset = parseU64(parts[1]) ?? 0;
   return cursor(Number(fileNo), Number(offset));
 }
 
@@ -188,8 +185,7 @@ function parseFileNoFromPath(path) {
   const name = path.split(process.platform === 'win32' ? /[\\/]/ : '/').pop();
   const dot = name.lastIndexOf('.');
   const stem = dot > 0 ? name.slice(0, dot) : name;
-  const v = parseUnsigned(stem.split('.').pop(), 'u32');
-  return v === undefined ? 0 : Number(v);
+  return parseU32(stem.split('.').pop()) ?? 0;
 }
 
 // upstream: store.rs::WatchEntry / list_watches — entries named ws_* / watch_*, sorted by id.

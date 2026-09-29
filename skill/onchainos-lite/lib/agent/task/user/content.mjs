@@ -1,8 +1,9 @@
 // User-side message templates — upstream task/user/content.rs (single source of truth for the
 // user-facing copy rendered by the next-action playbooks). Pure string builders.
 import { isCliMode } from '../common/config.mjs';
-import { isZeroDecimal } from '../arbitration.mjs';
-import { utcParts, trim } from '../../_rs.mjs';
+import { isZeroDecimal } from './refund.mjs';
+import { utcParts } from '../../../core/rs/time.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 
 export { isCliMode };
 

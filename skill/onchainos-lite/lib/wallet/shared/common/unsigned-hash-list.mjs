@@ -4,8 +4,10 @@ import { context } from '../../../core/errors.mjs';
 import { stringify } from '../../../core/json.mjs';
 import { requiredString } from './json.mjs';
 import { decodeHex } from './session.mjs';
-import { ed25519Sign } from '../_crypto.mjs';
-import { get, hasOwn, isObject, asU64, parseU64, base64Decode, bs58Decode } from '../_rust.mjs';
+import { ed25519Sign } from '../../../core/crypto.mjs';
+import { get, isObject, asU64 } from '../../../core/rs/value.mjs';
+import { parseU64 } from '../../../core/rs/num.mjs';
+import { B64, bs58Decode } from '../../../core/rs/codec.mjs';
 
 // upstream: unsigned_hash_list.rs::SigningProfile
 export const SigningProfile = Object.freeze({ Bitcoin: 'Bitcoin', Sui: 'Sui' });
@@ -62,7 +64,7 @@ export function decodeUnsignedHash(value, encoding, profile) {
   if (value.startsWith('0x') || encoding === 'eip2519' || encoding === 'hex') {
     bytes = decodeHex(value, 'unsignedHash');
   } else if (encoding === 'base64') {
-    try { bytes = base64Decode(value); } catch (e) { throw context('unsignedHash is not valid base64', e); }
+    try { bytes = B64.STANDARD.decode(value); } catch (e) { throw context('unsignedHash is not valid base64', e); }
   } else if (encoding === 'base58') {
     try { bytes = bs58Decode(value); } catch (e) { throw context('unsignedHash is not valid base58', e); }
   } else {
@@ -91,7 +93,8 @@ export function buildDirectExtraData(prepared, signedHashes, sessionCert, force,
   const base = get(prepared, 'extraData');
   const extraData = isObject(base) ? { ...base } : {};
   extraData.checkBalance = true;
-  extraData.uopHash = hasOwn(prepared, 'uopHash') ? prepared.uopHash : '';
+  const uopHash = get(prepared, 'uopHash');
+  extraData.uopHash = uopHash === undefined ? '' : uopHash;
   extraData.encoding = encoding;
   extraData.signType = signType;
   extraData.msgForSign = msgForSign;

@@ -6,7 +6,7 @@ import { struct } from '../../../../core/json.mjs';
 import { AssetClass, ASSET_CLASS_ORDER } from '../../../../core/asset-class.mjs';
 import { isSkillInstalledIn } from '../../../../commands/upgrade/upgrade.mjs';
 import { probeLocalWith, localReadiness, LocalReadiness } from './trade-kit.mjs';
-import { trim } from '../../../_rs.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
 
 const CN_HDR_SPOT = '【现货信号】';
 const CN_HDR_PERP = '【合约信号】';

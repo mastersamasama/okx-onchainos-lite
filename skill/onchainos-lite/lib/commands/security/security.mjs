@@ -2,19 +2,19 @@
 // wallet), dapp-scan, tx-scan (EVM & Solana), approvals, sig-scan. Risk classification comes
 // from core/risk-classify.mjs (upstream commands/risk_classify.rs).
 import { resolveChain, chainFamily } from '../../core/chains.mjs';
+import { typed } from '../../core/cli.mjs';
 import { ApiClient } from '../../core/http.mjs';
 import * as E from '../../core/errors.mjs';
 import { stringify, F64 } from '../../core/json.mjs';
-import { fromStrValue } from './_serde-value.mjs';
+import { fromStr } from '../../core/serde.mjs';
 import * as keyring from '../../core/keyring.mjs';
-import { trim } from '../../core/_rust-str.mjs';
+import { trim } from '../../core/rs/str.mjs';
 import { TokenResult, combinedAction, parseTradeDirectionValue } from '../../core/risk-classify.mjs';
 import { WalletApiClient } from '../../wallet/api.mjs';
 import { loadWallets } from '../../wallet/store.mjs';
 import { getAllChains, getRealChainIndex } from '../../wallet/chain.mjs';
 import { resolveActiveAccountId } from '../../wallet/account.mjs';
 import { SECURITY_SOURCE } from '../token/token.mjs';
-import { clap } from '../token/_clap.mjs';
 
 // upstream: security.rs::BATCH_SIZE — max tokens per token-scan request.
 export const BATCH_SIZE = 50;
@@ -223,10 +223,10 @@ export async function approvalAddressList(address, chain) {
 // upstream: security.rs::sig_scan (inline) — `serde_json::from_str(message).unwrap_or_else(|_|
 // json!(message))`: any JSON value serde_json accepts, else the raw string. serde_json's rules
 // (surrogate escapes, recursion limit 128, `-0`, number range, `__proto__` keys) differ from
-// core/json.mjs parse(), so a strict private parser decides.
+// core/json.mjs parse(), so core/serde.mjs decides.
 export function parseSigMessage(message) {
   try {
-    return fromStrValue(message);
+    return fromStr(message);
   } catch {
     return message;
   }
@@ -235,19 +235,16 @@ export function parseSigMessage(message) {
 export default {
   'security token-scan': {
     uses: ['tokens', 'address', 'chain', 'tradeDirection'],
+    // upstream: security.rs — `value_parser = risk_classify::parse_trade_direction_value`
+    parsers: { tradeDirection: parseTradeDirectionValue },
     async run(ctx, o) {
-      const { tradeDirection } = clap(ctx, o, {
-        types: { tradeDirection: parseTradeDirectionValue },
-        conflicts: [['tokens', 'address']],
-      });
-      return tokenScan(ctx, o.tokens, o.address, o.chain, tradeDirection);
+      return tokenScan(ctx, o.tokens, o.address, o.chain, o.tradeDirection);
     },
   },
   // upstream: security.rs::dapp_scan
   'security dapp-scan': {
     uses: ['domain'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return client.post(DAPP_SCAN_PATH, { source: SECURITY_SOURCE, url: trim(o.domain) });
     },
@@ -256,7 +253,8 @@ export default {
   'security tx-scan': {
     uses: ['from', 'to', 'chain', 'data', 'value', 'gas', 'gasPrice', 'encoding', 'transactions'],
     async run(ctx, o) {
-      const { gas, gasPrice } = clap(ctx, o, { types: { gas: 'u64', gasPrice: 'u64' }, leafRequired: ['chain'] });
+      const gas = typed(ctx.path, 'gas', o.gas, 'u64');
+      const gasPrice = typed(ctx.path, 'gasPrice', o.gasPrice, 'u64');
       const chainIndex = resolveChain(o.chain);
       const family = chainFamily(chainIndex);
       const client = await ctx.api();
@@ -283,7 +281,8 @@ export default {
   'security approvals': {
     uses: ['address', 'chain', 'limit', 'cursor'],
     async run(ctx, o) {
-      const { limit, cursor } = clap(ctx, o, { types: { limit: 'u32', cursor: 'u64' } });
+      const limit = typed(ctx.path, 'limit', o.limit, 'u32');
+      const cursor = typed(ctx.path, 'cursor', o.cursor, 'u64');
       const addressList = await approvalAddressList(o.address, o.chain);
       if (!addressList.length) throw new Error('No supported chains found');
       const body = { nested: false, limit, addressList };
@@ -300,7 +299,6 @@ export default {
   'security sig-scan': {
     uses: ['from', 'chain', 'sigMethod', 'message'],
     async run(ctx, o) {
-      clap(ctx, o, { leafRequired: ['chain'] });
       const chainIndex = resolveChain(o.chain);
       const realChainId = await getRealChainIndex(chainIndex);
       if (!VALID_SIG_METHODS.includes(o.sigMethod)) {

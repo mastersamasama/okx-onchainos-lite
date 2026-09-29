@@ -8,7 +8,8 @@ import { fetchSecurity, fetchAdvancedInfo } from '../token/token.mjs';
 import { fetchByAddress } from '../memepump/index.mjs';
 import { okOrNull } from './index.mjs';
 import { cloneClient } from '../../core/http.mjs';
-import { index, asStr, asArray, toAsciiUppercase, debugStrList } from './_value.mjs';
+import { at, asStr, asArray } from '../../core/rs/value.mjs';
+import { asciiUpper, strDebug } from '../../core/rs/str.mjs';
 import { MEMEPUMP_TOKEN_DEV_INFO_PATH, MEMEPUMP_TOKEN_BUNDLE_INFO_PATH, MEMEPUMP_TOKEN_LIST_PATH } from './_paths.mjs';
 
 export const ENRICH_TOP_N = 10;
@@ -17,9 +18,9 @@ export const DEFAULT_STAGE = 'MIGRATED';
 
 // upstream: new_tokens.rs::fetch_and_assemble
 export async function fetchAndAssemble(client, chainIndex, stage) {
-  const stageNorm = toAsciiUppercase(stage);
+  const stageNorm = asciiUpper(stage);
   if (!VALID_STAGES.includes(stageNorm)) {
-    throw new Error(`stage must be one of ${debugStrList(VALID_STAGES)} (case-insensitive), got: ${stage}`);
+    throw new Error(`stage must be one of [${VALID_STAGES.map(strDebug).join(', ')}] (case-insensitive), got: ${stage}`);
   }
 
   // ── Step 1: launchpad token list ──
@@ -55,12 +56,12 @@ export function assemble(chainIndex, stage, tokenList, enriched) {
 // upstream: new_tokens.rs::extract_top_tokens — bare array or {"data":[…]}; same address rule as
 // smart-money; keeps API order, first occurrence of an address wins, stops once n are taken.
 export function extractTopTokens(list, n) {
-  const arr = asArray(list) ?? asArray(index(list, 'data'));
+  const arr = asArray(list) ?? asArray(at(list, 'data'));
   if (!arr) return [];
   const seen = new Set();
   const out = [];
   for (const item of arr) {
-    const addr = asStr(index(item, 'tokenContractAddress')) ?? asStr(index(item, 'address'));
+    const addr = asStr(at(item, 'tokenContractAddress')) ?? asStr(at(item, 'address'));
     if (addr === undefined || addr === '') continue;
     if (seen.has(addr)) continue;
     seen.add(addr);

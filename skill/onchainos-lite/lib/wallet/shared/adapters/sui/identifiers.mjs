@@ -1,13 +1,13 @@
 // SUI address and Coin<T> identifier normalisation — upstream
 // agentic_wallet/shared/adapters/sui/identifiers.rs.
-import { rustTrim, asciiLower } from '../../_rust.mjs';
+import { trim, asciiLower } from '../../../../core/rs/str.mjs';
 
 // upstream: identifiers.rs::NATIVE_COIN_TYPE
 export const NATIVE_COIN_TYPE = '0x2::sui::SUI';
 
 // upstream: identifiers.rs::normalize_address → `0x` + 64 lower-case hex digits
 export function normalizeAddress(value) {
-  const v = rustTrim(value);
+  const v = trim(value);
   const hex = v.startsWith('0x') || v.startsWith('0X') ? v.slice(2) : v;
   if (hex === '' || Buffer.byteLength(hex, 'utf8') > 64 || !/^[0-9a-fA-F]+$/.test(hex)) {
     throw new Error('SUI address must contain 1 to 64 hexadecimal characters');
@@ -22,7 +22,7 @@ const COIN_TYPE_ERR = 'SUI Coin Type must be a complete <package>::<module>::<ty
 
 // upstream: identifiers.rs::normalize_coin_type → `0x<compact pkg>::<module>::<type>`
 export function normalizeCoinType(value) {
-  const v = rustTrim(value);
+  const v = trim(value);
   if (v === '' || /[ \t\n\x0c\r]/.test(v)) throw new Error(COIN_TYPE_ERR);
   const first = v.indexOf('::');
   const pkg = first < 0 ? v : v.slice(0, first);

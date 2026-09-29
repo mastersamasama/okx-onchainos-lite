@@ -13,7 +13,8 @@ import { FundingBlocked } from '../../core/errors.mjs';
 import { F64, parse } from '../../core/json.mjs';
 import { NO_OUTPUT } from '../../core/context.mjs';
 import { success } from '../../core/output.mjs';
-import { trim, eqIgnoreAsciiCase, parseF64, parseUnsigned } from '../../core/_rust-str.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../core/rs/str.mjs';
+import { parseF64, parseU32, parseU128 } from '../../core/rs/num.mjs';
 import { WalletApiClient, displayTop } from '../../wallet/api.mjs';
 import { ensureTokensRefreshed } from '../../wallet/auth.mjs';
 import { setSwapTraceId } from '../../wallet/store.mjs';
@@ -21,8 +22,6 @@ import { executeContractCall, batchSignAndBroadcast, batchTxParams } from '../..
 import { minimalToReadable, valueAsDecimalString } from '../../wallet/shared/common/amount.mjs';
 import { fetchInfo } from '../token/token.mjs';
 import { queryTokenReadableBalance } from '../../wallet/balance/index.mjs';
-import { notifySwapOutcome } from './_notify.mjs';
-import { clap } from './_clap.mjs';
 
 const QUOTE_PATH = '/api/v6/dex/aggregator/quote';
 const SWAP_PATH = '/api/v6/dex/aggregator/swap';
@@ -72,7 +71,7 @@ function tokenDecimal(item, token, chainIndex) {
   void chainIndex;
   const d = idx(item, 'decimal');
   if (typeof d === 'string') {
-    const v = parseUnsigned(d, 'u32');
+    const v = parseU32(d);
     if (v === undefined) throw new Error(`Invalid decimal value "${d}" for token ${token}`);
     return Number(v);
   }
@@ -252,12 +251,6 @@ export function tokenRequiresRevoke(chainIndex, token) {
 }
 
 const U128_MAX = (1n << 128n) - 1n;
-// `str::parse::<u128>` (optional leading '+', digits only, in range)
-function parseU128(s) {
-  if (!/^\+?[0-9]+$/.test(s)) return undefined;
-  const v = BigInt(s.startsWith('+') ? s.slice(1) : s);
-  return v > U128_MAX ? undefined : v;
-}
 
 // upstream: swap.rs::is_allowance_insufficient — minimal-unit decimal strings; spendable longer
 // than 38 digits (uint256 max approval) counts as sufficient.
@@ -321,7 +314,7 @@ export function quoteFromTokenMeta(quote) {
   const symbol = asStr(idx(from, 'tokenSymbol'));
   const d = idx(from, 'decimal');
   let decimals;
-  if (typeof d === 'string') { const v = parseUnsigned(d, 'u32'); decimals = v === undefined ? undefined : Number(v); }
+  if (typeof d === 'string') decimals = parseU32(d);
   else { const v = asU64(d); decimals = v === undefined ? undefined : Number(v & 0xffffffffn); }
   return [symbol, decimals];
 }
@@ -583,13 +576,10 @@ async function cmdExecuteBatch(client, fromToken, toToken, amount, chainIndex, w
 
 // ── CLI handlers (swap.rs::execute) ──────────────────────────────────
 
-const AMOUNT_CONFLICT = [['amount', 'readableAmount']];
-
 export default {
   'swap quote': {
     uses: ['from', 'to', 'amount', 'readableAmount', 'chain', 'swapMode'],
     async run(ctx, o) {
-      clap(ctx, o, { conflicts: AMOUNT_CONFLICT, leafRequired: ['chain'] });
       const client = await ctx.api();
       const chainIndex = resolveChain(o.chain);
       ensureSupportedChain(chainIndex, o.chain);
@@ -602,7 +592,6 @@ export default {
   'swap swap': {
     uses: ['from', 'to', 'amount', 'readableAmount', 'chain', 'slippage', 'wallet', 'gasLevel', 'swapMode', 'tips', 'maxAutoSlippage'],
     async run(ctx, o) {
-      clap(ctx, o, { conflicts: AMOUNT_CONFLICT, leafRequired: ['chain'] });
       const client = await ctx.api();
       const chainIndex = resolveChain(o.chain);
       ensureSupportedChain(chainIndex, o.chain);
@@ -615,7 +604,6 @@ export default {
   'swap approve': {
     uses: ['token', 'amount', 'chain'],
     async run(ctx, o) {
-      clap(ctx, o, { leafRequired: ['chain'] });
       const client = await ctx.api();
       const chainIndex = resolveChain(o.chain);
       ensureSupportedChain(chainIndex, o.chain);
@@ -625,22 +613,19 @@ export default {
   'swap check-approvals': {
     uses: ['chain', 'address', 'token', 'spender'],
     async run(ctx, o) {
-      clap(ctx, o, { leafRequired: ['chain'] });
       const client = await ctx.api();
       return fetchCheckApprovals(client, resolveChain(o.chain), o.address, o.token, o.spender);
     },
   },
   'swap chains': {
     uses: [],
-    async run(ctx, o) {
-      clap(ctx, o, {});
+    async run(ctx) {
       return fetchChains(await ctx.api());
     },
   },
   'swap liquidity': {
     uses: ['chain'],
     async run(ctx, o) {
-      clap(ctx, o, { leafRequired: ['chain'] });
       const client = await ctx.api();
       const chainIndex = resolveChain(o.chain);
       ensureSupportedChain(chainIndex, o.chain);
@@ -651,7 +636,6 @@ export default {
     uses: ['from', 'to', 'amount', 'readableAmount', 'chain', 'wallet', 'slippage', 'gasLevel', 'swapMode', 'tips', 'maxAutoSlippage',
       'mevProtection', 'gasTokenAddress', 'relayerId', 'enableGasStation', 'force', 'notifyJobId'],
     async run(ctx, o) {
-      clap(ctx, o, { conflicts: AMOUNT_CONFLICT, leafRequired: ['chain'] });
       const client = await ctx.api();
       const chainIndex = resolveChain(o.chain);
       const run = async () => {
@@ -665,6 +649,8 @@ export default {
         return NO_OUTPUT;
       }
       const displayAmount = o.readableAmount ?? o.amount ?? '?';
+      // autotrade::notify::notify_swap_outcome — imported on first use (agent autotrade graph)
+      const { notifySwapOutcome } = await import('../../agent/task/common/autotrade/notify.mjs');
       let out;
       try {
         out = await run();

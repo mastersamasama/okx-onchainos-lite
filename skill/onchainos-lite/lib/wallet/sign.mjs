@@ -10,9 +10,10 @@ import { getChainByRealChainIndex } from './chain.mjs';
 import { ERR_NOT_LOGGED_IN, isHexString, handleConfirmingError } from './common.mjs';
 import { resolveAddress } from './transfer/index.mjs';
 import { sessionKeyOrNotLoggedIn } from './shared/common/session.mjs';
-import { hpkeDecryptSessionSk, ed25519SignHex, ed25519SignEip191 } from './shared/_crypto.mjs';
-import { fromStr as serdeFromStr } from './shared/_serde-json.mjs';
-import { get, asU64, hexDecode, hexEncode, bs58Encode } from './shared/_rust.mjs';
+import { hpkeDecryptSessionSk, ed25519SignHex, ed25519SignEip191 } from '../core/crypto.mjs';
+import { get, asU64 } from '../core/rs/value.mjs';
+import { hexDecode, hexEncode, bs58Encode } from '../core/rs/codec.mjs';
+import { fromStr as serdeFromStr } from '../core/serde.mjs';
 
 const SIGN_MSG = '/priapi/v5/wallet/agentic/pre-transaction/sign-msg';
 const GEN_MSG_HASH = '/priapi/v5/wallet/agentic/pre-transaction/gen-msg-hash';

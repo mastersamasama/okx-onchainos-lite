@@ -18,6 +18,7 @@ after(() => { try { rmSync(HOME, { recursive: true, force: true }); } catch {} }
 
 const LIB = '../../skill/onchainos-lite/lib/';
 const { stringify } = await import(`${LIB}core/json.mjs`);
+const { formatFixed } = await import(`${LIB}core/rs/num.mjs`);
 const refund = await import(`${LIB}agent/task/user/refund.mjs`);
 const asp = await import(`${LIB}agent/task/user/asp-ops.mjs`);
 const subOps = await import(`${LIB}agent/task/user/subscription-ops.mjs`);
@@ -263,9 +264,9 @@ test('asp-ops: Rust `{:.2}` rounding (ties to even on the exact binary value)', 
   // rustc 1.95: 0.125→0.12, 0.375→0.38, 4.125→4.12, 2.5→2.50, 1.005→1.00, 99.995→100.00, -0.001→-0.00, 123456.785→123456.79
   const cases = [[0.125, '0.12'], [0.375, '0.38'], [4.125, '4.12'], [2.5, '2.50'], [1.005, '1.00'], [0, '0.00'], [99.995, '100.00'], [4.625, '4.62'],
     [-0.001, '-0.00'], [1e-7, '0.00'], [123456.785, '123456.79']];
-  for (const [x, want] of cases) assert.equal(asp.rustFixed(x, 2), want, String(x));
-  assert.equal(asp.rustFixed(2.5, 0), '2');
-  assert.equal(asp.rustFixed(4.625, 0), '5');
+  for (const [x, want] of cases) assert.equal(formatFixed(x, 2), want, String(x));
+  assert.equal(formatFixed(2.5, 0), '2');
+  assert.equal(formatFixed(4.625, 0), '5');
 });
 
 test('asp-ops: subscription info / compaction', () => {

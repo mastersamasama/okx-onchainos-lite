@@ -5,7 +5,7 @@
 import { struct } from '../../../../core/json.mjs';
 import { resolve as resolveLang, Lang } from '../user-lang.mjs';
 import { loadDeliveryContext, deliveryDecisionSummary, pendingDeliveryDecisionSummary, quoteToken } from './consent.mjs';
-import { asciiUpper } from '../../../../core/_rust-str.mjs';
+import { asciiUpper } from '../../../../core/rs/str.mjs';
 import { ExecutionTool } from './tooling.mjs';
 
 const NOTIFY_TEMPLATE = "[Auto Copy-Trade] The provider's signal for job <jobId> was not executed (<reason>). The deliverable is saved for manual review and may still be executed manually with any available tool.";

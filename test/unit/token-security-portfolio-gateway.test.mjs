@@ -1,7 +1,7 @@
-// g04: commands/token.rs, security.rs, portfolio.rs, gateway.rs (+ the private clap pass the
-// four handler groups share). Every assertion of the upstream #[cfg(test)] modules is ported
-// (token.rs compose_report, security.rs extract_token_pairs / token parsing / classify_tokens),
-// followed by request-shape and exact-message checks taken from the Rust source.
+// g04: commands/token.rs, security.rs, portfolio.rs, gateway.rs. Every assertion of the upstream
+// #[cfg(test)] modules is ported (token.rs compose_report, security.rs extract_token_pairs / token
+// parsing / classify_tokens), followed by request-shape and exact-message checks taken from the
+// Rust source.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, rmSync } from 'node:fs';
@@ -19,9 +19,8 @@ const T = await import(CMD + 'token/token.mjs');
 const S = await import(CMD + 'security/security.mjs');
 const P = await import(CMD + 'portfolio/portfolio.mjs');
 const G = await import(CMD + 'gateway/gateway.mjs');
-const K = await import(CMD + 'token/_clap.mjs');
 const { stringify, parse, F64 } = await import('../../skill/onchainos-lite/lib/core/json.mjs');
-const { CodedError, UsageError } = await import('../../skill/onchainos-lite/lib/core/errors.mjs');
+const { CodedError } = await import('../../skill/onchainos-lite/lib/core/errors.mjs');
 
 // Fake ApiClient recording every call; `reply(method, path, query|body)` supplies the data.
 function fakeClient(reply = () => []) {
@@ -357,62 +356,4 @@ test('gateway broadcast: extraData is a JSON-encoded string; single no-retry POS
   assert.equal(c.calls[0].m, 'POST!');
   assert.equal(c.calls[0].path, '/api/v6/dex/pre-transaction/broadcast-transaction');
   assert.equal(c.calls[0].headers, undefined);
-});
-
-// ── private clap pass ────────────────────────────────────────────────
-
-test('parseClapInt: RangedI64 (u8/u32) and RangedU64 (u64) messages', () => {
-  const err = (raw, t) => { try { K.parseClapInt(raw, t); } catch (e) { return e.message; } return 'ok'; };
-  assert.equal(K.parseClapInt('255', 'u8'), 255);
-  assert.equal(K.parseClapInt('+7', 'u32'), 7);
-  assert.equal(err('300', 'u8'), '300 is not in 0..=255');
-  assert.equal(err('-1', 'u8'), '-1 is not in 0..=255');
-  assert.equal(err('+300', 'u8'), '300 is not in 0..=255');
-  assert.equal(err('99999999999', 'u32'), '99999999999 is not in 0..=4294967295');
-  assert.equal(err('99999999999999999999', 'u32'), 'number too large to fit in target type');
-  assert.equal(err('-99999999999999999999', 'u32'), 'number too small to fit in target type');
-  assert.equal(err('', 'u32'), 'cannot parse integer from empty string');
-  assert.equal(err(' 5', 'u8'), 'invalid digit found in string');
-  assert.equal(err('+', 'u8'), 'invalid digit found in string');
-  assert.equal(K.parseClapInt('18446744073709551615', 'u64'), 18446744073709551615n);
-  assert.equal(err('18446744073709551616', 'u64'), 'number too large to fit in target type');
-  assert.equal(err('-1', 'u64'), 'invalid digit found in string');
-  assert.equal(err('', 'u64'), 'cannot parse integer from empty string');
-});
-
-const ctxFor = (argv) => {
-  const { parse: cliParse } = globalThis.__cli;
-  const p = cliParse(argv);
-  return { ctx: { path: p.path, argv }, o: p.opts };
-};
-globalThis.__cli = await import('../../skill/onchainos-lite/lib/core/cli.mjs');
-const usageMsg = (fn) => { try { fn(); } catch (e) { assert.ok(e instanceof UsageError); return e.message; } return 'no error'; };
-
-// These clap behaviours are enforced by the core parser (clap model merged into lib/spec.json);
-// the expected texts were captured from the upstream 4.6.3 binary.
-test('clap parse: hyphen values, typed values in argv order, defaults typed', () => {
-  let { ctx, o } = ctxFor(['token', 'hot-tokens', '--price-change-min', '-5', '--limit', '3']);
-  assert.deepEqual(K.clapPass(ctx, o, { hyphen: ['priceChangeMin', 'priceChangeMax'] }), {});
-  assert.equal(usageMsg(() => ctxFor(['token', 'hot-tokens', '--volume-min', '-1.5'])), "error: unexpected argument '-1' found\n\nUsage: onchainos token hot-tokens [OPTIONS]\n\nFor more information, try '--help'.\n");
-  ({ ctx, o } = ctxFor(['token', 'hot-tokens', '--volume-min=-5']));
-  assert.doesNotThrow(() => K.clapPass(ctx, o));
-  assert.equal(usageMsg(() => ctxFor(['security', 'tx-scan', '--from', 'a', '--chain', '1', '--gas-price', 'x', '--gas', 'y'])), "error: invalid value 'x' for '--gas-price <GAS_PRICE>': invalid digit found in string\n\nFor more information, try '--help'.\n");
-  ({ ctx, o } = ctxFor(['token', 'trades', '--address', 'x']));
-  assert.deepEqual(K.clapPass(ctx, o, { types: { limit: 'u32' } }), { limit: 100 });
-});
-
-test('clap(): once clap accepts argv, Context::new loads AppConfig eagerly (legacy cwd migration)', () => {
-  const { ctx, o } = ctxFor(['gateway', 'gas', '--chain', 'base']);
-  let loads = 0;
-  Object.defineProperty(ctx, 'config', { get() { loads++; return { default_chain: '' }; } });
-  assert.deepEqual(K.clap(ctx, o, { leafRequired: ['chain'] }), {});
-  assert.equal(loads, 1);
-});
-
-test('clap parse: conflicts_with and required leaf --chain shadowed by the global', () => {
-  assert.equal(usageMsg(() => ctxFor(['security', 'token-scan', '--address', 'b', '--chain', '1', '--tokens', 'a'])), "error: the argument '--address <ADDRESS>' cannot be used with '--tokens <TOKENS>'\n\nUsage: onchainos security token-scan --address <ADDRESS> --chain <CHAIN>\n\nFor more information, try '--help'.\n");
-  assert.match(usageMsg(() => ctxFor(['--chain', 'eth', 'security', 'token-scan', '--tokens', 'a', '--address', 'b'])), /Usage: onchainos security token-scan --tokens <TOKENS>\n/);
-  assert.equal(usageMsg(() => ctxFor(['--chain', 'ethereum', 'gateway', 'orders', '--order-id', '5', '--address', '0x1'])), "error: the following required arguments were not provided:\n  --chain <CHAIN>\n\nUsage: onchainos gateway orders --address <ADDRESS> --chain <CHAIN> --order-id <ORDER_ID>\n\nFor more information, try '--help'.\n");
-  const { ctx, o } = ctxFor(['gateway', 'gas', '--chain', 'base']);
-  assert.deepEqual(K.clapPass(ctx, o, { leafRequired: ['chain'] }), {});
 });

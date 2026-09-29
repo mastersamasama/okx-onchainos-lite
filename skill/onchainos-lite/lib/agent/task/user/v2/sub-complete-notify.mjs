@@ -1,7 +1,7 @@
 // next-action `sub_complete_notify` (user) — upstream task/user/v2/sub_complete_notify.rs.
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { get, asStr } from '../../../_rs.mjs';
+import { get, asStr } from '../../../../core/rs/value.mjs';
 import { displayTop } from '../../../../wallet/api.mjs';
 import { PreFetchedTaskContext, hasSameAgentOwner } from '../../common/index.mjs';
 import { TaskApiClient } from '../../common/network/task-api-client.mjs';

@@ -5,7 +5,7 @@ import * as keyring from '../../core/keyring.mjs';
 import { loadSession, loadWallets } from '../store.mjs';
 import { resolveActiveAccountId } from '../account.mjs';
 import { ERR_NOT_LOGGED_IN } from '../common.mjs';
-import { hpkeDecryptSessionSk } from './_crypto.mjs';
+import { hpkeDecryptSessionSk } from '../../core/crypto.mjs';
 
 // upstream: session.rs::WalletSession
 export class WalletSession {

@@ -7,7 +7,10 @@ import { context } from '../../core/errors.mjs';
 import { parse, stringify, struct } from '../../core/json.mjs';
 import { keccak256 } from '../../crypto/keccak.mjs';
 import { send } from '../_http.mjs';
-import { addressFromStr, u256FromStrRadix, isObj, asI64, ReqwestError } from '../_rs.mjs';
+import { addressFromStr } from '../_alloy.mjs';
+import { u256FromStrRadix } from '../../core/rs/num.mjs';
+import { isObject, asI64 } from '../../core/rs/value.mjs';
+import { ReqwestError } from '../../core/rs/reqwest.mjs';
 
 const ALLOWANCE_SELECTOR = keccak256(Buffer.from('allowance(address,address)')).subarray(0, 4);   // 0xdd62ed3e
 const RPC_TIMEOUT_MS = 10000;
@@ -36,10 +39,10 @@ export async function fetchPermit2Allowance(chainIndex, tokenAddress, ownerAddre
   let body;
   try {
     body = parse(resp.body.toString('utf8'));
-    if (!isObj(body)) throw new Error('invalid type');
+    if (!isObject(body)) throw new Error('invalid type');
     if (body.result !== undefined && body.result !== null && typeof body.result !== 'string') throw new Error('invalid type');
     if (body.error !== undefined && body.error !== null) {
-      if (!isObj(body.error)) throw new Error('invalid type');
+      if (!isObject(body.error)) throw new Error('invalid type');
       if (body.error.code !== undefined && asI64(body.error.code) === undefined) throw new Error('invalid type');
       if (body.error.message !== undefined && typeof body.error.message !== 'string') throw new Error('invalid type');
     }

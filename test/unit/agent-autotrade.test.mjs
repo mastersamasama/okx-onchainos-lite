@@ -26,7 +26,7 @@ const queue = await import(`${LIB}delivery-queue.mjs`);
 const continuation = await import(`${LIB}continuation.mjs`);
 const profile = await import(`${LIB}profile.mjs`);
 const mod = await import(`${LIB}index.mjs`);
-const { fromStr, T } = await import(`${LIB}_serde-json.mjs`);
+const { T } = await import('../../skill/onchainos-lite/lib/core/serde.mjs');
 const { stringify, parse } = await import('../../skill/onchainos-lite/lib/core/json.mjs');
 
 const sha = (s) => createHash('sha256').update(s).digest('hex');
@@ -202,23 +202,6 @@ test('notify: short_id / flatten_reason', () => {
   assert.equal(notify.shortId('x'.repeat(16)), 'x'.repeat(16));
   assert.equal(notify.flattenReason('a\n  b'), 'a b');
   assert.equal([...notify.flattenReason('y'.repeat(301))].length, 301);
-});
-
-// ── serde emulation ───────────────────────────────────────────────────
-test('serde: positioned errors match serde_json 1.0 wording', () => {
-  const err = (s, t) => { try { fromStr(s, t); return 'ok'; } catch (e) { return e.message; } };
-  assert.equal(err('[]', T.map(T.value)), 'invalid type: sequence, expected a map at line 1 column 0');
-  assert.equal(err('{"a":1', T.map(T.value)), 'EOF while parsing an object at line 1 column 6');
-  assert.equal(err('{} x', T.map(T.value)), 'trailing characters at line 1 column 4');
-  const S = T.struct('S', [['version', T.u32], ['mode', T.enum('M', [['a', 'a'], ['b', 'b']])]], { denyUnknown: true });
-  assert.equal(err('{"version":-1,"mode":"a"}', S), 'invalid value: integer `-1`, expected u32 at line 1 column 13');
-  assert.equal(err('{"version":1.5,"mode":"a"}', S), 'invalid type: floating point `1.5`, expected u32 at line 1 column 14');
-  assert.equal(err('{"version":1,"mode":"c"}', S), 'unknown variant `c`, expected `a` or `b` at line 1 column 23');
-  assert.equal(err('{"version":1,"x":1}', S), 'unknown field `x`, expected `version` or `mode` at line 1 column 16');
-  assert.equal(err('{"version":1}', S), 'missing field `mode` at line 1 column 13');
-  assert.equal(err('{"version":1,"version":2}', S), 'duplicate field `version` at line 1 column 22');
-  const F = T.struct('F', [['a', T.u64]], { flatten: 'rest' });
-  assert.deepEqual(fromStr('{"a":1,"z":{"k":2},"z":3}', F), { a: 1, rest: { z: 3 } });
 });
 
 // ── guide.rs ──────────────────────────────────────────────────────────

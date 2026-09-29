@@ -10,8 +10,9 @@ import { join } from 'node:path';
 import { homePath } from '../core/home.mjs';
 import { stringify, struct } from '../core/json.mjs';
 import { context } from '../core/errors.mjs';
-import { fromStr as serdeFromStr, T } from '../wallet/_serde-json.mjs';
-import { ioErrorText, isObj, asU64 } from './_rs.mjs';
+import { fromStr as serdeFromStr, T } from '../core/serde.mjs';
+import { ioErrorText } from '../core/rs/fs.mjs';
+import { isObject, asU64 } from '../core/rs/value.mjs';
 
 // upstream: session_state.rs::sessions_dir (private) — created on demand, default permissions.
 function sessionsDir() {
@@ -82,7 +83,7 @@ export function decodeChannelState(v) {
     for (const [i, [k, kind]] of FIELDS.entries()) { if (!ok(kind, v[i])) return null; out[k] = kind === 'u64' ? asU64(v[i]) : v[i]; }
     return new ChannelState(out);
   }
-  if (!isObj(v)) return null;
+  if (!isObject(v)) return null;
   for (const [k, kind] of FIELDS) {
     if (!Object.prototype.hasOwnProperty.call(v, k) || !ok(kind, v[k])) return null;
     out[k] = kind === 'u64' ? asU64(v[k]) : v[k];

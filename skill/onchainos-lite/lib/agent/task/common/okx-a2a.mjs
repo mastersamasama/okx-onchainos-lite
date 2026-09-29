@@ -4,8 +4,10 @@
 import { existsSync } from 'node:fs';
 import { parse as parseJson, stringify } from '../../../core/json.mjs';
 import { output, npmOutput, utf8Lossy } from '../../_proc.mjs';
-import { spawnErrorText, exitStatusText, isObj, get, asStr, asBool, asArray, trim, valueText } from '../../_rs.mjs';
-import { isRetiredDeliveryDecision, isRetiredModeConfigurationDecision } from './_autotrade.mjs';
+import { spawnErrorText, exitStatusText } from '../../../core/rs/process.mjs';
+import { isObject, get, asStr, asBool, asArray, valueText } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { isRetiredDeliveryDecision, isRetiredModeConfigurationDecision } from './autotrade/index.mjs';
 
 // upstream: okx_a2a.rs::SKIP_A2A_PREFLIGHT_ENV
 export const SKIP_A2A_PREFLIGHT_ENV = 'ONCHAINOS_SKIP_A2A_PREFLIGHT';
@@ -114,7 +116,7 @@ export function interpretCapabilitiesOutput(stdout) {
   let report;
   try { report = parseSlice(stdout); } catch { return unsupported; }
   const elig = get(report, 'messageEligibleOfflineReplay');
-  if (!isObj(elig)) return unsupported;
+  if (!isObject(elig)) return unsupported;
   return {
     supported: asBool(get(elig, 'ok')) === true,
     fixCommands: (asArray(get(elig, 'fixCommands')) ?? []).filter((v) => typeof v === 'string'),

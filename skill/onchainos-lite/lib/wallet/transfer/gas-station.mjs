@@ -13,12 +13,13 @@ import { ensureTokensRefreshed, formatApiError } from '../auth.mjs';
 import { getChainByRealChainIndex } from '../chain.mjs';
 import { ERR_NOT_LOGGED_IN, handleConfirmingError } from '../common.mjs';
 import { sessionKeyOrNotLoggedIn } from '../shared/common/session.mjs';
-import { hpkeDecryptSessionSk, ed25519SignEncoded, ed25519SignHex } from '../shared/_crypto.mjs';
-import { isObject, parseU64, u64Json } from '../shared/_rust.mjs';
+import { hpkeDecryptSessionSk, ed25519SignEncoded, ed25519SignHex } from '../../core/crypto.mjs';
+import { isObject } from '../../core/rs/value.mjs';
+import { parseU64 } from '../../core/rs/num.mjs';
 import { resolveAddress } from './index.mjs';
 
 // `addr_info.chain_index.parse::<u64>().unwrap_or(1)`
-const chainIndexOr1 = (ci) => { const v = parseU64(ci); return v === undefined ? 1 : u64Json(v); };
+const chainIndexOr1 = (ci) => parseU64(ci) ?? 1;
 const executeOk = (u) => (typeof u.executeResult === 'boolean' ? u.executeResult : true);
 const simulationFailed = (u) => new Error(`transaction simulation failed: ${u.executeErrorMsg === '' ? 'transaction simulation failed' : u.executeErrorMsg}`);
 

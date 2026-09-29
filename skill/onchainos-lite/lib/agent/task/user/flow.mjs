@@ -1,10 +1,11 @@
 // User Agent (user) side task flow driver — upstream task/user/flow.rs.
 // Based on the current event, outputs the next-action prompt text. Negotiation-phase events
-// are delegated to flow_negotiate (user-create unit); lifecycle / arbitration / terminal events
+// are delegated to ./flow-negotiate/*; lifecycle / arbitration / terminal events
 // to ./flow-lifecycle/*; v2 JSON handlers to ./v2/*.
 import { stringify, toValue } from '../../../core/json.mjs';
 import { buildQrOutput } from '../../../core/qr.mjs';
-import { get, asStr, asU64, trim } from '../../_rs.mjs';
+import { get, asStr, asU64 } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 import { shortJobId } from '../common/util.mjs';
 import { isCliMode, SubscriptionTradePath } from '../common/config.mjs';
 import { parseStatusOrEvent, Status } from '../common/state-machine.mjs';
@@ -14,18 +15,15 @@ import * as subscription from './flow-lifecycle/subscription.mjs';
 import * as jobCompleted from './v2/job-completed.mjs';
 import * as subCompleteNotify from './v2/sub-complete-notify.mjs';
 import { subAspClaimNotify } from './v2/notification.mjs';
-import { flowNegotiate, getDesignatedProvider, autotrade } from './flow-lifecycle/_peers.mjs';
+import { loadDeliveryContext, loadPendingDeliveryContext } from '../common/autotrade/consent.mjs';
+import { flowNegotiate, getDesignatedProvider } from './flow-lifecycle/_peers.mjs';
 
 export { TERMINAL_NOTIFICATION_MARKER };
 
 // upstream: flow.rs::persisted_autotrade_delivery_context
-async function persistedAutotradeDeliveryContext(jobId, deliveryId) {
+function persistedAutotradeDeliveryContext(jobId, deliveryId) {
   let loaded;
-  try {
-    const consent = await autotrade('consent');
-    if (!consent) throw new Error('autotrade consent module unavailable');
-    loaded = deliveryId !== undefined ? await consent.loadDeliveryContext(jobId, deliveryId) : await consent.loadPendingDeliveryContext(jobId);
-  } catch { loaded = null; }
+  try { loaded = deliveryId !== undefined ? loadDeliveryContext(jobId, deliveryId) : loadPendingDeliveryContext(jobId); } catch { loaded = null; }
   if (loaded !== null && loaded !== undefined) {
     const visible = toValue(loaded);
     if (visible && typeof visible === 'object' && !Array.isArray(visible)) delete visible.originSessionKey;
@@ -305,7 +303,7 @@ async function userDecisionRelay(ctx, source, message) {
   const reply = trim(ctx.data ?? '');
   const relayDeliveryIdRaw = asStr(get(message, 'deliveryId'));
   const relayDeliveryId = relayDeliveryIdRaw !== undefined && relayDeliveryIdRaw !== '' ? relayDeliveryIdRaw : undefined;
-  const retainedContext = source.startsWith('autotrade_') ? await persistedAutotradeDeliveryContext(jobId, relayDeliveryId) : '';
+  const retainedContext = source.startsWith('autotrade_') ? persistedAutotradeDeliveryContext(jobId, relayDeliveryId) : '';
   const directExecution = source.startsWith('autotrade_') && persistedAutotradeExecutionPath(jobId, relayDeliveryId) === SubscriptionTradePath.AgentDirect;
   const udGuard = `Execute in place — do NOT forward via \`okx-a2a session send\` (infinite loop) or call \`pending-decisions-v2 resolve/pick/cancel/list\` (user-session-only).\n`
   + `\n`;

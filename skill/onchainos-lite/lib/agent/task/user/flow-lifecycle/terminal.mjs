@@ -1,6 +1,8 @@
 // Terminal states, timeouts, auto-completion, and fallback prompt generators — upstream
 // task/user/flow_lifecycle/terminal.rs.
-import { get, asStr, asI64, isNum, numText, parseI64, trim } from '../../../_rs.mjs';
+import { get, asStr, asI64, isNumber, numText } from '../../../../core/rs/value.mjs';
+import { parseI64 } from '../../../../core/rs/num.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
 import { requestCommandBlock } from '../../common/pending-v2.mjs';
 import { verifyFinalRefundEvent, isZeroDecimal, authoritativeRefundSettlementConfirmed } from '../refund.mjs';
 import { notifyAndEnd, notifyAndEndTerminal } from '../flow.mjs';
@@ -20,7 +22,7 @@ function authoritativeTitle(ctx) {
 function messageText(message, key) {
   const v = get(message, key);
   if (typeof v === 'string') return trim(v) !== '' ? trim(v) : undefined;
-  return isNum(v) ? numText(v) : undefined;
+  return isNumber(v) ? numText(v) : undefined;
 }
 // upstream: terminal.rs::message_i64
 function messageI64(message, key) {

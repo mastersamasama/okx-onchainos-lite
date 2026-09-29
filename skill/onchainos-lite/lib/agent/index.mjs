@@ -1,16 +1,19 @@
 // agent_commerce shared helpers — upstream commands/agent_commerce/mod.rs: the pre-dispatch
 // maintenance hook, `escape_control_chars_in_strings`, the `--a2a-file` validator/spool, the
 // next-action freshness gate (`check_status_freshness` + policy tables) and the `next-action`
-// dispatcher itself. Per-role playbooks are loaded from the user / asp / evaluator partitions.
+// dispatcher itself. Per-role playbooks live in the user / asp / evaluator partitions.
 import { lstatSync, realpathSync, readFileSync, existsSync, mkdirSync, openSync, writeSync, fsyncSync, closeSync, renameSync, rmSync } from 'node:fs';
 import { join, sep } from 'node:path';
 import { tmpdir } from 'node:os';
 import { stringify } from '../core/json.mjs';
 import { auditLog } from '../core/audit.mjs';
 import { sleep } from '../core/proc.mjs';
-import { fromStr } from '../wallet/_serde-json.mjs';
+import { fromStr } from '../core/serde.mjs';
 import { displayTop } from '../wallet/api.mjs';
-import { get, at, asStr, asI64, trim, lines, ioErrorText, nowNanos, debugOptInt, isObj, utf8Strict, INVALID_UTF8, readToString } from './_rs.mjs';
+import { get, at, asStr, asI64, isObject } from '../core/rs/value.mjs';
+import { trim, lines, debugOptInt } from '../core/rs/str.mjs';
+import { ioErrorText, decodeUtf8, INVALID_UTF8, readToString } from '../core/rs/fs.mjs';
+import { nowNanos } from '../core/rs/time.mjs';
 import { Event, Status, parseStatusOrEvent, statusWhenEvent } from './task/common/state-machine.mjs';
 import { validateJobId } from './task/common/util.mjs';
 import { PreFetchedTaskContext, preFetchedDeliverable, queryAgentByIdDirect } from './task/common/index.mjs';
@@ -18,21 +21,25 @@ import { TaskApiClient } from './task/common/network/task-api-client.mjs';
 import { markPending, markApproved } from './task/common/review-gate.mjs';
 import { readManifest, deliverablesDir } from './task/common/deliverables.mjs';
 import * as arbitration from './task/arbitration.mjs';
+import * as executor from './task/common/autotrade/executor.mjs';
+import * as deliveryQueue from './task/common/autotrade/delivery-queue.mjs';
 import {
   isZeroDecimal, refundEventSettlementConfirmed, fetchAuthoritativeRefundContext, fetchAuthoritativeRefundContextForProvider,
-  saveDesignatedProvider, hasDesignatedProvider, tryRecoverFromTempFile, loadFlowGenerator,
-} from './task/_user.mjs';
+} from './task/user/refund.mjs';
+import { saveDesignatedProvider, hasDesignatedProvider } from './task/user/negotiate.mjs';
+import { tryRecoverFromTempFile } from './task/user/index.mjs';
+import { generateNextAction as userNextAction } from './task/user/flow.mjs';
+import { generateNextAction as aspNextAction } from './task/asp/flow.mjs';
+import { generateNextAction as evaluatorNextAction } from './task/evaluator/flow.mjs';
 
-// upstream: mod.rs::run pre-dispatch maintenance (autotrade executor / delivery queue); every
-// result is ignored and an empty state dir makes all four no-ops.
+// upstream: mod.rs::run pre-dispatch maintenance (autotrade executor / delivery queue), run once
+// per `agent` invocation by core/main.mjs; every result is ignored and an empty state dir makes
+// all four no-ops.
 export async function runPreDispatchMaintenance() {
-  const tryImport = async (rel) => { try { return await import(rel); } catch { return null; } };
-  const exec = await tryImport('./task/common/autotrade/executor.mjs');
-  const queue = await tryImport('./task/common/autotrade/delivery-queue.mjs');
-  try { await exec?.reconcileTerminalJournals?.(4, 100); } catch {}
-  try { await exec?.flushAllDue?.(1); } catch {}
-  try { await exec?.cleanupExpiredTickets?.(8); } catch {}
-  try { await queue?.flushDue?.(1, 100); } catch {}
+  try { await executor.reconcileTerminalJournals(4, 100); } catch {}
+  try { await executor.flushAllDue(1); } catch {}
+  try { await executor.cleanupExpiredTickets(8); } catch {}
+  try { await deliveryQueue.flushDue(1, 100); } catch {}
 }
 
 // upstream: mod.rs::tx_failure_label
@@ -115,7 +122,7 @@ export function validateA2aFileArg(path, messageJobId, agentId) {
   try { raw = readFileSync(path); } catch (e) { throw new Error(`--a2a-file read failed: ${ioErrorText(e)}`); }
   let text;
   // read_to_string keeps a leading U+FEFF (serde_json then rejects it).
-  try { text = utf8Strict(raw); } catch { throw new Error(`--a2a-file read failed: ${INVALID_UTF8}`); }
+  try { text = decodeUtf8(raw); } catch { throw new Error(`--a2a-file read failed: ${INVALID_UTF8}`); }
   text = trim(text);
   if (text === '') throw new Error('--a2a-file payload is empty');
   let payload;
@@ -390,7 +397,7 @@ export async function runNextAction({ agentId, role, message, a2aFile }) {
   if (a2aFile !== undefined && a2aFile !== null) {
     const mj = asStr(get(parsed, 'jobId')) ?? '';
     const validated = validateA2aFileArg(a2aFile, mj, agentId);
-    if (isObj(parsed)) parsed.a2aFile = validated;
+    if (isObject(parsed)) parsed.a2aFile = validated;
     else throw new Error('--message must be a valid JSON object: cannot index into a non-object value');
   }
   const str = (k) => asStr(get(parsed, k));
@@ -405,7 +412,7 @@ export async function runNextAction({ agentId, role, message, a2aFile }) {
   const code = ci !== undefined && typeof ci === 'number' && ci >= -2147483648 && ci <= 2147483647 ? ci : 0;
   const jobTitle = str('jobTitle'), provider = str('provider'), data = str('data');
   if (jobId !== '') { const m = validateJobId(jobId); if (m !== undefined) throw new Error(m); }
-  if (provider !== undefined) { try { await saveDesignatedProvider(jobId, provider); } catch {} }
+  if (provider !== undefined) { try { saveDesignatedProvider(jobId, provider); } catch {} }
   if (code !== 0 && !expiredTimeoutUsesAuthoritativeStatus(event)) {
     const label = txFailureLabel(event);
     const titlePart = jobTitle !== undefined ? ` **${jobTitle}**` : ' ';
@@ -419,12 +426,12 @@ export async function runNextAction({ agentId, role, message, a2aFile }) {
     resolvedRole = { 1: 'user', 2: 'asp', 3: 'evaluator' }[r];
     if (resolvedRole === undefined) throw new Error(`agentId=${agentId} has unsupported role=${debugOptInt(r)}; pass --role explicitly`);
   } else resolvedRole = role;
-  if (provider === undefined && resolvedRole === 'user' && event === 'job_created' && !(await hasDesignatedProvider(jobId))) {
+  if (provider === undefined && resolvedRole === 'user' && event === 'job_created' && !hasDesignatedProvider(jobId)) {
     const fb = new TaskApiClient();
     try {
       const resp = await fb.getWithIdentity(fb.taskPath(jobId), agentId);
       const pid = asStr(at(resp, 'providerAgentId'));
-      if (pid !== undefined && pid !== '') { try { await saveDesignatedProvider(jobId, pid); } catch {} }
+      if (pid !== undefined && pid !== '') { try { saveDesignatedProvider(jobId, pid); } catch {} }
     } catch {}
   }
   if (resolvedRole === 'user') {
@@ -439,18 +446,15 @@ export async function runNextAction({ agentId, role, message, a2aFile }) {
   if (resolvedRole === 'asp') {
     auditLog('cli', 'provider/next_action_received', true, 0, [`jobId=${jobId}`, `agentId=${agentId}`, `event=${event}`, `code=${code}`, `paymentMode=${debugOptInt(paymentMode)}`]);
     if (shouldBlockLegacyA2mcpFlow(paymentMode, event)) return `legacy_a2mcp_flow_removed: task-based A2MCP processing is disabled for job ${jobId}. Stop; do not deliver, complete, sign, or pay.`;
-    const gen = await loadFlowGenerator('asp');
-    return gen(jobId, event, agentId, jobTitle ?? null, data ?? null, pre, parsed);
+    return aspNextAction(jobId, event, agentId, jobTitle ?? null, data ?? null, pre, parsed);
   }
   if (resolvedRole === 'user') {
     auditLog('cli', 'user/next_action_received', true, 0, [`jobId=${jobId}`, `agentId=${agentId}`, `event=${event}`, `code=${code}`]);
-    const gen = await loadFlowGenerator('user');
-    return gen(jobId, event, agentId, jobTitle ?? null, data ?? null, paymentMode, pre, parsed);
+    return userNextAction(jobId, event, agentId, jobTitle ?? null, data ?? null, paymentMode, pre, parsed);
   }
   if (resolvedRole === 'evaluator') {
     auditLog('cli', 'evaluator/next_action_received', true, 0, [`jobId=${jobId}`, `agentId=${agentId}`, `event=${event}`, `code=${code}`]);
-    const gen = await loadFlowGenerator('evaluator');
-    return gen(jobId, event, agentId, parsed);
+    return evaluatorNextAction(jobId, event, agentId, parsed);
   }
   throw new Error(`--role 必须是 asp/user/evaluator，当前: ${resolvedRole}`);
 }

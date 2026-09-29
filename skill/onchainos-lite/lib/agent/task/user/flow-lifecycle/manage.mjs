@@ -1,7 +1,7 @@
 // Task creation, attachment forwarding, and term-change event prompt generators — upstream
 // task/user/flow_lifecycle/manage.rs.
 import { displayTop } from '../../../../wallet/api.mjs';
-import { get, asStr } from '../../../_rs.mjs';
+import { get, asStr } from '../../../../core/rs/value.mjs';
 import { isCliMode } from '../../common/config.mjs';
 import { DEBUG_LOG } from '../../common/index.mjs';
 import * as okxA2a from '../../common/okx-a2a.mjs';

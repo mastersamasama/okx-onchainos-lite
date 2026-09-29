@@ -6,7 +6,6 @@
 import { typed } from '../../core/cli.mjs';
 import { NO_OUTPUT } from '../../core/context.mjs';
 import { toValue, stringify } from '../../core/json.mjs';
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import { CliBespokeExit, GUIDE_EXECUTION_UNAVAILABLE_REASON } from '../../agent/task/common/autotrade/index.mjs';
 import { checkGrant, GrantDeny, DENY_INVALID_FORMAT } from '../../agent/task/common/autotrade/grants.mjs';
 import { parseRuntimeAssetClasses, TradeEnvironment, probeRuntime } from '../../agent/task/common/autotrade/trade-kit.mjs';
@@ -15,7 +14,7 @@ import * as executor from '../../agent/task/common/autotrade/executor.mjs';
 import { loadConsent, ConsentMode, evaluateConsent, ConsentDecision, loadPendingDeliveryContext } from '../../agent/task/common/autotrade/consent.mjs';
 import { makeCapAdjustDecision, decisionListLabel, decisionRequestJson } from '../../agent/task/common/autotrade/card.mjs';
 import { Decimal } from '../../agent/task/common/autotrade/amount.mjs';
-import { fromStr, T } from '../../agent/task/common/autotrade/_serde-json.mjs';
+import { fromStr, T } from '../../core/serde.mjs';
 import { markRetiredAutotradeModeDecisionsHandled } from '../../agent/task/common/okx-a2a.mjs';
 import { pushDecisionDirect } from '../../agent/task/common/pending-v2.mjs';
 
@@ -34,7 +33,6 @@ export default {
   'agent trade-kit-readiness': {
     uses: ['assetClass', 'environment'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       const classes = parseRuntimeAssetClasses(o.assetClass ?? []);
       const environment = TradeEnvironment.parse(o.environment);
       return probeRuntime(classes, environment);
@@ -44,7 +42,6 @@ export default {
   'agent autotrade-grant-check': {
     uses: ['jobId', 'venue', 'action', 'amount', 'format'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       if (o.format !== 'json') {
         bespokeDeny(DENY_INVALID_FORMAT);
         throw new CliBespokeExit(1);
@@ -64,7 +61,6 @@ export default {
   'agent autotrade-guide-consent-update': {
     uses: ['jobId', 'valuesJson'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       const values = parseValuesJson(o.valuesJson);
       const consent = updateActiveConsentValues(o.jobId, values);
       return { jobId: consent.jobId, consentStatus: 'active', guideHash: consent.guideHash, updated: true };
@@ -75,7 +71,6 @@ export default {
     uses: ['jobId', 'valuesJson', 'ttlSec'],
     async run(ctx, o) {
       const ttlSec = typed(ctx.path, 'ttlSec', o.ttlSec, 'u64');
-      await runPreDispatchMaintenance();
       const values = parseValuesJson(o.valuesJson);
       const consent = createActiveConsentFromGuide(o.jobId, values, ttlSec);
       return { jobId: consent.jobId, consentStatus: 'active', guideHash: consent.guideHash, created: true };
@@ -85,7 +80,6 @@ export default {
   'agent autotrade-consent-request': {
     uses: ['jobId', 'agentId', 'deliveryId', 'signalType'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       const outcome = await executor.reportDelivery(o.jobId, o.deliveryId, 'skipped', GUIDE_EXECUTION_UNAVAILABLE_REASON);
       try { await markRetiredAutotradeModeDecisionsHandled(o.jobId); } catch {}
       // json! literal: every key sorted, including inside the embedded outcome struct
@@ -100,7 +94,6 @@ export default {
   'agent autotrade-direct-claim': {
     uses: ['jobId', 'deliveryId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return executor.claimGuideDirect(o.jobId, o.deliveryId);
     },
   },
@@ -108,7 +101,6 @@ export default {
   'agent autotrade-guide-prepare': {
     uses: ['jobId', 'deliveryId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return executor.prepareGuideDirect(o.jobId, o.deliveryId);
     },
   },
@@ -116,7 +108,6 @@ export default {
   'agent autotrade-direct-finalize': {
     uses: ['jobId', 'deliveryId', 'status', 'toolId', 'receiptId', 'reason'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return executor.finalizeDirect(o.jobId, o.deliveryId, o.status, o.toolId, o.receiptId ?? null, o.reason ?? null);
     },
   },
@@ -124,7 +115,6 @@ export default {
   'agent autotrade-once-authorize': {
     uses: ['jobId', 'deliveryId', 'amount'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return executor.authorizeOneTime(o.jobId, o.deliveryId, o.amount);
     },
   },
@@ -132,7 +122,6 @@ export default {
   'agent autotrade-outcome-flush': {
     uses: ['jobId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return executor.flush(o.jobId);
     },
   },
@@ -140,7 +129,6 @@ export default {
   'agent autotrade-delivery-report': {
     uses: ['jobId', 'deliveryId', 'status', 'reason'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return executor.reportDelivery(o.jobId, o.deliveryId, o.status, o.reason);
     },
   },
@@ -148,7 +136,6 @@ export default {
   'agent autotrade-cap-adjust-request': {
     uses: ['jobId', 'agentId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       let file;
       try { file = loadConsent(o.jobId); } catch (e) { throw new Error(e.code ?? e.message); }
       if (!file) throw new Error('no live auto-trade consent');

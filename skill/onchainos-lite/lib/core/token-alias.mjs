@@ -1,7 +1,7 @@
 // Token alias resolution + chain-aware address format validation — upstream token_alias.rs.
 // Every command that accepts a user-supplied token address (swap, wallet send
 // --contract-token, strategy create-limit) routes through here.
-import { asciiLower, byteLen, isAsciiAlnum, isAsciiHex, isAsciiUpper } from './_rust-str.mjs';
+import { asciiLower, byteLen, isAsciiAlnum, isAsciiHex, isAsciiUpper } from './rs/str.mjs';
 import { nativeTokenAddress } from './chains.mjs';
 
 // Native placeholders (single definition in chains.rs::native_token_address).

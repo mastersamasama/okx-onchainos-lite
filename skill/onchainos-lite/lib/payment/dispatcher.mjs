@@ -5,7 +5,13 @@
 import { randomBytes } from 'node:crypto';
 import { context } from '../core/errors.mjs';
 import { EMPTY } from '../core/context.mjs';
-import { trim } from '../core/_rust-str.mjs';
+import { hpkeDecryptSessionSk, ed25519Sign, ed25519SignHex } from '../core/crypto.mjs';
+import { trim, trimStartMatches } from '../core/rs/str.mjs';
+import { at, get, asStr, asU64, isObject } from '../core/rs/value.mjs';
+import { intFromStr, u256FromStrRadix } from '../core/rs/num.mjs';
+import { hexDecode, B64 } from '../core/rs/codec.mjs';
+import { jcs } from '../core/rs/jcs.mjs';
+import { parseFromRfc3339 } from '../core/rs/time.mjs';
 import * as keyring from '../core/keyring.mjs';
 import { keccak256 } from '../crypto/keccak.mjs';
 import { ensureTokensRefreshed, formatApiError } from '../wallet/auth.mjs';
@@ -14,17 +20,14 @@ import { loadWallets, loadSession } from '../wallet/store.mjs';
 import { ERR_NOT_LOGGED_IN } from '../wallet/common.mjs';
 import { getChainByRealChainIndex } from '../wallet/chain.mjs';
 import { resolveAddress } from '../wallet/transfer/index.mjs';
-import { fromStr as serdeFromStr } from '../wallet/_serde-json.mjs';
+import { fromStr as serdeFromStr } from '../core/serde.mjs';
 import { isValidEvmAddress, parseRecipientAddr } from './addr.mjs';
 import * as paymentFlow from './payment-flow.mjs';
 import { fetchDecodeReceipt } from './decode-receipt.mjs';
 import * as paymentCache from './_payment-cache.mjs';
-import { hpkeDecryptSessionSk, ed25519Sign, ed25519SignHex } from './_crypto.mjs';
+import * as sessionState from './session-state.mjs';
 import { GEN_MSG_HASH_PATH, SIGN_MSG_PATH } from './permit2/sign.mjs';
-import {
-  B64, at, get, asStr, asU64, isObj, parseUint, u256FromStrRadix, hexDecode, addressFromStr, trimStartMatches0x,
-  word, wordAddr, parseRfc3339, jcs, b64urlNoPad,
-} from './_rs.mjs';
+import { addressFromStr, word, wordAddr } from './_alloy.mjs';
 
 
 // ── default asset (payment default set|get|unset) ────────────────────
@@ -34,7 +37,7 @@ export function chainIdToCaip2(input) {
   const trimmed = trim(input);
   if (trimmed === '') throw new Error('--chain must not be empty');
   let n;
-  try { n = parseUint(trimmed, 64); } catch (e) {
+  try { n = intFromStr(trimmed, 'u64'); } catch (e) {
     throw context(`--chain must be a numeric chain id (e.g. "1" for Ethereum, "196" for X Layer), got: ${input}`, e);
   }
   if ([195n, 501n, 607n, 784n].includes(n)) throw new Error(`x402 payments are EVM-only; chain id ${n} is not supported`);
@@ -171,8 +174,8 @@ export function decodeChallengeRequest(challenge) {
   const b64 = asStr(at(challenge, 'request'));
   if (b64 === undefined) throw new Error("missing 'request' in challenge");
   let bytes;
-  try { bytes = B64.URL_SAFE_NO_PAD(b64); } catch {
-    try { bytes = B64.URL_SAFE(b64); } catch (e) { throw context('invalid base64url in challenge request', e); }
+  try { bytes = B64.URL_SAFE_NO_PAD.decode(b64); } catch {
+    try { bytes = B64.URL_SAFE.decode(b64); } catch (e) { throw context('invalid base64url in challenge request', e); }
   }
   try { return serdeFromStr(bytes); } catch (e) { throw context('invalid JSON in challenge request', e); }
 }
@@ -190,7 +193,7 @@ export function decodePaymentBlob(input) {
   }
   for (const engine of [B64.STANDARD, B64.STANDARD_NO_PAD, B64.URL_SAFE, B64.URL_SAFE_NO_PAD]) {
     let bytes;
-    try { bytes = engine(trimmed); } catch { continue; }
+    try { bytes = engine.decode(trimmed); } catch { continue; }
     const r = tryJson(bytes);
     if (r) return r.v;
   }
@@ -208,14 +211,14 @@ export function buildChallengeEcho(challenge) {
 }
 
 // upstream: dispatcher.rs::base64url_encode_json — serde_jcs (RFC 8785) → base64url, no padding.
-export const base64urlEncodeJson = (value) => b64urlNoPad(Buffer.from(jcs(value), 'utf8'));
+export const base64urlEncodeJson = (value) => B64.URL_SAFE_NO_PAD.encode(Buffer.from(jcs(value), 'utf8'));
 
 // upstream: dispatcher.rs::parse_challenge_expires_unix → BigInt seconds | null
 export function parseChallengeExpiresUnix(challenge) {
   const s = asStr(get(challenge, 'expires'));
   if (s === undefined) return null;
   let ts;
-  try { ts = parseRfc3339(s); } catch (e) { throw context(`challenge.expires is not RFC3339: ${s}`, e); }
+  try { ts = parseFromRfc3339(s).secs; } catch (e) { throw context(`challenge.expires is not RFC3339: ${s}`, e); }
   if (ts < 0n) throw new Error(`challenge.expires is before Unix epoch: ${s}`);
   return ts;
 }
@@ -271,7 +274,7 @@ function addrWord(s, label) {
 // hex::decode(s.trim_start_matches("0x")) (+ context) → exactly 32 bytes.
 function bytes32(s, hexLabel, lenMsg) {
   let b;
-  try { b = hexDecode(trimStartMatches0x(s)); } catch (e) { throw context(hexLabel, e); }
+  try { b = hexDecode(trimStartMatches(s, '0x')); } catch (e) { throw context(hexLabel, e); }
   if (b.length !== 32) throw new Error(lenMsg);
   return b;
 }
@@ -282,7 +285,7 @@ export function computeTopupNonce(payer, channelId, additionalDeposit, topUpSalt
   const payerW = addrWord(payer, 'invalid payer address');
   const cid = bytes32(channelId, 'channelId must be hex', 'channelId must be 32 bytes (64 hex chars)');
   let additional;
-  try { additional = parseUint(additionalDeposit, 128); } catch (e) { throw context('additionalDeposit must be decimal uint128', e); }
+  try { additional = intFromStr(additionalDeposit, 'u128'); } catch (e) { throw context('additionalDeposit must be decimal uint128', e); }
   const salt = bytes32(topUpSaltHex, 'topUpSalt must be hex', 'topUpSalt must be 32 bytes (64 hex chars)');
   return hex0x(keccak256(Buffer.concat([cid, word(additional), payerW, salt])));
 }
@@ -370,7 +373,7 @@ export async function teeSignEip3009(authType, chainIndex, from, to, amount, val
   if (domainHash === undefined) throw new Error('missing domainHash in gen-msg-hash response');
   const seed = hpkeDecryptSessionSk(session.encryptedSessionSk, sessionKey);
   let hashBytes;
-  try { hashBytes = hexDecode(trimStartMatches0x(msgHash)); } catch (e) { seed.fill(0); throw context('invalid msgHash hex', e); }
+  try { hashBytes = hexDecode(trimStartMatches(msgHash, '0x')); } catch (e) { seed.fill(0); throw context('invalid msgHash hex', e); }
   const sig = ed25519Sign(seed, hashBytes);
   seed.fill(0);
   const signBody = { ...base, domainHash, sessionCert: session.sessionCert, sessionSignature: sig.toString('base64'), skipWarning: true };
@@ -445,7 +448,7 @@ export const randomNonceHex = () => '0x' + randomBytes(32).toString('hex');
 
 // upstream: dispatcher.rs::normalize_bytes32_hex
 export function normalizeBytes32Hex(value, label) {
-  const body = trimStartMatches0x(value);
+  const body = trimStartMatches(value, '0x');
   if (Buffer.byteLength(body) !== 64) throw new Error(`${label} must be 32 bytes (0x + 64 hex chars), got ${Buffer.byteLength(body)} chars`);
   if (!/^[0-9a-fA-F]{64}$/.test(body)) throw new Error(`${label} contains non-hex characters`);
   return '0x' + body.toLowerCase();
@@ -516,20 +519,16 @@ export async function cmdMppCharge(challengeHeader, from, txHash) {
 export async function emitSession(base, params) {
   try {
     const decision = await paymentFlow.fetchSession(params);
-    if (isObj(base) && isObj(decision)) for (const [k, v] of Object.entries(decision)) if (v !== undefined) base[k] = v;
+    if (isObject(base) && isObject(decision)) for (const [k, v] of Object.entries(decision)) if (v !== undefined) base[k] = v;
   } catch {}
   return base;
 }
 
 // upstream: dispatcher.rs::persist_channel_open — best-effort sessions/{channelId}.json write
-// (session_state.rs is owned by the session unit: lib/payment/session-state.mjs).
-export async function persistChannelOpen(channelId, payerAddr, deposit, initialCum) {
+export function persistChannelOpen(channelId, payerAddr, deposit, initialCum) {
+  const now = sessionState.nowUnix();
   try {
-    const ss = await import('./session-state.mjs');
-    const now = ss.nowUnix();
-    const st = { channel_id: channelId, owner_wallet: payerAddr, deposit, cumulative: initialCum, created_at: now, updated_at: now };
-    if (typeof ss.write === 'function') await ss.write(st);
-    else if (ss.ChannelState) await new ss.ChannelState(st).write();
+    new sessionState.ChannelState({ channel_id: channelId, owner_wallet: payerAddr, deposit, cumulative: initialCum, created_at: now, updated_at: now }).write();
   } catch {}
 }
 

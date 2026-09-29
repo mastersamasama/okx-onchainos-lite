@@ -4,10 +4,14 @@
 import { join } from 'node:path';
 import { stringify, struct } from '../../../../core/json.mjs';
 import { jobIdIsSafe } from './grants.mjs';
-import { fromStr, T } from './_serde-json.mjs';
-import { onchainosHome, exists, readToString, writeSecure, nowSecs, satAdd, u64Le, sha256Hex } from './_fs.mjs';
+import { fromStr, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
+import { exists, readToString, io } from '../../../../core/rs/fs.mjs';
+import { nowSecs } from '../../../../core/rs/time.mjs';
+import { u64SaturatingAdd } from '../../../../core/rs/num.mjs';
+import { sha256Hex } from '../../../../core/rs/codec.mjs';
+import { trim, asciiLower } from '../../../../core/rs/str.mjs';
 import { ctx } from './_err.mjs';
-import { trim, asciiLower } from '../../../_rs.mjs';
 import * as consent from './consent.mjs';
 import * as subscriptionConfig from './subscription-config.mjs';
 
@@ -127,7 +131,7 @@ function validateFile(file) {
 export function writeGuide(file, source) {
   validateFile(file);
   if (sha256Hex(source) !== file.sourceHash) throw new Error('service guide content does not match its hash');
-  writeSecure(guidePath(file.jobId), renderMarkdown('guide', guideFileJson(file), source));
+  io(() => writeSecure(guidePath(file.jobId), renderMarkdown('guide', guideFileJson(file), source)));
 }
 
 // upstream: guide.rs::load_guide
@@ -146,7 +150,7 @@ function writeGuideConsent(file) {
   if (file.version !== GUIDE_CONSENT_VERSION || !jobIdIsSafe(file.jobId) || !isSha256Hex(file.guideHash)) {
     throw new Error('Guide Consent metadata is invalid');
   }
-  writeSecure(consentPath(file.jobId), renderMarkdown('consent', guideConsentFileJson(file), CONSENT_BODY));
+  io(() => writeSecure(consentPath(file.jobId), renderMarkdown('consent', guideConsentFileJson(file), CONSENT_BODY)));
 }
 
 // upstream: guide.rs::read_guide_consent → file | null
@@ -166,7 +170,7 @@ export function readGuideConsent(jobId) {
 export function loadActiveConsent(jobId) {
   const c = readGuideConsent(jobId);
   if (!c) return null;
-  if (c.lifecycle !== GuideConsentLifecycle.Active || u64Le(c.expiresAt, nowSecs())) return null;
+  if (c.lifecycle !== GuideConsentLifecycle.Active || c.expiresAt <= nowSecs()) return null;
   return c;
 }
 
@@ -179,7 +183,7 @@ export function writePreparedConsent(jobId, guide, values, ttlSec) {
   const now = nowSecs();
   writeGuideConsent({
     version: GUIDE_CONSENT_VERSION, jobId, guideHash: guideContractHash(guide), lifecycle: GuideConsentLifecycle.Prepared,
-    values, createdAt: now, expiresAt: satAdd(now, ttlSec),
+    values, createdAt: now, expiresAt: u64SaturatingAdd(now, ttlSec),
   });
 }
 
@@ -197,7 +201,7 @@ export function updateActiveConsentValues(jobId, values) {
   validateConsentValues(values);
   const consent = readGuideConsent(jobId);
   if (!consent) throw new Error(MISSING_CONSENT_RECOVERY_MESSAGE);
-  if (consent.lifecycle !== GuideConsentLifecycle.Active || u64Le(consent.expiresAt, nowSecs())) {
+  if (consent.lifecycle !== GuideConsentLifecycle.Active || consent.expiresAt <= nowSecs()) {
     throw new Error('active Guide Consent is not available locally');
   }
   consent.values = values;
@@ -214,7 +218,7 @@ export function createActiveConsentFromGuide(jobId, values, ttlSec) {
   const now = nowSecs();
   const consent = {
     version: GUIDE_CONSENT_VERSION, jobId, guideHash: guideContractHash(guide), lifecycle: GuideConsentLifecycle.Active,
-    values, createdAt: now, expiresAt: satAdd(now, ttlSec),
+    values, createdAt: now, expiresAt: u64SaturatingAdd(now, ttlSec),
   };
   writeGuideConsent(consent);
   return consent;
@@ -248,7 +252,7 @@ export function migrateLegacyJsonConsentIfNeeded(jobId, agentId, serviceId) {
   let legacy;
   try { legacy = fromStr(raw, consent.CONSENT_FILE_T); } catch (e) { throw ctx('local Consent is neither current Guide Consent nor legacy JSON', e); }
   if (legacy.version > consent.CONSENT_VERSION || legacy.jobId !== jobId) throw new Error('legacy Consent metadata is invalid');
-  if (legacy.lifecycle !== consent.ConsentLifecycle.Active || u64Le(legacy.expiresAt, nowSecs())) return;
+  if (legacy.lifecycle !== consent.ConsentLifecycle.Active || legacy.expiresAt <= nowSecs()) return;
   const guide = loadGuide(jobId);
   // serde_json::to_value(&legacy) → object; drop the core fields
   const values = consent.consentFileValue(legacy);

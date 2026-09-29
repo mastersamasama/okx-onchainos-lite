@@ -1,7 +1,7 @@
 // Order status enum, BE error-code classification, execution-event catalog —
 // upstream commands/agentic_wallet/strategy/status.rs.
 import { augmentAuthErrorMsg } from '../../core/http.mjs';
-import { asI64, toI32 } from './_serde.mjs';
+import { asI64 } from '../../core/rs/value.mjs';
 
 // upstream: status.rs::OrderStatus (TeeSaOpenOrderStatusEnum, 9 values; -4 SPEEDING_UP removed)
 export const OrderStatus = Object.freeze({
@@ -65,7 +65,7 @@ export class StrategyApiError extends Error {
 // string-typed → 0 = success) and truncated `as i32`.
 export function checkResponse(value) {
   const raw = value !== null && typeof value === 'object' && !Array.isArray(value) ? asI64(value.code) : undefined;
-  const code = raw === undefined ? 0 : toI32(raw);
+  const code = raw === undefined ? 0 : Number(BigInt.asIntN(32, BigInt(raw)));
   if (code === 0) return;
   const kind = strategyErrorFromCode(code);
   const msg = typeof value.msg === 'string' ? value.msg : strategyErrorUserMessage(code);

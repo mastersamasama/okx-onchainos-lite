@@ -1,14 +1,16 @@
 // User-side notification results — upstream task/user/v2/notification.rs. Only
 // `sub_asp_claim_notify` is reachable (the job_asp_* builders have no caller upstream; the ASP
 // flow uses task/asp/v2/notification.rs) — they are ported for completeness.
-import { get, asStr, asI64, isNum, numText, parseI64, trim } from '../../../_rs.mjs';
+import { get, asStr, asI64, isNumber, numText } from '../../../../core/rs/value.mjs';
+import { parseI64 } from '../../../../core/rs/num.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
 import { content } from '../flow-lifecycle/_peers.mjs';
 
 // upstream: notification.rs::display_field
 function displayField(message, key) {
   const v = get(message, key);
   if (typeof v === 'string') return v !== '' ? v : undefined;
-  return isNum(v) ? numText(v) : undefined;
+  return isNumber(v) ? numText(v) : undefined;
 }
 const jobName = (m) => displayField(m, 'serviceName') ?? displayField(m, 'jobTitle') ?? displayField(m, 'jobName') ?? 'job';
 const i64Field = (m, k) => { const v = get(m, k); return v === undefined ? undefined : asI64(v) ?? (asStr(v) === undefined ? undefined : parseI64(asStr(v))); };

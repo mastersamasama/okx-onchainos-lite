@@ -2,10 +2,10 @@
 // commands/agent_commerce/identity/validate.rs. No HTTP, no files. Output is NOT the envelope:
 // `println!("{}", serde_json::to_string_pretty(&ValidationResult))` (struct order).
 import { struct } from '../../core/json.mjs';
-import { fromStr, SerdeError } from './_from-str.mjs';
-import { trim, trimEnd, asciiLower, eqIgnoreAsciiCase, isNum, numText } from '../_rs.mjs';
-import { asciiUpper } from '../../core/_rust-str.mjs';
-import { AGENT_SERVICES_DE, ServiceOperation } from './models.mjs';
+import { fromStr, SerdeError } from '../../core/serde.mjs';
+import { trim, trimEnd, asciiLower, eqIgnoreAsciiCase, asciiUpper } from '../../core/rs/str.mjs';
+import { isNumber, numText } from '../../core/rs/value.mjs';
+import { AGENT_SERVICES, ServiceOperation } from './models.mjs';
 import { displayWidth, isPlainNumber, isPositiveInteger, isZeroValue, normalizeRole, SERVICE_GUIDE_MAX_DISPLAY_WIDTH } from './utils.mjs';
 
 // upstream: validate.rs::validate_listing — args {role?, name?, description?, service?} → ValidationResult
@@ -55,7 +55,7 @@ const suggest = (field, code, message) => finding(field, code, 'suggest', messag
 // upstream: validate.rs::parse_services_lenient → services | null (serde failure)
 export function parseServicesLenient(raw) {
   let services;
-  try { services = fromStr(raw, AGENT_SERVICES_DE); } catch (e) {
+  try { services = fromStr(raw, AGENT_SERVICES); } catch (e) {
     if (e instanceof SerdeError) return null;
     throw e;
   }
@@ -178,7 +178,7 @@ function checkDuplicateEndpoints(services, findings) {
     if (ep === '') return;
     let selfId;
     if (typeof s.id === 'string' && s.id !== '') selfId = s.id;
-    else if (isNum(s.id)) selfId = numText(s.id);
+    else if (isNumber(s.id)) selfId = numText(s.id);
     const conflict = seen.find(([e, , id]) => eqIgnoreAsciiCase(e, ep) && !(selfId !== undefined && id === selfId));
     if (conflict) findings.push(block(`service[${index}].endpoint`, 'EP1', fe.feEp01(s.serviceName, services[conflict[1]].serviceName)));
     else if (!seen.some(([e]) => eqIgnoreAsciiCase(e, ep))) seen.push([ep, index, selfId]);

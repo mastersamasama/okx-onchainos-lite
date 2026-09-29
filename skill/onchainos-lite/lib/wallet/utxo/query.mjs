@@ -2,7 +2,7 @@
 import { BtcApi } from '../shared/adapters/bitcoin/api.mjs';
 import { BtcContext } from '../shared/adapters/bitcoin/context.mjs';
 import { collectOutpoints } from '../shared/adapters/bitcoin/models.mjs';
-import { isObject } from '../_rs.mjs';
+import { isObject } from '../../core/rs/value.mjs';
 import { pointer, recordOutpointKey } from './brc20.mjs';
 
 // upstream: query.rs::UtxoQueryMode — { queryType, resultKey, message, section }

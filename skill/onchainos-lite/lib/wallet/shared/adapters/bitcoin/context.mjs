@@ -3,7 +3,7 @@ import { TransferDriver } from '../../../chain-profile.mjs';
 import { loadChainContext } from '../../common/context.mjs';
 import { sessionCert, SigningSeed } from '../../common/session.mjs';
 import { validateWalletAddress, sameAddress } from './validation.mjs';
-import { parseU64, u64Json } from '../../_rust.mjs';
+import { parseU64 } from '../../../../core/rs/num.mjs';
 
 // upstream: context.rs::BtcContext { accessToken, accountId, loginType, profile, address }
 export class BtcContext {
@@ -20,7 +20,7 @@ export class BtcContext {
   chainIndexU64() {
     const v = parseU64(this.profile.chainIndex);
     if (v === undefined) throw new Error(`Bitcoin runtime chainIndex '${this.profile.chainIndex}' is not numeric`);
-    return u64Json(v);
+    return v;
   }
 
   // upstream: context.rs::BtcContext::session_cert

@@ -7,9 +7,9 @@
 // reproduced; a connect/timeout error surfaces directly with the same leading context text.
 import { request as transport } from '../core/transport.mjs';
 import { stringify, F64, formatF64 } from '../core/json.mjs';
-import { fromStr, rustDebugStr } from './_serde-json.mjs';
-import { rustTrim } from './_rs.mjs';
-import { anonymousHeaders, jwtHeaders, USER_AGENT, baseUrl, setRefreshHook } from '../core/http.mjs';
+import { fromStr, unexpected } from '../core/serde.mjs';
+import { trim } from '../core/rs/str.mjs';
+import { anonymousHeaders, jwtHeaders, USER_AGENT, baseUrl } from '../core/http.mjs';
 import { CliError, context } from '../core/errors.mjs';
 import * as keyring from '../core/keyring.mjs';
 
@@ -43,15 +43,6 @@ export function displayTop(e) {
 
 export class SerdeError extends Error {}
 
-function unexpected(v) {
-  if (v === null || v === undefined) return 'null';
-  if (typeof v === 'boolean') return `boolean \`${v}\``;
-  if (typeof v === 'string') return `string ${rustDebugStr(v)}`;
-  if (v instanceof F64) return `floating point \`${formatF64(v.valueOf())}\``;
-  if (typeof v === 'number' || typeof v === 'bigint') return `integer \`${v}\``;
-  if (Array.isArray(v)) return 'sequence';
-  return 'map';
-}
 const invalidType = (v, exp) => new SerdeError(`invalid type: ${unexpected(v)}, expected ${exp}`);
 const isInt = (v) => typeof v === 'number' || typeof v === 'bigint';
 const isObj = (v) => v !== null && typeof v === 'object' && !Array.isArray(v) && !(v instanceof F64);
@@ -346,9 +337,6 @@ export async function forceRefreshAccessToken() {
   return resp.accessToken;
 }
 
-// core ApiClient (market etc.) refreshes through the same primitive (client.rs::new_async).
-setRefreshHook(forceRefreshAccessToken);
-
 // ── transport ───────────────────────────────────────────────────────
 
 // std::io::Error Display for OS errors: "<strerror / FormatMessage text> (os error N)".
@@ -605,7 +593,7 @@ export class WalletApiClient {
       return Buffer.alloc(0);
     }
     if (r.status >= 400) {
-      const preview = [...rustTrim(r.body.toString('utf8'))].slice(0, 500).join('');
+      const preview = [...trim(r.body.toString('utf8'))].slice(0, 500).join('');
       throw new CliError(`download failed (HTTP ${r.status}): ${preview}`);
     }
     return r.body;

@@ -1,5 +1,5 @@
 // Account-level reward claim — upstream task/common/claim.rs.
-import { at, asStr, asArray } from '../../_rs.mjs';
+import { at, asStr, asArray } from '../../../core/rs/value.mjs';
 import { signUopAndBroadcast, extractBizType } from '../signing.mjs';
 
 // upstream: claim.rs::submit_claim_and_broadcast → txHash (FUND-MOVING)

@@ -8,8 +8,9 @@ import { struct } from '../../../../core/json.mjs';
 import { AssetClass } from '../../../../core/asset-class.mjs';
 import { isSkillInstalledIn } from '../../../../commands/upgrade/upgrade.mjs';
 import { parse as parseJson } from '../../../../core/json.mjs';
-import { isObj, trim, asciiLower } from '../../../_rs.mjs';
-import { isFile } from './_fs.mjs';
+import { isObject } from '../../../../core/rs/value.mjs';
+import { trim, asciiLower } from '../../../../core/rs/str.mjs';
+import { isFile } from '../../../../core/rs/fs.mjs';
 
 // upstream: trade_kit.rs constants
 export const SKILL_REPOSITORY = 'okx/agent-skills';
@@ -80,16 +81,16 @@ export function capabilitySnapshotFromListToolsJson(raw) {
   const INVALID = 'trade_kit_capabilities_invalid';
   let value;
   try { value = parseJson(raw); } catch { throw new Error(INVALID); }
-  const version = isObj(value) && typeof value.version === 'string' && value.version !== '' ? value.version : undefined;
+  const version = isObject(value) && typeof value.version === 'string' && value.version !== '' ? value.version : undefined;
   if (version === undefined) throw new Error(INVALID);
-  const modules = isObj(value) && Array.isArray(value.modules) ? value.modules : undefined;
+  const modules = isObject(value) && Array.isArray(value.modules) ? value.modules : undefined;
   if (!modules) throw new Error(INVALID);
   const toolNames = new Set();
   for (const module of modules) {
-    const commands = isObj(module) && Array.isArray(module.commands) ? module.commands : undefined;
+    const commands = isObject(module) && Array.isArray(module.commands) ? module.commands : undefined;
     if (!commands) throw new Error(INVALID);
     for (const command of commands) {
-      const name = isObj(command) && typeof command.toolName === 'string' && command.toolName !== '' ? command.toolName : undefined;
+      const name = isObject(command) && typeof command.toolName === 'string' && command.toolName !== '' ? command.toolName : undefined;
       if (name !== undefined) toolNames.add(name);
     }
   }

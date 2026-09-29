@@ -7,9 +7,10 @@ import { randomUUID } from 'node:crypto';
 import { homePath, writeAtomic } from '../../core/home.mjs';
 import { struct, stringify } from '../../core/json.mjs';
 import { context } from '../../core/errors.mjs';
-import { value } from '../../watch/_serde.mjs';
-import { fromStr } from '../identity/_from-str.mjs';
-import { trim, isObj, ioErrorText } from '../_rs.mjs';
+import { fromSlice } from '../../core/serde.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { isObject } from '../../core/rs/value.mjs';
+import { ioErrorText } from '../../core/rs/fs.mjs';
 
 // upstream: free_result.rs constants
 export const FREE_RESULT_VERSION = 1;
@@ -34,8 +35,8 @@ export function freeResultStateStruct(s) {
 // serde_json::from_slice::<FreeResultState> — any failure is reported by the caller as
 // expired-or-missing, so only acceptance matters (types, required fields, integer ranges).
 function decodeState(bytes) {
-  const v = fromStr(Buffer.from(bytes), value);
-  if (!isObj(v)) throw new Error('not a struct');
+  const v = fromSlice(bytes);
+  if (!isObject(v)) throw new Error('not a struct');
   const int = (k, max) => {
     const x = v[k];
     if (!hasOwn(v, k) || !(typeof x === 'number' || typeof x === 'bigint') || BigInt(x) < 0n || BigInt(x) > max) throw new Error(k);
@@ -48,7 +49,7 @@ function decodeState(bytes) {
     expiresAt: int('expiresAt', U64_MAX), serviceId: str('serviceId'), serviceName: optStr('serviceName'), providerAgentId: optStr('providerAgentId'),
     endpoint: str('endpoint'), method: str('method'), statusCode: int('statusCode', 65535n),
   };
-  if (!hasOwn(v, 'typedParams') || !isObj(v.typedParams)) throw new Error('typedParams');
+  if (!hasOwn(v, 'typedParams') || !isObject(v.typedParams)) throw new Error('typedParams');
   if (!hasOwn(v, 'result')) throw new Error('result');
   s.typedParams = v.typedParams;
   s.result = v.result;

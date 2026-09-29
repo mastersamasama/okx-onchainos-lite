@@ -11,9 +11,10 @@ import {
   loadA2mcpPreparedPayment, prepareA2mcpPaymentFromChallenge, refreshA2mcpPreparedPayment, replaceA2mcpPreparedPayment,
   storeA2mcpPreparedPayment,
 } from '../../payment/a2mcp.mjs';
-import { value } from '../../watch/_serde.mjs';
-import { fromStr } from '../identity/_from-str.mjs';
-import { eqIgnoreAsciiCase, isObj, get, trim, b64StdDecode } from '../_rs.mjs';
+import { fromStr } from '../../core/serde.mjs';
+import { eqIgnoreAsciiCase, trim } from '../../core/rs/str.mjs';
+import { isObject, get } from '../../core/rs/value.mjs';
+import { B64 } from '../../core/rs/codec.mjs';
 import {
   Action, ContractError, ProbeDecision, confirmationPresentation, defaultStringType, fieldValue, paidFeeDisplay, requestSpecValue,
 } from './_model.mjs';
@@ -25,14 +26,14 @@ import {
 import { sendProbe } from './probe.mjs';
 import { consumeFreeResult, loadFreeResult, storeFreeResult } from './free-result.mjs';
 
-const mget = (m, k) => (isObj(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
+const mget = (m, k) => (isObject(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
 const blockedWith = (code, message) => ProbeDecision.blocked(code, { schemaVersion: 1, message });
 const walletLoginRequired = () => new Error('wallet_login_required: no selected wallet');
 
 // base64 STANDARD (padded, canonical) decode → UTF-8; errors mirror base64 / FromUtf8Error Display.
 function decodeB64Utf8(v, label) {
   let bytes;
-  try { bytes = b64StdDecode(v); } catch (e) { throw new ContractError(label, `base64 input is invalid: ${e.message}`); }
+  try { bytes = B64.STANDARD.decode(v); } catch (e) { throw new ContractError(label, `base64 input is invalid: ${e.message}`); }
   try { return new TextDecoder('utf-8', { fatal: true }).decode(bytes); } catch { throw new ContractError(label, `base64 input is not UTF-8: ${fromUtf8ErrorText(bytes)}`); }
 }
 // alloc::string::FromUtf8Error Display: "invalid utf-8 sequence of N bytes from index I" /
@@ -228,9 +229,9 @@ export function invalidParamsDecision(routingJson, paramsJson, error) {
   let routing = null;
   try { routing = parseRoutingPayload(routingJson); } catch {}
   let nextProbePayload = null;
-  try { nextProbePayload = fromStr(routingJson, value); } catch {}
+  try { nextProbePayload = fromStr(routingJson); } catch {}
   let typedParams = {};
-  try { const p = fromStr(paramsJson, value); if (isObj(p)) typedParams = p; } catch {}
+  try { const p = fromStr(paramsJson); if (isObject(p)) typedParams = p; } catch {}
   let plan = [];
   if (routing) {
     if (routing.requestSpec) plan = routing.requestSpec.fields;

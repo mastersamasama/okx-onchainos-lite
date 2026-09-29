@@ -1,6 +1,6 @@
 // `vote-reveal` — upstream task/evaluator/reveal.rs (prints plain text).
 import { auditLog } from '../../../core/audit.mjs';
-import { at, asBool, valueText } from '../../_rs.mjs';
+import { at, asBool, valueText } from '../../../core/rs/value.mjs';
 import { resolveWalletAndAgentForEvaluator, signUopAndBroadcast, extractBizType } from '../signing.mjs';
 
 // upstream: reveal.rs::handle_reveal

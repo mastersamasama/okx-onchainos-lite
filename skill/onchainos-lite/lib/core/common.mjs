@@ -1,7 +1,7 @@
 // Shared DEX helpers — upstream commands/common.rs: on-chain tx waiting used by
 // swap / cross-chain (approve → wait → swap).
 import { sleep } from './proc.mjs';
-import { eqIgnoreAsciiCase } from './_rust-str.mjs';
+import { eqIgnoreAsciiCase } from './rs/str.mjs';
 
 const TX_DETAIL_PATH = '/api/v6/dex/post-transaction/transaction-detail-by-txhash';
 const POLL_INTERVAL_MS = 1000;

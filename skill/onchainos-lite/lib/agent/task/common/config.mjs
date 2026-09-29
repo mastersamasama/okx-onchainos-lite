@@ -1,5 +1,5 @@
 // Task module toggles — upstream task/common/config.rs.
-import { eqIgnoreAsciiCase } from '../../_rs.mjs';
+import { eqIgnoreAsciiCase } from '../../../core/rs/str.mjs';
 
 // upstream: config.rs::KEEP_CONVERSATION_ON_TERMINAL_DEFAULT (the published binary is built
 // without a compile-time ONCHAINOS_KEEP_SESSION, so the default applies).

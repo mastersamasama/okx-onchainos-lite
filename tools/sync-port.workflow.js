@@ -26,7 +26,7 @@ Return a short report: what changed upstream, what you changed, test results, an
 
 const verify = await agent(
   `Final verifier for the ${drift.from.version} → ${drift.to.version} port of onchainos-lite (root ${ROOT}).
-Run: node tools/check.mjs; node test/parity/run.mjs; node --test test/unit/. Fix remaining failures (any file), then update docs/PARITY.md divergences if needed.
+Run: node tools/check.mjs; node test/parity/run.mjs; node tools/test-unit.mjs. Fix remaining failures (any file), then update docs/PARITY.md divergences if needed.
 Partition reports: ${JSON.stringify(ported)}
 Return: final status of the three commands and the list of fixes.`,
   { label: 'verify-sync', phase: 'Verify' })

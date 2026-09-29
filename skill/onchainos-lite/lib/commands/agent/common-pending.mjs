@@ -1,7 +1,6 @@
 // agent pending-decisions-v2 — upstream task/common/pending_v2.rs (plain-text playbooks).
 import { typed } from '../../core/cli.mjs';
 import { NO_OUTPUT } from '../../core/context.mjs';
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import * as pv2 from '../../agent/task/common/pending-v2.mjs';
 
 const LABEL = 'agent pending-decisions-v2';
@@ -13,7 +12,6 @@ export default {
     label: LABEL,
     async run(ctx, o) {
       const expiresAt = typed(ctx.path, 'expiresAt', o.expiresAt, 'i64');
-      await runPreDispatchMaintenance();
       await pv2.handleRequestCommand({ ...o, expiresAt });
       return done();
     },
@@ -23,7 +21,6 @@ export default {
     label: LABEL,
     async run(ctx, o) {
       const expiresAt = typed(ctx.path, 'expiresAt', o.expiresAt, 'i64');
-      await runPreDispatchMaintenance();
       await pv2.handleRequestPromptCommand({ ...o, expiresAt });
       return done();
     },
@@ -32,7 +29,6 @@ export default {
     uses: ['userReply'],
     label: LABEL,
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await pv2.handleResolve(o.userReply);
       return done();
     },
@@ -42,7 +38,6 @@ export default {
     label: LABEL,
     async run(ctx, o) {
       const expiresAt = typed(ctx.path, 'expiresAt', o.expiresAt, 'i64');
-      await runPreDispatchMaintenance();
       await pv2.handleResolveWithSessionkey({ ...o, expiresAt });
       return done();
     },
@@ -51,7 +46,6 @@ export default {
     uses: ['userReply', 'jobId', 'role', 'agentId', 'toAgentId', 'sourceEvent', 'decisionId', 'autotradeCandidateJson'],
     label: LABEL,
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await pv2.handleResolvePrompt(o);
       return done();
     },
@@ -61,7 +55,6 @@ export default {
     label: LABEL,
     async run(ctx, o) {
       const index = typed(ctx.path, 'index', o.index, 'usize');
-      await runPreDispatchMaintenance();
       await pv2.handlePick(index, o.jobId);
       return done();
     },
@@ -70,7 +63,6 @@ export default {
     uses: ['format', 'scope'],
     label: LABEL,
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await pv2.handleList(o.format, o.scope);
       return done();
     },
@@ -80,7 +72,6 @@ export default {
     label: LABEL,
     async run(ctx, o) {
       const index = typed(ctx.path, 'index', o.index, 'usize');
-      await runPreDispatchMaintenance();
       await pv2.handleCancel(index);
       return done();
     },

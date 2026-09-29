@@ -10,13 +10,12 @@ import { F64 } from '../../core/json.mjs';
 import { context } from '../../core/errors.mjs';
 import { AGENT_WS_URL } from '../../config.mjs';
 import { WalletApiClient, decodeUnsignedInfoResponse, SerdeError as WalletSerdeError } from '../../wallet/api.mjs';
-import { vec, value as valueDe } from '../../watch/_serde.mjs';
-import { fromStr, SerdeError as StreamSerdeError } from './_from-str.mjs';
-import { fromValue, SerdeError as ValueSerdeError } from '../_serde.mjs';
-import { formatFixed, parseF64 } from '../../wallet/_rs.mjs';
-import { trim, asciiLower, eqIgnoreAsciiCase, isObj, asU64, asI64, asF64, numText, parseI64, localParts } from '../_rs.mjs';
-import { asciiUpper } from '../../core/_rust-str.mjs';
-import { AGENT_SERVICES_DE, AGENT_SERVICE_VALUE, ServiceOperation, agentServiceValue } from './models.mjs';
+import { T, fromStr, fromValue, SerdeError } from '../../core/serde.mjs';
+import { formatFixed, parseF64, parseI64 } from '../../core/rs/num.mjs';
+import { trim, asciiLower, eqIgnoreAsciiCase, asciiUpper } from '../../core/rs/str.mjs';
+import { isObject, asU64, asI64, asF64, numText } from '../../core/rs/value.mjs';
+import { localParts } from '../../core/rs/time.mjs';
+import { AGENT_SERVICE, AGENT_SERVICES, ServiceOperation, agentServiceValue } from './models.mjs';
 
 export { convertFeedbackListScores, parseStarsArg, scoreToStars } from './parts/rating.mjs';
 export { buildPrecheck, collectOwnedAgents } from './parts/precheck.mjs';
@@ -28,7 +27,7 @@ const hasOwn = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const isNumber = (v) => typeof v === 'number' || typeof v === 'bigint' || v instanceof F64;
 const isInteger = (v) => typeof v === 'number' || typeof v === 'bigint';
 // serde_json::Map::get(k) → value | undefined
-const mget = (map, k) => (isObj(map) && hasOwn(map, k) && map[k] !== undefined ? map[k] : undefined);
+const mget = (map, k) => (isObject(map) && hasOwn(map, k) && map[k] !== undefined ? map[k] : undefined);
 
 // ─── HTTP client ──────────────────────────────────────────────────────────
 
@@ -54,7 +53,7 @@ export function pushMultiQuery(query, key, values) {
 
 // upstream: utils.rs::normalize_singleton_object
 export function normalizeSingletonObject(data) {
-  return Array.isArray(data) && data.length === 1 && isObj(data[0]) ? data[0] : data;
+  return Array.isArray(data) && data.length === 1 && isObject(data[0]) ? data[0] : data;
 }
 
 // upstream: utils.rs::parse_agent_unsigned → decoded UnsignedInfoResponse
@@ -72,8 +71,8 @@ export function parseAgentUnsigned(data) {
 export function parseServices(raw) {
   if (raw === undefined || raw === null) return [];
   let services;
-  try { services = fromStr(raw, AGENT_SERVICES_DE); } catch (e) {
-    if (e instanceof StreamSerdeError) throw context('failed to parse --service as JSON array', e);
+  try { services = fromStr(raw, AGENT_SERVICES); } catch (e) {
+    if (e instanceof SerdeError) throw context('failed to parse --service as JSON array', e);
     throw e;
   }
   return services.map(normalizeService);
@@ -91,8 +90,8 @@ export function normalizeServiceId(id) {
 export function parseServiceDeltas(raw) {
   if (raw === undefined || raw === null) return [];
   let entries;
-  try { entries = fromStr(raw, vec(valueDe)); } catch (e) {
-    if (e instanceof StreamSerdeError) throw context('failed to parse --service as JSON array', e);
+  try { entries = fromStr(raw, T.vec(T.value)); } catch (e) {
+    if (e instanceof SerdeError) throw context('failed to parse --service as JSON array', e);
     throw e;
   }
   return entries.map((entry) => {
@@ -102,8 +101,8 @@ export function parseServiceDeltas(raw) {
       return { operation: 'delete', id };
     }
     let service;
-    try { service = fromValue(AGENT_SERVICE_VALUE, entry); } catch (e) {
-      if (e instanceof ValueSerdeError) throw context('failed to parse --service entry', e);
+    try { service = fromValue(entry, AGENT_SERVICE); } catch (e) {
+      if (e instanceof SerdeError) throw context('failed to parse --service entry', e);
       throw e;
     }
     return agentServiceValue(normalizeService(service));
@@ -381,7 +380,7 @@ export function enrichAgentDetailRows(v) {
 
 // upstream: utils.rs::enrich_agent_row (private) — additive display fields on one object row.
 export function enrichAgentRow(row) {
-  if (!isObj(row)) return;
+  if (!isObject(row)) return;
   const label = mget(row, 'role') === undefined ? undefined : roleLabelFromValue(mget(row, 'role'));
   if (label !== undefined) row.roleLabel = label;
   const status = mget(row, 'status') === undefined ? undefined : statusLabel(mget(row, 'status'));
@@ -434,7 +433,7 @@ export function formatSubscriptionTiers(map) {
   if (!Array.isArray(raw)) return [];
   const out = [];
   for (const t of raw) {
-    if (!isObj(t)) continue;
+    if (!isObject(t)) continue;
     const fee = firstFee(t, ['fee', 'Fee', 'feeAmount']);
     if (fee === undefined) continue;
     const interval = firstStr(t, ['interval', 'Interval']) ?? 'month';
@@ -465,7 +464,7 @@ const unpricedFeeLabel = (isA2mcp) => (isA2mcp ? '—' : 'free');
 
 // upstream: utils.rs::format_service_value (private)
 export function formatServiceValue(service) {
-  if (!isObj(service)) return undefined;
+  if (!isObject(service)) return undefined;
   const name = firstStr(service, ['serviceName', 'ServiceName', 'name']);
   if (name === undefined) return undefined;
   const rawType = firstStr(service, ['serviceType', 'ServiceType', 'servicetype']) ?? '';
@@ -574,8 +573,8 @@ export function buildAgentListCells(map) {
 
 // upstream: utils.rs::add_agent_list_cells
 export function addAgentListCells(v) {
-  if (isObj(v)) deriveHasMore(v);
-  forEachAgentRow(v, (row) => { if (isObj(row)) row.cells = buildAgentListCells(row); });
+  if (isObject(v)) deriveHasMore(v);
+  forEachAgentRow(v, (row) => { if (isObject(row)) row.cells = buildAgentListCells(row); });
 }
 
 // ─── search-result table ──────────────────────────────────────────────────
@@ -613,7 +612,7 @@ export function formatSearchRate(rate) {
 
 // upstream: utils.rs::format_top_service (private)
 export function formatTopService(service) {
-  if (!isObj(service)) return undefined;
+  if (!isObject(service)) return undefined;
   const name = firstStr(service, ['serviceName', 'ServiceName', 'name']);
   if (name === undefined) return undefined;
   const rawType = firstStr(service, ['serviceType', 'ServiceType', 'servicetype']) ?? '';
@@ -636,7 +635,7 @@ export function formatTopService(service) {
 // upstream: utils.rs::build_search_table
 export function buildSearchTable(v) {
   const list = mget(v, 'list');
-  const rows = Array.isArray(list) ? list.filter(isObj).map(buildSearchTableRow) : [];
+  const rows = Array.isArray(list) ? list.filter(isObject).map(buildSearchTableRow) : [];
   return {
     total: mget(v, 'total') ?? null,
     page: mget(v, 'page') ?? null,
@@ -655,7 +654,7 @@ export function buildSearchTable(v) {
 
 // upstream: utils.rs::build_service_cells (private) → cells | undefined
 export function buildServiceCells(index, service) {
-  if (!isObj(service)) return undefined;
+  if (!isObject(service)) return undefined;
   const name = firstStr(service, ['serviceName', 'ServiceName', 'name']);
   if (name === undefined) return undefined;
   const rawType = firstStr(service, ['serviceType', 'ServiceType', 'servicetype']) ?? '';
@@ -685,7 +684,7 @@ export function addServiceListCells(v) {
 
 // upstream: utils.rs::add_service_cells_to_node (private)
 function addServiceCellsToNode(node) {
-  if (!isObj(node)) return;
+  if (!isObject(node)) return;
   deriveHasMore(node);
   const key = ['list', 'services'].find((k) => Array.isArray(mget(node, k)));
   if (key === undefined) return;
@@ -795,11 +794,11 @@ export function buildFeedbackCells(map) {
 
 // upstream: utils.rs::add_feedback_list_cells
 export function addFeedbackListCells(v) {
-  if (!isObj(v)) return;
+  if (!isObject(v)) return;
   deriveHasMore(v);
   for (const key of ['items', 'list']) {
     const items = mget(v, key);
     if (!Array.isArray(items)) continue;
-    for (const item of items) if (isObj(item)) item.cells = buildFeedbackCells(item);
+    for (const item of items) if (isObject(item)) item.cells = buildFeedbackCells(item);
   }
 }

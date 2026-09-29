@@ -8,15 +8,12 @@
 // plain (sorted) objects. FundingBundle = { target, qr }.
 //
 // Collaborators are imported statically, as upstream links them: Common QR (core/qr.mjs) and the
-// wallet foundation (lib/wallet/{account,auth,store,api,common}.mjs). Only
-// refresh_wallet_accounts_strict (lib/wallet/balance/index.mjs, not yet ported) is resolved at
-// call time. (Late-binding the QR module let a sync call issued right after module load emit a
-// degraded `qr` — requestedFormat + displayMode only — where upstream always renders the QR.)
-import { existsSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+// wallet foundation (lib/wallet/{account,auth,store,api,common}.mjs). The balance module
+// (refresh_wallet_accounts_strict) imports this one and pulls in the BRC-20 / Bitcoin adapters,
+// so it is imported on first use.
 import { chainDisplayName } from './chains.mjs';
 import { buildQrOutput } from './qr.mjs';
-import { trim } from './_rust-str.mjs';
+import { trim } from './rs/str.mjs';
 import { resolveAccountAddressForChain, resolveActiveAccountId } from '../wallet/account.mjs';
 import { ensureTokensRefreshed } from '../wallet/auth.mjs';
 import { loadWallets } from '../wallet/store.mjs';
@@ -29,19 +26,6 @@ export const FUNDING_OPERATION_TRANSFER = 'transfer';
 export const FUNDING_OPERATION_SWAP = 'swap';
 export const FUNDING_OPERATION_A2A_PAYMENT = 'a2a_payment';
 export const FUNDING_OPERATION_TASK_CREATION = 'task_creation';
-
-// Lite-only, kept for compatibility: collaborators are static imports now, nothing to wait for.
-export const loadFundingDeps = () => Promise.resolve();
-
-// agentic_wallet::balance::refresh_wallet_accounts_strict (lib/wallet/balance/index.mjs).
-async function refreshWalletAccountsStrict(client, accessToken, wallets) {
-  const url = new URL('../wallet/balance/index.mjs', import.meta.url);
-  const m = existsSync(fileURLToPath(url)) ? await import(url.href) : null;
-  if (typeof m?.refreshWalletAccountsStrict !== 'function') {
-    throw new Error('onchainos-lite: refreshWalletAccountsStrict is unavailable (expected in lib/wallet/balance/index.mjs)');
-  }
-  return m.refreshWalletAccountsStrict(client, accessToken, wallets);
-}
 
 // serde_json::to_value — deep copy that drops struct field order (Values print sorted);
 // f64 / raw / F64 / BigInt leaves are kept as-is.
@@ -101,6 +85,7 @@ export async function resolveCurrentFundingBundle(chainIndex, imageDir) {
   const wallets = loadWallets();
   if (!wallets) throw new Error(ERR_NOT_LOGGED_IN);
   const client = new WalletApiClient();
+  const { refreshWalletAccountsStrict } = await import('../wallet/balance/index.mjs');
   await refreshWalletAccountsStrict(client, accessToken, wallets);
   return buildFundingBundleFromWallets(wallets, chainIndex, imageDir);
 }

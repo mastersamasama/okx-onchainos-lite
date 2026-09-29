@@ -14,7 +14,7 @@ import {
   normalizeBrc20TokenAddress, parseFeeRate, isLocalContinuation, previewFromResponse, validatePreviewIntent,
   bindUtxoAvailability, localTransactionToken,
 } from '../shared/adapters/bitcoin/validation.mjs';
-import { asciiUpper } from '../../core/_rust-str.mjs';
+import { asciiUpper } from '../../core/rs/str.mjs';
 
 const some = (v) => v !== undefined && v !== null;
 

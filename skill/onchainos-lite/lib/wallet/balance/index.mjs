@@ -16,8 +16,9 @@ import { ensureChainCacheFresh } from '../chain.mjs';
 import { resolve as resolveChainProfile } from '../chain-profile.mjs';
 import { cmdBrc20Balance } from '../utxo/brc20.mjs';
 import { F64 } from '../../core/json.mjs';
-import { rustTrim, asciiLower, eqIgnoreAsciiCase, isObject, getField as get, formatFixed, parseF64, asF64 } from '../_rs.mjs';
-import { asU64, parseU32, parseU64, u64Json } from '../shared/_rust.mjs';
+import { trim, asciiLower, eqIgnoreAsciiCase } from '../../core/rs/str.mjs';
+import { isObject, get, asF64, asU64 } from '../../core/rs/value.mjs';
+import { formatFixed, parseF64, parseU32, parseU64 } from '../../core/rs/num.mjs';
 
 // upstream: balance/mod.rs::BATCH_BALANCE_TTL — seconds the all-accounts batch cache stays fresh.
 export const BATCH_BALANCE_TTL = 60;
@@ -325,8 +326,8 @@ export async function cmdBalance(all, chain, tokenAddress, force) {
     if (chain === undefined || chain === null) throw new Error('--chain is required when using --token-address');
     const profile = await resolveChainProfile(chain);
     const chainIndex = profile.chainIndex;
-    if (profile.isBitcoin() && asciiLower(rustTrim(tokenAddress)).startsWith('btc-brc20-')) return cmdBrc20Balance(tokenAddress);
-    const query = [['accountId', accountId], ['chains', chainIndex], ['tokenAddresses[0].chainIndex', chainIndex], ['tokenAddresses[0].tokenAddress', rustTrim(tokenAddress)]];
+    if (profile.isBitcoin() && asciiLower(trim(tokenAddress)).startsWith('btc-brc20-')) return cmdBrc20Balance(tokenAddress);
+    const query = [['accountId', accountId], ['chains', chainIndex], ['tokenAddresses[0].chainIndex', chainIndex], ['tokenAddresses[0].tokenAddress', trim(tokenAddress)]];
     let data;
     try { data = await client.balanceSingle(accessToken, query); } catch (e) { throw formatApiError(e); }
     enrichWithUsdValue(data);
@@ -369,7 +370,7 @@ export async function cmdBalance(all, chain, tokenAddress, force) {
 
 // upstream: balance/mod.rs::cmd_funding_check — fresh post-funding verification → output data.
 export async function cmdFundingCheck(chain, tokenAddress, required, asset) {
-  const assetSymbol = rustTrim(asset);
+  const assetSymbol = trim(asset);
   if (assetSymbol === '') throw new Error('--asset must not be blank');
   if (readableShortfall(required, '0') === null) throw new Error('--required must be a non-negative plain decimal');
 
@@ -436,7 +437,7 @@ export function matchReadableToken(data, chainIndex, tokenAddress) {
       else if (isNumber(b)) balance = numberText(b);
       else return null;
       const sym = get(token, 'symbol');
-      const trimmed = typeof sym === 'string' ? rustTrim(sym) : '';
+      const trimmed = typeof sym === 'string' ? trim(sym) : '';
       const d = get(token, 'decimal');
       const du = asU64(d);
       const decimals = du !== undefined ? (du <= 4294967295n ? Number(du) : undefined) : typeof d === 'string' ? parseU32(d) : undefined;
@@ -459,7 +460,7 @@ export async function queryTokenMetadata(chainIndex, tokenAddress) {
   if (n === undefined) throw new Error(`invalid numeric chain index: ${chainIndex}`);
   const client = new WalletApiClient();
   let info;
-  try { info = await client.getTokenInfo(accessToken, u64Json(n), tokenAddress); } catch (e) { throw formatApiError(e); }
+  try { info = await client.getTokenInfo(accessToken, n, tokenAddress); } catch (e) { throw formatApiError(e); }
   const item = Array.isArray(info) && info.length ? info[0] : info;
   const dec = (k) => (isObject(item) && hasOwn(item, k) ? valueAsU32(item[k]) : undefined);
   const decimals = dec('decimals') ?? dec('decimal');

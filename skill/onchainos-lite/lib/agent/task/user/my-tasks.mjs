@@ -1,7 +1,8 @@
 // Unified buyer-side listing for subscription and one-time tasks — upstream task/user/my_tasks.rs.
 import { CodedError } from '../../../core/errors.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { get, asArray, asU64, asI64, isObj, trim } from '../../_rs.mjs';
+import { get, asArray, asU64, asI64, isObject } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 import { resolveAgentId, taskStatusLabel, taskStatusDescription } from '../common/query.mjs';
 import { Status } from '../common/state-machine.mjs';
 import { AGENT_ROLE_USER } from '../common/index.mjs';
@@ -26,7 +27,7 @@ export function listPath(kind, page, pageSize, statusType) {
 // upstream: my_tasks.rs::enrich_one_time_status_names (private)
 function enrichOneTimeStatusNames(list) {
   for (const row of list) {
-    if (!isObj(row)) continue;
+    if (!isObject(row)) continue;
     const code = asI64(get(row, 'status'));
     if (code === undefined) continue;
     const inI32 = typeof code === 'number' && code >= -2147483648 && code <= 2147483647;
@@ -41,7 +42,7 @@ const u32 = (v) => { const n = asU64(v); return n !== undefined && BigInt(n) <= 
 // upstream: my_tasks.rs::Page::from_value (private)
 export function pageFromValue(value, kind) {
   const label = KIND_LABEL[kind];
-  if (!isObj(value)) throw new Error(`${label} task page must be a JSON object`);
+  if (!isObject(value)) throw new Error(`${label} task page must be a JSON object`);
   const total = asU64(get(value, 'total'));
   if (total === undefined) throw new Error(`${label} task page is missing numeric total`);
   const totalNoCondition = asU64(get(value, 'totalNoCondition'));

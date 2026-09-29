@@ -1,13 +1,13 @@
 // A2MCP request-method resolution and endpoint-evidence helpers — upstream
 // commands/agent_commerce/a2mcp_probe/method.rs.
 import { urlParseError } from '../../payment/a2mcp.mjs';
-import { trim, asciiLower, eqIgnoreAsciiCase, isObj, isNum, numText, isWs, lines } from '../_rs.mjs';
-import { asciiUpper } from '../../core/_rust-str.mjs';
+import { trim, asciiLower, eqIgnoreAsciiCase, isWhitespace, lines, asciiUpper } from '../../core/rs/str.mjs';
+import { isObject, isNumber, numText } from '../../core/rs/value.mjs';
 import { ContractError, ProbeDecision, defaultStringType } from './_model.mjs';
 import { isSupportedParamType } from './contract.mjs';
 
 const hasOwn = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
-const mget = (m, k) => (isObj(m) && hasOwn(m, k) && m[k] !== undefined ? m[k] : undefined);
+const mget = (m, k) => (isObject(m) && hasOwn(m, k) && m[k] !== undefined ? m[k] : undefined);
 const isAsciiAlnum = (ch) => ch !== undefined && /^[0-9A-Za-z]$/.test(ch);
 const cpBefore = (s, i) => (i <= 0 ? undefined : [...s.slice(Math.max(0, i - 2), i)].pop());
 const cpAt = (s, i) => (i >= s.length ? undefined : String.fromCodePoint(s.codePointAt(i)));
@@ -141,7 +141,7 @@ export function endpointIssueDescription(issue) {
   if (typeof expected === 'string' && isSupportedParamType(expected)) return `The endpoint expects a ${expected} value.`;
   if (mget(issue, 'code') === 'too_small') {
     const minimum = mget(issue, 'minimum');
-    if (isNum(minimum)) return `The endpoint requires a value of at least ${numText(minimum)}.`;
+    if (isNumber(minimum)) return `The endpoint requires a value of at least ${numText(minimum)}.`;
     return 'The endpoint rejected this value because it is below the allowed minimum.';
   }
   return 'The endpoint rejected this value. Provide a valid replacement.';
@@ -168,7 +168,7 @@ export function issueReportsMissingValue(issue) {
   const m = mget(issue, 'message');
   const required = typeof m === 'string' && asciiLower(m).includes('required');
   let received = false;
-  if (hasOwn(issue ?? {}, 'received') && isObj(issue)) {
+  if (hasOwn(issue ?? {}, 'received') && isObject(issue)) {
     const r = issue.received;
     if (r === null) received = true;
     else if (typeof r === 'string') received = ['undefined', 'missing'].includes(asciiLower(r));
@@ -180,10 +180,10 @@ export function issueReportsMissingValue(issue) {
 export function jsonValueType(v) {
   if (typeof v === 'boolean') return 'boolean';
   if (typeof v === 'number' || typeof v === 'bigint') return 'integer';
-  if (isNum(v)) return 'number';
+  if (isNumber(v)) return 'number';
   if (typeof v === 'string') return 'string';
   if (Array.isArray(v)) return 'array';
-  if (isObj(v)) return 'object';
+  if (isObject(v)) return 'object';
   return 'string';
 }
 
@@ -252,7 +252,7 @@ export function extractCurlExample(description) {
   }
   return undefined;
 }
-const trimEnd = (s) => { let j = s.length; while (j > 0 && isWs(s.charCodeAt(j - 1))) j--; return s.slice(0, j); };
+const trimEnd = (s) => { let j = s.length; while (j > 0 && isWhitespace(s.charCodeAt(j - 1))) j--; return s.slice(0, j); };
 
 // upstream: method.rs::labelled_value(line, labels) → string | undefined
 export function labelledValue(line, labels) {
@@ -335,7 +335,7 @@ export function shellLikeTokens(value) {
     if (ch === '\\' && quote !== "'") { escaped = true; continue; }
     if (quote !== null) { if (ch === quote) quote = null; else current += ch; continue; }
     if (ch === "'" || ch === '"') quote = ch;
-    else if (isWs(ch)) { if (current !== '') { tokens.push(current); current = ''; } }
+    else if (isWhitespace(ch)) { if (current !== '') { tokens.push(current); current = ''; } }
     else current += ch;
   }
   if (current !== '') tokens.push(current);

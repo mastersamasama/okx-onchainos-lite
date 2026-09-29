@@ -7,12 +7,11 @@
 // prints the envelope); plain-text handlers return the text.
 import { loadWallets } from '../../../wallet/store.mjs';
 import { resolveActiveAccountId } from '../../../wallet/account.mjs';
-import { fromStr } from '../../../wallet/_serde-json.mjs';
+import { fromStr, fromValue, T } from '../../../core/serde.mjs';
 import { selfOutput, utf8Lossy } from '../../_proc.mjs';
-import { S, fromValue } from '../../_serde.mjs';
-import {
-  isObj, get, at, asStr, asI64, asU64, asBool, asArray, trim, asciiLower, eqIgnoreAsciiCase, numText, rustDebugStr, displayF64, isNum,
-} from '../../_rs.mjs';
+import { isObject, get, at, asStr, asI64, asU64, asBool, asArray, numText, isNumber } from '../../../core/rs/value.mjs';
+import { trim, asciiLower, eqIgnoreAsciiCase, strDebug } from '../../../core/rs/str.mjs';
+import { displayF64 } from '../../../core/json.mjs';
 import { firstTimestamp, reviewDeadlineFromDetail } from './deadline.mjs';
 import { validateJobId, fmtUnixSecs } from './util.mjs';
 import { Role, Status } from './state-machine.mjs';
@@ -215,7 +214,7 @@ export async function fetchAgentById(agentId) {
 export function parseRoleFilter(raw) {
   return { user: AGENT_ROLE_USER, asp: AGENT_ROLE_ASP, evaluator: AGENT_ROLE_EVALUATOR }[trim(raw).toLowerCase()];
 }
-const roleError = (raw) => new Error(`unrecognized --role value: ${rustDebugStr(raw)} (expected user / asp / evaluator)`);
+const roleError = (raw) => new Error(`unrecognized --role value: ${strDebug(raw)} (expected user / asp / evaluator)`);
 
 // upstream: mod.rs::query_agent_by_id_direct
 export async function queryAgentByIdDirect(agentId) {
@@ -266,7 +265,7 @@ export async function findService(agentId, serviceId) {
 export function scalarText(value) {
   const s = asStr(value);
   if (s !== undefined) { const t = trim(s); return t === '' ? undefined : t; }
-  return isNum(value) ? numText(value) : undefined;
+  return isNumber(value) ? numText(value) : undefined;
 }
 
 // upstream: mod.rs::service_matching_id
@@ -359,16 +358,10 @@ export const handlePreflight = (roleRaw) => preflightInner(roleRaw);
 // upstream: mod.rs::handle_communication_check
 export const handleCommunicationCheck = () => communicationGateJson();
 
-async function loadValidateDraftFields() {
-  for (const rel of ['../user/create.mjs', '../user/index.mjs']) {
-    try { const m = await import(rel); if (typeof m.validateDraftFields === 'function') return m.validateDraftFields; } catch {}
-  }
-  return (await import('./_draft.mjs')).validateDraftFields;
-}
-
 // upstream: mod.rs::handle_prepare_create → success data (budget / maxBudget are f64 or undefined)
 export async function handlePrepareCreate(description, title, budget, maxBudget, currency, provider) {
-  const validateDraftFields = await loadValidateDraftFields();
+  // user/create.rs::validate_draft_fields — imported on first use: task/user/create imports this module
+  const { validateDraftFields } = await import('../user/create.mjs');
   const validation = validateDraftFields(description, title, budget, maxBudget, currency);
   if (!(asBool(get(validation, 'ok')) ?? false)) return { ok: false, stage: 'validation', validation };
   const preflight = await preflightInner('user');
@@ -396,7 +389,7 @@ export function flattenAgentGroups(data) {
     if (agents) {
       const owner = asStr(get(entry, 'ownerAddress')), account = asStr(get(entry, 'accountName'));
       for (const a of agents) {
-        if (isObj(a)) {
+        if (isObject(a)) {
           const agent = { ...a };
           if (!Object.prototype.hasOwnProperty.call(agent, 'ownerAddress') && owner !== undefined) agent.ownerAddress = owner;
           if (!Object.prototype.hasOwnProperty.call(agent, 'accountName') && account !== undefined) agent.accountName = account;
@@ -424,13 +417,13 @@ export function statusDesc(s) {
 }
 
 // upstream: mod.rs::TaskDetail (derive(Deserialize), camelCase)
-const TASK_DETAIL = S.struct('TaskDetail', [
-  ['jobId', S.string], ['taskId', S.option(S.i64)], ['title', S.string], ['description', S.string], ['contentHash', S.option(S.string)],
-  ['tokenAddress', S.option(S.string)], ['tokenSymbol', S.option(S.string)], ['tokenAmount', S.option(S.string)], ['paymentMode', S.option(S.i32)],
-  ['status', S.option(S.i32)], ['sensitiveStatus', S.option(S.i32)], ['categoryCodes', S.option(S.vec(S.string))], ['chainId', S.option(S.i32)],
-  ['minCreditScore', S.option(S.f64)], ['userAgentAddress', S.option(S.string)], ['userAgentId', S.option(S.string)],
-  ['providerAgentAddress', S.option(S.string)], ['providerAgentId', S.option(S.string)], ['groupId', S.option(S.string)],
-  ['expireConfig', S.option(S.value)], ['expireTime', S.option(S.i64)], ['paymentMostTokenAmount', S.option(S.string)], ['createTime', S.option(S.i64)],
+const TASK_DETAIL = T.struct('TaskDetail', [
+  ['jobId', T.string], ['taskId', T.option(T.i64)], ['title', T.string], ['description', T.string], ['contentHash', T.option(T.string)],
+  ['tokenAddress', T.option(T.string)], ['tokenSymbol', T.option(T.string)], ['tokenAmount', T.option(T.string)], ['paymentMode', T.option(T.i32)],
+  ['status', T.option(T.i32)], ['sensitiveStatus', T.option(T.i32)], ['categoryCodes', T.option(T.vec(T.string))], ['chainId', T.option(T.i32)],
+  ['minCreditScore', T.option(T.f64)], ['userAgentAddress', T.option(T.string)], ['userAgentId', T.option(T.string)],
+  ['providerAgentAddress', T.option(T.string)], ['providerAgentId', T.option(T.string)], ['groupId', T.option(T.string)],
+  ['expireConfig', T.option(T.value)], ['expireTime', T.option(T.i64)], ['paymentMostTokenAmount', T.option(T.string)], ['createTime', T.option(T.i64)],
 ]);
 
 // upstream: mod.rs::build_context
@@ -495,7 +488,7 @@ export async function runContext(jobId, role, agentId) {
     throw new Error(`failed to get task detail: ${displayTop(e)}`);
   }
   let task;
-  try { task = fromValue(TASK_DETAIL, resp); } catch (e) { throw new Error(`failed to parse response: ${e.message}`); }
+  try { task = fromValue(resp, TASK_DETAIL); } catch (e) { throw new Error(`failed to parse response: ${e.message}`); }
   const profile = await fetchAgentProfile(agentId);
   return buildContext(task, role, agentId, profile);
 }

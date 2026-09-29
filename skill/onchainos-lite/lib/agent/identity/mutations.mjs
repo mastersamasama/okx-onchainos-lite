@@ -13,13 +13,15 @@ import { stringify } from '../../core/json.mjs';
 import { context } from '../../core/errors.mjs';
 import { ensureTokensRefreshed, formatApiError } from '../../wallet/auth.mjs';
 import { ensureCommunicationReadyPreflight } from '../task/common/okx-a2a.mjs';
-import { ioErrorText, isObj, isNum, numText, trim, asU64, parseU64 } from '../_rs.mjs';
+import { ioErrorText, fileName } from '../../core/rs/fs.mjs';
+import { isObject, isNumber, numText, asU64 } from '../../core/rs/value.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { parseU64 } from '../../core/rs/num.mjs';
 import { XLAYER_CHAIN_INDEX, XLAYER_CHAIN_INDEX_NUM, agentCardStruct } from './models.mjs';
 import {
   buildErc8004Overlay, loadAgentSigningSession, loadSessionCert, loadSigningSeed, signAndBroadcastAgentTransaction, signKeyUuid,
 } from './signing.mjs';
 import { openIdentitySubscription } from './socket.mjs';
-import { fileName } from './_std.mjs';
 import {
   buildPrecheck, collectOwnedAgents, ensureAspHasAvatar, ensureAspHasService, identityWsUrl, normalizeBcp47, normalizeRole,
   normalizeRoleCode, normalizeSingletonObject, parseAgentUnsigned, parseServiceDeltas, parseServices, parseStarsArg, requireNonEmpty,
@@ -31,7 +33,7 @@ export const PUSH_WAIT_TIMEOUT_MS = 30000;
 // upstream: mutations.rs::MAX_UPLOAD_BYTES
 export const MAX_UPLOAD_BYTES = 1024 * 1024;
 
-const mget = (m, k) => (isObj(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
+const mget = (m, k) => (isObject(m) && Object.prototype.hasOwnProperty.call(m, k) && m[k] !== undefined ? m[k] : undefined);
 // `.map_err(format_api_error)` on an awaited call
 const mapApi = (p) => p.catch((e) => { throw formatApiError(e); });
 
@@ -340,6 +342,6 @@ export function extractAgentIdFromPush(push) {
   if (push === null || push === undefined) return null;
   const id = mget(push, 'agentId');
   if (typeof id === 'string' && trim(id) !== '') return trim(id);
-  if (isNum(id)) return numText(id);
+  if (isNumber(id)) return numText(id);
   return null;
 }

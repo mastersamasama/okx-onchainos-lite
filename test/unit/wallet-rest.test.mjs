@@ -785,56 +785,6 @@ test('api error types used by the BTC adapters surface unchanged', () => {
   assert.equal(e.message, 'Wallet API error (code=1): x');
 });
 
-// ── clap relations (lib/wallet/utxo/_clap.mjs) ───────────────────────
-// Oracles: stderr of the upstream 4.6.3 binary for the same argv (clap 4.6 Validator order:
-// conflicts in ArgMatcher order, then the required graph + required_unless; smart usage).
-
-const { clapValidate } = await import(L + 'wallet/utxo/_clap.mjs');
-const RECEIVE = { conflicts: [['chain', 'token'], ['chain', 'cursor']], requires: [['cursor', 'token']] };
-const MANAGE = { conflicts: [['outpoint', 'all']], requiredUnless: [['outpoint', ['all']]] };
-const STATUS = { conflicts: [['txHash', 'orderId']], requiredUnless: [['txHash', ['orderId']], ['orderId', ['txHash']]] };
-const clapErr = (path, argv, rules) => {
-  try { clapValidate({ path, argv }, rules); return null; } catch (e) { return e.message; }
-};
-const usage = (msg, use) => `error: ${msg}\n\nUsage: onchainos ${use}\n\nFor more information, try '--help'.\n`;
-
-test('clap: conflicts in matcher order, "with:" lists, and the requires-aware usage line', () => {
-  assert.equal(clapErr('wallet receive', ['wallet', 'receive', '--cursor', 'x', '--chain', 'y'], RECEIVE),
-    usage("the argument '--cursor <CURSOR>' cannot be used with '--chain <CHAIN>'", 'wallet receive --token <TOKEN> --cursor <CURSOR>'));
-  assert.equal(clapErr('wallet receive', ['wallet', 'receive', '--token', 'x', '--cursor', 'y', '--chain', 'z'], RECEIVE),
-    usage("the argument '--token <TOKEN>' cannot be used with '--chain <CHAIN>'", 'wallet receive --token <TOKEN> --cursor <CURSOR>'));
-  assert.equal(clapErr('wallet receive', ['wallet', 'receive', '--chain', '1', '--cursor', '9', '--token', 'x'], RECEIVE),
-    usage("the argument '--chain <CHAIN>' cannot be used with:\n  --cursor <CURSOR>\n  --token <TOKEN>", 'wallet receive --chain <CHAIN>'));
-  assert.equal(clapErr('wallet utxo unlock', ['wallet', 'utxo', 'unlock', '--all', '--force', '--outpoint', 'a', '--chain', 'bitcoin'], MANAGE),
-    usage("the argument '--all' cannot be used with '--outpoint <OUTPOINT>'", 'wallet utxo unlock --chain <CHAIN> --all --force'));
-  assert.equal(clapErr('wallet inscription status', ['wallet', 'inscription', 'status', '--chain', 'b', '--order-id', 'a', '--tx-hash', 'b'], STATUS),
-    usage("the argument '--order-id <ORDER_ID>' cannot be used with '--tx-hash <TX_HASH>'", 'wallet inscription status --chain <CHAIN> --order-id <ORDER_ID>'));
-  // the global --chain before the subcommand is not a leaf arg: no conflict (upstream then panics in cmd_receive)
-  assert.equal(clapErr('wallet receive', ['--chain', 'eth', 'wallet', 'receive', '--token', 'USDT'], RECEIVE), null);
-});
-
-test('clap: required graph, required_unless and requires; the global --chain does not satisfy a leaf --chain', () => {
-  const missing = (list) => `the following required arguments were not provided:\n${list.map((a) => `  ${a}`).join('\n')}`;
-  assert.equal(clapErr('wallet receive', ['wallet', 'receive', '--cursor', 'x'], RECEIVE),
-    usage(missing(['--token <TOKEN>']), 'wallet receive --token <TOKEN> --cursor <CURSOR>'));
-  assert.equal(clapErr('wallet utxo unlock', ['wallet', 'utxo', 'unlock', '--force', '--chain', 'bitcoin', '--operation-token', 'x'], MANAGE),
-    usage(missing(['--outpoint <OUTPOINT>']), 'wallet utxo unlock --chain <CHAIN> --force --operation-token <OPERATION_TOKEN> --outpoint <OUTPOINT>'));
-  assert.equal(clapErr('wallet utxo lock', ['wallet', 'utxo', 'lock'], MANAGE),
-    usage(missing(['--chain <CHAIN>', '--outpoint <OUTPOINT>']), 'wallet utxo lock --chain <CHAIN> --outpoint <OUTPOINT>'));
-  assert.equal(clapErr('wallet utxo unlock', ['--chain', 'bitcoin', 'wallet', 'utxo', 'unlock', '--all'], MANAGE),
-    usage(missing(['--chain <CHAIN>']), 'wallet utxo unlock --chain <CHAIN> --all'));
-  assert.equal(clapErr('wallet inscription status', ['wallet', 'inscription', 'status'], STATUS),
-    usage(missing(['--chain <CHAIN>', '--tx-hash <TX_HASH>', '--order-id <ORDER_ID>']), 'wallet inscription status --chain <CHAIN> --tx-hash <TX_HASH> --order-id <ORDER_ID>'));
-  assert.equal(clapErr('wallet inscription status', ['wallet', 'inscription', 'status', '--tx-hash', 'a'], STATUS),
-    usage(missing(['--chain <CHAIN>']), 'wallet inscription status --chain <CHAIN> --tx-hash <TX_HASH>'));
-  assert.equal(clapErr('wallet gas-station setup', ['wallet', 'gas-station', 'setup', '--from', 'x', '--relayer-id', 'y'], {}),
-    usage(missing(['--chain <CHAIN>', '--gas-token-address <GAS_TOKEN_ADDRESS>']),
-      'wallet gas-station setup --chain <CHAIN> --gas-token-address <GAS_TOKEN_ADDRESS> --relayer-id <RELAYER_ID> --from <FROM>'));
-  assert.equal(clapErr('wallet utxo reclaim', ['wallet', 'utxo', 'reclaim', '--force'], {}),
-    usage(missing(['--chain <CHAIN>', '--tx-hash <TX_HASH>']), 'wallet utxo reclaim --chain <CHAIN> --tx-hash <TX_HASH> --force'));
-  assert.equal(clapErr('wallet utxo unlock', ['wallet', 'utxo', 'unlock', '--chain', 'bitcoin', '--outpoint', 'a', '--outpoint', 'b'], MANAGE), null);
-});
-
 test('balance: --all batch cache keeps server number forms and rounds {:.2} half-to-even', async () => {
   resetHome();
   STUB.routes['/priapi/v5/wallet/agentic/asset/wallet-all-token-balances-batch'] = [{ raw: '{"code":"0","msg":"success","data":['

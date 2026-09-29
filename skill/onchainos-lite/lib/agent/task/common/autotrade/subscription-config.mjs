@@ -4,10 +4,12 @@
 import { join } from 'node:path';
 import { stringify, struct } from '../../../../core/json.mjs';
 import { jobIdIsSafe } from './grants.mjs';
-import { fromSlice, T } from './_serde-json.mjs';
-import { onchainosHome, exists, readBytes, writeSecure, nowMs } from './_fs.mjs';
+import { fromSlice, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
+import { exists, readBytes, io } from '../../../../core/rs/fs.mjs';
+import { nowMs } from '../../../../core/rs/time.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
 import { ctx } from './_err.mjs';
-import { trim } from '../../../_rs.mjs';
 
 const CONFIG_VERSION = 1;
 
@@ -69,7 +71,7 @@ export function saveExecutionMode(agentId, serviceId, mode, replace) {
   else throw new Error(`subscription automatic-copy preference is already ${current}; use --replace only after a new user confirmation`);
   const config = struct({ version: CONFIG_VERSION, agentId, serviceId, executionMode: mode, updatedAtMs: nowMs() });
   const path = configPath(agentId, serviceId);
-  try { writeSecure(path, stringify(config, true)); } catch (e) {
+  try { io(() => writeSecure(path, stringify(config, true))); } catch (e) {
     throw new Error(`failed to persist subscription execution configuration at ${path}: ${e.message}`);
   }
   return outcome;

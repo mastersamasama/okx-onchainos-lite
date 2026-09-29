@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: unit tests (crypto vectors, transport, helpers)
-        run: node --test test/unit/
+        run: node tools/test-unit.mjs
       - name: coverage gate (every upstream command has a handler with the upstream options)
         run: node tools/check.mjs
       - name: generated command docs are current

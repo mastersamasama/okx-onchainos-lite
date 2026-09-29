@@ -2,7 +2,8 @@
 // subscription execution preference command, and the wallet-login post-condition hooks
 // (new-device subscription routing + active-subscription summary).
 import { deviceId as cachedDeviceId } from '../../../core/device.mjs';
-import { get, asStr, asI64, asBool, asArray, trim, eqIgnoreAsciiCase } from '../../_rs.mjs';
+import { get, asStr, asI64, asBool, asArray } from '../../../core/rs/value.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../../core/rs/str.mjs';
 import { TaskApiClient } from '../common/network/task-api-client.mjs';
 import { selectSubscriptionAgentId } from '../common/subscription-identity.mjs';
 import { findService } from '../common/index.mjs';
@@ -10,10 +11,12 @@ import { resolveUserAgent } from './create.mjs';
 import * as deviceRouting from './device-routing.mjs';
 import { ExecutionMode, saveExecutionMode } from '../common/autotrade/subscription-config.mjs';
 
+// The lifecycle playbooks, subscription ops and autotrade classifiers are imported on first use:
+// wallet login imports this module inside its 4 s post-login preparation budget.
+
 export { validateDraftFields } from './create.mjs';
 
-// upstream: mod.rs `pub(crate) use flow_lifecycle::try_recover_from_temp_file` (A4-owned module).
-// Loaded lazily: the lifecycle playbooks are heavy and wallet login imports this module.
+// upstream: mod.rs `pub(crate) use flow_lifecycle::try_recover_from_temp_file`
 export async function tryRecoverFromTempFile(...args) {
   const { tryRecoverFromTempFile: f } = await import('./flow-lifecycle/core.mjs');
   return f(...args);
@@ -48,7 +51,7 @@ export function composePostLoginSubscriptions(subscriptions) {
   return n === 0 ? null : { activeSubscriptionCount: n };
 }
 
-// upstream: mod.rs::resolve_post_login_agentic_id (the wallet login passes a deadline hint; unused)
+// upstream: mod.rs::resolve_post_login_agentic_id
 export async function resolvePostLoginAgenticId() {
   const [agentId] = await resolveUserAgent();
   return agentId;
@@ -85,7 +88,7 @@ export async function preparePostLoginSubscriptions(agenticId) {
   } catch { return null; }
 }
 
-// upstream: subscription_ops.rs::fetch_my_subscriptions_snapshot_for_agent (A4-owned; Buyer role).
+// subscription_ops.rs::fetch_my_subscriptions_snapshot_for_agent(client, Buyer, None, agent_id)
 async function buyerSnapshot(client, agentId) {
   const { fetchMySubscriptionsSnapshotForAgent } = await import('./subscription-ops.mjs');
   return fetchMySubscriptionsSnapshotForAgent(client, 'buyer', undefined, agentId);
@@ -152,12 +155,12 @@ async function resolveSubscriptionServiceDescription(client, agentId, subscripti
 }
 
 // upstream: mod.rs::add_post_login_autotrade_prechecks — bounded execution-profile hints; all
-// failures ignored. Classification / profile storage are owned by the autotrade unit.
+// failures ignored.
 export async function addPostLoginAutotradePrechecks(client, subscriptions, agentId) {
   const list = asArray(get(subscriptions, 'list'));
   if (!list) return;
-  const { classifyDescription: classify } = await import('../common/autotrade/tooling.mjs');
-  const { saveFromDescription: save } = await import('../common/autotrade/profile.mjs');
+  const { classifyDescription } = await import('../common/autotrade/tooling.mjs');
+  const { saveFromDescription } = await import('../common/autotrade/profile.mjs');
   for (const sub of list) {
     if (asI64(get(sub, 'status')) !== 1 || asBool(get(sub, 'thisDeviceReceives')) !== true) continue;
     const jobId = asStr(get(sub, 'jobId')) ?? '';
@@ -168,9 +171,9 @@ export async function addPostLoginAutotradePrechecks(client, subscriptions, agen
     try { description = await resolveSubscriptionServiceDescription(client, agentId, sub); } catch { continue; }
     if (description === undefined) continue;
     try {
-      const classified = await classify(description);
+      const classified = await classifyDescription(description);
       if (!classified || !(classified.classes ?? []).length) continue;
-      await save(jobId, serviceId, provider, description);
+      await saveFromDescription(jobId, serviceId, provider, description);
     } catch {}
   }
 }

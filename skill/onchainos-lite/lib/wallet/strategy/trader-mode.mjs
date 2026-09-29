@@ -1,11 +1,11 @@
 // Trader Mode (SA / SD-A) primitives: intent build/sign, SD-A activation and the 60018
 // retry-once rule — upstream commands/agentic_wallet/strategy/trader_mode.rs.
-import { trim } from '../../core/_rust-str.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { ed25519SignHex, ed25519SignEip191 } from '../../core/crypto.mjs';
 import * as api from './api.mjs';
 import { isUpgradeRequired } from './status.mjs';
 import { isSolana } from './supported-chains.mjs';
 import { registerTeeInfoReq } from './types.mjs';
-import { ed25519SignHex, ed25519SignEip191 } from './_crypto.mjs';
 
 // upstream: trader_mode.rs::STRATEGY_TYPE_NAME_PHASE_1
 export const STRATEGY_TYPE_NAME_PHASE_1 = 'LimitOrderUbased';

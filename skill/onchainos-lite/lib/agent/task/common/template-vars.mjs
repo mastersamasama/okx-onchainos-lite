@@ -1,5 +1,7 @@
 // Template-variable decode / validate / render — upstream task/common/template_vars.rs.
-import { b64StdDecode, byteLen, trim, utf8Strict } from '../../_rs.mjs';
+import { B64 } from '../../../core/rs/codec.mjs';
+import { byteLen, trim } from '../../../core/rs/str.mjs';
+import { decodeUtf8 } from '../../../core/rs/fs.mjs';
 
 // upstream: template_vars.rs::TEMPLATE_VAR_WHITELIST
 export const TEMPLATE_VAR_WHITELIST = Object.freeze(['__OKX_TASK_TITLE__', '__OKX_TASK_LABEL_TITLE__', '__OKX_REFUND_SERVICE_NAME__',
@@ -115,11 +117,11 @@ function parseObjectNoDup(text) {
 // upstream: template_vars.rs::decode_and_validate → Map key → value (sorted by key)
 export function decodeAndValidate(b64) {
   let bytes;
-  try { bytes = b64StdDecode(trim(b64)); } catch { throw new TemplateVarError('Invalid'); }
+  try { bytes = B64.STANDARD.decode(trim(b64)); } catch { throw new TemplateVarError('Invalid'); }
   if (bytes.length > MAX_TEMPLATE_PAYLOAD_BYTES) throw new TemplateVarError('Invalid');
   let text;
   // std::str::from_utf8 keeps a leading U+FEFF, which serde_json rejects.
-  try { text = utf8Strict(bytes); } catch { throw new TemplateVarError('Invalid'); }
+  try { text = decodeUtf8(bytes); } catch { throw new TemplateVarError('Invalid'); }
   const raw = parseObjectNoDup(text);
   const out = new Map();
   for (const key of [...raw.keys()].sort((a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b)))) {

@@ -2,10 +2,13 @@
 // Layout: <home>/deliverables/<role>/<jobId>[_<title>]/{manifest.json, files…}
 import { existsSync, opendirSync, readFileSync, writeFileSync, mkdirSync, renameSync, copyFileSync, rmSync, statSync } from 'node:fs';
 import { join, basename, extname } from 'node:path';
-import { onchainosHome } from '../../_home.mjs';
+import { home as onchainosHome } from '../../../core/home.mjs';
 import { stringify, struct } from '../../../core/json.mjs';
-import { fromStr, T } from '../../../wallet/_serde-json.mjs';
-import { trim, isAlphanumeric, fixed1Ratio, localNow, localStamp, rfc3339Of, ioErrorText } from '../../_rs.mjs';
+import { fromStr, T } from '../../../core/serde.mjs';
+import { trim, isAlphanumeric } from '../../../core/rs/str.mjs';
+import { fixed1Ratio } from '../../../core/rs/num.mjs';
+import { localNow, localStamp, rfc3339Of } from '../../../core/rs/time.mjs';
+import { ioErrorText } from '../../../core/rs/fs.mjs';
 import { validateJobIdPathComponent } from './util.mjs';
 
 const MAX_FILE_SIZE = 100 * 1024 * 1024;

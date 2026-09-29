@@ -1,15 +1,10 @@
 // wallet gas-station update-default-token | enable | disable | status | setup
 // upstream: commands/agentic_wallet/mod.rs::execute (GasStation arm) → gas_station.rs::execute
 import { execute } from '../../wallet/gas-station.mjs';
-import { clap } from '../../wallet/utxo/_clap.mjs';
 
-// Every leaf's --chain is required at the leaf (the global --chain does not satisfy it).
 const leaf = (uses, toCommand) => ({
   uses,
-  run(ctx, o) {
-    clap(ctx, {});
-    return execute(toCommand(o));
-  },
+  run: (ctx, o) => execute(toCommand(o)),
 });
 
 export default {

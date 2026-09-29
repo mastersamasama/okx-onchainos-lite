@@ -1,6 +1,7 @@
 // Fetch one current marketplace Service for task creation — upstream task/user/service_detail.rs.
 import { stringify } from '../../../core/json.mjs';
-import { get, asStr, asI64, asU64, asArray, trim } from '../../_rs.mjs';
+import { get, asStr, asI64, asU64, asArray } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 
 const SERVICE_DETAIL_PATH = '/priapi/v1/aieco/task/asp/service/search';
 

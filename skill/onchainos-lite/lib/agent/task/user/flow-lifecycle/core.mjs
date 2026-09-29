@@ -3,12 +3,16 @@ import { readFileSync, readdirSync, statSync, rmSync, renameSync, mkdirSync, chm
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { createHash, randomBytes } from 'node:crypto';
-import { stringify, toValue, F64 } from '../../../../core/json.mjs';
+import { stringify, toValue } from '../../../../core/json.mjs';
 import { auditLog } from '../../../../core/audit.mjs';
 import { displayTop } from '../../../../wallet/api.mjs';
-import { fromStr } from '../../../../wallet/_serde-json.mjs';
-import { onchainosHome } from '../../../_home.mjs';
-import { get, asStr, isObj, trim, lines, charCount, isControl, byteLen, ioErrorText, nowSecs, readToString } from '../../../_rs.mjs';
+import { fromStr } from '../../../../core/serde.mjs';
+import { home as onchainosHome } from '../../../../core/home.mjs';
+import { get, asStr } from '../../../../core/rs/value.mjs';
+import { trim, lines, charCount, isControl, byteLen } from '../../../../core/rs/str.mjs';
+import { ioErrorText, readToString } from '../../../../core/rs/fs.mjs';
+import { nowSecs } from '../../../../core/rs/time.mjs';
+import { jcs } from '../../../../core/rs/jcs.mjs';
 import { PreFetchedTaskContext, preFetchedDeliverable, findService } from '../../common/index.mjs';
 import { TaskApiClient } from '../../common/network/task-api-client.mjs';
 import { requestCommandBlock } from '../../common/pending-v2.mjs';
@@ -17,10 +21,18 @@ import { markPending } from '../../common/review-gate.mjs';
 import { SubscriptionTradePath } from '../../common/config.mjs';
 import * as deliverables from '../../common/deliverables.mjs';
 import * as okxA2a from '../../common/okx-a2a.mjs';
+import * as consent from '../../common/autotrade/consent.mjs';
+import * as deliveryQueue from '../../common/autotrade/delivery-queue.mjs';
+import * as executor from '../../common/autotrade/executor.mjs';
+import { guidePath } from '../../common/autotrade/guide.mjs';
+import { determineActiveDelivery } from '../../common/autotrade/subscription.mjs';
+import { ExecutionMode, executionMode, saveExecutionMode } from '../../common/autotrade/subscription-config.mjs';
+import { makeNotifyOnly, notifyOnlyJson } from '../../common/autotrade/card.mjs';
+import { pushDegradeNotice } from '../../common/autotrade/notify.mjs';
 import { isZeroDecimal } from '../refund.mjs';
 import * as complete from '../v2/complete.mjs';
 import * as reject from '../v2/reject.mjs';
-import { content, autotrade, handleRejectApply, handleConfirmAccept } from './_peers.mjs';
+import { content, handleRejectApply, handleConfirmAccept } from './_peers.mjs';
 
 // ── A2A deliver content parser ──
 // upstream: core.rs::parse_deliver_content → { kind: 'file', fileKey, digest, salt, nonce, secret, filename } | { kind: 'text', text } | undefined
@@ -116,26 +128,6 @@ function parseA2aFile(path, expectedJobId, expectedAgentId) {
   return json === undefined ? undefined : parseA2aEnvelope(json, expectedJobId, expectedAgentId);
 }
 
-// serde_jcs 0.1 `to_vec` of a serde_json::Value: serde_json string escaping (same as
-// JSON.stringify for valid strings), integers (i64/u64) printed exactly by itoa, floats in
-// ECMAScript form (ryu-js; ±0 → "0"), and object members ordered by the *bytes of the
-// serialized key* (`"` + escaped UTF-8 + `"`, a BTreeMap<Vec<u8>, _>) — not by UTF-16 code units.
-export function jcs(v) {
-  if (v === null || v === undefined) return 'null';
-  if (typeof v === 'boolean') return v ? 'true' : 'false';
-  if (typeof v === 'string') return JSON.stringify(v);
-  if (typeof v === 'bigint') return v.toString();
-  if (typeof v === 'number') return Number.isInteger(v) ? (Object.is(v, -0) ? '0' : v.toString()) : String(v);
-  if (v instanceof F64) { const n = v.valueOf(); return n === 0 ? '0' : String(n); }
-  if (Array.isArray(v)) return `[${v.map(jcs).join(',')}]`;
-  const members = Object.keys(v).filter((k) => v[k] !== undefined).map((k) => {
-    const key = JSON.stringify(k);
-    return { bytes: Buffer.from(key, 'utf8'), text: `${key}:${jcs(v[k])}` };
-  });
-  members.sort((a, b) => Buffer.compare(a.bytes, b.bytes));
-  return `{${members.map((m) => m.text).join(',')}}`;
-}
-
 // JSON pointer lookup (serde_json::Value::pointer) for simple `/a/b` paths.
 const pointer = (v, p) => p.split('/').slice(1).reduce((acc, k) => (acc === undefined ? undefined : get(acc, k)), v);
 const idOk = (s) => s !== undefined && trim(s) !== '' && byteLen(trim(s)) <= 512 && ![...trim(s)].some(isControl);
@@ -206,20 +198,12 @@ const NO_GUIDE_SIGNAL_ONLY_REASON = `subscription service has no Service Guide; 
 
 const serviceHasNonblankGuide = (service) => { const g = asStr(get(service, 'serviceGuide')); return g !== undefined && trim(g) !== ''; };
 
-async function subscriptionConfig() {
-  const m = await autotrade('subscription-config');
-  if (!m) throw new Error('autotrade subscription configuration is unavailable in this build');
-  return m;
-}
-const modeName = (m, mode) => m.ExecutionMode?.[mode] ?? (mode === 'GuideDirect' ? 'guide_direct' : 'signal_only');
-
 // upstream: core.rs::save_signal_only_when_service_has_no_guide → reason | undefined
 async function saveSignalOnlyWhenServiceHasNoGuide(agentId, active) {
   const service = await findService(active.providerAgentId, active.serviceId);
   if (service === undefined) throw new Error('service is not available to classify subscription execution mode');
   if (serviceHasNonblankGuide(service)) return undefined;
-  const sc = await subscriptionConfig();
-  await sc.saveExecutionMode(agentId, active.serviceId, modeName(sc, 'SignalOnly'), false);
+  saveExecutionMode(agentId, active.serviceId, ExecutionMode.SignalOnly, false);
   return NO_GUIDE_SIGNAL_ONLY_REASON;
 }
 
@@ -227,29 +211,20 @@ async function saveSignalOnlyWhenServiceHasNoGuide(agentId, active) {
 async function recoverMissingSubscriptionExecutionMode(jobId, agentId, active) {
   const service = await findService(active.providerAgentId, active.serviceId);
   if (service === undefined) throw new Error('service is not available to classify subscription execution mode');
-  const sc = await subscriptionConfig();
   if (!serviceHasNonblankGuide(service)) {
-    await sc.saveExecutionMode(agentId, active.serviceId, modeName(sc, 'SignalOnly'), false);
-    return modeName(sc, 'SignalOnly');
+    saveExecutionMode(agentId, active.serviceId, ExecutionMode.SignalOnly, false);
+    return ExecutionMode.SignalOnly;
   }
-  const executor = await autotrade('executor');
-  if (!executor?.restoreSubscriptionLocalContract) throw new Error('autotrade executor is unavailable in this build');
   return (await executor.restoreSubscriptionLocalContract(jobId, agentId, active.providerAgentId, active.serviceId, service)) ?? undefined;
-}
-
-async function determineActiveDelivery(client, jobId, agentId) {
-  const sub = await autotrade('subscription');
-  if (!sub?.determineActiveDelivery) throw new Error('autotrade subscription lookup is unavailable in this build');
-  return sub.determineActiveDelivery(client, jobId, agentId);
 }
 
 const EXECUTION_CONTRACT = () => ({
   path: 'guide_direct', claimRequired: true, claimCommand: 'onchainos agent autotrade-direct-claim', finalizeCommand: 'onchainos agent autotrade-direct-finalize',
   retryPolicy: 'never_retry_transaction', preExecutionTerminalReporter: 'onchainos agent autotrade-delivery-report',
 });
-async function guidePathOf(jobId) {
-  const guide = await autotrade('guide');
-  try { const p = await guide?.guidePath?.(jobId); return p === undefined || p === null ? null : String(p); } catch { return null; }
+// guide::guide_path(job_id).ok().map(|p| p.display().to_string())
+function guidePathOf(jobId) {
+  try { return guidePath(jobId); } catch { return null; }
 }
 
 // upstream: core.rs::route_subscription_delivery_to_skill → prompt | undefined
@@ -263,34 +238,27 @@ export async function routeSubscriptionDeliveryToSkill(jobId, agentId, savedPath
       executionContract: { path: 'signal_only', directMoneyMovingCommandAllowed: false, reason } });
   }
   let mode;
-  try { mode = await (await subscriptionConfig()).executionMode(agentId, active.serviceId); } catch (error) {
+  try { mode = executionMode(agentId, active.serviceId); } catch (error) {
     return signalOnlyPrompt({ source, jobId, agentId, providerAgentId: active.providerAgentId, savedPath, deliverableType, receivedAtMs: nowMs(),
       executionPath: 'signal_only', executionContract: { path: 'signal_only', directMoneyMovingCommandAllowed: false, reason: displayTop(error) } });
   }
   if (mode === null || mode === undefined) { try { mode = await recoverMissingSubscriptionExecutionMode(jobId, agentId, active); } catch { mode = undefined; } }
-  const sc = await autotrade('subscription-config');
-  const guideDirect = sc ? modeName(sc, 'GuideDirect') : 'guide_direct';
-  const signalOnly = sc ? modeName(sc, 'SignalOnly') : 'signal_only';
-  if (mode !== guideDirect) {
-    const reason = mode === signalOnly ? 'subscription execution mode is signal_only' : MISSING_EXECUTION_CONFIG_GUIDE_RECOVERY_REASON;
+  if (mode !== ExecutionMode.GuideDirect) {
+    const reason = mode === ExecutionMode.SignalOnly ? 'subscription execution mode is signal_only' : MISSING_EXECUTION_CONFIG_GUIDE_RECOVERY_REASON;
     return signalOnlyPrompt({ source, jobId, agentId, providerAgentId: active.providerAgentId, serviceId: active.serviceId, savedPath, deliverableType,
       receivedAtMs: nowMs(), executionPath: 'signal_only', executionContract: { path: 'signal_only', directMoneyMovingCommandAllowed: false, reason } });
   }
   const deliveryId = modelDeliveryId(jobId, active.providerAgentId, savedPath, transportIdentity);
   const receivedAtMs = nowMs();
   try {
-    const consent = await autotrade('consent');
-    if (!consent?.registerDeliveryContextWithPath) throw new Error('autotrade consent storage is unavailable in this build');
-    await consent.registerDeliveryContextWithPath(jobId, agentId, active.providerAgentId, transportIdentity?.originSessionKey ?? null, deliveryId, savedPath,
+    consent.registerDeliveryContextWithPath(jobId, agentId, active.providerAgentId, transportIdentity?.originSessionKey ?? null, deliveryId, savedPath,
       deliverableType, receivedAtMs, SubscriptionTradePath.AgentDirect);
   } catch (error) {
     const reason = 'delivery_context_unreadable';
     auditLog('cli', 'user/subscription_signal_context', false, 0, [`jobId=${jobId}`, `agentId=${agentId}`, `deliveryId=${deliveryId}`, `reason=${reason}`], displayTop(error));
-    const card = await autotrade('card');
-    const notify = await autotrade('notify');
-    const notice = card?.makeNotifyOnly ? card.makeNotifyOnly(savedPath, reason) : { reason, savedPath };
-    try { await notify?.pushDegradeNotice?.(notice, jobId); } catch {}
-    const $0 = stringify(card?.notifyOnlyJson ? card.notifyOnlyJson(notice) : notice);
+    const notice = makeNotifyOnly(savedPath, reason);
+    try { await pushDegradeNotice(notice, jobId); } catch {}
+    const $0 = stringify(notifyOnlyJson(notice));
     return `[Current action] active_subscription_signal_context_failed\n`
   + `[Role] User\n`
   + `\n`
@@ -302,7 +270,7 @@ export async function routeSubscriptionDeliveryToSkill(jobId, agentId, savedPath
     'subscriptionActive=true', 'executionEligibility=deferred_to_direct_claim']);
   const runtimeContext = {
     source: 'active_subscription_signal', jobId, agentId, providerAgentId: active.providerAgentId, deliveryId, savedPath, deliverableType, receivedAtMs,
-    guidePath: await guidePathOf(jobId), executionMode: 'guide_direct', executionPath: SubscriptionTradePath.AgentDirect, executionContract: EXECUTION_CONTRACT(),
+    guidePath: guidePathOf(jobId), executionMode: 'guide_direct', executionPath: SubscriptionTradePath.AgentDirect, executionContract: EXECUTION_CONTRACT(),
   };
   return subscriptionSignalPrompt(runtimeContext, SubscriptionTradePath.AgentDirect);
 }
@@ -321,21 +289,17 @@ const isLookupOffDegrade = (e) => e?.kind === 'Degrade' && e?.value === 'lookup_
 
 // upstream: core.rs::resume_queued_subscription_delivery → prompt text
 export async function resumeQueuedSubscriptionDelivery(jobId, agentId, deliveryId, resumeEnvelopeVersion, resumeAttempt) {
-  const queue = await autotrade('delivery-queue');
   let ack;
-  try {
-    if (!queue?.acknowledgeResume) throw new Error('delivery queue unavailable');
-    ack = await queue.acknowledgeResume(jobId, deliveryId, resumeEnvelopeVersion ?? null, resumeAttempt ?? null);
-  } catch { return `[Queued auto-trade recovery deferred] The processing acknowledgement could not be persisted. Do not submit an order; the durable queue will retry safely.`; }
-  if (ack === 'DuplicateOrStale' || ack?.kind === 'DuplicateOrStale') return `[Queued auto-trade recovery ignored] This resume message was already acknowledged or is stale. Do not submit an order.`;
-  if (ack === 'NotQueueHead' || ack?.kind === 'NotQueueHead') return `[Queued auto-trade recovery ignored] This delivery is no longer the active queue head. Do not submit an order.`;
-  const consent = await autotrade('consent');
+  try { ack = deliveryQueue.acknowledgeResume(jobId, deliveryId, resumeEnvelopeVersion ?? null, resumeAttempt ?? null); } catch {
+    return `[Queued auto-trade recovery deferred] The processing acknowledgement could not be persisted. Do not submit an order; the durable queue will retry safely.`;
+  }
+  if (ack === deliveryQueue.ResumeAck.DuplicateOrStale) return `[Queued auto-trade recovery ignored] This resume message was already acknowledged or is stale. Do not submit an order.`;
+  if (ack === deliveryQueue.ResumeAck.NotQueueHead) return `[Queued auto-trade recovery ignored] This delivery is no longer the active queue head. Do not submit an order.`;
   let context;
-  try { context = await consent?.loadDeliveryContext?.(jobId, deliveryId); } catch { context = undefined; }
+  try { context = consent.loadDeliveryContext(jobId, deliveryId); } catch { context = undefined; }
   if (!context || context.agentId !== agentId) return `[Queued auto-trade recovery failed] Trusted delivery context is unavailable. Do not submit an order.`;
-  const executor = await autotrade('executor');
   const failTerminal = async (reason) => {
-    try { await executor?.reportDelivery?.(jobId, deliveryId, 'failed_before_execution', reason); } catch {}
+    try { await executor.reportDelivery(jobId, deliveryId, 'failed_before_execution', reason); } catch {}
     return `[Queued auto-trade recovery stopped] ${reason}. The CLI persisted and reported a terminal failure; do not submit an order.`;
   };
   let isFile = false;
@@ -343,26 +307,24 @@ export async function resumeQueuedSubscriptionDelivery(jobId, agentId, deliveryI
   if (!isFile) return failTerminal('the saved delivery artifact is unavailable');
   const $0 = context.savedPath;
   const clearAndAdvance = async () => {
-    try { await consent?.clearPendingDelivery?.(jobId, deliveryId); } catch {}
-    try { await queue?.completeAndAdvance?.(jobId, deliveryId); } catch {}
+    try { consent.clearPendingDelivery(jobId, deliveryId); } catch {}
+    try { await deliveryQueue.completeAndAdvance(jobId, deliveryId); } catch {}
   };
   let active;
   try { active = await determineActiveDelivery(new TaskApiClient(), jobId, agentId); } catch (e) {
     if (isLookupOffDegrade(e)) {
-      try { await queue?.scheduleRetry?.(jobId, deliveryId); } catch {}
+      try { deliveryQueue.scheduleRetry(jobId, deliveryId); } catch {}
       return `[Queued auto-trade recovery deferred] Subscription lookup is temporarily unavailable. The delivery remains queued for bounded retry; do not submit an order and do not report it as skipped.`;
     }
     await clearAndAdvance();
     return `[Queued subscription Signal] The saved delivery at ${$0} is receive-and-display-only because the subscription is no longer Active. No order was submitted and no execution outcome was created.`;
   }
   if (active.providerAgentId !== context.providerAgentId) { await clearAndAdvance(); return `[Queued subscription Signal] The saved delivery at ${$0} is receive-and-display-only because the Active subscription no longer matches this delivery. No order was submitted and no execution outcome was created.`; }
-  let sc;
   let mode;
-  try { sc = await subscriptionConfig(); mode = await sc.executionMode(agentId, active.serviceId); } catch (error) {
+  try { mode = executionMode(agentId, active.serviceId); } catch (error) {
     return failTerminal(`subscription execution configuration is unavailable: ${displayTop(error)}`);
   }
-  const guideDirect = modeName(sc, 'GuideDirect'), signalOnly = modeName(sc, 'SignalOnly');
-  if (mode === signalOnly) { await clearAndAdvance(); return `[Queued subscription Signal] The saved delivery at ${$0} is receive-and-display-only because automatic copy-trading is not enabled for this subscription. No order was submitted and no execution outcome was created.`; }
+  if (mode === ExecutionMode.SignalOnly) { await clearAndAdvance(); return `[Queued subscription Signal] The saved delivery at ${$0} is receive-and-display-only because automatic copy-trading is not enabled for this subscription. No order was submitted and no execution outcome was created.`; }
   if (mode === null || mode === undefined) {
     let recovered;
     try { recovered = await recoverMissingSubscriptionExecutionMode(jobId, agentId, active); } catch (error) {
@@ -371,14 +333,14 @@ export async function resumeQueuedSubscriptionDelivery(jobId, agentId, deliveryI
       if (reason !== undefined) { await clearAndAdvance(); return `[Queued subscription Signal] The saved delivery at ${$0} is receive-and-display-only because ${reason}. No order was submitted and no execution outcome was created.`; }
       return failTerminal(`subscription execution configuration is missing and could not be classified from the Service Guide: ${displayTop(error)}`);
     }
-    if (recovered === signalOnly) { await clearAndAdvance(); return `[Queued subscription Signal] The saved delivery at ${$0} is receive-and-display-only because automatic copy-trading is not enabled for this subscription. No order was submitted and no execution outcome was created.`; }
-    if (recovered !== guideDirect) return failTerminal(MISSING_EXECUTION_CONFIG_GUIDE_RECOVERY_REASON);
-  } else if (mode !== guideDirect) {
+    if (recovered === ExecutionMode.SignalOnly) { await clearAndAdvance(); return `[Queued subscription Signal] The saved delivery at ${$0} is receive-and-display-only because automatic copy-trading is not enabled for this subscription. No order was submitted and no execution outcome was created.`; }
+    if (recovered !== ExecutionMode.GuideDirect) return failTerminal(MISSING_EXECUTION_CONFIG_GUIDE_RECOVERY_REASON);
+  } else if (mode !== ExecutionMode.GuideDirect) {
     return failTerminal(MISSING_EXECUTION_CONFIG_GUIDE_RECOVERY_REASON);
   }
   const runtimeContext = {
     source: 'queued_active_subscription_signal', jobId, agentId, providerAgentId: active.providerAgentId, deliveryId: context.deliveryId,
-    savedPath: context.savedPath, deliverableType: context.deliverableType, receivedAtMs: context.receivedAtMs, guidePath: await guidePathOf(jobId),
+    savedPath: context.savedPath, deliverableType: context.deliverableType, receivedAtMs: context.receivedAtMs, guidePath: guidePathOf(jobId),
     executionMode: 'guide_direct', executionPath: SubscriptionTradePath.AgentDirect,
     queueRecovery: { fifo: true, revalidateArtifact: true, revalidateSubscription: true, finalEligibilityAt: 'autotrade-direct-claim' },
     executionContract: EXECUTION_CONTRACT(),

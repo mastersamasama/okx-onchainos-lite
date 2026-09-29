@@ -4,9 +4,11 @@ import { context } from '../../../core/errors.mjs';
 import { buildFundingBundleForAddress, FUNDING_OPERATION_TASK_CREATION } from '../../../core/funding.mjs';
 import { parseRustF64 } from '../../../core/cli.mjs';
 import { ensureTokensRefreshed } from '../../../wallet/auth.mjs';
-import { fromStr } from '../../../wallet/_serde-json.mjs';
+import { fromStr } from '../../../core/serde.mjs';
 import { selfOutput, utf8Lossy } from '../../_proc.mjs';
-import { get, asBool, asF64, isObj, isNum, trim, eqIgnoreAsciiCase, spawnErrorText } from '../../_rs.mjs';
+import { get, asBool, asF64, isObject, isNumber } from '../../../core/rs/value.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../../core/rs/str.mjs';
+import { spawnErrorText } from '../../../core/rs/process.mjs';
 import { currentAccountXlayerAddress, ensureSufficientBalance } from '../common/index.mjs';
 import { resolveCurrentDepositInfo } from '../common/deposit-qr.mjs';
 import { resolveUserAgent, findInsufficientBalance } from './create.mjs';
@@ -43,14 +45,14 @@ async function fetchServiceDetail(userAgentId, sid) {
   if (asBool(get(response, 'ok')) !== true) throw new Error('service-detail returned a non-success response');
   const service = get(response, 'data');
   if (service === undefined) throw new Error('service-detail response is missing data');
-  if (!isObj(service)) throw new Error('service-detail response data must be a Service object');
+  if (!isObject(service)) throw new Error('service-detail response data must be a Service object');
   return service;
 }
 
 // upstream: task_create_prepare.rs::decimal (private) → number | undefined
 function decimal(value, field) {
   if (value === undefined) return undefined;
-  let parsed = isNum(value) ? asF64(value) : undefined;
+  let parsed = isNumber(value) ? asF64(value) : undefined;
   if (parsed === undefined && typeof value === 'string') { try { parsed = parseRustF64(trim(value)); } catch { parsed = undefined; } }
   if (parsed === undefined) throw new Error(`selected Service field \`${field}\` must be a number`);
   if (!Number.isFinite(parsed) || parsed < 0) throw new Error(`selected Service field \`${field}\` must be a non-negative number`);

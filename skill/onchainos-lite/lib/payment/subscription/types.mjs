@@ -2,8 +2,8 @@
 // Struct builders keep serde declaration order (camelCase); decoders reproduce the serde derive +
 // custom `flex_*` deserializers (errors carry serde_json's Display text).
 import { struct, stringify, F64, formatF64 } from '../../core/json.mjs';
-import { trim } from '../../core/_rust-str.mjs';
-import { isObj, isNum, numText, asU64, asI64 } from '../_rs.mjs';
+import { trim, strDebug } from '../../core/rs/str.mjs';
+import { isObject, isNumber, numText, asU64, asI64 } from '../../core/rs/value.mjs';
 
 // upstream: types.rs::SubscriptionTermsWire (17 signed fields + unsigned planId)
 export const subscriptionTermsWire = (t) => struct({
@@ -32,18 +32,6 @@ export const subscriptionCacheEntry = (e) => struct({
 });
 
 // ── serde error texts ────────────────────────────────────────────────
-// Rust `{:?}` of a str.
-export function strDebug(s) {
-  let out = '"';
-  for (const ch of String(s)) {
-    const cp = ch.codePointAt(0);
-    const e = { 0: '\\0', 9: '\\t', 10: '\\n', 13: '\\r', 34: '\\"', 92: '\\\\' }[cp];
-    if (e) out += e;
-    else if (cp < 0x20 || (cp >= 0x7f && cp <= 0x9f) || cp === 0xad) out += `\\u{${cp.toString(16)}}`;
-    else out += ch;
-  }
-  return out + '"';
-}
 // serde `Unexpected` Display for a JSON value.
 export function unexpected(v) {
   if (v === null) return 'null';
@@ -60,13 +48,13 @@ const byteCmp = (a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b));
 // upstream: types.rs::flex_string — string | number → string; null → ""; else error.
 export function flexString(v) {
   if (typeof v === 'string') return v;
-  if (isNum(v)) return numText(v);
+  if (isNumber(v)) return numText(v);
   if (v === null) return '';
   throw new Error(`expected string or number, got ${stringify(v)}`);
 }
 // upstream: types.rs::flex_u64 — number (u64) | trimmed string (empty → 0) | null → 0.
 export function flexU64(v) {
-  if (isNum(v)) { const u = asU64(v); if (u === undefined) throw new Error('number out of u64 range'); return u; }
+  if (isNumber(v)) { const u = asU64(v); if (u === undefined) throw new Error('number out of u64 range'); return u; }
   if (typeof v === 'string') {
     const t = trim(v);
     if (t === '') return 0;
@@ -104,7 +92,7 @@ function decodeStruct(name, fields, v) {
     if (v.length > fields.length) throw new Error(`invalid length ${v.length}, expected struct ${name} with ${fields.length} elements`);
     return out;
   }
-  if (!isObj(v)) throw invalidType(v, `struct ${name}`);
+  if (!isObject(v)) throw invalidType(v, `struct ${name}`);
   // serde_json::from_value walks the Value's BTreeMap: keys in byte order (not document order),
   // so with several bad fields the first *sorted* one is reported.
   for (const k of Object.keys(v).sort(byteCmp)) {

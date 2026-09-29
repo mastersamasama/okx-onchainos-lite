@@ -1,12 +1,10 @@
 // agent user-side (buyer) commands whose upstream handlers live in task/user/{mod,create,
 // create_subscribe,task_create_prepare,service_detail,service_param_update,negotiate,
 // device_routing,offline_receive,accept,reject_apply,visibility,my_tasks,query,attachments}.rs.
-// Every command first runs the agent pre-dispatch maintenance (agent_commerce::run).
 import { typed } from '../../core/cli.mjs';
 import { NO_OUTPUT } from '../../core/context.mjs';
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import { TaskApiClient } from '../../agent/task/common/network/task-api-client.mjs';
-import { ioErrorText } from '../../agent/_rs.mjs';
+import { ioErrorText } from '../../core/rs/fs.mjs';
 import { parseBoolOrInt, handleSubscriptionExecutionConfigSet } from '../../agent/task/user/index.mjs';
 import { handleCreate } from '../../agent/task/user/create.mjs';
 import { handleCreateSubscribe } from '../../agent/task/user/create-subscribe.mjs';
@@ -32,8 +30,6 @@ export default {
       'serviceTokenAddress', 'serviceTokenAmount', 'categoryCode', 'minCreditScore', 'visibility', 'chainId', 'serviceGuide', 'serviceGuideHash', 'guideConsentJson'],
     async run(ctx, o) {
       const minCreditScore = typed(ctx.path, 'minCreditScore', o.minCreditScore, 'f64');
-      typed(ctx.path, 'chainId', o.chainId, 'u64');
-      await runPreDispatchMaintenance();
       return handleCreate(new TaskApiClient(), {
         title: o.title, description: o.description, descriptionSummary: o.descriptionSummary, providerAgentId: o.providerAgentId,
         paymentTokenSymbol: o.paymentTokenSymbol, paymentTokenAmount: o.paymentTokenAmount, attachments: o.file, serviceId: o.serviceId,
@@ -48,7 +44,6 @@ export default {
       'providerAgentId', 'serviceGuide', 'serviceGuideHash', 'guideConsentJson', 'serviceInterval', 'format'],
     async run(ctx, o) {
       const useTrial = typed(ctx.path, 'useTrial', o.useTrial, 'bool');   // clap BoolishValueParser (spec type "boolish")
-      await runPreDispatchMaintenance();
       const client = new TaskApiClient();
       const autoRenew = parseBoolOrInt(o.autoRenew, 'auto-renew');
       return handleCreateSubscribe(client, {
@@ -62,14 +57,12 @@ export default {
   'agent service-detail': {
     uses: ['sid', 'agenticId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return handleServiceDetail(new TaskApiClient(), o.sid, o.agenticId);
     },
   },
   'agent task-create-prepare': {
     uses: ['sid'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return handleTaskCreatePrepare(new TaskApiClient(), o.sid);
     },
   },
@@ -77,14 +70,12 @@ export default {
     uses: ['jobId', 'agentId', 'taskType', 'requestId', 'round', 'serviceParams'],
     async run(ctx, o) {
       const round = typed(ctx.path, 'round', o.round, 'u8');   // value_parser!(u8).range(1..=3), enforced by the parser
-      await runPreDispatchMaintenance();
       return handleServiceParamUpdate(new TaskApiClient(), o.jobId, o.agentId, o.taskType, o.requestId, round, o.serviceParams);
     },
   },
   'agent mark-failed': {
     uses: ['jobId', 'provider'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       io(() => markFailed(o.jobId, o.provider));
       return NO_OUTPUT;
     },
@@ -95,35 +86,30 @@ export default {
       // i64: number when JS-safe, else BigInt (every digit reaches the query / echo)
       const page = typed(ctx.path, 'page', o.page, 'i64');
       const pageSize = typed(ctx.path, 'pageSize', o.pageSize, 'i64');
-      await runPreDispatchMaintenance();
       return handleDeviceList(new TaskApiClient(), page, pageSize);
     },
   },
   'agent subscribe-device-update': {
     uses: ['jobId', 'deviceList', 'items'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return handleSubscribeDeviceUpdate(new TaskApiClient(), o.jobId, o.deviceList, o.items);
     },
   },
   'agent subscribe-offline-update': {
     uses: ['jobId', 'flag'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return handleSubscribeOfflineUpdate(new TaskApiClient(), o.jobId, o.flag);
     },
   },
   'agent subscription-execution-config-set': {
     uses: ['serviceId', 'executionMode', 'replace'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return handleSubscriptionExecutionConfigSet(o.serviceId, o.executionMode, !!o.replace);
     },
   },
   'agent set-payment-mode': {
     uses: ['jobId', 'paymentMode', 'tokenSymbol', 'tokenAmount'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await handleSetPaymentMode(new TaskApiClient(), o.jobId, o.paymentMode, o.tokenSymbol, o.tokenAmount);
       return NO_OUTPUT;
     },
@@ -131,7 +117,6 @@ export default {
   'agent confirm-accept': {
     uses: ['jobId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await handleConfirmAccept(new TaskApiClient(), o.jobId, undefined);
       return NO_OUTPUT;
     },
@@ -139,7 +124,6 @@ export default {
   'agent reject-apply': {
     uses: ['jobId', 'agentId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await handleRejectApply(new TaskApiClient(), o.jobId, o.agentId);
       return NO_OUTPUT;
     },
@@ -148,14 +132,12 @@ export default {
     uses: ['jobId'],
     ignores: ['reason'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       throw new Error(`direct reject is disabled by Refund; run \`onchainos agent refund-prepare ${o.jobId} --reason <user-authored-reason>\` and execute only the returned confirmed action`);
     },
   },
   'agent task-visibility-update': {
     uses: ['jobId', 'visibility'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return handleTaskVisibilityUpdate(new TaskApiClient(), o.jobId, o.visibility);
     },
   },
@@ -166,14 +148,12 @@ export default {
       const statusType = typed(ctx.path, 'statusType', o.statusType, 'u8');
       const page = typed(ctx.path, 'page', o.page, 'u32');
       const pageSize = typed(ctx.path, 'pageSize', o.pageSize, 'u32');
-      await runPreDispatchMaintenance();
       return handleMyTasks(new TaskApiClient(), o.taskType, statusType, page, pageSize);
     },
   },
   'agent payment': {
     uses: ['jobId', 'agentId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await handlePayment(new TaskApiClient(), o.jobId, o.agentId ?? '');
       return NO_OUTPUT;
     },
@@ -181,7 +161,6 @@ export default {
   'agent task-attach': {
     uses: ['jobId', 'file'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       const client = new TaskApiClient();
       const files = o.file ?? [];
       if (!files.length) throw new Error('at least one --file <path> is required');
@@ -192,7 +171,6 @@ export default {
   'agent list-attachments': {
     uses: ['jobId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       handleTaskAttachments(o.jobId);
       return NO_OUTPUT;
     },

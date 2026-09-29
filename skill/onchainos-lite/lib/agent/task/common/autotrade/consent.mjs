@@ -9,11 +9,14 @@ import { Decimal } from './amount.mjs';
 import { jobIdIsSafe } from './grants.mjs';
 import { parseMarkdown, renderMarkdown } from './guide.mjs';
 import { TradeEnvironment } from './trade-kit.mjs';
-import { fromStr, fromSlice, firstValue, T } from './_serde-json.mjs';
-import { onchainosHome, exists, readBytes, readToString, writeSecure, removeFileQuiet, nowSecs, u64Le, ioError } from './_fs.mjs';
+import { fromStr, fromSlice, firstValue, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
+import { exists, readBytes, readToString, removeFileQuiet, io, ioError } from '../../../../core/rs/fs.mjs';
+import { nowSecs } from '../../../../core/rs/time.mjs';
+import { isObject, isNumber, numText, cloneValue } from '../../../../core/rs/value.mjs';
+import { trim, asciiLower, isControl, cmpBytes } from '../../../../core/rs/str.mjs';
 import { SubscriptionTradePath } from '../config.mjs';
 import { Lang } from '../user-lang.mjs';
-import { isObj, isNum, numText, trim, asciiLower, isControl, cloneValue } from '../../../_rs.mjs';
 
 // upstream: consent.rs::CONSENT_VERSION
 export const CONSENT_VERSION = 6;
@@ -33,7 +36,6 @@ const KNOWN_FLAT_SETTING_FIELDS = ['tradeAmountMode', 'tradeAmountRatio', 'trade
 const EXTRA_FIELD_TYPES = ['boolean', 'integer', 'decimal', 'string', 'enum', 'array', 'object'];
 const EXTRA_FIELD_METADATA = ['label', 'type', 'value', 'description', 'constraints', 'options', 'appliesWhen', 'confirmedAt', 'unit'];
 
-const cmpBytes = (a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b));
 const sortedKeys = (o) => Object.keys(o).sort(cmpBytes);
 const hasOwn = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
 const chars = (s) => [...s];
@@ -74,7 +76,7 @@ function validateStringOrStringArray(value, field) {
 }
 // upstream: consent.rs::decimal_setting_value
 function decimalSettingValue(value, field) {
-  const raw = isStr(value) ? value : isNum(value) ? numText(value) : undefined;
+  const raw = isStr(value) ? value : isNumber(value) ? numText(value) : undefined;
   if (raw === undefined) throw new Error(`${field} must be a decimal string or number`);
   try { return Decimal.parse(raw); } catch { throw new Error(`${field} must be a valid decimal`); }
 }
@@ -88,7 +90,7 @@ function validateExtraFieldValue(fieldType, value, field) {
     case 'decimal': valid = isStr(value) && (() => { try { Decimal.parse(value); return true; } catch { return false; } })(); break;
     case 'string': case 'enum': valid = isStr(value); break;
     case 'array': valid = Array.isArray(value); break;
-    case 'object': valid = isObj(value); break;
+    case 'object': valid = isObject(value); break;
     default: valid = false;
   }
   if (!valid) throw new Error(`extra.${field}.value does not match type ${fieldType}`);
@@ -111,7 +113,7 @@ function validateExtraConstraints(field, fieldType, value, constraints) {
   } else if (Object.keys(constraints).some((k) => ['min', 'max', 'minExclusive', 'maxExclusive'].includes(k))) {
     throw new Error(`numeric constraints require integer or decimal type for extra.${field}`);
   }
-  const length = isStr(value) ? chars(value).length : Array.isArray(value) ? value.length : isObj(value) ? Object.keys(value).length : undefined;
+  const length = isStr(value) ? chars(value).length : Array.isArray(value) ? value.length : isObject(value) ? Object.keys(value).length : undefined;
   for (const key of ['minLength', 'maxLength']) {
     if (!hasOwn(constraints, key)) continue;
     const limit = asU64(constraints[key]);
@@ -124,7 +126,7 @@ function validateExtraConstraints(field, fieldType, value, constraints) {
 // upstream: consent.rs::validate_extra_field
 function validateExtraField(field, value) {
   if (!dynamicSettingKeyIsSafe(field) || dynamicSettingKeyIsSensitive(field)) throw new Error(`invalid or reserved extra consent field: ${field}`);
-  if (!isObj(value)) throw new Error(`extra.${field} must be an object`);
+  if (!isObject(value)) throw new Error(`extra.${field} must be an object`);
   const metadata = value;
   for (const key of sortedKeys(metadata)) if (!EXTRA_FIELD_METADATA.includes(key)) throw new Error(`unsupported extra.${field} metadata field: ${key}`);
   if (!hasOwn(metadata, 'label')) throw new Error(`extra.${field}.label is required`);
@@ -138,7 +140,7 @@ function validateExtraField(field, value) {
   if (hasOwn(metadata, 'description') && metadata.description !== null) boundedNonemptyText(metadata.description, `extra.${field}.description`, 1024);
   if (hasOwn(metadata, 'unit') && metadata.unit !== null) boundedNonemptyText(metadata.unit, `extra.${field}.unit`, 64);
   if (hasOwn(metadata, 'constraints') && metadata.constraints !== null) {
-    if (!isObj(metadata.constraints)) throw new Error(`extra.${field}.constraints must be an object or null`);
+    if (!isObject(metadata.constraints)) throw new Error(`extra.${field}.constraints must be an object or null`);
     validateExtraConstraints(field, fieldType, confirmed, metadata.constraints);
   }
   if (hasOwn(metadata, 'options') && metadata.options !== null) {
@@ -151,7 +153,7 @@ function validateExtraField(field, value) {
   }
   if (hasOwn(metadata, 'appliesWhen') && metadata.appliesWhen !== null) {
     const aw = metadata.appliesWhen;
-    if (!isObj(aw)) throw new Error(`extra.${field}.appliesWhen must be an object or null`);
+    if (!isObject(aw)) throw new Error(`extra.${field}.appliesWhen must be an object or null`);
     for (const key of sortedKeys(aw)) if (key !== 'venue' && key !== 'operation') throw new Error(`unsupported extra.${field}.appliesWhen field: ${key}`);
     for (const key of sortedKeys(aw)) validateStringOrStringArray(aw[key], `extra.${field}.appliesWhen.${key}`);
   }
@@ -161,7 +163,7 @@ function validateExtraField(field, value) {
 }
 // upstream: consent.rs::validate_extra_settings
 function validateExtraSettings(value, allowRemovals) {
-  if (!isObj(value)) throw new Error('extra must be a JSON object');
+  if (!isObject(value)) throw new Error('extra must be a JSON object');
   if (Object.keys(value).length > MAX_DYNAMIC_SETTING_COUNT) throw new Error('extra contains too many fields');
   for (const field of sortedKeys(value)) {
     const v = value[field];
@@ -175,7 +177,7 @@ function validateExtraSettings(value, allowRemovals) {
 // upstream: consent.rs::validate_dynamic_setting_value
 function validateDynamicSettingValue(value, depth) {
   if (depth > MAX_DYNAMIC_SETTING_DEPTH) throw new Error('dynamic consent setting exceeds maximum nesting depth');
-  if (value === null || typeof value === 'boolean' || isNum(value)) return;
+  if (value === null || typeof value === 'boolean' || isNumber(value)) return;
   if (isStr(value)) {
     if (chars(value).length > MAX_DYNAMIC_SETTING_STRING_LEN) throw new Error('dynamic consent setting string is too long');
     if (chars(value).some(isControl)) throw new Error('dynamic consent setting contains control characters');
@@ -247,7 +249,7 @@ export function validateRequiredFieldName(field) {
 export function dynamicSettingPresent(settings, field) {
   if (field.startsWith('extra.')) {
     const extra = settings.extra;
-    return isObj(extra) && hasOwn(extra, field.slice('extra.'.length));
+    return isObject(extra) && hasOwn(extra, field.slice('extra.'.length));
   }
   return hasOwn(settings, field) && settings[field] !== null;
 }
@@ -274,7 +276,7 @@ export function parseDynamicSettingsJson(input, flag) {
   if (Buffer.byteLength(input) > MAX_DYNAMIC_SETTINGS_BYTES) throw new Error(`${flag} is too large`);
   let value;
   try { value = fromStr(input, T.value); } catch { throw new Error(`${flag} must be a JSON object`); }
-  if (!isObj(value)) throw new Error(`${flag} must be a JSON object`);
+  if (!isObject(value)) throw new Error(`${flag} must be a JSON object`);
   validateDynamicSettingUpdates(value);
   return value;
 }
@@ -284,8 +286,8 @@ export function mergeDynamicSettings(target, updates) {
     const value = updates[key];
     if (value === null) delete target[key];
     else if (key === 'extra') {
-      const merged = isObj(target[key]) ? cloneValue(target[key]) : {};
-      if (isObj(value)) for (const f of sortedKeys(value)) { if (value[f] === null) delete merged[f]; else merged[f] = cloneValue(value[f]); }
+      const merged = isObject(target[key]) ? cloneValue(target[key]) : {};
+      if (isObject(value)) for (const f of sortedKeys(value)) { if (value[f] === null) delete merged[f]; else merged[f] = cloneValue(value[f]); }
       if (!Object.keys(merged).length) delete target[key]; else target[key] = merged;
     } else target[key] = cloneValue(value);
   }
@@ -345,7 +347,7 @@ export function registerDeliveryContextWithPath(jobId, agentId, providerAgentId,
     version: DELIVERY_CONTEXT_VERSION, jobId, agentId, providerAgentId, originSessionKey: originSessionKey ?? null,
     deliveryId, savedPath, deliverableType, receivedAtMs, executionPath,
   };
-  writeSecure(path, stringify(deliveryContextJson(context), true));
+  io(() => writeSecure(path, stringify(deliveryContextJson(context), true)));
   return context;
 }
 
@@ -362,7 +364,7 @@ export function loadDeliveryContext(jobId, deliveryId) {
 // upstream: consent.rs::activate_delivery_context
 export function activateDeliveryContext(jobId, deliveryId) {
   const context = loadDeliveryContext(jobId, deliveryId);
-  writeSecure(pendingDeliveryPath(jobId), stringify(deliveryContextJson(context), true));
+  io(() => writeSecure(pendingDeliveryPath(jobId), stringify(deliveryContextJson(context), true)));
   return context;
 }
 
@@ -436,7 +438,7 @@ function pointer(value, ptr) {
   let v = value;
   for (const raw of ptr.slice(1).split('/')) {
     const token = raw.replaceAll('~1', '/').replaceAll('~0', '~');
-    if (isObj(v)) { if (!hasOwn(v, token)) return undefined; v = v[token]; }
+    if (isObject(v)) { if (!hasOwn(v, token)) return undefined; v = v[token]; }
     else if (Array.isArray(v)) {
       if (!/^(0|[1-9][0-9]*)$/.test(token)) return undefined;
       const idx = Number(token);
@@ -464,7 +466,7 @@ export function deliveryDecisionSummary(context, lang) {
     const v = pointer(signal, ptr);
     let s;
     if (isStr(v)) s = v;
-    else if (isNum(v)) s = numText(v);
+    else if (isNumber(v)) s = numText(v);
     else return undefined;
     if (trim(s) === '') return undefined;
     return shortDisplay(trim(s), 128);
@@ -601,7 +603,7 @@ function inferredExtraType(value) {
   if (value instanceof F64) return 'decimal';
   if (isStr(value)) return 'string';
   if (Array.isArray(value)) return 'array';
-  if (isObj(value)) return 'object';
+  if (isObject(value)) return 'object';
   return 'string';
 }
 // upstream: consent.rs::migrate_legacy_flat_settings (mutates file)
@@ -615,7 +617,7 @@ function migrateLegacyFlatSettings(file) {
   }
   const legacyKeys = sortedKeys(ds).filter((k) => !KNOWN_FLAT_SETTING_FIELDS.includes(k) && k !== 'requiredFields' && k !== 'extra');
   if (!legacyKeys.length) return;
-  const extra = isObj(ds.extra) ? cloneValue(ds.extra) : {};
+  const extra = isObject(ds.extra) ? cloneValue(ds.extra) : {};
   for (const key of legacyKeys) {
     let value = ds[key];
     delete ds[key];
@@ -673,7 +675,7 @@ export function loadConsent(jobId) {
   const file = readConsentFile(jobId);
   if (!file) return null;
   if (file.lifecycle !== ConsentLifecycle.Active) return null;
-  if (u64Le(file.expiresAt, nowSecs())) return null;
+  if (file.expiresAt <= nowSecs()) return null;
   return file;
 }
 
@@ -726,7 +728,7 @@ const wrapAdd = (a, b) => { const v = (BigInt(a) + BigInt(b)) % U64_MOD; return 
 function writeConsentFile(file) {
   let path;
   try { path = consentPath(file.jobId); } catch (e) { throw new Error(e.code ?? e.message); }
-  writeSecure(path, renderMarkdown('consent', consentFileJson(file), '# Subscription Consent\n\nThis record contains user-confirmed settings for the matching local service Guide.\n'));
+  io(() => writeSecure(path, renderMarkdown('consent', consentFileJson(file), '# Subscription Consent\n\nThis record contains user-confirmed settings for the matching local service Guide.\n')));
 }
 
 // upstream: consent.rs::write_consent_policy_with_dynamic_settings

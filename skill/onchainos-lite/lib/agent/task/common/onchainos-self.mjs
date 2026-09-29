@@ -1,7 +1,9 @@
 // Wrappers around this CLI itself — upstream task/common/onchainos_self.rs.
 import { parse as parseJson } from '../../../core/json.mjs';
 import { selfOutput, utf8Lossy } from '../../_proc.mjs';
-import { get, asArray, trim, exitStatusText } from '../../_rs.mjs';
+import { get, asArray } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { exitStatusText } from '../../../core/rs/process.mjs';
 
 // upstream: onchainos_self.rs::parse_task_feedback_exists
 export function parseTaskFeedbackExists(stdout) {

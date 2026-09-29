@@ -2,9 +2,9 @@
 // Decode an x402 PAYMENT-RESPONSE header or a raw charge-receipt JSON into one normalized
 // {status, transaction, amount, payer, chainId} shape. Read-only; no auth, no funds.
 import { parse } from '../core/json.mjs';
-import { trim } from '../core/_rust-str.mjs';
+import { trim } from '../core/rs/str.mjs';
+import { get, isNumber, numText } from '../core/rs/value.mjs';
 import { decodePaymentBlob } from './dispatcher.mjs';
-import { get, isNum, numText } from './_rs.mjs';
 
 // upstream: decode_receipt.rs::TOKEN_INVALID_INPUT
 export const TOKEN_INVALID_INPUT = 'invalid_input';
@@ -34,7 +34,7 @@ function pick(v, keys) {
   for (const k of keys) {
     const x = get(v, k);
     if (typeof x === 'string' && x !== '') return x;
-    if (isNum(x)) return numText(x);
+    if (isNumber(x)) return numText(x);
   }
   return undefined;
 }

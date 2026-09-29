@@ -1,6 +1,7 @@
 // Generic CLI input validators (numeric / id format) — upstream validators.rs.
 // Every function throws Error with upstream's exact message (anyhow bail!).
-import { trim, allAsciiDigits, parseF64 } from './_rust-str.mjs';
+import { trim, allAsciiDigits } from './rs/str.mjs';
+import { parseF64 } from './rs/num.mjs';
 
 const I64_MAX = 9223372036854775807n;
 

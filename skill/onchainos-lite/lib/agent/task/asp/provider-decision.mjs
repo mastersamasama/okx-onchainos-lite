@@ -4,7 +4,8 @@
 import { auditLog } from '../../../core/audit.mjs';
 import { context } from '../../../core/errors.mjs';
 import { loadSession } from '../../../wallet/store.mjs';
-import { get, at, asStr, asI64, trim, charCount } from '../../_rs.mjs';
+import { get, at, asStr, asI64 } from '../../../core/rs/value.mjs';
+import { trim, charCount } from '../../../core/rs/str.mjs';
 import { resolveWalletByAgentId, signUopAndBroadcastFull, extractBizType } from '../signing.mjs';
 
 const MAX_DECLINE_REASON_CHARS = 512;

@@ -5,8 +5,11 @@ import { stringify, struct } from '../../../../core/json.mjs';
 import { jobIdIsSafe } from './grants.mjs';
 import { ConsentError } from './consent.mjs';
 import { classifyDescription, candidateTools } from './tooling.mjs';
-import { fromSlice, T } from './_serde-json.mjs';
-import { onchainosHome, exists, readBytes, writeSecure, nowMs, sha256Hex } from './_fs.mjs';
+import { fromSlice, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
+import { exists, readBytes } from '../../../../core/rs/fs.mjs';
+import { nowMs } from '../../../../core/rs/time.mjs';
+import { sha256Hex } from '../../../../core/rs/codec.mjs';
 
 const PROFILE_VERSION = 3;
 const MAX_DESCRIPTION_CHARS = 4096;

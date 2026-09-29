@@ -5,7 +5,9 @@
 // object (upstream prints it through `emit_session`).
 import { randomBytes } from 'node:crypto';
 import { context } from '../core/errors.mjs';
-import { trim } from '../core/_rust-str.mjs';
+import { trim } from '../core/rs/str.mjs';
+import { at, asStr, asU64, asBool } from '../core/rs/value.mjs';
+import { intFromStrOk } from '../core/rs/num.mjs';
 import {
   parseWwwAuthenticate, decodeChallengeRequest, buildChallengeEcho, base64urlEncodeJson, computeValidBefore,
   computeChannelId, computeOpenNonce, computeTopupNonce, parseSessionSplits, normalizeBytes32Hex, resolveChainAndPayer,
@@ -13,7 +15,6 @@ import {
 } from './dispatcher.mjs';
 import { parseRecipientAddr } from './addr.mjs';
 import * as sessionState from './session-state.mjs';
-import { at, asStr, asU64, asBool, tryUint } from './_rs.mjs';
 
 // authorizedSigner = 0x0 sentinel ("payer is the voucher signer"), both in channelId and nonce.
 const ZERO_SIGNER = '0x0000000000000000000000000000000000000000';
@@ -21,7 +22,7 @@ const U128_MAX = (1n << 128n) - 1n;
 const nowSecs = () => BigInt(Math.floor(Date.now() / 1000));
 const random32Hex = () => '0x' + randomBytes(32).toString('hex');
 // `s.parse::<u128>().unwrap_or(0)`
-const u128Or0 = (s) => (s == null ? 0n : tryUint(s, 128) ?? 0n);
+const u128Or0 = (s) => (s == null ? 0n : intFromStrOk(s, 'u128') ?? 0n);
 const didPkh = (chainId, payer) => `did:pkh:eip155:${chainId}:${payer}`;
 const isStrictTxHash = (h) => h.startsWith('0x') && Buffer.byteLength(h) === 66 && /^[0-9a-fA-F]*$/.test(h.slice(2));
 
@@ -83,7 +84,7 @@ export async function cmdMppSessionOpen(challengeHeader, deposit, from, txHash, 
       payload: { action: 'open', type: 'hash', channelId, salt, hash, cumulativeAmount: initialCum, signature: initialVoucherSig },
     };
     const header = `Payment ${base64urlEncodeJson(credential)}`;
-    await persistChannelOpen(channelId, payerAddr, deposit, initialCum);
+    persistChannelOpen(channelId, payerAddr, deposit, initialCum);
     return emitSession(base('hash', header), sessionOpenParams(channelId, deposit, initialCum));
   }
 
@@ -101,7 +102,7 @@ export async function cmdMppSessionOpen(challengeHeader, deposit, from, txHash, 
     },
   };
   const header = `Payment ${base64urlEncodeJson(credential)}`;
-  await persistChannelOpen(channelId, payerAddr, deposit, initialCum);
+  persistChannelOpen(channelId, payerAddr, deposit, initialCum);
   return emitSession(base('transaction', header), sessionOpenParams(channelId, deposit, initialCum));
 }
 
@@ -139,7 +140,7 @@ export async function cmdMppSessionVoucher(challengeHeader, channelId, cumulativ
   const newCumU = u128Or0(cumulativeAmount);
   const priorCumU = u128Or0(priorCum);
   const unit = newCumU > priorCumU ? newCumU - priorCumU : 0n;
-  const depositU = deposit == null ? null : tryUint(deposit, 128) ?? null;
+  const depositU = deposit == null ? null : intFromStrOk(deposit, 'u128') ?? null;
   if (voucherAdvancesCumulative(unit, newCumU, depositU) && prior) {
     prior.cumulative = cumulativeAmount;
     prior.updated_at = sessionState.nowUnix();

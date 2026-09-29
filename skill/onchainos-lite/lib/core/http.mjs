@@ -46,23 +46,10 @@ export const isJwtExpired = (t) => { const e = jwtExp(t); return e === undefined
 const INVALID_TOKEN = [/code=10001\)/, /code=10008\)/, /code=53017\)/, /code=130100031\)/, /invalid access token/i, /access token invalid/i];
 export const isInvalidTokenError = (e) => INVALID_TOKEN.some((re) => re.test(String(e?.message ?? e)));
 
-// wallet_api::force_refresh_access_token — owned by lib/wallet/auth.mjs, which registers
-// itself via setRefreshHook when imported (lazy import avoids a module cycle).
-let refreshHook = null;
-export const setRefreshHook = (fn) => { refreshHook = fn; };
-async function refreshAccessToken() {
-  if (!refreshHook) { try { await import('../wallet/auth.mjs'); } catch {} }
-  if (!refreshHook) throw new Error('refresh_token missing — please run: onchainos wallet login');
-  return refreshHook();
-}
-// payment_flow::sign_payment_auto + build_payment_header — injected by the payment module.
-let paymentSigner = null;
-export const setPaymentSigner = (fn) => { paymentSigner = fn; };
-async function loadPaymentSigner() {
-  if (!paymentSigner) { try { await import('../payment/x402-header.mjs'); } catch {} }
-  if (!paymentSigner) throw new Error('x402 payment signing is unavailable in this build');
-  return paymentSigner;
-}
+// wallet_api::force_refresh_access_token and client.rs::sign_header_from_accepts are imported on
+// first use: the wallet and payment modules import this one.
+const forceRefreshAccessToken = async () => (await import('../wallet/api.mjs')).forceRefreshAccessToken();
+const signHeaderFromAccepts = async (req) => (await import('../payment/x402-header.mjs')).signHeaderFromAccepts(req);
 
 export class PaymentRequired extends Error {
   constructor(accepts, rawBody) {
@@ -125,7 +112,7 @@ export class ApiClient {
       return fallback();
     }
     try {
-      return new ApiClient({ token: await refreshAccessToken() });
+      return new ApiClient({ token: await forceRefreshAccessToken() });
     } catch (e) {
       process.stderr.write(`Failed to refresh session (${e.message}). Falling back to anonymous access.\n`);
       return fallback();
@@ -192,8 +179,7 @@ export class ApiClient {
   }
 
   async signHeader(accepts, path, tier) {
-    const signer = await loadPaymentSigner();
-    return signer({ accepts, tier, resource: this.base.replace(/\/+$/, '') + path });   // → [name, value]
+    return signHeaderFromAccepts({ accepts, tier, resource: this.base.replace(/\/+$/, '') + path });   // → [name, value]
   }
 
   // handle_response / handle_response_raw
@@ -236,7 +222,7 @@ export class ApiClient {
       return await attempt(payHeader);
     } catch (e) {
       if (retryAuth && this.token && isInvalidTokenError(e)) {
-        this.token = await refreshAccessToken();
+        this.token = await forceRefreshAccessToken();
         return attempt(payHeader);
       }
       if (!(e instanceof PaymentRequired)) throw e;

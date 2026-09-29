@@ -28,7 +28,8 @@ export async function loadHandlers(top) {
 export async function main(argv) {
   let parsed;
   try {
-    parsed = parse(argv);
+    // a leaf's custom clap value parsers are declared by its handler (`parsers`)
+    parsed = await parse(argv, { valueParsers: async (path) => (await loadHandlers(path.split(' ')[0]))[path]?.parsers });
   } catch (e) {
     if (e instanceof E.UsageError) { process.stderr.write(e.message); process.exit(2); }
     throw e;
@@ -58,6 +59,8 @@ export async function main(argv) {
   const start = process.hrtime.bigint();
   let result, error;
   try {
+    // agent_commerce::run: every agent subcommand first runs the pre-dispatch maintenance
+    if (top === 'agent') await (await import('../agent/index.mjs')).runPreDispatchMaintenance();
     result = await handler.run(ctx, opts);
   } catch (e) {
     error = e;

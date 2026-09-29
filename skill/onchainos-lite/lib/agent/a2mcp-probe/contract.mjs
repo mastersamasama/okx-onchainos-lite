@@ -1,35 +1,34 @@
 // A2MCP routing / parameter contract — upstream commands/agent_commerce/a2mcp_probe/contract.rs.
-import { u64, value, vec, string, struct as deStruct } from '../../watch/_serde.mjs';
-import { fromStr, SerdeError } from '../identity/_from-str.mjs';
+import { T, fromStr, SerdeError } from '../../core/serde.mjs';
 import { paramSpec, ParamCarrier } from '../../payment/state.mjs';
 import { urlParseError } from '../../payment/a2mcp.mjs';
-import { trim, eqIgnoreAsciiCase, asciiLower, isObj, isNum, numText, asI64, asU64, splitWhitespace } from '../_rs.mjs';
-import { optionDe, boolDe } from '../identity/models.mjs';
+import { trim, eqIgnoreAsciiCase, asciiLower, splitWhitespace } from '../../core/rs/str.mjs';
+import { isObject, isNumber, numText, asI64, asU64 } from '../../core/rs/value.mjs';
 import { ContractError, defaultStringType } from './_model.mjs';
 import { requestMethodIsDefaulted, resolveRequestMethod } from './method.mjs';
 
 const hasOwn = (o, k) => Object.prototype.hasOwnProperty.call(o, k);
-const mget = (m, k) => (isObj(m) && hasOwn(m, k) && m[k] !== undefined ? m[k] : undefined);
+const mget = (m, k) => (isObject(m) && hasOwn(m, k) && m[k] !== undefined ? m[k] : undefined);
 
 // upstream: mod.rs::FieldConstraint (serde camelCase; type default "string", required default true)
-export const FIELD_CONSTRAINT_DE = deStruct('FieldConstraint', [
-  { name: 'name', de: string },
-  { name: 'type', de: string, def: defaultStringType },
-  { name: 'required', de: boolDe, def: () => true },
-  { name: 'carrier', de: optionDe(string), def: () => null },
-  { name: 'description', de: optionDe(string), def: () => null },
+export const FIELD_CONSTRAINT_DE = T.struct('FieldConstraint', [
+  ['name', T.string],
+  ['type', T.string, defaultStringType],
+  ['required', T.bool, true],
+  ['carrier', T.option(T.string), null],
+  ['description', T.option(T.string), null],
 ]);
 // upstream: mod.rs::RequestSpec
-export const REQUEST_SPEC_DE = deStruct('RequestSpec', [
-  { name: 'method', de: optionDe(string), def: () => null },
-  { name: 'fields', de: vec(FIELD_CONSTRAINT_DE), def: () => [] },
-  { name: 'requiredAnyOf', de: vec(string), def: () => [] },
+export const REQUEST_SPEC_DE = T.struct('RequestSpec', [
+  ['method', T.option(T.string), null],
+  ['fields', T.vec(FIELD_CONSTRAINT_DE), () => []],
+  ['requiredAnyOf', T.vec(T.string), () => []],
 ]);
 // upstream: mod.rs::RoutingPayload
-export const ROUTING_PAYLOAD_DE = deStruct('RoutingPayload', [
-  { name: 'schemaVersion', de: u64 },
-  { name: 'serviceSnapshot', de: value },
-  { name: 'requestSpec', de: optionDe(REQUEST_SPEC_DE), def: () => null },
+export const ROUTING_PAYLOAD_DE = T.struct('RoutingPayload', [
+  ['schemaVersion', T.u64],
+  ['serviceSnapshot', T.value],
+  ['requestSpec', T.option(REQUEST_SPEC_DE), null],
 ]);
 
 // serde_json::from_str::<RoutingPayload>
@@ -44,7 +43,7 @@ export function parseProbeInput(routingJson, paramsJson) {
   }
   if (BigInt(routing.schemaVersion) !== 1n) throw new ContractError('invalid_a2mcp_routing', 'schemaVersion must be the integer 1');
   const object = routing.serviceSnapshot;
-  if (!isObj(object)) throw new ContractError('invalid_a2mcp_routing', 'serviceSnapshot must be an object');
+  if (!isObject(object)) throw new ContractError('invalid_a2mcp_routing', 'serviceSnapshot must be an object');
   const st = mget(object, 'serviceType');
   if (!(typeof st === 'string' && eqIgnoreAsciiCase(st, 'A2MCP'))) throw new ContractError('invalid_a2mcp_routing', 'serviceSnapshot.serviceType must equal A2MCP');
   const ep = mget(object, 'endpoint');
@@ -53,11 +52,11 @@ export function parseProbeInput(routingJson, paramsJson) {
   try { endpoint = new URL(ep); } catch { throw new ContractError('invalid_a2mcp_routing', `serviceSnapshot.endpoint is invalid: ${urlParseError(ep)}`); }
   if (endpoint.protocol !== 'https:') throw new ContractError('invalid_a2mcp_routing', 'serviceSnapshot.endpoint must use HTTPS');
   let params;
-  try { params = fromStr(paramsJson, value); } catch (e) {
+  try { params = fromStr(paramsJson); } catch (e) {
     if (e instanceof SerdeError) throw new ContractError('invalid_a2mcp_params', `params JSON is invalid: ${e.message}`);
     throw e;
   }
-  if (!isObj(params)) throw new ContractError('invalid_a2mcp_params', 'params JSON must be an object');
+  if (!isObject(params)) throw new ContractError('invalid_a2mcp_params', 'params JSON must be an object');
   const typedParams = params;
   const requestSpec = routing.requestSpec;
   const outputSchema = mget(object, 'outputSchema');
@@ -76,7 +75,7 @@ export function parseProbeInput(routingJson, paramsJson) {
   const method = resolveRequestMethod(serviceDescription, endpoint, fallbackMethod);
   const sn = mget(object, 'serviceName');
   const asp = mget(object, 'asp');
-  const aspId = isObj(asp) ? scalarString(mget(asp, 'aspAgentId')) : undefined;
+  const aspId = isObject(asp) ? scalarString(mget(asp, 'aspAgentId')) : undefined;
   const sym = mget(object, 'feeTokenSymbol');
   return {
     snapshot: {
@@ -122,7 +121,7 @@ const strOrNull = (v) => (typeof v === 'string' ? v : null);
 // upstream: contract.rs::discover_input_required(value) → InputRequired | null
 export function discoverInputRequired(v) {
   const ir = mget(v, 'input_required');
-  if (isObj(ir)) {
+  if (isObject(ir)) {
     const fields = mget(ir, 'fields') === undefined ? [] : parseFields(ir.fields);
     const requiredAnyOf = stringArray(mget(ir, 'requiredAnyOf'));
     if (fields.length || requiredAnyOf.length) {
@@ -183,7 +182,7 @@ export function messageReportsMissingInput(message) {
 // upstream: contract.rs::parse_fields(value) → FieldConstraint[]
 export function parseFields(v) {
   if (Array.isArray(v)) return v.map(parseField).filter((f) => f !== null);
-  if (isObj(v)) return Object.keys(v).sort((a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b))).map((name) => fieldFromSchema(name, v[name]));
+  if (isObject(v)) return Object.keys(v).sort((a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b))).map((name) => fieldFromSchema(name, v[name]));
   return [];
 }
 
@@ -226,10 +225,10 @@ export const isSupportedParamType = (t) => ['string', 'number', 'integer', 'bool
 export function typedValueMatches(v, expected) {
   switch (expected) {
     case 'string': return typeof v === 'string';
-    case 'number': return isNum(v);
+    case 'number': return isNumber(v);
     case 'integer': return asI64(v) !== undefined || asU64(v) !== undefined;
     case 'boolean': return typeof v === 'boolean';
-    case 'object': return isObj(v);
+    case 'object': return isObject(v);
     case 'array': return Array.isArray(v);
     default: return false;
   }
@@ -238,6 +237,6 @@ export function typedValueMatches(v, expected) {
 // upstream: contract.rs::scalar_string(value) → string | undefined
 export function scalarString(v) {
   if (typeof v === 'string') return v;
-  if (isNum(v)) return numText(v);
+  if (isNumber(v)) return numText(v);
   return undefined;
 }

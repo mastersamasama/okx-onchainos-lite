@@ -8,8 +8,8 @@ import { invalidInput } from '../../core/sink.mjs';
 import { context } from '../../core/errors.mjs';
 import { displayF64, stringify } from '../../core/json.mjs';
 import { sleep } from '../../core/proc.mjs';
-import { trim, asciiLower } from '../../core/_rust-str.mjs';
-import { formatFixed } from '../_rs.mjs';
+import { trim, asciiLower } from '../../core/rs/str.mjs';
+import { formatFixed } from '../../core/rs/num.mjs';
 import { fetchPrice } from '../../commands/market/index.mjs';
 import { fetchInfo } from '../../commands/token/token.mjs';
 import * as api from './api.mjs';
@@ -24,7 +24,7 @@ import {
   direction, strategyType, cancelReq, createOrderReq, listOrdersReq, reactivateReq, rule as ruleOf,
   verifySignInfo, orderListRespToValue,
 } from './types.mjs';
-import { asI64, get, isObject, toI32 } from './_serde.mjs';
+import { asI64, get, isObject } from '../../core/rs/value.mjs';
 
 // upstream: handlers.rs constants
 export const DEFAULT_EXPIRES_SECS = 7 * 24 * 60 * 60;               // 7 days
@@ -395,7 +395,7 @@ export function printOrders(orders, nextCursor) {
   const serialised = orders.map((o) => {
     const v = orderListRespToValue(o);
     const st = asI64(v.status);
-    if (st !== undefined) v.statusLabel = statusLabel(toI32(st));
+    if (st !== undefined) v.statusLabel = statusLabel(Number(BigInt.asIntN(32, BigInt(st))));   // `as i32`
     enrichExecutionHistory(v);
     return v;
   });
@@ -409,7 +409,7 @@ export function enrichExecutionHistory(order) {
   for (const entry of history) {
     const code = asI64(get(entry, 'code'));
     if (code === undefined) continue;
-    const meta = executionEventFor(toI32(code));
+    const meta = executionEventFor(Number(BigInt.asIntN(32, BigInt(code))));   // `as i32`
     if (!meta || !isObject(entry)) continue;
     entry.name = meta.name;
     entry.message = meta.message;

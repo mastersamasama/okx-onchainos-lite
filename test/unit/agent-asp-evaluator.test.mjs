@@ -5,13 +5,13 @@ import assert from 'node:assert/strict';
 import { parse, stringify } from '../../skill/onchainos-lite/lib/core/json.mjs';
 import * as decimalStr from '../../skill/onchainos-lite/lib/agent/task/evaluator/decimal-str.mjs';
 import { formatFractionalUnit, STAKING_CONFIG, MY_STAKE } from '../../skill/onchainos-lite/lib/agent/task/evaluator/staking-types.mjs';
-import { fromValue } from '../../skill/onchainos-lite/lib/agent/_serde.mjs';
+import { fromValue } from '../../skill/onchainos-lite/lib/core/serde.mjs';
 import { unescapeReason } from '../../skill/onchainos-lite/lib/agent/task/evaluator/commit.mjs';
 import { gateReason, decodeDisputeStatusResponse, evaluatorTaskIsTerminal } from '../../skill/onchainos-lite/lib/agent/task/evaluator/dispute-status.mjs';
 import { notifyBlock, notifyBlockLines, i64Field, displayField as evalDisplayField, hoursLeftText, minutesLeftText, terminalSessionHint, generateNextAction as evalNext } from '../../skill/onchainos-lite/lib/agent/task/evaluator/flow.mjs';
 import { buildReasonHandoff, buildSubscriptionReasonHandoff, withSaBatchTxFlag, ARBITRATION_REASON_CONTEXT } from '../../skill/onchainos-lite/lib/agent/task/asp/dispute-raise.mjs';
 import { decodeReasonInput } from '../../skill/onchainos-lite/lib/agent/task/asp/dispute-confirm.mjs';
-import { utf8ErrorText } from '../../skill/onchainos-lite/lib/agent/task/asp/_utf8.mjs';
+import { utf8ErrorText } from '../../skill/onchainos-lite/lib/core/rs/str.mjs';
 import { SubscriptionDetail, SubStatus, Routing, BUFFER_WINDOW_SECS } from '../../skill/onchainos-lite/lib/agent/task/asp/subscription.mjs';
 import { isLongText } from '../../skill/onchainos-lite/lib/agent/task/asp/deliver.mjs';
 import * as content from '../../skill/onchainos-lite/lib/agent/task/asp/content.mjs';
@@ -72,13 +72,13 @@ test('format_fractional_unit', () => {
 test('StakingConfig / MyStake serde', () => {
   const cfg = { minCumulativeStakeOkb: '0.001', partialUnstakeMinRetainOkb: '0.001', unstakeCooldownSeconds: '604800', arbitrationFeeBps: '5%',
     commitPhaseSeconds: '64800', revealPhaseSeconds: '21600', slashMinorityBps: '1%', slashTimeoutBps: '0.3%', slashedCooldownSeconds: '86400' };
-  assert.equal(fromValue(STAKING_CONFIG, cfg).unstakeCooldownSeconds, 604800);
-  assert.throws(() => fromValue(STAKING_CONFIG, { ...cfg, commitPhaseSeconds: 64800 }), { message: 'invalid type: integer `64800`, expected a string' });
-  assert.throws(() => fromValue(STAKING_CONFIG, { ...cfg, revealPhaseSeconds: '6h' }), { message: 'expected u64 string, got "6h": invalid digit found in string' });
-  assert.throws(() => fromValue(STAKING_CONFIG, { arbitrationFeeBps: '5%' }), { message: 'missing field `minCumulativeStakeOkb`' });
-  const m = fromValue(MY_STAKE, { voterAddress: '0x1', agentId: '1', activeStake: '1', pendingUnstake: '0', validStake: '1', activeDisputes: '0' });
+  assert.equal(fromValue(cfg, STAKING_CONFIG).unstakeCooldownSeconds, 604800);
+  assert.throws(() => fromValue({ ...cfg, commitPhaseSeconds: 64800 }, STAKING_CONFIG), { message: 'invalid type: integer `64800`, expected a string' });
+  assert.throws(() => fromValue({ ...cfg, revealPhaseSeconds: '6h' }, STAKING_CONFIG), { message: 'expected u64 string, got "6h": invalid digit found in string' });
+  assert.throws(() => fromValue({ arbitrationFeeBps: '5%' }, STAKING_CONFIG), { message: 'missing field `minCumulativeStakeOkb`' });
+  const m = fromValue({ voterAddress: '0x1', agentId: '1', activeStake: '1', pendingUnstake: '0', validStake: '1', activeDisputes: '0' }, MY_STAKE);
   assert.deepEqual([m.cooldownEndsAt, m.unstakeAvailableAt, m.registered], [0, 0, false]);
-  assert.throws(() => fromValue(MY_STAKE, { voterAddress: '0x1', agentId: '1', activeStake: '1', pendingUnstake: '0', validStake: '1', activeDisputes: 0 }),
+  assert.throws(() => fromValue({ voterAddress: '0x1', agentId: '1', activeStake: '1', pendingUnstake: '0', validStake: '1', activeDisputes: 0 }, MY_STAKE),
     { message: 'invalid type: integer `0`, expected a string' });
 });
 
@@ -393,14 +393,14 @@ test('asp flow helpers', async () => {
 
 // ── verifier additions ──
 test('format_fractional_unit rounds exact binary ties half-to-even like core::fmt', async () => {
-  const { rustFixed } = await import('../../skill/onchainos-lite/lib/agent/task/evaluator/_fixed.mjs');
-  assert.equal(rustFixed(0.125, 2), '0.12');
-  assert.equal(rustFixed(0.375, 2), '0.38');
-  assert.equal(rustFixed(0.625, 2), '0.62');
-  assert.equal(rustFixed(1.125, 2), '1.12');
-  assert.equal(rustFixed(0.0025, 4), '0.0025');
-  assert.equal(rustFixed(2.5, 0), '2');
-  assert.equal(rustFixed(-0.125, 2), '-0.12');
+  const { formatFixed } = await import('../../skill/onchainos-lite/lib/core/rs/num.mjs');
+  assert.equal(formatFixed(0.125, 2), '0.12');
+  assert.equal(formatFixed(0.375, 2), '0.38');
+  assert.equal(formatFixed(0.625, 2), '0.62');
+  assert.equal(formatFixed(1.125, 2), '1.12');
+  assert.equal(formatFixed(0.0025, 4), '0.0025');
+  assert.equal(formatFixed(2.5, 0), '2');
+  assert.equal(formatFixed(-0.125, 2), '-0.12');
   assert.equal(formatFractionalUnit(450, 3600), '0.12');     // JS toFixed would give 0.13
   assert.equal(formatFractionalUnit(2250, 3600), '0.62');
   assert.equal(formatFractionalUnit(4050, 3600), '1.12');
@@ -415,39 +415,40 @@ test('subscription_status_code ignores Object.prototype names', () => {
   assert.equal(subscriptionStatusCode('+4'), 4);
 });
 test('evidence paths follow PathBuf::join (no normalisation)', async () => {
-  const { pathBufPush, evidenceDir } = await import('../../skill/onchainos-lite/lib/agent/task/evaluator/helpers.mjs');
+  const { evidenceDir } = await import('../../skill/onchainos-lite/lib/agent/task/evaluator/helpers.mjs');
+  const { pathJoin } = await import('../../skill/onchainos-lite/lib/core/rs/fs.mjs');
   if (process.platform === 'win32') {
-    assert.equal(pathBufPush('C:/h', 'task'), 'C:/h\\task');          // Node join would give C:\h\task
-    assert.equal(pathBufPush('C:/h/', 'task'), 'C:/h/task');
-    assert.equal(pathBufPush('C:', 'task'), 'C:task');
-    assert.equal(pathBufPush('C:\\h', 'a/b'), 'C:\\h\\a/b');
-    assert.equal(pathBufPush('C:\\h', '..'), 'C:\\h\\..');
-    assert.equal(pathBufPush('C:\\h', 'D:\\abs'), 'D:\\abs');
-    assert.equal(pathBufPush('C:\\h', '\\root'), 'C:\\root');
-    assert.equal(pathBufPush('\\\\srv\\share\\x', '/root'), '\\\\srv\\share/root');
+    assert.equal(pathJoin('C:/h', 'task'), 'C:/h\\task');          // Node join would give C:\h\task
+    assert.equal(pathJoin('C:/h/', 'task'), 'C:/h/task');
+    assert.equal(pathJoin('C:', 'task'), 'C:task');
+    assert.equal(pathJoin('C:\\h', 'a/b'), 'C:\\h\\a/b');
+    assert.equal(pathJoin('C:\\h', '..'), 'C:\\h\\..');
+    assert.equal(pathJoin('C:\\h', 'D:\\abs'), 'D:\\abs');
+    assert.equal(pathJoin('C:\\h', '\\root'), 'C:\\root');
+    assert.equal(pathJoin('\\\\srv\\share\\x', '/root'), '\\\\srv\\share/root');
   } else {
-    assert.equal(pathBufPush('/tmp//h', 'task'), '/tmp//h/task');
-    assert.equal(pathBufPush('/tmp/h/', 'a/../b'), '/tmp/h/a/../b');
-    assert.equal(pathBufPush('/tmp/h', '/abs'), '/abs');
+    assert.equal(pathJoin('/tmp//h', 'task'), '/tmp//h/task');
+    assert.equal(pathJoin('/tmp/h/', 'a/../b'), '/tmp/h/a/../b');
+    assert.equal(pathJoin('/tmp/h', '/abs'), '/abs');
   }
-  assert.equal(pathBufPush('', 'x'), 'x');
+  assert.equal(pathJoin('', 'x'), 'x');
   assert.ok(evidenceDir('J', 'A').endsWith(process.platform === 'win32' ? 'task\\J\\dispute\\A' : 'task/J/dispute/A'));
 });
 test('attachment save uses Path::file_name semantics', async () => {
-  const { rustFileName } = await import('../../skill/onchainos-lite/lib/agent/task/asp/_path.mjs');
-  assert.equal(rustFileName('dl/att.bin'), 'att.bin');
-  assert.equal(rustFileName('dl/att.bin/'), 'att.bin');
-  assert.equal(rustFileName('dl/att.bin/.'), 'att.bin');   // Node basename gives "."
-  assert.equal(rustFileName('dl/..'), undefined);
-  assert.equal(rustFileName('.'), undefined);
-  assert.equal(rustFileName(''), undefined);
-  assert.equal(rustFileName('/'), undefined);
+  const { fileName } = await import('../../skill/onchainos-lite/lib/core/rs/fs.mjs');
+  assert.equal(fileName('dl/att.bin'), 'att.bin');
+  assert.equal(fileName('dl/att.bin/'), 'att.bin');
+  assert.equal(fileName('dl/att.bin/.'), 'att.bin');   // Node basename gives "."
+  assert.equal(fileName('dl/..'), undefined);
+  assert.equal(fileName('.'), undefined);
+  assert.equal(fileName(''), undefined);
+  assert.equal(fileName('/'), undefined);
   if (process.platform === 'win32') {
-    assert.equal(rustFileName('C:'), undefined);
-    assert.equal(rustFileName('C:\\'), undefined);
-    assert.equal(rustFileName('C:foo'), 'foo');
-    assert.equal(rustFileName('\\\\srv\\share'), undefined);
-    assert.equal(rustFileName('C:\\x\\y.bin\\.'), 'y.bin');
+    assert.equal(fileName('C:'), undefined);
+    assert.equal(fileName('C:\\'), undefined);
+    assert.equal(fileName('C:foo'), 'foo');
+    assert.equal(fileName('\\\\srv\\share'), undefined);
+    assert.equal(fileName('C:\\x\\y.bin\\.'), 'y.bin');
   }
 });
 test('deliver temp paths follow std::env::temp_dir().join()', async () => {

@@ -2,8 +2,9 @@
 // `pending` / `approved`; `complete` (escrow) consumes `approved`.
 import { mkdirSync, writeFileSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
-import { taskStateDir } from '../../_home.mjs';
-import { trim, readToString, ioErrorText } from '../../_rs.mjs';
+import { taskStateDir } from '../../../core/home.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { readToString, ioErrorText } from '../../../core/rs/fs.mjs';
 
 function gatePath(jobId) {
   const dir = taskStateDir(jobId);

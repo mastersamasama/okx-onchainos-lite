@@ -1,8 +1,8 @@
 // Retired `dispute confirm` compatibility entrypoint — upstream task/asp/dispute_confirm.rs.
 // It validates its inputs and always fails before any API or on-chain write.
 import { context } from '../../../core/errors.mjs';
-import { trim, charCount, b64UrlNoPadDecode } from '../../_rs.mjs';
-import { utf8ErrorText } from './_utf8.mjs';
+import { trim, charCount, utf8ErrorText } from '../../../core/rs/str.mjs';
+import { B64 } from '../../../core/rs/codec.mjs';
 
 const MAX_REASON_CHARS = 2000;
 
@@ -13,7 +13,7 @@ export function decodeReasonInput(reason, reasonB64) {
   if (hasR) return String(reason);
   if (hasB) {
     let bytes;
-    try { bytes = b64UrlNoPadDecode(reasonB64); } catch (e) { throw context('--reason-b64 is not valid URL-safe base64', e); }
+    try { bytes = B64.URL_SAFE_NO_PAD.decode(reasonB64); } catch (e) { throw context('--reason-b64 is not valid URL-safe base64', e); }
     const bad = utf8ErrorText(bytes);
     if (bad !== undefined) throw context('--reason-b64 does not contain UTF-8 text', new Error(bad));
     return bytes.toString('utf8');

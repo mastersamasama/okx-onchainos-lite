@@ -1,7 +1,7 @@
 // Public field selection for order list / detail responses — upstream
 // agentic_wallet/history/response.rs. Every output object is a json! Value (sorted keys);
 // absent source fields become null (serde_json `value["x"]` indexing).
-import { isObject } from '../_rs.mjs';
+import { isObject } from '../../core/rs/value.mjs';
 
 // serde_json `value["key"]` — Null for a missing key or a non-object.
 const at = (v, k) => (isObject(v) && Object.prototype.hasOwnProperty.call(v, k) ? v[k] : null);

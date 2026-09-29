@@ -1,10 +1,11 @@
 // Evaluator next-action playbooks — upstream task/evaluator/flow.rs (`generate_next_action`
 // consumed by `agent next-action --role evaluator`) plus the post-evidence Step 3/4 text that
 // `evidence-info` appends.
-import { get, asStr, asI64, isNum, numText, parseI64, nowSecs } from '../../_rs.mjs';
+import { get, asStr, asI64, isNumber, numText } from '../../../core/rs/value.mjs';
+import { parseI64 } from '../../../core/rs/num.mjs';
+import { nowSecs, fmtLocalYmdHmsZ } from '../../../core/rs/time.mjs';
 import { TaskApiClient } from '../common/network/task-api-client.mjs';
 import { getMyStake } from './staking-types.mjs';
-import { fmtLocalYmdHmsZ } from './_time.mjs';
 
 const has = (v) => v !== undefined && v !== null;
 
@@ -44,7 +45,7 @@ export const strField = (msg, key) => { const v = asStr(get(msg, key)); return v
 export function i64Field(msg, key) {
   const v = get(msg, key);
   if (v === undefined) return undefined;
-  if (isNum(v)) return asI64(v);
+  if (isNumber(v)) return asI64(v);
   const s = asStr(v);
   return s === undefined ? undefined : parseI64(s);
 }
@@ -52,7 +53,7 @@ export function i64Field(msg, key) {
 export function displayField(msg, key) {
   const v = get(msg, key);
   if (typeof v === 'string') return v !== '' ? v : undefined;
-  if (isNum(v)) return numText(v);
+  if (isNumber(v)) return numText(v);
   return undefined;
 }
 

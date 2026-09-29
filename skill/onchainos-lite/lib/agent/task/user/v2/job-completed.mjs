@@ -1,6 +1,6 @@
 // next-action `job_completed` (user) — upstream task/user/v2/job_completed.rs.
 import { join } from 'node:path';
-import { get, asStr, asI64 } from '../../../_rs.mjs';
+import { get, asStr, asI64 } from '../../../../core/rs/value.mjs';
 import { PreFetchedTaskContext, hasSameAgentOwner, TERMINAL_NOTIFICATION_MARKER } from '../../common/index.mjs';
 import { TaskApiClient } from '../../common/network/task-api-client.mjs';
 import { taskFeedbackExists } from '../../common/onchainos-self.mjs';

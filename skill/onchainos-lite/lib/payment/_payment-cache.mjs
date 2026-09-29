@@ -8,7 +8,8 @@ import { readFileSync, writeFileSync, renameSync, existsSync } from 'node:fs';
 import { homePath, ensureDir } from '../core/home.mjs';
 import { parse, stringify, struct } from '../core/json.mjs';
 import { context } from '../core/errors.mjs';
-import { isObj, asU64, ioErrorText } from './_rs.mjs';
+import { isObject, asU64 } from '../core/rs/value.mjs';
+import { ioErrorText } from '../core/rs/fs.mjs';
 
 const TIER_STATES = ['free', 'charging_unconfirmed', 'charging_confirmed'];
 const FIELDS = ['endpoints', 'accepts', 'basic_state', 'premium_state', 'updated_at', 'user_type', 'intro_shown', 'grace_shown', 'default_asset', 'local_signing_warned'];
@@ -24,7 +25,7 @@ function decodeDefault(v) {
   if (v === null) return null;
   let o = v;
   if (Array.isArray(v)) { if (v.length < 2 || v.length > 3) return bad; o = { asset: v[0], network: v[1], name: v[2] }; }
-  if (!isObj(o)) return bad;
+  if (!isObject(o)) return bad;
   if (typeof o.asset !== 'string' || typeof o.network !== 'string') return bad;
   if (o.name !== undefined && o.name !== null && typeof o.name !== 'string') return bad;
   return { asset: o.asset, network: o.network, name: o.name ?? undefined };
@@ -34,10 +35,10 @@ function decodeDefault(v) {
 export function decodeCache(v) {
   let obj = v;
   if (Array.isArray(v)) { if (v.length > FIELDS.length) return null; obj = Object.fromEntries(v.map((x, i) => [FIELDS[i], x])); }
-  if (!isObj(obj)) return null;
+  if (!isObject(obj)) return null;
   const c = defaultCache();
   if (obj.endpoints !== undefined) {
-    if (!isObj(obj.endpoints) || Object.values(obj.endpoints).some((x) => typeof x !== 'string')) return null;
+    if (!isObject(obj.endpoints) || Object.values(obj.endpoints).some((x) => typeof x !== 'string')) return null;
     c.endpoints = obj.endpoints;
   }
   if (obj.accepts !== undefined) c.accepts = obj.accepts;

@@ -2,8 +2,9 @@
 // payment/subscription/eip712.rs. Typestrings must match the backend byte-for-byte.
 import { keccak256 } from '../../crypto/keccak.mjs';
 import { context } from '../../core/errors.mjs';
-import { trim } from '../../core/_rust-str.mjs';
-import { addressFromStr, b256FromStr, u256FromStr, word, wordAddr } from '../_rs.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { addressFromStr, b256FromStr, word, wordAddr } from '../_alloy.mjs';
+import { u256FromStr } from '../../core/rs/num.mjs';
 
 // upstream: eip712.rs typestrings
 export const SUBSCRIPTION_TERMS_TYPESTRING = 'SubscriptionTerms(address payer,address merchant,address facilitator,address token,uint160 amountPerPeriod,uint64 periodSec,uint32 maxPeriods,uint64 startAt,uint32 initialChargePeriods,uint160 initialChargeAmount,uint64 termsDeadline,bytes32 permitHash,bytes32 salt,uint8 planTier,bytes32 changeFromSubId,uint8 changeEffectiveAt,uint8 periodMode)';

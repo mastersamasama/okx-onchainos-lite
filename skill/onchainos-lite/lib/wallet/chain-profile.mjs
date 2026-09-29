@@ -1,6 +1,7 @@
 // Chain capability routing — upstream agentic_wallet/chain_profile.rs.
 import { getChainByRealChainIndex, getAllChains } from './chain.mjs';
-import { rustTrim, asciiLower, eqIgnoreAsciiCase, isI64, getField as get } from './_rs.mjs';
+import { trim, asciiLower, eqIgnoreAsciiCase } from '../core/rs/str.mjs';
+import { isI64, get } from '../core/rs/value.mjs';
 
 // upstream: chain_profile.rs::TransferDriver / InscriptionDriver / MessageSignDriver
 export const TransferDriver = Object.freeze({ LegacyAccount: 'LegacyAccount', Bitcoin: 'Bitcoin', Sui: 'Sui', Unsupported: 'Unsupported' });
@@ -29,7 +30,7 @@ export async function resolve(input) {
 
 // upstream: chain_profile.rs::entry_matches_name_or_alias
 export function entryMatchesNameOrAlias(entry, input) {
-  const needle = rustTrim(input);
+  const needle = trim(input);
   const name = get(entry, 'chainName');
   const aliases = get(entry, 'alias');
   const direct = stringField(entry, 'chainIndex') === needle
@@ -56,7 +57,7 @@ export function fromEntry(entry) {
   const chainName = stringField(entry, 'chainName');
   if (chainName === undefined) throw new Error('chain profile: chain entry missing chainName');
   const [nativeSymbol, nativeDecimals, capabilities] = overlay(entry);
-  if (rustTrim(chainIndex) === '' || rustTrim(realChainIndex) === '') throw new Error('chain profile: chain identifiers must not be empty');
+  if (trim(chainIndex) === '' || trim(realChainIndex) === '') throw new Error('chain profile: chain identifiers must not be empty');
   return new ResolvedChainProfile({ chainIndex, realChainIndex, chainName, nativeSymbol, nativeDecimals, capabilities });
 }
 

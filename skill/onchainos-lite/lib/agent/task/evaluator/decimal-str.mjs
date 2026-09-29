@@ -1,6 +1,6 @@
 // Exact add / sub / compare over non-negative decimal strings — upstream
 // task/evaluator/decimal_str.rs (u128 fixed-point after aligning the fractional precision).
-import { trim } from '../../_rs.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 
 const U128_MAX = (1n << 128n) - 1n;
 

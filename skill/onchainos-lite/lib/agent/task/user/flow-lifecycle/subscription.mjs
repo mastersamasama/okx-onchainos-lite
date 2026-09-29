@@ -1,7 +1,9 @@
 // Subscription lifecycle event handlers (user side) — upstream task/user/flow_lifecycle/subscription.rs.
 // (The private, caller-less `build_auto_rating_block` / `build_deliverable_sample` helpers are not ported.)
 import { displayTop } from '../../../../wallet/api.mjs';
-import { get, asStr, asI64, parseI64, trim, debugOptInt } from '../../../_rs.mjs';
+import { get, asStr, asI64 } from '../../../../core/rs/value.mjs';
+import { parseI64 } from '../../../../core/rs/num.mjs';
+import { trim, debugOptInt } from '../../../../core/rs/str.mjs';
 import * as okxA2a from '../../common/okx-a2a.mjs';
 import { queryXlayerBalance } from '../../common/util.mjs';
 import { TaskApiClient } from '../../common/network/task-api-client.mjs';

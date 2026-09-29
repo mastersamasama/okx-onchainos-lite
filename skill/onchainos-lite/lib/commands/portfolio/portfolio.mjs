@@ -1,7 +1,6 @@
 // portfolio — upstream commands/portfolio.rs: public-address balance queries. The fetch*
 // exports mirror upstream's pub fns (reused by cross-chain, payment quote, workflows, MCP).
 import { resolveChain, resolveChains } from '../../core/chains.mjs';
-import { clap } from '../token/_clap.mjs';
 
 const SUPPORTED_CHAIN_PATH = '/api/v6/dex/balance/supported/chain';
 const TOTAL_VALUE_PATH = '/api/v6/dex/balance/total-value-by-address';
@@ -50,8 +49,7 @@ export async function fetchTokenBalances(client, address, tokens, excludeRisk) {
 export default {
   'portfolio chains': {
     uses: [],
-    async run(ctx, o) {
-      clap(ctx, o);
+    async run(ctx) {
       const client = await ctx.api();
       return fetchChains(client);
     },
@@ -60,7 +58,6 @@ export default {
     uses: ['address', 'chains', 'assetType', 'excludeRisk'],
     async run(ctx, o) {
       // Option<bool> (clap possible values true|false) → b.to_string()
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchTotalValue(client, o.address, o.chains, o.assetType, o.excludeRisk);
     },
@@ -68,7 +65,6 @@ export default {
   'portfolio all-balances': {
     uses: ['address', 'chains', 'excludeRisk', 'filter'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchAllBalances(client, o.address, o.chains, o.excludeRisk, o.filter);
     },
@@ -76,7 +72,6 @@ export default {
   'portfolio token-balances': {
     uses: ['address', 'tokens', 'excludeRisk'],
     async run(ctx, o) {
-      clap(ctx, o);
       const client = await ctx.api();
       return fetchTokenBalances(client, o.address, o.tokens, o.excludeRisk);
     },

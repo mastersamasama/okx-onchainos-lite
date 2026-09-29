@@ -5,8 +5,8 @@ import { context } from '../core/errors.mjs';
 import { stringify } from '../core/json.mjs';
 import { WalletApiClient } from './api.mjs';
 import { handleConfirmingError } from './common.mjs';
-import { ed25519SignEip191, ed25519SignHex, ed25519SignEncoded } from './shared/_crypto.mjs';
-import { isObject } from './shared/_rust.mjs';
+import { ed25519SignEip191, ed25519SignHex, ed25519SignEncoded } from '../core/crypto.mjs';
+import { isObject } from '../core/rs/value.mjs';
 
 // upstream: broadcast.rs::BroadcastCtx
 // { accessToken, accountId, addrInfo, sessionCert, signingSeed (32-byte Buffer), unsigned

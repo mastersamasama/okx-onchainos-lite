@@ -3,7 +3,7 @@
 import { context } from '../../core/errors.mjs';
 import { WalletApiClient } from '../../wallet/api.mjs';
 import { decodeAllowanceStatus, decodeBuyerSubscriptionListResp, decodeItemVec } from './types.mjs';
-import { get } from '../_rs.mjs';
+import { get } from '../../core/rs/value.mjs';
 
 const BASE = '/api/v6/pay/x402';
 

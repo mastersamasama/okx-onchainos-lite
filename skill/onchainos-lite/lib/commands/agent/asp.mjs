@@ -2,7 +2,6 @@
 // `run_provider` / `run_dispute` and the flat `AgentCommand` arms in agent_commerce/mod.rs).
 import { typed } from '../../core/cli.mjs';
 import { NO_OUTPUT } from '../../core/context.mjs';
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import { TaskApiClient } from '../../agent/task/common/network/task-api-client.mjs';
 import { runProvider, runDispute } from '../../agent/task/asp/index.mjs';
 import { handleActive, handleAgreeRefund, handleAspClaim, handleDispute } from '../../agent/task/asp/subscription.mjs';
@@ -10,10 +9,7 @@ import { handleActive, handleAgreeRefund, handleAspClaim, handleDispute } from '
 // Handlers that print their own output return undefined → NO_OUTPUT; JSON handlers return data.
 const out = (r) => (r === undefined ? NO_OUTPUT : r);
 
-const provider = (kind, map) => async (ctx, o) => {
-  await runPreDispatchMaintenance();
-  return out(await runProvider({ kind, ...map(ctx, o) }));
-};
+const provider = (kind, map) => async (ctx, o) => out(await runProvider({ kind, ...map(ctx, o) }));
 
 export default {
   'agent apply': {
@@ -73,21 +69,18 @@ export default {
     async run(ctx, o) {
       const page = typed(ctx.path, 'page', o.page, 'u32');
       const limit = typed(ctx.path, 'limit', o.limit, 'u32');
-      await runPreDispatchMaintenance();
       return out(await runProvider({ kind: 'List', status: o.status, page, limit, agentId: o.agentId }));
     },
   },
   'agent subscribe-active': {
     uses: ['agentId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return handleActive(new TaskApiClient(), o.agentId);
     },
   },
   'agent subscribe-agree-refund': {
     uses: ['jobId', 'agentId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await handleAgreeRefund(new TaskApiClient(), o.jobId, o.agentId);
       return NO_OUTPUT;
     },
@@ -95,7 +88,6 @@ export default {
   'agent subscribe-asp-claim': {
     uses: ['jobId', 'agentId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await handleAspClaim(new TaskApiClient(), o.jobId, o.agentId);
       return NO_OUTPUT;
     },
@@ -103,7 +95,6 @@ export default {
   'agent subscribe-dispute': {
     uses: ['jobId', 'reason', 'agentId'],
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       await handleDispute(new TaskApiClient(), o.jobId, o.reason, o.agentId);
       return NO_OUTPUT;
     },
@@ -112,7 +103,6 @@ export default {
     uses: ['jobId', 'reason', 'agentId'],
     label: 'agent dispute Discriminant(0)',
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return out(await runDispute({ kind: 'Raise', jobId: o.jobId, reason: o.reason, agentId: o.agentId }));
     },
   },
@@ -120,7 +110,6 @@ export default {
     uses: ['jobId', 'reason', 'reasonB64', 'agentId'],
     label: 'agent dispute Discriminant(1)',
     async run(ctx, o) {
-      await runPreDispatchMaintenance();
       return out(await runDispute({ kind: 'Confirm', jobId: o.jobId, reason: o.reason, reasonB64: o.reasonB64, agentId: o.agentId }));
     },
   },

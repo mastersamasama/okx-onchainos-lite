@@ -5,15 +5,13 @@ import { BtcApi, extractTokenDecimals } from '../shared/adapters/bitcoin/api.mjs
 import { BtcContext } from '../shared/adapters/bitcoin/context.mjs';
 import { BtcOutPoint } from '../shared/adapters/bitcoin/models.mjs';
 import { normalizeBrc20TokenAddress } from '../shared/adapters/bitcoin/validation.mjs';
-import { rustTrim, eqIgnoreAsciiCase, isObject, getField as get } from '../_rs.mjs';
-import { asU64 } from '../shared/_rust.mjs';
+import { trim, eqIgnoreAsciiCase, cmpBytes } from '../../core/rs/str.mjs';
+import { isObject, get, asU64 } from '../../core/rs/value.mjs';
 import { rustPanic } from './_panic.mjs';
 
 // upstream: brc20.rs::MAX_COMBINATION_STATES / MAX_COMBINATION_RESULTS
 export const MAX_COMBINATION_STATES = 100000;
 export const MAX_COMBINATION_RESULTS = 3;
-
-const cmpBytes = (a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b));
 
 // serde_json Value::pointer for "/a/b" (object keys only; a present null is Some(Null)).
 export function pointer(value, path) {
@@ -29,7 +27,7 @@ export function pointer(value, path) {
 
 // upstream: brc20.rs::parse_decimal → [mantissa BigInt, scale]
 export function parseDecimal(value, field) {
-  const v = rustTrim(value);
+  const v = trim(value);
   const parts = v.split('.');
   const integer = parts[0];
   const fraction = parts.length > 1 ? parts[1] : undefined;

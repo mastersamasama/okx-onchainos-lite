@@ -7,7 +7,8 @@ import { homePath } from '../core/home.mjs';
 import { parse, stringify, struct } from '../core/json.mjs';
 import { context } from '../core/errors.mjs';
 import { loadWallets } from '../wallet/store.mjs';
-import { asBool, asStr, asU64, isObj, get, ioErrorText } from './_rs.mjs';
+import { asBool, asStr, asU64, isObject, get } from '../core/rs/value.mjs';
+import { ioErrorText } from '../core/rs/fs.mjs';
 
 // upstream: state.rs::TOKEN_QUOTE_EXPIRED_OR_MISSING / TOKEN_CROSS_USER / MAX_QUOTE_TTL_SECS
 export const TOKEN_QUOTE_EXPIRED_OR_MISSING = 'quote_expired_or_missing';
@@ -80,23 +81,23 @@ export function writeState(st) {
 
 // Strict serde decode of a persisted PaymentState (null on any shape mismatch).
 function decodeState(v) {
-  if (!isObj(v)) return null;
+  if (!isObject(v)) return null;
   const str = (k) => asStr(get(v, k));
   const u64 = (k) => asU64(get(v, k));
   const req = ['payment_id', 'owner_wallet', 'merchant_body', 'endpoint_url'];
   for (const k of req) if (str(k) === undefined) return null;
   if (u64('created_at') === undefined || u64('expires_at') === undefined) return null;
   const accepts = get(v, 'accepts'), cands = get(v, 'candidates'), dc = get(v, 'decoded_challenge'), kp = get(v, 'known_params');
-  if (!Array.isArray(accepts) || !Array.isArray(cands) || !isObj(dc) || !isObj(kp)) return null;
+  if (!Array.isArray(accepts) || !Array.isArray(cands) || !isObject(dc) || !isObject(kp)) return null;
   const acc = [];
   for (const a of accepts) {
-    if (!isObj(a) || asU64(a.index) === undefined || ['scheme', 'amount', 'asset', 'network'].some((k) => asStr(get(a, k)) === undefined)) return null;
+    if (!isObject(a) || asU64(a.index) === undefined || ['scheme', 'amount', 'asset', 'network'].some((k) => asStr(get(a, k)) === undefined)) return null;
     acc.push({ index: asU64(a.index), scheme: a.scheme, amount: a.amount, asset: a.asset, network: a.network });
   }
   const optStr = (o, k, def) => { const x = get(o, k); return x === undefined ? def : asStr(x); };
   const cs = [];
   for (const c of cands) {
-    if (!isObj(c)) return null;
+    if (!isObject(c)) return null;
     const x = {
       scheme: asStr(get(c, 'scheme')), acceptsIndex: asU64(get(c, 'acceptsIndex')), chainId: asStr(get(c, 'chainId')),
       chainName: asStr(get(c, 'chainName')), isMainnet: asBool(get(c, 'isMainnet')), tokenSymbol: asStr(get(c, 'tokenSymbol')),
@@ -128,7 +129,7 @@ function decodeState(v) {
   if (plan !== undefined && !Array.isArray(plan)) return null;
   const pp = [];
   for (const p of plan ?? []) {
-    if (!isObj(p) || asStr(get(p, 'name')) === undefined) return null;
+    if (!isObject(p) || asStr(get(p, 'name')) === undefined) return null;
     // `#[serde(default)]` applies only to an ABSENT key; an explicit `null` is a type error
     // (enum / bool / String cannot deserialize from null) → the whole state is unreadable.
     const orDefault = (k, def) => (Object.prototype.hasOwnProperty.call(p, k) ? p[k] : def);

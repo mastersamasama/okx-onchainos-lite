@@ -1,5 +1,5 @@
 // Shared subscription identity selector — upstream task/common/subscription_identity.rs.
-import { trim } from '../../_rs.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 
 // upstream: subscription_identity.rs::select_subscription_agent_id
 export function selectSubscriptionAgentId(userAgentId, aspAgentId) {

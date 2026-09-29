@@ -15,16 +15,23 @@ import * as subscriptionConfig from './subscription-config.mjs';
 import * as deliveryQueue from './delivery-queue.mjs';
 import * as notify from './notify.mjs';
 import { GUIDE_EXECUTION_UNAVAILABLE_REASON, EXECUTION_POLICY_NOT_CONFIGURED_REASON } from './index.mjs';
-import { fromSlice, fromStr, T } from './_serde-json.mjs';
-import { onchainosHome, exists, isFile, isDir, readBytes, readToString, readDirPaths, writeSecure, removeFileQuiet, renameQuiet,
-  createDirAll, createNew, extension, withExtension, ageSecs, nowSecs, satAdd, u64Le, u64Gt, sha256Hex } from './_fs.mjs';
+import { fromSlice, fromStr, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
+import {
+  exists, isFile, isDir, readBytes, readToString, readDirPaths, removeFileQuiet, renameQuiet, createDirAll, createNew, extension,
+  withExtension, modifiedAgeSecs, io,
+} from '../../../../core/rs/fs.mjs';
+import { nowSecs } from '../../../../core/rs/time.mjs';
+import { u64SaturatingAdd } from '../../../../core/rs/num.mjs';
+import { sha256Hex } from '../../../../core/rs/codec.mjs';
+import { isObject, get, asStr } from '../../../../core/rs/value.mjs';
+import { splitWhitespace, isControl, eqIgnoreAsciiCase, asciiLower } from '../../../../core/rs/str.mjs';
 import { ctx, outerMessage } from './_err.mjs';
 import { SubscriptionTradePath } from '../config.mjs';
 import { resolve as resolveLang, Lang } from '../user-lang.mjs';
 import { userNotifyScoped, userNotifyScopedWithTimeout, tradeRecordsInsert } from '../okx-a2a.mjs';
 import { findService } from '../index.mjs';
 import { TaskApiClient } from '../network/task-api-client.mjs';
-import { isObj, get, asStr, splitWhitespace, isControl, eqIgnoreAsciiCase, asciiLower } from '../../../_rs.mjs';
 
 const OUTCOME_VERSION = 1;
 const ONE_TIME_PERMIT_VERSION = 1;
@@ -118,7 +125,7 @@ function noticeRefPath(jobId, deliveryId) {
 function syncNoticeRef(o) {
   const path = noticeRefPath(o.jobId, o.deliveryId);
   if (!o.notificationPending) { removeFileQuiet(path); return; }
-  writeSecure(path, stringify(struct({ version: NOTICE_REF_VERSION, jobId: o.jobId, deliveryId: o.deliveryId, nextAttemptAt: o.nextNotificationAttemptAt }), true));
+  io(() => writeSecure(path, stringify(struct({ version: NOTICE_REF_VERSION, jobId: o.jobId, deliveryId: o.deliveryId, nextAttemptAt: o.nextNotificationAttemptAt }), true)));
 }
 
 // latch writers (O_EXCL): upstream reserve_execution / reserve_guide_direct_execution
@@ -163,14 +170,14 @@ function readOutcome(path) {
 
 // upstream: executor.rs::write_outcome
 function writeOutcome(path, o) {
-  writeSecure(path, stringify(outcomeJson(o), true));
+  io(() => writeSecure(path, stringify(outcomeJson(o), true)));
   try { syncNoticeRef(o); } catch (e) { process.stderr.write(`[autotrade] pending-notification index update failed: ${e.message}\n`); }
 }
 
 // upstream: executor.rs::write_terminal_journal / read_terminal_journal
 function writeTerminalJournal(o) {
   const path = terminalJournalPath(o.jobId, o.deliveryId);
-  writeSecure(path, stringify(struct({ version: TERMINAL_JOURNAL_VERSION, outcome: outcomeJson(o) }), true));
+  io(() => writeSecure(path, stringify(struct({ version: TERMINAL_JOURNAL_VERSION, outcome: outcomeJson(o) }), true)));
   return path;
 }
 function readTerminalJournal(path) {
@@ -234,13 +241,13 @@ export function authorizeOneTime(jobId, deliveryId, amount) {
   const path = oneTimePermitPath(jobId, deliveryId);
   const existing = readOneTimePermit(path);
   if (existing) {
-    if (existing.jobId === jobId && existing.deliveryId === deliveryId && existing.amount === normalized && u64Gt(existing.expiresAt, nowSecs())) return oneTimePermitJson(existing);
-    if (u64Gt(existing.expiresAt, nowSecs())) throw new Error('a different live one-time permit already exists for this delivery');
+    if (existing.jobId === jobId && existing.deliveryId === deliveryId && existing.amount === normalized && existing.expiresAt > nowSecs()) return oneTimePermitJson(existing);
+    if (existing.expiresAt > nowSecs()) throw new Error('a different live one-time permit already exists for this delivery');
     removeFileQuiet(path);
   }
   createDirAll(join(path, '..'));
   const createdAt = nowSecs();
-  const permit = { version: ONE_TIME_PERMIT_VERSION, jobId, deliveryId, amount: normalized, createdAt, expiresAt: satAdd(createdAt, ONE_TIME_PERMIT_TTL_SEC) };
+  const permit = { version: ONE_TIME_PERMIT_VERSION, jobId, deliveryId, amount: normalized, createdAt, expiresAt: u64SaturatingAdd(createdAt, ONE_TIME_PERMIT_TTL_SEC) };
   let created;
   try { created = createNew(path, stringify(oneTimePermitJson(permit), true)); } catch (e) { throw ctx('one-time permit was concurrently replaced', e); }
   // OpenOptions::create_new on an existing path: Windows CreateFileW(CREATE_NEW) fails with
@@ -437,7 +444,7 @@ async function persistAndNotify(path, o) {
 // upstream: executor.rs::notification — user-visible text
 function notification(o) {
   let receipt;
-  if (isObj(o.receipt)) {
+  if (isObject(o.receipt)) {
     for (const k of Object.keys(o.receipt).sort((a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b)))) {
       if (typeof o.receipt[k] === 'string') { receipt = `${k}: ${o.receipt[k]}`; break; }
     }
@@ -481,7 +488,7 @@ const sleepMs = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // upstream: executor.rs::notify_and_persist (mutates o)
 async function notifyAndPersist(path, o, force, timeoutMs) {
-  if (!o.notificationPending || (!force && u64Gt(o.nextNotificationAttemptAt, nowSecs()))) return;
+  if (!o.notificationPending || (!force && o.nextNotificationAttemptAt > nowSecs())) return;
   const key = `autotrade-outcome:${sha256Hex(`${o.jobId}\0${o.deliveryId}\0${STATUS_DEBUG[o.status]}`)}`;
   const content = notification(o);
   const maxAttempts = force ? 3 : 1;
@@ -508,7 +515,7 @@ async function notifyAndPersist(path, o, force, timeoutMs) {
     try { writeOutcome(path, o); } catch {}
     return;
   }
-  o.nextNotificationAttemptAt = satAdd(o.updatedAt, Math.min(30 * 2 ** Math.min(o.notificationAttempts, 5), 15 * 60));
+  o.nextNotificationAttemptAt = u64SaturatingAdd(o.updatedAt, Math.min(30 * 2 ** Math.min(o.notificationAttempts, 5), 15 * 60));
   try { writeOutcome(path, o); } catch {}
 }
 
@@ -644,7 +651,7 @@ export async function cleanupExpiredTickets(limit) {
       if (extension(path) !== 'json') continue;
       inspected += 1;
       let expired = false;
-      try { const p = fromSlice(readBytes(path), PERMIT_T); expired = p.version === ONE_TIME_PERMIT_VERSION && u64Le(p.expiresAt, nowSecs()); } catch { expired = false; }
+      try { const p = fromSlice(readBytes(path), PERMIT_T); expired = p.version === ONE_TIME_PERMIT_VERSION && p.expiresAt <= nowSecs(); } catch { expired = false; }
       if (expired) { try { removeFileQuiet(path); if (!exists(path)) removed += 1; } catch {} }
     }
   }
@@ -659,7 +666,7 @@ export async function flushAllDue(maxRecords) {
     for (const path of readDirPaths(root)) {
       const ext = extension(path);
       if (ext !== undefined && ext.startsWith('lease-')) {
-        const age = ageSecs(path);
+        const age = modifiedAgeSecs(path);
         if (age !== undefined && age >= STALE_LEASE_SEC) {
           const original = withExtension(path, 'json');
           if (exists(original)) removeFileQuiet(path); else renameQuiet(path, original);
@@ -673,7 +680,7 @@ export async function flushAllDue(maxRecords) {
     }
     pending.sort((a, b) => { const x = BigInt(a[1].nextAttemptAt), y = BigInt(b[1].nextAttemptAt); return x < y ? -1 : x > y ? 1 : 0; });
     for (const [indexPath, ref] of pending.slice(0, Math.max(maxRecords, 1))) {
-      if (u64Gt(ref.nextAttemptAt, nowSecs())) break;
+      if (ref.nextAttemptAt > nowSecs()) break;
       const lease = withExtension(indexPath, `lease-${process.pid}`);
       if (!renameQuiet(indexPath, lease)) continue;
       let path;

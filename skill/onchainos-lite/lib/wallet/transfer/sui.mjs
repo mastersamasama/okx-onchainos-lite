@@ -11,7 +11,9 @@ import { SuiApi, mapApiError } from '../shared/adapters/sui/api.mjs';
 import { SuiContext } from '../shared/adapters/sui/context.mjs';
 import { NATIVE_COIN_TYPE, normalizeAddress, normalizeCoinType } from '../shared/adapters/sui/identifiers.mjs';
 import { signUnsignedHashes } from '../shared/adapters/sui/signing.mjs';
-import { get, isObject, rustTrim, base64Decode } from '../shared/_rust.mjs';
+import { get, isObject } from '../../core/rs/value.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { B64 } from '../../core/rs/codec.mjs';
 
 const some = (v) => v !== undefined && v !== null;
 const orNull = (v) => (v === undefined ? null : v);
@@ -131,7 +133,7 @@ export async function cmdContractCall(txBytes, to, amount, from, force, agentBiz
   if (some(to)) { try { normalizedTo = normalizeAddress(to); } catch (e) { throw mapLocalInputError(e); } }
   const ctx = await SuiContext.load(from);
   const api = new SuiApi();
-  const prepared = await api.prepareContractCall(ctx, normalizedTo, amount, rustTrim(txBytes));
+  const prepared = await api.prepareContractCall(ctx, normalizedTo, amount, trim(txBytes));
   ensureSimulationSucceeded(prepared);
   let seed, signatures;
   try { seed = ctx.signingSeed(); } catch (e) { throw localSigningFailed(e); }
@@ -153,10 +155,10 @@ export async function cmdContractCall(txBytes, to, amount, from, force, agentBiz
 
 // upstream: sui.rs::validate_tx_bytes — transport encoding only (standard padded base64).
 export function validateTxBytes(txBytes) {
-  const t = rustTrim(txBytes);
+  const t = trim(txBytes);
   if (t === '') throw new Error('--sui-tx-bytes must not be empty');
   let decoded;
-  try { decoded = base64Decode(t); } catch (e) { throw context('--sui-tx-bytes must be valid base64', e); }
+  try { decoded = B64.STANDARD.decode(t); } catch (e) { throw context('--sui-tx-bytes must be valid base64', e); }
   if (!decoded.length) throw new Error('--sui-tx-bytes must decode to non-empty TransactionData');
 }
 

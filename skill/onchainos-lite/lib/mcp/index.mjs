@@ -13,7 +13,8 @@ import { ApiClient } from '../core/http.mjs';
 import { resolveChain, resolveChains } from '../core/chains.mjs';
 import * as E from '../core/errors.mjs';
 import { PRETTY, UPSTREAM_VERSION } from '../config.mjs';
-import { fromArguments, takesParams, SerdeError } from './serde.mjs';
+import { SerdeError } from '../core/serde.mjs';
+import { fromArguments, takesParams } from './serde.mjs';
 import * as rmcp from './rmcp.mjs';
 
 // ── catalogue ───────────────────────────────────────────────────────

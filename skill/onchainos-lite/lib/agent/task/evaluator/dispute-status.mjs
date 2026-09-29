@@ -2,27 +2,27 @@
 // `DisputeStatusResponse`, `get_dispute_status`, and the four-gate `precheck_round_gate`
 // that `evidence-info` runs before downloading evidence.
 import { context } from '../../../core/errors.mjs';
-import { S, fromValue } from '../../_serde.mjs';
-import { rustDebugStr } from '../../_rs.mjs';
+import { T, fromValue } from '../../../core/serde.mjs';
+import { strDebug } from '../../../core/rs/str.mjs';
 import { Status, DisputeRoundStatus } from '../common/state-machine.mjs';
 import { taskStatusLabel, taskStatusDescription } from '../common/query.mjs';
 
 // upstream: dispute_status.rs::DisputeStatusResponse (fields camelCase; Option → null)
-export const DISPUTE_STATUS_RESPONSE = S.struct('DisputeStatusResponse', [
-  ['jobId', S.string],
-  ['jobType', S.option(S.i32), { default: null }],
-  ['currentRound', S.option(S.i64), { default: null }],
-  ['selectedVoter', S.option(S.ignored), { default: null }],
-  ['taskStatus', S.i32, { default: 0 }],
-  ['disputeRoundStatus', S.option(S.i32), { default: null, aliases: ['disputeStatus'] }],
-  ['prepareEndTime', S.option(S.i64), { default: null }],
-  ['roundEndTime', S.option(S.i64), { default: null }],
-  ['tokenAmount', S.option(S.string), { default: null }],
-  ['tokenSymbol', S.option(S.string), { default: null }],
+export const DISPUTE_STATUS_RESPONSE = T.struct('DisputeStatusResponse', [
+  ['jobId', T.string],
+  ['jobType', T.option(T.i32), null],
+  ['currentRound', T.option(T.i64), null],
+  ['selectedVoter', T.option(T.ignored), null],
+  ['taskStatus', T.i32, 0],
+  ['disputeRoundStatus', T.option(T.i32), null, ['disputeStatus']],
+  ['prepareEndTime', T.option(T.i64), null],
+  ['roundEndTime', T.option(T.i64), null],
+  ['tokenAmount', T.option(T.string), null],
+  ['tokenSymbol', T.option(T.string), null],
 ]);
 
 // serde_json::from_value::<DisputeStatusResponse>
-export const decodeDisputeStatusResponse = (v) => fromValue(DISPUTE_STATUS_RESPONSE, v);
+export const decodeDisputeStatusResponse = (v) => fromValue(v, DISPUTE_STATUS_RESPONSE);
 
 // upstream: dispute_status.rs::evaluator_task_is_terminal
 export const evaluatorTaskIsTerminal = (status) => status === Status.Completed || status === Status.Close || status === Status.Expired || status === Status.Failed;
@@ -51,7 +51,7 @@ export function gateReason(s, roundNum) {
   const drs = s.disputeRoundStatus === null ? null : DisputeRoundStatus.fromInt(s.disputeRoundStatus);
   if (evaluatorTaskIsTerminal(taskStatus)) return `taskStatus=${s.taskStatus} (${Status.asStr(taskStatus)}) is terminal — task finished, evaluation window closed`;
   const req = parseI64Result(roundNum);
-  if (req.err !== undefined) return `--round-num cannot be parsed as integer: ${rustDebugStr(roundNum)} (${req.err})`;
+  if (req.err !== undefined) return `--round-num cannot be parsed as integer: ${strDebug(roundNum)} (${req.err})`;
   if (s.currentRound === null) return 'currentRound=null — no active evaluation (task is not under evaluation / already ended / backend has not advanced round)';
   if (req.ok !== BigInt(s.currentRound)) return `round mismatch: envelope round_num=${req.ok} != on-chain currentRound=${s.currentRound} (stale envelope)`;
   if (drs === null) return 'disputeStatus=null — evaluation sub-state-machine not started / already settled (commit window guaranteed closed)';

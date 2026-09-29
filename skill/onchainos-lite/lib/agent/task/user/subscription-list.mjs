@@ -3,9 +3,10 @@
 // presented as one stream with an opaque base64url cursor.
 import { stringify, struct } from '../../../core/json.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { fromStr, T } from '../../../wallet/_serde-json.mjs';
-import { S, fromValue } from '../../_serde.mjs';
-import { get, asStr, asU64, asBool, asArray, isObj, trim, b64UrlNoPadDecode, b64UrlNoPadEncode, utf8Strict } from '../../_rs.mjs';
+import { fromSlice, T } from '../../../core/serde.mjs';
+import { get, asStr, asU64, asBool, asArray, isObject } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { B64 } from '../../../core/rs/codec.mjs';
 import { resolveAgentId } from '../common/query.mjs';
 import { AGENT_ROLE_USER, XLAYER_CHAIN_INDEX } from '../common/index.mjs';
 import { TaskApiClient } from '../common/network/task-api-client.mjs';
@@ -18,42 +19,23 @@ const SUBSCRIPTION_MY_PATH = '/priapi/v1/aieco/task/subscribe/my';
 const CURSOR_VERSION = 1;
 const U32_MAX = 4294967295;
 
-// upstream: subscription_list.rs::CursorStage (serde snake_case unit variants; serde_json also
-// accepts the externally tagged map form `{"active":null}`)
-const STAGE_VARIANTS = new Set(['active', 'ended']);
-const STAGE = {
-  expecting: 'enum CursorStage',
-  de(v) {
-    if (typeof v === 'string' && STAGE_VARIANTS.has(v)) return v;
-    if (isObj(v)) {
-      const keys = Object.keys(v);
-      if (keys.length === 1 && STAGE_VARIANTS.has(keys[0]) && v[keys[0]] === null) return keys[0];
-    }
-    throw new Error('unknown variant');
-  },
-};
+// upstream: subscription_list.rs::CursorStage (serde snake_case unit variants)
+const STAGE = T.enum('CursorStage', [['active', 'active'], ['ended', 'ended']]);
 // upstream: subscription_list.rs::SubscriptionCursor (struct field order)
-const CURSOR = S.struct('SubscriptionCursor', [['version', S.u8], ['stage', STAGE], ['page', S.u32], ['offset', S.usize], ['page_size', S.u32],
-  ['active_count', S.u64], ['ended_count', S.u64]]);
-// serde_json::from_slice::<SubscriptionCursor> is a streaming struct read: duplicate fields, the
-// sequence form, missing fields and trailing characters are decided while parsing.
-const CURSOR_STREAM = T.struct('SubscriptionCursor', ['version', 'stage', 'page', 'offset', 'page_size', 'active_count', 'ended_count'].map((k) => [k, T.value]));
+const CURSOR = T.struct('SubscriptionCursor', [['version', T.u8], ['stage', STAGE], ['page', T.u32], ['offset', T.usize], ['page_size', T.u32],
+  ['active_count', T.u64], ['ended_count', T.u64]]);
 
 // upstream: subscription_list.rs::encode_cursor
 export function encodeCursor(c) {
   const json = stringify(struct({ version: c.version, stage: c.stage, page: c.page, offset: c.offset, page_size: c.pageSize, active_count: c.activeCount, ended_count: c.endedCount }));
-  return b64UrlNoPadEncode(Buffer.from(json, 'utf8'));
+  return B64.URL_SAFE_NO_PAD.encode(Buffer.from(json, 'utf8'));
 }
 
 // upstream: subscription_list.rs::decode_cursor
 export function decodeCursor(raw) {
   const invalid = () => new Error('invalid subscription cursor');
   let c;
-  try {
-    const bytes = b64UrlNoPadDecode(raw);
-    const text = utf8Strict(bytes);   // serde_json::from_slice: a leading BOM is not whitespace
-    c = fromValue(CURSOR, fromStr(text, CURSOR_STREAM));
-  } catch { throw invalid(); }
+  try { c = fromSlice(B64.URL_SAFE_NO_PAD.decode(raw), CURSOR); } catch { throw invalid(); }
   if (Number(c.version) !== CURSOR_VERSION || Number(c.page) === 0 || Number(c.page_size) === 0) throw invalid();
   return { version: c.version, stage: c.stage, page: c.page, offset: Number(c.offset), pageSize: c.page_size, activeCount: c.active_count, endedCount: c.ended_count };
 }
@@ -83,7 +65,7 @@ function addDisplayFields(object, stage) {
 
 // upstream: subscription_list.rs::parse_page → { items, page, pageSize, total, hasNext }
 export function parsePage(value, stage) {
-  if (!isObj(value)) throw new Error('subscription page must be a JSON object');
+  if (!isObject(value)) throw new Error('subscription page must be a JSON object');
   const total = asU64(get(value, 'total'));
   if (total === undefined) throw new Error('subscription page is missing numeric total');
   const page = asU64(get(value, 'page'));
@@ -93,7 +75,7 @@ export function parsePage(value, stage) {
   const list = asArray(get(value, 'list'));
   if (!list) throw new Error('subscription page is missing list array');
   const items = list.map((item) => {
-    if (!isObj(item)) return item;
+    if (!isObject(item)) return item;
     const o = { ...item, listStatus: stage };
     addDisplayFields(o, stage);
     return o;
@@ -197,7 +179,7 @@ const INLINE_SYMBOL_KEYS = ['serviceTokenSymbol', 'tokenSymbol', 'paymentTokenSy
 async function attachFeeLabels(output) {
   const payload = get(output, 'payload');
   const items = asArray(get(payload, 'items'));
-  if (!isObj(payload) || !items) return;
+  if (!isObject(payload) || !items) return;
   const symbols = new Map();
   for (const item of items) {
     const hasInline = INLINE_SYMBOL_KEYS.some((k) => { const s = asStr(get(item, k)); return s !== undefined && trim(s) !== ''; });
@@ -211,7 +193,7 @@ async function attachFeeLabels(output) {
     symbols.set(address, symbol);
   }
   for (const item of items) {
-    if (!isObj(item)) continue;
+    if (!isObject(item)) continue;
     let inline;
     for (const k of INLINE_SYMBOL_KEYS) { const s = asStr(get(item, k)); if (s !== undefined) { inline = s; break; } }
     const inlineSymbol = inline !== undefined && trim(inline) !== '' ? trim(inline) : undefined;
@@ -227,7 +209,7 @@ async function attachFeeLabels(output) {
 // upstream: subscription_list.rs::attach_device_receipts
 function attachDeviceReceipts(output, snapshot) {
   const payload = get(output, 'payload');
-  if (!isObj(payload)) return;
+  if (!isObject(payload)) return;
   const devices = asArray(get(snapshot, 'list'));
   if (!devices) { payload.deviceDataAvailable = false; return; }
   payload.deviceDataAvailable = true;
@@ -239,7 +221,7 @@ function attachDeviceReceipts(output, snapshot) {
     return { key: id, label: (asBool(get(d, 'isThisDevice')) ?? false) ? `${name} (This Device)` : name };
   });
   for (const item of asArray(get(payload, 'items')) ?? []) {
-    if (!isObj(item)) continue;
+    if (!isObject(item)) continue;
     const configured = asArray(get(item, 'deviceList'));
     const dl = get(item, 'deviceList');
     const defaultAll = dl === undefined || dl === null;

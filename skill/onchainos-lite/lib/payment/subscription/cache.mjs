@@ -6,9 +6,10 @@ import { readFileSync, writeFileSync, renameSync, existsSync, rmSync } from 'nod
 import { homePath, ensureDir } from '../../core/home.mjs';
 import { parse, stringify, struct } from '../../core/json.mjs';
 import { context } from '../../core/errors.mjs';
-import { asciiLower } from '../../core/_rust-str.mjs';
+import { asciiLower } from '../../core/rs/str.mjs';
+import { isObject, asU64 } from '../../core/rs/value.mjs';
+import { ioErrorText } from '../../core/rs/fs.mjs';
 import { subscriptionCacheEntry } from './types.mjs';
-import { isObj, asU64, ioErrorText } from '../_rs.mjs';
 
 // upstream: cache.rs::state_label (private)
 export function stateLabel(state) {
@@ -35,7 +36,7 @@ function decodeEntry(raw) {
     if (raw.length < ENTRY_FIELDS.length - 1 || raw.length > ENTRY_FIELDS.length) return null;
     e = Object.fromEntries(raw.map((x, i) => [ENTRY_FIELDS[i], x]));
   }
-  if (!isObj(e)) return null;
+  if (!isObject(e)) return null;
   const s = (k) => (typeof e[k] === 'string' ? e[k] : undefined);
   const tier = asU64(e.planTier), maxp = asU64(e.maxPeriods);
   if ([s('subId'), s('resourceHost'), s('merchant'), s('planId'), s('state')].includes(undefined)) return null;
@@ -60,10 +61,10 @@ export class SubscriptionCache {
       if (v.length > 1) return new SubscriptionCache();
       v = v.length ? { by_host: v[0] } : {};
     }
-    if (!isObj(v)) return new SubscriptionCache();
+    if (!isObject(v)) return new SubscriptionCache();
     const m = new Map();
     if (v.by_host !== undefined) {
-      if (!isObj(v.by_host)) return new SubscriptionCache();
+      if (!isObject(v.by_host)) return new SubscriptionCache();
       for (const [h, e] of Object.entries(v.by_host)) { const d = decodeEntry(e); if (!d) return new SubscriptionCache(); m.set(h, d); }
     }
     return new SubscriptionCache(m);

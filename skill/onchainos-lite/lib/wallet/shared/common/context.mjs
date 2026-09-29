@@ -5,7 +5,7 @@ import { ensureTokensRefreshed } from '../../auth.mjs';
 import { resolveActiveAccountId } from '../../account.mjs';
 import { resolve as resolveChainProfile } from '../../chain-profile.mjs';
 import { ERR_NOT_LOGGED_IN } from '../../common.mjs';
-import { ensureWalletAccountsFresh } from '../_balance.mjs';
+import { ensureWalletAccountsFresh } from '../../balance/index.mjs';
 
 // upstream: context.rs::LoadedChainContext
 // → { accessToken, accountId, loginType, profile: ResolvedChainProfile, address: AddressInfo }

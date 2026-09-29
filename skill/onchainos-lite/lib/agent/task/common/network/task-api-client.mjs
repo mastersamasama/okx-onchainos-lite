@@ -10,7 +10,8 @@ import { request as transport } from '../../../../core/transport.mjs';
 import { auditLog } from '../../../../core/audit.mjs';
 import { context } from '../../../../core/errors.mjs';
 import { statusText } from '../../../../core/ws.mjs';
-import { isObj, trim } from '../../../_rs.mjs';
+import { isObject } from '../../../../core/rs/value.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
 
 // upstream: task_api_client.rs::TASK_PREFIX
 export const TASK_PREFIX = '/priapi/v1/aieco/task';
@@ -35,7 +36,7 @@ export function getSessionCert() {
 
 // upstream: task_api_client.rs::inject_session_cert — only for object bodies without the key.
 export function injectSessionCert(body) {
-  if (!isObj(body)) return body;
+  if (!isObject(body)) return body;
   if (Object.prototype.hasOwnProperty.call(body, 'sessionCert')) return { ...body };
   const cert = getSessionCert();
   return cert === undefined ? { ...body } : { ...body, sessionCert: cert };

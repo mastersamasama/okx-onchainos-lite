@@ -1,7 +1,9 @@
 // Job-provider runtime binding via okx-a2a — upstream task/common/a2a_binding.rs.
 import { parse as parseJson } from '../../../core/json.mjs';
 import { output, utf8Lossy } from '../../_proc.mjs';
-import { get, asStr, asBool, trim, spawnErrorText, exitCodeDebug } from '../../_rs.mjs';
+import { get, asStr, asBool } from '../../../core/rs/value.mjs';
+import { trim, debugOptInt } from '../../../core/rs/str.mjs';
+import { spawnErrorText } from '../../../core/rs/process.mjs';
 
 const OKX_A2A = 'okx-a2a';
 const COMMAND_TIMEOUT_MS = 3000;
@@ -25,7 +27,7 @@ export class JobProviderPreBind {
     try {
       const o = await runOkxA2a(['job-provider', 'unset', '--job-id', this.jobId, '--provider', this.provider, '--json']);
       if (o.code === 0) process.stderr.write(`[a2a-binding] rolled back pre-broadcast job provider binding: jobId=${this.jobId} provider=${this.provider}\n`);
-      else process.stderr.write(`[a2a-binding] WARN: rollback failed: jobId=${this.jobId} provider=${this.provider} exit=${exitCodeDebug(o.code)} stderr=${trim(utf8Lossy(o.stderr))} stdout=${trim(utf8Lossy(o.stdout))}\n`);
+      else process.stderr.write(`[a2a-binding] WARN: rollback failed: jobId=${this.jobId} provider=${this.provider} exit=${debugOptInt(o.code)} stderr=${trim(utf8Lossy(o.stderr))} stdout=${trim(utf8Lossy(o.stdout))}\n`);
     } catch (e) {
       process.stderr.write(`[a2a-binding] WARN: rollback unavailable: jobId=${this.jobId} provider=${this.provider}: ${e.message}\n`);
     }
@@ -60,5 +62,5 @@ export async function bindJobProviderToCurrentRuntimeRequired(jobIdRaw) {
     }
     throw new Error(`okx-a2a job-provider bind-current returned no provider for jobId=${jobId}`);
   }
-  throw new Error(`okx-a2a job-provider bind-current failed: jobId=${jobId} exit=${exitCodeDebug(o.code)} stderr=${trim(utf8Lossy(o.stderr))} stdout=${trim(utf8Lossy(o.stdout))}`);
+  throw new Error(`okx-a2a job-provider bind-current failed: jobId=${jobId} exit=${debugOptInt(o.code)} stderr=${trim(utf8Lossy(o.stderr))} stdout=${trim(utf8Lossy(o.stdout))}`);
 }

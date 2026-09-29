@@ -2,7 +2,7 @@
 // ctx = FlowContext { jobId, agentId, shortId, titleDisplay, paymentMode, prefetched, … }.
 import { stringify } from '../../../../core/json.mjs';
 import { designatedRouteInner } from '../../common/index.mjs';
-import { get, asStr } from '../../../_rs.mjs';
+import { get, asStr } from '../../../../core/rs/value.mjs';
 import { getDesignatedProvider } from '../negotiate.mjs';
 import { jobCreatedDesignatedUserNotify } from '../content.mjs';
 import { branchA2aCli, branchError } from './designated.mjs';

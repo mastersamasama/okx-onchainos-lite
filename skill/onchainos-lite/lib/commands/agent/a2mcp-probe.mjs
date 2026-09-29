@@ -1,14 +1,10 @@
 // agent a2mcp-probe commands — upstream commands/agent_commerce/a2mcp_probe/mod.rs::run
 // (dispatched from agent_commerce/mod.rs after the per-invocation maintenance prelude).
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import { run, A2mcpProbeCommand } from '../../agent/a2mcp-probe/index.mjs';
 
 const leaf = (kind, uses) => ({
   uses,
-  async run(ctx, o) {
-    await runPreDispatchMaintenance();
-    return run({ kind, ...o });
-  },
+  run: (ctx, o) => run({ kind, ...o }),
 });
 
 export default {

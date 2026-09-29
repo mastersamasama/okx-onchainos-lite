@@ -1,6 +1,6 @@
 // Escrow completion (review approval) — upstream task/user/v2/complete.rs. FUNDS: releases escrow.
 import { auditLog } from '../../../../core/audit.mjs';
-import { get, asI64 } from '../../../_rs.mjs';
+import { get, asI64 } from '../../../../core/rs/value.mjs';
 import * as signing from '../../signing.mjs';
 import { PaymentMode } from '../../common/payment-mode.mjs';
 import { checkAndConsume } from '../../common/review-gate.mjs';

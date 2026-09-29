@@ -6,12 +6,12 @@ import { join } from 'node:path';
 import { createHash, randomBytes } from 'node:crypto';
 import { stringify, struct } from '../../../core/json.mjs';
 import { CodedError } from '../../../core/errors.mjs';
-import { fromStr, T } from '../../../wallet/_serde-json.mjs';
-import { taskStateRoot } from '../../_home.mjs';
-import {
-  nowNanos, nowSecs, utcNanosSerde, utcNanosRfc3339, utcNowRfc3339, parseRfc3339Nanos, rustDebugStr, debugOptStr, ioErrorText, isObj, trim, trimStart,
-  utf8Strict, readToString, readErrorText,
-} from '../../_rs.mjs';
+import { fromStr, T } from '../../../core/serde.mjs';
+import { taskStateRoot } from '../../../core/home.mjs';
+import { nowNanos, nowSecs, utcNanosSerde, utcNanosRfc3339, utcNowRfc3339, dateTimeFromStr } from '../../../core/rs/time.mjs';
+import { strDebug, debugOptStr, trim, trimStart } from '../../../core/rs/str.mjs';
+import { ioErrorText, decodeUtf8, readToString } from '../../../core/rs/fs.mjs';
+import { isObject } from '../../../core/rs/value.mjs';
 import { sleep } from '../../../core/proc.mjs';
 import * as arbitration from '../arbitration.mjs';
 import { isCliMode } from './config.mjs';
@@ -19,10 +19,10 @@ import { decodeAndValidate, renderAll, TemplateVarError } from './template-vars.
 import { hasReviewCardSentMarker, markReviewCardSent } from './deliverables.mjs';
 import { userDecisionRequest, sessionSend, sessionSendExact } from './okx-a2a.mjs';
 import { recordFromUserText } from './user-lang.mjs';
-import {
-  isRetiredModeConfigurationDecision, isCandidateSource, loadPendingDeliveryContext, clearPendingSignal, clearCandidateDraft, applyCandidateJson,
-  CONSENT_SOURCE_EVENT,
-} from './_autotrade.mjs';
+import { isRetiredModeConfigurationDecision } from './autotrade/index.mjs';
+import { loadPendingDeliveryContext, clearPendingSignal } from './autotrade/consent.mjs';
+import { isCandidateSource, clearCandidateDraft, applyCandidateJson } from './autotrade/consent-reply.mjs';
+import { CONSENT_SOURCE_EVENT } from './autotrade/card.mjs';
 
 export { isCliMode } from './config.mjs';
 
@@ -54,7 +54,7 @@ const SNAP_T = T.struct('DisplaySnapshot', [['displayed_at', T.option(T.string)]
 
 function entryFromDisk(e) {
   if (e.status !== 'active' && e.status !== 'queued') throw new Error('bad status');
-  const createdAt = parseRfc3339Nanos(e.created_at), updatedAt = parseRfc3339Nanos(e.updated_at);
+  const createdAt = dateTimeFromStr(e.created_at), updatedAt = dateTimeFromStr(e.updated_at);
   if (createdAt === undefined || updatedAt === undefined) throw new Error('bad datetime');
   return {
     jobId: e.job_id, role: e.role, agentId: e.agent_id, toAgentId: e.to_agent_id, userContent: e.user_content, listLabel: e.list_label,
@@ -147,7 +147,7 @@ function readQueue() {
   if (!existsSync(path)) return { entries: [] };
   let raw;
   try { raw = readFileSync(path); } catch (e) { throw new Error(ioErrorText(e)); }
-  const text = utf8Strict(raw);   // read_to_string: invalid UTF-8 propagates; a leading U+FEFF is kept
+  const text = decodeUtf8(raw);   // read_to_string: invalid UTF-8 propagates; a leading U+FEFF is kept
   if (trim(text) === '') return { entries: [] };
   let entries;
   try { entries = fromStr(raw, QUEUE_T).entries.map(entryFromDisk); } catch { entries = []; }
@@ -165,7 +165,7 @@ function readSnapshot() {
   if (!existsSync(path)) return { displayedAt: null, items: [] };
   try {
     const s = fromStr(readFileSync(path), SNAP_T);
-    const displayedAt = s.displayed_at === null ? null : parseRfc3339Nanos(s.displayed_at);
+    const displayedAt = s.displayed_at === null ? null : dateTimeFromStr(s.displayed_at);
     if (displayedAt === undefined) return { displayedAt: null, items: [] };
     return { displayedAt, items: s.items.map((i) => ({ index: i.index, jobId: i.job_id, role: i.role, agentId: i.agent_id, toAgentId: i.to_agent_id, listLabel: i.list_label })) };
   } catch { return { displayedAt: null, items: [] }; }
@@ -240,17 +240,17 @@ async function trustedAutotradeTarget(jobId, agentId, sourceEvent, supplied) {
   const s = sanitizeToAgent(supplied, agentId);
   if (!sourceEvent.startsWith('autotrade_')) return s;
   let ctx;
-  try { ctx = await loadPendingDeliveryContext(jobId); } catch { return null; }
+  try { ctx = loadPendingDeliveryContext(jobId); } catch { return null; }
   const p = ctx?.providerAgentId;
   return p && p !== agentId ? p : null;
 }
 async function trustedAutotradeSessionKey(jobId, sourceEvent) {
   if (!sourceEvent.startsWith('autotrade_')) return null;
-  try { const k = (await loadPendingDeliveryContext(jobId))?.originSessionKey; return k ? k : null; } catch { return null; }
+  try { const k = loadPendingDeliveryContext(jobId)?.originSessionKey; return k ? k : null; } catch { return null; }
 }
 async function trustedAutotradeDeliveryId(jobId, sourceEvent) {
   if (!sourceEvent.startsWith('autotrade_')) return null;
-  try { const d = (await loadPendingDeliveryContext(jobId))?.deliveryId; return d ? d : null; } catch { return null; }
+  try { const d = loadPendingDeliveryContext(jobId)?.deliveryId; return d ? d : null; } catch { return null; }
 }
 // upstream: pending_v2.rs::send_decision_relay
 async function sendDecisionRelay(jobId, sourceEvent, toAgentId, content) {
@@ -344,7 +344,7 @@ export function pushDecisionDirect(jobId, role, agentId, toAgentId, userContent,
 function resolvedContent(o) {
   if (o.userContent !== undefined && o.userContent !== null) return o.userContent;
   if (o.userContentFile !== undefined && o.userContentFile !== null) {
-    try { return readToString(o.userContentFile); } catch (e) { throw new Error(`failed to read --user-content-file ${o.userContentFile}: ${readErrorText(e)}`); }
+    try { return readToString(o.userContentFile); } catch (e) { throw new Error(`failed to read --user-content-file ${o.userContentFile}: ${ioErrorText(e)}`); }
   }
   throw new Error('either --user-content or --user-content-file is required');
 }
@@ -380,7 +380,7 @@ async function prepareForegroundAutotrade(jobId, agentId, sourceEvent, candidate
   return undefined;
 }
 function printForegroundPersistGuidance(outcome) {
-  if (isObj(outcome) && outcome.authorizationPersisted === true) out('Authorization was written synchronously before delivery resume. Do not describe it as still processing.\n');
+  if (isObject(outcome) && outcome.authorizationPersisted === true) out('Authorization was written synchronously before delivery resume. Do not describe it as still processing.\n');
   else out('The skip decision was applied synchronously and no authorization was written. Do not describe it as still processing.\n');
 }
 function relayEnvelope(agentId, event, data, description, jobId, decisionId, selection, deliveryId, role) {
@@ -412,9 +412,9 @@ async function relayAfterResolve(o, mode, selection, relayDeliveryId, toAgentId)
   const content = relayEnvelope(o.agentId, relayEvent, userReply, description, o.jobId, o.decisionId, selection, relayDeliveryId, o.role);
   await sendDecisionRelay(o.jobId, o.sourceEvent, toAgentId, content);
   if (outcome !== undefined) {
-    await clearCandidateDraft(o.jobId);
-    await clearPendingSignal(o.jobId);
-    const oc = isObj(outcome) ? { ...outcome, deliveryResumeQueued: true } : outcome;
+    clearCandidateDraft(o.jobId);
+    clearPendingSignal(o.jobId);
+    const oc = isObject(outcome) ? { ...outcome, deliveryResumeQueued: true } : outcome;
     out(`${stringify(oc)}\n`);
     printForegroundPersistGuidance(oc);
   }
@@ -423,7 +423,7 @@ async function relayAfterResolve(o, mode, selection, relayDeliveryId, toAgentId)
 
 // upstream: pending_v2.rs::handle_resolve_with_sessionkey
 export async function handleResolveWithSessionkey(o) {
-  traceLog(`handle_resolve_with_sessionkey: job_id=${o.jobId} role=${o.role} agent_id=${o.agentId} to_agent_id=${debugOptStr(o.toAgentId)} source_event=${o.sourceEvent} user_reply=${rustDebugStr(o.userReply)}`);
+  traceLog(`handle_resolve_with_sessionkey: job_id=${o.jobId} role=${o.role} agent_id=${o.agentId} to_agent_id=${debugOptStr(o.toAgentId)} source_event=${o.sourceEvent} user_reply=${strDebug(o.userReply)}`);
   const toAgentId = await trustedAutotradeTarget(o.jobId, o.agentId, o.sourceEvent, o.toAgentId);
   const relayDeliveryId = await trustedAutotradeDeliveryId(o.jobId, o.sourceEvent);
   recordFromUserText(o.jobId, o.userReply);
@@ -467,7 +467,7 @@ async function removePromptEntry(jobId, role, agentId, toAgentId, decisionId) {
 
 // upstream: pending_v2.rs::handle_resolve_prompt
 export async function handleResolvePrompt(o) {
-  traceLog(`handle_resolve_prompt: job_id=${o.jobId} role=${o.role} agent_id=${o.agentId} to_agent_id=${debugOptStr(o.toAgentId)} source_event=${o.sourceEvent} user_reply=${rustDebugStr(o.userReply)}`);
+  traceLog(`handle_resolve_prompt: job_id=${o.jobId} role=${o.role} agent_id=${o.agentId} to_agent_id=${debugOptStr(o.toAgentId)} source_event=${o.sourceEvent} user_reply=${strDebug(o.userReply)}`);
   const toAgentId = await trustedAutotradeTarget(o.jobId, o.agentId, o.sourceEvent, o.toAgentId);
   const relayDeliveryId = await trustedAutotradeDeliveryId(o.jobId, o.sourceEvent);
   recordFromUserText(o.jobId, o.userReply);
@@ -545,7 +545,7 @@ export async function handleResolve(userReply) {
     const queued = q.entries.filter((e) => e.status === 'queued');
     if (!queued.length) {
       await sendDecisionRelay(active.jobId, src, active.toAgentId, content);
-      if (clearAfter) await clearPendingSignal(active.jobId);
+      if (clearAfter) clearPendingSignal(active.jobId);
       writeQueueAtomic(q);
       out('🛑 User reply relayed and consumed — do NOT reuse it for future cards; wait for a fresh user message, then end the turn.\n');
     } else {
@@ -554,7 +554,7 @@ export async function handleResolve(userReply) {
       q.entries[idx].status = 'active';
       ensureInvariantAndEvict(q);
       await sendDecisionRelay(active.jobId, src, active.toAgentId, content);
-      if (clearAfter) await clearPendingSignal(active.jobId);
+      if (clearAfter) clearPendingSignal(active.jobId);
       writeSnapshotAtomic(buildSnapshot(q));
       writeQueueAtomic(q);
       out(playbookAdvanceOnly(q));

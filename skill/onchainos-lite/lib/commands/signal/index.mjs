@@ -1,6 +1,6 @@
 // signal — upstream cli/src/commands/signal.rs (fetch helpers shared with MCP/workflows + CLI handlers).
 import { resolveChain } from '../../core/chains.mjs';
-import { parseUnsigned } from '../../core/_rust-str.mjs';
+import { parseU64 } from '../../core/rs/num.mjs';
 import { some } from '../market/_g03.mjs';
 
 // upstream: signal.rs::fetch_chains — GET /api/v6/dex/market/signal/supported/chain
@@ -13,7 +13,7 @@ export function fetchChains(client) {
 export function fetchList(client, chainIndex, walletType, minAmountUsd, maxAmountUsd, minAddressCount, maxAddressCount,
   tokenAddress, minMarketCapUsd, maxMarketCapUsd, minLiquidityUsd, maxLiquidityUsd, limit, cursor) {
   if (some(limit)) {
-    const n = parseUnsigned(String(limit), 'u64');
+    const n = parseU64(String(limit));
     if (n === undefined) throw new Error('--limit must be a number between 1 and 100');
     if (!(n >= 1 && n <= 100)) throw new Error(`--limit must be between 1 and 100, got ${n}`);
   }

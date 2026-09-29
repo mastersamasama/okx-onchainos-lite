@@ -4,7 +4,8 @@
 //   FR-4 normalizeAmount / hexToDecimalString   FR-5 sumPrizePool / addDecimalStrings / formatThousands
 import { CodedError } from './errors.mjs';
 import { struct, F64, formatF64 } from './json.mjs';
-import { trim, parseUnsigned, eqIgnoreAsciiCase } from './_rust-str.mjs';
+import { trim, eqIgnoreAsciiCase } from './rs/str.mjs';
+import { parseU32, parseU64 } from './rs/num.mjs';
 
 // upstream: sink.rs::CodedError — the same class main.mjs downcasts to `error_coded` (exit 1).
 // CodedError::new(code, field, msg) ≡ new CodedError(code, field ?? undefined, msg);
@@ -30,7 +31,7 @@ export function parseDurationMs(s, flag, allowZero) {
   }
   const unit = UNITS.find(([u]) => t.endsWith(u));
   if (!unit) throw new Error(`invalid --${flag} '${s}'; use e.g. 300s, 30m, 24h, 7d`);
-  const n = parseUnsigned(t.slice(0, -1), 'u64');
+  const n = parseU64(t.slice(0, -1));
   if (n === undefined) throw new Error(`invalid --${flag} '${s}'; use e.g. 300s, 30m, 24h, 7d`);
   if (BigInt(n) === 0n) {
     if (allowZero) return 0;
@@ -78,7 +79,7 @@ export const aggregated = ({ items, nextCursor, fetchedCount, partial, error }) 
 export function parseMaxResults(raw) {
   if (raw === undefined || raw === null) return null;
   const s = trim(raw);
-  const n = parseUnsigned(s, 'u32');
+  const n = parseU32(s);
   if (n === undefined) throw invalidInput('max-results', `--max-results must be an integer between 1 and 500, got '${s}'`);
   if (n < 1 || n > 500) throw invalidInput('max-results', `--max-results must be between 1 and 500, got ${n}`);
   return n;

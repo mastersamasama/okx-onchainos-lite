@@ -26,7 +26,7 @@ const { parse, stringify, F64 } = await import('../../skill/onchainos-lite/lib/c
 const { CodedError } = await import('../../skill/onchainos-lite/lib/core/errors.mjs');
 const { ed25519 } = await import('../../skill/onchainos-lite/lib/crypto/curve25519.mjs');
 const { keccak256 } = await import('../../skill/onchainos-lite/lib/crypto/keccak.mjs');
-const { ed25519SignHex } = await import('../../skill/onchainos-lite/lib/wallet/strategy/_crypto.mjs');
+const { ed25519SignHex } = await import('../../skill/onchainos-lite/lib/core/crypto.mjs');
 
 // test/parity/make-home.mjs::SIGNING_SEED (the seed the parity homes' encryptedSessionSk seals)
 const SEED = createHash('sha256').update('onchainos-lite parity :: ed25519-signing-seed').digest();
@@ -458,19 +458,4 @@ test('create_limit: no address for the resolved chain', async () => {
     await assert.rejects(h.createLimit({ api: async () => noHttp }, createArgs('solana', 'sol', 'usdc', 'sell')),
       { message: 'no wallet address for chain `501` — login with the right chain enabled first' });
   });
-});
-
-// commands/strategy/_clap.mjs — clap validator.rs conflict rendering (every partner listed).
-test('cancel conflicts_with_all: clap lists every conflicting partner', async () => {
-  const { validateConflicts } = await import('../../skill/onchainos-lite/lib/commands/strategy/_clap.mjs');
-  const W = { orderId: ['orderIds', 'all'], orderIds: ['orderId', 'all'], all: ['orderId', 'orderIds'] };
-  const err = (argv) => { try { validateConflicts({ path: 'strategy cancel', argv }, W); return null; } catch (e) { return e.message; } };
-  const tail = "\n\nFor more information, try '--help'.\n";
-  assert.equal(err(['strategy', 'cancel', '--wait', '--order-ids', '1', '--all', '--order-id', '2']),
-    "error: the argument '--order-ids <ORDER_IDS>' cannot be used with:\n  --all\n  --order-id <ORDER_ID>\n\nUsage: onchainos strategy cancel --wait --order-ids <ORDER_IDS>" + tail);
-  assert.equal(err(['strategy', 'cancel', '--all', '--chain', 'eth', '--order-id', '1', '--order-ids', '2']),
-    "error: the argument '--all' cannot be used with:\n  --order-id <ORDER_ID>\n  --order-ids <ORDER_IDS>\n\nUsage: onchainos strategy cancel --all --chain <CHAIN>" + tail);
-  assert.equal(err(['strategy', 'cancel', '--order-ids', '1', '--order-id', '2']),
-    "error: the argument '--order-ids <ORDER_IDS>' cannot be used with '--order-id <ORDER_ID>'\n\nUsage: onchainos strategy cancel --order-ids <ORDER_IDS>" + tail);
-  assert.equal(err(['strategy', 'cancel', '--order-id', '1', '--wait']), null);
 });

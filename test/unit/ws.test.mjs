@@ -17,8 +17,6 @@ const ws = await import('../../skill/onchainos-lite/lib/core/ws.mjs');
 const types = await import('../../skill/onchainos-lite/lib/watch/types.mjs');
 const store = await import('../../skill/onchainos-lite/lib/watch/store.mjs');
 const daemon = await import('../../skill/onchainos-lite/lib/watch/daemon.mjs');
-const serde = await import('../../skill/onchainos-lite/lib/watch/_serde.mjs');
-const rs = await import('../../skill/onchainos-lite/lib/watch/_rs.mjs');
 const cmd = await import('../../skill/onchainos-lite/lib/commands/ws/ws.mjs');
 const { stringify } = await import('../../skill/onchainos-lite/lib/core/json.mjs');
 
@@ -279,7 +277,6 @@ test('serde Value parsing rejects what serde_json rejects', () => {
   assert.equal(V('['.repeat(127) + ']'.repeat(127)).length, 254);
   assert.match(V('['.repeat(128) + ']'.repeat(128)), /^ERR recursion limit exceeded/);
   assert.equal(V('{"__proto__":{"x":1}}'), '{"__proto__":{"x":1}}');
-  assert.equal(serde.debugStr('a"b\\\n\u0001é'), '"a\\"b\\\\\\n\\u{1}é"');
 });
 
 // ── watch/store.mjs ─────────────────────────────────────────────────────────
@@ -525,16 +522,6 @@ test('ws poll tracker filter semantics', () => {
   assert.ok(m({}, undefined, '0') && m({}, undefined, '1') && !m({}, undefined, '2') && !m({}, undefined, 'buy '));
   assert.ok(!cmd.tradeMatches({ walletAddress: 'x' }, {}));
   assert.ok(!m({ minPnl: 0 }) === false);
-});
-
-test('rust helpers: splitn, sortDedup (byte order), pathJoin', () => {
-  assert.deepEqual(rs.splitn('a|b|c|d', 3, '|'), ['a', 'b', 'c|d']);
-  assert.deepEqual(rs.splitn('a', 3, '|'), ['a']);
-  assert.deepEqual(rs.sortDedup(['b', 'a', 'b', '\u{10000}', '＀']), ['a', 'b', '＀', '\u{10000}']);
-  const sep = process.platform === 'win32' ? '\\' : '/';
-  assert.equal(rs.pathJoin('base', 'x'), `base${sep}x`);
-  assert.equal(rs.pathJoin(`base${sep}`, 'x'), `base${sep}x`);
-  assert.equal(rs.pathJoin('base', 'a/b'), `base${sep}a/b`);
 });
 
 // ── test/parity/ws-proxy.mjs pure helpers ───────────────────────────────────

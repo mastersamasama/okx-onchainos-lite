@@ -9,8 +9,9 @@ import { ensureTokensRefreshed, formatApiError } from './auth.mjs';
 import { getChainByRealChainIndex } from './chain.mjs';
 import { ERR_NOT_LOGGED_IN } from './common.mjs';
 import { resolveAddress, cmdSend } from './transfer/index.mjs';
-import { eqIgnoreAsciiCase, isObject, getField as get } from './_rs.mjs';
-import { parseU64, u64Json } from './shared/_rust.mjs';
+import { eqIgnoreAsciiCase } from '../core/rs/str.mjs';
+import { isObject, get } from '../core/rs/value.mjs';
+import { parseU64 } from '../core/rs/num.mjs';
 
 // upstream: gas_station.rs::execute — cmd: { kind, chain, gasTokenAddress?, relayerId?, from? }
 export function execute(cmd) {
@@ -46,7 +47,7 @@ export async function buildGsContext(chain, from) {
   if (!session) throw new Error(ERR_NOT_LOGGED_IN);
   const n = parseU64(addrInfo.chainIndex);
   if (n === undefined) throw new Error(`chain id '${addrInfo.chainIndex}' is not a valid number`);
-  return { accessToken, addrInfo, chainName, chainIndexResolved, chainIndexNum: u64Json(n), sessionCert: session.sessionCert };
+  return { accessToken, addrInfo, chainName, chainIndexResolved, chainIndexNum: n, sessionCert: session.sessionCert };
 }
 
 // upstream: gas_station.rs::probe_phase1_diagnostic — zero-amount native self-transfer probe.

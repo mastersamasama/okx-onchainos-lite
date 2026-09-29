@@ -3,7 +3,7 @@ import { TransferDriver } from '../../../chain-profile.mjs';
 import { loadChainContext } from '../../common/context.mjs';
 import { sessionCert, SigningSeed } from '../../common/session.mjs';
 import { normalizeAddress, sameAddress } from './identifiers.mjs';
-import { parseU64, u64Json } from '../../_rust.mjs';
+import { parseU64 } from '../../../../core/rs/num.mjs';
 
 // upstream: context.rs::validate_sui_address
 const validateSuiAddress = (value) => { normalizeAddress(value); };
@@ -23,7 +23,7 @@ export class SuiContext {
   chainIndexU64() {
     const v = parseU64(this.profile.chainIndex);
     if (v === undefined) throw new Error(`SUI runtime chainIndex '${this.profile.chainIndex}' is not numeric`);
-    return u64Json(v);
+    return v;
   }
 
   // upstream: context.rs::SuiContext::session_cert

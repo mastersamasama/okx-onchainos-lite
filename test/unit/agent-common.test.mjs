@@ -33,8 +33,7 @@ const notify = await import(`${LIB}task/common/prefilled-notify.mjs`);
 const rating = await import(`${LIB}task/common/prefilled-rating.mjs`);
 const funding = await import(`${LIB}task/common/funding-notice.mjs`);
 const upload = await import(`${LIB}task/common/dispute-upload.mjs`);
-const dispute = await import(`${LIB}task/_dispute-status.mjs`);
-const rs = await import(`${LIB}_rs.mjs`);
+const dispute = await import(`${LIB}task/evaluator/dispute-status.mjs`);
 const { stringify } = await import('../../skill/onchainos-lite/lib/core/json.mjs');
 
 // Capture process.stdout writes made by handlers that print their own output.
@@ -466,11 +465,11 @@ test('arbitration: list result exposes stable selection ids', () => {
 });
 
 test('dispute status decode: serde error text and aliases', () => {
-  assert.throws(() => dispute.decodeDisputeStatus({ jobId: 'j', taskStatus: 'four' }), /^Error: invalid type: string "four", expected i32$/);
-  const d = dispute.decodeDisputeStatus({ jobId: 'j', disputeStatus: 2, selectedVoter: { agentId: 'x' } });
+  assert.throws(() => dispute.decodeDisputeStatusResponse({ jobId: 'j', taskStatus: 'four' }), /^Error: invalid type: string "four", expected i32$/);
+  const d = dispute.decodeDisputeStatusResponse({ jobId: 'j', disputeStatus: 2, selectedVoter: { agentId: 'x' } });
   assert.equal(d.disputeRoundStatus, 2);
   assert.equal(d.taskStatus, 0);
-  assert.throws(() => dispute.decodeDisputeStatus({}), /missing field `jobId`/);
+  assert.throws(() => dispute.decodeDisputeStatusResponse({}), /missing field `jobId`/);
 });
 
 // ── pending_v2.rs ────────────────────────────────────────────────────────
@@ -610,28 +609,18 @@ test('dispute upload: mime table', () => {
 });
 
 test('home: task_state_dir joins like Rust PathBuf::join (absolute / rooted job ids replace the base)', async () => {
-  const h = await import(`${LIB}_home.mjs`);
+  const h = await import('../../skill/onchainos-lite/lib/core/home.mjs');
   const { join: pj } = await import('node:path');
+  assert.equal(h.taskStateRoot(), pj(HOME, 'task'));
   assert.equal(h.taskStateDir('0xab'), pj(HOME, 'task', '0xab'));
   if (process.platform === 'win32') {
-    assert.equal(h.rustJoin('C:\\home\\task', 'D:\\abs'), 'D:\\abs');
-    assert.equal(h.rustJoin('C:\\home\\task', '\\rooted'), 'C:\\rooted');
-    assert.equal(h.rustJoin('C:\\home\\task', 'D:rel'), 'D:rel');
-    assert.equal(h.rustJoin('C:\\home\\task', '\\\\srv\\share\\x'), '\\\\srv\\share\\x');
-    assert.equal(h.rustJoin('\\\\srv\\share\\home', '\\x'), '\\\\srv\\share\\x');
-    assert.equal(h.rustJoin('C:\\home\\task', 'job'), 'C:\\home\\task\\job');
+    assert.equal(h.taskStateDir('D:\\abs'), 'D:\\abs');
+    assert.equal(h.taskStateDir('\\rooted'), `${HOME.slice(0, 2)}\\rooted`);
+    assert.equal(h.taskStateDir('D:rel'), 'D:rel');
+    assert.equal(h.taskStateDir('\\\\srv\\share\\x'), '\\\\srv\\share\\x');
   } else {
-    assert.equal(h.rustJoin('/home/task', '/abs'), '/abs');
-    assert.equal(h.rustJoin('/home/task', 'job'), '/home/task/job');
+    assert.equal(h.taskStateDir('/abs'), '/abs');
   }
-});
-
-test('rust helpers: {:.1} rounding, strict base64, Debug strings', () => {
-  assert.equal(rs.fixed1Ratio(1, 4), '0.2');
-  assert.equal(rs.fixed1Ratio(3, 4), '0.8');
-  assert.throws(() => rs.b64StdDecode('YQ'));
-  assert.equal(Buffer.from(rs.b64StdDecode('YQ==')).toString(), 'a');
-  assert.equal(rs.rustDebugStr('a"b\n'), '"a\\"b\\n"');
 });
 
 // ── differential sequences against the upstream binary (verifier) ───────

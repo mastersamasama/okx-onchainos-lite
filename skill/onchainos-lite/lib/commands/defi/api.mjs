@@ -1,9 +1,10 @@
 // DeFi API wrappers — upstream cli/src/commands/defi/api.rs. Request bodies are built with
 // json! upstream (serde_json::Value → keys sorted), i.e. plain objects here.
 import { resolveChain } from '../../core/chains.mjs';
-import { trim } from '../../core/_rust-str.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { parseI64 } from '../../core/rs/num.mjs';
+import { fromStr, T } from '../../core/serde.mjs';
 import { convertMinimalToDecimal } from './helpers.mjs';
-import { parseI64, parseJsonArray } from './_rs.mjs';
 
 // upstream: api.rs::fetch_chains — GET /api/v6/defi/product/supported-chains
 export const fetchChains = async (client) => client.get('/api/v6/defi/product/supported-chains', []);
@@ -30,7 +31,7 @@ export const fetchPrepare = async (client, investmentId) => client.post('/api/v6
 
 // `serde_json::from_str::<Vec<Value>>(s).map_err(|e| anyhow!("failed to parse <flag> as JSON array: {e}"))`
 function parseArrayArg(text, flag) {
-  try { return parseJsonArray(text); } catch (e) { throw new Error(`failed to parse ${flag} as JSON array: ${e.message}`); }
+  try { return fromStr(String(text), T.vec(T.value)); } catch (e) { throw new Error(`failed to parse ${flag} as JSON array: ${e.message}`); }
 }
 
 // upstream: api.rs::fetch_enter — POST /api/v6/defi/transaction/enter (coinAmount minimal → decimal)

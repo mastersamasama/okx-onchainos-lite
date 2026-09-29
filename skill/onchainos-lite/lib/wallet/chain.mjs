@@ -1,7 +1,8 @@
 // Supported-chain list with a 10-minute on-disk cache — upstream agentic_wallet/chain.rs.
 import { WalletApiClient } from './api.mjs';
 import * as store from './store.mjs';
-import { rustTrim, eqIgnoreAsciiCase, isI64, isU64, getField as get } from './_rs.mjs';
+import { trim, eqIgnoreAsciiCase } from '../core/rs/str.mjs';
+import { isI64, isU64, get } from '../core/rs/value.mjs';
 
 // upstream: chain.rs::CHAIN_CACHE_TTL (seconds)
 export const CHAIN_CACHE_TTL = 600;
@@ -53,7 +54,7 @@ export async function getChainByName(chainName) {
 
 // upstream: chain.rs::get_chain_by_real_chain_index — chainIndex | realChainIndex | chainName | alias.
 export async function getChainByRealChainIndex(input) {
-  const needle = rustTrim(input);
+  const needle = trim(input);
   const chains = await getAllChains();
   return chains.find((c) => {
     const fieldMatches = (key) => {

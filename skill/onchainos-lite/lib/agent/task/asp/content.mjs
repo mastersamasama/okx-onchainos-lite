@@ -1,7 +1,8 @@
 // ASP-side message templates — upstream task/asp/content.rs (single point of maintenance).
 // Every literal below is a byte-exact port of the Rust string literal (line continuations
 // `\` strip the newline and the next line's leading whitespace; `\x20` survives).
-import { utcParts, trim, nowSecs } from '../../_rs.mjs';
+import { utcParts, nowSecs } from '../../../core/rs/time.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 import {
   REFUND_SERVICE_NAME_PLACEHOLDER, REFUND_JOB_ID_PLACEHOLDER, REFUND_TASK_TYPE_PLACEHOLDER, REFUND_CURRENT_PERIOD_PLACEHOLDER,
   REFUND_AMOUNT_PLACEHOLDER, REFUND_BUYER_REASON_PLACEHOLDER, REFUND_RESPONSE_DEADLINE_PLACEHOLDER,

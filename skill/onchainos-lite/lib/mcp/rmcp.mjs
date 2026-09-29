@@ -10,7 +10,8 @@
 // Serialisation: every rmcp message is a struct → field order is declaration order;
 // JSON-RPC ids are echoed as received (i64 or string).
 import { parse as parseJson, stringify, struct } from '../core/json.mjs';
-import { debugStr, debugValue, debugMap, debugOpt, debugF64, isObject, isJsonNumber, toF64, sortedKeys } from './serde.mjs';
+import { strDebug } from '../core/rs/str.mjs';
+import { debugValue, debugMap, debugOpt, debugF64, isObject, isJsonNumber, toF64, sortedKeys } from './serde.mjs';
 
 export const LATEST_PROTOCOL_VERSION = '2025-06-18';
 const DRAIN_TIMEOUT_MS = 5000;   // serve_inner: QuitReason::Closed drain timeout
@@ -141,12 +142,12 @@ const PAGINATED = { 'prompts/list': 'ListPromptsRequest', 'resources/list': 'Lis
 // A tiny type table drives both "does it deserialize" and the derived `{:?}`. Struct fields
 // are all Option<…> (absent / null → None) unless marked required; no deny_unknown_fields.
 const T = {
-  str: { ok: (v) => typeof v === 'string', dbg: debugStr },
+  str: { ok: (v) => typeof v === 'string', dbg: strDebug },
   bool: { ok: (v) => typeof v === 'boolean', dbg: String },
   object: { ok: isObject, dbg: debugMap },                                  // JsonObject
   mapOfObject: {                                                            // BTreeMap<String, JsonObject>
     ok: (v) => isObject(v) && Object.values(v).every(isObject),
-    dbg: (v) => `{${sortedKeys(v).map((k) => `${debugStr(k)}: ${debugMap(v[k])}`).join(', ')}}`,
+    dbg: (v) => `{${sortedKeys(v).map((k) => `${strDebug(k)}: ${debugMap(v[k])}`).join(', ')}}`,
   },
   vec: (t) => ({ ok: (v) => Array.isArray(v) && v.every(t.ok), dbg: (v) => `[${v.map(t.dbg).join(', ')}]` }),
   enumOf: (variants) => ({ ok: (v) => typeof v === 'string' && has(variants, v), dbg: (v) => variants[v] }),
@@ -317,8 +318,8 @@ export function parseMessage(line) {
 }
 
 // ── Rust `{:?}` of a ClientJsonRpcMessage (ServerInitializeError texts) ──
-const debugId = (id) => (typeof id === 'string' ? `String(${debugStr(id)})` : `Number(${id})`);
-const debugOptStr = (v) => debugOpt(v, debugStr);
+const debugId = (id) => (typeof id === 'string' ? `String(${strDebug(id)})` : `Number(${id})`);
+const debugOptStr = (v) => debugOpt(v, strDebug);
 const LEVEL_DEBUG = Object.fromEntries(LOGGING_LEVELS.map((l) => [l, l[0].toUpperCase() + l.slice(1)]));
 
 function debugRequest(r) {
@@ -327,12 +328,12 @@ function debugRequest(r) {
     case 'PingRequest': return `PingRequest(RequestNoParam { method: PingRequestMethod, ${ext} })`;
     case 'InitializeRequest':
       return `InitializeRequest(Request { method: InitializeResultMethod, params: InitializeRequestParams { meta: None, `
-        + `protocol_version: ProtocolVersion(${debugStr(r.protocolVersion)}), capabilities: ${CLIENT_CAPABILITIES.dbg(r.capabilities)}, `
+        + `protocol_version: ProtocolVersion(${strDebug(r.protocolVersion)}), capabilities: ${CLIENT_CAPABILITIES.dbg(r.capabilities)}, `
         + `client_info: ${IMPLEMENTATION.dbg(r.clientInfo)} }, ${ext} })`;
     case 'SetLevelRequest':
       return `SetLevelRequest(Request { method: SetLevelRequestMethod, params: SetLevelRequestParams { meta: None, level: ${LEVEL_DEBUG[r.level]} }, ${ext} })`;
     case 'CallToolRequest':
-      return `CallToolRequest(Request { method: CallToolRequestMethod, params: CallToolRequestParams { meta: None, name: ${debugStr(r.name)}, `
+      return `CallToolRequest(Request { method: CallToolRequestMethod, params: CallToolRequestParams { meta: None, name: ${strDebug(r.name)}, `
         + `arguments: ${debugOpt(r.arguments, debugMap)}, task: ${debugOpt(r.task, debugMap)} }, ${ext} })`;
     case 'ListToolsRequest': case 'ListPromptsRequest': case 'ListResourcesRequest': case 'ListResourceTemplatesRequest': case 'ListTasksRequest': {
       const m = { ListToolsRequest: 'ListToolsRequestMethod', ListPromptsRequest: 'ListPromptsRequestMethod', ListResourcesRequest: 'ListResourcesRequestMethod', ListResourceTemplatesRequest: 'ListResourceTemplatesRequestMethod', ListTasksRequest: 'ListTasksMethod' }[r.type];
@@ -341,24 +342,24 @@ function debugRequest(r) {
     }
     case 'CompleteRequest': {
       const ref = r.ref.type === 'ref/prompt'
-        ? `Prompt(PromptReference { name: ${debugStr(r.ref.name)}, title: ${debugOptStr(r.ref.title)} })`
-        : `Resource(ResourceReference { uri: ${debugStr(r.ref.uri)} })`;
+        ? `Prompt(PromptReference { name: ${strDebug(r.ref.name)}, title: ${debugOptStr(r.ref.title)} })`
+        : `Resource(ResourceReference { uri: ${strDebug(r.ref.uri)} })`;
       // HashMap<String, String>: Rust iterates in random order; one entry prints deterministically.
-      const args = (m) => `{${sortedKeys(m).map((k) => `${debugStr(k)}: ${debugStr(m[k])}`).join(', ')}}`;
+      const args = (m) => `{${sortedKeys(m).map((k) => `${strDebug(k)}: ${strDebug(m[k])}`).join(', ')}}`;
       const context = debugOpt(r.context, (c) => `CompletionContext { arguments: ${debugOpt(c.arguments, args)} }`);
       return `CompleteRequest(Request { method: CompleteRequestMethod, params: CompleteRequestParams { meta: None, ref: ${ref}, `
-        + `argument: ArgumentInfo { name: ${debugStr(r.argument.name)}, value: ${debugStr(r.argument.value)} }, context: ${context} }, ${ext} })`;
+        + `argument: ArgumentInfo { name: ${strDebug(r.argument.name)}, value: ${strDebug(r.argument.value)} }, context: ${context} }, ${ext} })`;
     }
     case 'GetPromptRequest':
-      return `GetPromptRequest(Request { method: GetPromptRequestMethod, params: GetPromptRequestParams { meta: None, name: ${debugStr(r.name)}, `
+      return `GetPromptRequest(Request { method: GetPromptRequestMethod, params: GetPromptRequestParams { meta: None, name: ${strDebug(r.name)}, `
         + `arguments: ${debugOpt(r.arguments, debugMap)} }, ${ext} })`;
     case 'ReadResourceRequest': case 'SubscribeRequest': case 'UnsubscribeRequest':
     case 'GetTaskInfoRequest': case 'GetTaskResultRequest': case 'CancelTaskRequest': {
       const [variant, methodType, paramsType, , field] = SINGLE_FIELD_REQUESTS[r.method];
-      return `${variant}(Request { method: ${methodType}, params: ${paramsType} { meta: None, ${field}: ${debugStr(r.value)} }, ${ext} })`;
+      return `${variant}(Request { method: ${methodType}, params: ${paramsType} { meta: None, ${field}: ${strDebug(r.value)} }, ${ext} })`;
     }
     default:
-      return `CustomRequest(CustomRequest { method: ${debugStr(r.method)}, params: ${debugOpt(r.params, debugValue)}, ${ext} })`;
+      return `CustomRequest(CustomRequest { method: ${strDebug(r.method)}, params: ${debugOpt(r.params, debugValue)}, ${ext} })`;
   }
 }
 
@@ -374,7 +375,7 @@ function debugNotification(n) {
         + `progress_token: ProgressToken(${debugId(n.token)}), progress: ${debugF64(n.progress)}, total: ${debugOpt(n.total, debugF64)}, `
         + `message: ${debugOptStr(n.message)} }, ${ext} })`;
     default:
-      return `CustomNotification(CustomNotification { method: ${debugStr(n.method)}, params: ${debugOpt(n.params, debugValue)}, ${ext} })`;
+      return `CustomNotification(CustomNotification { method: ${strDebug(n.method)}, params: ${debugOpt(n.params, debugValue)}, ${ext} })`;
   }
 }
 
@@ -384,7 +385,7 @@ const ELICITATION_ACTIONS = { accept: 'Accept', decline: 'Decline', cancel: 'Can
 function debugClientResult(v) {
   if (isObject(v)) {
     if (Array.isArray(v.roots) && v.roots.every((r) => isObject(r) && typeof r.uri === 'string' && optString(r, 'name'))) {
-      const roots = v.roots.map((r) => `Root { uri: ${debugStr(r.uri)}, name: ${debugOptStr(r.name)} }`).join(', ');
+      const roots = v.roots.map((r) => `Root { uri: ${strDebug(r.uri)}, name: ${debugOptStr(r.name)} }`).join(', ');
       return `ListRootsResult(ListRootsResult { roots: [${roots}] })`;
     }
     if (typeof v.action === 'string' && has(ELICITATION_ACTIONS, v.action)) {
@@ -405,7 +406,7 @@ export function debugMessage(m) {
       return `Response(JsonRpcResponse { ${rpc}, id: ${debugId(m.id)}, result: ${debugClientResult(m.result)} })`;
     default:
       return `Error(JsonRpcError { ${rpc}, id: ${debugId(m.id)}, error: ErrorData { code: ErrorCode(${m.error.code}), `
-        + `message: ${debugStr(m.error.message)}, data: ${debugOpt(has(m.error, 'data') ? m.error.data : null, debugValue)} } })`;
+        + `message: ${strDebug(m.error.message)}, data: ${debugOpt(has(m.error, 'data') ? m.error.data : null, debugValue)} } })`;
   }
 }
 

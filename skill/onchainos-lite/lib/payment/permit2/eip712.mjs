@@ -4,7 +4,8 @@
 import { PERMIT2_ADDRESS } from '../../core/chains.mjs';
 import { context } from '../../core/errors.mjs';
 import { signingHash } from '../../crypto/eip712.mjs';
-import { addressFromStr, u256FromStr, hex0x } from '../_rs.mjs';
+import { addressFromStr, hex0x } from '../_alloy.mjs';
+import { u256FromStr } from '../../core/rs/num.mjs';
 
 const DOMAIN_TYPES = [
   { name: 'name', type: 'string' }, { name: 'chainId', type: 'uint256' }, { name: 'verifyingContract', type: 'address' },

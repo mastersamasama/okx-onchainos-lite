@@ -5,14 +5,13 @@ import { decodePaymentBlob } from '../../payment/dispatcher.mjs';
 import { send, headerStr, text as respText } from '../../payment/_http.mjs';
 import { context } from '../../core/errors.mjs';
 import { stringify } from '../../core/json.mjs';
-import { value } from '../../watch/_serde.mjs';
-import { fromStr } from '../identity/_from-str.mjs';
+import { fromStr } from '../../core/serde.mjs';
 import { PROBE_TIMEOUT_MS } from './_model.mjs';
 import { discoverInputFallbackHint, discoverInputRequired, outstandingInput, toPaymentParamPlan } from './contract.mjs';
 
 // serde_json::from_str::<Value>(text).unwrap_or(Value::String(text))
 export function bodyValue(text) {
-  try { return fromStr(text, value); } catch { return text; }
+  try { return fromStr(text); } catch { return text; }
 }
 
 // upstream: probe.rs::send_probe(input) → HttpOutcome {kind: Free|InputRequired|Challenge|MethodRequired|Failed, …}

@@ -4,7 +4,9 @@
 import { renameSync, copyFileSync, rmSync, mkdirSync, existsSync } from 'node:fs';
 import { stringify } from '../../../core/json.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { get, asStr, asI64, isObj, trim, cloneValue, ioErrorText } from '../../_rs.mjs';
+import { get, asStr, asI64, isObject, cloneValue } from '../../../core/rs/value.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { ioErrorText, fileName } from '../../../core/rs/fs.mjs';
 import { shortJobId } from '../common/util.mjs';
 import { parseStatusOrEvent, Event } from '../common/state-machine.mjs';
 import { findService } from '../common/index.mjs';
@@ -20,7 +22,6 @@ import * as notification from './v2/notification.mjs';
 import * as jobCompleted from './v2/job-completed.mjs';
 import * as subCompleteNotify from './v2/sub-complete-notify.mjs';
 import { attachmentsDir, dedupDest } from '../user/attachments.mjs';
-import { rustFileName } from './_path.mjs';
 import { isZeroDecimal } from '../user/refund.mjs';
 
 // upstream: flow.rs::ProviderAssignmentType
@@ -196,7 +197,7 @@ export function arbitrationDecisionResult(sourceEvent, jobId, jobTitle, prefetch
   const tokenSymbol = messageField(['tokenSymbol', 'paymentTokenSymbol'])
     ?? (p && p.tokenSymbol !== '' && p.tokenSymbol !== '?' ? p.tokenSymbol : undefined);
   const ctx = has(message) ? cloneValue(message) : {};
-  if (isObj(ctx)) {
+  if (isObject(ctx)) {
     if (get(ctx, 'expireTime') === undefined && p && has(p.expireTime)) ctx.expireTime = p.expireTime;
     if (scalarString(get(ctx, 'serviceName')) === undefined && p && has(p.serviceName) && trim(p.serviceName) !== '') ctx.serviceName = p.serviceName;
     if (scalarString(get(ctx, 'refundReason')) === undefined && p && has(p.refundReason) && trim(p.refundReason) !== '') ctx.refundReason = p.refundReason;
@@ -374,7 +375,7 @@ async function userAttachmentReceivedCli(jobId, agentId, shortId, message) {
     let dir;
     try { dir = attachmentsDir(jobId); } catch (e) { throw new Error(displayTop(e)); }
     try { mkdirSync(dir, { recursive: true }); } catch (e) { throw new Error(`mkdir failed: ${ioErrorText(e)}`); }
-    const name = rustFileName(localPath);   // Path::file_name (`x/.` → `x`; `..` / root → None)
+    const name = fileName(localPath);   // Path::file_name (`x/.` → `x`; `..` / root → None)
     if (name === undefined) throw new Error(`invalid file path: ${localPath}`);
     const dest = dedupDest(dir, name);
     try { renameSync(localPath, dest); } catch {

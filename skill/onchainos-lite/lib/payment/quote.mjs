@@ -4,9 +4,11 @@
 import { createHash } from 'node:crypto';
 import { ApiClient } from '../core/http.mjs';
 import { chainDisplayName } from '../core/chains.mjs';
-import { trim, eqIgnoreAsciiCase, asciiLower } from '../core/_rust-str.mjs';
+import { trim, eqIgnoreAsciiCase, asciiLower } from '../core/rs/str.mjs';
+import { get, asStr, asU64, isObject, cloneValue } from '../core/rs/value.mjs';
+import { u256FromStrRadix, parseU32, toU32 } from '../core/rs/num.mjs';
 import { loadWallets } from '../wallet/store.mjs';
-import { fromStr as serdeFromStr } from '../wallet/_serde-json.mjs';
+import { fromStr as serdeFromStr } from '../core/serde.mjs';
 import { fetchInfo } from '../commands/token/token.mjs';
 import { fetchAllBalances } from '../commands/portfolio/portfolio.mjs';
 import { decodePaymentBlob } from './dispatcher.mjs';
@@ -16,7 +18,6 @@ import * as state from './state.mjs';
 import { toValue } from './permit2/types.mjs';
 import { McpClient, urlLooksLikeMcp, probeSignalsMcp, coerceArguments } from './_mcp-client.mjs';
 import { send, headerStr, text as respText } from './_http.mjs';
-import { get, asStr, asU64, isObj, parseUint, u256FromStrRadix, cloneValue } from './_rs.mjs';
 
 // upstream: quote.rs machine tokens
 export const TOKEN_ENDPOINT_UNREACHABLE = 'endpoint_unreachable';
@@ -174,16 +175,13 @@ export function buildAccepts(acceptsVal) {
   return acceptsVal.map((e, i) => ({ index: i, scheme: strOr(e, 'scheme'), amount: extractAmountOrEmpty(e), asset: strOr(e, 'asset'), network: strOr(e, 'network') }));
 }
 
-const u32Wrap = (n) => Number(BigInt(n) & 0xffffffffn);
-const parseU32 = (s) => { try { return Number(parseUint(s, 32)); } catch { return undefined; } };
-
 // upstream: quote.rs::declared_decimals (private) — extra.decimals, else top-level decimals.
 export function declaredDecimals(entry) {
   const extra = get(entry, 'extra');
   const v = get(extra, 'decimals') !== undefined ? get(extra, 'decimals') : get(entry, 'decimals');
   if (v === undefined) return undefined;
   const n = asU64(v);
-  if (n !== undefined) return u32Wrap(n);
+  if (n !== undefined) return toU32(n);
   return typeof v === 'string' ? parseU32(v) : undefined;
 }
 
@@ -203,7 +201,7 @@ async function fetchTokenMetaFromOkxDex(client, chainId, address) {
   if (item === undefined) return {};
   const d = get(item, 'decimal');
   let decimals = typeof d === 'string' ? parseU32(d) : undefined;
-  if (decimals === undefined) { const n = asU64(get(item, 'decimals')); if (n !== undefined) decimals = u32Wrap(n); }
+  if (decimals === undefined) { const n = asU64(get(item, 'decimals')); if (n !== undefined) decimals = toU32(n); }
   const s = get(item, 'symbol') !== undefined ? get(item, 'symbol') : get(item, 'tokenSymbol');
   const symbol = typeof s === 'string' && s !== '' ? s : undefined;
   return { decimals, symbol };
@@ -320,14 +318,14 @@ function balanceEntryAddr(o) {
 // upstream: quote.rs::balance_has_contract_addr_field (private)
 function balanceHasContractAddrField(v) {
   if (Array.isArray(v)) return v.some(balanceHasContractAddrField);
-  if (isObj(v)) return balanceEntryAddr(v) !== undefined || sortedKeys(v).some((k) => balanceHasContractAddrField(v[k]));
+  if (isObject(v)) return balanceEntryAddr(v) !== undefined || sortedKeys(v).some((k) => balanceHasContractAddrField(v[k]));
   return false;
 }
 
 // upstream: quote.rs::find_balance_entry (private) — depth-first; object tested before its values.
 function findBalanceEntry(v, matches) {
   if (Array.isArray(v)) { for (const x of v) { const r = findBalanceEntry(x, matches); if (r) return r; } return undefined; }
-  if (isObj(v)) {
+  if (isObject(v)) {
     if (matches(v)) return v;
     for (const k of sortedKeys(v)) { const r = findBalanceEntry(v[k], matches); if (r) return r; }
   }
@@ -412,7 +410,7 @@ function paramSpecFrom(name, spec) {
 
 // upstream: quote.rs::parse_param_plan (private) — object map (sorted keys) or array of {name,…}.
 export function parseParamPlan(input) {
-  if (isObj(input)) return sortedKeys(input).map((k) => paramSpecFrom(k, input[k]));
+  if (isObject(input)) return sortedKeys(input).map((k) => paramSpecFrom(k, input[k]));
   if (Array.isArray(input)) return input.filter((s) => typeof get(s, 'name') === 'string').map((s) => paramSpecFrom(s.name, s));
   return [];
 }

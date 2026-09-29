@@ -4,14 +4,12 @@
 import { typed } from '../../core/cli.mjs';
 import { NO_OUTPUT } from '../../core/context.mjs';
 import { stringify } from '../../core/json.mjs';
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import * as identity from '../../agent/identity/index.mjs';
 
-// Every identity leaf: prelude → handler → data (printed as {"ok":true,"data":…}).
+// Every identity leaf: handler → data (printed as {"ok":true,"data":…}).
 const leaf = (uses, call) => ({
   uses,
   async run(ctx, o) {
-    await runPreDispatchMaintenance();
     return call(o, ctx);
   },
 });
@@ -33,7 +31,6 @@ export default {
     uses: ['keywords', 'aspAgentId', 'aspName', 'serviceName', 'sid', 'minPaymentTokenAmount', 'maxPaymentTokenAmount', 'searchAfter', 'limit'],
     async run(ctx, o) {
       const limit = typed(ctx.path, 'limit', o.limit, 'u64');
-      await runPreDispatchMaintenance();
       return identity.serviceMatch({
         keywords: o.keywords ?? [], aspAgentId: o.aspAgentId, aspName: o.aspName, serviceName: o.serviceName, serviceId: o.sid,
         minPaymentTokenAmount: o.minPaymentTokenAmount, maxPaymentTokenAmount: o.maxPaymentTokenAmount, searchAfter: o.searchAfter, limit,

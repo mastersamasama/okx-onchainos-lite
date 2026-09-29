@@ -1,8 +1,8 @@
 // DTOs for the limit-order endpoints — upstream commands/agentic_wallet/strategy/types.rs.
 // Requests are sent as `serde_json::to_value(req)` (a Value → keys sorted), so builders return
 // plain objects; `undefined` = skip_serializing_if None. Responses are decoded with serde
-// `from_value` semantics (lib/wallet/strategy/_serde.mjs).
-import { D, EXTRA, fromValue } from './_serde.mjs';
+// `from_value` semantics (core/serde.mjs).
+import { T, fromValue } from '../../core/serde.mjs';
 
 // upstream: types.rs::strategy_type
 export const strategyType = Object.freeze({ BUY_DIP: 2, TAKE_PROFIT: 3, STOP_LOSS: 4, CHASE_HIGH: 5 });
@@ -48,46 +48,46 @@ export const registerTeeInfoReq = ({ accountId, timestamp, expireTimestamp, atte
 // ── Response bodies ──
 
 // upstream: types.rs::OrderListResp (field declaration order; unmodelled keys kept via flatten)
-export const ORDER_LIST_RESP = D.struct('OrderListResp', [
-  ['orderId', D.string, false],
-  ['strategyId', D.option(D.string), true],
-  ['userWalletAddress', D.option(D.string), true],
-  ['status', D.i32, false],
-  ['strategyMode', D.option(D.i32), true],
-  ['orderType', D.option(D.i32), true],
-  ['strategyType', D.option(D.i32), true],
-  ['exchangeDirection', D.option(D.i32), true],
-  ['chainId', D.option(D.string), true],
-  ['chainName', D.option(D.string), true],
-  ['canResume', D.option(D.bool), true],
-  ['fromToken', D.option(D.value), true],
-  ['toToken', D.option(D.value), true],
-  ['triggerInfo', D.option(D.value), true],
-  ['createTime', D.option(D.string), true],
-  ['expireTime', D.option(D.string), true],
-  ['transactionInfo', D.option(D.value), true],
-  ['executionHistoryList', D.option(D.value), true],
-  ['orderStatusUpdateTime', D.option(D.string), true],
-  ['estimatedWaitTime', D.option(D.i64), true],
-  ['eventCursor', D.option(D.string), true],
-], { flatten: true });
+export const ORDER_LIST_RESP = T.struct('OrderListResp', [
+  ['orderId', T.string],
+  ['strategyId', T.option(T.string), null],
+  ['userWalletAddress', T.option(T.string), null],
+  ['status', T.i32],
+  ['strategyMode', T.option(T.i32), null],
+  ['orderType', T.option(T.i32), null],
+  ['strategyType', T.option(T.i32), null],
+  ['exchangeDirection', T.option(T.i32), null],
+  ['chainId', T.option(T.string), null],
+  ['chainName', T.option(T.string), null],
+  ['canResume', T.option(T.bool), null],
+  ['fromToken', T.option(T.value), null],
+  ['toToken', T.option(T.value), null],
+  ['triggerInfo', T.option(T.value), null],
+  ['createTime', T.option(T.string), null],
+  ['expireTime', T.option(T.string), null],
+  ['transactionInfo', T.option(T.value), null],
+  ['executionHistoryList', T.option(T.value), null],
+  ['orderStatusUpdateTime', T.option(T.string), null],
+  ['estimatedWaitTime', T.option(T.i64), null],
+  ['eventCursor', T.option(T.string), null],
+], { flatten: 'extra' });
 
 // upstream: types.rs::ListOrdersResp — BE `dataList` / `cursor` (hasNext ignored)
-export const LIST_ORDERS_RESP = D.struct('ListOrdersResp', [
-  ['dataList', D.vec(ORDER_LIST_RESP), true],
-  ['cursor', D.option(D.string), true],
+export const LIST_ORDERS_RESP = T.struct('ListOrdersResp', [
+  ['dataList', T.vec(ORDER_LIST_RESP), () => []],
+  ['cursor', T.option(T.string), null],
 ]);
 
 // upstream: types.rs::CancelResp
-export const CANCEL_RESP = D.struct('CancelResp', [
-  ['updateNum', D.i64, true],
-  ['estimatedWaitTime', D.option(D.i64), true],
+export const CANCEL_RESP = T.struct('CancelResp', [
+  ['updateNum', T.i64, 0],
+  ['estimatedWaitTime', T.option(T.i64), null],
 ]);
 
 // upstream: types.rs::ReactivateResp
-export const REACTIVATE_RESP = D.struct('ReactivateResp', [
-  ['successIds', D.vec(D.string), true],
-  ['failIds', D.vec(D.string), true],
+export const REACTIVATE_RESP = T.struct('ReactivateResp', [
+  ['successIds', T.vec(T.string), () => []],
+  ['failIds', T.vec(T.string), () => []],
 ]);
 
 // serde_json::from_value::<OrderListResp> etc.
@@ -106,7 +106,7 @@ export const reactivateRespDefault = () => ({ successIds: [], failIds: [] });
 export function orderListRespToValue(o) {
   const v = {};
   for (const [name] of ORDER_LIST_RESP.fields) v[name] = o[name] ?? null;
-  for (const [k, x] of Object.entries(o[EXTRA] ?? {})) {
+  for (const [k, x] of Object.entries(o.extra ?? {})) {
     Object.defineProperty(v, k, { value: x, enumerable: true, writable: true, configurable: true });
   }
   return v;

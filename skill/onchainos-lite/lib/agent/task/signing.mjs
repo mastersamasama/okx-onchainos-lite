@@ -5,7 +5,10 @@ import { decodeUnsignedInfoResponse, SerdeError, displayTop } from '../../wallet
 import { get as keyringGet } from '../../core/keyring.mjs';
 import { auditLog } from '../../core/audit.mjs';
 import { context } from '../../core/errors.mjs';
-import { isObj, get, at, asStr, asI64, nowSecs, trim, eqIgnoreAsciiCase } from '../_rs.mjs';
+import { hpkeDecryptSessionSk, ed25519SignHex } from '../../core/crypto.mjs';
+import { isObject, get, at, asStr, asI64 } from '../../core/rs/value.mjs';
+import { nowSecs } from '../../core/rs/time.mjs';
+import { trim, eqIgnoreAsciiCase } from '../../core/rs/str.mjs';
 import { fetchAgentById, fetchMyAgents, AGENT_ROLE_USER, XLAYER_CHAIN_INDEX, XLAYER_CHAIN_NAME } from './common/index.mjs';
 
 const NOT_LOGGED_IN = 'not logged in; run `onchainos wallet auth` first';
@@ -90,7 +93,7 @@ export async function resolveAgentIdByRole(roleCode) {
 // upstream: signing.rs::merge_biz_context (json! → sorted)
 export function mergeBizContext(jobId, bizType, extra) {
   const ctx = { jobId, bizType };
-  if (isObj(extra)) for (const k of Object.keys(extra)) ctx[k] = extra[k];
+  if (isObject(extra)) for (const k of Object.keys(extra)) ctx[k] = extra[k];
   return ctx;
 }
 
@@ -154,7 +157,6 @@ export async function signDigestWithSessionKey(digest) {
   let sessionKey;
   try { sessionKey = keyringGet('session_key'); } catch { throw new Error(NOT_LOGGED_IN); }
   if (sessionKey === undefined || sessionKey === null) throw new Error(NOT_LOGGED_IN);
-  const { hpkeDecryptSessionSk, ed25519SignHex } = await import('../../wallet/shared/_crypto.mjs');
   const seed = hpkeDecryptSessionSk(session.encryptedSessionSk, sessionKey);
   return ed25519SignHex(digest, Buffer.from(seed).toString('base64'));
 }
@@ -175,7 +177,7 @@ export async function taskDualSignAndBroadcast(client, jobId, preAction, mainAct
   const nonce = asStr(at(preResp, 'nonce')) ?? '';
   const signature = await signTypedData(typedData, address);
   const mainBody = { signatureData: { signature, deadline, nonce } };
-  if (isObj(extraMainFields)) for (const k of Object.keys(extraMainFields)) mainBody[k] = extraMainFields[k];
+  if (isObject(extraMainFields)) for (const k of Object.keys(extraMainFields)) mainBody[k] = extraMainFields[k];
   let mainResp;
   try { mainResp = await client.postWithIdentity(client.endpoint(jobId, mainAction), mainBody, agentId); } catch (e) { throw new Error(`${mainAction} request failed: ${displayTop(e)}`); }
   const txHash = await signUopAndBroadcast(client, at(mainResp, 'uopData'), accountId, address, jobId, extractBizType(mainResp), agentId, bizContextExtra);

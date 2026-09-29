@@ -5,7 +5,7 @@
 import { context } from '../../core/errors.mjs';
 import { stringify } from '../../core/json.mjs';
 import { checkResponse } from './status.mjs';
-import { isObject, asI64 } from './_serde.mjs';
+import { isObject, asI64 } from '../../core/rs/value.mjs';
 import {
   orderListRespFromValue, listOrdersRespFromValue, cancelRespFromValue, reactivateRespFromValue,
   listOrdersRespDefault, cancelRespDefault, reactivateRespDefault,

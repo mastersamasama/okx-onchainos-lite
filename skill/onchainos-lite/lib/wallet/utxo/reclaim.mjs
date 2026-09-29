@@ -7,10 +7,9 @@ import { BtcContext } from '../shared/adapters/bitcoin/context.mjs';
 import { mapApiError } from '../shared/adapters/bitcoin/error.mjs';
 import { collectOutpoints } from '../shared/adapters/bitcoin/models.mjs';
 import { shellArg } from '../shared/common/json.mjs';
-import { rustTrim, asciiLower, getField as get } from '../_rs.mjs';
+import { trim, asciiLower, cmpBytes } from '../../core/rs/str.mjs';
+import { get } from '../../core/rs/value.mjs';
 import { pointer } from './brc20.mjs';
-
-const cmpBytes = (a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b));
 
 // rust-bitcoin 0.32 `Txid::from_str` (hex-conservative array decode) error Display texts.
 export function parseTxid(value) {
@@ -22,7 +21,7 @@ export function parseTxid(value) {
 // upstream: reclaim.rs::cmd_reclaim → output data (or WalletPreviewConfirming)
 export async function cmdReclaim(txHashes, force) {
   if (!txHashes.length) throw new Error('at least one --tx-hash is required');
-  const requested = [...new Set(txHashes.map((v) => asciiLower(rustTrim(v))))].sort(cmpBytes);   // BTreeSet
+  const requested = [...new Set(txHashes.map((v) => asciiLower(trim(v))))].sort(cmpBytes);   // BTreeSet
   if (requested.length !== txHashes.length) throw new Error('duplicate --tx-hash values are not allowed');
   for (const txHash of requested) {
     try { parseTxid(txHash); } catch (e) { throw new Error(`invalid --tx-hash '${txHash}': ${e.message}`); }

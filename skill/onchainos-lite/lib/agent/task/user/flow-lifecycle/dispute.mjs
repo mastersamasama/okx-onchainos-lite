@@ -1,6 +1,8 @@
 // Rejection / evaluation prompt generators — upstream task/user/flow_lifecycle/dispute.rs.
 import { displayTop } from '../../../../wallet/api.mjs';
-import { get, asStr, asI64, parseI64, trim, debugOptInt } from '../../../_rs.mjs';
+import { get, asStr, asI64 } from '../../../../core/rs/value.mjs';
+import { parseI64 } from '../../../../core/rs/num.mjs';
+import { trim, debugOptInt } from '../../../../core/rs/str.mjs';
 import { TERMINAL_NOTIFICATION_MARKER } from '../../common/index.mjs';
 import * as okxA2a from '../../common/okx-a2a.mjs';
 import { verifyFinalRefundEvent } from '../refund.mjs';

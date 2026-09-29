@@ -23,7 +23,8 @@ process.on('exit', () => { try { rmSync(HOME, { recursive: true, force: true });
 
 const refundUrl = pathToFileURL(join(LIB, 'agent', 'task', 'user', 'refund.mjs')).href;
 const { _internal: refund, pendingStatePath } = await import(refundUrl);
-const { jcs, a2aTransportIdentityFromJson } = await import(pathToFileURL(join(LIB, 'agent', 'task', 'user', 'flow-lifecycle', 'core.mjs')).href);
+const { a2aTransportIdentityFromJson } = await import(pathToFileURL(join(LIB, 'agent', 'task', 'user', 'flow-lifecycle', 'core.mjs')).href);
+const { jcs } = await import(pathToFileURL(join(LIB, 'core', 'rs', 'jcs.mjs')).href);
 const { decodeCursor, encodeCursor } = await import(pathToFileURL(join(LIB, 'agent', 'task', 'user', 'subscription-list.mjs')).href);
 const { parse } = await import(pathToFileURL(join(LIB, 'core', 'json.mjs')).href);
 

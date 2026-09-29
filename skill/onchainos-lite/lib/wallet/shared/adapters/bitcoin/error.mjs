@@ -3,7 +3,7 @@
 import { CodedError } from '../../../../core/errors.mjs';
 import { ApiCodeError } from '../../../api.mjs';
 import { nextSteps, ReadOnlyNextStep } from './models.mjs';
-import { downcast } from '../../_rust.mjs';
+import { downcast } from '../../../../core/rs/anyhow.mjs';
 
 const steps = (list) => { try { return nextSteps(list); } catch { return {}; } };
 

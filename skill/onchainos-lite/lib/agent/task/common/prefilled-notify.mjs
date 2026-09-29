@@ -2,9 +2,10 @@
 // File: <home>/task/<jobId>/cache/prefilled-notify.json = pretty sorted `{ "<event_key>": "<content>" }`.
 import { mkdirSync, writeFileSync, existsSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
-import { taskStateDir } from '../../_home.mjs';
+import { taskStateDir } from '../../../core/home.mjs';
 import { parse as parseJson, stringify } from '../../../core/json.mjs';
-import { isObj, get, asStr, readToString } from '../../_rs.mjs';
+import { isObject, get, asStr } from '../../../core/rs/value.mjs';
+import { readToString } from '../../../core/rs/fs.mjs';
 
 const cacheDir = (jobId) => join(taskStateDir(jobId), 'cache');
 const cachePath = (jobId) => join(cacheDir(jobId), 'prefilled-notify.json');
@@ -16,7 +17,7 @@ export function save(jobId, eventKey, content) {
   let map = {};
   if (existsSync(path)) {
     const raw = readToString(path);
-    try { const v = parseJson(raw); map = isObj(v) ? v : {}; } catch { map = {}; }
+    try { const v = parseJson(raw); map = isObject(v) ? v : {}; } catch { map = {}; }
   }
   // Map::insert — an own data property even for keys such as `__proto__`.
   Object.defineProperty(map, eventKey, { value: content, enumerable: true, writable: true, configurable: true });

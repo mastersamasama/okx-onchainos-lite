@@ -2,14 +2,14 @@
 // Writers: serde_json::to_string_pretty(struct) (2-space, no trailing newline) → "<name>.tmp" → rename.
 // Readers: missing → None/default; read error → "failed to read <name>"; parse error →
 // "failed to parse <name>: <serde_json::from_str message, with `at line L column C`>" — decoded by
-// the streaming serde emulation in ./_serde-json.mjs. In-memory values are plain objects keyed by the
+// the streaming serde emulation in core/serde.mjs. In-memory values are plain objects keyed by the
 // JSON field names (camelCase for wallets/session/cache, snake_case for the two caches).
 import { readFileSync, existsSync } from 'node:fs';
 import { save, remove } from '../core/store.mjs';
 import { homePath } from '../core/home.mjs';
 import { context } from '../core/errors.mjs';
 import { struct } from '../core/json.mjs';
-import { fromStr, T, SerdeJsonError } from './_serde-json.mjs';
+import { fromStr, T, SerdeError } from '../core/serde.mjs';
 
 // ── on-disk struct schemas (field order, required vs #[serde(default)]) ──
 
@@ -37,7 +37,7 @@ function loadStruct(name, type) {
   try { bytes = readFileSync(p); } catch (e) { throw context(`failed to read ${name}`, e); }
   try { new TextDecoder('utf-8', { fatal: true }).decode(bytes); } catch { throw context(`failed to read ${name}`, new Error('stream did not contain valid UTF-8')); }
   try { return fromStr(bytes, type); } catch (e) {
-    if (e instanceof SerdeJsonError) throw context(`failed to parse ${name}`, e);
+    if (e instanceof SerdeError) throw context(`failed to parse ${name}`, e);
     throw e;
   }
 }

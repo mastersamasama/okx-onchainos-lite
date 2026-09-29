@@ -11,15 +11,16 @@ import { resolve as resolveChainProfile, TransferDriver } from '../../wallet/cha
 import { cmdSendWithReadable, cmdContractCall } from '../../wallet/transfer/index.mjs';
 import * as bitcoin from '../../wallet/transfer/bitcoin.mjs';
 import * as sui from '../../wallet/transfer/sui.mjs';
-import { clap, leafValues } from '../../wallet/transfer/_clap.mjs';
-import { get, rustTrim, asU64, parseU32, parseU64, u64Json } from '../../wallet/shared/_rust.mjs';
+import { get, asU64 } from '../../core/rs/value.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { parseU32, parseU64, toU32 } from '../../core/rs/num.mjs';
 
 const some = (v) => v !== undefined && v !== null;
 
 // upstream: agentic_wallet/mod.rs::resolve_send_amount → minimal-unit amount string
 export async function resolveSendAmount(amt, readableAmount, contractToken, chain) {
   if (some(amt)) {
-    const raw = rustTrim(amt);
+    const raw = trim(amt);
     if (raw === '') throw new Error('--amt must not be empty');
     if (raw.includes('.')) throw new Error('--amt must be a whole number in minimal units (no decimals)');
     if (!/^[0-9]*$/.test(raw)) throw new Error(`--amt must be a whole number in minimal units, got "${raw}"`);
@@ -28,7 +29,7 @@ export async function resolveSendAmount(amt, readableAmount, contractToken, chai
     return raw;
   }
   if (some(readableAmount)) {
-    const readable = rustTrim(readableAmount);
+    const readable = trim(readableAmount);
     if (readable === '') throw new Error('--readable-amount must not be empty');
     let decimal;
     if (!some(contractToken)) {
@@ -41,7 +42,7 @@ export async function resolveSendAmount(amt, readableAmount, contractToken, chai
       if (chainIndexNum === undefined) throw new Error(`chain id '${chainIndexStr}' is not a valid number for token-info lookup`);
       let info;
       try {
-        info = await client.getTokenInfo(accessToken, u64Json(chainIndexNum), contractToken);
+        info = await client.getTokenInfo(accessToken, chainIndexNum, contractToken);
       } catch (e) {
         throw new Error(`Failed to fetch token decimals for ${contractToken}: ${displayTop(e)}. Use --amt with raw minimal units instead.`);
       }
@@ -54,7 +55,7 @@ export async function resolveSendAmount(amt, readableAmount, contractToken, chai
       } else if (typeof value === 'number' || typeof value === 'bigint' || value instanceof F64) {
         const n = asU64(value);
         if (n === undefined) throw new Error(`Invalid decimal value for token ${contractToken}`);
-        decimal = Number(BigInt.asUintN(32, n));   // `as u32`
+        decimal = toU32(n);
       } else {
         throw new Error(`Token decimal not found for ${contractToken}. Use --amt with raw minimal units instead.`);
       }
@@ -111,20 +112,12 @@ async function walletContractCall(o) {
 export default {
   'wallet send': {
     uses: ['amt', 'readableAmount', 'recipient', 'chain', 'from', 'contractToken', 'brc20Outpoint', 'feeRate', 'force', 'gasTokenAddress', 'relayerId', 'enableGasStation'],
-    async run(ctx, o) {
-      clap(ctx, { conflicts: [['amt', 'readableAmount']], requires: [['brc20Outpoint', 'contractToken']], leafRequired: ['chain'] });
-      // clap Vec<String> (append): every occurrence, in argv order.
-      const outpoints = leafValues(ctx, 'brc20Outpoint');
-      return walletSend(o, outpoints.length ? outpoints : [].concat(o.brc20Outpoint ?? []));
-    },
+    run: (ctx, o) => walletSend(o, o.brc20Outpoint ?? []),
   },
 
   'wallet contract-call': {
     uses: ['to', 'chain', 'amt', 'inputData', 'unsignedTx', 'suiTxBytes', 'gasLimit', 'from', 'aaDexTokenAddr', 'aaDexTokenAmount', 'mevProtection',
       'jitoUnsignedTx', 'force', 'gasTokenAddress', 'relayerId', 'enableGasStation', 'bizType', 'strategy'],
-    async run(ctx, o) {
-      clap(ctx, { conflicts: [['unsignedTx', 'suiTxBytes'], ['inputData', 'suiTxBytes']], leafRequired: ['chain'] });
-      return walletContractCall(o);
-    },
+    run: (ctx, o) => walletContractCall(o),
   },
 };

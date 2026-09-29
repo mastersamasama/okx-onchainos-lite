@@ -8,8 +8,7 @@ import { statSync, readFileSync, writeFileSync } from 'node:fs';
 import { context } from '../../core/errors.mjs';
 import { ensureTokensRefreshed } from '../../wallet/auth.mjs';
 import { WalletApiClient, ApiCodeError } from '../../wallet/api.mjs';
-import { ioErrorText } from '../_rs.mjs';
-import { fileName } from '../identity/_std.mjs';
+import { ioErrorText, fileName } from '../../core/rs/fs.mjs';
 
 export const HEARTBEAT_PATH = '/priapi/v5/wallet/agentic/agent-heartbeat';
 export const UPLOAD_PATH = '/priapi/v1/aieco/im/attachments/xmtp/encrypted/upload';

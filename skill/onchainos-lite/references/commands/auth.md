@@ -30,4 +30,4 @@ Remove the stored API key from the encrypted keyring
 ### auth transfer open
 (target machine) Decrypt a sealed blob from `auth transfer seal` into the local encrypted keyring
 `ocl auth transfer open <SEALED>`
-- `SEALED` — The sealed blob (ocl-seal-v1.…)
+- `SEALED` — The sealed blob (ocl-seal-v1.…), or - to read it from stdin

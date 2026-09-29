@@ -13,8 +13,7 @@ import {
   classifyDeadEnd, isCanonicalZeroStr, annotateBridgeIdMismatch, validateReceiveAddress, extractBridgeId, unwrapDataArray,
   nextStepsForBridge, buildExecuteData, apiErrorMsg,
 } from '../../skill/onchainos-lite/lib/commands/cross-chain/cross-chain.mjs';
-import { parseUsize } from '../../skill/onchainos-lite/lib/commands/swap/_clap.mjs';
-import { shortId, flattenReason, exitStatusText } from '../../skill/onchainos-lite/lib/commands/swap/_notify.mjs';
+import { shortId, flattenReason } from '../../skill/onchainos-lite/lib/agent/task/common/autotrade/notify.mjs';
 import { F64, stringify } from '../../skill/onchainos-lite/lib/core/json.mjs';
 import { context } from '../../skill/onchainos-lite/lib/core/errors.mjs';
 
@@ -335,15 +334,6 @@ test('build_execute_data', () => {
 
 // ── private helpers ──────────────────────────────────────────────────
 
-test('parseUsize (clap usize value parser wording)', () => {
-  assert.equal(parseUsize('0'), 0);
-  assert.equal(parseUsize('+7'), 7);
-  assert.equal(parseUsize('18446744073709551615'), 18446744073709551615n);
-  assert.throws(() => parseUsize('x'), { message: 'invalid digit found in string' });
-  assert.throws(() => parseUsize(''), { message: 'cannot parse integer from empty string' });
-  assert.throws(() => parseUsize('18446744073709551616'), { message: 'number too large to fit in target type' });
-});
-
 test('notify short_id / flatten_reason', () => {
   assert.equal(shortId('usdc'), 'usdc');
   assert.equal(shortId('0xb5b8b2b800000000000000000000000000000000000000000000000000009b35'), '0xb5b8…9b35');
@@ -360,13 +350,4 @@ test('notify flatten_reason uses Rust whitespace', () => {
   assert.equal(flattenReason('a' + ch(0x85) + 'b'), 'a b');
   assert.equal(flattenReason('a' + ch(0xfeff) + 'b'), 'a' + ch(0xfeff) + 'b');
   assert.equal(flattenReason(ch(0x3000) + 'a' + ch(0x2028) + ch(0x2029) + 'b' + ch(0xa0)), 'a b');
-});
-
-// std::process::ExitStatus Display, as embedded in the okx-a2a failure message.
-test('notify exit status text (std ExitStatus Display)', () => {
-  assert.equal(exitStatusText(3, null, 'win32'), 'exit code: 3');
-  assert.equal(exitStatusText(3221225477, null, 'win32'), 'exit code: 0xc0000005');
-  assert.equal(exitStatusText(2, null, 'linux'), 'exit status: 2');
-  assert.equal(exitStatusText(null, 'SIGKILL', 'linux'), 'signal: 9 (SIGKILL)');
-  assert.equal(exitStatusText(null, 'SIGTERM', 'darwin'), 'signal: 15 (SIGTERM)');
 });

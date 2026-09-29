@@ -5,7 +5,7 @@ import { context } from '../../../../core/errors.mjs';
 import { numberText } from '../../../api.mjs';
 import { requiredString } from '../../common/json.mjs';
 import { buildDirectExtraData } from '../../common/unsigned-hash-list.mjs';
-import { get, isObject } from '../../_rust.mjs';
+import { get, isObject } from '../../../../core/rs/value.mjs';
 
 // upstream: broadcast.rs::submit_direct_transaction → BroadcastResponse
 export async function submitDirectTransaction(api, ctx, prepared, signedHashes, force) {

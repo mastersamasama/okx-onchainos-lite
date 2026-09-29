@@ -34,9 +34,6 @@ process.env.OCL_BASE_URL = `http://127.0.0.1:${server.address().port}`;
 after(() => server.close());
 
 const L = '../../skill/onchainos-lite/lib/';
-const rs = await import(L + 'wallet/shared/_rust.mjs');
-const cr = await import(L + 'wallet/shared/_crypto.mjs');
-const serde = await import(L + 'wallet/shared/_serde-json.mjs');
 const amount = await import(L + 'wallet/shared/common/amount.mjs');
 const json = await import(L + 'wallet/shared/common/json.mjs');
 const session = await import(L + 'wallet/shared/common/session.mjs');
@@ -61,8 +58,8 @@ const api = await import(L + 'wallet/api.mjs');
 const profile = await import(L + 'wallet/chain-profile.mjs');
 const { stringify, parse, F64 } = await import(L + 'core/json.mjs');
 const { Confirming, SetupRequired, CodedError } = await import(L + 'core/errors.mjs');
-const { seal } = await import(L + 'crypto/hpke.mjs');
-const { x25519, ed25519 } = await import(L + 'crypto/curve25519.mjs');
+const { bs58Encode } = await import(L + 'core/rs/codec.mjs');
+const { ed25519 } = await import(L + 'crypto/curve25519.mjs');
 const { keccak256 } = await import(L + 'crypto/keccak.mjs');
 
 const SEED1 = Buffer.alloc(32, 1);
@@ -70,81 +67,6 @@ const TAPROOT = 'bc1p35lr6647utu5dfm4se3wlazd706a0nl6z5qxjuacm3fhjxwjn2yqyfnvan'
 const P2WPKH = 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh';
 const TXID = '4d3f6a7a45dbb9d3398a8f83c0219b6bedfdcd77d1de63cc09f9cfe360c553c0';
 const decodeUnsigned = (o) => api.decodeUnsignedInfoResponse(parse(JSON.stringify(o)));
-
-// ── crate semantics (_rust.mjs) ─────────────────────────────────────
-
-test('base64 0.22 STANDARD: strict canonical decode with the crate error texts', () => {
-  assert.deepEqual([...rs.base64Decode('AAECAwQ=')], [0, 1, 2, 3, 4]);
-  assert.equal(rs.base64Decode('').length, 0);
-  assert.throws(() => rs.base64Decode('not-base64'), /^Error: Invalid symbol 45, offset 3\.$/);
-  assert.throws(() => rs.base64Decode('AAECAwQ'), /^Error: Invalid padding$/);
-  assert.throws(() => rs.base64Decode('AB=='), /^Error: Invalid last symbol 66, offset 1\.$/);
-  assert.throws(() => rs.base64Decode('A'), /^Error: Invalid input length: 1$/);
-  assert.throws(() => rs.base64Decode('=AAA'), /^Error: Invalid symbol 61, offset 0\.$/);
-  assert.throws(() => rs.base64Decode('AA=A'), /^Error: Invalid symbol 61, offset 2\.$/);
-  assert.throws(() => rs.base64Decode('AAAAA*'), /^Error: Invalid symbol 42, offset 5\.$/);
-});
-
-test('hex 0.4 / bs58 0.5 decoders with the crate error texts', () => {
-  assert.deepEqual([...rs.hexDecode('0aFF')], [10, 255]);
-  assert.throws(() => rs.hexDecode('abc'), /^Error: Odd number of digits$/);
-  assert.throws(() => rs.hexDecode('zz'), /^Error: Invalid character 'z' at position 0$/);
-  assert.throws(() => rs.hexDecode('0g'), /^Error: Invalid character 'g' at position 1$/);
-  assert.deepEqual([...rs.bs58Decode('1112')], [0, 0, 0, 1]);
-  assert.throws(() => rs.bs58Decode('0OIl'), /^Error: provided string contained invalid character '0' at byte 0$/);
-  assert.throws(() => rs.bs58Decode('aé'), /^Error: provided string contained non-ascii character starting at byte 1$/);
-  assert.equal(rs.bs58Encode(Buffer.from('Hello World')), 'JxF12TrwUP45BMd');
-});
-
-test('serde_jcs: sorted keys, ECMAScript numbers, 0.0 → 0', () => {
-  assert.equal(rs.jcsStringify(parse('{"b":1.50,"a":[10.0,0.0,1e21],"c":"x"}')), '{"a":[10,0,1e+21],"b":1.5,"c":"x"}');
-});
-
-test('serde_json from_str error positions and messages', () => {
-  const err = (s) => { try { serde.fromStr(s); return null; } catch (e) { return e.message; } };
-  assert.equal(err('nox'), 'expected ident at line 1 column 2');
-  assert.equal(err('x'), 'expected value at line 1 column 1');
-  assert.equal(err(''), 'EOF while parsing a value at line 1 column 0');
-  assert.equal(err('{"a":1} x'), 'trailing characters at line 1 column 9');
-  assert.equal(err('[1,2,]'), 'trailing comma at line 1 column 6');
-  assert.equal(err('{1:2}'), 'key must be a string at line 1 column 2');
-  assert.equal(err('{"a":'), 'EOF while parsing a value at line 1 column 5');
-  assert.equal(err('{"a" 1}'), 'expected `:` at line 1 column 6');
-  assert.equal(err('[01]'), 'invalid number at line 1 column 3');
-  assert.equal(err('[1 2]'), 'expected `,` or `]` at line 1 column 4');
-  assert.equal(err('"abc'), 'EOF while parsing a string at line 1 column 4');
-  assert.equal(err('{\n  "a": tru\n}'), 'expected ident at line 3 column 0');   // upstream-verified (parity case)
-  assert.deepEqual(stringify(serde.fromStr('{"b":2.50,"a":1}')), '{"a":1,"b":2.5}');
-});
-
-// ── crypto.rs mirror ────────────────────────────────────────────────
-
-test('ed25519_sign_eip191 / _encoded / _hex', () => {
-  assert.equal(cr.ed25519SignEip191('', SEED1, 'hex'), '');
-  const data = Buffer.from('deadbeef', 'hex');
-  const digest = keccak256(Buffer.concat([Buffer.from(`\x19Ethereum Signed Message:\n${data.length}`), data]));
-  assert.equal(cr.ed25519SignEip191('0xdeadbeef', SEED1, 'hex'), ed25519.sign(SEED1, digest).toString('base64'));
-  assert.throws(() => cr.ed25519SignEip191('x', SEED1, 'raw'), /unsupported encoding for eip191: raw, expected "hex" or "utf8"/);
-  assert.throws(() => cr.ed25519SignEip191('0xzz', SEED1, 'hex'), /^Error: msg is not valid hex: Invalid character 'z' at position 0$/);
-  const b64 = SEED1.toString('base64');
-  assert.equal(cr.ed25519SignEncoded('0x', b64, 'hex'), '');
-  assert.equal(cr.ed25519SignHex('0xab', b64), ed25519.sign(SEED1, Buffer.from([0xab])).toString('base64'));
-  assert.equal(cr.ed25519SignEncoded('AAE=', b64, 'base64'), ed25519.sign(SEED1, Buffer.from([0, 1])).toString('base64'));
-  assert.throws(() => cr.ed25519SignEncoded('ab', b64, ''), /unsupported encoding: , expected hex\/base64\/base58/);
-  assert.throws(() => cr.ed25519SignEncoded('0', b64, 'base58'), /failed to decode base58 message: provided string contained invalid character '0' at byte 0/);
-});
-
-test('hpke_decrypt_session_sk round trip and errors', () => {
-  const sk = Buffer.alloc(32, 7);
-  const { enc, ciphertext } = seal({ pkR: x25519.publicKey(sk), plaintext: SEED1, info: Buffer.from('okx-tee-sign'), ephemeral: Buffer.alloc(32, 9) });
-  const blob = Buffer.concat([enc, ciphertext]).toString('base64');
-  assert.deepEqual(cr.hpkeDecryptSessionSk(blob, sk.toString('base64')), SEED1);
-  assert.throws(() => cr.hpkeDecryptSessionSk('not base64!', sk.toString('base64')), /^Error: encrypted_session_sk is not valid base64: Invalid symbol 32, offset 3\.$/);
-  assert.throws(() => cr.hpkeDecryptSessionSk(blob, Buffer.alloc(16).toString('base64')), /session_key must be 32 bytes, got 16/);
-  assert.throws(() => cr.hpkeDecryptSessionSk(Buffer.alloc(32).toString('base64'), sk.toString('base64')), /encrypted_session_sk too short: 32 bytes \(need > 32\)/);
-  const tampered = Buffer.from(blob, 'base64'); tampered[40] ^= 1;
-  assert.throws(() => cr.hpkeDecryptSessionSk(tampered.toString('base64'), sk.toString('base64')), /HPKE decryption failed: Failed to open ciphertext/);
-});
 
 // ── shared/common ───────────────────────────────────────────────────
 
@@ -539,7 +461,7 @@ test('sign.rs helpers (upstream oracles)', () => {
   assert.deepEqual(sign.outputSignResult([{ signature: '0xabc123' }], '1', '0xAddr'), { signature: '0xabc123' });
   const sol = sign.outputSignResult([{ signature: '0x' + Buffer.from('test_signature').toString('hex') }], '501', 'SolAddr123');
   assert.equal(sol.publicKey, 'SolAddr123');
-  assert.equal(sol.signature, rs.bs58Encode(Buffer.from('test_signature')));
+  assert.equal(sol.signature, bs58Encode(Buffer.from('test_signature')));
   assert.throws(() => sign.outputSignResult([], '1', '0xAddr'), /sign-msg: empty response data/);
   assert.throws(() => sign.outputSignResult([{}], '1', '0xAddr'), /missing signature in sign-msg response/);
   assert.throws(() => sign.outputSignResult([{ signature: '0xzz' }], '501', 'x'), /invalid hex signature from API: Invalid character 'z' at position 0/);
@@ -656,41 +578,4 @@ test('build_broadcast_body: session material from the state dir; no eip712 / age
   assert.equal(ed.msgForSign.sessionSignature, undefined);          // eip712MessageHash is not signed here
   assert.equal(ed.msgForSign.jitoSessionSignature, ed25519.sign(H.SIGNING_SEED, Buffer.from([1, 2])).toString('base64'));
   assert.equal(ed.msgForSign.sessionCert, H.SESSION_CERT);
-});
-
-// ── clap 4.6 validation texts (transfer/_clap.mjs). Oracles: stderr of the upstream binary
-// (onchainos 4.6.3) for the same argv; the core parser may pre-empt these checks. ──
-const clapMod = await import(L + 'wallet/transfer/_clap.mjs');
-const { UsageError } = await import(L + 'core/errors.mjs');
-const clapErr = (argv, rules) => {
-  const path = argv.filter((t) => ['wallet', 'send', 'contract-call', 'sign-message'].includes(t)).slice(0, 2).join(' ');
-  try { clapMod.clapValidate({ path, argv }, rules); } catch (e) { assert.ok(e instanceof UsageError); return e.message; }
-  return null;
-};
-const SEND_RULES = { conflicts: [['amt', 'readableAmount']], requires: [['brc20Outpoint', 'contractToken']], leafRequired: ['chain'] };
-const CC_RULES = { conflicts: [['unsignedTx', 'suiTxBytes'], ['inputData', 'suiTxBytes']], leafRequired: ['chain'] };
-const TAIL = "\n\nFor more information, try '--help'.\n";
-
-test('clap: conflict usage lists used args in command-line order (ArgMatcher order)', () => {
-  assert.equal(clapErr(['wallet', 'send', '--from', 'F', '--readable-amount', '2', '--chain', '1', '--amt', '1', '--recipient', 'R'], SEND_RULES),
-    "error: the argument '--readable-amount <READABLE_AMOUNT>' cannot be used with '--amt <AMT>'\n\nUsage: onchainos wallet send --recipient <RECIPIENT> --chain <CHAIN> --from <FROM> --readable-amount <READABLE_AMOUNT>" + TAIL);
-  assert.equal(clapErr(['wallet', 'send', '--chain', '1', '--recipient', 'R', '--force', '--amt', '1', '--readable-amount', '2'], SEND_RULES),
-    "error: the argument '--amt <AMT>' cannot be used with '--readable-amount <READABLE_AMOUNT>'\n\nUsage: onchainos wallet send --recipient <RECIPIENT> --chain <CHAIN> --force --amt <AMT>" + TAIL);
-  assert.equal(clapErr(['wallet', 'contract-call', '--gas-limit', '1', '--chain', 'sui', '--unsigned-tx', 'x', '--to', 'T', '--sui-tx-bytes', 'AA', '--input-data', '0x'], CC_RULES),
-    "error: the argument '--unsigned-tx <UNSIGNED_TX>' cannot be used with '--sui-tx-bytes <SUI_TX_BYTES>'\n\nUsage: onchainos wallet contract-call --chain <CHAIN> --gas-limit <GAS_LIMIT> --unsigned-tx <UNSIGNED_TX> --to <TO> --input-data <INPUT_DATA>" + TAIL);
-});
-
-test('clap: several conflicting args are listed with "with:"; requirements of used args join the usage', () => {
-  assert.equal(clapErr(['wallet', 'contract-call', '--chain', 'sui', '--sui-tx-bytes', 'AA', '--unsigned-tx', 'x', '--input-data', '0x'], CC_RULES),
-    "error: the argument '--sui-tx-bytes <SUI_TX_BYTES>' cannot be used with:\n  --unsigned-tx <UNSIGNED_TX>\n  --input-data <INPUT_DATA>\n\nUsage: onchainos wallet contract-call --chain <CHAIN> --sui-tx-bytes <SUI_TX_BYTES>" + TAIL);
-  assert.equal(clapErr(['wallet', 'send', '--chain', '1', '--recipient', 'R', '--brc20-outpoint', 'a:1', '--amt', '1', '--readable-amount', '2'], SEND_RULES),
-    "error: the argument '--amt <AMT>' cannot be used with '--readable-amount <READABLE_AMOUNT>'\n\nUsage: onchainos wallet send --recipient <RECIPIENT> --chain <CHAIN> --contract-token <CONTRACT_TOKEN> --brc20-outpoint <BRC20_OUTPOINT> --amt <AMT>" + TAIL);
-});
-
-test('clap: missing requirement — required graph gains `requires`, then used args in order', () => {
-  assert.equal(clapErr(['wallet', 'send', '--brc20-outpoint', 'a:1', '--from', 'F', '--recipient', 'R', '--chain', '1', '--fee-rate', '2', '--amt', '1'], SEND_RULES),
-    "error: the following required arguments were not provided:\n  --contract-token <CONTRACT_TOKEN>\n\nUsage: onchainos wallet send --recipient <RECIPIENT> --chain <CHAIN> --contract-token <CONTRACT_TOKEN> --brc20-outpoint <BRC20_OUTPOINT> --from <FROM> --fee-rate <FEE_RATE> --amt <AMT>" + TAIL);
-  assert.equal(clapErr(['--chain', '1', 'wallet', 'send', '--brc20-outpoint', 'a:1', '--recipient', 'R', '--fee-rate', '3'], SEND_RULES),
-    "error: the following required arguments were not provided:\n  --chain <CHAIN>\n  --contract-token <CONTRACT_TOKEN>\n\nUsage: onchainos wallet send --recipient <RECIPIENT> --chain <CHAIN> --contract-token <CONTRACT_TOKEN> --brc20-outpoint <BRC20_OUTPOINT> --fee-rate <FEE_RATE>" + TAIL);
-  assert.equal(clapErr(['wallet', 'send', '--chain', '1', '--recipient', 'R', '--amt', '1'], SEND_RULES), null);
 });

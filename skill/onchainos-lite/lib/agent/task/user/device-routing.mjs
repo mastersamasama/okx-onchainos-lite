@@ -8,9 +8,10 @@ import { homePath, writeAtomic } from '../../../core/home.mjs';
 import { stringify, struct } from '../../../core/json.mjs';
 import { ensureTokensRefreshed } from '../../../wallet/auth.mjs';
 import { displayTop } from '../../../wallet/api.mjs';
-import { fromStr, T } from '../../../wallet/_serde-json.mjs';
-import { S, fromValue } from '../../_serde.mjs';
-import { get, asStr, asArray, isObj, localParts, trim } from '../../_rs.mjs';
+import { fromStr, fromValue, T } from '../../../core/serde.mjs';
+import { get, asStr, asArray, isObject } from '../../../core/rs/value.mjs';
+import { localParts } from '../../../core/rs/time.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 import { selectSubscriptionAgentId } from '../common/subscription-identity.mjs';
 import { resolveUserAgent } from './create.mjs';
 import { SUBSCRIBE_API_PREFIX } from './create-subscribe.mjs';
@@ -104,12 +105,12 @@ export function fmtUnixMillis(tsMs) {
   return `${y}-${p2(p.m)}-${p2(p.d)} ${p2(p.hh)}:${p2(p.mm)}:${p2(p.ss)} ${off}`;
 }
 
-const DEVICE_ROW = S.struct('DeviceRow', [['deviceId', S.string, { default: '' }], ['deviceName', S.string, { default: '' }], ['lastOnlineTime', S.i64, { default: 0 }]]);
-const DEVICE_PAGE = S.struct('DevicePage', [['list', S.vec(DEVICE_ROW), { default: () => [] }], ['total', S.i64, { default: 0 }]]);
+const DEVICE_ROW = T.struct('DeviceRow', [['deviceId', T.string, ''], ['deviceName', T.string, ''], ['lastOnlineTime', T.i64, 0]]);
+const DEVICE_PAGE = T.struct('DevicePage', [['list', T.vec(DEVICE_ROW), () => []], ['total', T.i64, 0]]);
 
 // upstream: device_routing.rs::decode_device_page (private)
 export function decodeDevicePage(data) {
-  const de = (v) => { try { return fromValue(DEVICE_PAGE, v); } catch (e) { throw new Error(`failed to parse device page: ${e.message}`); } };
+  const de = (v) => { try { return fromValue(v, DEVICE_PAGE); } catch (e) { throw new Error(`failed to parse device page: ${e.message}`); } };
   if (Array.isArray(data)) return data.length ? de(data[0]) : { list: [], total: 0 };
   if (data === null || data === undefined) return { list: [], total: 0 };
   return de(data);
@@ -234,7 +235,7 @@ function reflectNewDeviceInSnapshot(subscriptions, deviceId, updatedJobIds) {
   const list = asArray(get(subscriptions, 'list'));
   if (!list) throw new Error('subscription snapshot is missing its list');
   for (const row of list) {
-    if (!isObj(row)) throw new Error('subscription snapshot contains a malformed row');
+    if (!isObject(row)) throw new Error('subscription snapshot contains a malformed row');
     const jobId = asStr(get(row, 'jobId'));
     const devices = get(row, 'deviceList');
     let receives;

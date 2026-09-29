@@ -4,7 +4,7 @@ import * as store from '../store.mjs';
 import { ensureTokensRefreshed, formatApiError } from '../auth.mjs';
 import { getChainByRealChainIndex } from '../chain.mjs';
 import { ERR_NOT_LOGGED_IN } from '../common.mjs';
-import { isI64, getField as get } from '../_rs.mjs';
+import { isI64, get } from '../../core/rs/value.mjs';
 import { filterDetailResponse, filterListResponse } from './response.mjs';
 
 const some = (v) => v !== undefined && v !== null;

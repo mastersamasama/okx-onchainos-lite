@@ -1,5 +1,5 @@
 // The single asset-class taxonomy — upstream asset_class.rs (serde lowercase wire strings).
-import { asciiLower } from './_rust-str.mjs';
+import { asciiLower } from './rs/str.mjs';
 
 // upstream: asset_class.rs::AssetClass — variants are their wire strings (AssetClass::as_str).
 export const AssetClass = Object.freeze({

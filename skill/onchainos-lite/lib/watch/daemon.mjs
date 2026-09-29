@@ -3,7 +3,6 @@
 // reconnect loop, status file transitions. Same frames (serde_json key order), same
 // timings, same status reasons.
 import { createHmac } from 'node:crypto';
-import { readFileSync } from 'node:fs';
 import { WS_URL } from '../config.mjs';
 import { connect, TIMEOUT } from '../core/ws.mjs';
 import { stringify } from '../core/json.mjs';
@@ -11,8 +10,9 @@ import { context } from '../core/errors.mjs';
 import { sleep } from '../core/proc.mjs';
 import { appendEvents, writePid, writeStatus, lastPollTime, nowMs } from './store.mjs';
 import { channelPattern, ChannelPattern, WatchEnv, watchConfigFromStr, valueFromStr } from './types.mjs';
-import { fromStr, struct as serdeStruct, vec, string, value } from './_serde.mjs';
-import { pathJoin, io, decodeUtf8, trim } from './_rs.mjs';
+import { T, fromStr } from '../core/serde.mjs';
+import { trim } from '../core/rs/str.mjs';
+import { pathJoin, readToString } from '../core/rs/fs.mjs';
 
 // upstream: daemon.rs HEARTBEAT_SECS / PONG_TIMEOUT_SECS / RECONNECT_DELAY_SECS /
 // MAX_RECONNECT_ATTEMPTS, the 10 s login/subscribe ack waits and the 10 s status ticker.
@@ -56,7 +56,7 @@ export class Credentials {
 export function loadDaemonConfig(dir) {
   const path = pathJoin(dir, 'config.json');
   let raw;
-  try { raw = decodeUtf8(io(() => readFileSync(path))); } catch (e) { throw context(`failed to read watch config: ${path}`, e); }
+  try { raw = readToString(path); } catch (e) { throw context(`failed to read watch config: ${path}`, e); }
   try {
     return watchConfigFromStr(raw);
   } catch (e) {
@@ -260,10 +260,7 @@ export function checkNotice(text) {
 
 // upstream: daemon.rs::WsPush { arg: WsPushArg { channel }, data: Vec<Value> } — parsed
 // with serde_json::from_str (map or sequence form; unknown fields ignored).
-const WS_PUSH = serdeStruct('WsPush', [
-  { name: 'arg', de: serdeStruct('WsPushArg', [{ name: 'channel', de: (d) => string(d) }]) },
-  { name: 'data', de: vec(value) },
-]);
+const WS_PUSH = T.struct('WsPush', [['arg', T.struct('WsPushArg', [['channel', T.string]])], ['data', T.vec(T.value)]]);
 export function parseWsPush(text) {
   try {
     const p = fromStr(text, WS_PUSH);

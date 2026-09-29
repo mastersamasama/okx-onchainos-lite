@@ -3,7 +3,8 @@
 // None — what MCP tool arguments deserialise to; the `memepump tokens` handler builds it from its options.
 import { resolveChain } from '../../core/chains.mjs';
 import { F64 } from '../../core/json.mjs';
-import { trim, parseF64, parseUnsigned } from '../../core/_rust-str.mjs';
+import { trim } from '../../core/rs/str.mjs';
+import { parseF64, parseU64 } from '../../core/rs/num.mjs';
 import { isJsonObject, rustParams, snakeCase } from '../market/_g03.mjs';
 
 // upstream: memepump.rs::NEW_TOKEN_THRESHOLD_MS
@@ -29,7 +30,7 @@ export function isNumericZero(v) {
 // serde_json Value::as_u64 for createdTimestamp (strict u64 string parse, else a non-negative integer number).
 function createdMs(v) {
   if (typeof v === 'string') {
-    const n = parseUnsigned(v, 'u64');
+    const n = parseU64(v);
     return n === undefined ? 0n : BigInt(n);
   }
   if (typeof v === 'number') return Number.isInteger(v) && v >= 0 && !Object.is(v, -0) ? BigInt(v) : 0n;

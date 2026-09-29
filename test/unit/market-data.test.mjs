@@ -502,32 +502,6 @@ test('shared fetchers read ONLY serde (snake_case) fields — camelCase keys are
   assert.equal(sent(c.calls[3].arg), 'chainIndex=501&stage=NEW');
 });
 
-test('_g03: clapInt reproduces clap RangedI64ValueParser<u32> (i64 FromStr wording, then bounds)', () => {
-  const msg = (raw) => G.clapInt('market kline', 'limit', raw, 'u32').message;
-  const err = (raw, why) => assert.equal(msg(raw), `error: invalid value '${raw}' for '--limit <LIMIT>': ${why}
-
-For more information, try '--help'.
-`);
-  err('abc', 'invalid digit found in string');
-  err('', 'cannot parse integer from empty string');
-  err('+', 'invalid digit found in string');
-  err('-', 'invalid digit found in string');
-  err(' 5', 'invalid digit found in string');
-  err('1_0', 'invalid digit found in string');
-  err('٣', 'invalid digit found in string');
-  err('-1', '-1 is not in 0..=4294967295');
-  err('+4294967296', '4294967296 is not in 0..=4294967295');
-  err('0004294967296', '4294967296 is not in 0..=4294967295');
-  err('99999999999999999999', 'number too large to fit in target type');
-  err('99999999999999999999x', 'number too large to fit in target type');   // overflow is hit before the bad digit
-  err('-99999999999999999999', 'number too small to fit in target type');
-  assert.equal(G.clapInt('market kline', 'limit', '-0', 'u32').value, 0);
-  assert.equal(G.clapInt('market kline', 'limit', '+007', 'u32').value, 7);
-  assert.equal(G.clapInt('market kline', 'limit', '4294967295', 'u32').value, 4294967295);
-  assert.deepEqual(G.parseI64('-9223372036854775808'), { value: -9223372036854775808n });
-  assert.equal(G.parseI64('9223372036854775808').why, 'number too large to fit in target type');
-});
-
 test('memepump: is_numeric_zero uses Rust str::trim + f64 grammar (U+0085/U+00A0 trimmed, U+FEFF not)', () => {
   for (const v of ['0.', '.0', '-0', '+0', '0e0', '0 ', '　 0 ', 0, -0, new F64('-0.0'), new F64('0.0')]) assert.equal(MP.isNumericZero(v), true, String(v));
   for (const v of ['﻿0', '0x0', 'nan', 'inf', '', '.', '0.0.0', false, null, 1e-300, new F64('1e-300')]) assert.equal(MP.isNumericZero(v), false, String(v));

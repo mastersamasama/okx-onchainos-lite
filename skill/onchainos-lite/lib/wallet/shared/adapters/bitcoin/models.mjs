@@ -1,9 +1,9 @@
 // Bitcoin outpoints and read-only continuation commands —
 // upstream agentic_wallet/shared/adapters/bitcoin/models.rs.
 import { shellArg } from '../../common/json.mjs';
-import { rustTrim, get, isObject, asU64, parseU64 } from '../../_rust.mjs';
-
-const cmpBytes = (a, b) => Buffer.compare(Buffer.from(a), Buffer.from(b));
+import { trim, cmpBytes } from '../../../../core/rs/str.mjs';
+import { get, isObject, asU64 } from '../../../../core/rs/value.mjs';
+import { parseU64 } from '../../../../core/rs/num.mjs';
 
 // rust-bitcoin 0.32 OutPoint::from_str — returns [txidLowercase, vout] or throws the crate's
 // ParseOutPointError Display text.
@@ -69,7 +69,7 @@ function buildCommandEntry(step) {
       pair = ['refreshBtcBalance', 'onchainos wallet balance --chain bitcoin --force'];
       break;
     case 'QueryBrc20TransferableUtxos':
-      if (rustTrim(step.tokenAddress ?? '') === '') throw new Error('token address is required for a transferable BRC-20 UTXO query');
+      if (trim(step.tokenAddress ?? '') === '') throw new Error('token address is required for a transferable BRC-20 UTXO query');
       pair = ['queryBrc20TransferableUtxos', `onchainos wallet utxo brc20-transferable --chain bitcoin --token-address ${shellArg(step.tokenAddress)}`];
       break;
     default:

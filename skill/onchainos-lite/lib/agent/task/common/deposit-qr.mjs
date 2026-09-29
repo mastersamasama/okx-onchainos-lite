@@ -3,7 +3,8 @@
 import { InsufficientBalance } from '../../../core/errors.mjs';
 import { resolveChain } from '../../../core/chains.mjs';
 import { renderAddressQrUnicode } from '../../../core/qr.mjs';
-import { displayF64, trim } from '../../_rs.mjs';
+import { displayF64 } from '../../../core/json.mjs';
+import { trim } from '../../../core/rs/str.mjs';
 
 const DEPOSIT_CHAIN_LABEL = 'XLayer';
 const MIN_QR_COLUMNS = 33;

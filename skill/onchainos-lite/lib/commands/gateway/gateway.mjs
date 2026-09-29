@@ -4,7 +4,6 @@
 // (post_no_retry_with_headers — no payment pre-sign, no 402/token/network retry).
 import { resolveChain } from '../../core/chains.mjs';
 import { getSwapTraceId } from '../../wallet/store.mjs';
-import { clap } from '../token/_clap.mjs';
 
 const GAS_PRICE_PATH = '/api/v6/dex/pre-transaction/gas-price';
 const GAS_LIMIT_PATH = '/api/v6/dex/pre-transaction/gas-limit';
@@ -67,17 +66,11 @@ export async function fetchChains(client) {
   return client.get(SUPPORTED_CHAIN_PATH, []);
 }
 
-// Every leaf with its own required --chain: the global --chain before the subcommand does not count.
-const leafChain = (ctx, o) => {
-  clap(ctx, o, { leafRequired: ['chain'] });
-  return resolveChain(o.chain);
-};
-
 export default {
   'gateway gas': {
     uses: ['chain'],
     async run(ctx, o) {
-      const chainIndex = leafChain(ctx, o);
+      const chainIndex = resolveChain(o.chain);
       const client = await ctx.api();
       return fetchGas(client, chainIndex);
     },
@@ -85,7 +78,7 @@ export default {
   'gateway gas-limit': {
     uses: ['from', 'to', 'amount', 'data', 'chain'],
     async run(ctx, o) {
-      const chainIndex = leafChain(ctx, o);
+      const chainIndex = resolveChain(o.chain);
       const client = await ctx.api();
       return fetchGasLimit(client, chainIndex, o.from, o.to, o.amount, o.data);
     },
@@ -93,7 +86,7 @@ export default {
   'gateway simulate': {
     uses: ['from', 'to', 'amount', 'data', 'chain'],
     async run(ctx, o) {
-      const chainIndex = leafChain(ctx, o);
+      const chainIndex = resolveChain(o.chain);
       const client = await ctx.api();
       return fetchSimulate(client, chainIndex, o.from, o.to, o.amount, o.data);
     },
@@ -101,7 +94,7 @@ export default {
   'gateway broadcast': {
     uses: ['signedTx', 'address', 'chain', 'mevProtection'],
     async run(ctx, o) {
-      const chainIndex = leafChain(ctx, o);
+      const chainIndex = resolveChain(o.chain);
       const client = await ctx.api();
       return fetchBroadcast(client, chainIndex, o.signedTx, o.address, o.mevProtection);
     },
@@ -109,15 +102,14 @@ export default {
   'gateway orders': {
     uses: ['address', 'chain', 'orderId'],
     async run(ctx, o) {
-      const chainIndex = leafChain(ctx, o);
+      const chainIndex = resolveChain(o.chain);
       const client = await ctx.api();
       return fetchOrders(client, chainIndex, o.address, o.orderId);
     },
   },
   'gateway chains': {
     uses: [],
-    async run(ctx, o) {
-      clap(ctx, o);
+    async run(ctx) {
       const client = await ctx.api();
       return fetchChains(client);
     },

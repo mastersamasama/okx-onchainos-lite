@@ -1,18 +1,20 @@
 // Local attachment management for user tasks — upstream task/user/attachments.rs.
 // Storage: `<ONCHAINOS_HOME>/task/<jobId>/attachments/`.
 import { statSync, existsSync, mkdirSync, copyFileSync, readdirSync } from 'node:fs';
-import { onchainosHome } from '../../_home.mjs';
+import { home as onchainosHome } from '../../../core/home.mjs';
 import { rustJoin as join } from '../../../core/qr.mjs';
 import { validateJobIdPathComponent } from '../common/util.mjs';
 import { resolveAgentId, statusName } from '../common/query.mjs';
 import { AGENT_ROLE_USER } from '../common/index.mjs';
 import { stringify } from '../../../core/json.mjs';
-import { asI64, at, ioErrorText, fixed1Ratio, localNow } from '../../_rs.mjs';
+import { asI64, at } from '../../../core/rs/value.mjs';
+import { io, ioErrorText } from '../../../core/rs/fs.mjs';
+import { fixed1Ratio } from '../../../core/rs/num.mjs';
+import { localNow } from '../../../core/rs/time.mjs';
 
 // upstream: attachments.rs::MAX_FILE_SIZE
 export const MAX_FILE_SIZE = 100 * 1024 * 1024;
 
-const io = (fn) => { try { return fn(); } catch (e) { if (e?.code && e?.syscall) throw new Error(ioErrorText(e)); throw e; } };
 const SEPS = process.platform === 'win32' ? /[\\/]/ : /\//;
 
 // std::path::Path::file_name — last Normal component; None for `..`, a root or an empty path.

@@ -2,7 +2,7 @@
 // Reads the authoritative task detail (identity GET /task/{jobId}) and, when a rating is
 // required, asks `agent task-feedback` whether this ASP already rated the job.
 import { stringify } from '../../../../core/json.mjs';
-import { get, asStr, asI64 } from '../../../_rs.mjs';
+import { get, asStr, asI64 } from '../../../../core/rs/value.mjs';
 import { TaskApiClient } from '../../common/network/task-api-client.mjs';
 import { hasSameAgentOwner, PreFetchedTaskContext, TERMINAL_NOTIFICATION_MARKER } from '../../common/index.mjs';
 import { taskFeedbackExists } from '../../common/onchainos-self.mjs';

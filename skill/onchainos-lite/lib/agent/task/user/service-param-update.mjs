@@ -6,11 +6,12 @@ import { rustJoin as join } from '../../../core/qr.mjs';
 import { homedir } from 'node:os';
 import { context } from '../../../core/errors.mjs';
 import { stringify, struct, F64 } from '../../../core/json.mjs';
-import { fromStr, T } from '../../../wallet/_serde-json.mjs';
-import { trim, ioErrorText, isObj } from '../../_rs.mjs';
+import { fromStr, T } from '../../../core/serde.mjs';
+import { trim } from '../../../core/rs/str.mjs';
+import { ioError } from '../../../core/rs/fs.mjs';
+import { isObject } from '../../../core/rs/value.mjs';
 
 const MAX_SUCCESSFUL_ROUNDS = 3;
-const io = (e) => (e?.code && e?.syscall ? new Error(ioErrorText(e)) : e);
 
 // upstream: ServiceParamTaskType (value enum: `single` only)
 export const ServiceParamTaskType = Object.freeze({ Single: 'single', asStr: (t) => t, path: (_t, client, jobId) => client.endpoint(jobId, 'serviceParam') });
@@ -42,7 +43,7 @@ function readState(path) {
   let bytes;
   try { bytes = readFileSync(path); } catch (e) {
     if (e?.code === 'ENOENT') return { successfulUpdates: [] };
-    throw context(`read task-params state ${path}`, io(e));
+    throw context(`read task-params state ${path}`, ioError(e));
   }
   try {
     const s = fromStr(bytes, ROUND_STATE);
@@ -59,8 +60,8 @@ const roundStateStruct = (s) => struct({ successfulUpdates: s.successfulUpdates.
 // upstream: service_param_update.rs::write_state
 function writeState(path, state) {
   const temp = path.replace(/\.json$/, '.json.tmp');
-  try { writeFileSync(temp, stringify(roundStateStruct(state), true)); } catch (e) { throw context(`write task-params state ${temp}`, io(e)); }
-  try { renameSync(temp, path); } catch (e) { throw context(`commit task-params state ${path}`, io(e)); }
+  try { writeFileSync(temp, stringify(roundStateStruct(state), true)); } catch (e) { throw context(`write task-params state ${temp}`, ioError(e)); }
+  try { renameSync(temp, path); } catch (e) { throw context(`commit task-params state ${path}`, ioError(e)); }
 }
 
 // serde_json::Value PartialEq (integers and floats are distinct variants; maps are unordered).
@@ -69,8 +70,8 @@ export function valueEq(a, b) {
   if (a instanceof F64 || b instanceof F64) return a instanceof F64 && b instanceof F64 && a.valueOf() === b.valueOf();
   if (isInt(a) || isInt(b)) return isInt(a) && isInt(b) && BigInt(a) === BigInt(b);
   if (Array.isArray(a) || Array.isArray(b)) return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((x, i) => valueEq(x, b[i]));
-  if (isObj(a) || isObj(b)) {
-    if (!isObj(a) || !isObj(b)) return false;
+  if (isObject(a) || isObject(b)) {
+    if (!isObject(a) || !isObject(b)) return false;
     const ka = Object.keys(a), kb = Object.keys(b);
     return ka.length === kb.length && ka.every((k) => Object.prototype.hasOwnProperty.call(b, k) && valueEq(a[k], b[k]));
   }
@@ -96,12 +97,12 @@ export async function handle(client, jobId, agentId, taskType, requestIdRaw, rou
   const parsed = validateInputs(jobId, agentId, requestIdRaw, round, serviceParams);
   const requestId = trim(requestIdRaw);
   const root = stateRoot();
-  try { mkdirSync(root, { recursive: true }); } catch (e) { throw context(`create task-params state directory ${root}`, io(e)); }
+  try { mkdirSync(root, { recursive: true }); } catch (e) { throw context(`create task-params state directory ${root}`, ioError(e)); }
   const path = statePath(root, jobId);
   const lockPath = path.replace(/\.json$/, '.lock');
   // fs2 exclusive lock: the lock file is created (and kept) exactly as upstream; Node has no
   // advisory flock, so concurrent invocations are not serialised.
-  try { closeSync(openSync(lockPath, 'a')); } catch (e) { throw context(`open task-params lock ${lockPath}`, io(e)); }
+  try { closeSync(openSync(lockPath, 'a')); } catch (e) { throw context(`open task-params lock ${lockPath}`, ioError(e)); }
   const state = readState(path);
   const params = { jobId, taskType: ServiceParamTaskType.asStr(taskType), requestId, round, serviceParams: parsed };
   if (validateRound(state, requestId, round, parsed)) {

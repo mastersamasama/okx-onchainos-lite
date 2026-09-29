@@ -2,7 +2,10 @@
 // task/common/dispute_upload.rs.
 import { statSync, readFileSync } from 'node:fs';
 import { join, basename, extname } from 'node:path';
-import { trim, byteLen, charCount, fixed1Ratio, ioErrorText, nowNanos } from '../../_rs.mjs';
+import { trim, byteLen, charCount } from '../../../core/rs/str.mjs';
+import { fixed1Ratio } from '../../../core/rs/num.mjs';
+import { ioErrorText } from '../../../core/rs/fs.mjs';
+import { nowNanos } from '../../../core/rs/time.mjs';
 import { readManifest, deliverablesDir } from './deliverables.mjs';
 
 const MAX_TEXT_BYTES = 16 * 1024;

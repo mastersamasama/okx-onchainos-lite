@@ -3,15 +3,15 @@
 import { resolveChain } from '../../core/chains.mjs';
 import { normalizeAmount } from '../../core/sink.mjs';
 import { displayF64, stringify } from '../../core/json.mjs';
-import { eqIgnoreAsciiCase } from '../../core/_rust-str.mjs';
+import { eqIgnoreAsciiCase } from '../../core/rs/str.mjs';
+import { get, isObject, asStr, asBool, asI64, asU64, asF64, setIndex } from '../../core/rs/value.mjs';
+import { toU32, parseU64, parseI64, parseU128, parseF64, formatFixed } from '../../core/rs/num.mjs';
+import { outermost } from '../../core/rs/anyhow.mjs';
 import {
   fetchDetail, fetchPrepare, fetchEnter, fetchExit, fetchClaim, fetchCalculateEntry, fetchPositionDetail,
 } from './api.mjs';
+import { fromStr, T } from '../../core/serde.mjs';
 import { minimalToDecimalStr, decimalToMinimalStr, extractExpectOutput, precisionOf } from './helpers.mjs';
-import {
-  get, isObject, asStr, asBool, asI64, asU64, asF64, toU32, parseU64, parseI64, parseU128, parseF64,
-  setIndex, outermost, parseJsonArray, formatFixed,
-} from './_rs.mjs';
 
 const some = (v) => v !== undefined && v !== null;
 const lower = (s) => s.toLowerCase();        // Rust str::to_lowercase (Unicode)
@@ -447,7 +447,7 @@ export async function cmdCollect(client, address, chain, rewardType, investmentI
       throw new Error(`No reward tokens found for ${rewardType} in position-detail. Verify investment-id and platform-id.`);
     }
     let tokens;
-    try { tokens = parseJsonArray(auto); } catch { tokens = []; }
+    try { tokens = fromStr(String(auto), T.vec(T.value)); } catch { tokens = []; }
     if (!tokens.length) throw new Error(`No rewards found for ${rewardType} in position-detail.`);
     const allZero = tokens.every((t) => {
       const a = asStr(get(t, 'coinAmount')) ?? '0';

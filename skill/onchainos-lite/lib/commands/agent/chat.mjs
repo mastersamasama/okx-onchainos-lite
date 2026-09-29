@@ -1,20 +1,11 @@
 // agent chat commands — upstream commands/agent_commerce/chat/mod.rs (dispatched from
 // agent_commerce/mod.rs after the per-invocation maintenance prelude).
 import { typed } from '../../core/cli.mjs';
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import { run as chatRun, ChatCommand } from '../../agent/chat/index.mjs';
-
-// clap BoolishValueParser (`--is-offline-replay <BOOL>`): y|yes|t|true|on|1 / n|no|f|false|off|0.
-const BOOLISH_TRUE = ['y', 'yes', 't', 'true', 'on', '1'];
-const boolish = (v) => (v === undefined || v === null ? undefined : BOOLISH_TRUE.includes(String(v).toLowerCase()));
 
 const leaf = (uses, build) => ({
   uses,
-  async run(ctx, o) {
-    const cmd = build(o, ctx);
-    await runPreDispatchMaintenance();
-    return chatRun(cmd);
-  },
+  run: (ctx, o) => chatRun(build(o, ctx)),
 });
 
 export default {
@@ -24,10 +15,10 @@ export default {
   'agent message-eligible': leaf([
     'agentId', 'clientAgentId', 'providerAgentId', 'jobId', 'groupId', 'direction', 'providerSecurityRate', 'clientCommunicationAddress',
     'providerCommunicationAddress', 'isOfflineReplay',
-  ], (o) => ({
+  ], (o, ctx) => ({
     kind: ChatCommand.MessageEligible, agentId: o.agentId, clientAgentId: o.clientAgentId, providerAgentId: o.providerAgentId, jobId: o.jobId,
     groupId: o.groupId, direction: o.direction, providerSecurityRate: o.providerSecurityRate, clientCommunicationAddress: o.clientCommunicationAddress,
-    providerCommunicationAddress: o.providerCommunicationAddress, isOfflineReplay: boolish(o.isOfflineReplay),
+    providerCommunicationAddress: o.providerCommunicationAddress, isOfflineReplay: typed(ctx.path, 'isOfflineReplay', o.isOfflineReplay, 'bool'),
   })),
   'agent system-config': leaf([], () => ({ kind: ChatCommand.SystemConfig })),
   'agent heartbeat': leaf(['chainIndex'], (o, ctx) => ({ kind: ChatCommand.Heartbeat, chainIndex: typed(ctx.path, 'chainIndex', o.chainIndex, 'u64') })),

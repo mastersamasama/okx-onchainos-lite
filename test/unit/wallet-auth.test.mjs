@@ -19,11 +19,11 @@ const auth = await import(L + 'wallet/auth.mjs');
 const account = await import(L + 'wallet/account.mjs');
 const common = await import(L + 'wallet/common.mjs');
 const profile = await import(L + 'wallet/chain-profile.mjs');
-const rs = await import(L + 'wallet/_rs.mjs');
-const summary = await import(L + 'wallet/_login-summary.mjs');
+const { formatFixed } = await import(L + 'core/rs/num.mjs');
+const summary = await import(L + 'wallet/balance/index.mjs');
 const { parse, stringify } = await import(L + 'core/json.mjs');
 const { Confirming } = await import(L + 'core/errors.mjs');
-const { decryptSessionSk } = await import(L + 'crypto/hpke.mjs');
+const { hpkeDecryptSessionSk } = await import(L + 'core/crypto.mjs');
 const { ed25519 } = await import(L + 'crypto/curve25519.mjs');
 const H = await import('../parity/make-home.mjs');
 
@@ -426,13 +426,13 @@ test('chain profile from_entry / entry_matches_name_or_alias (chain_profile.rs o
   assert.throws(() => profile.fromEntry({ chainIndex: ' ', realChainIndex: '1', chainName: 'x' }), { message: 'chain profile: chain identifiers must not be empty' });
 });
 
-// ── balance/mod.rs fallbacks + Rust formatting ──────────────────────
+// ── balance/mod.rs + Rust formatting ────────────────────────────────
 
 test('format! {:.N} ties-to-even (rustc 1.95 oracle) and balance totals', () => {
   const cases = [[121.125, '121.12', '121.125000', '121'], [0.125, '0.12', '0.125000', '0'], [0.375, '0.38', '0.375000', '0'], [2.5, '2.50', '2.500000', '2'],
     [1.005, '1.00', '1.005000', '1'], [-0, '-0.00', '-0.000000', '-0'], [1e21, '1000000000000000000000.00', '1000000000000000000000.000000', '1000000000000000000000'],
     [123.456789, '123.46', '123.456789', '123'], [5e-324, '0.00', '0.000000', '0'], [72.18 + 37.6 + 12.345, '122.12', '122.125000', '122']];
-  for (const [x, a, b, c] of cases) assert.deepEqual([rs.formatFixed(x, 2), rs.formatFixed(x, 6), rs.formatFixed(x, 0)], [a, b, c], String(x));
+  for (const [x, a, b, c] of cases) assert.deepEqual([formatFixed(x, 2), formatFixed(x, 6), formatFixed(x, 0)], [a, b, c], String(x));
   assert.equal(summary.computeTotalValueUsd(J('[{"tokenAssets":[{"usdValue":"300.0"}]}]')), '300.00');
   assert.equal(summary.computeTotalValueUsd(J('{"assets":[{"usdValue":123.45}]}')), '123.45');
   assert.equal(summary.computeTotalValueUsd(J('[]')), '0.00');
@@ -455,7 +455,7 @@ test('login identity summary picks addresses the upstream way', () => {
 // ── fabricated parity homes (test/parity/make-home.mjs) ─────────────
 
 test('parity home session material is a real, decryptable login', () => {
-  const seed = decryptSessionSk(H.encryptedSessionSk(), H.SESSION_KEY.toString('base64'));
+  const seed = hpkeDecryptSessionSk(H.encryptedSessionSk(), H.SESSION_KEY.toString('base64'));
   assert.equal(seed.toString('hex'), H.SIGNING_SEED.toString('hex'));
   const sig = ed25519.sign(seed, Buffer.from('abcd', 'hex'));
   assert.ok(ed25519.verify(ed25519.publicKey(H.SIGNING_SEED), Buffer.from('abcd', 'hex'), sig));
@@ -466,61 +466,15 @@ test('parity home session material is a real, decryptable login', () => {
   assert.ok(home.accountsMap[H.ACCOUNTS[0].accountId].addressList.some((a) => a.chainIndex === '0' && a.address.startsWith('bc1p')));
 });
 
-// ── verifier additions: serde_json streaming semantics, reqwest error chains, find_map ──
+// ── verifier additions: serde_json -0 codes, reqwest error chains, find_map ──
+// (serde_json streaming semantics are covered by serde.test.mjs)
 
-const serde = await import(L + 'wallet/_serde-json.mjs');
 const chain = await import(L + 'wallet/chain.mjs');
-const { F64 } = await import(L + 'core/json.mjs');
-
-test('serde_json::from_str::<Value> error texts and positions (oracle: onchainos 4.6.3 binary)', () => {
-  const err = (text) => { try { serde.fromStr(text); } catch (e) { return e.message; } return null; };
-  assert.equal(err(''), 'EOF while parsing a value at line 1 column 0');
-  assert.equal(err('   '), 'EOF while parsing a value at line 1 column 3');
-  assert.equal(err('{"code":0,"data":[{"blocked":true}]}x'), 'trailing characters at line 1 column 37');
-  assert.equal(err('{"code":"0","data":[{"blocked":true}]'), 'EOF while parsing an object at line 1 column 37');
-  assert.equal(err('{\n"code":\n'), 'EOF while parsing a value at line 3 column 0');
-  assert.equal(err('{"code":"1","msg":"a\u0001"}'), 'control character (\\u0000-\\u001F) found while parsing a string at line 1 column 21');
-  assert.equal(err('{\n  "code": "0",\n  "data": [{"blocked": tru}]\n}'), 'expected ident at line 3 column 27');
-  assert.equal(err('{"code":+1}'), 'expected value at line 1 column 9');
-  assert.equal(err('[1,]'), 'trailing comma at line 1 column 4');
-  assert.equal(err('{"a":1,}'), 'trailing comma at line 1 column 8');
-  assert.equal(err('{"a" 1}'), 'expected `:` at line 1 column 6');
-  assert.equal(err('{1:2}'), 'key must be a string at line 1 column 2');
-  assert.equal(err('"\\ud800"'), 'unexpected end of hex escape at line 1 column 8');
-  assert.equal(err('"\\udc00"'), 'lone leading surrogate in hex escape at line 1 column 7');
-  assert.equal(err('1e400'), 'number out of range at line 1 column 5');
-  assert.equal(err('01'), 'invalid number at line 1 column 2');
-  assert.equal(err('['.repeat(128) + ']'.repeat(128)), 'recursion limit exceeded at line 1 column 128');
-  // values keep serde_json number identity: -0 is an f64, > u64 is an f64, u64 max is an integer
-  assert.ok(serde.fromStr('-0') instanceof F64);
-  assert.equal(stringify(serde.fromStr('{"code":-0,"b":18446744073709551616,"c":18446744073709551615,"d":-9223372036854775808}')),
-    '{"b":1.8446744073709552e+19,"c":18446744073709551615,"code":-0.0,"d":-9223372036854775808}');
-  assert.equal(serde.fromStr('{"a":1,"a":2}').a, 2);                  // Value maps: last duplicate wins
-  assert.deepEqual(Object.keys(serde.fromStr('{"__proto__":1}')), ['__proto__']);
-});
 
 test('wallet envelope treats -0 as a float code, like serde_json (not ok)', () => {
   const err = quiet(() => assert.throws(() => new api.WalletApiClient('http://x').handleResponse({ status: 200, headers: {}, body: Buffer.from('{"code":-0,"data":[]}') }),
     { message: 'Wallet API error (code=-0.0): {"code":-0.0,"data":[]}' }));
   assert.match(err, /raw body: \{"code":-0\.0,"data":\[\]\}/);
-});
-
-test('serde_json::from_str::<Struct> for state files: document order, seq form, duplicates', () => {
-  const { T } = serde;
-  const INNER = T.struct('Inner', [['a', T.string], ['b', T.bool, false]]);
-  const OUTER = T.struct('Outer', [['x', T.string, ''], ['inner', T.vec(INNER), () => []], ['m', T.map(T.i64), () => ({})], ['o', T.option(T.string), null]]);
-  const err = (text) => { try { serde.fromStr(text, OUTER); } catch (e) { return e.message; } return null; };
-  assert.deepEqual(serde.fromStr('[]', OUTER), { x: '', inner: [], m: {}, o: null });
-  assert.deepEqual(serde.fromStr('{"inner":[["q"]],"zz":{"deep":[1,{"k":null}]},"o":null}', OUTER), { x: '', inner: [{ a: 'q', b: false }], m: {}, o: null });
-  assert.equal(err('{"inner":[{}]}'), 'missing field `a` at line 1 column 12');
-  assert.equal(err('{"inner":[[]]}'), 'invalid length 0, expected struct Inner with 2 elements at line 1 column 12');
-  assert.equal(err('{"x":"a","x":"b"}'), 'duplicate field `x` at line 1 column 12');
-  assert.equal(err('{"m":{"k":9223372036854775808}}'), 'invalid value: integer `9223372036854775808`, expected i64 at line 1 column 29');
-  assert.equal(err('{"m":{"k":1.0}}'), 'invalid type: floating point `1.0`, expected i64 at line 1 column 13');
-  assert.equal(err('{"m":"a\\n\\u0001\\"b"}'), 'invalid type: string "a\\n\\u{1}\\"b", expected a map at line 1 column 19');
-  assert.equal(err('{"zz":[1,2,]}'), 'expected value at line 1 column 12');    // IgnoredAny: no trailing-comma special case
-  assert.equal(err('{"x":null}'), 'invalid type: null, expected a string at line 1 column 9');
-  assert.equal(err('null'), 'invalid type: null, expected struct Outer at line 1 column 4');
 });
 
 test('reqwest error chain and phase for transport failures (oracle: onchainos 4.6.3 binary)', () => {

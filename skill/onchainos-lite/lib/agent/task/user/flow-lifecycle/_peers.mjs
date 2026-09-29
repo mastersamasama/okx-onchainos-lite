@@ -1,7 +1,6 @@
-// PRIVATE lazy bridge from the user-lifecycle partition to sibling modules owned by other units:
-// the user-create unit (task/user/{create,negotiate,content,attachments,device_routing,
-// reject_apply,accept}.rs, task/user/flow_negotiate/*) and the autotrade unit
-// (task/common/autotrade/*). The imports are dynamic because several of those modules import
+// PRIVATE lazy imports from the user-lifecycle partition of its task/user siblings
+// (task/user/{create,negotiate,content,attachments,device_routing,reject_apply,accept}.rs,
+// task/user/flow_negotiate/*). The imports are dynamic because several of those modules import
 // this partition back (create → v2/create-and-fund, negotiate playbooks → flow); resolving them
 // on first use keeps the module graph acyclic at evaluation time. No logic lives here.
 
@@ -62,10 +61,3 @@ export async function flowNegotiate() {
 export async function fetchDeviceListSnapshot(client, agentId, page, pageSize) {
   return (await peer('../device-routing.mjs')).fetchDeviceListSnapshot(client, agentId, page, pageSize);
 }
-
-// upstream: task/common/autotrade/<name>.rs → module | null (callers treat a missing
-// module as "no persisted autotrade state", matching upstream's best-effort workers)
-export const autotrade = (name) => peer(`../../common/autotrade/${name}.mjs`).catch((e) => {
-  if (e?.code === 'ERR_MODULE_NOT_FOUND') return null;
-  throw e;
-});

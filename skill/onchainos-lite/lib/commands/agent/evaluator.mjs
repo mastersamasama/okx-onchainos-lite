@@ -2,7 +2,6 @@
 // (flat `AgentCommand` arms in agent_commerce/mod.rs). All print plain text.
 import { typed } from '../../core/cli.mjs';
 import { NO_OUTPUT } from '../../core/context.mjs';
-import { runPreDispatchMaintenance } from '../../agent/index.mjs';
 import { TaskApiClient } from '../../agent/task/common/network/task-api-client.mjs';
 import { handleInfo } from '../../agent/task/evaluator/info.mjs';
 import { handleCommit } from '../../agent/task/evaluator/commit.mjs';
@@ -15,7 +14,6 @@ import { handleStakingConfig } from '../../agent/task/evaluator/staking-config.m
 import { handleMyStake } from '../../agent/task/evaluator/my-stake.mjs';
 
 const printing = (fn) => async (ctx, o) => {
-  await runPreDispatchMaintenance();
   await fn(new TaskApiClient(), o);
   return NO_OUTPUT;
 };

@@ -2,7 +2,7 @@
 // get (hidden), get-my-agents, get-agents, search, service-list, feedback-list, task-feedback,
 // get-by-address (hidden). Every call is JWT-authenticated (Agentic Wallet login).
 import { ensureTokensRefreshed } from '../../wallet/auth.mjs';
-import { trim } from '../_rs.mjs';
+import { trim } from '../../core/rs/str.mjs';
 import { XLAYER_CHAIN_INDEX } from './models.mjs';
 import {
   addAgentListCells, addFeedbackListCells, addServiceListCells, buildSearchTable, convertFeedbackListScores, enrichAgentDetailRows,

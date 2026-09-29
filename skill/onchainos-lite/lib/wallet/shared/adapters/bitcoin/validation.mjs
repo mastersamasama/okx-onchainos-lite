@@ -4,12 +4,16 @@ import { parse as parseJson } from '../../../../core/json.mjs';
 import { minimalToReadable, parseMinimal, valueAsDecimalString } from '../../common/amount.mjs';
 import { BtcOutPoint, collectOutpoints } from './models.mjs';
 import { parseUnchecked, requireMainnet, addressType, scriptPubkey } from './_address.mjs';
-import { rustTrim, asciiLower, get, isObject, asU64, parseU64, isAllAsciiDigits, jcsStringify, sha256Hex } from '../../_rust.mjs';
+import { trim, asciiLower, allAsciiDigits } from '../../../../core/rs/str.mjs';
+import { get, isObject, asU64 } from '../../../../core/rs/value.mjs';
+import { parseU64 } from '../../../../core/rs/num.mjs';
+import { jcs } from '../../../../core/rs/jcs.mjs';
+import { sha256Hex } from '../../../../core/rs/codec.mjs';
 
 // upstream: validation.rs::parse_mainnet_address
 function parseMainnetAddress(value, field) {
   let unchecked;
-  try { unchecked = parseUnchecked(rustTrim(value)); } catch (e) { throw new Error(`invalid ${field} Bitcoin address: ${e.message}`); }
+  try { unchecked = parseUnchecked(trim(value)); } catch (e) { throw new Error(`invalid ${field} Bitcoin address: ${e.message}`); }
   try { return requireMainnet(unchecked); } catch (e) { throw new Error(`${field} must be a Bitcoin mainnet address: ${e.message}`); }
 }
 
@@ -26,7 +30,7 @@ export function validateRecipient(value) {
 
 // upstream: validation.rs::parse_fee_rate → the JSON number (integer / F64) for txParam.feeRate
 export function parseFeeRate(value) {
-  const v = rustTrim(value);
+  const v = trim(value);
   const bad = () => new Error('--fee-rate must be a decimal sat/vB value');
   let integer = v, fraction;
   const dot = v.indexOf('.');
@@ -35,7 +39,7 @@ export function parseFeeRate(value) {
     fraction = v.slice(dot + 1);
     if (v.split('.').length - 1 !== 1 || fraction === '') throw bad();
   }
-  if (integer === '' || !isAllAsciiDigits(integer) || (fraction !== undefined && !isAllAsciiDigits(fraction)) || (integer.length > 1 && integer.startsWith('0'))) throw bad();
+  if (integer === '' || !allAsciiDigits(integer) || (fraction !== undefined && !allAsciiDigits(fraction)) || (integer.length > 1 && integer.startsWith('0'))) throw bad();
   const scale = fraction === undefined ? 0 : fraction.length;
   const unscaled = BigInt(integer + (fraction ?? ''));
   if (unscaled * 10n < 10n ** BigInt(scale)) throw new Error('--fee-rate must be at least 0.1 sat/vB');
@@ -47,7 +51,7 @@ export function parseFeeRate(value) {
 // upstream: validation.rs::normalize_brc20_token_address → `btc-brc20-<ticker lower-cased>`
 export function normalizeBrc20TokenAddress(value) {
   const PREFIX = 'btc-brc20-';
-  const v = rustTrim(value);
+  const v = trim(value);
   const bytes = Buffer.from(v, 'utf8');
   const head = bytes.subarray(0, PREFIX.length);
   const prefixOk = head.length === PREFIX.length && head.every((b) => b < 0x80) && asciiLower(head.toString('latin1')) === PREFIX;
@@ -205,7 +209,7 @@ export function localTransactionToken(response, preview) {
     encoding: orNull(get(response, 'encoding')),
     extraData: orNull(get(response, 'extraData')),
   };
-  return `sha256:${sha256Hex(jcsStringify(binding))}`;
+  return `sha256:${sha256Hex(jcs(binding))}`;
 }
 
 // upstream: validation.rs::is_local_continuation

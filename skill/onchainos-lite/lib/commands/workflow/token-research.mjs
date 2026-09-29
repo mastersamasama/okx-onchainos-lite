@@ -12,7 +12,7 @@ import { fetchList } from '../signal/index.mjs';
 import { fetchByAddress } from '../memepump/index.mjs';
 import { okOrNull } from './index.mjs';
 import { cloneClient } from '../../core/http.mjs';
-import { index, get, asStr, asArray } from './_value.mjs';
+import { at, get, asStr, asArray } from '../../core/rs/value.mjs';
 import {
   MEMEPUMP_TOKEN_DETAILS_PATH, MEMEPUMP_TOKEN_DEV_INFO_PATH, MEMEPUMP_TOKEN_BUNDLE_INFO_PATH, MEMEPUMP_SIMILAR_TOKEN_PATH,
 } from './_paths.mjs';
@@ -23,10 +23,10 @@ export const SELECT_TOKEN_MESSAGE = 'Multiple tokens found. Please select one by
 export async function fetchAndAssemble(client, address, chainIndex) {
   // ── Step 1: core data via token report composite command ──
   const report = await fetchReport(client, address, chainIndex);
-  const info = index(report, 'info');
-  const price = index(report, 'priceInfo');
-  const advanced = index(report, 'advancedInfo');
-  const security = index(report, 'security');
+  const info = at(report, 'info');
+  const price = at(report, 'priceInfo');
+  const advanced = at(report, 'advancedInfo');
+  const security = at(report, 'security');
 
   // ── Step 2: on-chain structure (tokio::join!; one client clone per extra branch) ──
   const [c1, c2, c3] = [cloneClient(client), cloneClient(client), cloneClient(client)];
@@ -102,7 +102,7 @@ export function assemble(address, chainIndex, info, price, advanced, security, h
 
 // upstream: token_research.rs::is_launchpad_token — `advanced["protocolId"]` is a non-empty string.
 export function isLaunchpadToken(advanced) {
-  const p = asStr(index(advanced, 'protocolId'));
+  const p = asStr(at(advanced, 'protocolId'));
   return p !== undefined && p !== '';
 }
 

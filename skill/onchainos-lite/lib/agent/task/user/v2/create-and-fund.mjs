@@ -3,10 +3,14 @@
 import { context } from '../../../../core/errors.mjs';
 import { f64 } from '../../../../core/json.mjs';
 import { auditLog } from '../../../../core/audit.mjs';
-import { get, asStr, asI64, asU64, trim, parseI64, parseU64, utcRfc3339, parseRfc3339Nanos } from '../../../_rs.mjs';
+import { get, asStr, asI64, asU64 } from '../../../../core/rs/value.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
+import { parseI64, parseU64 } from '../../../../core/rs/num.mjs';
+import { utcRfc3339, parseFromRfc3339 } from '../../../../core/rs/time.mjs';
 import * as signing from '../../signing.mjs';
 import { bindJobProviderToCurrentRuntimeRequired } from '../../common/a2a-binding.mjs';
-import { copyAttachmentsToJobWithManifest, autotrade } from '../flow-lifecycle/_peers.mjs';
+import { abortPreparedConsent } from '../../common/autotrade/guide.mjs';
+import { copyAttachmentsToJobWithManifest } from '../flow-lifecycle/_peers.mjs';
 
 const CREATE_AND_FUND_BIZ_TYPE = 201;
 
@@ -38,7 +42,7 @@ export function normalizeExpiredAt(value) {
     return r;
   }
   const s = asStr(value);
-  if (s !== undefined && parseRfc3339Nanos(s) !== undefined) return s;
+  if (s !== undefined) { try { parseFromRfc3339(s); return s; } catch {} }
   throw new Error('createAndFundConfirmStatus response missing or invalid expiredAt');
 }
 
@@ -86,11 +90,6 @@ export function validateCreateResponse(expectedJobId, value) {
   return [jobId, bizType];
 }
 
-async function abortPreparedConsent(jobId) {
-  const guide = await autotrade('guide');
-  try { await guide?.abortPreparedConsent?.(jobId); } catch {}
-}
-
 // upstream: create_and_fund.rs::execute → CreationReceipt { jobId, broadcast, attachments }
 // input: { title, description, descriptionSummary, tokenSymbol, amount, providerAgentId, serviceId, serviceParams,
 //          serviceTokenAddress, serviceTokenAmount, categoryCode, minCreditScore, visibility, chainId, attachments }
@@ -122,7 +121,7 @@ export async function execute(client, input, accountId, address, userAgentId, es
   try { await establishLocalReadiness(jobId); } catch (e) { throw context('task local Guide/Consent configuration could not be persisted', e); }
   let prebind;
   try { prebind = await bindJobProviderToCurrentRuntimeRequired(jobId); } catch (e) {
-    await abortPreparedConsent(jobId);
+    abortPreparedConsent(jobId);
     throw context('cannot bind task to the current AI runtime; creation was not broadcast', e);
   }
   let broadcast;
@@ -130,12 +129,12 @@ export async function execute(client, input, accountId, address, userAgentId, es
     broadcast = await signing.signUopAndBroadcastFull(client, get(response, 'uopData'), accountId, address, jobId, bizType, userAgentId, undefined);
   } catch (e) {
     await prebind.rollbackIfCreated();
-    await abortPreparedConsent(jobId);
+    abortPreparedConsent(jobId);
     throw context(`broadcast failed or returned an unknown result for jobId=${jobId}`, e);
   }
   if (broadcast === null || broadcast === undefined) {
     await prebind.rollbackIfCreated();
-    await abortPreparedConsent(jobId);
+    abortPreparedConsent(jobId);
     throw new Error('broadcast returned no receipt');
   }
   return { jobId, broadcast, attachments };

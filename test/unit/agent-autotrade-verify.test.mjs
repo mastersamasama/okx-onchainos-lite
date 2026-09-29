@@ -4,7 +4,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, writeFileSync, opendirSync, rmSync } from 'node:fs';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
-import { readDirPaths } from '../../skill/onchainos-lite/lib/agent/task/common/autotrade/_fs.mjs';
+import { readDirPaths } from '../../skill/onchainos-lite/lib/core/rs/fs.mjs';
 import { CliBespokeExit } from '../../skill/onchainos-lite/lib/agent/task/common/autotrade/index.mjs';
 import { BespokeExit } from '../../skill/onchainos-lite/lib/core/errors.mjs';
 

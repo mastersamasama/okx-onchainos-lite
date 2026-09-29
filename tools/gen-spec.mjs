@@ -43,6 +43,8 @@ const rootHelp = new Map(tree.tree.options.map((o) => [o.long, o.help]));
 // and the relations clap does not expose (spec/overrides.json). The help text stays the
 // source for --help; the model is the source for parse-time semantics.
 const INT_TYPES = new Set(['u8', 'u16', 'u32', 'u64', 'usize', 'i8', 'i16', 'i32', 'i64', 'f32', 'f64']);
+// clap's own parsers besides the numeric ones (value_parser!(String / bool / PathBuf))
+const STD_PARSERS = new Set(['alloc::string::String', 'bool', 'std::path::PathBuf']);
 // bounds of clap's default integer parsers (value_parser!(uN) = RangedI64ValueParser over the type)
 const TYPE_BOUNDS = { u8: '0..=255', u16: '0..=65535', u32: '0..=4294967295', i8: '-128..=127', i16: '-32768..=32767', i32: '-2147483648..=2147483647' };
 let merged = 0;
@@ -93,8 +95,11 @@ try {
       if (accept.length && !a.boolish) o.accept = accept;
       // a custom value_parser fn returning an integer (e.g. strategy --direction) has the int type
       // id too; only clap's own integer parsers answer the probe with their range/digit errors
-      const builtin = !a.rangeProbe || /: (-?\d+ is not in |invalid digit found in string|number too (large|small))/.test(a.rangeProbe);
-      if (INT_TYPES.has(a.valueParser) && builtin) o.type = a.valueParser;
+      const builtinInt = INT_TYPES.has(a.valueParser) && (!a.rangeProbe || /: (-?\d+ is not in |invalid digit found in string|number too (large|small))/.test(a.rangeProbe));
+      if (builtinInt) o.type = a.valueParser;
+      if (a.valueParser === 'std::path::PathBuf') o.type = 'path';
+      // any other parser without possible values is an upstream `value_parser = <fn>`
+      if (!builtinInt && !STD_PARSERS.has(a.valueParser) && !a.possible.length) o.type = 'custom';
       if (a.boolish) o.type = 'boolish';
       // value_parser!(uN).range(..): bounds as clap prints them (from the dumper's parser probe)
       const bounds = /is not in (-?\d+\.\.=-?\d+)/.exec(a.rangeProbe || '')?.[1];

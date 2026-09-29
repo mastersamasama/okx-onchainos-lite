@@ -1,5 +1,5 @@
 // Read-only user query commands — upstream task/user/query.rs (`payment`).
-import { get, asStr, asI64 } from '../../_rs.mjs';
+import { get, asStr, asI64 } from '../../../core/rs/value.mjs';
 import { resolveAgentId } from '../common/query.mjs';
 import { AGENT_ROLE_USER, XLAYER_CHAIN_ID, PaymentMode } from '../common/index.mjs';
 

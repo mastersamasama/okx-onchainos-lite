@@ -13,7 +13,8 @@ import { getAllChains } from './chain.mjs';
 import { resolve as resolveChainProfile } from './chain-profile.mjs';
 import { ERR_NOT_LOGGED_IN } from './common.mjs';
 import { refreshWalletAccountsStrict } from './balance/index.mjs';
-import { rustTrim, isI64, isU64, isObject, getField as get } from './_rs.mjs';
+import { trim } from '../core/rs/str.mjs';
+import { isI64, isU64, isObject, get } from '../core/rs/value.mjs';
 import { rustPanic } from './utxo/_panic.mjs';
 
 // upstream: receive.rs::RECEIVE_TOKEN_PAGE_LIMIT
@@ -31,7 +32,7 @@ export async function cmdReceive(chain, token, cursor) {
     return receiveAddressValue(fundingBundleFromLoadedWallets(wallets, profile.chainIndex), null);
   }
   if (!some(chain) && some(token)) {
-    const query = rustTrim(token);
+    const query = trim(token);
     if (query === '') throw new Error('Parameter --token cannot be empty');
     const wallets = await loadCurrentWallets();
     const chains = await getAllChains();

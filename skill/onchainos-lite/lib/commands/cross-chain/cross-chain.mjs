@@ -4,10 +4,11 @@
 // (balance gate → quote → [revoke] → approve → bridge tx → sign → broadcast).
 // Exported fns mirror upstream (camelCase of the Rust fn, same parameter order).
 import { resolveChain, ensureSupportedChain, chainFamily, nativeTokenAddress } from '../../core/chains.mjs';
+import { typed } from '../../core/cli.mjs';
 import { resolveAndValidate, validateAddressForChain } from '../../core/token-alias.mjs';
 import { validateSlippageZeroToOne, validateNonNegativeInteger } from '../../core/validators.mjs';
 import { waitTxOnchain } from '../../core/common.mjs';
-import { trim, eqIgnoreAsciiCase, asciiUpper } from '../../core/_rust-str.mjs';
+import { trim, eqIgnoreAsciiCase, asciiUpper } from '../../core/rs/str.mjs';
 import { WalletApiClient, displayTop } from '../../wallet/api.mjs';
 import { ensureTokensRefreshed } from '../../wallet/auth.mjs';
 import { loadWallets } from '../../wallet/store.mjs';
@@ -18,7 +19,6 @@ import {
   fetchQuote as fetchSwapQuote, resolveAmountArg, readableViaTokenInfo, isAllowanceInsufficient, unwrapApiArray,
   idx, asStr, isJsonObject, extractTxHash, extractTxHashAndOrderId,
 } from '../swap/swap.mjs';
-import { clap } from '../swap/_clap.mjs';
 
 const V6_PREFIX = '/api/v6/dex/cross-chain';
 const some = (v) => v !== undefined && v !== null;
@@ -512,14 +512,12 @@ export async function cmdExecute(client, from, to, fromChain, toChain, amount, r
 
 // ── CLI handlers (cross_chain.rs::execute) ───────────────────────────
 
-const AMOUNT_CONFLICT = ['amount', 'readableAmount'];
 const optChain = (c) => (some(c) ? resolveChain(c) : undefined);
 
 export default {
   'cross-chain bridges': {
     uses: ['fromChain', 'toChain'],
     async run(ctx, o) {
-      clap(ctx, o, {});
       const client = await ctx.api();
       return fetchSupportedBridges(client, optChain(o.fromChain), optChain(o.toChain));
     },
@@ -527,7 +525,6 @@ export default {
   'cross-chain tokens': {
     uses: ['fromChain', 'toChain'],
     async run(ctx, o) {
-      clap(ctx, o, {});
       const client = await ctx.api();
       return fetchSupportedTokens(client, optChain(o.fromChain), optChain(o.toChain));
     },
@@ -536,7 +533,6 @@ export default {
     uses: ['from', 'to', 'fromChain', 'toChain', 'readableAmount', 'amount', 'slippage', 'wallet', 'checkApprove', 'bridgeId', 'sort',
       'allowBridges', 'denyBridges', 'receiveAddress'],
     async run(ctx, o) {
-      clap(ctx, o, { conflicts: [AMOUNT_CONFLICT] });
       const client = await ctx.api();
       const fromIdx = resolveChain(o.fromChain);
       const toIdx = resolveChain(o.toChain);
@@ -559,9 +555,6 @@ export default {
   'cross-chain approve': {
     uses: ['chain', 'token', 'wallet', 'bridgeId', 'amount', 'readableAmount', 'checkAllowance'],
     async run(ctx, o) {
-      // The leaf declares its own required `--chain`, which shadows the global one: a global
-      // `--chain` before the subcommand does not satisfy it (clap: missing required, exit 2).
-      clap(ctx, o, { conflicts: [AMOUNT_CONFLICT], leafRequired: ['chain'] });
       const client = await ctx.api();
       const chainIdx = resolveChain(o.chain);
       ensureSupportedChain(chainIdx, o.chain);
@@ -574,7 +567,6 @@ export default {
     uses: ['from', 'to', 'fromChain', 'toChain', 'readableAmount', 'amount', 'slippage', 'wallet', 'receiveAddress', 'bridgeId', 'sort',
       'allowBridges', 'denyBridges'],
     async run(ctx, o) {
-      clap(ctx, o, { conflicts: [AMOUNT_CONFLICT] });
       const client = await ctx.api();
       const fromIdx = resolveChain(o.fromChain);
       const toIdx = resolveChain(o.toChain);
@@ -594,10 +586,7 @@ export default {
     uses: ['from', 'to', 'fromChain', 'toChain', 'readableAmount', 'amount', 'slippage', 'wallet', 'receiveAddress', 'bridgeId',
       'routeIndex', 'sort', 'allowBridges', 'denyBridges', 'mevProtection', 'confirmApprove', 'skipApprove', 'force'],
     async run(ctx, o) {
-      const { routeIndex } = clap(ctx, o, {
-        types: { routeIndex: 'usize' },
-        conflicts: [AMOUNT_CONFLICT, ['bridgeId', 'routeIndex'], ['confirmApprove', 'skipApprove']],
-      });
+      const routeIndex = typed(ctx.path, 'routeIndex', o.routeIndex, 'usize');
       const client = await ctx.api();
       return cmdExecute(client, o.from, o.to, o.fromChain, o.toChain, o.amount, o.readableAmount, o.slippage, o.wallet, o.receiveAddress,
         o.bridgeId, routeIndex, o.sort, o.allowBridges, o.denyBridges, o.mevProtection, o.confirmApprove, o.skipApprove, o.force);
@@ -606,7 +595,6 @@ export default {
   'cross-chain status': {
     uses: ['txHash', 'orderId', 'bridgeId', 'fromChain'],
     async run(ctx, o) {
-      clap(ctx, o, { conflicts: [['txHash', 'orderId']], oneOf: [['txHash', 'orderId']] });
       const client = await ctx.api();
       const chainIdx = resolveChain(o.fromChain);
       const hash = some(o.txHash) ? o.txHash : await resolveOrderIdToTxHash(o.orderId, chainIdx);

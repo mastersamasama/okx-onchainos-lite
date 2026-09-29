@@ -19,9 +19,12 @@ import { resolve as resolveChainProfile } from '../chain-profile.mjs';
 import { ERR_NOT_LOGGED_IN, handleConfirmingError } from '../common.mjs';
 import { sessionKeyOrNotLoggedIn } from '../shared/common/session.mjs';
 import { minimalToReadable } from '../shared/common/amount.mjs';
-import { hpkeDecryptSessionSk, ed25519SignEip191, ed25519SignHex, ed25519SignEncoded } from '../shared/_crypto.mjs';
-import { ensureWalletAccountsFresh, queryTokenReadable, queryTokenMetadata } from '../shared/_balance.mjs';
-import { eqIgnoreAsciiCase, isObject, parseU64, u64Json, strDebug, downcast } from '../shared/_rust.mjs';
+import { hpkeDecryptSessionSk, ed25519SignEip191, ed25519SignHex, ed25519SignEncoded } from '../../core/crypto.mjs';
+import { eqIgnoreAsciiCase, strDebug } from '../../core/rs/str.mjs';
+import { isObject } from '../../core/rs/value.mjs';
+import { parseU64 } from '../../core/rs/num.mjs';
+import { downcast } from '../../core/rs/anyhow.mjs';
+import { ensureWalletAccountsFresh, queryTokenReadable, queryTokenMetadata } from '../balance/index.mjs';
 import {
   gasStationSend, gsNotSupportedErr, gsApplyExtraDataFields, classifyGsPhase1, buildGsFirstTimePrompt, buildGsReenablePrompt,
   buildGsTokenSelectionPrompt, forceSetupRequiredForTxParams, forceSetupRequiredForSend, emitGsPendingTxState,
@@ -131,7 +134,7 @@ const refreshWallets = (accessToken) => async () => {
 function chainIndexNumber(ci) {
   const v = parseU64(ci);
   if (v === undefined) throw new Error(`chain id '${ci}' is not a valid number`);
-  return u64Json(v);
+  return v;
 }
 
 // Trace headers for contract calls (cached swap trace id) — fresh timestamp per call.
@@ -433,7 +436,7 @@ export function cmdSend(amt, recipient, chain, from, contractToken, force, gasTo
 }
 
 // `addr_info.chain_index.parse::<u64>().unwrap_or(1)`
-const chainIndexOr1 = (ci) => { const v = parseU64(ci); return v === undefined ? 1 : u64Json(v); };
+const chainIndexOr1 = (ci) => parseU64(ci) ?? 1;
 
 // upstream: mod.rs::cmd_send_with_readable — user-facing `wallet send` (account chains) → data
 export async function cmdSendWithReadable(amt, requestedReadable, recipient, chain, from, contractToken, force, gasTokenAddress, relayerId, enableGasStation) {

@@ -5,9 +5,12 @@ import { openSync, closeSync } from 'node:fs';
 import { stringify, struct } from '../../../../core/json.mjs';
 import { jobIdIsSafe } from './grants.mjs';
 import { loadDeliveryContext, loadPendingDeliveryContext } from './consent.mjs';
-import { fromSlice, T } from './_serde-json.mjs';
-import { onchainosHome, exists, isDir, readBytes, readDirPaths, writeSecure, removeFileQuiet, ensureDir0700, ioError,
-  extension, fileStem, nowSecs, nowMs, satAdd, u64Le, sha256Hex } from './_fs.mjs';
+import { fromSlice, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure, ensureDir0700 } from '../../../../core/home.mjs';
+import { exists, isDir, readBytes, readDirPaths, removeFileQuiet, io, ioError, extension, fileStem } from '../../../../core/rs/fs.mjs';
+import { nowSecs, nowMs } from '../../../../core/rs/time.mjs';
+import { u64SaturatingAdd } from '../../../../core/rs/num.mjs';
+import { sha256Hex } from '../../../../core/rs/codec.mjs';
 import { sessionSendWithTimeout, sessionSendExactWithTimeout } from '../okx-a2a.mjs';
 
 const QUEUE_VERSION = 1;
@@ -48,7 +51,7 @@ const lockPath = (jobId) => join(root(), `${jobId}.lock`);
 // flock: exclusion is in-process only (see unit report divergences).
 function acquireLock(jobId) {
   const path = lockPath(jobId);
-  ensureDir0700(root());
+  io(() => ensureDir0700(root()));
   let fd;
   try { fd = openSync(path, 'a', 0o600); } catch (e) { throw ioError(e); }
   try { closeSync(fd); } catch {}
@@ -66,7 +69,7 @@ function readQueue(jobId) {
 function writeQueue(q) {
   const path = queuePath(q.jobId);
   if (!q.entries.length) { removeFileQuiet(path); return; }
-  writeSecure(path, stringify(queueJson(q), true));
+  io(() => writeSecure(path, stringify(queueJson(q), true)));
 }
 
 // upstream: delivery_queue.rs::enqueue → { kind: 'Active', context, alreadyPresent } | { kind: 'Queued', activeDeliveryId, position }
@@ -160,11 +163,11 @@ async function dispatchFront(jobId, timeoutMs) {
   const front = q.entries[0];
   if (!front) return false;
   const now = nowSecs();
-  const pendingDue = front.state === EntryState.ResumePending && u64Le(front.nextResumeAttemptAt, now);
-  const ackTimedOut = front.state === EntryState.ResumeSent && (BigInt(front.resumeSentAt) === 0n || u64Le(satAdd(front.resumeSentAt, RESUME_ACK_TIMEOUT_SEC), now));
+  const pendingDue = front.state === EntryState.ResumePending && front.nextResumeAttemptAt <= now;
+  const ackTimedOut = front.state === EntryState.ResumeSent && (BigInt(front.resumeSentAt) === 0n || u64SaturatingAdd(front.resumeSentAt, RESUME_ACK_TIMEOUT_SEC) <= now);
   if (!pendingDue && !ackTimedOut) return false;
   Object.assign(front, {
-    state: EntryState.ResumePending, nextResumeAttemptAt: satAdd(now, RETRY_DELAY_SEC), resumeAttempts: Math.min(front.resumeAttempts + 1, 4294967295),
+    state: EntryState.ResumePending, nextResumeAttemptAt: u64SaturatingAdd(now, RETRY_DELAY_SEC), resumeAttempts: Math.min(front.resumeAttempts + 1, 4294967295),
     resumeProtocolVersion: RESUME_ENVELOPE_VERSION, resumeSentAt: 0, processingStartedAt: 0, processingAttempt: 0,
   });
   const deliveryId = front.deliveryId, attempt = front.resumeAttempts;
@@ -177,7 +180,7 @@ async function dispatchFront(jobId, timeoutMs) {
   if (f2 && f2.deliveryId === deliveryId && f2.state === EntryState.ResumePending) {
     f2.state = EntryState.ResumeSent;
     f2.resumeSentAt = nowSecs();
-    f2.nextResumeAttemptAt = satAdd(f2.resumeSentAt, RESUME_ACK_TIMEOUT_SEC);
+    f2.nextResumeAttemptAt = u64SaturatingAdd(f2.resumeSentAt, RESUME_ACK_TIMEOUT_SEC);
     writeQueue(q2);
   }
   return true;
@@ -189,7 +192,7 @@ export function scheduleRetry(jobId, deliveryId) {
   const q = readQueue(jobId);
   const front = q.entries[0];
   if (front && front.deliveryId === deliveryId) {
-    Object.assign(front, { state: EntryState.ResumePending, nextResumeAttemptAt: satAdd(nowSecs(), RETRY_DELAY_SEC), resumeSentAt: 0, processingStartedAt: 0, processingAttempt: 0 });
+    Object.assign(front, { state: EntryState.ResumePending, nextResumeAttemptAt: u64SaturatingAdd(nowSecs(), RETRY_DELAY_SEC), resumeSentAt: 0, processingStartedAt: 0, processingAttempt: 0 });
     writeQueue(q);
   }
 }
@@ -259,7 +262,7 @@ async function recoverStalledProcessing(jobId) {
   acquireLock(jobId);
   const front = readQueue(jobId).entries[0];
   if (!front || front.state !== EntryState.Processing || BigInt(front.processingStartedAt) === 0n
-    || BigInt(satAdd(front.processingStartedAt, PROCESSING_WATCHDOG_SEC)) > BigInt(nowSecs())) return false;
+    || BigInt(u64SaturatingAdd(front.processingStartedAt, PROCESSING_WATCHDOG_SEC)) > BigInt(nowSecs())) return false;
   const deliveryId = front.deliveryId;
   const state = executor.recoveryState(jobId, deliveryId);
   if (state === executor.RecoveryState.NoExecution) {

@@ -5,14 +5,19 @@ import { existsSync, lstatSync, statSync, realpathSync } from 'node:fs';
 import { join, sep } from 'node:path';
 import { homedir } from 'node:os';
 import { struct } from '../../../core/json.mjs';
-import { fromStr } from '../../../wallet/_serde-json.mjs';
+import { fromStr } from '../../../core/serde.mjs';
 import { parse as parseJson } from '../../../core/json.mjs';
-import { isObj, get, asStr, asI64, asU64, numText, isNum, trim, asciiLower, eqIgnoreAsciiCase, parseI64, parseI32, utcNowRfc3339, nowSecs } from '../../_rs.mjs';
+import { isObject, get, asStr, asI64, asU64, numText, isNumber } from '../../../core/rs/value.mjs';
+import { trim, asciiLower, eqIgnoreAsciiCase } from '../../../core/rs/str.mjs';
+import { parseI64, parseI32 } from '../../../core/rs/num.mjs';
+import { utcNowRfc3339, nowSecs } from '../../../core/rs/time.mjs';
 import { Status, SubStatus } from './state-machine.mjs';
 import { AGENT_ROLE_USER, PreFetchedTaskContext, fetchMyAgentsByRole } from './index.mjs';
 import { firstTimestamp, parseTimestampSeconds, formatLocalTimestampWithOffset, REVIEW_WINDOW_SECONDS } from './deadline.mjs';
 import { readManifest, deliverablesDir } from './deliverables.mjs';
 import { sessionHistory } from './okx-a2a.mjs';
+import { authoritativeRefundSettlementConfirmed, hasCreatedSubscriptionCloseReceipt } from '../user/refund.mjs';
+import { fetchSubscribeDetailForAgent } from '../user/subscription-ops.mjs';
 
 const MAX_LOCAL_ROWS = 512;
 const MAX_COMMAND_JSON_BYTES = 128 * 1024;
@@ -21,7 +26,7 @@ const MAX_COMMAND_JSON_BYTES = 128 * 1024;
 // upstream: lifecycle.rs::scalar_string — non-blank string kept verbatim, numbers rendered.
 function scalarString(v) {
   if (typeof v === 'string') return trim(v) === '' ? undefined : v;
-  return isNum(v) ? numText(v) : undefined;
+  return isNumber(v) ? numText(v) : undefined;
 }
 function scalarI64(v) {
   const i = asI64(v);
@@ -119,7 +124,7 @@ export function parseHistory(raw) {
   if (!Array.isArray(value)) return [];
   const out = [];
   for (const row of value) {
-    if (!isObj(row)) continue;
+    if (!isObject(row)) continue;
     const idv = get(row, 'id');
     if (idv === undefined) continue;
     const id = scalarString(idv);
@@ -132,8 +137,8 @@ export function parseHistory(raw) {
 }
 
 function decodeObject(value) {
-  if (isObj(value)) return value;
-  if (typeof value === 'string') { try { const v = parseJson(value); return isObj(v) ? v : undefined; } catch { return undefined; } }
+  if (isObject(value)) return value;
+  if (typeof value === 'string') { try { const v = parseJson(value); return isObject(v) ? v : undefined; } catch { return undefined; } }
   return undefined;
 }
 // upstream: lifecycle.rs::system_event_envelope
@@ -141,7 +146,7 @@ function systemEventEnvelope(content) {
   const decoded = decodeObject(content);
   if (!decoded) return undefined;
   const m = get(decoded, 'message');
-  const env = isObj(m) ? m : decoded;
+  const env = isObject(m) ? m : decoded;
   const src = asStr(get(env, 'source'));
   return src !== undefined && eqIgnoreAsciiCase(src, 'system') ? env : undefined;
 }
@@ -674,7 +679,7 @@ export function buildSubscriptionSnapshotWithUserClose(jobId, detail, events, hi
   const m = subscriptionMilestones(detail, events);
   const ctx = PreFetchedTaskContext.fromApiResponse(detail);
   ctx.jobType = 1; ctx.status = nz(status); ctx.trialType = nz(trialType);
-  const refundProven = !numEq(trialType, 1) && (settlementConfirmed9(ctx)
+  const refundProven = !numEq(trialType, 1) && (authoritativeRefundSettlementConfirmed(ctx, 9)
     || (m.refundedAt !== null && detailString(detail, ['refundTxHash', 'refundTransactionHash']) !== undefined));
   const inGrace = numEq(status, 1) && numEq(autoRenew, 1) && timestampHasPassed(m.currentPeriodEndsAt) && timestampIsFuture(m.gracePeriodEndsAt);
   const phase = subscriptionPhase(status, trialType, inGrace, refundProven);
@@ -700,16 +705,6 @@ export function buildSubscriptionSnapshotWithUserClose(jobId, detail, events, hi
     refundTokenSymbol: nz(detailString(detail, ['refundTokenSymbol', 'paymentTokenSymbol', 'tokenSymbol'])),
     refundTxHash: nz(detailString(detail, ['refundTxHash', 'refundTransactionHash'])), milestones: m, events, display: display(d), syncedAt: utcNowRfc3339(),
   };
-}
-
-// user/refund.rs::authoritative_refund_settlement_confirmed(ctx, 9) (pure; mirrored in ../_user.mjs)
-function settlementConfirmed9(ctx) {
-  if (!numEq(ctx.status, 9)) return false;
-  const amt = trim(ctx.tokenAmount ?? '');
-  const parts = amt.split('.');
-  const valid = parts.length <= 2 && /^[0-9]+$/.test(parts[0]) && (parts[1] === undefined || /^[0-9]+$/.test(parts[1]));
-  const positive = valid && !/^[0.]*$/.test(amt);
-  return positive && (numEq(ctx.jobType, 0) || (numEq(ctx.jobType, 1) && !numEq(ctx.trialType, 1)));
 }
 
 // upstream: lifecycle.rs::subscription_status_copy → [statusLabel, currentSummary]
@@ -808,7 +803,6 @@ function selectCurrentWalletUserAgent(agents, requestedRaw) {
 // upstream: lifecycle.rs::handle_lifecycle → snapshot struct (success data)
 export async function handleLifecycle(client, jobId, agentId) {
   const { fetchTaskDetail } = await import('./query.mjs');
-  const { fetchSubscribeDetailForAgent, hasCreatedSubscriptionCloseReceipt } = await import('../_user.mjs');
   const walletAgents = await fetchMyAgentsByRole('user');
   const resolved = selectCurrentWalletUserAgent(walletAgents, agentId);
   if (resolved === undefined) return snapshotStruct(unavailableSnapshot(jobId, 'Current wallet identity could not be confirmed, so local task history was not read.'));
@@ -819,7 +813,7 @@ export async function handleLifecycle(client, jobId, agentId) {
     let sub;
     try { sub = await fetchSubscribeDetailForAgent(client, jobId, resolved); } catch { sub = undefined; }
     if (sub !== undefined && subscriptionDetailMatchesJob(sub, jobId)) {
-      return subSnapshotStruct(buildSubscriptionSnapshotWithUserClose(jobId, sub, events, local.readSucceeded, await hasCreatedSubscriptionCloseReceipt(jobId, resolved)));
+      return subSnapshotStruct(buildSubscriptionSnapshotWithUserClose(jobId, sub, events, local.readSucceeded, hasCreatedSubscriptionCloseReceipt(jobId, resolved)));
     }
     const s = snapshotFromLocalFallback(jobId, local);
     s.display = withNotice(s.display, s.historyAvailable ? 'Latest task details are unavailable; showing the latest verified local task record.'
@@ -852,7 +846,7 @@ export async function handleLifecycle(client, jobId, agentId) {
       s.aspAgentId = nz(projected.providerAgentId);
       return snapshotStruct(s);
     }
-    return subSnapshotStruct(buildSubscriptionSnapshotWithUserClose(jobId, sub, events, historyReadSucceeded, await hasCreatedSubscriptionCloseReceipt(jobId, resolved)));
+    return subSnapshotStruct(buildSubscriptionSnapshotWithUserClose(jobId, sub, events, historyReadSucceeded, hasCreatedSubscriptionCloseReceipt(jobId, resolved)));
   }
   let localJobType, localStatus;
   for (let i = events.length - 1; i >= 0; i--) if (localJobType === undefined && events[i].jobType !== null) localJobType = events[i].jobType;
@@ -862,7 +856,7 @@ export async function handleLifecycle(client, jobId, agentId) {
     let sub;
     try { sub = await fetchSubscribeDetailForAgent(client, jobId, resolved); } catch { sub = undefined; }
     if (sub !== undefined && subscriptionDetailMatchesJob(sub, jobId)) {
-      return subSnapshotStruct(buildSubscriptionSnapshotWithUserClose(jobId, sub, events, historyReadSucceeded, await hasCreatedSubscriptionCloseReceipt(jobId, resolved)));
+      return subSnapshotStruct(buildSubscriptionSnapshotWithUserClose(jobId, sub, events, historyReadSucceeded, hasCreatedSubscriptionCloseReceipt(jobId, resolved)));
     }
   }
   if (reconciled.jobType !== 0) {

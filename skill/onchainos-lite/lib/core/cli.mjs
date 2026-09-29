@@ -117,8 +117,12 @@ const VERSION_ARG = { name: 'version', long: '--version', flag: true };
 //  - a leaf's own required option (e.g. a local required --chain) must be given at the leaf;
 //  - a value starting with '-' is a short-flag token ("unexpected argument '-5' found")
 //    unless the option allows hyphen values;
+//  - value parsers run as each value is consumed (argv order, before any relation check);
 //  - relations from the clap model (conflicts, requires, required-unless, groups) are enforced.
-export function parse(argv) {
+// An upstream `value_parser = <fn>` (spec type 'custom') is the command's own code:
+// `valueParsers(path)` resolves the leaf's { name: fn } (its handler's `parsers`), and the
+// option's value in `opts` is that fn's output, as clap hands it to the command.
+export async function parse(argv, { valueParsers } = {}) {
   const { nodes } = spec();
   const root = nodes[''];
   const globals = new Map(root.opts.map((o) => [o.long, o]));
@@ -146,19 +150,32 @@ export function parse(argv) {
     } else values[o.name] = o.delimiter && !o.flag ? String(v).split(o.delimiter) : v;
   };
   const shortToken = (t) => t.length > 1 && t[0] === '-' && t[1] !== '-';
-  // clap value parsers run while parsing: a bad value fails before any required-arg check
-  const checkType = (o, v) => {
-    if (!o.type) return;
-    for (const part of o.delimiter ? String(v).split(o.delimiter) : [v]) {
-      try { parseTyped(part, o); }
-      catch (e) { throw valueError(`invalid value '${part}' for '${displayOf(o)}': ${e.message}`); }
+  // clap value parsers run while parsing: a bad value fails before any required-arg check.
+  // Returns the value the command receives (the raw string unless the parser is custom).
+  const parseValue = async (o, v) => {
+    switch (o.type) {
+      case undefined: return v;
+      case 'path':   // PathBufValueParser: an empty value is Error::empty_value
+        if (v === '') throw missingValue(o);
+        return v;
+      case 'custom': {
+        const fn = (await valueParsers?.(path))?.[o.name];
+        if (!fn) throw new Error(`no value parser for '${displayOf(o)}' of '${path}'`);
+        try { return fn(v); }
+        catch (e) { throw valueError(`invalid value '${v}' for '${displayOf(o)}': ${e.message}`); }
+      }
+      default:
+        for (const part of o.delimiter ? String(v).split(o.delimiter) : [v]) {
+          try { parseTyped(part, o); }
+          catch (e) { throw valueError(`invalid value '${part}' for '${displayOf(o)}': ${e.message}`); }
+        }
+        return v;
     }
   };
   // clap num_args(1..): one occurrence takes values until the next flag-like token
-  const moreValues = (o) => {
+  const moreValues = async (o) => {
     while (o.multiValue && i < argv.length && argv[i] !== '--' && !(argv[i].length > 1 && argv[i][0] === '-' && !o.allowHyphen)) {
-      checkType(o, argv[i]);
-      (values[o.name] ||= []).push(argv[i]);
+      (values[o.name] ||= []).push(await parseValue(o, argv[i]));
       i++;
     }
   };
@@ -231,9 +248,8 @@ export function parse(argv) {
         const tip = similar(v, o.possible)[0];
         throw valueError(`invalid value '${v}' for '${displayOf(o)}'\n  [possible values: ${o.possible.join(', ')}]`, tip ? `a similar value exists: '${tip}'` : undefined);
       }
-      checkType(o, v);
-      record(o, v);
-      if (eq < 0) moreValues(o);
+      record(o, await parseValue(o, v));
+      if (eq < 0) await moreValues(o);
       continue;
     }
     if (!rest && shortToken(tok)) {
@@ -363,25 +379,32 @@ export function parse(argv) {
 //   f32/f64 → <f64 as FromStr> (accepts inf, infinity, nan, a leading '+')
 // Errors print clap's value-error shape (no Usage block) and exit 2 via UsageError.
 const RANGED = { u8: [0n, 255n], u16: [0n, 65535n], u32: [0n, 4294967295n], i8: [-128n, 127n], i16: [-32768n, 32767n], i32: [-2147483648n, 2147483647n], i64: [-9223372036854775808n, 9223372036854775807n] };
-const I64 = RANGED.i64;
-const U64_MAX = 18446744073709551615n;
+const U64 = [0n, 18446744073709551615n];
 const asNum = (v) => (Number.isSafeInteger(Number(v)) ? Number(v) : v);
 
-export function parseClapInt(raw, type) {
-  const s = String(raw);
+// upstream: library/core/src/num/mod.rs::from_str_radix (radix 10) — an optional '+' ('-' only for
+// a signed type), then digits scanned left to right; an overflow is reported at the digit causing
+// it, so it wins over a bad digit further right (`99999999999999999999x` is "too large").
+function fromStrRadix(s, [min, max]) {
   if (s === '') throw new Error('cannot parse integer from empty string');
-  if (type === 'u64' || type === 'usize') {
-    if (!/^\+?\d+$/.test(s)) throw new Error('invalid digit found in string');
-    const v = BigInt(s);
-    if (v > U64_MAX) throw new Error('number too large to fit in target type');
-    return asNum(v);
+  const neg = s[0] === '-' && min < 0n;
+  const digits = neg || s[0] === '+' ? s.slice(1) : s;
+  if (digits === '') throw new Error('invalid digit found in string');
+  let v = 0n;
+  for (const c of digits) {
+    if (c < '0' || c > '9') throw new Error('invalid digit found in string');
+    v = v * 10n + (neg ? -BigInt(c) : BigInt(c));
+    if (v > max) throw new Error('number too large to fit in target type');
+    if (v < min) throw new Error('number too small to fit in target type');
   }
+  return v;
+}
+
+export function parseClapInt(raw, type) {
+  if (type === 'u64' || type === 'usize') return asNum(fromStrRadix(String(raw), U64));
   const range = RANGED[type];
   if (!range) throw new Error(`unsupported integer type ${type}`);
-  if (!/^[+-]?\d+$/.test(s)) throw new Error('invalid digit found in string');
-  const v = BigInt(s);
-  if (v > I64[1]) throw new Error('number too large to fit in target type');
-  if (v < I64[0]) throw new Error('number too small to fit in target type');
+  const v = fromStrRadix(String(raw), RANGED.i64);
   if (v < range[0] || v > range[1]) throw new Error(`${v} is not in ${range[0]}..=${range[1]}`);
   return asNum(v);
 }
@@ -415,6 +438,7 @@ function parseTyped(raw, o) {
 
 export function parseRustF64(raw) {
   const s = String(raw);
+  if (s === '') throw new Error('cannot parse float from empty string');
   if (/^[+-]?(inf|infinity)$/i.test(s)) return s.startsWith('-') ? -Infinity : Infinity;
   if (/^[+-]?nan$/i.test(s)) return NaN;
   if (!/^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/.test(s)) throw new Error('invalid float literal');

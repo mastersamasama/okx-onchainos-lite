@@ -7,13 +7,10 @@
 // (`serde_json::to_string(&card)`), and plain objects (sorted keys) where upstream goes through
 // `serde_json::to_value` / `json!`.
 //
-// Deserialisers come in two flavours, mirroring serde_json:
-//   • streaming `from_str` (errors carry `at line L column C`) — built from the watch module's
-//     serde_json combinators (lib/watch/_serde.mjs);
-//   • `from_value` over an already-parsed Value (no position) — lib/agent/_serde.mjs.
+// Deserialisation types (core/serde.mjs) serve both serde_json::from_str (errors carry
+// `at line L column C`) and serde_json::from_value (no position).
 import { struct } from '../../core/json.mjs';
-import { string, vec, struct as deStruct, value, unitEnum } from '../../watch/_serde.mjs';
-import { S, SerdeError, unexpected } from '../_serde.mjs';
+import { T } from '../../core/serde.mjs';
 
 // upstream: models.rs constants
 export const XLAYER_CHAIN_INDEX = '196';
@@ -22,81 +19,28 @@ export const XLAYER_CHAIN_NAME = 'XLayer';
 
 // upstream: models.rs::ServiceOperation (serde rename_all = "lowercase")
 export const ServiceOperation = Object.freeze({ Create: 'create', Update: 'update', Delete: 'delete' });
-const OPERATIONS = ['create', 'update', 'delete'];
-const OPERATIONS_EXPECTED = 'one of `create`, `update`, `delete`';
 
-// ── streaming (serde_json::from_str) type definitions ─────────────────
+// ── deserialisation ───────────────────────────────────────────────────
 
-// deserialize_option: `null` → None, anything else → Some(inner).
-export const optionDe = (inner) => (de) => {
-  if (de.ws() === 0x6e) { de.i++; de.ident('ull'); return null; }
-  return inner(de);
-};
-// deserialize_bool
-export function boolDe(de) {
-  const p = de.ws();
-  if (p === undefined) throw de.peekError('EOF while parsing a value');
-  try {
-    if (p === 0x74) { de.i++; de.ident('rue'); return true; }
-    if (p === 0x66) { de.i++; de.ident('alse'); return false; }
-    throw de.invalidType('a boolean');
-  } catch (e) { throw de.fix(e); }
-}
-
-const none = () => null;
+// upstream: models.rs::ServiceOperation (Deserialize)
+const SERVICE_OPERATION = T.enum('ServiceOperation', Object.values(ServiceOperation).map((v) => [v, v]));
 // upstream: models.rs::SubscriptionTier {interval, fee} (both required)
-export const SUBSCRIPTION_TIER_DE = deStruct('SubscriptionTier', [
-  { name: 'interval', de: string }, { name: 'fee', de: string },
-]);
+const SUBSCRIPTION_TIER = T.struct('SubscriptionTier', [['interval', T.string], ['fee', T.string]]);
 // upstream: models.rs::AgentService (serde field attributes → defaults)
-export const AGENT_SERVICE_DE = deStruct('AgentService', [
-  { name: 'id', de: optionDe(value), def: none },
-  { name: 'serviceName', de: string },
-  { name: 'serviceDescription', de: string },
-  { name: 'serviceGuide', de: string, def: () => '' },
-  { name: 'fee', de: string, def: () => '' },
-  { name: 'serviceType', de: string },
-  { name: 'subscription', de: vec(SUBSCRIPTION_TIER_DE), def: () => [] },
-  { name: 'freeTrial', de: optionDe(string), def: none },
-  { name: 'operation', de: optionDe(unitEnum(OPERATIONS)), def: none },
-  { name: 'endpoint', de: optionDe(string), def: none },
+export const AGENT_SERVICE = T.struct('AgentService', [
+  ['id', T.option(T.value), null],
+  ['serviceName', T.string],
+  ['serviceDescription', T.string],
+  ['serviceGuide', T.string, ''],
+  ['fee', T.string, ''],
+  ['serviceType', T.string],
+  ['subscription', T.vec(SUBSCRIPTION_TIER), () => []],
+  ['freeTrial', T.option(T.string), null],
+  ['operation', T.option(SERVICE_OPERATION), null],
+  ['endpoint', T.option(T.string), null],
 ]);
 // Vec<AgentService>
-export const AGENT_SERVICES_DE = vec(AGENT_SERVICE_DE);
-
-// ── from_value (serde_json::from_value) type definitions ─────────────
-
-// Unit-variant enum from a Value (serde_json::value::de deserialize_enum).
-const operationValue = {
-  expecting: 'enum ServiceOperation',
-  de(v) {
-    let variant, payload;
-    if (typeof v === 'string') variant = v;
-    else if (v !== null && typeof v === 'object' && !Array.isArray(v) && unexpected(v) === 'map') {
-      const keys = Object.keys(v);
-      if (keys.length !== 1) throw new SerdeError('invalid value: map, expected map with a single key');
-      [variant] = keys;
-      payload = v[variant];
-    } else throw new SerdeError(`invalid type: ${unexpected(v)}, expected string or map`);
-    if (!OPERATIONS.includes(variant)) throw new SerdeError(`unknown variant \`${variant}\`, expected ${OPERATIONS_EXPECTED}`);
-    if (payload !== undefined && payload !== null) throw new SerdeError(`invalid type: ${unexpected(payload)}, expected unit`);
-    return variant;
-  },
-};
-const tierValue = S.struct('SubscriptionTier', [['interval', S.string], ['fee', S.string]]);
-// upstream: models.rs::AgentService via serde_json::from_value
-export const AGENT_SERVICE_VALUE = S.struct('AgentService', [
-  ['id', S.option(S.value), { default: null }],
-  ['serviceName', S.string],
-  ['serviceDescription', S.string],
-  ['serviceGuide', S.string, { default: '' }],
-  ['fee', S.string, { default: '' }],
-  ['serviceType', S.string],
-  ['subscription', S.vec(tierValue), { default: () => [] }],
-  ['freeTrial', S.option(S.string), { default: null }],
-  ['operation', S.option(operationValue), { default: null }],
-  ['endpoint', S.option(S.string), { default: null }],
-]);
+export const AGENT_SERVICES = T.vec(AGENT_SERVICE);
 
 // ── serialisation ─────────────────────────────────────────────────────
 

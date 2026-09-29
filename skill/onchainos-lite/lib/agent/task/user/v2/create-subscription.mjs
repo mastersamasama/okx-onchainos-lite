@@ -1,10 +1,12 @@
 // Buyer create-and-broadcast protocol for a subscription task — upstream
 // task/user/v2/create_subscription.rs (called by `agent create-subscribe`). FUNDS.
 import { context } from '../../../../core/errors.mjs';
-import { get, asStr, asBool, isObj, trim } from '../../../_rs.mjs';
+import { get, asStr, asBool, isObject } from '../../../../core/rs/value.mjs';
+import { trim } from '../../../../core/rs/str.mjs';
 import * as signing from '../../signing.mjs';
 import { bindJobProviderToCurrentRuntime } from '../../common/a2a-binding.mjs';
-import { copyAttachmentsToJobWithManifest, autotrade } from '../flow-lifecycle/_peers.mjs';
+import { abortPreparedConsent } from '../../common/autotrade/guide.mjs';
+import { copyAttachmentsToJobWithManifest } from '../flow-lifecycle/_peers.mjs';
 // upstream keeps a private copy of create_subscribe.rs::SUBSCRIBE_API_PREFIX here; lite has one definition.
 import { SUBSCRIBE_API_PREFIX } from '../create-subscribe.mjs';
 
@@ -17,9 +19,9 @@ export const buildConfirmBody = (input) => ({
 
 // upstream: create_subscription.rs::parse_confirmation → [terms, typedData, effectiveUseTrial]
 export function parseConfirmation(value, requestedUseTrial) {
-  if (!isObj(value) || Object.keys(value).length === 0) throw new Error('providerConfirmStatus returned empty terms; the service may not support subscription');
+  if (!isObject(value) || Object.keys(value).length === 0) throw new Error('providerConfirmStatus returned empty terms; the service may not support subscription');
   const typedData = get(value, 'typedData');
-  if (!isObj(typedData) || Object.keys(typedData).length === 0) throw new Error('providerConfirmStatus response missing typedData');
+  if (!isObject(typedData) || Object.keys(typedData).length === 0) throw new Error('providerConfirmStatus response missing typedData');
   const terms = { ...value };
   delete terms.typedData;
   const effective = asBool(get(value, 'useTrial')) ?? requestedUseTrial;
@@ -42,11 +44,6 @@ export function validateCreateResponse(value) {
   const bizType = signing.extractBizType(value);
   if (Number(bizType) !== CREATE_SUBSCRIPTION_BIZ_TYPE) throw new Error(`unexpected bizType ${bizType}; expected ${CREATE_SUBSCRIPTION_BIZ_TYPE}`);
   return [jobId, bizType];
-}
-
-async function abortPreparedConsent(jobId) {
-  const guide = await autotrade('guide');
-  try { await guide?.abortPreparedConsent?.(jobId); } catch {}
 }
 
 // upstream: create_subscription.rs::execute → { jobId, effectiveUseTrial, broadcast, attachments }
@@ -74,12 +71,12 @@ export async function execute(client, input, accountId, address, userAgentId, es
     broadcast = await signing.signUopAndBroadcastFull(client, get(response, 'uopData'), accountId, address, jobId, bizType, userAgentId, undefined);
   } catch (e) {
     if (prebind) await prebind.rollbackIfCreated();
-    await abortPreparedConsent(jobId);
+    abortPreparedConsent(jobId);
     throw context(`broadcast failed or returned an unknown result for jobId=${jobId}`, e);
   }
   if (broadcast === null || broadcast === undefined) {
     if (prebind) await prebind.rollbackIfCreated();
-    await abortPreparedConsent(jobId);
+    abortPreparedConsent(jobId);
     throw new Error(`broadcast returned no receipt for jobId=${jobId}`);
   }
   return { jobId, effectiveUseTrial, broadcast, attachments };

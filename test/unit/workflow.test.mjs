@@ -19,7 +19,6 @@ const SM = await import(CMD + 'workflow/smart-money.mjs');
 const NT = await import(CMD + 'workflow/new-tokens.mjs');
 const WA = await import(CMD + 'workflow/wallet-analysis.mjs');
 const PF = await import(CMD + 'workflow/portfolio.mjs');
-const V = await import(CMD + 'workflow/_value.mjs');
 const UP = await import(CMD + 'upgrade/upgrade.mjs');
 const { parse, stringify } = await import('../../skill/onchainos-lite/lib/core/json.mjs');
 const { UPSTREAM_VERSION, LITE_VERSION } = await import('../../skill/onchainos-lite/lib/config.mjs');
@@ -496,23 +495,12 @@ test('token-research: a Step 1 refresh on a fetch_report clone does not leak int
   assert.deepEqual(calls, ['basic-info:A', 'price-info:B', 'advanced-info:A', 'token-scan:A', 'holder:A', 'overview:A', 'top-trader:A', 'list:A']);
 });
 
-// ── private serde helpers ───────────────────────────────────────────────
-test('_value helpers mirror serde_json accessors', () => {
-  assert.equal(V.index({ a: null }, 'a'), null);
-  assert.equal(V.get({ a: null }, 'a'), null);
-  assert.equal(V.get({}, 'a'), undefined);
-  assert.equal(V.get([1], '0'), undefined);
-  assert.equal(V.get(parse('1.5'), 'a'), undefined);
-  assert.equal(V.index('s', 'length'), null);
-  assert.equal(V.asU64(3), 3n);
-  assert.equal(V.asU64(-3), undefined);
-  assert.equal(V.asU64(-0), undefined);
-  assert.equal(V.asU64(parse('2.0')), undefined);
-  assert.equal(V.asU64(parse('18446744073709551615')), 18446744073709551615n);
-  assert.equal(V.asU64('7'), undefined);
-  assert.equal(V.toAsciiUppercase('miGrated-ıſé'), 'MIGRATED-ıſé');
-  assert.equal(V.debugStrList(NT.VALID_STAGES), '["MIGRATED", "MIGRATING"]');
-  assert.ok(V.cmpBytes('Z', 'b') < 0);
+// ── serde_json::Value accessors as the merge logic reads parsed API data ────
+test('smart-money counts are Value::as_u64: floats, -0 and strings count 0; exact beyond 2^53', () => {
+  const rows = parse(`[{"tokenContractAddress":"A","walletCount":2.0,"addressCount":1},{"tokenContractAddress":"B","walletCount":-0},
+    {"tokenContractAddress":"C","walletCount":"7"},{"tokenContractAddress":"D","walletCount":18446744073709551615},
+    {"tokenContractAddress":"E","walletCount":9007199254740993}]`);
+  assert.deepEqual(addrs(SM.extractTopTokens(rows, 5)), ['D', 'E', 'A', 'B', 'C']);
 });
 
 // ── handlers (option contract) ──────────────────────────────────────────

@@ -25,10 +25,9 @@ const C = await import(LIB + 'common.mjs');
 const AC = await import(LIB + 'asset-class.mjs');
 const F = await import(LIB + 'funding.mjs');
 const R = await import(LIB + 'risk-classify.mjs');
-const RS = await import(LIB + '_rust-str.mjs');
 const WA = await import('../../skill/onchainos-lite/lib/wallet/account.mjs');
 const Q = await import(LIB + 'qr.mjs');
-const { stringify, parse, F64 } = await import(LIB + 'json.mjs');
+const { stringify, parse } = await import(LIB + 'json.mjs');
 const { CodedError } = await import(LIB + 'errors.mjs');
 
 const ok = (fn) => assert.doesNotThrow(fn);
@@ -964,27 +963,6 @@ test('risk_classify: join_dedup + enum wire forms / severities', () => {
   assert.equal(R.RiskLevel.Low, 'LOW');
   assert.equal(R.TradeDirection.Buy, 'buy');
   assert.equal(R.TradeDirection.Sell, 'sell');
-});
-
-// ═════════════════════════════ private Rust-semantics helpers ═════════════════════════════
-
-test('_rust-str: trim / f64 / unsigned grammars', () => {
-  assert.equal(RS.trim('\u0085 x 　'), 'x');
-  assert.equal(RS.trim('﻿x'), '﻿x');
-  assert.equal(RS.asciiLower('ÀBC'), 'Àbc');
-  assert.equal(RS.asciiUpper('ıab'), 'ıAB');
-  for (const [s, v] of [['1', 1], ['+1.5', 1.5], ['.5', 0.5], ['5.', 5], ['1e3', 1000], ['1E-2', 0.01], ['-0', -0]]) assert.equal(RS.parseF64(s), v);
-  for (const s of ['inf', 'INFINITY', '+Inf']) assert.equal(RS.parseF64(s), Infinity);
-  assert.equal(RS.parseF64('-inf'), -Infinity);
-  assert.ok(Number.isNaN(RS.parseF64('NaN')));
-  for (const s of ['', '.', 'e5', '1e', ' 1', '0x1', '1_0', 'infinit', '--1', 'Infinityy']) assert.equal(RS.parseF64(s), undefined, s);
-  assert.equal(RS.parseUnsigned('+42'), 42);
-  assert.equal(RS.parseUnsigned('4294967295', 'u32'), 4294967295);
-  assert.equal(RS.parseUnsigned('4294967296', 'u32'), undefined);
-  assert.equal(RS.parseUnsigned('18446744073709551615'), 18446744073709551615n);
-  assert.equal(RS.parseUnsigned('18446744073709551616'), undefined);
-  for (const s of ['', '+', '-1', '1 ', '١']) assert.equal(RS.parseUnsigned(s), undefined, s);
-  assert.ok(F64);
 });
 
 // ═════════════════════ funding: no late binding of collaborators ═════════════════════

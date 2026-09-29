@@ -5,13 +5,18 @@ import { join } from 'node:path';
 import { stringify, struct } from '../../../../core/json.mjs';
 import { jobIdIsSafe } from './grants.mjs';
 import { DegradeReason } from './index.mjs';
-import { fromSlice, T } from './_serde-json.mjs';
-import { onchainosHome, exists, isDir, readBytes, readDirPaths, writeSecure, removeFileQuiet, renameQuiet, extension, withExtension,
-  ageSecs, nowSecs, satAdd, u64Gt, sha256Hex } from './_fs.mjs';
+import { fromSlice, T } from '../../../../core/serde.mjs';
+import { home as onchainosHome, writeSecure } from '../../../../core/home.mjs';
+import {
+  exists, isDir, readBytes, readDirPaths, removeFileQuiet, renameQuiet, extension, withExtension, modifiedAgeSecs, io,
+} from '../../../../core/rs/fs.mjs';
+import { nowSecs } from '../../../../core/rs/time.mjs';
+import { u64SaturatingAdd } from '../../../../core/rs/num.mjs';
+import { sha256Hex } from '../../../../core/rs/codec.mjs';
+import { splitWhitespace, asciiLower, asciiUpper } from '../../../../core/rs/str.mjs';
+import { get, asStr } from '../../../../core/rs/value.mjs';
 import { resolve as resolveLang, Lang } from '../user-lang.mjs';
 import { userNotifyScoped, userNotifyScopedWithTimeout } from '../okx-a2a.mjs';
-import { splitWhitespace, get, asStr, asciiLower } from '../../../_rs.mjs';
-import { asciiUpper } from '../../../../core/_rust-str.mjs';
 
 const NOTICE_VERSION = 1;
 const MAX_FLUSH_BATCH = 4;
@@ -43,15 +48,15 @@ function persistFailedNotice(jobId, idempotencyKey, content, previousAttempts) {
   const now = nowSecs();
   const attempts = previousAttempts + 1;
   const createdAt = readNotice(path)?.createdAt ?? now;
-  writeSecure(path, stringify(pendingNoticeJson({
-    version: NOTICE_VERSION, jobId, idempotencyKey, content, attempts, nextAttemptAt: satAdd(now, backoff(attempts)), createdAt, updatedAt: now,
-  }), true));
+  io(() => writeSecure(path, stringify(pendingNoticeJson({
+    version: NOTICE_VERSION, jobId, idempotencyKey, content, attempts, nextAttemptAt: u64SaturatingAdd(now, backoff(attempts)), createdAt, updatedAt: now,
+  }), true)));
 }
 
 // upstream: notify.rs::deliver_pending → delivered?
 async function deliverPending(path, notice, force, timeoutMs) {
   if (notice.version !== NOTICE_VERSION || !jobIdIsSafe(notice.jobId)) throw new Error('invalid pending notification record');
-  if (!force && u64Gt(notice.nextAttemptAt, nowSecs())) return false;
+  if (!force && notice.nextAttemptAt > nowSecs()) return false;
   let ok = true;
   try {
     if (timeoutMs !== undefined) await userNotifyScopedWithTimeout(notice.content, notice.jobId, notice.idempotencyKey, timeoutMs);
@@ -61,8 +66,8 @@ async function deliverPending(path, notice, force, timeoutMs) {
   notice.attempts = Math.min(notice.attempts + 1, 4294967295);
   notice.updatedAt = nowSecs();
   if (notice.attempts >= MAX_NOTIFICATION_ATTEMPTS) { removeFileQuiet(path); return false; }
-  notice.nextAttemptAt = satAdd(notice.updatedAt, backoff(notice.attempts));
-  writeSecure(path, stringify(pendingNoticeJson(notice), true));
+  notice.nextAttemptAt = u64SaturatingAdd(notice.updatedAt, backoff(notice.attempts));
+  io(() => writeSecure(path, stringify(pendingNoticeJson(notice), true)));
   return false;
 }
 
@@ -97,7 +102,7 @@ export async function flushAllPendingBounded(limit, budgetMs) {
     for (const path of readDirPaths(dir)) {
       const ext = extension(path);
       if (ext !== undefined && ext.startsWith('lease-')) {
-        const age = ageSecs(path);
+        const age = modifiedAgeSecs(path);
         if (age !== undefined && age >= STALE_LEASE_SEC) {
           const original = withExtension(path, 'json');
           if (exists(original)) removeFileQuiet(path); else renameQuiet(path, original);

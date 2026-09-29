@@ -1,8 +1,9 @@
 // upstream: cli/src/watch/types.rs — channel registry/classification, WatchConfig,
 // TokenPair, TradeEvent (filter view), DaemonState.
 import { struct, F64 } from '../core/json.mjs';
-import { cmpBytes, splitn, trim, parseUnsigned } from './_rs.mjs';
-import { fromStr, struct as serdeStruct, vec, string, u64, unitEnum, value } from './_serde.mjs';
+import { cmpBytes, splitn, trim } from '../core/rs/str.mjs';
+import { parseU64 } from '../core/rs/num.mjs';
+import { T, fromStr } from '../core/serde.mjs';
 
 // upstream: types.rs::ChannelPattern (Debug names; rendered `format!("{:?}").to_lowercase()`)
 export const ChannelPattern = Object.freeze({ Global: 'Global', PerWallet: 'PerWallet', PerToken: 'PerToken', PerChain: 'PerChain' });
@@ -69,22 +70,19 @@ export function watchConfig({ channels, walletAddresses = [], tokenPairs = [], c
   });
 }
 
-const TOKEN_PAIR = serdeStruct('TokenPair', [
-  { name: 'chain_index', de: (d) => string(d) },
-  { name: 'token_contract_address', de: (d) => string(d) },
-]);
-const WATCH_CONFIG = serdeStruct('WatchConfig', [
-  { name: 'channels', de: vec((d) => string(d)) },
-  { name: 'wallet_addresses', de: vec((d) => string(d)), def: () => [] },
-  { name: 'token_pairs', de: vec(TOKEN_PAIR), def: () => [] },
-  { name: 'chain_indexes', de: vec((d) => string(d)), def: () => [] },
-  { name: 'env', de: unitEnum(['pre', 'prod']) },
-  { name: 'created_at', de: u64 },
-  { name: 'idle_timeout_ms', de: u64, def: defaultIdleTimeoutMs },
+const TOKEN_PAIR = T.struct('TokenPair', [['chain_index', T.string], ['token_contract_address', T.string]]);
+const WATCH_CONFIG = T.struct('WatchConfig', [
+  ['channels', T.vec(T.string)],
+  ['wallet_addresses', T.vec(T.string), () => []],
+  ['token_pairs', T.vec(TOKEN_PAIR), () => []],
+  ['chain_indexes', T.vec(T.string), () => []],
+  ['env', T.enum('WatchEnv', Object.values(WatchEnv).map((v) => [v, v]))],
+  ['created_at', T.u64],
+  ['idle_timeout_ms', T.u64, defaultIdleTimeoutMs],
 ]);
 
 // serde_json::from_str::<serde_json::Value>(text) (throws serde's error text).
-export const valueFromStr = (text) => fromStr(text, value);
+export const valueFromStr = (text) => fromStr(text);
 
 // serde_json::from_str::<WatchConfig>(text) → WatchConfig (throws serde's error text).
 export function watchConfigFromStr(text) {
@@ -139,7 +137,7 @@ export class DaemonState {
     const parts = splitn(trim(line), 3, '|');
     if (parts.length < 2) return DaemonState.Crashed;
     if (parts[0] === 'stopped') return DaemonState.Stopped;
-    const ts = BigInt(parseUnsigned(parts[1], 'u64') ?? 0);
+    const ts = BigInt(parseU64(parts[1]) ?? 0);
     const now = BigInt(nowMs);
     if ((now > ts ? now - ts : 0n) > 60000n) return DaemonState.Crashed;
     switch (parts[0]) {
